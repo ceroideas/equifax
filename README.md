@@ -5,9 +5,11 @@
 
 ## Instalación
 - Clonar el Repositorio o Descargarlo
+- Cambiar a la rama develop
 - Usar el Manejador de Dependencias [Composer](https://getcomposer.org/) para instalar las librerías requeridas, con el comando update.
 
 ```bash
+git checkout develop
 composer update
 ```
 
