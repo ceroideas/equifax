@@ -272,16 +272,17 @@ return [
         [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-fw fa-user',
+            'can' => 'create user',
             'submenu' => [
                 [
                     'text' => 'Crear Nuevo Usuario',
                     'icon' => '',
-                    'url'  => 'panel/users/create',
+                    'url'  => '/users/create',
                 ],
                 [
                     'text' => 'Listado de Usuarios',
                     'icon' => '',
-                    'url'  => 'panel/users',
+                    'url'  => '/users',
                 ],
                 // [
                 //     'text'    => 'level_one',

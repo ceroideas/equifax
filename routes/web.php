@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('users', [UsersController::class, 'index']);
+Route::get('users/create', [UsersController::class, 'create'])->name('user.create');;
+Route::post('users', [UsersController::class, 'store']);
+Route::get('users/{user}/edit', [UsersController::class, 'edit'])->name('user.edit');
+Route::put('users/{user}', [UsersController::class, 'update']);
+Route::delete('users/{user}', [UsersController::class, 'destroy']);
+

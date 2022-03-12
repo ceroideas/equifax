@@ -64,7 +64,7 @@
                     <td>{{ $user->email }}</td>
                     <td>
                         
-                     <nobr><a href="{{ url('/panel/users/' . $user->id . '/edit/') }}">{!! $btnEdit !!}</a><form action="{{ url('panel/users/' . $user->id) }}" method="POST" >@csrf @method('DELETE'){!! $btnDelete !!}</form>{!! $btnDetails !!}</nobr>
+                     <nobr><a href="{{ url('/users/' . $user->id . '/edit/') }}">{!! $btnEdit !!}</a><form action="{{ url('/users/' . $user->id) }}" method="POST" >@csrf @method('DELETE'){!! $btnDelete !!}</form>{!! $btnDetails !!}</nobr>
                     </td>
                 </tr>
             @endforeach
