@@ -65,11 +65,11 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-orange',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -283,6 +283,11 @@ return [
                     'text' => 'Listado de Usuarios',
                     'icon' => '',
                     'url'  => '/users',
+                ],
+                [
+                    'text' => 'Listado de Usuarios Pendientes',
+                    'icon' => '',
+                    'url'  => '/users/pending',
                 ],
                 // [
                 //     'text'    => 'level_one',

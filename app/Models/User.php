@@ -69,4 +69,95 @@ class User extends Authenticatable
             return true;
         }
     }
+
+    public function getRole(){
+        switch ($this->role) {
+            case 0:
+                return 'Super Admin';
+                break;
+            case 1:
+                return 'Administrador';
+                break;
+            case 2:
+                return 'Cliente';
+                break;
+            default:
+                return 'Cliente';
+                break;
+        }
+    }
+
+    public function getStatus(){
+        switch ($this->status) {
+            case NULL:
+                return 'Completa tus datos para proceder a revisión';
+            case 1:
+                return 'Pendiente de Revisión';
+                break;
+            case 2:
+                return 'Revocado vuelva a enviar el DNI';
+                break;
+            case 3:
+                    return 'Aprobado';
+                    break;
+            default:
+                return 'Pendiente de Aprobación';
+                break;
+        }
+    }
+
+    public function status(){
+        switch ($this->status) {
+
+            case 3:
+                return true;
+                break;
+            default:
+                return false;
+                break;
+        }
+    }
+
+    public function checkStatus(){
+
+        if($this->isClient() && !$this->status()){
+
+            return false;
+
+        }
+
+        return true;
+    }
+
+    public function approval(){
+
+       $this->status = 3;
+       $this->save();
+
+       return true;
+    }
+
+    public function denial(){
+
+        $this->status = 2;
+        $this->save();
+ 
+        return true;
+     }
+
+     public function pending(){
+
+        $this->status = 1;
+        $this->save();
+ 
+        return true;
+     }
+
+     public function adminlte_profile_url(){
+         return route('user.show', $this);
+     }
+
+     public function adminlte_desc(){
+         return $this->getRole();
+     }
 }

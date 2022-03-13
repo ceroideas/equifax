@@ -4,6 +4,11 @@
             {{ session('msj') }}
         </x-adminlte-alert>
     @endif
+    @if(session()->has('alert'))
+    <x-adminlte-alert theme="warning" dismissable>
+        {{ session('alert') }}
+    </x-adminlte-alert>
+@endif
     <form action="@if(isset($user)){{ url('/users/' . $user->id) }}@else{{ url('/users') }}@endif" method="POST" enctype="multipart/form-data">
         @csrf
         @if(isset($user))

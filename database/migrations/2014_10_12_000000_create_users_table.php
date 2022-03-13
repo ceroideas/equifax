@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('iban')->nullable();
             $table->string('dni_img')->nullable();
             $table->integer('role')->default(1);
-            $table->boolean('data_complete')->default(false);
+            $table->integer('status')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

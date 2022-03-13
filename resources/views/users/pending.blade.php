@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Usuarios</h1>
+                <h1>Usuarios Pendientes</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Usuarios</li>
+                    <li class="breadcrumb-item active">Usuarios Pendientes</li>
                 </ol>
             </div>
         </div>
@@ -56,7 +56,8 @@
                     <td>{{ $user->getStatus() }}</td>
                     <td>
                      <nobr>
-                         <a href="{{ url('/users/' . $user->id . '/edit/') }}">
+                        @can('create', 'user')
+                        <a href="{{ url('/users/' . $user->id . '/edit/') }}">
                             <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                                 <i class="fa fa-lg fa-fw fa-pen"></i>
                             </button>
@@ -65,6 +66,7 @@
                         <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">
                             <i class="fa fa-lg fa-fw fa-trash"></i>
                         </button>
+                        @endcan
                         <a href="{{ url('/users/' . $user->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>

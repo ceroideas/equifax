@@ -31,6 +31,18 @@ class UsersController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pending()
+    {
+        return view('users.pending',[
+            'users' => User::where('status', 1)->latest()->get()
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -80,7 +92,10 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('users.show', [
+
+            'user' => $user
+        ]);
     }
 
     /**
@@ -110,7 +125,7 @@ class UsersController extends Controller
         $validation = $this->validateRequest();
 
         if($request->password != Null){
-            $password = $require->password;
+            $password = bcrypt($request->password);
         }else{
             $password = $user->password;
         }
@@ -125,16 +140,19 @@ class UsersController extends Controller
             'location' => $request->location,
             'cop' => $request->cop,
             'iban' => $request->iban,
-            'password' => bcrypt($request->password),
+            'password' => $password,
 
         ]);
         if($request->file('dni_img')){
             if($user->dni_img != NULL){
+                
                 Storage::disk('public')->delete($user->dni_img);
+                $user->pending();
             }
             
             $path = $request->file('dni_img')->store('uploads/' . $user->id . '/dni', 'public');
             $user->update(['dni_img' => $path]);
+            
 
         }
 
@@ -142,9 +160,9 @@ class UsersController extends Controller
             return redirect('/users')->with(['msj' => 'Usuario Actualizado Exitosamente']);
         }
 
-        return redirect()->back()->with(['msj' => 'Datos Actualizado Exitosamente']);
+        return redirect()->back()->with(['msj' => 'Datos Actualizado Exitosamente, espere por la revisión']);
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -191,5 +209,21 @@ class UsersController extends Controller
         }
 
         return request()->validate($rules);
+    }
+
+    public function approval(User $user){
+
+        $user->approval();
+
+        return redirect()->back()->with('msj', 'Usuario Aprobado Correctamente');
+
+    }
+
+    public function denial(User $user){
+
+        $user->denial();
+
+        return redirect()->back()->with('msj', 'Usuario Revocado Correctamente');
+
     }
 }
