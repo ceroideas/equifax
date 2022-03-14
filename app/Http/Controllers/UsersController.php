@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
 
     public function __construct() {
-
+        $this->middleware('auth');
         $this->authorizeResource(User::class, 'user');
 
     }
@@ -25,8 +25,15 @@ class UsersController extends Controller
      */
     public function index()
     {
+
+        if(Auth::user()->isAdmin()){
+            $users = User::where('role', 2)->latest()->get();
+        }elseif(Auth::user()->isSuperAdmin()){
+            $users = User::all();
+        }
+
         return view('users.index',[
-            'users' => User::all()
+            'users' => $users
         ]);
     }
 
@@ -35,8 +42,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pending()
+    public function pending(User $user)
     {
+
+        $this->authorize('pending', $user);
+
         return view('users.pending',[
             'users' => User::where('status', 1)->latest()->get()
         ]);
@@ -147,13 +157,12 @@ class UsersController extends Controller
             if($user->dni_img != NULL){
                 
                 Storage::disk('public')->delete($user->dni_img);
-                $user->pending();
+                
             }
             
             $path = $request->file('dni_img')->store('uploads/' . $user->id . '/dni', 'public');
             $user->update(['dni_img' => $path]);
-            
-
+            $user->pending();
         }
 
         if(Auth::user()->can('create', 'user')){

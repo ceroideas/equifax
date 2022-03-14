@@ -56,7 +56,7 @@
                     <td>{{ $user->getStatus() }}</td>
                     <td>
                      <nobr>
-                        @can('create', 'user')
+                        @can('create', $user)
                         <a href="{{ url('/users/' . $user->id . '/edit/') }}">
                             <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                                 <i class="fa fa-lg fa-fw fa-pen"></i>

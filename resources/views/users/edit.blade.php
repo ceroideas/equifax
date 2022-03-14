@@ -15,7 +15,7 @@
                         <li class="breadcrumb-item"><a href="/panel/usuarios">Usuarios</a></li>
                     @else
                     <li class="breadcrumb-item"><a href="{{ route('user.edit', $user) }}">Usuarios</a></li>
-                    @endcan
+                    @endif
                    
                     <li class="breadcrumb-item active">{{ $user->name }}</li>
                 </ol>

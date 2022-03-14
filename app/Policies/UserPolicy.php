@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Auth;
 
 class UserPolicy
 {
@@ -17,7 +18,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->isSuperAdmin();
+        return $user->isAdmin();
     }
 
     /**
@@ -29,7 +30,11 @@ class UserPolicy
      */
     public function view(User $user, User $user_model)
     {
-        return $user->is($user_model);
+
+        if($user->is($user_model) || ($user->isAdmin() && $user_model->isClient())){
+            return true;
+        }
+
     }
 
     /**
@@ -89,5 +94,10 @@ class UserPolicy
     public function forceDelete(User $user, User $model)
     {
         return $user->isSuperAdmin();
+    }
+
+    public function pending(User $user)
+    {
+        return $user->isAdmin();
     }
 }

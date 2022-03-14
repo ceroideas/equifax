@@ -90,7 +90,7 @@ class User extends Authenticatable
     public function getStatus(){
         switch ($this->status) {
             case NULL:
-                return 'Completa tus datos para proceder a revisión';
+                return 'A la espera de datos para revisión';
             case 1:
                 return 'Pendiente de Revisión';
                 break;
@@ -127,6 +127,15 @@ class User extends Authenticatable
         }
 
         return true;
+    }
+
+    public function isPending(){
+
+        if($this->status === 1){
+            return true;
+        }
+
+        return false;
     }
 
     public function approval(){

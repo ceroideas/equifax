@@ -56,15 +56,17 @@
                     <td>{{ $user->getStatus() }}</td>
                     <td>
                      <nobr>
-                         <a href="{{ url('/users/' . $user->id . '/edit/') }}">
-                            <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                                <i class="fa fa-lg fa-fw fa-pen"></i>
+                        @can('create', $user)
+                            <a href="{{ url('/users/' . $user->id . '/edit/') }}">
+                                <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
+                                    <i class="fa fa-lg fa-fw fa-pen"></i>
+                                </button>
+                            </a>
+                            <form id="delete-form-{{ $user->id }}" action="{{ url('/users/' . $user->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
+                            <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">
+                                <i class="fa fa-lg fa-fw fa-trash"></i>
                             </button>
-                        </a>
-                        <form id="delete-form-{{ $user->id }}" action="{{ url('/users/' . $user->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
-                        <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">
-                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                        </button>
+                        @endcan
                         <a href="{{ url('/users/' . $user->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>

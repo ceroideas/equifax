@@ -272,22 +272,44 @@ return [
         [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-fw fa-user',
-            'can' => 'create user',
+            'can' =>  ['create-users'],
             'submenu' => [
                 [
                     'text' => 'Crear Nuevo Usuario',
                     'icon' => '',
+                    'can' => 'create-users',
                     'url'  => '/users/create',
+                ],
+                [
+                    'text' => 'Usuarios Pendientes',
+                    'icon' => '',
+                    'can' => ['create-users'],
+                    'url'  => '/users/pending',
                 ],
                 [
                     'text' => 'Listado de Usuarios',
                     'icon' => '',
+                    'can' => 'create-users',
                     'url'  => '/users',
                 ],
+            ],
+        ],
+        [
+            'text'    => 'Clientes',
+            'icon'    => 'fas fa-fw fa-user',
+            'can' =>  ['see-pendings'],
+            'submenu' => [
                 [
-                    'text' => 'Listado de Usuarios Pendientes',
+                    'text' => 'Clientes Pendientes',
                     'icon' => '',
+                    'can' => ['see-pendings'],
                     'url'  => '/users/pending',
+                ],
+                [
+                    'text' => 'Listado de  Clientes',
+                    'icon' => '',
+                    'can' => ['see-pendings'],
+                    'url'  => '/users',
                 ],
                 // [
                 //     'text'    => 'level_one',

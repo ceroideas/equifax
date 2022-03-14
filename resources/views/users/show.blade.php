@@ -26,15 +26,8 @@
         </x-adminlte-alert>
     @endif
 
-    {{-- Themes --}}
-<x-adminlte-profile-widget name="{{ $user->name }}" desc="{{ $user->getRole() }}" theme="orange" header-class="text-white">
-    {{-- <x-adminlte-profile-col-item class="border-right text-dark" icon="fas fa-lg fa-tasks"
-    title="Projects Done" text="25" size=6 badge="lime">
-    hola
-    
-    </x-adminlte-profile-col-item>
-    --}}
 
+<x-adminlte-profile-widget name="{{ $user->name }}" desc="{{ $user->getRole() }}" theme="orange" header-class="text-white">
     <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="card card-orange">
             <div class="card-header text-white">
@@ -42,7 +35,12 @@
             </div>
             
             <div class="card-body text-center">
-                <img src="{{  asset( $user->dni_img)  }}" alt="{{ $user->name . ' dni'}}" class="img-fluid"/>
+                @if($user->dni_img)
+                    <img src="{{  asset( $user->dni_img)  }}" alt="{{ $user->name . ' dni'}}" class="img-fluid"/>
+                @else
+                    <img src="{{  asset( 'img/placeholders/dniplaceholder.jpg' )  }}" alt="{{ $user->name . ' dni'}}" class="img-fluid"/>
+                
+                @endif
             </div>
         </div>
     </div>
@@ -112,7 +110,7 @@
                 </div>
             </div>
         </div>
-        @if (Auth()->user()->isAdmin() || Auth()->user()->isSuperAdmin())
+        @if (((Auth()->user()->isAdmin() || Auth()->user()->isSuperAdmin()) && !Auth()->user()->is($user)) )
         <div class="row">
             <div class="col-sm-12">
                 @if($user->status())
@@ -123,7 +121,7 @@
                     <nobr>
                         <a href="#" class="btn btn-danger btn-block" onclick="event.preventDefault(); document.getElementById('user-denial').submit();"><b>Revocar</b></a>
                     </nobr>
-                 @else
+                @elseif($user->isPending())
                     <form id="user-approval" action="{{ url('users/approval/' . $user->id) }}" method="POST" style="display: none;">
                         @csrf
                         @method('POST')
@@ -137,6 +135,10 @@
 
                          <a href="#" class="btn btn-danger btn-block" onclick="event.preventDefault(); document.getElementById('user-denial').submit();"><b>Revocar</b></a>
                      </nobr>
+                @else
+                    <x-adminlte-alert theme="info" dismissable>
+                        <span>El Cliente aún no ha completado sus datos.</span>
+                    </x-adminlte-alert>
                 @endif
             </div>
          </div>
@@ -151,5 +153,4 @@
         @endif
     </div>
 </x-adminlte-profile-widget>
-
 @stop
