@@ -107,6 +107,7 @@ class User extends Authenticatable
     }
 
     public function status(){
+
         switch ($this->status) {
 
             case 3:

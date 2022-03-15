@@ -17,7 +17,7 @@ class HomeController extends Controller
     {   
         $status = Auth::user()->checkStatus();
 
-        if($status == NULL){
+        if(!$status){
             return redirect()->route('user.edit', Auth::user())->with('alert', Auth::user()->getStatus());
         }
         
