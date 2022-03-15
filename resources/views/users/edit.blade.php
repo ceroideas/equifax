@@ -11,7 +11,12 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="/panel/usuarios">Usuarios</a></li>
+                    @if(auth::user()->can('create', 'user'))
+                        <li class="breadcrumb-item"><a href="/panel/usuarios">Usuarios</a></li>
+                    @else
+                    <li class="breadcrumb-item"><a href="{{ route('user.edit', $user) }}">Usuarios</a></li>
+                    @endif
+                   
                     <li class="breadcrumb-item active">{{ $user->name }}</li>
                 </ol>
             </div>

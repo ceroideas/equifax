@@ -19,4 +19,7 @@
 
 @section('content')
 
+    @can('pending', App\Models\User::class)
+        hola
+    @endcan
 @stop

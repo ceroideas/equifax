@@ -65,11 +65,11 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-orange',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -272,16 +272,44 @@ return [
         [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-fw fa-user',
+            'can' =>  ['create-users'],
             'submenu' => [
                 [
                     'text' => 'Crear Nuevo Usuario',
                     'icon' => '',
-                    'url'  => 'panel/users/create',
+                    'can' => 'create-users',
+                    'url'  => '/users/create',
+                ],
+                [
+                    'text' => 'Usuarios Pendientes',
+                    'icon' => '',
+                    'can' => ['create-users'],
+                    'url'  => '/users/pending',
                 ],
                 [
                     'text' => 'Listado de Usuarios',
                     'icon' => '',
-                    'url'  => 'panel/users',
+                    'can' => 'create-users',
+                    'url'  => '/users',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Clientes',
+            'icon'    => 'fas fa-fw fa-user',
+            'can' =>  ['see-pendings'],
+            'submenu' => [
+                [
+                    'text' => 'Clientes Pendientes',
+                    'icon' => '',
+                    'can' => ['see-pendings'],
+                    'url'  => '/users/pending',
+                ],
+                [
+                    'text' => 'Listado de  Clientes',
+                    'icon' => '',
+                    'can' => ['see-pendings'],
+                    'url'  => '/users',
                 ],
                 // [
                 //     'text'    => 'level_one',

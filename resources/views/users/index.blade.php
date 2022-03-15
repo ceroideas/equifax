@@ -21,33 +21,24 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-{{-- Setup data for datatables --}}
+{{-- Configuración del componente para el datatable --}}
     @php
     $heads = [
         'ID',
-        'Nombre',
-        ['label' => 'Email', 'width' => 40],
+        'Nombre Completo',
+        ['label' => 'Email'],
+        ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
 
-    $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
-                    <i class="fa fa-lg fa-fw fa-pen"></i>
-                </button>';
-    $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-                    <i class="fa fa-lg fa-fw fa-trash"></i>
-                </button>';
-    $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
-                    <i class="fa fa-lg fa-fw fa-eye"></i>
-                </button>';
-
     $config = [
        
-        'columns' => [null, null, null, ['orderable' => false]],
+        'columns' => [null, null, null, null, ['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
 
-    {{-- Minimal example / fill data using the component slot --}}
+    {{-- Datatable para los usuarios --}}
 
     @if(session()->has('msj'))
         <x-adminlte-alert theme="success" dismissable>
@@ -62,15 +53,30 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ $user->getStatus() }}</td>
                     <td>
-                        
-                     <nobr><a href="{{ url('/panel/users/' . $user->id . '/edit/') }}">{!! $btnEdit !!}</a><form action="{{ url('panel/users/' . $user->id) }}" method="POST" >@csrf @method('DELETE'){!! $btnDelete !!}</form>{!! $btnDetails !!}</nobr>
+                     <nobr>
+                        @can('create', $user)
+                            <a href="{{ url('/users/' . $user->id . '/edit/') }}">
+                                <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
+                                    <i class="fa fa-lg fa-fw fa-pen"></i>
+                                </button>
+                            </a>
+                            <form id="delete-form-{{ $user->id }}" action="{{ url('/users/' . $user->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
+                            <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">
+                                <i class="fa fa-lg fa-fw fa-trash"></i>
+                            </button>
+                        @endcan
+                        <a href="{{ url('/users/' . $user->id ) }}">
+                            <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
+                                <i class="fa fa-lg fa-fw fa-eye"></i>
+                            </button>
+                        </a>
+                    </nobr>
                     </td>
                 </tr>
             @endforeach
-          
         </x-adminlte-datatable>
     </x-adminlte-card>
-    
 
 @stop
