@@ -93,7 +93,7 @@
         {{-- Agreements --}}
 
         <div class="custom-control custom-checkbox mb-3">
-            <input class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1">
+            <input class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
             <label for="customCheckbox1" class="custom-control-label">Aceptar los <a href="#">Términos Y Condiciones de uso General Y Protección de Datos</a></label>
             @error('tos')
                 <span class="invalid-feedback" role="alert">
