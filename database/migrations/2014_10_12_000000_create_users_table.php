@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('cop')->nullable();
             $table->string('iban')->nullable();
             $table->string('dni_img')->nullable();
-            $table->integer('role')->default(1);
+            $table->integer('role')->nullable();
             $table->integer('status')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
