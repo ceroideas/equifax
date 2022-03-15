@@ -116,6 +116,11 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+
+        if(Auth::user()->is($user) && !Auth::user()->checkStatus()){
+            session()->flash('alert', Auth::user()->getStatus());
+        }
+
         return view('users.edit', [
 
             'user' => $user
