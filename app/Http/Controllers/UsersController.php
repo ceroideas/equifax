@@ -89,7 +89,7 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
 
         ]);
-        $path = $request->file('dni_img')->store('uploads/' . $user->id . '/dni', 'public');
+        $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
         $user->update(['dni_img' => $path]);
         return redirect('/users')->with(['msj' => 'Usuario Creado Exitosamente']);
     }
@@ -165,7 +165,7 @@ class UsersController extends Controller
                 
             }
             
-            $path = $request->file('dni_img')->store('uploads/' . $user->id . '/dni', 'public');
+            $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
             $user->update(['dni_img' => $path]);
             $user->pending();
         }
@@ -184,7 +184,14 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
+    
     {
+        if($user->dni_img != NULL){
+                
+            Storage::disk('public')->delete($user->dni_img);
+            
+        }
+        
         $user->delete();
 
         return redirect('/users')->with(['msj' => 'Usuario Eliminado Exitosamente']);

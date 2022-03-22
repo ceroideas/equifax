@@ -170,4 +170,10 @@ class User extends Authenticatable
      public function adminlte_desc(){
          return $this->getRole();
      }
+
+
+     public function thirdParties(){
+         
+         return $this->hasMany(ThirdParty::class);
+     }
 }
