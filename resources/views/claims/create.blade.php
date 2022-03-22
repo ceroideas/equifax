@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear Usuario')
+@section('title', 'Nueva Reclamación')
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Crear Nueva Reclamación</h1>
+                <h1>Nueva Reclamación</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -30,7 +30,7 @@
       <div class="row">
         <div class="col-sm-12 text-center">
             <span> <button class="btn btn-flat btn-success question-button" href="{{ url('claims/create/step-two') }}">SI</button></span>    
-            <span> <button class="btn btn-flat btn-danger  question-button" >NO</button></span> 
+            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('claims/third-parties/') }}">NO</button></span> 
         </div>          
       </div>
    </x-adminlte-card>

@@ -31,15 +31,18 @@
         <div class="col-sm-12 text-center">
             <span> <button class="btn btn-flat btn-success question-button" href="{{ url('claims/create/step-two') }}">SI</button></span>    
             <span> <button class="btn btn-flat btn-danger  question-button" >NO</button></span> 
+            <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('claims/create') }}">VOLVER</button></span> 
         </div>          
       </div>
    </x-adminlte-card>
 @stop
 
 @section('js')
-console.log('gola')
+<script>
+    console.log('gola')
    $('.question-button').on('click', function(){
        console.log($(this).attr('href'));
         location.href = $(this).attr('href');
    });
+</script>
 @stop

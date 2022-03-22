@@ -30,6 +30,19 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('dividae'),
         ]);
 
+        DB::table('users')->insert([
+            'name' => 'Cliente Dev',
+            'email' =>'devcliente@dividae.com',
+            'role' => 2,
+            'dni' => '123456789E',
+            'phone' => '63412345678',
+            'address' => 'Address 123 av# 456 street 169',
+            'location' => 'Barcelona',
+            'cop' => '08001',
+            'status' => 3,
+            'password' => Hash::make('dividae'),
+        ]);
+
         \App\Models\User::factory(10)->create();
     }
 }

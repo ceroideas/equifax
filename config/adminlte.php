@@ -270,12 +270,37 @@ return [
             'icon' => 'fas fa-fw fa-tachometer-alt',
         ],
         [
+            'text'    => 'Reclamaciones',
+            'icon'    => 'fas fa-fw fa-user',
+            'can' =>  ['create-claims'],
+            'submenu' => [
+                [
+                    'text' => 'Nueva Reclamación',
+                    'icon' => '',
+                    'can' => 'create-claims',
+                    'url'  => '/claims/create',
+                ],
+                [
+                    'text' => 'Reclamaciones Pendientes',
+                    'icon' => '',
+                    'can' => ['create-claims'],
+                    // 'url'  => '/claims/pending',
+                ],
+                [
+                    'text' => 'Listado de Reclamaciones',
+                    'icon' => '',
+                    'can' => 'create-claims',
+                    'url'  => '/claims',
+                ],
+            ],
+        ],
+        [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-fw fa-user',
             'can' =>  ['create-users'],
             'submenu' => [
                 [
-                    'text' => 'Crear Nuevo Usuario',
+                    'text' => 'Nuevo Usuario',
                     'icon' => '',
                     'can' => 'create-users',
                     'url'  => '/users/create',
@@ -311,34 +336,6 @@ return [
                     'can' => ['see-pendings'],
                     'url'  => '/users',
                 ],
-                // [
-                //     'text'    => 'level_one',
-                //     'url'     => '#',
-                //     'submenu' => [
-                //         [
-                //             'text' => 'level_two',
-                //             'url'  => '#',
-                //         ],
-                //         [
-                //             'text'    => 'level_two',
-                //             'url'     => '#',
-                //             'submenu' => [
-                //                 [
-                //                     'text' => 'level_three',
-                //                     'url'  => '#',
-                //                 ],
-                //                 [
-                //                     'text' => 'level_three',
-                //                     'url'  => '#',
-                //                 ],
-                //             ],
-                //         ],
-                //     ],
-                // ],
-                // [
-                //     'text' => 'level_one',
-                //     'url'  => '#',
-                // ],
             ],
         ],
         // ['header' => 'labels'],
