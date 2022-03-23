@@ -91,4 +91,28 @@ class ClaimsController extends Controller
     {
         //
     }
+
+    public function saveOptionOne(Request $request){
+
+        $request->session()->put('claim_user', Auth()->user()->id);
+
+        return redirect('/claims/create/step-two')->with('msj', 'Se ha guardado tu elección temporalmente');
+
+    }
+
+    public function saveOptionTwo(Request $request){
+
+        $request->session()->put('claim_user', $request->id);
+
+        return redirect('/claims/create/step-two')->with('msj', 'Se ha guardado tu elección temporalmente');
+
+    }
+
+    public function flushOptionOne(Request $request){
+
+        $request->session()->put('claim_user', '');
+
+        return redirect('/third-parties')->with('msj', 'Se ha guardado tu elección temporalmente');
+
+    }
 }

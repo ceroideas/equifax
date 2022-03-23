@@ -113,7 +113,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <nobr>
-                    <a href="{{ url('/claims/third-parties') }}" class="btn btn-default btn-block my-4"><b>Regresar al Listado</b></a>
+                    <a href="{{ url('/third-parties') }}" class="btn btn-default btn-block my-4"><b>Regresar al Listado</b></a>
                 </nobr>
             </div>
          </div>

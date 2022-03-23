@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ClaimsController;
 use App\Http\Controllers\ThirdPartiesController;
+use App\Http\Controllers\DebtorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,20 +45,43 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/', [ClaimsController::class, 'index']);
     Route::get('/create', [ClaimsController::class, 'create'])->name('user.create');
     Route::get('/create/step-two', [ClaimsController::class, 'stepTwo']);
+    Route::get('/save-option-one', [ClaimsController::class, 'saveOptionOne']);
+    Route::get('/save-option-two/{id}', [ClaimsController::class, 'saveOptionTwo']);
+    Route::get('/clear-option-one', [ClaimsController::class, 'flushOptionOne']);
+    Route::get('/clear-option-two', [ClaimsController::class, 'flushOptionTwo']);
 
-    /* Terceros */
-    Route::group(['prefix' => 'third-parties'], function(){
-
-        Route::get('/', [ThirdPartiesController::class, 'index']);
-        Route::get('/create', [ThirdPartiesController::class, 'create']);
-        Route::post('/', [ThirdPartiesController::class, 'store']);
-        Route::get('/{thirdParty}', [ThirdPartiesController::class, 'show']);
-        Route::get('/{thirdParty}/edit', [ThirdPartiesController::class, 'edit']);
-        Route::put('/{thirdParty}', [ThirdPartiesController::class, 'update']);
-        Route::delete('/{thirdParty}', [ThirdPartiesController::class, 'destroy']);
-        
-        
-    });
 
 });
+
+
+/* Terceros */
+Route::group(['prefix' => 'third-parties'], function(){
+
+    Route::get('/', [ThirdPartiesController::class, 'index']);
+    Route::get('/create', [ThirdPartiesController::class, 'create']);
+    Route::post('/', [ThirdPartiesController::class, 'store']);
+    Route::get('/{thirdParty}', [ThirdPartiesController::class, 'show']);
+    Route::get('/{thirdParty}/edit', [ThirdPartiesController::class, 'edit']);
+    Route::put('/{thirdParty}', [ThirdPartiesController::class, 'update']);
+    Route::delete('/{thirdParty}', [ThirdPartiesController::class, 'destroy']);
+    
+    
+    
+});
+
+/* Deudores */
+Route::group(['prefix' => 'debtors'], function(){
+
+    Route::get('/', [DebtorsController::class, 'index']);
+    Route::get('/create', [DebtorsController::class, 'create']);
+    Route::post('/', [DebtorsController::class, 'store']);
+    Route::get('/{debtor}', [DebtorsController::class, 'show']);
+    Route::get('/{debtor}/edit', [DebtorsController::class, 'edit']);
+    Route::put('/{debtor}', [DebtorsController::class, 'update']);
+    Route::delete('/{debtor}', [DebtorsController::class, 'destroy']);
+    
+    
+    
+});
+
 

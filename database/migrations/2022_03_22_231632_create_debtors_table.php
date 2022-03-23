@@ -13,20 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('third_parties', function (Blueprint $table) {
+        Schema::create('debtors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // $table->string('email')->unique();
-            $table->string('dni')->unique();
-            $table->string('phone')->nullable();
-            $table->string('address');
+            $table->string('dni');
+            $table->string('phone');
+            $table->string('email');
+            $table->text('address');
             $table->string('location');
             $table->string('cop');
-            $table->string('iban')->nullable();
-            $table->string('dni_img')->nullable();
-            $table->string('poa')->nullable();
-            $table->foreignid('user_id');
+            $table->text('additional');
             $table->timestamps();
+            
         });
     }
 
@@ -37,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('third_parties');
+        Schema::dropIfExists('debtors');
     }
 };

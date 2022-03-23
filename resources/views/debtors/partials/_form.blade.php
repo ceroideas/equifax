@@ -1,0 +1,165 @@
+<x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline" body-class="">
+    @if(session()->has('msj'))
+        <x-adminlte-alert theme="success" dismissable>
+            {{ session('msj') }}
+        </x-adminlte-alert>
+    @endif
+    @if(session()->has('alert'))
+    <x-adminlte-alert theme="warning" dismissable>
+        {{ session('alert') }}
+    </x-adminlte-alert>
+    @endif
+
+    <x-adminlte-alert theme="info" dismissable>
+        <span>¡Importante! recuerde que si el Deudor se encuentra en Concurso de Acreedores la reclamación es inviable</span>
+    </x-adminlte-alert>
+    <form action="@if(isset($debtor)){{ url('/debtors/' . $debtor->id) }}@else{{ url('/debtors') }}@endif" method="POST" enctype="multipart/form-data">
+        @csrf
+        @if(isset($debtor))
+            @method('PUT')
+        @else
+            @method('POST')
+        @endif
+
+        <div class="row mb-4">
+            <div class="col float-center">
+                <h1>¿Qué tipo de Duedor es?</h1>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <x-adminlte-input name="type" type="radio"
+                        igroup-size="xs" enable-old-support="true" value="1" >
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="">Persona Jurídica</i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
+                    <div class="col-sm-2">
+                        <x-adminlte-input name="type" type="radio"
+                        igroup-size="xs" enable-old-support="true" value="2" >
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="">Persona Física</i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
+                    <div class="col-sm-2">
+                        <x-adminlte-input name="type" type="radio"
+                        igroup-size="xs" enable-old-support="true" value="3" >
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="">Autónomo</i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
+               </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-2">
+            <div class="col-sm-6">
+                <x-adminlte-input name="name" label="Nombre Completo / Razón Social *" placeholder="Nombre Completo / Razón Social" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->name   :  ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="email" label="Correo *" placeholder="Ingresa el Correo *" type="email"
+                    igroup-size="sm"  enable-old-support="true" value="{{  isset($user) ?  $user->email   :  ''}}">
+                        <x-slot name="appendSlot">
+                            <div class="input-group-text bg-dark">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-6">
+                <x-adminlte-input name="dni" label="DNI / CIF *" placeholder="DNI / CIF" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->dni   :  ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="tlf" label="N° de Teléfono *" placeholder="N° de Teléfono" type="phone"
+                    igroup-size="sm"  enable-old-support="true" value="{{  isset($user) ?  $user->phone   :  ''}}">
+                        <x-slot name="appendSlot">
+                            <div class="input-group-text bg-dark">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-6">
+                <x-adminlte-textarea name="address" label="Dirección / Domicilio Fiscal *" rows=4 enable-old-support="true">{{  isset($user) ?  $user->address   :  ''}}
+                    <x-slot name="appendSlot" >
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-address-card"></i>
+                        </div>
+                    </x-slot></x-adminlte-textarea>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="location" label="Población *" placeholder="Población" type="text"
+                    igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->location   :  ''}}">
+                        <x-slot name="appendSlot">
+                            <div class="input-group-text bg-dark">
+                                <i class="fas fa-map-marker"></i>
+                            </div>
+                        </x-slot>
+                </x-adminlte-input>
+                <x-adminlte-input name="cop" label="Código Postal *" placeholder="Código Postal" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->cop   :  ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-map-marker"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+        <div class="row">
+           
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-12">
+                    <x-adminlte-textarea name="additional" label="Datos Adicionales del Deudor / Observaciones ** " rows=4 enable-old-support="true" placehold="Ej: Hola">{{  isset($user) ?  $user->address   :  ''}}
+                        <x-slot name="appendSlot" >
+                            <div class="input-group-text bg-dark">
+                                <i class="fas fa-address-card"></i>
+                            </div>
+                        </x-slot></x-adminlte-textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="row">
+                <span class="float-left">(*) Los Campos marcados son requeridos.</span>
+            </div>
+            <div class="row">
+                <span class="float-left">(**) Por favor Ingrese toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
+            </div>
+            <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
+            <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
+            <a href="{{ url('/debtors/') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
+
+
+        </div>
+    </form>
+</x-adminlte-card>

@@ -21,7 +21,7 @@ class ThirdPartiesController extends Controller
 
         $thirdParties = Auth::user()->thirdParties;
 
-        return view('claims.third_parties.index', [
+        return view('third_parties.index', [
 
             'third_parties'=>  $thirdParties
         ]);
@@ -34,7 +34,7 @@ class ThirdPartiesController extends Controller
      */
     public function create()
     {
-        return view('claims.third_parties.create');
+        return view('third_parties.create');
     }
 
     /**
@@ -78,7 +78,7 @@ class ThirdPartiesController extends Controller
      */
     public function show(ThirdParty $thirdParty)
     {
-        return view('claims.third_parties.show', [
+        return view('third_parties.show', [
             'third_party' => $thirdParty
         ]);
     }
@@ -91,7 +91,7 @@ class ThirdPartiesController extends Controller
      */
     public function edit(ThirdParty $thirdParty)
     {
-        return view('claims.third_parties.edit', [
+        return view('third_parties.edit', [
             'third_party' => $thirdParty
         ]);
     }
@@ -147,7 +147,7 @@ class ThirdPartiesController extends Controller
         
         $thirdParty->delete();
 
-        return redirect('/claims/third-parties')->with(['msj' => 'Tercero Eliminado Exitosamente']);
+        return redirect('/third-parties')->with(['msj' => 'Tercero Eliminado Exitosamente']);
     }
 
     public function validateRequest(){
@@ -156,7 +156,7 @@ class ThirdPartiesController extends Controller
 
         $rules = [
             'name' => 'required|min:8|max:255',
-            'dni' => 'required|min:8|max:10',
+            'dni' => 'required|min:8|max:10|unique:third_parties',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
             'cop' => 'required',

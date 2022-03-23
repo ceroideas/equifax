@@ -21,6 +21,11 @@
 
 @section('content')
    {{-- @include('users.partials._form') --}}
+   @if(session()->has('claim_user'))
+   <x-adminlte-alert theme="info" dismissable>
+       <span> Tu elección actual es: {{ session('claim_user') == auth()->user()->id ? 'SI' : 'NO'}}</span>
+   </x-adminlte-alert>
+   @endif
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
       <div class="row">
         <div class="col-sm-12 text-center">
@@ -29,8 +34,8 @@
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('claims/create/step-two') }}">SI</button></span>    
-            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('claims/third-parties/') }}">NO</button></span> 
+            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('claims/save-option-one') }}">SI</button></span>    
+            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('claims/clear-option-one') }}">NO</button></span> 
         </div>          
       </div>
    </x-adminlte-card>

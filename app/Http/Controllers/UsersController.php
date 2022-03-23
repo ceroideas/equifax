@@ -201,23 +201,32 @@ class UsersController extends Controller
 
         $rules = [
             'name' => 'required|min:8|max:255',
-            'email' => 'required|email',
-            'dni' => 'required|min:8|max:10',
+            'email' => 'required|email|unique:users',
+            'dni' => 'required|min:8|max:10|unique:users',
             'tlf' => 'required|min:10|max:14',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
-            'cop' => 'required|numeric|integer',
-            'iban' => [new Iban]
+            'cop' => 'required|numeric',
+        
         ];
+
 
         if(Auth::user()->can('create', 'user')){
             $rules['role'] = 'required';
         }
 
+        if(request('iban')){
+            $rules['iban'] = [new Iban];
+        }
+
 
         if(request()->method() == 'PUT'){
+
+
             // dd('hola');
             $rules['password'] = 'sometimes|confirmed';
+            $rules['email'] = 'required|email|unique:users,email,'.request()->user->id;
+            $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->user->id;
             if(Auth::user()->dni_img != NUll){
                 $rules['dni_img']  = 'image|mimes:jpg,png';
             }else{

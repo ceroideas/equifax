@@ -171,9 +171,13 @@ class User extends Authenticatable
          return $this->getRole();
      }
 
-
      public function thirdParties(){
          
          return $this->hasMany(ThirdParty::class);
      }
+
+     public function debtors(){
+         
+        return $this->hasMany(Debtor::class);
+    }
 }

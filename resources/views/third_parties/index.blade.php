@@ -46,7 +46,7 @@
         </x-adminlte-alert>
     @endif
 
-    <a href="{{ url('claims/third-parties/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important;" type="button" label="Añadir Nuevo" icon="fas fa-lg fa-pencil"/></a>
+    <a href="{{ url('/third-parties/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important;" type="button" label="Añadir Nuevo" icon="fas fa-lg fa-pencil"/></a>
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
@@ -58,22 +58,22 @@
                     {{-- <td>{{ $third_party->getStatus() }}</td> --}}
                     <td>
                      <nobr>
-                        <a href="#">
+                        <a href="{{ url('/claims/save-option-two/' . $third_party->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Elegir">
                                 <i class="fa fa-lg fa-fw fa-check"></i>
                             </button>
                         </a>
-                        <a href="{{ url('/claims/third-parties/' . $third_party->id ) }}">
+                        <a href="{{ url('/third-parties/' . $third_party->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>
                         </a>
-                        <a href="{{ url('/claims/third-parties/' . $third_party->id . '/edit/') }}">
+                        <a href="{{ url('/third-parties/' . $third_party->id . '/edit/') }}">
                             <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                                 <i class="fa fa-lg fa-fw fa-pen"></i>
                             </button>
                         </a>
-                        <form id="delete-form-{{ $third_party->id }}" action="{{ url('/claims/third-parties/' . $third_party->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
+                        <form id="delete-form-{{ $third_party->id }}" action="{{ url('/third-parties/' . $third_party->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
                         <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $third_party->id }}').submit();">
                             <i class="fa fa-lg fa-fw fa-trash"></i>
                         </button>

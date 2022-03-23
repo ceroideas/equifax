@@ -9,7 +9,7 @@
         {{ session('alert') }}
     </x-adminlte-alert>
 @endif
-    <form action="@if(isset($third_party)){{ url('/claims/third-parties/' . $third_party->id) }}@else{{ url('/claims/third-parties') }}@endif" method="POST" enctype="multipart/form-data">
+    <form action="@if(isset($third_party)){{ url('/third-parties/' . $third_party->id) }}@else{{ url('/third-parties') }}@endif" method="POST" enctype="multipart/form-data">
         @csrf
         @if(isset($third_party))
             @method('PUT')
@@ -109,7 +109,7 @@
             <span class="float-left">Los Campos marcado con (*) son requeridos.</span>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
-            <a href="{{ url('claims/third-parties/') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
+            <a href="{{ url('/third-parties/') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
         </div>
     </form>
 </x-adminlte-card>

@@ -21,6 +21,12 @@
 
 @section('content')
    {{-- @include('users.partials._form') --}}
+
+   @if(session()->has('msj'))
+    <x-adminlte-alert theme="success" dismissable>
+        {{ session('msj') }}
+    </x-adminlte-alert>
+    @endif
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
       <div class="row">
         <div class="col-sm-12 text-center">
@@ -29,8 +35,8 @@
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('claims/create/step-two') }}">SI</button></span>    
-            <span> <button class="btn btn-flat btn-danger  question-button" >NO</button></span> 
+            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('/debtors') }}">SI</button></span>    
+            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('/debtors/create') }}">NO</button></span> 
             <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('claims/create') }}">VOLVER</button></span> 
         </div>          
       </div>
