@@ -24,16 +24,16 @@
 {{-- Configuración del componente para el datatable --}}
     @php
     $heads = [
-        'ID',
-        'Nombre Completo',
         ['label' => 'DNI'],
+        'Nombre Completo',
+        
         // ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
 
     $config = [
        
-        'columns' => [null, null, null, ['orderable' => false]],
+        'columns' => [null, null, ['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
@@ -46,23 +46,31 @@
         </x-adminlte-alert>
     @endif
 
+    @if(session()->has('claim_user') && session('claim_user') == auth()->user()->id)
+        <x-adminlte-alert theme="info" dismissable>
+           <span>Para utilizar un Tercero, elija "NO" al iniciar el proceso de reclamación</span>
+        </x-adminlte-alert>
+    @endif
+
     <a href="{{ url('/third-parties/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important;" type="button" label="Añadir Nuevo" icon="fas fa-lg fa-pencil"/></a>
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($third_parties as $third_party)
                 <tr>
-                    <td>{{ $third_party->id }}</td>
-                    <td>{{ $third_party->name }}</td>
                     <td>{{ $third_party->dni }}</td>
+                    <td>{{ $third_party->name }}</td>
+                    
                     {{-- <td>{{ $third_party->getStatus() }}</td> --}}
                     <td>
                      <nobr>
+                        @if(session()->has('claim_user') && session('claim_user') != auth()->user()->id)
                         <a href="{{ url('/claims/save-option-two/' . $third_party->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Elegir">
                                 <i class="fa fa-lg fa-fw fa-check"></i>
                             </button>
                         </a>
+                        @endif
                         <a href="{{ url('/third-parties/' . $third_party->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>

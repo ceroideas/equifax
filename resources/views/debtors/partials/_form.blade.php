@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <x-adminlte-input name="type" type="radio"
-                        igroup-size="xs" enable-old-support="true" value="1" >
+                        igroup-size="xs" value="1" >
                             <x-slot name="prependSlot">
                                 <div class="input-group-text bg-dark">
                                     <i class="">Persona Jurídica</i>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-sm-2">
                         <x-adminlte-input name="type" type="radio"
-                        igroup-size="xs" enable-old-support="true" value="2" >
+                        igroup-size="xs" value="2">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text bg-dark">
                                     <i class="">Persona Física</i>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-sm-2">
                         <x-adminlte-input name="type" type="radio"
-                        igroup-size="xs" enable-old-support="true" value="3" >
+                        igroup-size="xs" value="3" >
                             <x-slot name="prependSlot">
                                 <div class="input-group-text bg-dark">
                                     <i class="">Autónomo</i>
@@ -63,7 +63,7 @@
         <div class="row mt-2">
             <div class="col-sm-6">
                 <x-adminlte-input name="name" label="Nombre Completo / Razón Social *" placeholder="Nombre Completo / Razón Social" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->name   :  ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->name   :  ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-user"></i>
@@ -73,7 +73,7 @@
             </div>
             <div class="col-sm-6">
                 <x-adminlte-input name="email" label="Correo *" placeholder="Ingresa el Correo *" type="email"
-                    igroup-size="sm"  enable-old-support="true" value="{{  isset($user) ?  $user->email   :  ''}}">
+                    igroup-size="sm"  enable-old-support="true" value="{{  isset($debtor) ?  $debtor->email   :  ''}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-envelope"></i>
@@ -85,7 +85,7 @@
         <div class="row ">
             <div class="col-sm-6">
                 <x-adminlte-input name="dni" label="DNI / CIF *" placeholder="DNI / CIF" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->dni   :  ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->dni   :  ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-id-card"></i>
@@ -95,7 +95,7 @@
             </div>
             <div class="col-sm-6">
                 <x-adminlte-input name="tlf" label="N° de Teléfono *" placeholder="N° de Teléfono" type="phone"
-                    igroup-size="sm"  enable-old-support="true" value="{{  isset($user) ?  $user->phone   :  ''}}">
+                    igroup-size="sm"  enable-old-support="true" value="{{  isset($debtor) ?  $debtor->phone   :  ''}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-phone"></i>
@@ -106,7 +106,7 @@
         </div>
         <div class="row ">
             <div class="col-sm-6">
-                <x-adminlte-textarea name="address" label="Dirección / Domicilio Fiscal *" rows=4 enable-old-support="true">{{  isset($user) ?  $user->address   :  ''}}
+                <x-adminlte-textarea name="address" label="Dirección / Domicilio Fiscal *" rows=4 enable-old-support="true">{{  isset($debtor) ?  $debtor->address   :  ''}}
                     <x-slot name="appendSlot" >
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-address-card"></i>
@@ -115,7 +115,7 @@
             </div>
             <div class="col-sm-6">
                 <x-adminlte-input name="location" label="Población *" placeholder="Población" type="text"
-                    igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->location   :  ''}}">
+                    igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->location   :  ''}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-map-marker"></i>
@@ -123,7 +123,7 @@
                         </x-slot>
                 </x-adminlte-input>
                 <x-adminlte-input name="cop" label="Código Postal *" placeholder="Código Postal" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->cop   :  ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->cop   :  ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-map-marker"></i>
@@ -138,7 +138,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="col-sm-12">
-                    <x-adminlte-textarea name="additional" label="Datos Adicionales del Deudor / Observaciones ** " rows=4 enable-old-support="true" placehold="Ej: Hola">{{  isset($user) ?  $user->address   :  ''}}
+                    <x-adminlte-textarea name="additional" label="Datos Adicionales del Deudor / Observaciones ** " rows=4 enable-old-support="true" placeholder="Ingrese el motivo por el cual no ha conseguido su Deuda, además de cualquier otra información importante al caso.">{{  isset($debtor) ?  $debtor->address   :  ''}}
                         <x-slot name="appendSlot" >
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-address-card"></i>
@@ -163,3 +163,16 @@
         </div>
     </form>
 </x-adminlte-card>
+
+@section('js')
+@if(isset($debtor))
+    <script>
+        $('input[value="{{ $debtor->type }}"]').attr('checked', true);
+    </script>
+@elseif(old('type'))
+
+    <script>
+        $('input[value="{{ old('type') }}"]').attr('checked', true);
+    </script>
+@endif
+@stop

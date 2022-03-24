@@ -22,7 +22,9 @@ return new class extends Migration
             $table->text('address');
             $table->string('location');
             $table->string('cop');
+            $table->integer('type');
             $table->text('additional');
+            $table->foreignid('user_id');
             $table->timestamps();
             
         });

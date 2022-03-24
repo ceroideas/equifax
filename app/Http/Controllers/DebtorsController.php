@@ -16,7 +16,7 @@ class DebtorsController extends Controller
     public function index()
     {
 
-        $debtors = Auth::user()->debtors();
+        $debtors = Auth::user()->debtors;
 
         return view('debtors.index', [
 
@@ -44,6 +44,24 @@ class DebtorsController extends Controller
     {
         $data = $this->validateRequest();
 
+        // dd($data);
+
+        $debtor = new Debtor();
+
+        $debtor->name = $data['name'];
+        $debtor->email = $data['email'];
+        $debtor->dni = $data['dni'];
+        $debtor->phone = $data['tlf'];
+        $debtor->address = $data['address'];
+        $debtor->location = $data['location'];
+        $debtor->cop = $data['cop'];
+        $debtor->additional = $data['additional'];
+        $debtor->type = $data['type'];
+        $debtor->user_id = Auth::user()->id;
+
+        $debtor->save();
+
+        return redirect('/debtors')->with('msj', 'Deudor Añadido Correctamente');
 
     }
 
@@ -55,7 +73,10 @@ class DebtorsController extends Controller
      */
     public function show(Debtor $debtor)
     {
-        //
+        return view('debtors.show', [
+
+            'debtor' => $debtor
+        ]);
     }
 
     /**
@@ -66,7 +87,10 @@ class DebtorsController extends Controller
      */
     public function edit(Debtor $debtor)
     {
-        //
+        return view('debtors.edit', [
+
+            'debtor' => $debtor
+        ]);
     }
 
     /**
@@ -78,7 +102,20 @@ class DebtorsController extends Controller
      */
     public function update(Request $request, Debtor $debtor)
     {
-        //
+        $data = $this->validateRequest();
+
+        $debtor->name = $data['name'];
+        $debtor->email = $data['email'];
+        $debtor->dni = $data['dni'];
+        $debtor->phone = $data['tlf'];
+        $debtor->address = $data['address'];
+        $debtor->location = $data['location'];
+        $debtor->cop = $data['cop'];
+        $debtor->additional = $data['additional'];
+        $debtor->type = $data['type'];
+        $debtor->save();
+
+        return redirect('/debtors')->with('msj', 'Deudor Actualizado Correctamente');
     }
 
     /**
@@ -89,7 +126,9 @@ class DebtorsController extends Controller
      */
     public function destroy(Debtor $debtor)
     {
-        //
+        $debtor->delete();
+
+        return redirect('/debtors')->with('msj', 'Deudor Eliminado Correctamente');
     }
 
     public function validateRequest(){
@@ -97,17 +136,18 @@ class DebtorsController extends Controller
         $rules = [
             'type' => 'required',
             'name' => 'required|min:8|max:255',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'dni' => 'required|min:8|max:10|unique:users',
             'tlf' => 'required|min:10|max:14',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
             'cop' => 'required',
+            'additional' => 'required',
         ];
 
         if(request()->method() == 'PUT'){
-            $rules['email'] = 'required|email|unique:users,email,'.request()->user->id;
-            $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->user->id;
+            $rules['email'] = 'required|email|unique:users,email,'.request()->debtor->id;
+            $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->debtor->id;
         }
 
         return request()->validate($rules);

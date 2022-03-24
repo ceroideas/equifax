@@ -270,8 +270,46 @@ return [
             'icon' => 'fas fa-fw fa-tachometer-alt',
         ],
         [
+            'text'    => 'Acreditación De Terceros',
+            'icon'    => 'fas fa-fw fa-users',
+            'can' =>  ['create-claims'],
+            'submenu' => [
+                [
+                    'text' => 'Añadir Nuevo',
+                    'icon' => '',
+                    'can' => 'create-claims',
+                    'url'  => '/third-parties/create',
+                ],
+                [
+                    'text' => 'Listado de Acreditación De Terceros',
+                    'icon' => '',
+                    'can' => 'create-claims',
+                    'url'  => '/third-parties',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Deudores',
+            'icon'    => 'fas fa-fw fa-address-book',
+            'can' =>  ['create-claims'],
+            'submenu' => [
+                [
+                    'text' => 'Añadir Nuevo',
+                    'icon' => '',
+                    'can' => 'create-claims',
+                    'url'  => '/debtors/create',
+                ],
+                [
+                    'text' => 'Listado de Deudores',
+                    'icon' => '',
+                    'can' => 'create-claims',
+                    'url'  => '/debtors',
+                ],
+            ],
+        ],
+        [
             'text'    => 'Reclamaciones',
-            'icon'    => 'fas fa-fw fa-user',
+            'icon'    => 'fas fa-fw fa-book',
             'can' =>  ['create-claims'],
             'submenu' => [
                 [

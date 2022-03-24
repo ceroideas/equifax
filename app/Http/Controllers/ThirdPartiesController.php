@@ -156,7 +156,6 @@ class ThirdPartiesController extends Controller
 
         $rules = [
             'name' => 'required|min:8|max:255',
-            'dni' => 'required|min:8|max:10|unique:third_parties',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
             'cop' => 'required',
@@ -169,11 +168,14 @@ class ThirdPartiesController extends Controller
 
         if(request()->method() == 'PUT'){
 
+            $rules['dni'] = 'required|min:8|max:10|unique:third_parties,dni, ' . request()->thirdParty->id;
             $rules['dni_img']  = 'image|mimes:jpg,png';
             
         }else{
            
+            $rules['dni'] = 'required|min:8|max:10|unique:third_parties';
             $rules['dni_img']  = 'required|image|mimes:jpg,png';
+            
         }
 
 

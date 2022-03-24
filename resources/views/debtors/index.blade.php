@@ -24,16 +24,17 @@
 {{-- Configuración del componente para el datatable --}}
     @php
     $heads = [
-        'ID',
-        'Nombre Completo',
         ['label' => 'DNI'],
+        'Nombre Completo',
+        ['label' => 'Email'],
+        ['label' => 'Tipo'],
         // ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
 
     $config = [
        
-        'columns' => [null, null, null, ['orderable' => false]],
+        'columns' => [null, null, null, null, ['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
@@ -45,35 +46,42 @@
             {{ session('msj') }}
         </x-adminlte-alert>
     @endif
+    @if(!session()->has('claim_user'))
+        <x-adminlte-alert theme="info" dismissable>
+        <span>Para utilizar un Deudor, Inicie un proceso de reclamación</span>
+        </x-adminlte-alert>
+    @endif
 
-    <a href="{{ url('/third-parties/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important;" type="button" label="Añadir Nuevo" icon="fas fa-lg fa-pencil"/></a>
+    <a href="{{ url('/debtors/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important;" type="button" label="Añadir Nuevo" icon="fas fa-lg fa-pencil"/></a>
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($debtors as $debtor)
                 <tr>
-                    <td>{{ $debtor->id }}</td>
-                    <td>{{ $debtor->name }}</td>
                     <td>{{ $debtor->dni }}</td>
-                    {{-- <td>{{ $debtor->getStatus() }}</td> --}}
+                    <td>{{ $debtor->name }}</td>
+                    <td>{{ $debtor->email }}</td>
+                    <td>{{ $debtor->getType() }}</td>
                     <td>
                      <nobr>
+                        @if(session()->has('claim_user'))
                         <a href="{{ url('/claims/save-option-two/' . $debtor->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Elegir">
                                 <i class="fa fa-lg fa-fw fa-check"></i>
                             </button>
                         </a>
-                        <a href="{{ url('/third-parties/' . $debtor->id ) }}">
+                        @endif
+                        <a href="{{ url('/debtors/' . $debtor->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>
                         </a>
-                        <a href="{{ url('/third-parties/' . $debtor->id . '/edit/') }}">
+                        <a href="{{ url('/debtors/' . $debtor->id . '/edit/') }}">
                             <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                                 <i class="fa fa-lg fa-fw fa-pen"></i>
                             </button>
                         </a>
-                        <form id="delete-form-{{ $debtor->id }}" action="{{ url('/third-parties/' . $debtor->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
+                        <form id="delete-form-{{ $debtor->id }}" action="{{ url('/debtors/' . $debtor->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
                         <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $debtor->id }}').submit();">
                             <i class="fa fa-lg fa-fw fa-trash"></i>
                         </button>
