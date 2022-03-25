@@ -46,10 +46,14 @@
         </x-adminlte-alert>
     @endif
 
-    @if(session()->has('claim_user') && session('claim_user') == auth()->user()->id)
+    @if(session()->has('claim_client') && session('claim_client') == auth()->user()->id)
         <x-adminlte-alert theme="info" dismissable>
            <span>Para utilizar un Tercero, elija "NO" al iniciar el proceso de reclamación</span>
         </x-adminlte-alert>
+    @endif
+
+    @if(session()->has('claim_client') && session('claim_client') != auth()->user()->id)
+        <a href="{{ url('/claims/select-client') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-white " style="color: black !important;" type="button" label="Volver" icon="fas fa-lg fa-pencil"/></a>
     @endif
 
     <a href="{{ url('/third-parties/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important;" type="button" label="Añadir Nuevo" icon="fas fa-lg fa-pencil"/></a>
@@ -64,7 +68,7 @@
                     {{-- <td>{{ $third_party->getStatus() }}</td> --}}
                     <td>
                      <nobr>
-                        @if(session()->has('claim_user') && session('claim_user') != auth()->user()->id)
+                        @if(session()->has('claim_client') && session('claim_client') != auth()->user()->id)
                         <a href="{{ url('/claims/save-option-two/' . $third_party->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Elegir">
                                 <i class="fa fa-lg fa-fw fa-check"></i>

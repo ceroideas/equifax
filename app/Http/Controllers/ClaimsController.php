@@ -31,9 +31,19 @@ class ClaimsController extends Controller
         return view('claims.create');
     }
 
+    public function stepOne()
+    {
+        return view('claims.create_step_1');
+    }
+
     public function stepTwo()
     {
         return view('claims.create_step_2');
+    }
+
+    public function stepThree()
+    {
+        return view('claims.create_step_3');
     }
 
     /**
@@ -94,25 +104,41 @@ class ClaimsController extends Controller
 
     public function saveOptionOne(Request $request){
 
-        $request->session()->put('claim_user', Auth()->user()->id);
+        $request->session()->put('claim_client', Auth()->user()->id);
 
-        return redirect('/claims/create/step-two')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/claims/select-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
 
     }
 
     public function saveOptionTwo(Request $request){
 
-        $request->session()->put('claim_user', $request->id);
+        $request->session()->put('claim_client', $request->id);
 
-        return redirect('/claims/create/step-two')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/claims/select-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
+
+    }
+
+    public function saveDebtor(Request $request){
+
+        $request->session()->put('claim_debtor', $request->id);
+
+        return redirect('/claims/create-debt')->with('msj', 'Se ha guardado tu elección temporalmente');
 
     }
 
     public function flushOptionOne(Request $request){
 
-        $request->session()->put('claim_user', '');
+        $request->session()->put('claim_client', '');
 
         return redirect('/third-parties')->with('msj', 'Se ha guardado tu elección temporalmente');
 
+    }
+
+    public function flushAll(Request $request)
+    {
+        $request->session()->forget('claim_client');
+        $request->session()->forget('claim_debtor');
+        $request->session()->forget('claim_debt');
+        return redirect('claims/select-client')->with('msj', 'Se han eliminado las opciones correctamente');
     }
 }

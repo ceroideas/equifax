@@ -316,7 +316,7 @@ return [
                     'text' => 'Nueva Reclamación',
                     'icon' => '',
                     'can' => 'create-claims',
-                    'url'  => '/claims/create',
+                    'url'  => '/claims/select-client',
                 ],
                 [
                     'text' => 'Reclamaciones Pendientes',

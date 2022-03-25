@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Nueva Reclamación')
+@section('title', 'Crear Usuario')
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Nueva Reclamación</h1>
+                <h1>Crear Nueva Reclamación</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -21,21 +21,28 @@
 
 @section('content')
    {{-- @include('users.partials._form') --}}
-   @if(session()->has('claim_client'))
-   <x-adminlte-alert theme="info" dismissable>
-       <span> Tu elección actual es: {{ session('claim_client') == auth()->user()->id ? 'SI' : 'NO'}}</span>
-   </x-adminlte-alert>
-   @endif
+
+   @if(session()->has('msj'))
+    <x-adminlte-alert theme="success" dismissable>
+        {{ session('msj') }}
+    </x-adminlte-alert>
+    @endif
+   
+    <x-adminlte-alert theme="info" dismissable>
+        <span>Si elige NO sus opciones anteriores serán descartadas y tendrá que volver a empezar el proceso.</span>
+    </x-adminlte-alert>
+ 
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <h1>¿Reclama en nombre del usuario registrado?</h1></span>    
+            <span> <h1>¿Registrar Deuda?</h1></span>    
         </div>          
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('claims/save-option-one') }}">SI</button></span>    
-            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('claims/clear-option-one') }}">NO</button></span> 
+            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('/debts/create') }}">SI</button></span>    
+            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('/claims/flush-options') }}">NO</button></span> 
+            <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('/debtors') }}">VOLVER</button></span> 
         </div>          
       </div>
    </x-adminlte-card>
@@ -43,7 +50,6 @@
 
 @section('js')
 <script>
-    
    $('.question-button').on('click', function(){
        console.log($(this).attr('href'));
         location.href = $(this).attr('href');

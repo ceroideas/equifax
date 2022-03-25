@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ClaimsController;
 use App\Http\Controllers\ThirdPartiesController;
 use App\Http\Controllers\DebtorsController;
+use App\Http\Controllers\DebtsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,12 +44,16 @@ Route::group(['prefix' => 'users'], function(){
 
 Route::group(['prefix' => 'claims'], function(){
     Route::get('/', [ClaimsController::class, 'index']);
-    Route::get('/create', [ClaimsController::class, 'create'])->name('user.create');
-    Route::get('/create/step-two', [ClaimsController::class, 'stepTwo']);
+    Route::get('/create', [ClaimsController::class, 'create']);
+    Route::get('/select-client', [ClaimsController::class, 'stepOne']);
+    Route::get('/select-debtor', [ClaimsController::class, 'stepTwo']);
+    Route::get('/create-debt', [ClaimsController::class, 'stepThree']);
     Route::get('/save-option-one', [ClaimsController::class, 'saveOptionOne']);
     Route::get('/save-option-two/{id}', [ClaimsController::class, 'saveOptionTwo']);
+    Route::get('/save-debtor/{id}', [ClaimsController::class, 'saveDebtor']);
     Route::get('/clear-option-one', [ClaimsController::class, 'flushOptionOne']);
     Route::get('/clear-option-two', [ClaimsController::class, 'flushOptionTwo']);
+    Route::get('/flush-options', [ClaimsController::class, 'flushAll']);
 
 
 });
@@ -84,4 +89,18 @@ Route::group(['prefix' => 'debtors'], function(){
     
 });
 
+/* Deudas */
 
+Route::group(['prefix' => 'debts'], function(){
+
+    // Route::get('/', [DebtorsController::class, 'index']);
+    Route::get('/create', [DebtsController::class, 'create']);
+    // Route::post('/', [DebtorsController::class, 'store']);
+    // Route::get('/{debtor}', [DebtorsController::class, 'show']);
+    // Route::get('/{debtor}/edit', [DebtorsController::class, 'edit']);
+    // Route::put('/{debtor}', [DebtorsController::class, 'update']);
+    // Route::delete('/{debtor}', [DebtorsController::class, 'destroy']);
+    
+    
+    
+});

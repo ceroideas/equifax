@@ -37,7 +37,7 @@
         <div class="col-sm-12 text-center">
             <span> <button class="btn btn-flat btn-success question-button" href="{{ url('/debtors') }}">SI</button></span>    
             <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('/debtors/create') }}">NO</button></span> 
-            <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('claims/create') }}">VOLVER</button></span> 
+            <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('claims/select-client') }}">VOLVER</button></span> 
         </div>          
       </div>
    </x-adminlte-card>
