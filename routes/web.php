@@ -44,15 +44,20 @@ Route::group(['prefix' => 'users'], function(){
 
 Route::group(['prefix' => 'claims'], function(){
     Route::get('/', [ClaimsController::class, 'index']);
+    Route::get('/invalid-debtor', [ClaimsController::class, 'invalidDebtor']);
     Route::get('/create', [ClaimsController::class, 'create']);
     Route::get('/select-client', [ClaimsController::class, 'stepOne']);
     Route::get('/select-debtor', [ClaimsController::class, 'stepTwo']);
     Route::get('/create-debt', [ClaimsController::class, 'stepThree']);
+    Route::get('/check-debtor', [ClaimsController::class, 'stepFour']);
+    Route::get('/check-agreement', [ClaimsController::class, 'stepFive']);
+    Route::get('/accept-terms', [ClaimsController::class, 'stepSix']);
     Route::get('/save-option-one', [ClaimsController::class, 'saveOptionOne']);
     Route::get('/save-option-two/{id}', [ClaimsController::class, 'saveOptionTwo']);
     Route::get('/save-debtor/{id}', [ClaimsController::class, 'saveDebtor']);
     Route::get('/clear-option-one', [ClaimsController::class, 'flushOptionOne']);
     Route::get('/clear-option-two', [ClaimsController::class, 'flushOptionTwo']);
+    Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
     Route::get('/flush-options', [ClaimsController::class, 'flushAll']);
 
 
@@ -94,7 +99,12 @@ Route::group(['prefix' => 'debtors'], function(){
 Route::group(['prefix' => 'debts'], function(){
 
     // Route::get('/', [DebtorsController::class, 'index']);
-    Route::get('/create', [DebtsController::class, 'create']);
+    Route::get('/create/step-one', [DebtsController::class, 'stepOne']);
+    Route::get('/create/step-two', [DebtsController::class, 'stepTwo']);
+    Route::get('/create/step-three', [DebtsController::class, 'stepThree']);
+    Route::post('/step-one/save', [DebtsController::class, 'saveStepOne']);
+    Route::post('/step-two/save', [DebtsController::class, 'saveStepTwo']);
+    Route::post('/step-three/save', [DebtsController::class, 'saveStepThree']);
     // Route::post('/', [DebtorsController::class, 'store']);
     // Route::get('/{debtor}', [DebtorsController::class, 'show']);
     // Route::get('/{debtor}/edit', [DebtorsController::class, 'edit']);

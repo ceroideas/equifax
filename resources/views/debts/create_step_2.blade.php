@@ -20,5 +20,5 @@
 @stop
 
 @section('content')
-   @include('debts.partials._form')
+   @include('debts.partials._form_step_two')
 @stop

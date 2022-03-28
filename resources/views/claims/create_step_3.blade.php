@@ -40,7 +40,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('/debts/create') }}">SI</button></span>    
+            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('/debts/create/step-one') }}">SI</button></span>    
             <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('/claims/flush-options') }}">NO</button></span> 
             <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('/debtors') }}">VOLVER</button></span> 
         </div>          

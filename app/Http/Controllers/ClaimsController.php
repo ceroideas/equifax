@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Claim;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Auth;
+use Storage;
 
 class ClaimsController extends Controller
 {
@@ -44,6 +46,25 @@ class ClaimsController extends Controller
     public function stepThree()
     {
         return view('claims.create_step_3');
+    }
+
+    public function stepFour()
+    {
+        return view('claims.create_step_4');
+    }
+
+    public function stepFive()
+    {
+        if(session()->has('claim_client') && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three')){
+            return view('claims.create_step_5');
+        }
+    }
+
+    public function stepSix()
+    {
+        if(session()->has('claim_client') && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three') && session()->has('claim_agreement')){
+            return view('claims.create_step_6');
+        }
     }
 
     /**
@@ -106,7 +127,7 @@ class ClaimsController extends Controller
 
         $request->session()->put('claim_client', Auth()->user()->id);
 
-        return redirect('/claims/select-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
 
     }
 
@@ -114,7 +135,7 @@ class ClaimsController extends Controller
 
         $request->session()->put('claim_client', $request->id);
 
-        return redirect('/claims/select-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
 
     }
 
@@ -134,11 +155,75 @@ class ClaimsController extends Controller
 
     }
 
+    public function invalidDebtor(Request $request){
+
+        $request->session()->forget('claim_client');
+        $request->session()->forget('claim_debtor');
+        $request->session()->forget('claim_debt');
+        $request->session()->forget('debt_step_one');
+        $request->session()->forget('debt_step_two');
+
+        return redirect('/panel')->with('alert', 'Lo sentimos pero su deuda es inviable');
+    }
+
+    public function refuseAgreement(){
+        if(session()->has('claim_client') && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three')){
+
+            $debt = Session('claim_debt');
+            $debt->agreement = false;
+            Session()->put('claim_debt', $debt);
+            Session()->put('claim_agreement', 'false');
+            return redirect('claims/accept-terms')->with('msj', 'Se ha guardado tu elección temporalmente');
+        }
+    }
+
     public function flushAll(Request $request)
     {
         $request->session()->forget('claim_client');
         $request->session()->forget('claim_debtor');
+        $request->session()->forget('debt_step_one');
+        $request->session()->forget('debt_step_two');
+        $request->session()->forget('debt_step_three');
+        $request->session()->forget('claim_agreement');
+
+        $debt = session('claim_debt');
+
+        if($debt->factura){
+            Storage::disk('public')->delete($debt->factura);
+        }
+        if($debt->albaran){
+            Storage::disk('public')->delete($debt->albaran);
+        }
+        if($debt->contrato){
+            Storage::disk('public')->delete($debt->contrato);
+        }
+        if($debt->documentacion_pedido){
+            Storage::disk('public')->delete($debt->documentacion_pedido);
+        }
+        if($debt->extracto){
+            Storage::disk('public')->delete($debt->extracto);
+        }
+        if($debt->reconocimiento_deuda){
+            Storage::disk('public')->delete($debt->reconocimiento_deuda);
+        }
+        if($debt->escritura_notarial){
+            Storage::disk('public')->delete($debt->escritura_notarial);
+        }
+        if($debt->reclamacion_previa){
+            Storage::disk('public')->delete($debt->reclamacion_previa);
+        }
+        if($debt->others){
+
+            $session_docs = explode(',' , $debt->others);
+
+            foreach ($session_docs as $d) {
+
+                Storage::disk('public')->delete($d);
+            }
+        }
+
         $request->session()->forget('claim_debt');
+
         return redirect('claims/select-client')->with('msj', 'Se han eliminado las opciones correctamente');
     }
 }

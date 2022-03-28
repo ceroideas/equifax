@@ -18,8 +18,11 @@
 @stop
 
 @section('content')
+    @if(session()->has('alert'))
+    <x-adminlte-alert theme="danger" dismissable>
+        {{ session('alert') }}
+    </x-adminlte-alert>
+    @endif
 
-    @can('pending', App\Models\User::class)
-        hola
-    @endcan
+
 @stop
