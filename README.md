@@ -25,6 +25,7 @@ php artisan adminlte:install
 
 ```bash
 php artisan adminlte:plugins install --plugin=datatables
+php artisan adminlte:plugins install --plugin=select2
 ```
 
 ## Env
