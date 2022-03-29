@@ -24,5 +24,11 @@
     </x-adminlte-alert>
     @endif
 
+    @if(session()->has('msj'))
+    <x-adminlte-alert theme="success" dismissable>
+        {{ session('msj') }}
+    </x-adminlte-alert>
+    @endif
+
 
 @stop

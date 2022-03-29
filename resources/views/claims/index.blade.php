@@ -25,8 +25,9 @@
     @php
     $heads = [
         'ID',
-        'Nombre Completo',
-        ['label' => 'Email'],
+        'Cliente',
+        'Deudor',
+        ['label' => 'Importe Pendiente'],
         ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
@@ -51,8 +52,9 @@
             @foreach($claims as $claim)
                 <tr>
                     <td>{{ $claim->id }}</td>
-                    <td>{{ $claim->name }}</td>
-                    <td>{{ $claim->email }}</td>
+                    <td>{{ $claim->client->name }}</td>
+                    <td>{{ $claim->debtor->name }}</td>
+                    <td>{{ $claim->debt->pending_amount }}</td>
                     <td>{{ $claim->getStatus() }}</td>
                     <td>
                      <nobr>

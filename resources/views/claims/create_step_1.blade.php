@@ -21,9 +21,9 @@
 
 @section('content')
    {{-- @include('users.partials._form') --}}
-   @if(session()->has('claim_client'))
-   <x-adminlte-alert theme="info" dismissable>
-       <span> Tu elección actual es: {{ session('claim_client') == auth()->user()->id ? 'SI' : 'NO'}}</span>
+   @if(session()->has('claim_client') || session()->has('claim_third_party'))
+   <x-adminlte-alert theme="info">
+       <span> Tu elección actual es: {{ (session('claim_client')) ? 'SI' : 'NO'}}</span>
    </x-adminlte-alert>
    @endif
    @if(session()->has('msj'))

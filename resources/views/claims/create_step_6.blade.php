@@ -30,6 +30,9 @@
        <span> {{ session('msj') }}</span>
    </x-adminlte-alert>
    @endif
+
+   {{-- @dd(session('claim_debt')) --}}
+
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
       <div class="row">
         <div class="col-sm-12 text-center">
@@ -38,7 +41,11 @@
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('agreements/create') }}">SI</button></span>    
+            <form id="create-claim-form" action="{{ url('/claims') }}"method="POST" >
+                @csrf
+                @method('POST')
+            </form> 
+            <span> <button class="btn btn-flat btn-success create-claim">SI</button></span>
             <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('claims/flush-options') }}">NO</button></span> 
             <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('claims/check-agreement') }}">Volver</button></span> 
         </div>          
@@ -48,6 +55,10 @@
 
 @section('js')
 <script>
+
+    $('.create-claim').on('click', function(){
+       $('#create-claim-form').submit();
+   });
     
    $('.question-button').on('click', function(){
        console.log($(this).attr('href'));

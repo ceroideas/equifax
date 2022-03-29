@@ -29,11 +29,11 @@ class DebtsController extends Controller
      */
     public function stepOne()
     {
-        if(session()->has('claim_client') && session()->has('claim_debtor')){
+        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor')){
 
             return view('debts.create_step_1', [
 
-                'client' => $client = (session('claim_client') == Auth::user()->id ? Auth::user()  : Auth::user()->thirdParties->find(session('claim_client')) ),
+                'client' => $client = (session('claim_client') ? Auth::user()  : Auth::user()->thirdParties->find(session('claim_third_party')) ),
                 'debtor' => $debtor = Auth::user()->debtors->find(session('claim_debtor'))
 
             ]);
@@ -42,11 +42,11 @@ class DebtsController extends Controller
 
     public function stepTwo()
     {
-        if(session()->has('claim_client') && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one')){
+        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one')){
 
             return view('debts.create_step_2', [
 
-                'client' => $client = (session('claim_client') == Auth::user()->id ? Auth::user()  : Auth::user()->thirdParties->find(session('claim_client')) ),
+                'client' => $client = (session('claim_client') ? Auth::user()  : Auth::user()->thirdParties->find(session('claim_third_party')) ),
                 'debtor' => $debtor = Auth::user()->debtors->find(session('claim_debtor')),
                 'debt' => $debt = session('claim_debt')
 
@@ -56,11 +56,11 @@ class DebtsController extends Controller
 
     public function stepThree()
     {
-        if(session()->has('claim_client') && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two')){
+        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two')){
 
             return view('debts.create_step_3', [
 
-                'client' => $client = (session('claim_client') == Auth::user()->id ? Auth::user()  : Auth::user()->thirdParties->find(session('claim_client')) ),
+                'client' => $client = (session('claim_client') ? Auth::user()  : Auth::user()->thirdParties->find(session('claim_third_party')) ),
                 'debtor' => $debtor = Auth::user()->debtors->find(session('claim_debtor')),
                 'debt' => $debt = session('claim_debt')
 
@@ -187,7 +187,7 @@ class DebtsController extends Controller
         $debt->escritura_notarial = $escritura_notarial;
 
         if($request['reclamacion_previa']){
-            $debt->reclamcion_previa = $reclamacion_previa;
+            $debt->reclamacion_previa = $reclamacion_previa;
             $debt->motivo_reclamacion_previa = $motivo_reclamacion_previa;
         }
 

@@ -116,7 +116,7 @@
         </div>
         <div class="row ">
             <div class="col-sm-12">
-                <x-adminlte-textarea name="observaciones" label="Observaciones / Explicaciones **" rows=4 enable-old-support="true" placehold="Observaciones / Explicaciones">
+                <x-adminlte-textarea name="observaciones" label="Observaciones / Explicaciones **" rows=4 enable-old-support="true" placeholder="Observaciones / Explicaciones">
                     {{ session('claim_debt') ? session('claim_debt')->additionals : ''}}
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
