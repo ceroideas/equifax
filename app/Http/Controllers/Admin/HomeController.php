@@ -15,9 +15,8 @@ class HomeController extends Controller
 
     public function index()
     {   
-        $status = Auth::user()->checkStatus();
-
-        if(!$status){
+        
+        if(Auth::user()->isClient() && !Auth::user()->checkStatus()){
             return redirect()->route('user.edit', Auth::user())->with('alert', Auth::user()->getStatus());
         }
         

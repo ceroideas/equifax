@@ -156,17 +156,47 @@ class DebtsController extends Controller
             }
         }
 
-        $factura = $request->file('factura')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-        $albaran = $request->file('albaran')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-        $contrato = $request->file('contrato')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-        $documentacion_pedido = $request->file('documentacion_pedido')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-        $extracto = $request->file('extracto')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-        $reconocimiento_deuda = $request->file('reconocimiento_deuda')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-        $escritura_notarial = $request->file('escritura_notarial')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+        if($request['factura']){
+
+            $factura = $request->file('factura')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $debt->factura = $factura;
+        }
+
+        if($request['albaran']){
+            $albaran = $request->file('albaran')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $debt->albaran = $albaran;
+        }
         
+        if($request['contrato']){
+            $contrato = $request->file('contrato')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $debt->contrato = $contrato;
+        }
+        
+        if($request['documentacion_pedido']){
+            $documentacion_pedido = $request->file('documentacion_pedido')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $debt->documentacion_pedido = $documentacion_pedido;
+        }
+        
+        if($request['extracto']){
+            $extracto = $request->file('extracto')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $debt->extracto = $extracto;
+        }
+        
+        if($request['reconocimiento_deuda']){
+            $reconocimiento_deuda = $request->file('reconocimiento_deuda')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $debt->reconocimiento_deuda = $reconocimiento_deuda;
+        }
+
+        if($request['escritura_notarial']){
+            $escritura_notarial = $request->file('escritura_notarial')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $debt->escritura_notarial = $escritura_notarial;
+        }
+       
         if($request['reclamacion_previa']){
             $reclamacion_previa = $request->file('reclamacion_previa')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             $motivo_reclamacion_previa = $request['motivo_reclamacion_previa'];
+            $debt->reclamacion_previa = $reclamacion_previa;
+            $debt->motivo_reclamacion_previa = $motivo_reclamacion_previa;
         }
 
         if($request['documentos_extras']){
@@ -174,25 +204,7 @@ class DebtsController extends Controller
             for ($i=0; $i < count($request['documentos_extras']); $i++) { 
                 $docs[] = $request->file('documentos_extras')[$i]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             }
-        }
 
-
-        
-        $debt->factura = $factura;
-        $debt->albaran = $albaran;
-        $debt->contrato = $contrato;
-        $debt->documentacion_pedido = $documentacion_pedido;
-        $debt->extracto = $extracto;
-        $debt->reconocimiento_deuda = $reconocimiento_deuda;
-        $debt->escritura_notarial = $escritura_notarial;
-
-        if($request['reclamacion_previa']){
-            $debt->reclamacion_previa = $reclamacion_previa;
-            $debt->motivo_reclamacion_previa = $motivo_reclamacion_previa;
-        }
-
-        if($request['documentos_extras']){
-            
             $debt->others = implode(',', $docs);
         }
 
@@ -302,13 +314,13 @@ class DebtsController extends Controller
 
         $rules = [
             'factura' =>  'required|file|mimes:pdf,jpg,png',
-            'albaran' =>  'required|file|mimes:pdf,jpg,png',
-            'contrato' =>  'required|file|mimes:pdf,jpg,png',
-            'documentacion_pedido' =>  'required|file|mimes:pdf,jpg,png',
-            'extracto' =>  'required|file|mimes:pdf,jpg,png',
-            'reconocimiento_deuda' =>  'required|file|mimes:pdf,jpg,png',
-            'escritura_notarial' =>  'required|file|mimes:pdf,jpg,png',
-            'reclamacion_previa' =>  'required|file|mimes:pdf,jpg,png',
+            'albaran' =>  'file|mimes:pdf,jpg,png',
+            'contrato' =>  'file|mimes:pdf,jpg,png',
+            'documentacion_pedido' =>  'file|mimes:pdf,jpg,png',
+            'extracto' =>  'file|mimes:pdf,jpg,png',
+            'reconocimiento_deuda' =>  'file|mimes:pdf,jpg,png',
+            'escritura_notarial' =>  'file|mimes:pdf,jpg,png',
+            'reclamacion_previa' =>  'file|mimes:pdf,jpg,png',
             'motivo_reclamacion_previa' =>  'required_with:reclamacion_previa',
             'documentos_extras.*' =>  'mimes:pdf,jpg,png',
         ];

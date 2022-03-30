@@ -36,7 +36,8 @@
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <h1>A partir de este momento, Ya ha introducido todos los datos requeridos por el sistema. ¿Acepta tanto las Políticas de Uso como las Condiciones de Contratación?</h1></span>    
+            <span> <h1>A partir de este momento, Ya ha introducido todos los datos requeridos por el sistema.</h1></span>
+            <span><h1>¿Acepta tanto las Políticas de Uso como las Condiciones de Contratación?</h1></span>    
         </div>          
       </div>
       <div class="row">

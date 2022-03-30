@@ -27,12 +27,12 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('type_extra')->nullable();
             $table->string('factura');
-            $table->string('albaran');
-            $table->string('contrato');
-            $table->string('documentacion_pedido');
-            $table->string('extracto');
-            $table->string('reconocimiento_deuda');
-            $table->string('escritura_notarial');
+            $table->string('albaran')->nullable();
+            $table->string('contrato')->nullable();
+            $table->string('documentacion_pedido')->nullable();
+            $table->string('extracto')->nullable();
+            $table->string('reconocimiento_deuda')->nullable();
+            $table->string('escritura_notarial')->nullable();
             $table->string('reclamacion_previa')->nullable();
             $table->string('motivo_reclamacion_previa')->nullable();
             $table->string('agreement')->nullable();

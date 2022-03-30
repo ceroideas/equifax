@@ -113,34 +113,41 @@ class ClaimsController extends Controller
 
         $path = '/uploads/claims/' . $claim->id . '/documents/';
 
-        $factura = basename($debt->factura);
-        Storage::disk('public')->move($debt->factura, $path . $factura);
-        $debt->factura = $path . $factura;
-
-        $albaran = basename($debt->albaran);
-        Storage::disk('public')->move($debt->albaran, $path . $albaran);
-        $debt->albaran = $path . $albaran;
-
-        $contrato = basename($debt->contrato);
-        Storage::disk('public')->move($debt->contrato, $path . $contrato);
-        $debt->contrato = $path . $contrato;
-
-        $documentacion_pedido = basename($debt->documentacion_pedido);
-        Storage::disk('public')->move($debt->documentacion_pedido, $path . $documentacion_pedido);
-        $debt->documentacion_pedido = $path . $documentacion_pedido;
-
-        $extracto = basename($debt->extracto);
-        Storage::disk('public')->move($debt->extracto, $path . $extracto);
-        $debt->extracto = $path . $extracto;
-
-        $reconocimiento_deuda = basename($debt->reconocimiento_deuda);
-        Storage::disk('public')->move($debt->reconocimiento_deuda, $path . $reconocimiento_deuda);
-        $debt->reconocimiento_deuda = $path . $reconocimiento_deuda;
-
-        $escritura_notarial = basename($debt->escritura_notarial);
-        Storage::disk('public')->move($debt->escritura_notarial, $path . $escritura_notarial);
-        $debt->escritura_notarial = $path . $escritura_notarial;
-
+        if($debt->factura){
+            $factura = basename($debt->factura);
+            Storage::disk('public')->move($debt->factura, $path . $factura);
+            $debt->factura = $path . $factura;
+        }
+        if($debt->albaran){
+            $albaran = basename($debt->albaran);
+            Storage::disk('public')->move($debt->albaran, $path . $albaran);
+            $debt->albaran = $path . $albaran;
+        }
+        if($debt->contrato){
+            $contrato = basename($debt->contrato);
+            Storage::disk('public')->move($debt->contrato, $path . $contrato);
+            $debt->contrato = $path . $contrato;
+        }
+        if($debt->documentacion_pedido){
+            $documentacion_pedido = basename($debt->documentacion_pedido);
+            Storage::disk('public')->move($debt->documentacion_pedido, $path . $documentacion_pedido);
+            $debt->documentacion_pedido = $path . $documentacion_pedido;
+        }
+        if($debt->extracto){
+            $extracto = basename($debt->extracto);
+            Storage::disk('public')->move($debt->extracto, $path . $extracto);
+            $debt->extracto = $path . $extracto;
+        }
+        if($debt->reconocimiento_deuda){
+            $reconocimiento_deuda = basename($debt->reconocimiento_deuda);
+            Storage::disk('public')->move($debt->reconocimiento_deuda, $path . $reconocimiento_deuda);
+            $debt->reconocimiento_deuda = $path . $reconocimiento_deuda;
+        }
+        if($debt->escritura_notarial){
+            $escritura_notarial = basename($debt->escritura_notarial);
+            Storage::disk('public')->move($debt->escritura_notarial, $path . $escritura_notarial);
+            $debt->escritura_notarial = $path . $escritura_notarial;
+        }
 
         if($debt->reclamacion_previa){
 
@@ -176,7 +183,7 @@ class ClaimsController extends Controller
         $request->session()->forget('debt_step_three');
         $request->session()->forget('claim_agreement');
 
-        return redirect('/panel')->with('msj', 'Reclamdo generado exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
+        return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
 
     }
 
