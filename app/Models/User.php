@@ -121,13 +121,13 @@ class User extends Authenticatable
 
     public function checkStatus(){
 
-        if($this->isClient() && !$this->status()){
+        if($this->isClient() && $this->status()){
 
-            return false;
+            return true;
 
         }
 
-        return true;
+        return false;
     }
 
     public function isPending(){

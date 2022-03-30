@@ -46,13 +46,13 @@
         </x-adminlte-alert>
     @endif
 
-    @if(session()->has('claim_client') && session('claim_client') == auth()->user()->id)
+    @if(session()->has('claim_client'))
         <x-adminlte-alert theme="info" dismissable>
            <span>Para utilizar un Tercero, elija "NO" al iniciar el proceso de reclamación</span>
         </x-adminlte-alert>
     @endif
 
-    @if(session()->has('claim_client') && session('claim_client') != auth()->user()->id)
+    @if(session()->has('claim_third_party') && session()->has('claim_third_party') == 'waiting')
         <a href="{{ url('/claims/select-client') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-white " style="color: black !important;" type="button" label="Volver" icon="fas fa-lg fa-pencil"/></a>
     @endif
 
@@ -68,7 +68,7 @@
                     {{-- <td>{{ $third_party->getStatus() }}</td> --}}
                     <td>
                      <nobr>
-                        @if(session()->has('claim_client') && session('claim_client') != auth()->user()->id)
+                        @if(session()->has('claim_third_party') && session()->has('claim_third_party') == 'waiting')
                         <a href="{{ url('/claims/save-option-two/' . $third_party->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Elegir">
                                 <i class="fa fa-lg fa-fw fa-check"></i>

@@ -22,15 +22,16 @@
 @section('content')
    {{-- @include('users.partials._form') --}}
 
-   @if(session()->has('msj'))
-    <x-adminlte-alert theme="success" dismissable>
-        {{ session('msj') }}
-    </x-adminlte-alert>
-    @endif
-   
     <x-adminlte-alert theme="info" dismissable>
         <span>Si elige NO sus opciones anteriores serán descartadas y tendrá que volver a empezar el proceso.</span>
     </x-adminlte-alert>
+
+    
+   @if(session()->has('msj'))
+   <x-adminlte-alert theme="success" dismissable>
+       {{ session('msj') }}
+   </x-adminlte-alert>
+   @endif
  
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
       <div class="row">

@@ -6,6 +6,7 @@ use App\Http\Controllers\ClaimsController;
 use App\Http\Controllers\ThirdPartiesController;
 use App\Http\Controllers\DebtorsController;
 use App\Http\Controllers\DebtsController;
+use App\Http\Controllers\AgreementsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/clear-option-two', [ClaimsController::class, 'flushOptionTwo']);
     Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
     Route::get('/flush-options', [ClaimsController::class, 'flushAll']);
+    Route::post('/', [ClaimsController::class, 'store']);
 
 
 });
@@ -113,4 +115,11 @@ Route::group(['prefix' => 'debts'], function(){
     
     
     
+});
+
+
+Route::group(['prefix' => 'agreements'], function(){
+
+    Route::get('/create', [AgreementsController::class, 'create']);
+    Route::post('/save-agreement', [AgreementsController::class, 'saveAgreement']);
 });

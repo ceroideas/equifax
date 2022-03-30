@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('claims', function (Blueprint $table) {
+        Schema::create('agreements', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->nullable();
-            $table->string('claim_type')->nullable();
-            $table->foreignid('third_parties_id')->nullable();
+            $table->string('take');
+            $table->string('wait');
+            $table->text('observation');
             $table->foreignid('debt_id')->nullable();
             $table->foreignid('debtor_id')->nullable();
+            $table->foreignid('claim_id')->nullable();
             $table->foreignid('user_id')->nullable();
-            $table->foreignid('agreement_id')->nullable();
-            $table->string('observation')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('claims');
+        Schema::dropIfExists('agreements');
     }
 };

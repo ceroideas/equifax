@@ -38,7 +38,7 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-4">
-                <x-adminlte-input name="albaran" label="Albarán *" placeholder="Albarán *" type="file"
+                <x-adminlte-input name="albaran" label="Albarán" placeholder="Albarán" type="file"
                 igroup-size="sm">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -48,39 +48,7 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-4">
-                <x-adminlte-input name="contrato" label="Contrato de Prestación de Servicios *" placeholder="Contrato de Prestación de Servicios *" type="file"
-                igroup-size="sm">
-                    <x-slot name="appendSlot">
-                        <div class="input-group-text bg-dark">
-                            <i class="fas fa-file"></i>
-                        </div>
-                    </x-slot>
-                </x-adminlte-input>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <x-adminlte-input name="documentacion_pedido" label="Documentación del Pedido *" placeholder="Documentación del Pedido" type="file"
-                igroup-size="sm">
-                    <x-slot name="appendSlot">
-                        <div class="input-group-text bg-dark">
-                            <i class="fas fa-file"></i>
-                        </div>
-                    </x-slot>
-                </x-adminlte-input>
-            </div>
-            <div class="col-sm-4">
-                <x-adminlte-input name="extracto" label="Extracto Bancario *" placeholder="Extracto Bancario" type="file"
-                igroup-size="sm">
-                    <x-slot name="appendSlot">
-                        <div class="input-group-text bg-dark">
-                            <i class="fas fa-file"></i>
-                        </div>
-                    </x-slot>
-                </x-adminlte-input>
-            </div>
-            <div class="col-sm-4">
-                <x-adminlte-input name="reconocimiento_deuda" label="Documento de Reconocimiento de Deuda *" placeholder="Documento de Reconocimiento de Deuda *" type="file"
+                <x-adminlte-input name="contrato" label="Contrato de Prestación de Servicios" placeholder="Contrato de Prestación de Servicios" type="file"
                 igroup-size="sm">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -92,7 +60,39 @@
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <x-adminlte-input name="escritura_notarial" label="Escritura Notarial *" placeholder="Escritura Notarial *" type="file"
+                <x-adminlte-input name="documentacion_pedido" label="Documentación del Pedido" placeholder="Documentación del Pedido" type="file"
+                igroup-size="sm">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-file"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-4">
+                <x-adminlte-input name="extracto" label="Extracto Bancario" placeholder="Extracto Bancario" type="file"
+                igroup-size="sm">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-file"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-4">
+                <x-adminlte-input name="reconocimiento_deuda" label="Documento de Reconocimiento de Deuda" placeholder="Documento de Reconocimiento de Deuda" type="file"
+                igroup-size="sm">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-file"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <x-adminlte-input name="escritura_notarial" label="Escritura Notarial" placeholder="Escritura Notarial" type="file"
                 igroup-size="sm">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
