@@ -34,7 +34,6 @@ return new class extends Migration
             $table->string('escritura_notarial');
             $table->string('reclamacion_previa')->nullable();
             $table->string('motivo_reclamacion_previa')->nullable();
-            $table->string('motivo_reclamacion_previa')->nullable();
             $table->string('agreement')->nullable();
             $table->text('others');
             $table->foreignid('debtor_id');
