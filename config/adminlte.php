@@ -308,31 +308,6 @@ return [
             ],
         ],
         [
-            'text'    => 'Reclamaciones',
-            'icon'    => 'fas fa-fw fa-book',
-            'can' =>  ['create-claims'],
-            'submenu' => [
-                [
-                    'text' => 'Nueva Reclamación',
-                    'icon' => '',
-                    'can' => 'create-claims',
-                    'url'  => '/claims/select-client',
-                ],
-                [
-                    'text' => 'Reclamaciones Pendientes',
-                    'icon' => '',
-                    'can' => ['create-claims'],
-                    // 'url'  => '/claims/pending',
-                ],
-                [
-                    'text' => 'Listado de Reclamaciones',
-                    'icon' => '',
-                    'can' => 'create-claims',
-                    'url'  => '/claims',
-                ],
-            ],
-        ],
-        [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-fw fa-user',
             'can' =>  ['create-users'],
@@ -373,6 +348,31 @@ return [
                     'icon' => '',
                     'can' => ['see-pendings'],
                     'url'  => '/users',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Reclamaciones',
+            'icon'    => 'fas fa-fw fa-book',
+            'can' =>  ['create-claims', 'admin-claims'],
+            'submenu' => [
+                [
+                    'text' => 'Nueva Reclamación',
+                    'icon' => '',
+                    'can' => 'create-claims',
+                    'url'  => '/claims/select-client',
+                ],
+                [
+                    'text' => 'Reclamaciones Pendientes',
+                    'icon' => '',
+                    'can' => ['create-claims', 'admin-claims'],
+                    'url'  => '/claims/pending',
+                ],
+                [
+                    'text' => 'Listado de Reclamaciones',
+                    'icon' => '',
+                    'can' => ['create-claims', 'admin-claims'],
+                    'url'  => '/claims',
                 ],
             ],
         ],

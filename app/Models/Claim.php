@@ -26,12 +26,16 @@ class Claim extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function representant(){
+        return $this->belongsTo(ThirdParty::class, 'third_parties_id');
+    }
+
     public function debtor(){
         return $this->belongsTo(Debtor::class);
     }
 
     public function debt(){
-        return $this->belongsTo(Debt::class);
+        return $this->hasOne(Debt::class);
     }
 
 }

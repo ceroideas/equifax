@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Claim;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Auth;
 
 class ClaimPolicy
 {
@@ -30,7 +31,9 @@ class ClaimPolicy
      */
     public function view(User $user, Claim $claim)
     {
-        //
+        if(Auth::user()->id === $claim->user_id || Auth::user()->isAdmin()){
+            return  true;
+        }
     }
 
     /**
@@ -97,4 +100,10 @@ class ClaimPolicy
        return $user->checkStatus();
 
     }
+
+    public function checkAdmin(User $user){
+
+        return $user->isAdmin();
+ 
+     }
 }

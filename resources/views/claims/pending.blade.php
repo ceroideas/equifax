@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Reclamaciones</h1>
+                <h1>Reclamaciones Pendientes</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Reclamaciones</li>
+                    <li class="breadcrumb-item active">Reclamaciones Pendientes</li>
                 </ol>
             </div>
         </div>
@@ -28,13 +28,13 @@
         'Cliente',
         'Deudor',
         ['label' => 'Importe Pendiente'],
-        ['label' => 'Status'],
+        ['label' => 'Acuerdo'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
 
     $config = [
        
-        'columns' => [null, null, null, null, null, ['orderable' => false]],
+        'columns' => [null, null, null, null, null,['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
@@ -55,10 +55,10 @@
                     <td>{{ $claim->client->name }}</td>
                     <td>{{ $claim->debtor->name }}</td>
                     <td>{{ $claim->debt->pending_amount }}</td>
-                    <td>{{ $claim->getStatus() }}</td>
+                    <td>{{ $claim->debt->agreement == true ? 'Si Tiene' : 'No Tiene' }}</td>
                     <td>
                      <nobr>
-                        @can('create', $claim)
+                        @if(Auth::user()->id === $claim->user_id && $claim->status  == 1)
                             <a href="{{ url('/claims/' . $claim->id . '/edit/') }}">
                                 <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                                     <i class="fa fa-lg fa-fw fa-pen"></i>
@@ -68,7 +68,7 @@
                             <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $claim->id }}').submit();">
                                 <i class="fa fa-lg fa-fw fa-trash"></i>
                             </button>
-                        @endcan
+                        @endif
                         <a href="{{ url('/claims/' . $claim->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>

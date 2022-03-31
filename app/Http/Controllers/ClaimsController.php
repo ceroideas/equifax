@@ -21,9 +21,30 @@ class ClaimsController extends Controller
      */
     public function index()
     {
+
+        if(Auth::user()->isClient()){
+            $claims = Auth::user()->claims;
+        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $claims = Claim::all();
+        }
+
         return view('claims.index', [
 
-            'claims' => Claim::all()
+            'claims' => $claims
+        ]);
+    }
+
+    public function pending()
+    {
+        if(Auth::user()->isClient()){
+            $claims = Auth::user()->claims()->where('status', 0)->get();
+        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $claims = Claim::where('status', 0)->get();
+        }
+
+        return view('claims.pending', [
+
+            'claims' => $claims
         ]);
     }
 
@@ -105,8 +126,11 @@ class ClaimsController extends Controller
             $agreement = session('claim_agreement');
             $agreement->debt_id = $debt->id;
             $agreement->claim_id = $claim->id;
+            $agreement->save();
+            $debt->agreement = true;
             $debt->agreement_id = $agreement->id;
             $claim->agreement_id = $agreement->id;
+            $claim->status = 0;
             $debt->save();
             $claim->save();
         }
@@ -195,7 +219,10 @@ class ClaimsController extends Controller
      */
     public function show(Claim $claim)
     {
-        //
+        $this->authorize('view', $claim);
+
+
+        return view('claims.show', ['claim' => $claim]);
     }
 
     /**
@@ -308,39 +335,43 @@ class ClaimsController extends Controller
 
         $debt = session('claim_debt');
 
-        if($debt->factura){
-            Storage::disk('public')->delete($debt->factura);
-        }
-        if($debt->albaran){
-            Storage::disk('public')->delete($debt->albaran);
-        }
-        if($debt->contrato){
-            Storage::disk('public')->delete($debt->contrato);
-        }
-        if($debt->documentacion_pedido){
-            Storage::disk('public')->delete($debt->documentacion_pedido);
-        }
-        if($debt->extracto){
-            Storage::disk('public')->delete($debt->extracto);
-        }
-        if($debt->reconocimiento_deuda){
-            Storage::disk('public')->delete($debt->reconocimiento_deuda);
-        }
-        if($debt->escritura_notarial){
-            Storage::disk('public')->delete($debt->escritura_notarial);
-        }
-        if($debt->reclamacion_previa){
-            Storage::disk('public')->delete($debt->reclamacion_previa);
-        }
-        if($debt->others){
-
-            $session_docs = explode(',' , $debt->others);
-
-            foreach ($session_docs as $d) {
-
-                Storage::disk('public')->delete($d);
+        if($debt){
+            if($debt->factura){
+                Storage::disk('public')->delete($debt->factura);
             }
+            if($debt->albaran){
+                Storage::disk('public')->delete($debt->albaran);
+            }
+            if($debt->contrato){
+                Storage::disk('public')->delete($debt->contrato);
+            }
+            if($debt->documentacion_pedido){
+                Storage::disk('public')->delete($debt->documentacion_pedido);
+            }
+            if($debt->extracto){
+                Storage::disk('public')->delete($debt->extracto);
+            }
+            if($debt->reconocimiento_deuda){
+                Storage::disk('public')->delete($debt->reconocimiento_deuda);
+            }
+            if($debt->escritura_notarial){
+                Storage::disk('public')->delete($debt->escritura_notarial);
+            }
+            if($debt->reclamacion_previa){
+                Storage::disk('public')->delete($debt->reclamacion_previa);
+            }
+            if($debt->others){
+    
+                $session_docs = explode(',' , $debt->others);
+    
+                foreach ($session_docs as $d) {
+    
+                    Storage::disk('public')->delete($d);
+                }
+            }
+    
         }
+
 
         $request->session()->forget('claim_debt');
 

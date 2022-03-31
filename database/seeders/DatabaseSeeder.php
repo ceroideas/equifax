@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             'email' =>'devcliente@dividae.com',
             'role' => 2,
             'dni' => '123456789E',
+            'dni_img' => 'img/placeholders/dniplaceholder.jpg',
             'phone' => '63412345678',
             'address' => 'Address 123 av# 456 street 169',
             'location' => 'Barcelona',

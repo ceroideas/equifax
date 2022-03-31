@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Agreement extends Model
 {
     use HasFactory;
+
+    public function debt(){
+        return $this->belongsTo(Debt::class);
+    }
 }

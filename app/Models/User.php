@@ -180,4 +180,9 @@ class User extends Authenticatable
          
         return $this->hasMany(Debtor::class);
     }
+
+    public function claims(){
+         
+        return $this->hasMany(Claim::class);
+    }
 }

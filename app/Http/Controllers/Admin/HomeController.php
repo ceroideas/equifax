@@ -19,7 +19,11 @@ class HomeController extends Controller
         if(Auth::user()->isClient() && !Auth::user()->checkStatus()){
             return redirect()->route('user.edit', Auth::user())->with('alert', Auth::user()->getStatus());
         }
-        
+        if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
+            return view('admin.index',[
+                'clients' => User::where('role', 2)->where('status', 1)->count()
+            ]);
+        }
         return view('admin.index');
     }
 

@@ -39,5 +39,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('create-claims', [ClaimPolicy::class, 'checkUser']);
 
+        Gate::define('admin-claims', [ClaimPolicy::class, 'checkAdmin']);
+
     }
 }

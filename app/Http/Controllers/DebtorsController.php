@@ -16,7 +16,12 @@ class DebtorsController extends Controller
     public function index()
     {
 
-        $debtors = Auth::user()->debtors;
+        if(Auth::user()->isClient()){
+            $debtors = Auth::user()->debtors;
+        }elseif(Auth::use()->isSuperAdmin() ){
+            $debtors = Debtor::all();
+        }
+       
 
         return view('debtors.index', [
 

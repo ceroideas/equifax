@@ -61,6 +61,9 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
     Route::get('/flush-options', [ClaimsController::class, 'flushAll']);
     Route::post('/', [ClaimsController::class, 'store']);
+    Route::get('/pending', [ClaimsController::class, 'pending']);
+    Route::get('/{claim}', [ClaimsController::class, 'show']);
+    
 
 
 });
