@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Claim;
 use Auth;
 
 class HomeController extends Controller
@@ -21,7 +22,8 @@ class HomeController extends Controller
         }
         if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
             return view('admin.index',[
-                'clients' => User::where('role', 2)->where('status', 1)->count()
+                'clients' => User::where('role', 2)->where('status', 1)->count(),
+                'claims' => Claim::where('status', 0)->count()
             ]);
         }
         return view('admin.index');

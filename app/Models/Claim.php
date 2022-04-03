@@ -12,14 +12,46 @@ class Claim extends Model
     public function getStatus(){
 
         switch ($this->status) {
-            case 'value':
-                # code...
+            case 0:
+                return "Pendiente";
                 break;
-            
+
+            case 1:
+                return "Inviable";
+                break;
+            case 2:
+                return "Falta Documentación";
+                break;
+            case 3:
+                return "Viable";
+                break;
+            case 4:
+                return "Viable - Judicial";
+                break;
+            case 5:
+                return "Viable - Extrajudicial";
+                break;
             default:
                 return "Pendiente";
                 break;
         }
+    }
+
+    public function isViable(){
+
+        if($this->status == 4 |  $this->status == 4 | $this->status == 5 ){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function isPending(){
+        if($this->status == 0 ||  $this->status == 2  ){
+            return true;
+        }
+
+        return false;
     }
 
     public function client(){

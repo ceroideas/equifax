@@ -48,13 +48,17 @@
         <div class="col-lg-3 col-6">
             <div class="small-box bg-info">
                 <div class="inner">
+                    @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin())
+                    <h3>{{ $claims }}</h3>
+                    @else   
                     <h3>{{ Auth::user()->claims()->where('status', 0)->count(); }}</h3>
+                    @endif
                     <p>Reclamaciones Pendientes</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-arrow-circle-right"></i>
                 </div>
-                <a href="{{ url('/claims') }}" class="small-box-footer">Ir a Reclamaciones <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ url('/claims/pending') }}" class="small-box-footer">Ir a Reclamaciones <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 

@@ -26,9 +26,27 @@
         </x-adminlte-alert>
     @endif
 
+    @if(!$claim->isViable())
+        <x-adminlte-modal id="modalMin" title="Informe de Inviabilidad" theme="primary" size="lg" v-centered="true">
+            <div class="card">    
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col-sm-12">
+                            {!! $claim->observation !!}
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <x-slot name="footerSlot">
+                {{-- <x-adminlte-button class="mr-auto" theme="success" label="Accept"/> --}}
+                <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
+            </x-slot>
+        </x-adminlte-modal>
+    @endif
+
     <div class="card">
         <div class="card-header card-orange card-outline">
-            <h3 class="card-title">Detalles de la Reclamación</h3>
+            <h3 class="card-title">Detalles de la Reclamación - {{ $claim->getStatus() }}</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -36,7 +54,7 @@
             </div>
         </div>
 
-        <div class="card-body" style="display: block;">
+        <div class="card-body">
             <div class="row">
                 <div class="col-12 col-md-12 col-sm-12 col-lg-8 order-2 order-md-1">
 
@@ -185,52 +203,113 @@
                     </div>
                 
                     <br>
-                    <h5 class="mt-5 text-muted">Documentación de la Deuda</h5>
+                    @if($claim->isViable())
+                        <h5 class="mt-5 text-muted">Documentación de la Deuda</h5>
+                        
+                        <ul class="list-unstyled">
+                            <div class="row">
+                                <div class="col-sm-4">
+
+                                    @if($claim->debt->factura)
+                                    <li>
+                                        <a href="{{ asset($claim->debt->factura) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                    </li>
+                                    @endif
+
+                                </div>
+                                <div class="col-sm-4">
+
+                                    @if($claim->debt->albaran)
+                                    <li>
+                                        <a href="{{ asset($claim->debt->albaran) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                    </li>
+                                    @endif
+
+                                </div>
+                                <div class="col-sm-4">
+
+                                    @if($claim->debt->documentacion_pedido)
+                                    <li>
+                                        <a href="{{ asset($claim->debt->documentacion_pedido) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                    </li>
+                                    @endif
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+
+                                    @if($claim->debt->documentacion_pedido)
+                                    <li>
+                                        <a href="{{ asset($claim->debt->documentacion_pedido) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                    </li>
+                                    @endif
+                                </div>
+                                <div class="col-sm-4">
+                                    @if($claim->debt->extracto)
+                                    <li>
+                                        <a href="{{ asset($claim->debt->extracto) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                    </li>
+                                    @endif
+                                </div>
+                                <div class="col-sm-4">
+                                    @if($claim->debt->reconocimiento_deuda)
+                                    <li>
+                                        <a href="{{ asset($claim->debt->reconocimiento_deuda) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                    </li>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+
+
+                                    @if($claim->debt->escritura_notarial)
+                                    <li>
+                                        <a href="{{ asset($claim->debt->escritura_notarial) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                    </li>
+                                    @endif
+                                </div>
+                                <div class="col-sm-4">
+
+                                    @if($claim->debt->reclamacion_previa)
+                                    <li>
+                                        <a href="{{ asset($claim->debt->reclamacion_previa) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                    </li>
+                                    @endif
+                                </div>
+                                <div class="col-sm-4">
+                                    @if($claim->debt->motivo_reclamacion_previa)
+                                    <li>
+                                        <a href="{{ asset($claim->debt->motivo_reclamacion_previa) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                    </li>
+                                    @endif
+                                </div>
+                            </div>
+                        </ul>
+                    @endif
+
+                    @if((Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()) && $claim->isPending())
                     
-                    {{-- <ul class="list-unstyled">
-                    
-                        <li>
-                    
-                            <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Functional-requirements.docx</a>
-                        </li>
-                    
-                    
-                        <li>
-                    
-                            <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a>
-                    
-                        </li>
-                    
-                        <li>
-                    
-                            <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i> Email-from-flatbal.mln</a>
-                    
-                        </li>
-                    
-                        <li>
-                    
-                            <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image "></i> Logo.png</a>
-                    
-                        </li>
-                    
-                        <li>
-                    
-                            <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Contract-10_12_2014.docx</a>
-                    
-                        </li>
-                    
-                    </ul> --}}
-                    
-                    <div class="text-center mt-5 mb-3 float-bottom">
-                    
-                        <a href="#" class="btn btn-sm btn-primary">#</a>
-                    
-                        <a href="#" class="btn btn-sm btn-warning">#</a>
-                    
-                    </div>
-                    
+                        <div class="text-center mt-5 mb-3 float-bottom">
+                        
+                            <a href="{{ url('claims/viable/select-type') }}" class="btn btn-sm btn-primary">Reclamación Viable</a>
+                        
+                            <a href="{{ url('claims/'. $claim->id . '/non-viable/') }}" class="btn btn-sm btn-danger">Reclamación Inviable</a>
+                        
+                        </div>
+                        @elseif(!$claim->isViable())
+
+                        <div class="text-center">
+                            <x-adminlte-button label="Ver Informe de Inviabilidad" data-toggle="modal" data-target="#modalMin" theme="primary"/>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
 @stop

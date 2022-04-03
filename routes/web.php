@@ -63,6 +63,8 @@ Route::group(['prefix' => 'claims'], function(){
     Route::post('/', [ClaimsController::class, 'store']);
     Route::get('/pending', [ClaimsController::class, 'pending']);
     Route::get('/{claim}', [ClaimsController::class, 'show']);
+    Route::get('{claim}/non-viable', [ClaimsController::class , 'nonViable']);
+    Route::post('/non-viable/{claim}/save', [ClaimsController::class, 'setNonViable']);
     
 
 

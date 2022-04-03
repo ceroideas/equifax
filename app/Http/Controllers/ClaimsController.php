@@ -236,6 +236,76 @@ class ClaimsController extends Controller
         //
     }
 
+    public function nonViable(Claim $claim)
+    {
+        $this->authorize('viewAny', $claim);
+
+        return view('claims.non_viable', ['claim' => $claim]);
+    }
+
+    public function setNonViable(Request $request, Claim $claim)
+    {
+        $this->authorize('viewAny', $claim);
+
+        $this->validateNonViable();
+
+        $claim->observation = $request['informe_inviabilidad'];
+        $claim->status = 1;
+        $claim->save();
+
+        if($claim->debt->factura){
+            Storage::disk('public')->delete($claim->debt->factura);
+            $claim->debt->factura = NULL;
+        }
+        if($claim->debt->albaran){
+            Storage::disk('public')->delete($claim->debt->albaran);
+            $claim->debt->albaran = NULL;
+        }
+        if($claim->debt->contrato){
+            Storage::disk('public')->delete($claim->debt->contrato);
+            $claim->debt->contrato = NULL;
+        }
+        if($claim->debt->documentacion_pedido){
+            Storage::disk('public')->delete($claim->debt->documentacion_pedido);
+            $claim->debt->documentacion_pedido = NULL;
+        }
+        if($claim->debt->extracto){
+            Storage::disk('public')->delete($claim->debt->extracto);
+            $claim->debt->extracto = NULL;
+        }
+        if($claim->debt->reconocimiento_deuda){
+            Storage::disk('public')->delete($claim->debt->reconocimiento_deuda);
+            $claim->debt->reconocimiento_deuda = NULL;
+        }
+        if($claim->debt->escritura_notarial){
+            Storage::disk('public')->delete($claim->debt->escritura_notarial);
+            $claim->debt->escritura_notarial = NULL;
+        }
+        if($claim->debt->reclamacion_previa){
+            Storage::disk('public')->delete($claim->debt->reclamacion_previa);
+            $claim->debt->reclamacion_previa = NULL;
+            $claim->debt->motivo_reclamacion_previa = NULL;
+        }
+        if($claim->debt->others){
+
+            $session_docs = explode(',' , $claim->debt->others);
+           
+
+            foreach ($session_docs as $d) {
+
+                Storage::disk('public')->delete($d);
+            }
+
+            $claim->debt->others = NULL;
+        }
+        
+        $claim->debt->save();
+        
+
+        return redirect('claims')->with('msj', 'Informe de Reclamación generado exitosamente');
+      
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -376,5 +446,12 @@ class ClaimsController extends Controller
         $request->session()->forget('claim_debt');
 
         return redirect('/panel')->with('msj', 'Se han eliminado las opciones correctamente');
+    }
+
+    public function validateNonViable(){
+        $rules = ['informe_inviabilidad' => 'required'];
+
+        return request()->validate($rules);
+
     }
 }

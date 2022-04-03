@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignid('debtor_id')->nullable();
             $table->foreignid('user_id')->nullable();
             $table->foreignid('agreement_id')->nullable();
-            $table->string('observation')->nullable();
+            $table->text('observation')->nullable();
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class ClaimPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->isAdmin();
     }
 
     /**

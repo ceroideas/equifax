@@ -26,7 +26,7 @@ return new class extends Migration
             $table->text('additionals')->nullable();
             $table->string('type')->nullable();
             $table->string('type_extra')->nullable();
-            $table->string('factura');
+            $table->string('factura')->nullable();
             $table->string('albaran')->nullable();
             $table->string('contrato')->nullable();
             $table->string('documentacion_pedido')->nullable();
