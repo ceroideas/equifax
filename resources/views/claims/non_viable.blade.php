@@ -32,3 +32,12 @@
 
    @include('claims.partials._form_nonviable')
 @stop
+
+
+@section('js')
+<script>
+    $(document).ready(function(){
+        $('div.note-group-select-from-files').remove();
+    });
+</script>
+@stop
