@@ -17,7 +17,7 @@ $config = [
         ['para', ['ul', 'ol', 'paragraph']],
         ['height', ['height']],
         ['table', ['table']],
-        ['insert', ['link', 'picture', 'video']],
+        ['insert', ['link', 'video']],
         ['view', ['fullscreen', 'codeview', 'help']],
     ],
     "dialog" => [
