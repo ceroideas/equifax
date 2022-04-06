@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use App\Models\Claim;
+use App\Policies\UserPolicy;
+use App\Policies\ClaimPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,6 +18,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        User::class => UserPolicy::class,
+        Claim::class => ClaimPolicy::class,
     ];
 
     /**
@@ -25,6 +31,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::before( fn (User $user) => $user->isSuperAdmin());
+
+        Gate::define('see-pendings', [UserPolicy::class, 'pending']);
+
+        Gate::define('create-users', [UserPolicy::class, 'create']);
+
+        Gate::define('create-claims', [ClaimPolicy::class, 'checkUser']);
+
+        Gate::define('admin-claims', [ClaimPolicy::class, 'checkAdmin']);
+
     }
 }
