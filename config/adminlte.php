@@ -45,9 +45,10 @@ return [
     |
     */
 
-    'logo' => '<b>DIVI</b>DAE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '',
+    // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'landing/assets/grafico-logo-positivo.png',
+    'logo_img_class' => 'brand-image text-center',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'DIVIDAE',

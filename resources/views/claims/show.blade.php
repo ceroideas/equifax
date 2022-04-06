@@ -203,7 +203,7 @@
                     </div>
                 
                     <br>
-                    @if($claim->isViable())
+                    @if($claim->isPending())
                         <h5 class="mt-5 text-muted">Documentación de la Deuda</h5>
                         
                         <ul class="list-unstyled">
@@ -298,7 +298,7 @@
                             <a href="{{ url('claims/'. $claim->id . '/non-viable/') }}" class="btn btn-sm btn-danger">Reclamación Inviable</a>
                         
                         </div>
-                        @elseif(!$claim->isViable())
+                        @elseif(!$claim->isViable() && !$claim->isPending())
 
                         <div class="text-center">
                             <x-adminlte-button label="Ver Informe de Inviabilidad" data-toggle="modal" data-target="#modalMin" theme="primary"/>
