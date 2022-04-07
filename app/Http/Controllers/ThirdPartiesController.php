@@ -192,7 +192,7 @@ class ThirdPartiesController extends Controller
         if(request()->method() == 'PUT'){
 
             $rules['dni'] = 'required|min:8|max:10|unique:third_parties,dni, ' . request()->thirdParty->id;
-            $rules['dni_img']  = 'image|mimes:jpg,png';
+            $rules['dni_img']  = 'mimes:jpg,png,pdf';
 
             if(request()->file('poder_legal')){
                 $rules['poder_legal'] = 'required_if:tipo,1|file|mimes:pdf,jpg,png';
@@ -201,7 +201,7 @@ class ThirdPartiesController extends Controller
         }else{
             $rules['poder_legal'] = 'required_if:tipo,1|file|mimes:pdf,jpg,png';
             $rules['dni'] = 'required|min:8|max:10|unique:third_parties';
-            $rules['dni_img']  = 'required|image|mimes:jpg,png';
+            $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
             
         }
 
