@@ -332,7 +332,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #fff;
+  color: #e65927;
 }
 @media (max-width: 425px) {
 .blockAcceso[data-v-5fddf304] {
@@ -344,7 +344,8 @@
   height: 40px;
   margin-right: 16px;
   border-radius: 37.5px;
-  border: solid 1px #fff;
+  border: solid 1px #e65927;
+  color: #e65927;
 }
 .blockAcceso .btn-acceso .btn-text-acceso[data-v-5fddf304] {
   height: 17px;
@@ -356,7 +357,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #fff;
+  color: #e65927;
   top: 2px;
   position: relative;
 }
@@ -476,7 +477,8 @@
   } */
   -o-object-fit: contain;
      object-fit: contain;
-  background: url("{{url('landing')}}/assets/portada-3-d-blue.png");
+  /*background: url("{{url('landing')}}/assets/portada-3-d-blue.png");*/
+  background-color: #f8fafc;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -494,7 +496,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #fff;
+  color: #e65927;
 }
 .Te-ayudamos-a-recupe[data-v-66372912] {
   font-family: Nordeco;
@@ -504,7 +506,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #fff;
+  color: #e65927;
 }
 @media (max-width: 425px) {
 .Te-ayudamos-a-recupe[data-v-66372912] {
@@ -556,7 +558,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #fff;
+  color: #e65927;
 }
 #blockform-scroll[data-v-66372912] {
   position: fixed;
@@ -5440,7 +5442,7 @@ a.more-link[data-v-167ae8c1] {
 
 
 <body>
-    <div id="app"><main><div data-v-effc9f78="" data-v-63cd6604=""><div data-v-66372912="" data-v-63cd6604="" class="portada-3dblue" data-v-effc9f78=""><nav data-v-5fddf304="" data-v-66372912="" class="navbar navbar-expand-lg navbar-dark"><div data-v-5fddf304="" class="container"><a data-v-5fddf304="" href="" aria-current="page" class="navbar-brand router-link-exact-active router-link-active" style=""><div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304="" src="{{url('landing')}}/assets/grafico-logo-negativo.png" class="graficologonegativo"></div></a> <a data-v-5fddf304="" href="" aria-current="page" class="navbar-brand router-link-exact-active router-link-active" style="display: none;"><div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304="" src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologonegativo"></div></a> <button data-v-5fddf304="" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span data-v-5fddf304="" class="navbar-toggler-icon"></span></button> <div data-v-5fddf304="" id="navbarCollapse" class="navbar-collapse" style="display: none;"><ul data-v-5fddf304="" class="navbar-nav"><li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="/testimonios" class="nav-link"><span data-v-5fddf304="" class="Type-something">
+    <div id="app"><main><div data-v-effc9f78="" data-v-63cd6604=""><div data-v-66372912="" data-v-63cd6604="" class="portada-3dblue" data-v-effc9f78=""><nav data-v-5fddf304="" data-v-66372912="" class="navbar navbar-expand-lg navbar-dark"><div data-v-5fddf304="" class="container"><a data-v-5fddf304="" href="" aria-current="page" class="navbar-brand router-link-exact-active router-link-active" style=""><div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304="" src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologonegativo"></div></a> <a data-v-5fddf304="" href="" aria-current="page" class="navbar-brand router-link-exact-active router-link-active" style="display: none;"><div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304="" src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologonegativo"></div></a> <button data-v-5fddf304="" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span data-v-5fddf304="" class="navbar-toggler-icon"></span></button> <div data-v-5fddf304="" id="navbarCollapse" class="navbar-collapse" style="display: none;"><ul data-v-5fddf304="" class="navbar-nav"><li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="/testimonios" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             Testimonios
                         </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="/quienes_somos" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             ¿Quiénes somos?
