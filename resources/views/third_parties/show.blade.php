@@ -27,7 +27,7 @@
     @endif
 
 
-<x-adminlte-profile-widget name="{{ $third_party->name }}" desc="Representante" theme="orange" header-class="text-white">
+<x-adminlte-profile-widget name="{{ $third_party->name }}" desc="Representado" theme="orange" header-class="text-white">
     <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="card card-orange">
             <div class="card-header text-white">
@@ -105,6 +105,16 @@
                                 </p>
                             </div>
                             @endif
+
+                            @if($third_party->poa)
+                            <div class="col-sm-6">
+                            
+                                <strong><i class="fas fa-university mr-1"></i>Poder de Representación / Título de Acreditación</strong>
+                                <p class="text-muted text-uppercase">
+                                   <a href="{{ asset(  $third_party->poa ) }}" download="Acreditación {{ $third_party->name  . ' ' . $third_party->dni}}">Descargar Documento</a>
+                                </p>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -113,7 +123,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <nobr>
-                    <a href="{{ url('/third-parties') }}" class="btn btn-default btn-block my-4"><b>Regresar al Listado</b></a>
+                    @if($third_party->user->is(Auth::user()))
+                    <a href="{{ url('/third-parties/' . $third_party->id . '/edit') }}" class="btn btn-warning btn-block"><b>Editar Datos</b></a>
+                    @endif
+                    <a href="{{ url('/third-parties') }}" class="btn btn-default btn-block  ($third_party->user->is(Auth::user()) ? '' : 'my-4'))"><b>Regresar al Listado</b></a>
                 </nobr>
             </div>
          </div>

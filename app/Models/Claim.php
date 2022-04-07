@@ -39,7 +39,7 @@ class Claim extends Model
 
     public function isViable(){
 
-        if($this->status == 4 |  $this->status == 4 | $this->status == 5 ){
+        if($this->status == 3 |  $this->status == 4 | $this->status == 5 ){
             return true;
         }
 
