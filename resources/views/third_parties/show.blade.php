@@ -37,7 +37,7 @@
             <div class="card-body text-center">
                 @if($third_party->dni_img)
                     @php
-                        $ext = array_reverse(explode('.', $user->dni_img))[0];
+                        $ext = array_reverse(explode('.', $third_party->dni_img))[0];
                     @endphp
                     @if (strtolower($ext) == 'pdf')
                         <iframe src="{{asset( $third_party->dni_img)}}" frameborder="0" style="width: 100%; height:400px "></iframe>

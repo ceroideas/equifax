@@ -148,7 +148,7 @@
 
                 <div class="col-12 col-md-12 col-sm-12 col-lg-4 order-1 order-md-2">
 
-                    <h3 class="text-primary"><i class="fas fa-user"></i> {{ $claim->client->name ? $claim->client->name : $claim->representant->name  }}</h3>
+                    <h3 class="text-primary"><i class="fas fa-user"></i> {{ $claim->user_id ? $claim->client->name : $claim->representant->name  }}</h3>
 
                
                     <div class="text-muted">
@@ -156,19 +156,19 @@
                            <div class="col-sm-4">
                                 <b>DNI/CIF</b>
                                 <p>
-                                    {{ $claim->client->dni ? $claim->client->dni : $claim->representant->dni }}
+                                    {{ $claim->user_id ? $claim->client->dni : $claim->representant->dni }}
                                 </p>
                            </div>
                            <div class="col-sm-4">
                                 <b>N° de Teléfono</b>
                                 <p>
-                                    {{ $claim->client->phone ? $claim->client->phone : 'N/A' }}
+                                    {{ $claim->user_id ? $claim->client->phone : 'N/A' }}
                                 </p>
                             </div>
                             <div class="col-sm-4">
                                 <b>Tipo</b>
                                 <p>
-                                    {{ $claim->client->getRole() ? $claim->client->getRole() : 'Representante' }}
+                                    {{ $claim->user_id ? $claim->client->getRole() : 'Representado' }}
                                 </p>
                            </div>
                        </div>
@@ -176,19 +176,19 @@
                             <div class="col-sm-4">
                                 <b>Dirección</b>
                                 <p>
-                                    {{ $claim->client->address ? $claim->client->address : $claim->representant->address }}
+                                    {{ $claim->user_id ? $claim->client->address : $claim->representant->address }}
                                 </p>
                             </div>
                             <div class="col-sm-4">
                                 <b>Población</b>
                                 <p>
-                                    {{ $claim->client->location ? $claim->client->location : $claim->representant->location }}
+                                    {{ $claim->user_id ? $claim->client->location : $claim->representant->location }}
                                 </p>
                             </div>
                             <div class="col-sm-4">
                                 <b>Código Postal</b>
                                 <p>
-                                    {{ $claim->client->cop ? $claim->client->cop : $claim->representant->cop }}
+                                    {{ $claim->user_id ? $claim->client->cop : $claim->representant->cop }}
                                 </p>
                             </div>
                         </div>
@@ -197,7 +197,15 @@
                     <div>
                         <div class="row">
                             <div class="col text-center">
-                                <img src="{{ $claim->client->dni_img ? asset($claim->client->dni_img) : asset($claim->representant->dni_img )}}" alt="" class="img img-fluid img-responsive" width="400" height="200">
+                                @php
+                                    $ext = array_reverse(explode('.', $claim->user_id ? $claim->client->dni_img : $claim->representant->dni_img))[0];
+                                @endphp
+                                @if(strtolower($ext) == 'pdf')
+                                 <iframe src="{{ $claim->user_id ? asset($claim->client->dni_img) : asset($claim->representant->dni_img )}}" frameborder="0" style="width: 100%; height:400px "></iframe>
+                                @else
+                                <img src="{{ $claim->user_id ? asset($claim->client->dni_img) : asset($claim->representant->dni_img )}}" alt="" class="img img-fluid img-responsive" width="400" height="200">
+                                @endif
+                                
                             </div>
                         </div>
                     </div>
@@ -221,16 +229,16 @@
 
                                     @if($claim->debt->albaran)
                                     <li>
-                                        <a href="{{ asset($claim->debt->albaran) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                        <a href="{{ asset($claim->debt->albaran) }}" class="btn-link text-secondary" target="_blank" download="Albarán Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Albarán</a>
                                     </li>
                                     @endif
 
                                 </div>
                                 <div class="col-sm-4">
 
-                                    @if($claim->debt->documentacion_pedido)
+                                    @if($claim->debt->contrato)
                                     <li>
-                                        <a href="{{ asset($claim->debt->documentacion_pedido) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                        <a href="{{ asset($claim->debt->contrato) }}" class="btn-link text-secondary" target="_blank" download="Contrato de Prestación de Servicios Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Contrato</a>
                                     </li>
                                     @endif
 
@@ -241,21 +249,21 @@
 
                                     @if($claim->debt->documentacion_pedido)
                                     <li>
-                                        <a href="{{ asset($claim->debt->documentacion_pedido) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                        <a href="{{ asset($claim->debt->documentacion_pedido) }}" class="btn-link text-secondary" target="_blank" download="Documentación del Pedido Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Doc. del Pedido</a>
                                     </li>
                                     @endif
                                 </div>
                                 <div class="col-sm-4">
                                     @if($claim->debt->extracto)
                                     <li>
-                                        <a href="{{ asset($claim->debt->extracto) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                        <a href="{{ asset($claim->debt->extracto) }}" class="btn-link text-secondary" target="_blank" download="Extracto Bancario Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Extracto</a>
                                     </li>
                                     @endif
                                 </div>
                                 <div class="col-sm-4">
                                     @if($claim->debt->reconocimiento_deuda)
                                     <li>
-                                        <a href="{{ asset($claim->debt->reconocimiento_deuda) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                        <a href="{{ asset($claim->debt->reconocimiento_deuda) }}" class="btn-link text-secondary" target="_blank" download="Reconocimiento de Deuda Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Reconocimiento</a>
                                     </li>
                                     @endif
                                 </div>
@@ -266,7 +274,7 @@
 
                                     @if($claim->debt->escritura_notarial)
                                     <li>
-                                        <a href="{{ asset($claim->debt->escritura_notarial) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                        <a href="{{ asset($claim->debt->escritura_notarial) }}" class="btn-link text-secondary" target="_blank" download="Escritura Notarial Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Escritura Notarial</a>
                                     </li>
                                     @endif
                                 </div>
@@ -274,18 +282,39 @@
 
                                     @if($claim->debt->reclamacion_previa)
                                     <li>
-                                        <a href="{{ asset($claim->debt->reclamacion_previa) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
-                                    </li>
-                                    @endif
-                                </div>
-                                <div class="col-sm-4">
-                                    @if($claim->debt->motivo_reclamacion_previa)
-                                    <li>
-                                        <a href="{{ asset($claim->debt->motivo_reclamacion_previa) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
+                                        <a href="{{ asset($claim->debt->reclamacion_previa) }}" class="btn-link text-secondary" target="_blank" download="Reclamación Previa Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Reclam. Previa</a>
                                     </li>
                                     @endif
                                 </div>
                             </div>
+                            @if($claim->debt->others)
+                           
+                            <h5 class="mt-3 text-muted">Documentación Extra</h5>
+                       
+                            <div class="row">
+                                @foreach (explode(',', $claim->debt->others) as $doc)
+                                
+                                    <div class="col-sm">
+                                        <li>
+                                            <a href="{{ asset($doc) }}" class="btn-link text-secondary" target="_blank" download="Documento Extra #{{ $loop->iteration }} Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Doc. Extra #{{ $loop->iteration }}</a>
+                                        </li>
+                                    </div>
+                                @endforeach
+                            </div>
+                            @endif
+                            @if($claim->debt->motivo_reclamacion_previa)
+                            <div class="row my-4">
+                                <div class="col">
+                                    
+                                    <li>
+                                        
+                                        <p><strong>Motivo Reclamación Previa:</strong> {{ $claim->debt->motivo_reclamacion_previa }}</p>
+                                        {{-- <a href="{{ asset($claim->debt->motivo_reclamacion_previa) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a> --}}
+                                    </li>
+                                  
+                                </div>
+                            </div>
+                            @endif
                         </ul>
                     @endif
 

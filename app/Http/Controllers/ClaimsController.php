@@ -106,11 +106,13 @@ class ClaimsController extends Controller
         if(session('claim_client')){
             $client = User::find(session('claim_client'));
             $claim->user_id = $client->id;
-        }else{
+        }elseif(session('claim_third_party')){
             $client = ThirdParty::find(session('claim_third_party'));
             $claim->third_parties_id = $client->id;
         }
 
+
+        $claim->owner_id = Auth::user()->id;
         $debtor = Debtor::find(session('claim_debtor'));
         $claim->debtor_id = $debtor->id;
 

@@ -52,7 +52,7 @@
             @foreach($claims as $claim)
                 <tr>
                     <td>{{ $claim->id }}</td>
-                    <td>{{ $claim->client->name }}</td>
+                    <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
                     <td>{{ $claim->debt->pending_amount }}</td>
                     <td>{{ $claim->getStatus() }}</td>
