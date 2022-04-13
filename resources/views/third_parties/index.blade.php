@@ -68,7 +68,7 @@
                     {{-- <td>{{ $third_party->getStatus() }}</td> --}}
                     <td>
                      <nobr>
-                        @if(session()->has('claim_third_party') && session()->has('claim_third_party') == 'waiting')
+                        @if(session()->has('claim_third_party') && session()->get('claim_third_party') == 'waiting')
                         <a href="{{ url('/claims/save-option-two/' . $third_party->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Elegir">
                                 <i class="fa fa-lg fa-fw fa-check"></i>

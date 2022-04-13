@@ -322,7 +322,7 @@
                     
                         <div class="text-center mt-5 mb-3 float-bottom">
                         
-                            <a href="{{ url('claims/viable/select-type') }}" class="btn btn-sm btn-primary">Reclamación Viable</a>
+                            <a href="{{ url('claims/'. $claim->id . '/viable/') }}" class="btn btn-sm btn-primary">Reclamación Viable</a>
                         
                             <a href="{{ url('claims/'. $claim->id . '/non-viable/') }}" class="btn btn-sm btn-danger">Reclamación Inviable</a>
                         
@@ -331,6 +331,20 @@
 
                         <div class="text-center">
                             <x-adminlte-button label="Ver Informe de Inviabilidad" data-toggle="modal" data-target="#modalMin" theme="primary"/>
+                        </div>
+                        @else
+
+                        <div class="row text-center">
+                            <div class="col-sm-6 offset-sm-3">
+                                <div class="alert-success">
+                                    <span>{{ $claim->getType() }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center my-3">
+                            <b>Observaciones del Administrador: </b>
+                           <p> {{ $claim->viable_observation }}</p>
                         </div>
                     @endif
                 </div>

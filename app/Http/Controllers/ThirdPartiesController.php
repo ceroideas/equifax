@@ -68,7 +68,7 @@ class ThirdPartiesController extends Controller
         $thirdParty->dni_img = $path;
         $thirdParty->poa = $poa_path;
         $thirdParty->save();
-        return redirect()->back()->with(['msj' => 'Acreditación de Tercero creada exitosamente!']);
+        return redirect('third-parties')->with(['msj' => 'Acreditación de Tercero creada exitosamente!']);
 
         
 

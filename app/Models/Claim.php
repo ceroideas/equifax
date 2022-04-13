@@ -31,15 +31,40 @@ class Claim extends Model
             case 5:
                 return "Viable - Extrajudicial";
                 break;
+            case 6:
+                return "Viable - Proceso Monitorio";
+                break;
+            case 7:
+                return "A la espera de Pago";
+                break;
             default:
                 return "Pendiente";
                 break;
         }
     }
 
+    public function getType(){
+
+        switch ($this->claim_type) {
+            case 1:
+                return "Reclamación Judicial";
+                break;
+
+            case 2:
+                return "Reclamación Extra Judicial";
+                break;
+            case 3:
+                return "Reclamación Proceso Monitorio";
+                break;
+            default:
+                return "Reclamación Judicial";
+                break;
+        }
+    }
+
     public function isViable(){
 
-        if($this->status == 3 |  $this->status == 4 | $this->status == 5 ){
+        if($this->status == 3 ||  $this->status == 4 || $this->status == 5 || $this->status == 6 || $this->status == 7){
             return true;
         }
 

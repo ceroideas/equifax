@@ -55,27 +55,50 @@ class ClaimsController extends Controller
      */
     public function create()
     {
+        
         return view('claims.create');
+     
+
     }
 
     public function stepOne()
     {
+
+    
         return view('claims.create_step_1');
+        
+
     }
 
     public function stepTwo()
     {
-        return view('claims.create_step_2');
+
+        if(session()->has('claim_client') || (session()->has('claim_third_party') && session()->get('claim_third_party') != 'waiting')){
+            return view('claims.create_step_2');
+        }
+        
+
+        return redirect('claims/select-client');
     }
 
     public function stepThree()
     {
-        return view('claims.create_step_3');
+
+        if(session()->has('claim_client') || (session()->has('claim_third_party') && session()->get('claim_third_party') != 'waiting')){
+            return view('claims.create_step_3');
+        }
+
+        return redirect('claims/select-client');
     }
 
     public function stepFour()
     {
-        return view('claims.create_step_4');
+
+        if(session()->has('claim_client') || (session()->has('claim_third_party') && session()->get('claim_third_party') != 'waiting')){
+            return view('claims.create_step_4');
+        }
+
+        return redirect('claims/select-client');
     }
 
     public function stepFive()
@@ -107,6 +130,8 @@ class ClaimsController extends Controller
             $client = User::find(session('claim_client'));
             $claim->user_id = $client->id;
         }elseif(session('claim_third_party')){
+
+            // dd(session('claim_third_party'));
             $client = ThirdParty::find(session('claim_third_party'));
             $claim->third_parties_id = $client->id;
         }
@@ -238,12 +263,37 @@ class ClaimsController extends Controller
         //
     }
 
+    public function viable(Claim $claim)
+    {
+        $this->authorize('viewAny', $claim);
+
+        return view('claims.viable', ['claim' => $claim]);
+    }
+
     public function nonViable(Claim $claim)
     {
         $this->authorize('viewAny', $claim);
 
         return view('claims.non_viable', ['claim' => $claim]);
     }
+
+    public function setViable(Request $request, Claim $claim)
+    {
+        $this->authorize('viewAny', $claim);
+
+        $this->validateViable();
+
+        $claim->status = 7;
+        $claim->claim_type = $request['tipo_viabilidad'];
+        if($request['observaciones']){
+            $claim->viable_observation = $request['observaciones'];
+        }
+        $claim->save();
+
+        return redirect('claims')->with('msj', 'Reclamación actualziada exitosamente!');
+      
+    }
+    
 
     public function setNonViable(Request $request, Claim $claim)
     {
@@ -343,7 +393,9 @@ class ClaimsController extends Controller
 
     public function saveOptionTwo(Request $request){
 
+        $request->session()->forget('claim_client');
         $request->session()->put('claim_third_party', $request->id);
+        
 
         return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
 
@@ -452,6 +504,17 @@ class ClaimsController extends Controller
 
     public function validateNonViable(){
         $rules = ['informe_inviabilidad' => 'required'];
+
+        return request()->validate($rules);
+
+    }
+
+    public function validateViable(){
+        $rules = [
+            
+            'tipo_viabilidad' => 'required',
+            // 'observaciones' => 'required',
+        ];
 
         return request()->validate($rules);
 

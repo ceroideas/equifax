@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignid('owner_id')->nullable();
             $table->foreignid('agreement_id')->nullable();
             $table->text('observation')->nullable();
+            $table->text('viable_observation')->nullable();
             $table->timestamps();
         });
     }

@@ -377,6 +377,19 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Configuraciones',
+            'icon'    => 'fas fa-fw fa-cog',
+            'can' =>  ['see-fees', 'admin-claims'],
+            'submenu' => [
+                [
+                    'text' => 'Tasas Dividae',
+                    'icon' => '',
+                    'can' => 'see-fees',
+                    'url'  => '/configurations/fees',
+                ],
+            ],
+        ],
         // ['header' => 'labels'],
         // [
         //     'text'       => 'important',
