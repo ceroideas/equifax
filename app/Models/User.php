@@ -185,4 +185,8 @@ class User extends Authenticatable
          
         return $this->hasMany(Claim::class, 'owner_id');
     }
+    public function invoices(){
+         
+        return $this->hasMany(Invoice::class, 'user_id');
+    }
 }

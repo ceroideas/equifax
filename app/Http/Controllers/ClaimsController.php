@@ -8,6 +8,9 @@ use App\Models\ThirdParty;
 use App\Models\Debtor;
 use App\Models\Debt;
 use App\Models\Agreement;
+use App\Models\Invoice;
+use App\Models\Actuation;
+use App\Models\Configuration;
 use Illuminate\Http\Request;
 use Auth;
 use Storage;
@@ -290,6 +293,15 @@ class ClaimsController extends Controller
         }
         $claim->save();
 
+        $c = Configuration::first();
+
+        $invoice = new Invoice;
+        $invoice->claim_id = $claim->id;
+        $invoice->user_id = $claim->user_id;
+        $invoice->amount = $c ? $c->fixed_fees : '0';
+        $invoice->type = 'fixed_fees';
+        $invoice->save();
+
         return redirect('claims')->with('msj', 'Reclamación actualziada exitosamente!');
       
     }
@@ -518,5 +530,78 @@ class ClaimsController extends Controller
 
         return request()->validate($rules);
 
+    }
+
+    public function payment($id)
+    {
+        $claim = Claim::find($id);
+
+        /*$c = Configuration::first();
+        $amount = 0;
+
+        $amount += $c->fixed_fees;
+
+        $amount += ($claim->debt->pending_amount*$c->percentage_fees)/100;*/
+
+        // $i = Invoice::where(['claim_id'=>$id,'status'=>null])->first();
+
+        if ($claim->last_invoice) {
+            $amount = $claim->last_invoice->amount;
+        }else{
+            return back()->with('err', 'La reclamación no tiene una factura pendiente');
+        }
+
+        return view('claims.payment', compact('claim','amount'));
+    }
+
+    public function myInvoices()
+    {
+        if(Auth::user()->isClient()){
+            $invoices = Auth::user()->invoices;
+        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $invoices = Invoice::all();
+        }
+
+        return view('claims.invoices', compact('invoices'));
+    }
+
+    public function actuations($id)
+    {
+        $actuations = Actuation::where('claim_id',$id)->get();
+        $claim = Claim::find($id);
+        return view('claims.actuations', compact('actuations','claim'));
+    }
+
+    public function saveActuation(Request $r,$id)
+    {
+        if ($r->invoice) {
+            
+        }
+
+        $a = new Actuation;
+        $a->claim_id = $id;
+        $a->subject = $r->subject;
+        $a->description = $r->description;
+        $a->actuation_date = $r->actuation_date;
+        $a->type = $r->type ? 1 : null;
+        $a->save();
+
+        if ($r->invoice && $r->amount) {
+            $claim = Claim::find($id);
+            $c = Configuration::first();
+
+            $amount = ($r->amount*$c->percentage_fees)/100;;
+
+            $invoice = new Invoice;
+            $invoice->claim_id = $id;
+            $invoice->user_id = $claim->user_id;
+            $invoice->amount = $amount;
+            $invoice->type = 'percentage_fees';
+            $invoice->save();
+
+            $a->amount = $r->amount;
+            $a->invoice_id = $invoice->id;
+            $a->save();
+        }
     }
 }

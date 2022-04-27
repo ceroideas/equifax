@@ -18,7 +18,7 @@ class DebtorsController extends Controller
 
         if(Auth::user()->isClient()){
             $debtors = Auth::user()->debtors;
-        }elseif(Auth::use()->isSuperAdmin() ){
+        }elseif(Auth::user()->isSuperAdmin() ){
             $debtors = Debtor::all();
         }
        

@@ -12,10 +12,12 @@ class Claim extends Model
     public function getStatus(){
 
         switch ($this->status) {
+            case -1:
+                return "Finalizado";
+                break;
             case 0:
                 return "Pendiente";
                 break;
-
             case 1:
                 return "Inviable";
                 break;
@@ -37,6 +39,15 @@ class Claim extends Model
             case 7:
                 return "A la espera de Pago";
                 break;
+            case 8:
+                return "Gestión Reclamación Extrajudicial";
+                break;
+            case 9:
+                return "Proceso Cobros Deudor";
+                break;
+            case 10:
+                return "Gestión Reclamación Judicial";
+                break;
             default:
                 return "Pendiente";
                 break;
@@ -49,9 +60,8 @@ class Claim extends Model
             case 1:
                 return "Reclamación Judicial";
                 break;
-
             case 2:
-                return "Reclamación Extra Judicial";
+                return "Reclamación Extrajudicial";
                 break;
             case 3:
                 return "Reclamación Proceso Monitorio";
@@ -64,7 +74,7 @@ class Claim extends Model
 
     public function isViable(){
 
-        if($this->status == 3 ||  $this->status == 4 || $this->status == 5 || $this->status == 6 || $this->status == 7){
+        if($this->status == 3 || $this->status == 4 || $this->status == 5 || $this->status == 6 || $this->status == 7){
             return true;
         }
 
@@ -72,7 +82,7 @@ class Claim extends Model
     }
 
     public function isPending(){
-        if($this->status == 0 ||  $this->status == 2  ){
+        if($this->status == 0 || $this->status == 2  ){
             return true;
         }
 
@@ -97,6 +107,13 @@ class Claim extends Model
 
     public function debt(){
         return $this->hasOne(Debt::class);
+    }
+
+    public function last_invoice(){
+        return $this->hasOne(Invoice::class)->whereNull('status');
+    }
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
     }
 
 }

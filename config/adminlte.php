@@ -375,6 +375,12 @@ return [
                     'can' => ['create-claims', 'admin-claims'],
                     'url'  => '/claims',
                 ],
+                [
+                    'text' => 'Facturas',
+                    'icon' => '',
+                    'can' => ['create-claims', 'admin-claims'],
+                    'url'  => '/claims/invoices',
+                ],
             ],
         ],
         [
@@ -480,6 +486,36 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => '/vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
+                ],
+            ],
+        ],
+        'TempusDominusBs4' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/moment.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
+                ],
+            ],
+        ],
+        'BootstrapSwitch' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bootstrap-switch/js/bootstrap-switch.min.js',
                 ],
             ],
         ],
