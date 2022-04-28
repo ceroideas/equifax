@@ -73,12 +73,16 @@
 
         					<b>Resultado de la actuación:</b> {!! $act->type ? '<span class="text-success">Exitoso</span>' : '<span class="text-warning">No exitoso</span>' !!}
 
-        					@if ($act->invoice)
+        					@if ($act->amount)
         					<br>
         						
         						<b>Monto reclamado:</b> {{$act->amount}}€ <br>
+        						@if ($act->invoice)
         						<b>Monto a facturar:</b> {{$act->invoice->amount}}€ <br> 
         						<b>Status de la factura:</b> {!!$act->invoice->status ? '<span class="text-success">Pagado</span>' : '<span class="text-info">Pendiente</span>'!!}
+        						@else
+        							<i>No se ha generado una factura</i>
+        						@endif
 
         					@endif
 
@@ -175,17 +179,10 @@
 
 	            	<hr>
 
-	            	<div class="row">
-	            		<div class="col-sm-12">
-	            			<label for="invoice">Generar factura</label>
-	            			<x-adminlte-input-switch name="invoice" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
-	            		</div>
-	            	</div>
-
-	            	<div class="row" style="display: none;" id="invoice-data">
+	            	<div class="row" style="display: none-;" id="invoice-data">
 	            		<div class="col-sm-12">
 
-	            			<x-adminlte-input name="amount" label="Monto Recuperado" placeholder="Monto" step="0.01" type="number"
+	            			<x-adminlte-input name="amount" label="Si se ha recuperado algún monto, especificarlo" placeholder="Monto" step="0.01" type="number"
 			                    igroup-size="sm" >
 			                        <x-slot name="appendSlot">
 			                            <div class="input-group-text bg-dark">
@@ -194,6 +191,13 @@
 			                        </x-slot>
 			                </x-adminlte-input>
 	            			
+	            		</div>
+	            	</div>
+
+	            	<div class="row">
+	            		<div class="col-sm-12">
+	            			<label for="invoice">¿Desea generar factura por el monto recuperado? (ésto en caso que el deudor haya realizado la transferencia al cliente en vez de a DIVIDAE)</label>
+	            			<x-adminlte-input-switch name="invoice" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
 	            		</div>
 	            	</div>
 
@@ -210,7 +214,7 @@
 @section('js')
 
 	<script>
-		$('[name="invoice"]').on('switchChange.bootstrapSwitch', function(event) {
+		/*$('[name="invoice"]').on('switchChange.bootstrapSwitch', function(event) {
 			event.preventDefault();
 			
 			if ($(this).is(':checked')) {
@@ -218,7 +222,7 @@
 			}else{
 				$('#invoice-data').hide();
 			}
-		});
+		});*/
 
 		$('#actuation-form').on('submit', function(event) {
 			event.preventDefault();

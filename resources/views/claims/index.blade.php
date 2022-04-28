@@ -27,7 +27,9 @@
         'ID',
         'Cliente',
         'Deudor',
-        ['label' => 'Importe Pendiente'],
+        'Importe total',
+        'Importe reclamado',
+        'Importe Pendiente',
         ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
@@ -60,7 +62,9 @@
                     <td>{{ $claim->id }}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
-                    <td>{{ $claim->debt->pending_amount }}</td>
+                    <td>{{ $claim->debt->total_amount }}€</td>
+                    <td>{{ $claim->amountClaimed() + $claim->debt->partials_amount }}€</td>
+                    <td>{{ $claim->debt->total_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}€</td>
                     <td>{{ $claim->getStatus() }}</td>
                     <td>
                      <nobr>

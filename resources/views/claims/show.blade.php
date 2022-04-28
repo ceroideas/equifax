@@ -71,7 +71,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe Pendiente</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount }}</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->total_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Abonos Realizados</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->partials_amount ? $claim->debt->partials_amount : 'N/A' }}</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ ($claim->amountClaimed() + $claim->debt->partials_amount) ? ($claim->amountClaimed() + $claim->debt->partials_amount) : 'N/A' }}</span>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,24 @@
                                     <div class="col-lg-3 col-sm-6 col-md-6"><b>Concepto O Justificación:</b> <p>{{ $claim->debt->concept }}</p></div>
                                     <div class="col-lg-3 col-sm-6 col-md-6"><b>N° De Documento:</b> <p>{{ $claim->debt->document_number }} </p></div>
                                     <div class="col-lg-3 col-sm-6 col-md-6"><b>Fecha de la Deuda:</b> <p>{{ $claim->debt->debt_date }}</p></div>
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Fecha de Vencimiento de la Deuda:</b> <p>{{ $claim->debt->debt_expiration_date ? $claim->debt->debt_expiration_date : 'N/A'  }}</p></div>
+                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Fecha de Vencimiento de la Deuda:</b> 
+
+                                        @if ($claim->debt->debt_expiration_date)
+                                            @php
+                                                $f1 = Carbon\Carbon::parse($claim->debt->debt_expiration_date);
+                                                $tdy = Carbon\Carbon::now();
+                                            @endphp
+
+                                            @if ($f1 < $tdy)
+                                                <p class="text-danger">{{ $claim->debt->debt_expiration_date }} <br> <b>Deuda expirada</b></p>
+                                            @else
+                                                <p>{{ $claim->debt->debt_expiration_date }}</p>
+                                            @endif
+                                        @else
+                                            N/A
+                                        @endif
+
+                                    </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
@@ -347,6 +364,26 @@
                            <p> {{ $claim->viable_observation }}</p>
                         </div>
                     @endif
+
+                    <div class="text-center">
+                        <x-adminlte-button label="Finalizar Reclamación" data-toggle="modal" data-target="#modalFinish" theme="info"/>
+
+                        <x-adminlte-modal id="modalFinish" title="¿Desea dar por finalizada la reclamación actual?" theme="primary" size="sm" v-centered="true">
+                            {{-- <div class="card">     --}}
+                                {{-- <div class="card-body">
+                                    <div class="row">
+                                    <div class="col-sm-12">
+                                            {!! $claim->observation !!}
+                                    </div>
+                                    </div>
+                                </div> --}}
+                            {{-- </div> --}}
+                            <x-slot name="footerSlot">
+                                <a href="{{url('claims/close',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
+                                <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
+                            </x-slot>
+                        </x-adminlte-modal>
+                    </div>
                 </div>
             </div>
         </div>

@@ -5450,7 +5450,7 @@ a.more-link[data-v-167ae8c1] {
                             ¿Tienes dudas?
                         </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="/contacto" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             Contacto
-                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul> <div data-v-5fddf304="" class="navbar-nav ml-auto"><div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="/login" class="btn btn-acceso"><span data-v-5fddf304="" class="btn-text-acceso">
+                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul> <div data-v-5fddf304="" class="navbar-nav ml-auto"><div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('login')}}" class="btn btn-acceso"><span data-v-5fddf304="" class="btn-text-acceso">
                             Acceso
                         </span></a></div> <div data-v-5fddf304="" class="blockRegistro"><a data-v-5fddf304="" href="/register" class="btn btn-registerHome"><span data-v-5fddf304="" class="text-register-btn">
                             Regístrate

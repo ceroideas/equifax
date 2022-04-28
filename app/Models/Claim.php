@@ -54,6 +54,13 @@ class Claim extends Model
         }
     }
 
+    public function amountClaimed()
+    {
+        $a = $this->actuations->whereNotNull('amount')->sum('amount');
+
+        return $a;
+    }
+
     public function getType(){
 
         switch ($this->claim_type) {
@@ -74,7 +81,12 @@ class Claim extends Model
 
     public function isViable(){
 
-        if($this->status == 3 || $this->status == 4 || $this->status == 5 || $this->status == 6 || $this->status == 7){
+        if($this->status == 3
+            || $this->status == 4
+            || $this->status == 5
+            || $this->status == 6
+            || $this->status == 7
+            || $this->status == 8){
             return true;
         }
 
@@ -82,7 +94,7 @@ class Claim extends Model
     }
 
     public function isPending(){
-        if($this->status == 0 || $this->status == 2  ){
+        if($this->status == 0 || $this->status == 2){
             return true;
         }
 
@@ -114,6 +126,9 @@ class Claim extends Model
     }
     public function invoices(){
         return $this->hasMany(Invoice::class);
+    }
+    public function actuations(){
+        return $this->hasMany(Actuation::class);
     }
 
 }

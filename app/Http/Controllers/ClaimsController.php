@@ -574,13 +574,10 @@ class ClaimsController extends Controller
 
     public function saveActuation(Request $r,$id)
     {
-        if ($r->invoice) {
-            
-        }
-
         $a = new Actuation;
         $a->claim_id = $id;
         $a->subject = $r->subject;
+        $a->amount = $r->amount;
         $a->description = $r->description;
         $a->actuation_date = $r->actuation_date;
         $a->type = $r->type ? 1 : null;
@@ -599,7 +596,6 @@ class ClaimsController extends Controller
             $invoice->type = 'percentage_fees';
             $invoice->save();
 
-            $a->amount = $r->amount;
             $a->invoice_id = $invoice->id;
             $a->save();
         }
