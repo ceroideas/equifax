@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Usuarios')
+@section('title', 'Reclamaciones')
 
 @section('content_header')
     <div class="container-fluid">
@@ -27,7 +27,9 @@
         'ID',
         'Cliente',
         'Deudor',
-        ['label' => 'Importe Pendiente'],
+        'Importe total',
+        'Importe reclamado',
+        'Importe Pendiente',
         ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
@@ -47,14 +49,22 @@
         </x-adminlte-alert>
     @endif
 
+    @if(session()->has('err'))
+        <x-adminlte-alert theme="warning" dismissable>
+            {{ session('err') }}
+        </x-adminlte-alert>
+    @endif
+
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($claims as $claim)
                 <tr>
                     <td>{{ $claim->id }}</td>
-                    <td>{{ $claim->client->name }}</td>
+                    <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
-                    <td>{{ $claim->debt->pending_amount }}</td>
+                    <td>{{ $claim->debt->total_amount }}€</td>
+                    <td>{{ $claim->amountClaimed() + $claim->debt->partials_amount }}€</td>
+                    <td>{{ $claim->debt->total_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}€</td>
                     <td>{{ $claim->getStatus() }}</td>
                     <td>
                      <nobr>
@@ -74,6 +84,23 @@
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>
                         </a>
+
+                        @if ($claim->invoices)
+                            <a href="{{ url('/claims/actuations/' . $claim->id ) }}">
+                                <button class="btn btn-xs btn-default text-warning mx-1 shadow" title="Actuaciónes">
+                                    <i class="fa fa-lg fa-fw fa-list"></i>
+                                </button>
+                            </a>
+                        @endif
+
+                        @if (Auth::user()->id == $claim->user_id && $claim->last_invoice)
+                        {{-- @if ($claim->status == 7) --}}
+                            <a href="{{ url('/claims/payment/' . $claim->id ) }}">
+                                <button class="btn btn-xs btn-default text-info mx-1 shadow" title="Pagar">
+                                    <i class="fa fa-lg fa-fw fa-credit-card"></i>
+                                </button>
+                            </a>
+                        @endif
                     </nobr>
                     </td>
                 </tr>

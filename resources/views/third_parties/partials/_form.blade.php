@@ -16,6 +16,44 @@
         @else
             @method('POST')
         @endif
+
+        <div class="row mb-4">
+            <div class="col float-center">
+                <h1>¿Qué tipo de Persona es?</h1>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <x-adminlte-input name="tipo" type="radio"
+                        igroup-size="xs" value="1" >
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="">Persona Jurídica</i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
+                    <div class="col-sm-2">
+                        <x-adminlte-input name="tipo" type="radio"
+                        igroup-size="xs" value="2">
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="">Persona Física</i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
+                    <div class="col-sm-2">
+                        <x-adminlte-input name="tipo" type="radio"
+                        igroup-size="xs" value="3" >
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="">Autónomo</i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
+               </div>
+            </div>
+        </div>
         
         <div class="row ">
             <div class="col-sm-6">
@@ -83,7 +121,7 @@
             </div>
         </div>
         <div class="row">
-            {{-- <div class="col-sm-6">
+            <div class="poa-div col-sm-6 d-none">
                 <x-adminlte-input name="poder_legal" label="Poder de Representación / Título de Acreditación *" placeholder="Poder de Representación / Título de Acreditación" type="file"
                 igroup-size="sm">
                     <x-slot name="appendSlot">
@@ -92,8 +130,8 @@
                         </div>
                     </x-slot>
             </x-adminlte-input>
-            </div> --}}
-            <div class="col-sm-6 offset-6">
+            </div>
+            <div class="col-sm-6">
                 <x-adminlte-input name="dni_img" label="Copia del DNI / CIF *" placeholder="Copia del DNI / CIF" type="file"
                 igroup-size="sm">
                     <x-slot name="appendSlot">
@@ -113,3 +151,41 @@
         </div>
     </form>
 </x-adminlte-card>
+
+@section('js')
+
+@if(isset($third_party))
+    <script>
+        $('input[name="tipo"][value="{{ $third_party->type }}"]').attr('checked', true);
+        if({{  $third_party->type === "1" }}){
+            $('.poa-div').removeClass('d-none');
+        }else{
+             $('.poa-div').addClass('d-none');
+        }
+    </script>
+@elseif(old('tipo'))
+
+    <script>
+        $('input[name="tipo"][value="{{ old('tipo') }}"]').attr('checked', true);
+        if({{ old('tipo') === "1" }}){
+             $('.poa-div').removeClass('d-none');
+        }else{
+             $('.poa-div').addClass('d-none');
+        }
+    </script>
+@endif
+
+<script>
+   $('input[name="tipo"]').change(function() {
+    if(this.checked) {
+        if(this.value === "1"){
+            $('.poa-div').removeClass('d-none');
+        }else{
+            $('.poa-div').addClass('d-none');
+        }
+        
+    }
+});
+</script>
+
+@stop

@@ -36,7 +36,14 @@
             
             <div class="card-body text-center">
                 @if($user->dni_img)
-                    <img src="{{  asset( $user->dni_img)  }}" alt="{{ $user->name . ' dni'}}" class="img-fluid"/>
+                    @php
+                        $ext = array_reverse(explode('.', $user->dni_img))[0];
+                    @endphp
+                    @if (strtolower($ext) == 'pdf')
+                        <iframe src="{{asset( $user->dni_img)}}" frameborder="0" style="width: 100%; height:400px "></iframe>
+                    @else
+                        <img src="{{  asset( $user->dni_img)  }}" alt="{{ $user->name . ' dni'}}" class="img-fluid"/>
+                    @endif
                 @else
                     <img src="{{  asset( 'img/placeholders/dniplaceholder.jpg' )  }}" alt="{{ $user->name . ' dni'}}" class="img-fluid"/>
                 

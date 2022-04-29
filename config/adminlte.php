@@ -45,9 +45,10 @@ return [
     |
     */
 
-    'logo' => '<b>DIVI</b>DAE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '',
+    // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'landing/assets/grafico-logo-positivo.png',
+    'logo_img_class' => 'brand-image text-center',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'DIVIDAE',
@@ -374,6 +375,25 @@ return [
                     'can' => ['create-claims', 'admin-claims'],
                     'url'  => '/claims',
                 ],
+                [
+                    'text' => 'Facturas',
+                    'icon' => '',
+                    'can' => ['create-claims', 'admin-claims'],
+                    'url'  => '/claims/invoices',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Configuraciones',
+            'icon'    => 'fas fa-fw fa-cog',
+            'can' =>  ['see-fees', 'admin-claims'],
+            'submenu' => [
+                [
+                    'text' => 'Tasas Dividae',
+                    'icon' => '',
+                    'can' => 'see-fees',
+                    'url'  => '/configurations/fees',
+                ],
             ],
         ],
         // ['header' => 'labels'],
@@ -466,6 +486,36 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => '/vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
+                ],
+            ],
+        ],
+        'TempusDominusBs4' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/moment.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
+                ],
+            ],
+        ],
+        'BootstrapSwitch' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bootstrap-switch/js/bootstrap-switch.min.js',
                 ],
             ],
         ],

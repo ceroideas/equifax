@@ -31,7 +31,7 @@ class ClaimPolicy
      */
     public function view(User $user, Claim $claim)
     {
-        if(Auth::user()->id === $claim->user_id || Auth::user()->isAdmin()){
+        if(Auth::user()->id === $claim->owner_id || Auth::user()->isAdmin()){
             return  true;
         }
     }

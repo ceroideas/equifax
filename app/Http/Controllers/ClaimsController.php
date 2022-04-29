@@ -8,6 +8,9 @@ use App\Models\ThirdParty;
 use App\Models\Debtor;
 use App\Models\Debt;
 use App\Models\Agreement;
+use App\Models\Invoice;
+use App\Models\Actuation;
+use App\Models\Configuration;
 use Illuminate\Http\Request;
 use Auth;
 use Storage;
@@ -55,27 +58,50 @@ class ClaimsController extends Controller
      */
     public function create()
     {
+        
         return view('claims.create');
+     
+
     }
 
     public function stepOne()
     {
+
+    
         return view('claims.create_step_1');
+        
+
     }
 
     public function stepTwo()
     {
-        return view('claims.create_step_2');
+
+        if(session()->has('claim_client') || (session()->has('claim_third_party') && session()->get('claim_third_party') != 'waiting')){
+            return view('claims.create_step_2');
+        }
+        
+
+        return redirect('claims/select-client');
     }
 
     public function stepThree()
     {
-        return view('claims.create_step_3');
+
+        if(session()->has('claim_client') || (session()->has('claim_third_party') && session()->get('claim_third_party') != 'waiting')){
+            return view('claims.create_step_3');
+        }
+
+        return redirect('claims/select-client');
     }
 
     public function stepFour()
     {
-        return view('claims.create_step_4');
+
+        if(session()->has('claim_client') || (session()->has('claim_third_party') && session()->get('claim_third_party') != 'waiting')){
+            return view('claims.create_step_4');
+        }
+
+        return redirect('claims/select-client');
     }
 
     public function stepFive()
@@ -106,11 +132,15 @@ class ClaimsController extends Controller
         if(session('claim_client')){
             $client = User::find(session('claim_client'));
             $claim->user_id = $client->id;
-        }else{
+        }elseif(session('claim_third_party')){
+
+            // dd(session('claim_third_party'));
             $client = ThirdParty::find(session('claim_third_party'));
             $claim->third_parties_id = $client->id;
         }
 
+
+        $claim->owner_id = Auth::user()->id;
         $debtor = Debtor::find(session('claim_debtor'));
         $claim->debtor_id = $debtor->id;
 
@@ -236,12 +266,46 @@ class ClaimsController extends Controller
         //
     }
 
+    public function viable(Claim $claim)
+    {
+        $this->authorize('viewAny', $claim);
+
+        return view('claims.viable', ['claim' => $claim]);
+    }
+
     public function nonViable(Claim $claim)
     {
         $this->authorize('viewAny', $claim);
 
         return view('claims.non_viable', ['claim' => $claim]);
     }
+
+    public function setViable(Request $request, Claim $claim)
+    {
+        $this->authorize('viewAny', $claim);
+
+        $this->validateViable();
+
+        $claim->status = 7;
+        $claim->claim_type = $request['tipo_viabilidad'];
+        if($request['observaciones']){
+            $claim->viable_observation = $request['observaciones'];
+        }
+        $claim->save();
+
+        $c = Configuration::first();
+
+        $invoice = new Invoice;
+        $invoice->claim_id = $claim->id;
+        $invoice->user_id = $claim->user_id;
+        $invoice->amount = $c ? $c->fixed_fees : '0';
+        $invoice->type = 'fixed_fees';
+        $invoice->save();
+
+        return redirect('claims')->with('msj', 'Reclamación actualziada exitosamente!');
+      
+    }
+    
 
     public function setNonViable(Request $request, Claim $claim)
     {
@@ -341,7 +405,9 @@ class ClaimsController extends Controller
 
     public function saveOptionTwo(Request $request){
 
+        $request->session()->forget('claim_client');
         $request->session()->put('claim_third_party', $request->id);
+        
 
         return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
 
@@ -453,5 +519,85 @@ class ClaimsController extends Controller
 
         return request()->validate($rules);
 
+    }
+
+    public function validateViable(){
+        $rules = [
+            
+            'tipo_viabilidad' => 'required',
+            // 'observaciones' => 'required',
+        ];
+
+        return request()->validate($rules);
+
+    }
+
+    public function payment($id)
+    {
+        $claim = Claim::find($id);
+
+        /*$c = Configuration::first();
+        $amount = 0;
+
+        $amount += $c->fixed_fees;
+
+        $amount += ($claim->debt->pending_amount*$c->percentage_fees)/100;*/
+
+        // $i = Invoice::where(['claim_id'=>$id,'status'=>null])->first();
+
+        if ($claim->last_invoice) {
+            $amount = $claim->last_invoice->amount;
+        }else{
+            return back()->with('err', 'La reclamación no tiene una factura pendiente');
+        }
+
+        return view('claims.payment', compact('claim','amount'));
+    }
+
+    public function myInvoices()
+    {
+        if(Auth::user()->isClient()){
+            $invoices = Auth::user()->invoices;
+        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $invoices = Invoice::all();
+        }
+
+        return view('claims.invoices', compact('invoices'));
+    }
+
+    public function actuations($id)
+    {
+        $actuations = Actuation::where('claim_id',$id)->get();
+        $claim = Claim::find($id);
+        return view('claims.actuations', compact('actuations','claim'));
+    }
+
+    public function saveActuation(Request $r,$id)
+    {
+        $a = new Actuation;
+        $a->claim_id = $id;
+        $a->subject = $r->subject;
+        $a->amount = $r->amount;
+        $a->description = $r->description;
+        $a->actuation_date = $r->actuation_date;
+        $a->type = $r->type ? 1 : null;
+        $a->save();
+
+        if ($r->invoice && $r->amount) {
+            $claim = Claim::find($id);
+            $c = Configuration::first();
+
+            $amount = ($r->amount*$c->percentage_fees)/100;;
+
+            $invoice = new Invoice;
+            $invoice->claim_id = $id;
+            $invoice->user_id = $claim->user_id;
+            $invoice->amount = $amount;
+            $invoice->type = 'percentage_fees';
+            $invoice->save();
+
+            $a->invoice_id = $invoice->id;
+            $a->save();
+        }
     }
 }

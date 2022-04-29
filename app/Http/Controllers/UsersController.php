@@ -203,7 +203,7 @@ class UsersController extends Controller
             'name' => 'required|min:8|max:255',
             'email' => 'required|email|unique:users',
             'dni' => 'required|min:8|max:10|unique:users',
-            'tlf' => 'required|min:10|max:14',
+            'tlf' => 'required|min:9|max:14',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
             'cop' => 'required|numeric',
@@ -228,14 +228,14 @@ class UsersController extends Controller
             $rules['email'] = 'required|email|unique:users,email,'.request()->user->id;
             $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->user->id;
             if(Auth::user()->dni_img != NUll){
-                $rules['dni_img']  = 'image|mimes:jpg,png';
+                $rules['dni_img']  = 'mimes:jpg,png,pdf';
             }else{
-                $rules['dni_img']  = 'required|image|mimes:jpg,png';
+                $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
             }
             
         }else{
             $rules['password'] = 'required|confirmed|min:8|max:255';
-            $rules['dni_img']  = 'required|image|mimes:jpg,png';
+            $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
         }
 
         return request()->validate($rules);

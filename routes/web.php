@@ -7,6 +7,8 @@ use App\Http\Controllers\ThirdPartiesController;
 use App\Http\Controllers\DebtorsController;
 use App\Http\Controllers\DebtsController;
 use App\Http\Controllers\AgreementsController;
+use App\Http\Controllers\ConfigurationsController;
+use App\Http\Controllers\PaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,16 +61,24 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/clear-option-one', [ClaimsController::class, 'flushOptionOne']);
     Route::get('/clear-option-two', [ClaimsController::class, 'flushOptionTwo']);
     Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
+    Route::get('/invoices', [ClaimsController::class , 'myInvoices']);
+    Route::get('/actuations/{id}', [ClaimsController::class , 'actuations']);
+    Route::post('/actuations/{id}', [ClaimsController::class , 'saveActuation']);
     Route::get('/flush-options', [ClaimsController::class, 'flushAll']);
     Route::post('/', [ClaimsController::class, 'store']);
     Route::get('/pending', [ClaimsController::class, 'pending']);
     Route::get('/{claim}', [ClaimsController::class, 'show']);
+    Route::get('payment/{claim}', [ClaimsController::class, 'payment']);
+    Route::get('{claim}/viable', [ClaimsController::class , 'viable']);
     Route::get('{claim}/non-viable', [ClaimsController::class , 'nonViable']);
     Route::post('/non-viable/{claim}/save', [ClaimsController::class, 'setNonViable']);
-    
+    Route::post('/viable/{claim}/save', [ClaimsController::class, 'setViable']);
 
+    Route::post('payment', [PaymentsController::class, 'payment']);
+    Route::post('payToken', [PaymentsController::class, 'payToken']);
 
 });
+
 
 
 /* Terceros */
@@ -122,9 +132,19 @@ Route::group(['prefix' => 'debts'], function(){
     
 });
 
-
+/* Acuerdos */
 Route::group(['prefix' => 'agreements'], function(){
 
     Route::get('/create', [AgreementsController::class, 'create']);
     Route::post('/save-agreement', [AgreementsController::class, 'saveAgreement']);
+});
+
+/* Configuraciones */
+
+Route::group(['prefix'  => 'configurations'], function(){
+
+    Route::get('/fees', [ConfigurationsController::class, 'fees']);
+    Route::post('/fees', [ConfigurationsController::class, 'feesStore']);
+    Route::put('{configuration}/fees', [ConfigurationsController::class, 'feesUpdate']);
+
 });

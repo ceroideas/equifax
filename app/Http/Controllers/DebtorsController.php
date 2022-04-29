@@ -18,7 +18,7 @@ class DebtorsController extends Controller
 
         if(Auth::user()->isClient()){
             $debtors = Auth::user()->debtors;
-        }elseif(Auth::use()->isSuperAdmin() ){
+        }elseif(Auth::user()->isSuperAdmin() ){
             $debtors = Debtor::all();
         }
        
@@ -143,7 +143,7 @@ class DebtorsController extends Controller
             'name' => 'required|min:8|max:255',
             'email' => 'required|email|unique:users',
             'dni' => 'required|min:8|max:10|unique:users',
-            'tlf' => 'required|min:10|max:14',
+            'tlf' => 'required|min:9|max:14',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
             'cop' => 'required',

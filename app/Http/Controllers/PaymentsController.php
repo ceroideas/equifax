@@ -1,0 +1,144 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\PaycometBankstore;
+use App\Models\User;
+use App\Models\Claim;
+use App\Models\Invoice;
+use Auth;
+use Carbon\Carbon;
+
+class PaymentsController extends Controller
+{
+    public function payToken(Request $r)
+    {
+        date_default_timezone_set("Europe/Madrid");
+
+        $u = User::find($r->user_id);
+
+        $token = $u->card_token;
+
+        if ($token) {
+
+            $paycomet = new PaycometBankstore(
+                config('jet.arg1'),
+                config('jet.arg2'),
+                config('jet.arg3'),
+                config('jet.arg4')
+            );
+            
+            $signature      = sha1(config('jet.arg1').$token.config('jet.arg2').config('jet.arg3').config('jet.arg4'));
+            $ip             = $_SERVER["REMOTE_ADDR"];
+            $ref = "REF".uniqid();
+
+            // $resp = $paycomet->AddUserToken($token);
+            // $idUser = $resp->DS_IDUSER;
+            // $tokenUser = $resp->DS_TOKEN_USER;
+            $purchaseResult
+                = $paycomet->ExecutePurchase(
+                    $u->pc_id,
+                    $u->card_token,
+                    $r->amount,
+                    $ref,
+                    "EUR"
+            );
+
+            if ($purchaseResult->DS_RESPONSE == "1") {
+
+                $c = Claim::find($r->claim_id);
+
+                if ($c->status == 7) {
+                    $c->status = 8;
+                }
+
+                $c->save();
+
+                $c->last_invoice->payment_date = Carbon::now()->format('Y-m-d H:i:s');
+                $c->last_invoice->status = 1;
+                $c->last_invoice->save();
+
+                return redirect('claims')->with('msj', 'Pago realizado exitosamente, se procede con la reclamación');;
+
+                // return response()->json('El pago ha sido efectuado',200);
+
+            } else {
+                var_dump($purchaseResult->DS_ERROR_ID);
+
+                return response()->json('Error al procesar el pago Intente nuevamente',422);
+            }
+        } else {
+            return response()->json('Error, no se ha obtenido token',422);
+        }
+        return false;
+    }
+    
+    public function payment(Request $r)
+    {
+        date_default_timezone_set("Europe/Madrid");
+
+        $token = $r->paytpvToken;
+
+        if ($token && strlen($token) == 64) {
+
+            $paycomet = new PaycometBankstore(
+                config('jet.arg1'),
+                config('jet.arg2'),
+                config('jet.arg3'),
+                config('jet.arg4')
+            );
+            
+            $signature      = sha1(config('jet.arg1').$token.config('jet.arg2').config('jet.arg3').config('jet.arg4'));
+            $ip             = $_SERVER["REMOTE_ADDR"];
+            $ref = "REF".uniqid();
+
+            $resp = $paycomet->AddUserToken($token);
+            $idUser = $resp->DS_IDUSER;
+            $tokenUser = $resp->DS_TOKEN_USER;
+            $purchaseResult
+                = $paycomet->ExecutePurchase(
+                    $resp->DS_IDUSER,
+                    $resp->DS_TOKEN_USER,
+                    $r->amount,
+                    $ref,
+                    "EUR"
+            );
+
+            if ($purchaseResult->DS_RESPONSE == "1") {
+
+                if ($r->card_alias) {
+                	$u = User::find($r->user_id);
+                    $u->pc_id = $idUser;
+                    $u->card_token = $tokenUser;
+                    $u->card_alias = $r->card_alias;
+                    $u->save();
+                }
+
+                $c = Claim::find($r->claim_id);
+
+                if ($c->status == 7) {
+                    $c->status = 8;
+                }
+
+                $c->save();
+
+                $c->last_invoice->payment_date = Carbon::now()->format('Y-m-d H:i:s');
+                $c->last_invoice->status = 1;
+                $c->last_invoice->save();
+
+                return redirect('claims')->with('msj', 'Pago realizado exitosamente, se procede con la reclamación');;
+
+                // return response()->json('El pago ha sido efectuado',200);
+
+            } else {
+                var_dump($purchaseResult->DS_ERROR_ID);
+
+                return response()->json('Error al procesar el pago Intente nuevamente',422);
+            }
+        } else {
+            return response()->json('Error, no se ha obtenido token',422);
+        }
+        return false;
+    }
+}

@@ -183,6 +183,10 @@ class User extends Authenticatable
 
     public function claims(){
          
-        return $this->hasMany(Claim::class);
+        return $this->hasMany(Claim::class, 'owner_id');
+    }
+    public function invoices(){
+         
+        return $this->hasMany(Invoice::class, 'user_id');
     }
 }

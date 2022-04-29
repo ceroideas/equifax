@@ -52,6 +52,7 @@ class ThirdPartiesController extends Controller
         // dd($data);
 
         $thirdParty = new ThirdParty;
+        $thirdParty->type = $data['tipo'];
         $thirdParty->name = $data['name'];
         $thirdParty->dni = $data['dni'];
         $thirdParty->address = $data['address'];
@@ -61,9 +62,13 @@ class ThirdPartiesController extends Controller
         $thirdParty->save();
 
         $path = $request->file('dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/dni', 'public');
+        if($request->file('poder_legal')){
+            $poa_path = $request->file('poder_legal')->store('uploads/third-parties/' . $thirdParty->id . '/poa', 'public');
+        }
         $thirdParty->dni_img = $path;
+        $thirdParty->poa = $poa_path;
         $thirdParty->save();
-        return redirect()->back()->with(['msj' => 'Acreditación de Tercero creada exitosamente!']);
+        return redirect('third-parties')->with(['msj' => 'Acreditación de Tercero creada exitosamente!']);
 
         
 
@@ -109,6 +114,7 @@ class ThirdPartiesController extends Controller
     {
         $data = $this->validateRequest();
 
+        $thirdParty->type = $data['tipo'];
         $thirdParty->name = $data['name'];
         $thirdParty->dni = $data['dni'];
         $thirdParty->address = $data['address'];
@@ -126,6 +132,20 @@ class ThirdPartiesController extends Controller
             
             $path = $request->file('dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/dni', 'public');
             $thirdParty->dni_img = $path;
+            $thirdParty->save();
+     
+        }
+
+        if($request->file('poder_legal')){
+
+            if($thirdParty->poa != NULL){
+                
+                Storage::disk('public')->delete($thirdParty->poa);
+                
+            }
+            
+            $poa_path = $request->file('poder_legal')->store('uploads/third-parties/' . $thirdParty->id . '/poa', 'public');
+            $thirdParty->poa = $poa_path;
             $thirdParty->save();
      
         }
@@ -157,6 +177,7 @@ class ThirdPartiesController extends Controller
         // dd(request()->all());
 
         $rules = [
+            'tipo' => 'required',
             'name' => 'required|min:8|max:255',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
@@ -171,16 +192,25 @@ class ThirdPartiesController extends Controller
         if(request()->method() == 'PUT'){
 
             $rules['dni'] = 'required|min:8|max:10|unique:third_parties,dni, ' . request()->thirdParty->id;
-            $rules['dni_img']  = 'image|mimes:jpg,png';
+            $rules['dni_img']  = 'mimes:jpg,png,pdf';
+
+            if(request()->file('poder_legal')){
+                $rules['poder_legal'] = 'required_if:tipo,1|file|mimes:pdf,jpg,png';
+            }
             
         }else{
-           
+            $rules['poder_legal'] = 'required_if:tipo,1|file|mimes:pdf,jpg,png';
             $rules['dni'] = 'required|min:8|max:10|unique:third_parties';
-            $rules['dni_img']  = 'required|image|mimes:jpg,png';
+            $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
             
         }
 
+        $messages = [
 
-        return request()->validate($rules);
+            'poder_legal.required_if' => 'El campo :attribute es obligatorio cuando el campo :other es Jurídico.'
+        ];
+
+
+        return request()->validate($rules, $messages);
     }
 }
