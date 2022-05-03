@@ -25,6 +25,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/quienes-somos', function () {
+    return view('quienes-somos');
+});
+
+Route::get('/testimonios', function () {
+    return view('testimonios');
+});
+
+Route::get('/preguntas', function () {
+    return view('preguntas');
+});
+
+Route::get('/tarifas', function () {
+    return view('tarifas');
+});
+
+Route::get('/contacto', function () {
+    return view('contacto');
+});
+
 Auth::routes();
 
 /* Usuarios */
