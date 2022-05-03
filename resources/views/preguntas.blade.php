@@ -9,7 +9,7 @@
     <title>Asemar</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href=" //fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
@@ -5313,15 +5313,7 @@ a.more-link[data-v-167ae8c1] {
                                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('/')}}/contacto" class="nav-link p-0 footer-text">Contacto</a></li>
                                 </ul>
                             </div>
-                            <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
-                                <h5 data-v-a242bae8="" class="footer-title">Legal</h5>
-                                <ul data-v-a242bae8="" class="nav flex-column">
-                                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">Aviso legal</a></li>
-                                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">Política de privacidad</a></li>
-                                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">Política de cookies</a></li>
-                                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">Términos y condiciones</a></li>
-                                </ul>
-                            </div>
+                            @include('footer')
                             <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
                                 <h5 data-v-a242bae8="" class="footer-title">Contacto</h5>
                                 <ul data-v-a242bae8="" class="nav flex-column">

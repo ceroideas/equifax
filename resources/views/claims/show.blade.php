@@ -344,20 +344,34 @@
                             <a href="{{ url('claims/'. $claim->id . '/non-viable/') }}" class="btn btn-sm btn-danger">Reclamación Inviable</a>
                         
                         </div>
-                        @elseif(!$claim->isViable() && !$claim->isPending())
+                        @elseif(!$claim->isViable() && !$claim->isPending() && !$claim->isFinished())
 
                         <div class="text-center">
                             <x-adminlte-button label="Ver Informe de Inviabilidad" data-toggle="modal" data-target="#modalMin" theme="primary"/>
                         </div>
                         @else
 
-                        <div class="row text-center">
-                            <div class="col-sm-6 offset-sm-3">
-                                <div class="alert-success">
-                                    <span>{{ $claim->getType() }}</span>
+                        @if ($claim->isFinished())
+
+                            <div class="row text-center">
+                                <div class="col-sm-6 offset-sm-3">
+                                    <div class="alert-danger">
+                                        <span>Reclamación Finalizada</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        
+                        @else
+
+                            <div class="row text-center">
+                                <div class="col-sm-6 offset-sm-3">
+                                    <div class="alert-success">
+                                        <span>{{ $claim->getType() }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
 
                         <div class="text-center my-3">
                             <b>Observaciones del Administrador: </b>
@@ -365,25 +379,27 @@
                         </div>
                     @endif
 
-                    <div class="text-center">
-                        <x-adminlte-button label="Finalizar Reclamación" data-toggle="modal" data-target="#modalFinish" theme="info"/>
+                    @if (Auth::user()->isAdmin() && !$claim->isFinished())
+                        <div class="text-center">
+                            <x-adminlte-button label="Finalizar Reclamación" data-toggle="modal" data-target="#modalFinish" theme="info"/>
 
-                        <x-adminlte-modal id="modalFinish" title="¿Desea dar por finalizada la reclamación actual?" theme="primary" size="sm" v-centered="true">
-                            {{-- <div class="card">     --}}
-                                {{-- <div class="card-body">
-                                    <div class="row">
-                                    <div class="col-sm-12">
-                                            {!! $claim->observation !!}
-                                    </div>
-                                    </div>
-                                </div> --}}
-                            {{-- </div> --}}
-                            <x-slot name="footerSlot">
-                                <a href="{{url('claims/close',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
-                                <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
-                            </x-slot>
-                        </x-adminlte-modal>
-                    </div>
+                            <x-adminlte-modal id="modalFinish" title="¿Desea dar por finalizada la reclamación actual?" theme="primary" size="sm" v-centered="true">
+                                {{-- <div class="card">     --}}
+                                    {{-- <div class="card-body">
+                                        <div class="row">
+                                        <div class="col-sm-12">
+                                                {!! $claim->observation !!}
+                                        </div>
+                                        </div>
+                                    </div> --}}
+                                {{-- </div> --}}
+                                <x-slot name="footerSlot">
+                                    <a href="{{url('claims/close',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
+                                    <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
+                                </x-slot>
+                            </x-adminlte-modal>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

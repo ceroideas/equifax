@@ -9,6 +9,7 @@ use App\Http\Controllers\DebtsController;
 use App\Http\Controllers\AgreementsController;
 use App\Http\Controllers\ConfigurationsController;
 use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,8 @@ Route::get('/contacto', function () {
 });
 
 Auth::routes();
+
+Route::post('registerSocial', [RegisterController::class, 'registerSocial']);
 
 /* Usuarios */
 
@@ -91,6 +94,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('payment/{claim}', [ClaimsController::class, 'payment']);
     Route::get('{claim}/viable', [ClaimsController::class , 'viable']);
     Route::get('{claim}/non-viable', [ClaimsController::class , 'nonViable']);
+    Route::get('/close/{claim}', [ClaimsController::class , 'close']);
     Route::post('/non-viable/{claim}/save', [ClaimsController::class, 'setNonViable']);
     Route::post('/viable/{claim}/save', [ClaimsController::class, 'setViable']);
 

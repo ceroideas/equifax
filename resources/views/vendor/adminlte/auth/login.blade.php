@@ -49,6 +49,9 @@
 
             <div class="input-group-append">
                 <div class="input-group-text">
+                    <span class="fas fa-eye change-type" style="cursor: pointer;"></span>
+                </div>
+                <div class="input-group-text">
                     <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
                 </div>
             </div>
@@ -78,6 +81,16 @@
                     {{ __('adminlte::adminlte.sign_in') }}
                 </button>
             </div>
+
+            <div class="col-12">
+
+                {{-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> --}}
+                <button type=button class="btn btn-block btn-primary"
+                  scope="public_profile,email"
+                  onclick="initLogin();">
+                  Iniciar sesión con facebook
+                </button>
+            </div>
         </div>
 
     </form>
@@ -101,4 +114,69 @@
             </a>
         </p>
     @endif
+@stop
+
+@section('js')
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v13.0&appId=3075857299334927&autoLogAppEvents=1" nonce="mCZWGoDY"></script>
+    <script>
+        $('.change-type').click(function(event) {
+            if ($('[name="password"]').attr('type') == 'password') {
+                $('[name="password"]').attr('type', 'text');
+            }else{
+                $('[name="password"]').attr('type', 'password');
+            }
+        });
+
+        window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '3075857299334927',
+              cookie     : true,                     // Enable cookies to allow the server to access the session.
+              xfbml      : true,                     // Parse social plugins on this webpage.
+              version    : 'v13.0'           // Use this Graph API version for this call.
+            });
+        }
+
+        function initLogin()
+        {
+            FB.login(function(response) {
+              checkLoginState(response);
+            },{scope: 'public_profile,email'});
+        }
+
+
+
+        function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+            console.log('statusChangeCallback');
+            console.log(response);                   // The current login status of the person.
+            if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+              testAPI();  
+            } else {                                 // Not logged into your webpage or we are unable to tell.
+              document.getElementById('status').innerHTML = 'Please log ' +
+                'into this webpage.';
+            }
+        }
+
+
+        function checkLoginState() {               // Called when a person is finished with the Login Button.
+            FB.getLoginStatus(function(response) {   // See the onlogin handler
+              statusChangeCallback(response);
+            });
+        }
+
+        function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me?fields=id,name,email', function(response) {
+              console.log(response);
+
+              $.post('{{url('registerSocial')}}', {_token: '{{csrf_token()}}', name: response.name, email: response.email}, function(data, textStatus, xhr) {
+                  window.open('{{url('panel')}}','_self');
+              });
+              console.log('Successful login for: ' + response.name);
+              /*document.getElementById('status').innerHTML =
+                'Thanks for logging in, ' + response.name + '!';*/
+            });
+          }
+    </script>
+
+<div id="fb-root"></div>
 @stop

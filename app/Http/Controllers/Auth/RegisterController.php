@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -75,5 +77,24 @@ class RegisterController extends Controller
        $user->role = 2;
        $user->save();
        return $user;
+    }
+
+    public function registerSocial(Request $r)
+    {
+        $user = User::where('email',$r->email)->first();
+
+        if (!$user) {
+            
+            $user = $model_user->create([
+
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => 2,
+                'password' => null,
+
+            ]);
+        }
+
+        return Auth::loginUsingId($user->id);
     }
 }

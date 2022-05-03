@@ -75,9 +75,9 @@
                                 </button>
                             </a>
                             <form id="delete-form-{{ $claim->id }}" action="{{ url('/claims/' . $claim->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
-                            <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $claim->id }}').submit();">
+                            {{-- <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $claim->id }}').submit();">
                                 <i class="fa fa-lg fa-fw fa-trash"></i>
-                            </button>
+                            </button> --}}
                         @endcan
                         <a href="{{ url('/claims/' . $claim->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
@@ -94,12 +94,13 @@
                         @endif
 
                         @if (Auth::user()->id == $claim->user_id && $claim->last_invoice)
-                        {{-- @if ($claim->status == 7) --}}
+                            @if ($claim->status != -1)
                             <a href="{{ url('/claims/payment/' . $claim->id ) }}">
                                 <button class="btn btn-xs btn-default text-info mx-1 shadow" title="Pagar">
                                     <i class="fa fa-lg fa-fw fa-credit-card"></i>
                                 </button>
                             </a>
+                            @endif
                         @endif
                     </nobr>
                     </td>

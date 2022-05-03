@@ -76,7 +76,7 @@ $config = [
 
             <div class="col-sm-4">
                 <div class="form-group text-center">
-                    <label for="tipo_viabilidad3">Proceso Monitoriol</label>
+                    <label for="tipo_viabilidad3">Proceso Monitorio</label>
                     <input id="tipo_viabilidad3" type="radio" name="tipo_viabilidad" class="is-invalid " value="3" @if(old('tipo_viabilidad') == 3) checked="true" @endif>
                     @error('tipo_viabilidad')
                     <span class="invalid-feedback d-block" role="alert">

@@ -58,10 +58,12 @@ class ThirdPartiesController extends Controller
         $thirdParty->address = $data['address'];
         $thirdParty->location = $data['location'];
         $thirdParty->cop = $data['cop'];
+        $thirdParty->iban = $data['iban'];
         $thirdParty->user_id = Auth::user()->id;
         $thirdParty->save();
 
         $path = $request->file('dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/dni', 'public');
+        $poa_path = "";
         if($request->file('poder_legal')){
             $poa_path = $request->file('poder_legal')->store('uploads/third-parties/' . $thirdParty->id . '/poa', 'public');
         }
@@ -120,6 +122,7 @@ class ThirdPartiesController extends Controller
         $thirdParty->address = $data['address'];
         $thirdParty->location = $data['location'];
         $thirdParty->cop = $data['cop'];
+        $thirdParty->iban = $data['iban'];
         $thirdParty->save();
 
         if($request->file('dni_img')){
