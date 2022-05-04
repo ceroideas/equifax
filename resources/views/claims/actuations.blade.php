@@ -93,7 +93,11 @@
         			@empty
 
         			<div class="col-sm-12">
+        				@if ($claim->isFinished())
+        				<h4>No se registraron actuaciones en esta reclamación</h4>
+        				@else
         				<h4>No se han registrado actuaciones en esta reclamación</h4>
+        				@endif
         			</div>
         				
         			@endforelse
@@ -102,7 +106,7 @@
         		</div>
         	</div>
 
-            @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+            @if ((Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) && !$claim->isFinished())
             	<hr>
 
             	<form action="{{url('claims/actuations',$claim->id)}}" method="POST" id="actuation-form">

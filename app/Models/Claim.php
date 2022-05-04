@@ -100,6 +100,14 @@ class Claim extends Model
 
         return false;
     }
+
+    public function isFinished(){
+        if($this->status == -1){
+            return true;
+        }
+
+        return false;
+    }
     
     public function owner(){
         return $this->belongsTo(User::class, 'owner_id');

@@ -60,6 +60,9 @@
 
             <div class="input-group-append">
                 <div class="input-group-text">
+                    <span class="fas fa-eye change-type" style="cursor: pointer;"></span>
+                </div>
+                <div class="input-group-text">
                     <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
                 </div>
             </div>
@@ -78,6 +81,9 @@
                    placeholder="{{ __('adminlte::adminlte.retype_password') }}">
 
             <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-eye change-type" style="cursor: pointer;"></span>
+                </div>
                 <div class="input-group-text">
                     <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
                 </div>
@@ -116,4 +122,18 @@
             {{ __('adminlte::adminlte.i_already_have_a_membership') }}
         </a>
     </p>
+@stop
+
+@section('js')
+    <script>
+        $('.change-type').click(function(event) {
+            if ($('[name="password"]').attr('type') == 'password') {
+                $('[name="password"]').attr('type', 'text');
+                $('[name="password_confirmation"]').attr('type', 'text');
+            }else{
+                $('[name="password"]').attr('type', 'password');
+                $('[name="password_confirmation"]').attr('type', 'password');
+            }
+        });
+    </script>
 @stop

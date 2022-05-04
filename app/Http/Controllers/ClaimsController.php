@@ -14,6 +14,7 @@ use App\Models\Configuration;
 use Illuminate\Http\Request;
 use Auth;
 use Storage;
+use Carbon\Carbon;
 
 class ClaimsController extends Controller
 {
@@ -24,7 +25,6 @@ class ClaimsController extends Controller
      */
     public function index()
     {
-
         if(Auth::user()->isClient()){
             $claims = Auth::user()->claims;
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
@@ -160,7 +160,22 @@ class ClaimsController extends Controller
             $debt->agreement = true;
             $debt->agreement_id = $agreement->id;
             $claim->agreement_id = $agreement->id;
-            $claim->status = 0;
+
+            if (Carbon::parse($debt->debt_expiration_date)->diffInYears(Carbon::now()) >= 3) {
+                $claim->status = 0;
+            }else{
+                $claim->status = 7;
+                $claim->claim_type = 2;
+
+                $c = Configuration::first();
+
+                $invoice = new Invoice;
+                $invoice->claim_id = $claim->id;
+                $invoice->user_id = $claim->user_id;
+                $invoice->amount = $c ? $c->fixed_fees : '0';
+                $invoice->type = 'fixed_fees';
+                $invoice->save();
+            }
             $debt->save();
             $claim->save();
         }
@@ -599,5 +614,14 @@ class ClaimsController extends Controller
             $a->invoice_id = $invoice->id;
             $a->save();
         }
+    }
+
+    public function close($id)
+    {
+        $c = Claim::find($id);
+        $c->status = -1;
+        $c->save();
+
+        return redirect('claims')->with('msj', 'La reclamación ha sido finalizada');
     }
 }

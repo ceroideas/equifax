@@ -22,8 +22,7 @@
                 <h1>¿Qué tipo de Persona es?</h1>
                 <div class="row">
                     <div class="col-sm-2">
-                        <x-adminlte-input name="tipo" type="radio"
-                        igroup-size="xs" value="1" >
+                        <x-adminlte-input name="tipo" type="radio" igroup-size="xs" value="1">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text bg-dark">
                                     <i class="">Persona Jurídica</i>
@@ -32,8 +31,7 @@
                         </x-adminlte-input>
                     </div>
                     <div class="col-sm-2">
-                        <x-adminlte-input name="tipo" type="radio"
-                        igroup-size="xs" value="2">
+                        <x-adminlte-input name="tipo" type="radio" igroup-size="xs" value="2">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text bg-dark">
                                     <i class="">Persona Física</i>
@@ -42,8 +40,7 @@
                         </x-adminlte-input>
                     </div>
                     <div class="col-sm-2">
-                        <x-adminlte-input name="tipo" type="radio"
-                        igroup-size="xs" value="3" >
+                        <x-adminlte-input name="tipo" type="radio" igroup-size="xs" value="3">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text bg-dark">
                                     <i class="">Autónomo</i>
@@ -186,6 +183,12 @@
         
     }
 });
+
+   @if (isset($third_party))
+       
+       $('[name="tipo"][value="{{$third_party->type}}"]').prop('checked', true);
+
+   @endif
 </script>
 
 @stop

@@ -2,6 +2,8 @@
 
 @section('title', 'Registro de Acuerdo')
 
+@section('plugins.BootstrapSlider', true)
+
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">

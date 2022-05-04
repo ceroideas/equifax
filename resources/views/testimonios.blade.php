@@ -3,37 +3,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="vQquIOeFCyXeIRVqPhnUsIPBw3b13PWS9mA9pMmF">
+    <meta name="csrf-token" content="ZTvvFBs0fJ6f864MWTU3BPQOJfKdC9Xa0PneA26E">
     
 
-    <title>Dividae</title>
+    <title>Asemar</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Styles -->
+
     <link rel="stylesheet" href="{{url('landing')}}/plugins/owl/owl.carousel.min.css">
   <link rel="stylesheet" href="{{url('landing')}}/plugins/owl/owl.theme.default.min.css">
 
-  {{-- @foreach(config('adminlte.plugins') as $pluginName => $plugin)
-      @if($plugin['active'] || View::getSection('plugins.' . ($plugin['name'] ?? $pluginName)))
-          @foreach($plugin['files'] as $file)
-
-              @php
-                  if (! empty($file['asset'])) {
-                      $file['location'] = asset($file['location']);
-                  }
-              @endphp
-
-              @if($file['type'] == 'css')
-                  <link rel="stylesheet" href="{{ $file['location'] }}">
-              @endif
-
-          @endforeach
-      @endif
-  @endforeach --}}
-
-    <!-- Styles -->
     <link href="{{url('landing')}}/app.css" rel="stylesheet">
 <style>.modal-vue .fade-enter[data-v-e8aafb5e],
 .modal-vue .fade-leave-to[data-v-e8aafb5e] {
@@ -213,7 +196,7 @@
   }
 
   .form-control {
-      background-image: url("storageassets/ic-arrow-drop-down.png");
+      background-image: url("storage{{url('landing')}}/assets/ic-arrow-drop-down.png");
       background-repeat: no-repeat;
       background-position: right 0.75rem center;
       background-size: 20px 24px;
@@ -350,7 +333,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #e65927;
+  color: #fff;
 }
 @media (max-width: 425px) {
 .blockAcceso[data-v-5fddf304] {
@@ -362,8 +345,7 @@
   height: 40px;
   margin-right: 16px;
   border-radius: 37.5px;
-  border: solid 1px #e65927;
-  color: #e65927;
+  border: solid 1px #fff;
 }
 .blockAcceso .btn-acceso .btn-text-acceso[data-v-5fddf304] {
   height: 17px;
@@ -375,9 +357,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
-  top: 2px;
-  position: relative;
+  color: #fff;
 }
 .blockRegistro .btn-registerHome[data-v-5fddf304] {
   border-radius: 37.5px;
@@ -484,9 +464,7 @@
     margin-right: auto;
 }
 }</style><style>div.portada-3dblue[data-v-66372912] {
-  height: 100vh;
   /* height: 870px;
-
 
   @media (min-width: 375px) and (max-width: 425px) {
       height: 1370px;
@@ -497,8 +475,7 @@
   } */
   -o-object-fit: contain;
      object-fit: contain;
-  /*background: url("{{url('landing')}}/assets/portada-3-d-blue.png");*/
-  background-color: #f8fafc;
+  background: url("{{url('landing')}}/assets/portada-3-d-blue.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -506,7 +483,7 @@
   margin-top: 65px;
 }
 #form-p[data-v-66372912] {
-  /*margin-top: 35px;*/
+  margin-top: 35px;
 }
 .Lorem-ipsum-dolor-si[data-v-66372912] {
   font-family: CynthoNext;
@@ -516,7 +493,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #e65927;
+  color: #fff;
 }
 .Te-ayudamos-a-recupe[data-v-66372912] {
   font-family: Nordeco;
@@ -526,7 +503,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #e65927;
+  color: #fff;
 }
 @media (max-width: 425px) {
 .Te-ayudamos-a-recupe[data-v-66372912] {
@@ -562,12 +539,7 @@
      object-fit: contain;
 }
 .block-CMO-FUNCIONA[data-v-66372912] {
-
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   margin-top: 40px;
-  margin-bottom: 40px;
   -moz-text-align-last: center;
        text-align-last: center;
 }
@@ -583,7 +555,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #fff;
 }
 #blockform-scroll[data-v-66372912] {
   position: fixed;
@@ -593,7 +565,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(96, 97, 112, 0.16), 0 0 2px 0 rgba(40, 41, 61, 0.04);
   background-color: #254158;
-  z-index: 3;
+  z-index: 999999;
 }
 @media (min-width: 1440px) and (max-width: 1600px) {
 #blockform-scroll[data-v-66372912] {
@@ -667,8 +639,6 @@
 }</style><style>#como-funciona[data-v-494d1a60] {
   padding: 100px 0;
   background-color: #fff;
-  position: relative;
-  z-index: 2;
 }
 #como-funciona #block-reclamacion .text-reclamacion[data-v-494d1a60] {
   font-family: Nordeco;
@@ -975,6 +945,13 @@
  *
  * Released on: June 16, 2020
  */
+
+@font-face {
+  font-family: 'swiper-icons';
+  src: url("data:application/font-woff;charset=utf-8;base64, d09GRgABAAAAAAZgABAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAGRAAAABoAAAAci6qHkUdERUYAAAWgAAAAIwAAACQAYABXR1BPUwAABhQAAAAuAAAANuAY7+xHU1VCAAAFxAAAAFAAAABm2fPczU9TLzIAAAHcAAAASgAAAGBP9V5RY21hcAAAAkQAAACIAAABYt6F0cBjdnQgAAACzAAAAAQAAAAEABEBRGdhc3AAAAWYAAAACAAAAAj//wADZ2x5ZgAAAywAAADMAAAD2MHtryVoZWFkAAABbAAAADAAAAA2E2+eoWhoZWEAAAGcAAAAHwAAACQC9gDzaG10eAAAAigAAAAZAAAArgJkABFsb2NhAAAC0AAAAFoAAABaFQAUGG1heHAAAAG8AAAAHwAAACAAcABAbmFtZQAAA/gAAAE5AAACXvFdBwlwb3N0AAAFNAAAAGIAAACE5s74hXjaY2BkYGAAYpf5Hu/j+W2+MnAzMYDAzaX6QjD6/4//Bxj5GA8AuRwMYGkAPywL13jaY2BkYGA88P8Agx4j+/8fQDYfA1AEBWgDAIB2BOoAeNpjYGRgYNBh4GdgYgABEMnIABJzYNADCQAACWgAsQB42mNgYfzCOIGBlYGB0YcxjYGBwR1Kf2WQZGhhYGBiYGVmgAFGBiQQkOaawtDAoMBQxXjg/wEGPcYDDA4wNUA2CCgwsAAAO4EL6gAAeNpj2M0gyAACqxgGNWBkZ2D4/wMA+xkDdgAAAHjaY2BgYGaAYBkGRgYQiAHyGMF8FgYHIM3DwMHABGQrMOgyWDLEM1T9/w8UBfEMgLzE////P/5//f/V/xv+r4eaAAeMbAxwIUYmIMHEgKYAYjUcsDAwsLKxc3BycfPw8jEQA/gZBASFhEVExcQlJKWkZWTl5BUUlZRVVNXUNTQZBgMAAMR+E+gAEQFEAAAAKgAqACoANAA+AEgAUgBcAGYAcAB6AIQAjgCYAKIArAC2AMAAygDUAN4A6ADyAPwBBgEQARoBJAEuATgBQgFMAVYBYAFqAXQBfgGIAZIBnAGmAbIBzgHsAAB42u2NMQ6CUAyGW568x9AneYYgm4MJbhKFaExIOAVX8ApewSt4Bic4AfeAid3VOBixDxfPYEza5O+Xfi04YADggiUIULCuEJK8VhO4bSvpdnktHI5QCYtdi2sl8ZnXaHlqUrNKzdKcT8cjlq+rwZSvIVczNiezsfnP/uznmfPFBNODM2K7MTQ45YEAZqGP81AmGGcF3iPqOop0r1SPTaTbVkfUe4HXj97wYE+yNwWYxwWu4v1ugWHgo3S1XdZEVqWM7ET0cfnLGxWfkgR42o2PvWrDMBSFj/IHLaF0zKjRgdiVMwScNRAoWUoH78Y2icB/yIY09An6AH2Bdu/UB+yxopYshQiEvnvu0dURgDt8QeC8PDw7Fpji3fEA4z/PEJ6YOB5hKh4dj3EvXhxPqH/SKUY3rJ7srZ4FZnh1PMAtPhwP6fl2PMJMPDgeQ4rY8YT6Gzao0eAEA409DuggmTnFnOcSCiEiLMgxCiTI6Cq5DZUd3Qmp10vO0LaLTd2cjN4fOumlc7lUYbSQcZFkutRG7g6JKZKy0RmdLY680CDnEJ+UMkpFFe1RN7nxdVpXrC4aTtnaurOnYercZg2YVmLN/d/gczfEimrE/fs/bOuq29Zmn8tloORaXgZgGa78yO9/cnXm2BpaGvq25Dv9S4E9+5SIc9PqupJKhYFSSl47+Qcr1mYNAAAAeNptw0cKwkAAAMDZJA8Q7OUJvkLsPfZ6zFVERPy8qHh2YER+3i/BP83vIBLLySsoKimrqKqpa2hp6+jq6RsYGhmbmJqZSy0sraxtbO3sHRydnEMU4uR6yx7JJXveP7WrDycAAAAAAAH//wACeNpjYGRgYOABYhkgZgJCZgZNBkYGLQZtIJsFLMYAAAw3ALgAeNolizEKgDAQBCchRbC2sFER0YD6qVQiBCv/H9ezGI6Z5XBAw8CBK/m5iQQVauVbXLnOrMZv2oLdKFa8Pjuru2hJzGabmOSLzNMzvutpB3N42mNgZGBg4GKQYzBhYMxJLMlj4GBgAYow/P/PAJJhLM6sSoWKfWCAAwDAjgbRAAB42mNgYGBkAIIbCZo5IPrmUn0hGA0AO8EFTQAA") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
 
 </style><style>.blockOpiniones[data-v-455dcd3f] {
   background-color: #f8fafc;
@@ -1562,7 +1539,59 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   text-align: center;
   color: #051c2c;
 }
-</style><style>.block-NEquipo[data-v-3860c0f6] {
+.block-SlidesAbout .SlidesAbout .swiper[data-v-861c26ae] {
+  /* .swiper-slide {
+      width: 80%;
+  }
+
+  .swiper-slide:nth-child(2n) {
+      width: 60%;
+  }
+
+  .swiper-slide:nth-child(3n) {
+      width: 40%;
+  } */
+}
+.block-SlidesAbout .SlidesAbout .swiper .swiper-pagination[data-v-861c26ae] {
+  position: initial !important;
+  margin-top: 30px;
+}
+.block-SlidesAbout .SlidesAbout .swiper .swiper-button-next[data-v-861c26ae] {
+  width: auto !important;
+  height: auto !important;
+}
+@media (min-width: 768px) {
+.block-SlidesAbout .SlidesAbout .swiper .swiper-button-next[data-v-861c26ae] {
+    right: 265px;
+    top: 45%;
+}
+}
+@media (min-width: 320px) and (max-width: 425px) {
+.block-SlidesAbout .SlidesAbout .swiper .swiper-button-next[data-v-861c26ae] {
+    right: 0px !important;
+    top: 40%;
+}
+}
+.block-SlidesAbout .SlidesAbout .swiper .swiper-button-prev[data-v-861c26ae] {
+  width: auto !important;
+  height: auto !important;
+}
+@media (min-width: 768px) {
+.block-SlidesAbout .SlidesAbout .swiper .swiper-button-prev[data-v-861c26ae] {
+    left: 262px;
+    top: 45%;
+}
+}
+@media (min-width: 320px) and (max-width: 425px) {
+.block-SlidesAbout .SlidesAbout .swiper .swiper-button-prev[data-v-861c26ae] {
+    left: 0px !important;
+    top: 40%;
+}
+}
+.block-SlidesAbout .SlidesAbout .swiper .swiper-button-prev[data-v-861c26ae]::after,
+.block-SlidesAbout .SlidesAbout .swiper .swiper-button-next[data-v-861c26ae]::after {
+  display: none;
+}</style><style>.block-NEquipo[data-v-3860c0f6] {
   padding: 40px 0;
   background-color: #fff;
 }
@@ -1796,10 +1825,6 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
 .block-ShowContact .ShowContact[data-v-cfd2b624] {
   border-radius: 16px;
   border: solid 1px #254158;
-}
-.owl-carousel img {
-  display: inline-block !important;
-  width: auto !important;
 }
 .block-ShowContact .ShowContact .img-fluid[data-v-cfd2b624] {
   display: flex;
@@ -2765,7 +2790,7 @@ input:valid ~ .show-hide i {
   }
 
   .form-control {
-      background-image: url("storageassets/ic-arrow-drop-down.png");
+      background-image: url("storage{{url('landing')}}/assets/ic-arrow-drop-down.png");
       background-repeat: no-repeat;
       background-position: right 0.75rem center;
       background-size: 20px 24px;
@@ -4797,9 +4822,7 @@ a.more-link[data-v-167ae8c1] {
   text-decoration: none;
   margin-top: 50px;
   letter-spacing: 1px;
-}</style>
-
-<style>@font-face{
+}</style><style>@font-face{
     font-family: "MunaleLoird";
     src: url({{url('landing')}}/fonts/Munale-Loird.otf?b5ddd702f74ba4b37fafa1a41cbfeda6);
     font-weight: normal;
@@ -4826,173 +4849,32 @@ a.more-link[data-v-167ae8c1] {
     font-weight: normal;
     font-style: normal;
 }
-#background-video {
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 0;
-}
+.owl-carousel img {
+  display: inline-block !important;
+  width: auto !important;
+}</style>
 
-.navbar-dark {
-  background-color: #fff;
-}
-
-</style>
-
-
+<style>.progressbar{-webkit-transition:width 1s ease;transition:width 1s ease}.vue-step-wizard{background-color:#f7f8fc;width:900px;margin:auto;padding:40px}.step-progress{height:1rem;background:#fff;border-radius:1rem;margin:1rem 0}.step-progress .bar{content:"";height:1rem;border-radius:1rem;background-color:#4b8aeb}.step-pills{display:-webkit-box;display:-ms-flexbox;display:flex;background-color:#fff;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:1rem;border-radius:1rem;-webkit-box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important}.step-pills .step-item{background-color:#f5f5f5;border-radius:10px;padding:5px 20px;list-style-type:none;padding:.5rem 1.5rem}.step-pills .step-item a{text-decoration:none;color:#7b7b7b}.step-pills .step-item.active{border:1px solid #4b8aeb}.step-pills .step-item.validated{border:1px solid #008011}.step-body{background-color:#fff;margin-left:auto;-webkit-box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important}.step-body,.step-footer{padding:1rem;border-radius:1rem}.step-footer{margin-left:auto;margin:1rem 0;text-align:center}.step-button{font-weight:700;line-height:1;text-transform:uppercase;position:relative;max-width:30rem;text-align:center;border:1px solid;border-radius:12px;color:#22292f;color:rgba(34,41,47,var(--text-opacity));padding:.5rem 1.25rem;font-size:.875rem;margin:.5rem;color:#fff;outline:none!important;-webkit-box-shadow:none!important;box-shadow:none!important}.step-button-next{background-color:#126fde}.step-button-previous{background-color:#3deaba}.step-button-submit{background-color:#4fa203}.step-button-reset{background-color:#037da2}.tabStatus{display:inline-block;width:1.5rem;height:1.5rem;margin-right:.5rem;line-height:1.5rem;color:#fff;text-align:center;background:rgba(0,0,0,.38);border-radius:50%}</style></head>
 
 <body>
-  <div data-v-e8aafb5e="" class="modal-vue modal fade" id="reclamacion-viable">
-
-    <div data-v-e8aafb5e="" role="document" class="modal-dialog"><div data-v-e8aafb5e="" class="modal-content"><div data-v-e8aafb5e="" class="modal-header"><button data-v-e8aafb5e="" type="button" data-dismiss="modal" aria-label="Close" class="close"><span data-v-e8aafb5e="" aria-hidden="true">×</span></button></div> <div data-v-e8aafb5e="" class="modal-body"><div data-v-e8aafb5e="" class="modal-img text-center"><img data-v-e8aafb5e="" src="{{url('landing/assets/grafico-ilustraciones-simulador-exito.png')}}" class="img-fluid"></div> <!----> <div data-v-e8aafb5e="" class="modal-text-info text-center">
-                            Su reclamación es viable <a data-v-e8aafb5e=""><img data-v-e8aafb5e="" src="{{url('landing/assets/icons-info-line.png')}}" class="img-fluid"></a></div> <div data-v-e8aafb5e="" class="modal-text text-center">
-                            ¡Registre su reclamación para que nuestros abogados comiencen a trabajar!
-                        </div></div> <div data-v-e8aafb5e="" class="modal-footer"><a data-v-e8aafb5e="" href="{{url('register')}}" class="btn btn-modal"><span data-v-e8aafb5e="" class="footer-text">¡Regístrate y recupera tu deuda!</span></a></div></div></div></div>
-
-
-  <div class="modal fade" id="consulta-viabilidad">
-    <div class="modal-dialog">
-
-      <div class="modal-content">
-        
-        <div data-v-66372912="" id="form-p"><div data-v-e8aafb5e="" data-v-66372912=""><form data-v-e8aafb5e="" class="formulario-reclamacion"><!----> <div data-v-e8aafb5e="" class="reclamacion-title">
-              Consulte si es viable su reclamación
-          </div> <hr data-v-e8aafb5e="" class="Line-Copy"> <div data-v-e8aafb5e="" class="row mb-4"><div data-v-e8aafb5e="" class="col-12 RangoDeuda"><div data-v-e8aafb5e="" class="form-outline my-2"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="customRange1" class="form-label range-label">
-                              El importe de tu deuda asciende a…
-                          </label> <span data-v-e8aafb5e="" class="importe-range1">
-                              0 €
-                          </span> <input data-v-e8aafb5e="" required type="range" min="0" max="100000" value="0" id="rangeDeuda"> <div data-v-e8aafb5e=""><small data-v-e8aafb5e="" class="small-text">0€</small> <small data-v-e8aafb5e="" class="small-text d-right">100.000€</small></div> <!----></div></div></div> <div data-v-e8aafb5e="" class="col-12 my-1 RangoImporte"><div data-v-e8aafb5e="" class="form-outline"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="customRange2" class="form-label range-label">
-                              La antiguedad de tu deuda es…
-                          </label> <span data-v-e8aafb5e="" class="importe-range1">
-                              0-30 días
-                          </span> <input data-v-e8aafb5e="" type="range" min="0" max="4" value="0" step="1" id="rangeDeuda" class="rangeDeuda1"> <div data-v-e8aafb5e=""><small data-v-e8aafb5e="" class="small-text">0 - 30 días</small> <small data-v-e8aafb5e="" class="small-text d-right">+ 10 años</small></div></div></div></div> <div data-v-e8aafb5e="" class="col-12 mt-3"><div data-v-e8aafb5e="" class="form-outline"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="TipoAcreedor">
-                              Eres… (tipo de acreedor)
-                          </label> <div data-v-e8aafb5e="" class="row block-radio"><div data-v-e8aafb5e="" class="col-md-4 col-sm-4"><div data-v-e8aafb5e="" class="form-check radio-item"><input data-v-e8aafb5e="" type="radio" name="type" id="Persona física" class="form-check-input" value="Persona física"> <label data-v-e8aafb5e="" for="Persona física" class="form-check-label">Persona física</label></div></div><div data-v-e8aafb5e="" class="col-md-4 col-sm-4"><div data-v-e8aafb5e="" class="form-check radio-item"><input data-v-e8aafb5e="" type="radio" name="type" id="Persona jurídica" class="form-check-input" value="Persona jurídica"> <label data-v-e8aafb5e="" for="Persona jurídica" class="form-check-label">Persona jurídica</label></div></div><div data-v-e8aafb5e="" class="col-md-4 col-sm-4"><div data-v-e8aafb5e="" class="form-check radio-item"><input data-v-e8aafb5e="" type="radio" name="type" id="Autónomo" class="form-check-input" value="Autónomo" required> <label data-v-e8aafb5e="" for="Autónomo" class="form-check-label">Autónomo</label></div></div></div> <span data-v-e8aafb5e="" class=""></span> <span data-v-e8aafb5e="" class="invalid-feedback">El campo es requerido</span></div></div></div> <div data-v-e8aafb5e="" class="col-12 mt-3"><div data-v-e8aafb5e="" class="form-outline"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="TipoDocumento">
-                              ¿Dispones del documento que soporta la deuda?
-                          </label> <div data-v-e8aafb5e="" class="row block-radio"><div data-v-e8aafb5e="" class="col disponibilidad-radio"><div data-v-e8aafb5e="" class="form-check form-check-inline radio-item"><input data-v-e8aafb5e="" type="radio" id="Si" class="form-check-input" required name="document" value="Si"> <label data-v-e8aafb5e="" for="Si" class="form-check-label">Si</label></div><div data-v-e8aafb5e="" class="form-check form-check-inline radio-item"><input data-v-e8aafb5e="" type="radio" id="No" class="form-check-input" required name="document" value="No"> <label data-v-e8aafb5e="" for="No" class="form-check-label">No</label></div> <span data-v-e8aafb5e="" class=""></span> <span data-v-e8aafb5e="" class="invalid-feedback">El campo es requerido</span></div> <div data-v-e8aafb5e="" class="col select-documento"><!----></div></div></div></div></div></div> <hr data-v-e8aafb5e="" class="Line-Copy"> <div data-v-e8aafb5e="" class="text-center"><button data-v-e8aafb5e="" class="btn btn-form-deuda">COMPROBAR DEUDA</button></div></form> <div data-v-e8aafb5e="" class="modal-vue"><!----> <!----></div></div></div>
-      </div>
-
-    </div>
-  </div>
-
-
-
-
-    <div id="app"><main>
-      <div data-v-effc9f78="" data-v-63cd6604=""><div data-v-66372912="" data-v-63cd6604="" class="portada-3dblue" data-v-effc9f78="">
-
-
-        <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
-          <source src="https://assets.codepen.io/6093409/river.mp4" type="video/mp4">
-        </video>
-
-        <div data-v-66372912="" class="block-CMO-FUNCIONA"><a data-v-66372912="" href="#como-funciona" class="CMO-FUNCIONA">¿CÓMO FUNCIONA? <img data-v-66372912="" src="{{url('landing')}}/assets/icons-arrow-down-white.png" class="iconsarrow-down img-fluid"></a></div>
-
-        <nav data-v-5fddf304="" data-v-66372912="" class="navbar navbar-expand-lg navbar-dark"><div data-v-5fddf304="" class="container"><a data-v-5fddf304="" href="" aria-current="page" class="navbar-brand router-link-exact-active router-link-active" style=""><div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304="" src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologonegativo"></div></a> <a data-v-5fddf304="" href="" aria-current="page" class="navbar-brand router-link-exact-active router-link-active" style="display: none;"><div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304="" src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologonegativo"></div></a> <button data-v-5fddf304="" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span data-v-5fddf304="" class="navbar-toggler-icon"></span></button> <div data-v-5fddf304="" id="navbarCollapse" class="navbar-collapse" style="display: none;"><ul data-v-5fddf304="" class="navbar-nav"><li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('testimonios')}}" class="nav-link"><span data-v-5fddf304="" class="Type-something">
+    <div id="app"><main><div data-v-effc9f78="" data-v-eb5d4bee=""><div data-v-eb5d4bee="" data-v-effc9f78="" class="block-Testimonios"><nav data-v-5fddf304="" data-v-eb5d4bee="" class="navbar navbar-expand-lg navbar-dark" data-v-effc9f78=""><div data-v-5fddf304="" class="container"><a data-v-5fddf304="" href="{{url('/')}}" class="navbar-brand router-link-active"><div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304="" src="{{url('landing')}}/assets/grafico-logo-negativo.png" class="graficologonegativo"></div></a> <a data-v-5fddf304="" href="{{url('/')}}" class="navbar-brand router-link-active" style="display: none;"><div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304="" src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologonegativo"></div></a> <button data-v-5fddf304="" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span data-v-5fddf304="" class="navbar-toggler-icon"></span></button> <div data-v-5fddf304="" id="navbarCollapse" class="navbar-collapse" style="display: none;"><ul data-v-5fddf304="" class="navbar-nav"><li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/testimonios" aria-current="page" class="nav-link router-link-exact-active router-link-active"><span data-v-5fddf304="" class="Type-something">
                             Testimonios
-                        </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('quienes-somos')}}" class="nav-link"><span data-v-5fddf304="" class="Type-something">
+                        </span></a> <div data-v-5fddf304="" class="punto-active"></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/quienes-somos" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             ¿Quiénes somos?
-                        </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('preguntas')}}" class="nav-link"><span data-v-5fddf304="" class="Type-something">
+                        </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/preguntas" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             ¿Tienes dudas?
                         </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('tarifas')}}" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             Tarifas
-                        </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('contacto')}}" class="nav-link"><span data-v-5fddf304="" class="Type-something">
+                        </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/contacto" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             Contacto
-                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul> <div data-v-5fddf304="" class="navbar-nav ml-auto"><div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('login')}}" class="btn btn-acceso"><span data-v-5fddf304="" class="btn-text-acceso">
+                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul> <div data-v-5fddf304="" class="navbar-nav ml-auto"><div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('/')}}/login" class="btn btn-acceso"><span data-v-5fddf304="" class="btn-text-acceso">
                             Acceso
-                        </span></a></div> <div data-v-5fddf304="" class="blockRegistro"><a data-v-5fddf304="" href="{{url('register')}}" class="btn btn-registerHome"><span data-v-5fddf304="" class="text-register-btn">
+                        </span></a></div> <div data-v-5fddf304="" class="blockRegistro"><a data-v-5fddf304="" href="{{url('/')}}/register" class="btn btn-registerHome"><span data-v-5fddf304="" class="text-register-btn">
                             Regístrate
-                            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right"></span></a></div></div> <!----></div></div></nav> <div data-v-66372912="" class="container"><div data-v-66372912="" class="row"><div data-v-66372912="" id="text-p" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                              {{-- <span data-v-66372912="" class="Lorem-ipsum-dolor-si">
-                                Lorem ipsum dolor sit amet, consectetur
-                              </span> --}}
-                    <div data-v-66372912=""><span data-v-66372912="" class="Te-ayudamos-a-recupe">
-                        Con Dividae, verás recuperada esa deuda que dabas por perdida
-                    </span></div> <div data-v-66372912=""><div data-v-66372912="" class="blockRegistro"><a data-v-66372912="" href="{{url('register')}}" class="btn btn-registerHome"><span data-v-66372912="" class="text-register-btn">
-                                Regístrate
-                                <img data-v-66372912="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right img-fluid"></span></a></div></div>
-
-
-                              </div>
-                                 <ul data-v-7b4478c1="" data-v-66372912="" id="social-sidebar" style=""><li data-v-7b4478c1="" class="icons-social"><a data-v-7b4478c1="" href="" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/icon-whatsapp.png"></a></li> <li data-v-7b4478c1="" class="icons-social"><a data-v-7b4478c1="" href="" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/icon-instagram.png"></a></li> <li data-v-7b4478c1="" class="follow-social">
+                            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right"></span></a></div></div> <!----></div></div></nav> <div data-v-eb5d4bee="" data-v-effc9f78="" class="container Testimonios"><div data-v-eb5d4bee="" data-v-effc9f78="" class="row"><div data-v-eb5d4bee="" data-v-effc9f78="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-title">Testimonios</div></div> <div data-v-eb5d4bee="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12"><div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.
+                        Mauris malesuada nisi sit amet augue accumsan tincidunt. Maecenas tincidunt, velit ac porttitor pulvinar.</div></div></div></div> <ul data-v-7b4478c1="" data-v-eb5d4bee="" id="social-sidebar" data-v-effc9f78=""><li data-v-7b4478c1="" class="icons-social"><a data-v-7b4478c1="" href="{{url('/')}}/testimonios" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/icon-whatsapp.png"></a></li> <li data-v-7b4478c1="" class="icons-social"><a data-v-7b4478c1="" href="{{url('/')}}/testimonios" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/icon-instagram.png"></a></li> <li data-v-7b4478c1="" class="follow-social">
         Síguenos en
-    </li></ul> <div data-v-66372912="" id="pagetop" data-toggle="modal" data-target="#consulta-viabilidad" class="fixed right-0 bottom-0" style="display: none-;"><div data-v-66372912="" id="blockform-scroll">
-
-      <div data-v-66372912="" class="row Scroll"><div data-v-66372912="" class="col-2 Scroll-icon"><img data-v-66372912="" src="{{url('landing')}}/assets/group.png"></div> <div data-v-66372912="" class="col-6 Scroll-text">
-                                ¿Quieres saber si tu reclamación es viable?
-                            </div> <div data-v-66372912="" class="col-4 Scroll-btn"><button data-v-66372912="" class="btn btn-light">Comprobar</button></div></div></div></div>
-
-                  </div></div></div> <div data-v-494d1a60="" data-v-63cd6604="" id="como-funciona" data-v-effc9f78=""><div data-v-494d1a60="" class="card text-center card-reclamacion container"><div data-v-494d1a60="" id="block-reclamacion"><div data-v-494d1a60="" class="text-reclamacion mb-4 mt-4">¿Cómo funciona?</div></div> <div data-v-494d1a60="" class="blockBTN"><div data-v-494d1a60="" class="text-center">
-
-                    <a data-v-494d1a60="" class="changetype btn active"><span data-v-494d1a60="" class="text-btn">Reclamación amistosa</span></a>
-                    <a data-v-494d1a60="" class="changetype btn"><span data-v-494d1a60="" class="text-btn">Reclamación judicial</span></a></div></div>
-
-                  <div data-v-494d1a60="" href="#amistosa" class="card-body"><div data-v-494d1a60="" class="row"><div data-v-494d1a60="" class="col-xl-12 col-lg-12 col-sm-12 col-xs-12"><div data-v-494d1a60="" class="card-text Reclamacion">Reclamación amistosa</div></div> <div data-v-494d1a60="" class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12"><div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                        varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu
-                        enim justo. Vestibulum aliquam hendrerit molestie. Mauris
-                        malesuada nisi sit amet augue accumsan tincidunt
-                    </div> <p data-v-494d1a60="" class="card-text"><img data-v-494d1a60="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                        (Funcionalidad 1) Mauris malesuada nisi sit amet augue accumsan tincidunt. Maecenas tincidunt, velit ac porttitor pulvinar, tortor eros facilisis libero, vitae commodo nunc quam et ligula.
-                    </p> <p data-v-494d1a60="" class="card-text"><img data-v-494d1a60="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                        (Funcionalidad 2) Ut nec ipsum sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer id nisi nec nulla luctus lacinia non eu turpis.
-                    </p> <p data-v-494d1a60="" class="card-text"><img data-v-494d1a60="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                        (Funcionalidad 3) Etiam in ex imperdiet justo tincidunt egestas. Ut porttitor urna ac augue cursus tincidunt sit amet sed orci.
-                    </p></div> <div data-v-494d1a60="" class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12"><img data-v-494d1a60=""
-                      other="{{url('landing')}}/assets/judicial.jpg"
-                      src="{{url('landing')}}/assets/amistosa.jpg" class="img-amistosa img-fluid"></div></div></div> <!----></div></div>
-
-                    <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78=""><div data-v-9cc878a2="" class="text-center card-tarifa container"><div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div> <div data-v-9cc878a2="" class="row mb-3 text-center blockCard"><div data-v-9cc878a2="" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><!----> <div data-v-9cc878a2="" class="card mb-4 rounded-3"><div data-v-9cc878a2="" class="py-3"><span data-v-9cc878a2="" class="my-0 fw-normal text-t1">Tarifa 1</span></div> <div data-v-9cc878a2="" class="card-body"><span data-v-9cc878a2="" class="badge rounded-pill badge-price">100€</span> <ul data-v-9cc878a2="" class="list-unstyled mt-3 mb-4"><li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text"><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                                    (Funcionalidad 1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p></li> <li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text"><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                                    (Funcionalidad 2) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p></li> <li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text"><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                                    (Funcionalidad 3) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p></li></ul></div> <div data-v-9cc878a2="" class="card-footer bg-transparent shadow-sm"><a data-v-9cc878a2="" href="" aria-current="page" class="btn btn-tarifa router-link-exact-active router-link-active" type="button">
-                            DESCUBRIR MÁS
-                            <!----> <span data-v-9cc878a2=""><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-arrow-right-black.png" class="iconsarrow-right"></span></a></div></div></div><div data-v-9cc878a2="" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 OPFrecuente"><div data-v-9cc878a2="" class="op-frecuente">Opción más frecuente</div> <div data-v-9cc878a2="" class="card mb-4 rounded-3"><div data-v-9cc878a2="" class="py-3"><span data-v-9cc878a2="" class="my-0 fw-normal text-t1">Tarifa 2</span></div> <div data-v-9cc878a2="" class="card-body"><span data-v-9cc878a2="" class="badge rounded-pill badge-price">150€</span> <ul data-v-9cc878a2="" class="list-unstyled mt-3 mb-4"><li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text"><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                                    (Funcionalidad 1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p></li> <li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text"><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                                    (Funcionalidad 2) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p></li> <li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text"><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                                    (Funcionalidad 3) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p></li></ul></div> <div data-v-9cc878a2="" class="card-footer bg-transparent shadow-sm"><a data-v-9cc878a2="" href="" aria-current="page" class="btn btn-tarifa router-link-exact-active router-link-active" type="button">
-                            DESCUBRIR MÁS
-                            <!----> <span data-v-9cc878a2=""><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-arrow-right-black.png" class="iconsarrow-right"></span></a></div></div></div><div data-v-9cc878a2="" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><!----> <div data-v-9cc878a2="" class="card mb-4 rounded-3"><div data-v-9cc878a2="" class="py-3"><span data-v-9cc878a2="" class="my-0 fw-normal text-t1">Tarifa 3</span></div> <div data-v-9cc878a2="" class="card-body"><span data-v-9cc878a2="" class="badge rounded-pill badge-price">200€</span> <ul data-v-9cc878a2="" class="list-unstyled mt-3 mb-4"><li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text"><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                                    (Funcionalidad 1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p></li> <li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text"><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                                    (Funcionalidad 2) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p></li> <li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text"><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle">
-                                    (Funcionalidad 3) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p></li></ul></div> <div data-v-9cc878a2="" class="card-footer bg-transparent shadow-sm"><a data-v-9cc878a2="" href="" aria-current="page" class="btn btn-tarifa router-link-exact-active router-link-active" type="button">
-                            DESCUBRIR MÁS
-                            <!----> <span data-v-9cc878a2=""><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-arrow-right-black.png" class="iconsarrow-right"></span></a></div></div></div></div></div></div> <div data-v-63cd6604="" data-v-effc9f78="" class="blockQSomos"><div data-v-63cd6604="" data-v-effc9f78="" class="container card"><div data-v-63cd6604="" data-v-effc9f78="" class="row"><div data-v-63cd6604="" data-v-effc9f78="" class="col-lg-8 col-md-12 col-xs-12 col-sm-12 QSomos"><div data-v-63cd6604="" data-v-effc9f78="" class="QSomos-title">
-                        ¿Quiénes somos?
-                    </div> <div data-v-63cd6604="" data-v-effc9f78="" class="QSomos-text"><p data-v-63cd6604="" data-v-effc9f78="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt.</p> <p data-v-63cd6604="" data-v-effc9f78="">Maecenas tincidunt, velit ac porttitor pulvinar, tortor eros facilisis libero, vitae commodo nunc quam et ligula. Ut nec ipsum sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer id nisi nec nulla luctus lacinia non eu turpis. Etiam in ex imperdiet justo tincidunt egestas. Ut porttitor urna ac augue cursus tincidunt sit amet sed orci.</p></div> <div data-v-63cd6604="" data-v-effc9f78=""><span data-v-63cd6604="" data-v-effc9f78=""><a data-v-63cd6604="" href="{{url('quienes-somos')}}" class="btn QSomos-btn" data-v-effc9f78="">
-                                DESCUBRIR MÁS
-                                <img data-v-63cd6604="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right img-fluid"></a></span></div></div> <div data-v-63cd6604="" data-v-effc9f78="" class="col-lg-4 col-md-12 col-xs-12 col-sm-12 img-QSomos"><img data-v-63cd6604="" data-v-effc9f78="" src="{{url('landing')}}/assets/element-shape-rd-16.png" class="img-fluid"></div></div></div></div> <div data-v-43503c2a="" data-v-63cd6604="" class="blockRecovery" data-v-effc9f78=""><div data-v-43503c2a="" class="container"><div data-v-43503c2a="" class="text-center RText">
-            ¿Por qué Dividae?
-        </div> <div data-v-43503c2a="" class="row Recovery"><div data-v-43503c2a="" class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12"><div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a="" src="{{url('landing')}}/assets/icon-large-digital.png" class="iconlargejusticia img-thumbnails img-fluid"></div> <div data-v-43503c2a=""><p data-v-43503c2a="" class="Recovery-title">
-                        Plataforma 100% online
-                    </p> <p data-v-43503c2a="" class="Recovery-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
-                    </p></div></div> <div data-v-43503c2a="" class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12"><div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a="" src="{{url('landing')}}/assets/icon-large-seguridad.png" class="iconlargejusticia img-thumbnails img-fluid"></div> <div data-v-43503c2a=""><p data-v-43503c2a="" class="Recovery-title">
-                        Seguridad
-                    </p> <p data-v-43503c2a="" class="Recovery-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
-                    </p></div></div> <div data-v-43503c2a="" class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12"><div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a="" src="{{url('landing')}}/assets/icon-large-justicia.png" class="iconlargejusticia img-thumbnails img-fluid"></div> <div data-v-43503c2a=""><p data-v-43503c2a="" class="Recovery-title">
-                        Proceso jurídico
-                    </p> <p data-v-43503c2a="" class="Recovery-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
-                    </p></div></div></div></div></div> <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2021</p> <p data-v-e047c7bc="" class="estadisticas-text">año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+100</p> <p data-v-e047c7bc="" class="estadisticas-text">procesos saldados con éxito</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">100.00€</p> <p data-v-e047c7bc="" class="estadisticas-text">en deudas recuperadas</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+50</p> <p data-v-e047c7bc="" class="estadisticas-text">miembros en nuestro equipo</p></div></div></div>
-
-
-                    <div data-v-455dcd3f="" data-v-63cd6604="" class="blockOpiniones" data-v-effc9f78=""><div data-v-455dcd3f="" class="content"><div data-v-455dcd3f="" class="container Opinion"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
+    </li></ul></div> <div data-v-455dcd3f="" data-v-eb5d4bee="" class="blockOpiniones" data-v-effc9f78=""><div data-v-455dcd3f="" class="content"><div data-v-455dcd3f="" class="container Opinion"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
                             Deuda recuperada
                         </div> <div data-v-455dcd3f="" class="price-DR">
                             3.000<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-1.png" class="testimonio-1 img-fluid"></div> <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Empresa</div> <div data-v-455dcd3f="" class="Opinion-cliente">Nombre cliente</div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-455dcd3f="" class="col-10 block-text"><p data-v-455dcd3f="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -5001,7 +4883,30 @@ a.more-link[data-v-167ae8c1] {
                                     Mauris malesuada nisi sit amet augue accumsan tincidunt.</p> <p data-v-455dcd3f="">Maecenas tincidunt, velit ac porttitor pulvinar, tortor eros
                                     facilisis libero, vitae commodo nunc quam et ligula. Ut nec
                                     ipsum sapien. Interdum et malesuada fames ac ante ipsum primis
-                                    in faucibus.</p></div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div></div>  <div data-v-455dcd3f="" class="container OCliente"><div data-v-455dcd3f="" class="OCliente-title">¿Qué opinan nuestros clientes?</div> <div data-v-455dcd3f="" class="OCliente-text">
+                                    in faucibus.</p></div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="container Opinion mt-5"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="row"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-empresa">Empresa</div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-cliente">Nombre cliente</div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-text mt-4"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="row"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-10 block-text"><p data-v-eb5d4bee="" data-v-455dcd3f="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
+                                    Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.
+                                    Mauris malesuada nisi sit amet augue accumsan tincidunt.</p> <p data-v-eb5d4bee="" data-v-455dcd3f="">Maecenas tincidunt, velit ac porttitor pulvinar, tortor eros
+                                    facilisis libero, vitae commodo nunc quam et ligula. Ut nec
+                                    ipsum sapien. Interdum et malesuada fames ac ante ipsum primis
+                                    in faucibus.</p></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="block-DR"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="text-deuda-recuperada">
+                            Deuda recuperada
+                        </div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="price-DR">
+                            1.500<span data-v-eb5d4bee="" data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-2.png" class="testimonio-1 img-fluid"></div></div></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="container Opinion mt-5"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="row"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="block-DR"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="text-deuda-recuperada">
+                            Deuda recuperada
+                        </div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="price-DR">
+                            10.000<span data-v-eb5d4bee="" data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-3.png" class="testimonio-1 img-fluid"></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-empresa">Empresa</div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-cliente">Nombre cliente</div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-text mt-4"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="row"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-10 block-text"><p data-v-eb5d4bee="" data-v-455dcd3f="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
+                                    Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.
+                                    Mauris malesuada nisi sit amet augue accumsan tincidunt.</p> <p data-v-eb5d4bee="" data-v-455dcd3f="">Maecenas tincidunt, velit ac porttitor pulvinar, tortor eros
+                                    facilisis libero, vitae commodo nunc quam et ligula. Ut nec
+                                    ipsum sapien. Interdum et malesuada fames ac ante ipsum primis
+                                    in faucibus.</p></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div></div> 
+
+
+
+
+                                    <div data-v-455dcd3f="" class="container OCliente"><div data-v-455dcd3f="" class="OCliente-title">¿Qué opinan nuestros clientes?</div> <div data-v-455dcd3f="" class="OCliente-text">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius
                 tortor nibh, sit amet tempor nibh finibus et.
             </div>
@@ -5072,58 +4977,35 @@ a.more-link[data-v-167ae8c1] {
 
 
 
-                              </div></div></div>
+                              </div>
 
-                              <div data-v-dd3c5654="" data-v-63cd6604="" class="blockExitos" data-v-effc9f78=""><div data-v-dd3c5654="" class="container"><div data-v-dd3c5654="" class="Exitos-title">
+
+
+                                </div></div> <div data-v-e047c7bc="" data-v-eb5d4bee="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2021</p> <p data-v-e047c7bc="" class="estadisticas-text">año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+100</p> <p data-v-e047c7bc="" class="estadisticas-text">procesos saldados con éxito</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">100.00€</p> <p data-v-e047c7bc="" class="estadisticas-text">en deudas recuperadas</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+50</p> <p data-v-e047c7bc="" class="estadisticas-text">miembros en nuestro equipo</p></div></div></div> <div data-v-dd3c5654="" data-v-eb5d4bee="" class="blockExitos" data-v-effc9f78=""><div data-v-dd3c5654="" class="container"><div data-v-dd3c5654="" class="Exitos-title">
             Casos de éxito
-        </div> <div data-v-dd3c5654="" class="row my-5 Exitos"><div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/Planday.png" class="Exitos-img"></div> <div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/Umbraco.png"></div> <div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/Brightpearl.png" class="Exitos-img"></div> <div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/VoloDA.png" class="Exitos-img"></div></div></div></div> <div data-v-18ec2fe4="" data-v-63cd6604="" class="blockContacto" data-v-effc9f78=""><div data-v-18ec2fe4="" class="container mt-5 Contacto"><div data-v-18ec2fe4="" class="row"><div data-v-18ec2fe4="" class="col my-5"><div data-v-18ec2fe4="" class="Contacto-title">
-                    Contáctanos, llámanos o escríbenos
-                </div> <div data-v-18ec2fe4="" class="row my-4"><div data-v-18ec2fe4="" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-phone.png" class="img-fluid mr-1"> +34 654 321 345
-                    </div> <div data-v-18ec2fe4="" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-email.png" class="img-fluid mr-1"> contacto@dividae.com
-                    </div></div> <div data-v-18ec2fe4=""><span data-v-18ec2fe4=""><a data-v-18ec2fe4="" href="{{url('contacto')}}" class="btn Contacto-btn">
-                            Contacto
-                            <img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-down ml-4 img-fluid"></a></span></div></div> <div data-v-18ec2fe4="" class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 my-5"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/grafico-ilustraciones-contacto.png" class="img-fluid"></div></div></div></div> <footer data-v-a242bae8="" data-v-effc9f78=""><div data-v-a242bae8="" class="container pb-5"><div data-v-a242bae8="" class="row row-cols-2 footer-content"><div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><a data-v-a242bae8="" href="" class="align-items-center mb-3 link-dark"><p data-v-a242bae8=""><img data-v-a242bae8="" src="{{url('landing')}}/assets/grafico-logo-negativo.png" class="graficologonegativo"></p></a> <p data-v-a242bae8="" class=" footer-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.</p></div> <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><h5 data-v-a242bae8="" class="footer-title "> Sobre nosotros</h5> <ul data-v-a242bae8="" class="nav flex-column"><li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="" aria-current="page" class="nav-link p-0 footer-text router-link-exact-active router-link-active">Inicio</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('quienes-somos')}}" class="nav-link p-0 footer-text">¿Quiénes somos?</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('preguntas')}}" class="nav-link p-0 footer-text">Preguntas frecuentes</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('contacto')}}" class="nav-link p-0 footer-text">Contacto</a></li></ul></div> 
+        </div> <div data-v-dd3c5654="" class="row my-5 Exitos"><div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/Planday.png" class="Exitos-img"></div> <div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/Umbraco.png"></div> <div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/Brightpearl.png" class="Exitos-img"></div> <div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/VoloDA.png" class="Exitos-img"></div></div></div></div> <div data-v-837e15c2="" data-v-eb5d4bee="" class="block-CheckClaim" data-v-effc9f78=""><div data-v-837e15c2="" class="container CheckClaim"><div data-v-837e15c2="" class="row"><div data-v-837e15c2="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-837e15c2="" class="CheckClaim-title">
+                    ¿Quieres saber si tu reclamación es viable?
+                </div> <div data-v-837e15c2="" class="CheckClaim-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
+                </div> <div data-v-837e15c2=""><a data-v-837e15c2="" href="{{url('/')}}/new_claim" class="CheckClaim-btn btn">Comprobar deuda <img data-v-837e15c2="" src="{{url('landing')}}/assets/icons-arrow-right-white.png" class="img-fluid"></a></div></div> <div data-v-837e15c2="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 my-5"><img data-v-837e15c2="" src="{{url('landing')}}/assets/grafico-ilustraciones-simulador.png" class="img-fluid"></div></div></div></div> <footer data-v-a242bae8="" data-v-effc9f78=""><div data-v-a242bae8="" class="container pb-5"><div data-v-a242bae8="" class="row row-cols-2 footer-content"><div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><a data-v-a242bae8="" href="{{url('/')}}" class="align-items-center mb-3 link-dark"><p data-v-a242bae8=""><img data-v-a242bae8="" src="{{url('landing')}}/assets/grafico-logo-negativo.png" class="graficologonegativo"></p></a> <p data-v-a242bae8="" class=" footer-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.</p></div> <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><h5 data-v-a242bae8="" class="footer-title "> Sobre nosotros</h5> <ul data-v-a242bae8="" class="nav flex-column"><li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('/')}}" class="nav-link p-0 footer-text router-link-active">Inicio</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('/')}}/quienes-somos" class="nav-link p-0 footer-text">¿Quiénes somos?</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('/')}}/preguntas" class="nav-link p-0 footer-text">Preguntas frecuentes</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('/')}}/contacto" class="nav-link p-0 footer-text">Contacto</a></li></ul></div>
 
-                              @include('footer')
+                  @include('footer')
 
-                              <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><h5 data-v-a242bae8="" class="footer-title ">Contacto</h5> <ul data-v-a242bae8="" class="nav flex-column"><li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icons-phone-white.png" class="img-fluid"> +34 654 321 345
+                <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><h5 data-v-a242bae8="" class="footer-title ">Contacto</h5> <ul data-v-a242bae8="" class="nav flex-column"><li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icons-phone-white.png" class="img-fluid"> +34 654 321 345
                         </a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icons-email-white.png" class="img-fluid"> contacto@dividae.com
                         </a></li></ul></div></div> <div data-v-a242bae8="" class="row row-cols-2 justify-content-start border-top pt-4"><div data-v-a242bae8="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 copyright-text">
                     © Dividae 2022 . All Rights Reserved.
-                </div> <div data-v-a242bae8="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 icons-social d-flex justify-content-end"><a data-v-a242bae8="" href="" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-whatsapp.png" class="img-fluid s-icon"></a> <a data-v-a242bae8="" href="" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-instagram.png" class="img-fluid"></a></div></div></div></footer></div></main></div>
+                </div> <div data-v-a242bae8="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 icons-social d-flex justify-content-end"><a data-v-a242bae8="" href="{{url('/')}}/testimonios" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-whatsapp.png" class="img-fluid s-icon"></a> <a data-v-a242bae8="" href="{{url('/')}}/testimonios" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-instagram.png" class="img-fluid"></a></div></div></div></footer></div></main></div>
     <!-- Scripts -->
+    {{-- <script src="https://asemarrecovery.quentalstaging.com/js/app.js" defer=""></script> --}}
 
-    <!-- <script src="{{url('landing')}}/app.js" defer=""></script> -->
-
-    <script
+<script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
 
-  {{-- @foreach(config('adminlte.plugins') as $pluginName => $plugin)
-      @if($plugin['active'] || View::getSection('plugins.' . ($plugin['name'] ?? $pluginName)))
-          @foreach($plugin['files'] as $file)
-              @php
-                  if (! empty($file['asset'])) {
-                      $file['location'] = asset($file['location']);
-                  }
-              @endphp
-
-              @if($file['type'] == 'js')
-                  <script src="{{ $file['location'] }}" @if(! empty($file['defer'])) defer @endif></script>
-              @endif
-
-          @endforeach
-      @endif
-  @endforeach
-
-  @stack('js') --}}
-
     <script src="{{url('landing')}}/plugins/owl/js/owl.carousel.js"></script>
     <script src="{{url('landing')}}/plugins/owl/js/owl.navigation.js"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script>
       
@@ -5144,72 +5026,6 @@ a.more-link[data-v-167ae8c1] {
               }
           }
       });
-
-      $('#rangeDeuda').on('input',function(event) {
-        /* Act on the event */
-        console.log($(this).val())
-        $('.importe-range1:first').text($(this).val()+' €')
-      });
-
-      $('.rangeDeuda1').on('input',function(event) {
-        let text = "0-30 días"
-        let val = $(this).val();
-        switch (val)
-        {
-          case "1": 
-            text = '1-3 años';
-            break;
-          case "2": 
-            text = '4-6 años';
-            break;
-          case "3": 
-            text = '7-9 años';
-            break;
-          case "4": 
-            text = '+10 años';
-            break;
-          default:
-            text = '0-30 días'
-        }
-        console.log(val,typeof val,text)
-        $('.importe-range1:last').text(text)
-      });
-
-      $('.formulario-reclamacion').on('submit',function(e){
-        e.preventDefault();
-
-        $('#consulta-viabilidad').modal('hide')
-
-        setTimeout(()=>{
-          $('#reclamacion-viable').modal('show')
-        },200)
-      })
-
-      $('.changetype').click(function (e) {
-        e.preventDefault();
-
-        $('.changetype').removeClass('active');
-
-        $(this).addClass('active');
-
-        $('.Reclamacion').text($(this).text());
-
-        let other = $('.img-amistosa').attr('other');
-        let src = $('.img-amistosa').attr('src');
-        $('.img-amistosa').attr('src',other);
-        $('.img-amistosa').attr('other',src);
-      });
-
-      /**/
-
-      $('.card.mb-4.rounded-3').click(function (e) {
-        e.preventDefault();
-        $('.card.mb-4.rounded-3').removeClass('active');
-        $(this).addClass('active');
-      });
-
-    </script>
-
-
+  </script>
 
 </body></html>
