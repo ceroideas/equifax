@@ -28,6 +28,7 @@ php artisan adminlte:plugins install --plugin=datatables
 php artisan adminlte:plugins install --plugin=select2
 php artisan adminlte:plugins install --plugin=tempusdominusBootstrap4
 php artisan adminlte:plugins install --plugin=bootstrapSwitch
+php artisan adminlte:plugins install --plugin=bootstrapSlider
 ```
 
 ## Env

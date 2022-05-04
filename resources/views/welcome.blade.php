@@ -15,6 +15,24 @@
     <link rel="stylesheet" href="{{url('landing')}}/plugins/owl/owl.carousel.min.css">
   <link rel="stylesheet" href="{{url('landing')}}/plugins/owl/owl.theme.default.min.css">
 
+  {{-- @foreach(config('adminlte.plugins') as $pluginName => $plugin)
+      @if($plugin['active'] || View::getSection('plugins.' . ($plugin['name'] ?? $pluginName)))
+          @foreach($plugin['files'] as $file)
+
+              @php
+                  if (! empty($file['asset'])) {
+                      $file['location'] = asset($file['location']);
+                  }
+              @endphp
+
+              @if($file['type'] == 'css')
+                  <link rel="stylesheet" href="{{ $file['location'] }}">
+              @endif
+
+          @endforeach
+      @endif
+  @endforeach --}}
+
     <!-- Styles -->
     <link href="{{url('landing')}}/app.css" rel="stylesheet">
 <style>.modal-vue .fade-enter[data-v-e8aafb5e],
@@ -4829,7 +4847,6 @@ a.more-link[data-v-167ae8c1] {
 
 
 <body>
-
   <div data-v-e8aafb5e="" class="modal-vue modal fade" id="reclamacion-viable">
 
     <div data-v-e8aafb5e="" role="document" class="modal-dialog"><div data-v-e8aafb5e="" class="modal-content"><div data-v-e8aafb5e="" class="modal-header"><button data-v-e8aafb5e="" type="button" data-dismiss="modal" aria-label="Close" class="close"><span data-v-e8aafb5e="" aria-hidden="true">×</span></button></div> <div data-v-e8aafb5e="" class="modal-body"><div data-v-e8aafb5e="" class="modal-img text-center"><img data-v-e8aafb5e="" src="{{url('landing/assets/grafico-ilustraciones-simulador-exito.png')}}" class="img-fluid"></div> <!----> <div data-v-e8aafb5e="" class="modal-text-info text-center">
@@ -5082,6 +5099,25 @@ a.more-link[data-v-167ae8c1] {
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
+
+  {{-- @foreach(config('adminlte.plugins') as $pluginName => $plugin)
+      @if($plugin['active'] || View::getSection('plugins.' . ($plugin['name'] ?? $pluginName)))
+          @foreach($plugin['files'] as $file)
+              @php
+                  if (! empty($file['asset'])) {
+                      $file['location'] = asset($file['location']);
+                  }
+              @endphp
+
+              @if($file['type'] == 'js')
+                  <script src="{{ $file['location'] }}" @if(! empty($file['defer'])) defer @endif></script>
+              @endif
+
+          @endforeach
+      @endif
+  @endforeach
+
+  @stack('js') --}}
 
     <script src="{{url('landing')}}/plugins/owl/js/owl.carousel.js"></script>
     <script src="{{url('landing')}}/plugins/owl/js/owl.navigation.js"></script>

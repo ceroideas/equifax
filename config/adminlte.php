@@ -520,7 +520,7 @@ return [
             ],
         ],
         'BootstrapSlider' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
