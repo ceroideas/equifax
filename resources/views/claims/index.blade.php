@@ -56,6 +56,8 @@
         </x-adminlte-alert>
     @endif
 
+    <a href="{{url('export-all')}}" class="btn btn-sm btn-warning">Exportar Reclamaciones</a>
+
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($claims as $claim)
@@ -81,11 +83,6 @@
                                 <i class="fa fa-lg fa-fw fa-trash"></i>
                             </button> --}}
                         @endcan
-                        <a href="{{ url('/claims/' . $claim->id ) }}">
-                            <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
-                                <i class="fa fa-lg fa-fw fa-eye"></i>
-                            </button>
-                        </a>
 
                         @if (Auth::user()->id == $claim->user_id && $claim->status == 11 && $claim->claim_type == 1)
                             <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
@@ -97,6 +94,12 @@
                                 </label>
                             </form>
                         @endif
+
+                        <a href="{{ url('/claims/' . $claim->id ) }}">
+                            <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
+                                <i class="fa fa-lg fa-fw fa-eye"></i>
+                            </button>
+                        </a>
 
                         @if ($claim->invoices)
                             <a href="{{ url('/claims/actuations/' . $claim->id ) }}">

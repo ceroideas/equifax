@@ -105,6 +105,7 @@ Route::group(['prefix' => 'claims'], function(){
 
 });
 
+Route::get('export-all', [ClaimsController::class, 'exportAll']);
 
 
 /* Terceros */

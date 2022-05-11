@@ -17,6 +17,9 @@ use Auth;
 use Storage;
 use Carbon\Carbon;
 
+use Excel;
+use App\Exports\ClaimsExport;
+
 class ClaimsController extends Controller
 {
     /**
@@ -727,5 +730,10 @@ class ClaimsController extends Controller
         }
 
         return back()->with('msj', 'Se ha subido el archivo!');
+    }
+
+    public function exportAll()
+    {
+        return Excel::download(new ClaimsExport, 'all_claims-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
     }
 }
