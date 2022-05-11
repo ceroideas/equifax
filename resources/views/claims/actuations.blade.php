@@ -71,7 +71,12 @@
 
         					<p>{{$act->description}}</p>
 
-        					<b>Resultado de la actuación:</b> {!! $act->type ? '<span class="text-success">Exitoso</span>' : '<span class="text-warning">No exitoso</span>' !!}
+        					<p>
+        						<b>Resultado de la actuación:</b> {!! $act->type ? '<span class="text-success">Exitoso</span>' : '<span class="text-warning">No exitoso</span>' !!}
+        					</p>
+        					<p>
+        						<b>Fecha de la actuación:</b> {!! $act->actuation_date !!}
+        					</p>
 
         					@if ($act->amount)
         					<br>
@@ -83,6 +88,26 @@
         						@else
         							<i>No se ha generado una factura</i>
         						@endif
+
+        					@endif
+
+        					@if ($act->documents)
+
+        						@foreach ($act->documents as $document)
+
+        						<div class="row">
+        							
+        							<div class="col-sm-4">
+        								
+        								<li>
+                                        	<a href="{{ url('/uploads/actuations/' . $act->id . '/documents',$document->document_name) }}" class="btn-link text-secondary" target="_blank" download="{{$document->document_name}}"><i class="far fa-fw fa-file"></i>{{$document->document_name}}</a>
+                                    	</li>
+
+        							</div>
+
+        						</div>
+
+        						@endforeach
 
         					@endif
 
@@ -109,7 +134,7 @@
             @if ((Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) && !$claim->isFinished())
             	<hr>
 
-            	<form action="{{url('claims/actuations',$claim->id)}}" method="POST" id="actuation-form">
+            	<form action="{{url('claims/actuations',$claim->id)}}" method="POST" id="actuation-form" enctype="multipart/form-data">
             		{{csrf_field()}}
 
 	            	<h4>Registrar nueva actuación</h4>
@@ -120,13 +145,13 @@
 
 	            			<div class="form-group">
 	            				
-	            				<label for="tipo_viabilidad2">Escenario</label>
+	            				<label for="subject">Escenario</label>
 
 	            				@php
 	            					$config = ['tags' => true];
 	            				@endphp
 
-	            				<x-adminlte-select2 name="subject" class="form-control select2" :config="$config" required>
+	            				<x-adminlte-select2 name="subject" id="subject" class="form-control select2" :config="$config" required>
 	            					<option>Se ha enviado una carta al deudor</option>
 	            					<option>Se ha enviado un sms certificado al deudor</option>
 	            					<option>Se ha enviado un email al deudor</option>
@@ -150,13 +175,13 @@
 
 	            			<div class="form-group">
 	            				
-	            				<label for="tipo_viabilidad2">Fecha de la actuación</label>
+	            				<label for="actuation_date">Fecha de la actuación</label>
 
 	            				@php
 									$config = ['format' => 'DD-MM-YYYY'];
 								@endphp
 
-	            				<x-adminlte-input-date name="actuation_date" :config="$config" required/>
+	            				<x-adminlte-input-date name="actuation_date" id="actuation_date" :config="$config" required/>
 
 	            			</div>
 	            		</div>
@@ -165,10 +190,10 @@
 
 	            			<div class="form-group">
 	            				
-	            				<label for="tipo_viabilidad2">Descripción</label>
+	            				<label for="description">Descripción</label>
 
 
-	            				<x-adminlte-textarea name="description" required placeholder="Inserte descripción..."/>
+	            				<x-adminlte-textarea name="description" id="description" required placeholder="Inserte descripción..."/>
 
 
 	            			</div>
@@ -176,34 +201,105 @@
 	            		</div>
 
 	            		<div class="col-sm-12">
-	            			<label for="tipo_viabilidad2">Resultado de la actuación</label>
-	            			<x-adminlte-input-switch name="type" data-on-text="Exitoso" data-off-text="No Exitoso" data-on-color="teal" checked/>
+
+	            			<div class="form-group">
+	            				
+	            				<x-adminlte-input-file id="ifMultiple" name="files[]" label="Archivos de la actuacion"
+								    placeholder="Puede subir varios archivos..." igroup-size="lg" legend="Seleccione" multiple>
+								    {{-- <x-slot name="appendSlot">
+								        <x-adminlte-button theme="primary" label="Upload"/>
+								    </x-slot> --}}
+								    <x-slot name="prependSlot">
+								        <div class="input-group-text text-primary">
+								            <i class="fas fa-file-upload"></i>
+								        </div>
+								    </x-slot>
+								</x-adminlte-input-file>
+
+	            			</div>
+	            		</div>
+	            		<div class="col-sm-12">
+	            			<label for="type">Resultado de la actuación</label>
+	            			<x-adminlte-input-switch name="type" id="type" data-on-text="Exitoso" data-off-text="No Exitoso" data-on-color="teal" checked/>
 	            		</div>
 	            	</div>
 
 	            	<hr>
 
+
+
 	            	<div class="row" style="display: none-;" id="invoice-data">
 	            		<div class="col-sm-12">
-
-	            			<x-adminlte-input name="amount" label="Si se ha recuperado algún monto, especificarlo" placeholder="Monto" step="0.01" type="number"
-			                    igroup-size="sm" >
-			                        <x-slot name="appendSlot">
-			                            <div class="input-group-text bg-dark">
-			                                <i class="fas fa-euro"></i>
-			                            </div>
-			                        </x-slot>
-			                </x-adminlte-input>
-	            			
+	            			<label for="mailable">¿Desea notificar al cliente de ésta actuación?</label>
+	            			<x-adminlte-input-switch name="mailable" id="mailable" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
 	            		</div>
 	            	</div>
 
-	            	<div class="row">
-	            		<div class="col-sm-12">
-	            			<label for="invoice">¿Desea generar factura por el monto recuperado? (ésto en caso que el deudor haya realizado la transferencia al cliente en vez de a DIVIDAE)</label>
-	            			<x-adminlte-input-switch name="invoice" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
-	            		</div>
+	            	<hr>
+
+	            	<div id="invoice-data">
+	            		
+		            	<div class="row" style="display: none-;">
+		            		<div class="col-sm-12">
+
+		            			<x-adminlte-input name="amount" label="Si se ha recuperado algún monto, especificarlo" placeholder="Monto" step="0.01" type="number"
+				                    igroup-size="sm" >
+				                        <x-slot name="appendSlot">
+				                            <div class="input-group-text bg-dark">
+				                                <i class="fas fa-euro"></i>
+				                            </div>
+				                        </x-slot>
+				                </x-adminlte-input>
+		            			
+		            		</div>
+		            	</div>
+
+		            	<div class="row">
+		            		<div class="col-sm-12">
+		            			<label for="invoice">¿Desea generar factura por el monto recuperado? (ésto en caso que el deudor haya realizado la transferencia al cliente en vez de a DIVIDAE)</label>
+		            			<x-adminlte-input-switch name="invoice" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
+		            		</div>
+		            	</div>
+
+		            	<hr>
+
 	            	</div>
+
+	            	<div id="honorarios-data">
+	            		
+		            	<div class="row">
+		            		<div class="col-sm-12">
+		            			<label for="invoice_2">¿Desea generar factura por el pago de honorarios adicionales?</label>
+		            			<x-adminlte-input-switch name="invoice_2" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
+		            		</div>
+		            	</div>
+
+		            	<div class="row" style="display: none;" id="invoice-data-2">
+		            		<div class="col-sm-12">
+
+		            			<x-adminlte-input name="honorarios" label="Si se requiere un pago adicional, especificar" placeholder="Monto" step="0.01" type="number"
+				                    igroup-size="sm" >
+				                        {{-- <x-slot name="appendSlot">
+				                            <div class="input-group-text bg-dark">
+				                                <i class="fas fa-euro"></i>
+				                            </div>
+				                        </x-slot> --}}
+				                </x-adminlte-input>
+
+				                <x-adminlte-input name="concepto" label="Concepto de la factura" placeholder="Concepto" type="text"
+				                    igroup-size="sm" >
+				                        {{-- <x-slot name="appendSlot">
+				                            <div class="input-group-text bg-dark">
+				                                <i class="fas fa-euro"></i>
+				                            </div>
+				                        </x-slot> --}}
+				                </x-adminlte-input>
+		            			
+		            		</div>
+		            	</div>
+	            	</div>
+
+
 
 	            	<x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
 
@@ -218,21 +314,49 @@
 @section('js')
 
 	<script>
-		/*$('[name="invoice"]').on('switchChange.bootstrapSwitch', function(event) {
+		$('[name="invoice_2"]').on('switchChange.bootstrapSwitch', function(event) {
 			event.preventDefault();
 			
 			if ($(this).is(':checked')) {
-				$('#invoice-data').show();
-			}else{
+				$('#invoice-data-2').show();
 				$('#invoice-data').hide();
+			}else{
+				$('#invoice-data-2').hide();
+				$('#invoice-data').show();
 			}
-		});*/
+		});
+
+		$('[name="invoice"]').on('switchChange.bootstrapSwitch', function(event) {
+			event.preventDefault();
+			
+			if ($(this).is(':checked')) {
+				$('#honorarios-data').hide();
+			}else{
+				$('#honorarios-data').show();
+			}
+		});
 
 		$('#actuation-form').on('submit', function(event) {
 			event.preventDefault();
-			
-			$.post($(this).attr('action'), $(this).serializeArray(), function(data, textStatus, xhr) {
+
+			var formData = new FormData($(this)[0]);
+
+			$.ajax({
+				url: $(this).attr('action'),
+				type: 'POST',
+				contentType: false,
+				processData: false,
+				data: formData,
+			})
+			.done(function() {
 				location.reload();
+				console.log("success");
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
 			});
 		});
 	</script>

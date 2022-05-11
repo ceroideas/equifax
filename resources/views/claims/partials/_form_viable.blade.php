@@ -46,7 +46,11 @@ $config = [
         @method('POST')
 
         <div class="text-center">
+            @isset ($id)
+            <h3>Viabilidad Judicial *</h3>
+            @else
             <h3>Elige el Tipo de Viabilidad *</h3>
+            @endisset
         </div>
 
         <div class="row">
@@ -54,7 +58,7 @@ $config = [
             <div class="col-sm-4">
                 <div class="form-group text-center">
                     <label for="tipo_viabilidad">Reclamación Judicial</label>
-                    <input id="tipo_viabilidad" type="radio" name="tipo_viabilidad" class="is-invalid " value="1" @if(old('tipo_viabilidad') == 1 ) checked="true" @endif>
+                    <input id="tipo_viabilidad" type="radio" name="tipo_viabilidad" class="is-invalid " value="1" @isset ($id) checked @endisset @if(old('tipo_viabilidad') == 1 ) checked="true" @endif>
                     @error('tipo_viabilidad')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $errors->first() }}</strong>
@@ -65,7 +69,7 @@ $config = [
             <div class="col-sm-4">
                 <div class="form-group text-center">
                     <label for="tipo_viabilidad2">Reclamación Extra Judicial</label>
-                    <input id="tipo_viabilidad2" type="radio" name="tipo_viabilidad" class="is-invalid " value="2" @if(old('tipo_viabilidad') ==  2) checked="true" @endif>
+                    <input id="tipo_viabilidad2" type="radio" name="tipo_viabilidad" class="is-invalid " value="2" @isset ($id) disabled @endisset @if(old('tipo_viabilidad') ==  2) checked="true" @endif>
                     @error('tipo_viabilidad')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $errors->first() }}</strong>
@@ -77,7 +81,7 @@ $config = [
             <div class="col-sm-4">
                 <div class="form-group text-center">
                     <label for="tipo_viabilidad3">Proceso Monitorio</label>
-                    <input id="tipo_viabilidad3" type="radio" name="tipo_viabilidad" class="is-invalid " value="3" @if(old('tipo_viabilidad') == 3) checked="true" @endif>
+                    <input id="tipo_viabilidad3" type="radio" name="tipo_viabilidad" class="is-invalid " value="3" @isset ($id) disabled @endisset @if(old('tipo_viabilidad') == 3) checked="true" @endif>
                     @error('tipo_viabilidad')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $errors->first() }}</strong>

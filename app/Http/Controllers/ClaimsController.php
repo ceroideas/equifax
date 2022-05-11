@@ -11,6 +11,7 @@ use App\Models\Agreement;
 use App\Models\Invoice;
 use App\Models\Actuation;
 use App\Models\Configuration;
+use App\Models\ActuationDocument;
 use Illuminate\Http\Request;
 use Auth;
 use Storage;
@@ -164,17 +165,24 @@ class ClaimsController extends Controller
             if (Carbon::parse($debt->debt_expiration_date)->diffInYears(Carbon::now()) >= 3) {
                 $claim->status = 0;
             }else{
-                $claim->status = 7;
-                $claim->claim_type = 2;
 
-                $c = Configuration::first();
+                if (session('type_other')) {
+                    $claim->status = 0;
+                }else{
+                    
+                    $claim->status = 7;
+                    $claim->claim_type = 2;
 
-                $invoice = new Invoice;
-                $invoice->claim_id = $claim->id;
-                $invoice->user_id = $claim->user_id;
-                $invoice->amount = $c ? $c->fixed_fees : '0';
-                $invoice->type = 'fixed_fees';
-                $invoice->save();
+                    $c = Configuration::first();
+
+                    $invoice = new Invoice;
+                    $invoice->claim_id = $claim->id;
+                    $invoice->user_id = $claim->user_id;
+                    $invoice->amount = $c ? $c->fixed_fees : '0';
+                    $invoice->type = 'fixed_fees';
+                    $invoice->description = "Pago de honorarios para inicio de proceso Extrajudicial";
+                    $invoice->save();
+                }
             }
             $debt->save();
             $claim->save();
@@ -251,6 +259,7 @@ class ClaimsController extends Controller
         $request->session()->forget('debt_step_two');
         $request->session()->forget('debt_step_three');
         $request->session()->forget('claim_agreement');
+        $request->session()->forget('type_other');
 
         return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
 
@@ -281,18 +290,18 @@ class ClaimsController extends Controller
         //
     }
 
-    public function viable(Claim $claim)
+    public function viable(Claim $claim,$id = null)
     {
         $this->authorize('viewAny', $claim);
 
-        return view('claims.viable', ['claim' => $claim]);
+        return view('claims.viable', ['claim' => $claim, 'id' => $id]);
     }
 
-    public function nonViable(Claim $claim)
+    public function nonViable(Claim $claim,$id = null)
     {
         $this->authorize('viewAny', $claim);
 
-        return view('claims.non_viable', ['claim' => $claim]);
+        return view('claims.non_viable', ['claim' => $claim, 'id' => $id]);
     }
 
     public function setViable(Request $request, Claim $claim)
@@ -301,20 +310,55 @@ class ClaimsController extends Controller
 
         $this->validateViable();
 
-        $claim->status = 7;
+        $c = Configuration::first();
+
+        $amount = $c ? $c->fixed_fees : 0;
+        $amounts = $c ? (string)$c->fixed_fees : '0';
+        $type = 'fixed_fees';
+
+        if ($request['tipo_viabilidad'] == 1) {
+            if ($claim->third_parties_id) {
+                if ($claim->representant->type == 1) {
+                    if ($claim->debt->total_amount > 2000) {
+                        $amount += $c ? $c->judicial_fees : 0;
+                        $type .= '|judicial_fees';
+                        $amounts .= '|'.($c ? $c->judicial_fees : 0);
+                    }
+                }
+            }else{
+                if ($claim->client->type == 1) {
+                    if ($claim->debt->total_amount > 2000) {
+                        $amount += $c ? $c->judicial_fees : 0;
+                        $type .= '|judicial_fees';
+                        $amounts .= '|'.($c ? $c->judicial_fees : 0);
+                    }
+                }
+            }
+        }
+
+        if ($request['tipo_viabilidad'] == 1) {
+            $claim->status = 11;
+        }else{
+            $claim->status = 7;
+
+        }
         $claim->claim_type = $request['tipo_viabilidad'];
         if($request['observaciones']){
             $claim->viable_observation = $request['observaciones'];
         }
         $claim->save();
 
-        $c = Configuration::first();
-
         $invoice = new Invoice;
         $invoice->claim_id = $claim->id;
         $invoice->user_id = $claim->user_id;
-        $invoice->amount = $c ? $c->fixed_fees : '0';
-        $invoice->type = 'fixed_fees';
+        $invoice->amount = $amount;
+        $invoice->amounts = $amounts;
+        if ($request['tipo_viabilidad'] == 1) {
+            $invoice->description = "Pago de honorarios para inicio de proceso Judicial";
+        }else{
+            $invoice->description = "Pago de honorarios para inicio de proceso Extrajudicial";
+        }
+        $invoice->type = $type;
         $invoice->save();
 
         return redirect('claims')->with('msj', 'Reclamación actualziada exitosamente!');
@@ -329,6 +373,9 @@ class ClaimsController extends Controller
         $this->validateNonViable();
 
         $claim->observation = $request['informe_inviabilidad'];
+        if ($r->non_viable_judicial) {
+            $claim->claim_type = 1;
+        }
         $claim->status = 1;
         $claim->save();
 
@@ -589,6 +636,8 @@ class ClaimsController extends Controller
 
     public function saveActuation(Request $r,$id)
     {
+        // return response()->json($r->all(),422);
+
         $a = new Actuation;
         $a->claim_id = $id;
         $a->subject = $r->subject;
@@ -596,19 +645,58 @@ class ClaimsController extends Controller
         $a->description = $r->description;
         $a->actuation_date = $r->actuation_date;
         $a->type = $r->type ? 1 : null;
+        $a->mailable = $r->mailable;
         $a->save();
 
-        if ($r->invoice && $r->amount) {
+        $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
+
+        if ($r->files) {
+            foreach ($r->files as $key => $file) {
+                $name = $file[0]->getClientOriginalName();
+                $file[0]->move($path,$name);
+
+                $d = new ActuationDocument;
+                $d->actuation_id = $a->id;
+                $d->document_name = $name;
+                $d->save();
+            }
+        }
+
+        if ($a->mailable) {
+            Mail::send('email_to_client', ['a' => $a], function ($message) {            
+                $message->to($claim->owner->email, $claim->owner->name);
+                $message->subject('Actualización de su reclamación #'.$a->id);
+            });
+        }
+
+        if ($r->invoice && $r->amount && !$r->invoice_2) {
             $claim = Claim::find($id);
             $c = Configuration::first();
 
-            $amount = ($r->amount*$c->percentage_fees)/100;;
+            $amount = ($r->amount*$c->percentage_fees)/100;
 
             $invoice = new Invoice;
             $invoice->claim_id = $id;
             $invoice->user_id = $claim->user_id;
             $invoice->amount = $amount;
             $invoice->type = 'percentage_fees';
+            $invoice->description = "Pago de comisión por monto recuperado en reclamación extrajudicial";
+            $invoice->save();
+
+            $a->invoice_id = $invoice->id;
+            $a->save();
+        }else if ($r->invoice_2 && $r->honorarios) {
+            $claim = Claim::find($id);
+            $c = Configuration::first();
+
+            $amount = $r->honorarios;
+
+            $invoice = new Invoice;
+            $invoice->claim_id = $id;
+            $invoice->user_id = $claim->user_id;
+            $invoice->amount = $amount;
+            $invoice->type = 'fixed_fees';
+            $invoice->description = $r->concepto ? $r->concepto : "Pago de honorarios en reclamación";
             $invoice->save();
 
             $a->invoice_id = $invoice->id;
@@ -623,5 +711,21 @@ class ClaimsController extends Controller
         $c->save();
 
         return redirect('claims')->with('msj', 'La reclamación ha sido finalizada');
+    }
+
+    public function uploadApudActa(Request $r)
+    {
+        $c = Claim::find($r->id);
+
+        $path = public_path().'/uploads/claims/' . $c->id . '/apud/';
+
+        if ($r->file) {
+            $name = $r->file->getClientOriginalName();
+            $r->file->move($path,$name);
+            $c->apud_acta = $name;
+            $c->save();
+        }
+
+        return back()->with('msj', 'Se ha subido el archivo!');
     }
 }

@@ -13,7 +13,7 @@ class Claim extends Model
 
         switch ($this->status) {
             case -1:
-                return "Finalizado";
+                return "Finalizada";
                 break;
             case 0:
                 return "Pendiente";
@@ -48,6 +48,9 @@ class Claim extends Model
             case 10:
                 return "Gestión Reclamación Judicial";
                 break;
+            case 11:
+                return "Registro Apud Acta";
+                break;
             default:
                 return "Pendiente";
                 break;
@@ -74,7 +77,7 @@ class Claim extends Model
                 return "Reclamación Proceso Monitorio";
                 break;
             default:
-                return "Reclamación Judicial";
+                return "Por definir";
                 break;
         }
     }
@@ -86,7 +89,11 @@ class Claim extends Model
             || $this->status == 5
             || $this->status == 6
             || $this->status == 7
-            || $this->status == 8){
+            || $this->status == 8
+            || $this->status == 9
+            || $this->status == 10
+            || $this->status == 11
+        ){
             return true;
         }
 

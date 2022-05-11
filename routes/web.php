@@ -92,14 +92,16 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/pending', [ClaimsController::class, 'pending']);
     Route::get('/{claim}', [ClaimsController::class, 'show']);
     Route::get('payment/{claim}', [ClaimsController::class, 'payment']);
-    Route::get('{claim}/viable', [ClaimsController::class , 'viable']);
-    Route::get('{claim}/non-viable', [ClaimsController::class , 'nonViable']);
+    Route::get('{claim}/viable/{id?}', [ClaimsController::class , 'viable']);
+    Route::get('{claim}/non-viable/{id?}', [ClaimsController::class , 'nonViable']);
     Route::get('/close/{claim}', [ClaimsController::class , 'close']);
     Route::post('/non-viable/{claim}/save', [ClaimsController::class, 'setNonViable']);
     Route::post('/viable/{claim}/save', [ClaimsController::class, 'setViable']);
 
     Route::post('payment', [PaymentsController::class, 'payment']);
     Route::post('payToken', [PaymentsController::class, 'payToken']);
+
+    Route::post('uploadApudActa', [ClaimsController::class, 'uploadApudActa']);
 
 });
 
@@ -172,3 +174,7 @@ Route::group(['prefix'  => 'configurations'], function(){
     Route::put('{configuration}/fees', [ConfigurationsController::class, 'feesUpdate']);
 
 });
+
+/**/
+
+Route::get('migrar', [UsersController::class, 'migrar']);

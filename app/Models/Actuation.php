@@ -13,4 +13,14 @@ class Actuation extends Model
     {
         return $this->belongsTo(Invoice::class);
     }
+
+    public function claim()
+    {
+        return $this->belongsTo(Claim::class);
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(ActuationDocument::class);
+    }
 }

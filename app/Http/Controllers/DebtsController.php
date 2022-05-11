@@ -102,6 +102,7 @@ class DebtsController extends Controller
 
         if($data['deuda_extra']){
             $debt->type_extra = $data['deuda_extra'];
+            session()->put('type_other', true);
         }
 
         session()->put('claim_debt', $debt);

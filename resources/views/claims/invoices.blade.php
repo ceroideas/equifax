@@ -26,15 +26,22 @@
     if (Auth::user()->isClient()) {
         $heads = [
             'ID',
+            'Reclamación',
             'Concepto',
             'Monto cancelado',
             'Fecha del pago',
             'Tipo de cobro',
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
+        $config = [
+           
+            'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+            'language' => ['url' => '/js/datatables/dataTables.spanish.json']
+        ];
     }else{
         $heads = [
             'ID',
+            'Reclamación',
             'Cliente',
             'Concepto',
             'Monto cancelado',
@@ -42,13 +49,13 @@
             'Tipo de cobro',
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
+        $config = [
+           
+            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
+            'language' => ['url' => '/js/datatables/dataTables.spanish.json']
+        ];
     }
 
-    $config = [
-       
-        'columns' => [null, null, null, null, null, ['orderable' => false]],
-        'language' => ['url' => '/js/datatables/dataTables.spanish.json']
-    ];
     @endphp
 
     {{-- Datatable para los usuarios --}}
@@ -73,7 +80,8 @@
                     @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
                         <td>{{ $invoice->claim->client->name }}</td>
                     @endif
-                    <td>Pago de reclamación #{{ $invoice->claim->id }}</td>
+                    <td>#{{ $invoice->claim->id }}</td>
+                    <td>{{ $invoice->description }}</td>
                     <td>{{ $invoice->amount }}€</td>
                     <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d-m-Y H:i') }}</td>
                     <td>{{ $invoice->type }}</td>

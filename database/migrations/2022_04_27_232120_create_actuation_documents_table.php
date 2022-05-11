@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('actuation_documents', function (Blueprint $table) {
             $table->id();
+            $table->integer('actuation_id')->nullable();
+            $table->string('document_name')->nullable();
             $table->timestamps();
         });
     }

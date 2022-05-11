@@ -16,6 +16,44 @@
         @else
             @method('POST')
         @endif
+
+        <div class="row mb-4">
+            <div class="col float-center">
+                <h1>¿Qué tipo de Persona es?</h1>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <x-adminlte-input name="type" type="radio"
+                        igroup-size="xs" value="1" >
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="">Persona Jurídica</i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
+                    <div class="col-sm-2">
+                        <x-adminlte-input name="type" type="radio"
+                        igroup-size="xs" value="2">
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="">Persona Física</i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
+                    <div class="col-sm-2">
+                        <x-adminlte-input name="type" type="radio"
+                        igroup-size="xs" value="3" >
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="">Autónomo</i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
+               </div>
+            </div>
+        </div>
         
         <div class="row ">
             <div class="col-sm-6">
@@ -155,3 +193,16 @@
         </div>
     </form>
 </x-adminlte-card>
+
+@section('js')
+@if(isset($user))
+    <script>
+        $('input[value="{{ $user->type }}"]').attr('checked', true);
+    </script>
+@elseif(old('type'))
+
+    <script>
+        $('input[value="{{ old('type') }}"]').attr('checked', true);
+    </script>
+@endif
+@stop

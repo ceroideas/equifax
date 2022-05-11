@@ -7,6 +7,9 @@ use App\Rules\Iban;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
 use Auth;
 
 class UsersController extends Controller
@@ -147,6 +150,7 @@ class UsersController extends Controller
 
         $user->update([
 
+            'type' => $request->type,
             'name' => $request->name,
             'email' => $request->email,
             'dni' => $request->dni,
@@ -255,5 +259,53 @@ class UsersController extends Controller
 
         return redirect()->back()->with('msj', 'Usuario Revocado Correctamente');
 
+    }
+
+    public function migrar()
+    {
+
+        return \App\Models\Invoice::all();
+        // return \App\Models\ActuationDocument::all();
+        // \App\Models\Invoice::truncate();
+        // \App\Models\Claim::truncate();
+        // \App\Models\Debt::truncate();
+        /*\App\Models\Actuation::truncate();
+        \App\Models\ActuationDocument::truncate();*/
+        /*$a = 1500;
+
+        return $a.='|'.(0);*/
+        /*Schema::table('users', function(Blueprint $table) {
+            //
+            $table->integer('type')->nullable();
+        });*/
+
+        /*Schema::table('claims', function(Blueprint $table) {
+            //
+            $table->string('apud_acta')->nullable();
+        });*/
+        
+        /*Schema::table('invoices', function(Blueprint $table) {
+            //
+            $table->string('amounts')->nullable();
+        });*/
+
+        /*Schema::table('invoices', function(Blueprint $table) {
+            //
+            $table->string('description')->nullable();
+        });*/
+
+        /*Schema::table('invoices', function(Blueprint $table) {
+            //
+            $table->integer('discount_id')->nullable(); // por si se hace una tabla de cupones
+            $table->integer('discount_qty')->nullable(); // por si se hace fijo
+            $table->string('discount_type')->nullable(); // por si se hace fijo
+        });*/
+
+        /*Schema::create('actuation_documents', function (Blueprint $table) {
+            $table->id();
+            $table->integer('actuation_id')->nullable();
+            $table->string('document_name')->nullable();
+            $table->timestamps();
+        });*/
     }
 }
