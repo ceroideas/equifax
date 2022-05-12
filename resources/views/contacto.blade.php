@@ -355,6 +355,29 @@
   text-align: center;
   color: #fff;
 }
+
+.blockAcceso .btn-nueva[data-v-5fddf304] {
+  height: 40px;
+  margin-right: 16px;
+  border-radius: 37.5px;
+  background-color: #1e7e34;
+  color: #fff;
+}
+.blockAcceso .btn-nueva .btn-text-acceso[data-v-5fddf304] {
+  height: 17px;
+  font-family: Roobert;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+  top: 2px;
+  position: relative;
+}
+
 .blockRegistro .btn-registerHome[data-v-5fddf304] {
   border-radius: 37.5px;
   background-color: #2c60aa;
@@ -4885,6 +4908,10 @@ a.more-link[data-v-167ae8c1] {
               </div></main></div>
     <!-- Scripts -->
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
 </body></html>

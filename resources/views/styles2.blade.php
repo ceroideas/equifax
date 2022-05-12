@@ -339,6 +339,29 @@
   text-align: center;
   color: #fff;
 }
+
+.blockAcceso .btn-nueva[data-v-5fddf304] {
+  height: 40px;
+  margin-right: 16px;
+  border-radius: 37.5px;
+  background-color: #1e7e34;
+  color: #fff;
+}
+.blockAcceso .btn-nueva .btn-text-acceso[data-v-5fddf304] {
+  height: 17px;
+  font-family: Roobert;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+  top: 2px;
+  position: relative;
+}
+
 .blockRegistro .btn-registerHome[data-v-5fddf304] {
   border-radius: 37.5px;
   background-color: #2c60aa;
