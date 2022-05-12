@@ -1,3 +1,8 @@
+<style>
+  .dataTables_info, .dataTables_length {
+    text-align: left !important;
+  }
+</style>
 <style>.modal-vue .fade-enter[data-v-e8aafb5e],
 .modal-vue .fade-leave-to[data-v-e8aafb5e] {
   transform: translateX(10px);
