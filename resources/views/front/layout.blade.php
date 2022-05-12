@@ -77,7 +77,7 @@
                                 @yield('content_header')
                             </div>
 
-                                <div data-v-43503c2a="" data-v-63cd6604="" class="blockRecovery" data-v-effc9f78=""><div data-v-43503c2a="" class="container">
+                                <div data-v-43503c2a="" data-v-63cd6604="" class="blockBackoffice" data-v-effc9f78=""><div data-v-43503c2a="" class="container">
 
                                 	<div data-v-43503c2a="" class="text-center RText">
 

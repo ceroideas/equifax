@@ -873,7 +873,7 @@
 }
 }</style><style>.blockRecovery[data-v-43503c2a] {
   padding: 50px 0;
-  background-color: #fff;
+  background-color: #f8fafc;
   /*     @media (min-width: 1024px){
       .row{
           margin-right: 0;
@@ -881,17 +881,27 @@
       }
   } */
 }
+.blockBackoffice {
+  padding: 50px 0;
+  background-color: #fff;
+  /*     @media (min-width: 1024px){
+      .row{
+          margin-right: 0;
+          margin-left: 0;
+      }
+  } */ 
+}
 .blockRecovery .RText[data-v-43503c2a] {
   margin-bottom: 50px;
-  /*font-family: Nordeco;*/
-  /*font-size: 40px;*/
-  /*font-weight: normal;
+  font-family: Nordeco;
+  font-size: 40px;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;*/
+  color: #051c2c;
 }
 .blockRecovery .Recovery-img[data-v-43503c2a] {
   -moz-text-align-last: center;
@@ -901,25 +911,25 @@
 }
 .blockRecovery .Recovery-title[data-v-43503c2a] {
   font-family: Roobert;
-  /*font-size: 18px;*/
-  /*font-weight: normal;
+  font-size: 18px;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;*/
+  color: #051c2c;
 }
 .blockRecovery .Recovery-text[data-v-43503c2a] {
   font-family: CynthoNext;
-  /*font-size: 16px;*/
- /* font-weight: normal;
+  font-size: 16px;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.5;
   letter-spacing: normal;
   text-align: center;
-  color: #254158;*/
+  color: #254158;
 }
 @media (min-width: 1280px) {
 .blockRecovery .Recovery-text[data-v-43503c2a] {
