@@ -51,7 +51,9 @@ class PaymentsController extends Controller
 
                 if ($c->status == 7) {
                     if ($c->claim_type == 1) {
-                        $c->status = 10;
+                        if (!$c->last_invoice) {
+                            $c->status = 10;
+                        }
                     }else{
                         $c->status = 8;
                     }

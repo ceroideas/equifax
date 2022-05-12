@@ -13,7 +13,7 @@
 @font-face
 	{font-family:Roboto;}
  /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
+.WordSection1 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin-top:0cm;
 	margin-right:0cm;
 	margin-bottom:8.0pt;
@@ -21,14 +21,14 @@
 	line-height:107%;
 	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
-h1
+.WordSection1 h1
 	{mso-style-link:"Título 1 Car";
 	margin-right:0cm;
 	margin-left:0cm;
 	font-size:24.0pt;
 	font-family:"Times New Roman","serif";
 	font-weight:bold;}
-h2
+.WordSection1 h2
 	{mso-style-link:"Título 2 Car";
 	margin-right:0cm;
 	margin-left:0cm;
@@ -41,12 +41,12 @@ h2
 a:visited, span.MsoHyperlinkFollowed
 	{color:#954F72;
 	text-decoration:underline;}*/
-p
+.WordSection1 p
 	{margin-right:0cm;
 	margin-left:0cm;
 	font-size:12.0pt;
 	font-family:"Times New Roman","serif";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+.WordSection1 p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	{margin-top:0cm;
 	margin-right:0cm;
 	margin-bottom:8.0pt;
@@ -54,7 +54,7 @@ p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	line-height:107%;
 	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+.WordSection1 p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
 	{margin-top:0cm;
 	margin-right:0cm;
 	margin-bottom:0cm;
@@ -63,7 +63,7 @@ p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphC
 	line-height:107%;
 	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+.WordSection1 p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
 	{margin-top:0cm;
 	margin-right:0cm;
 	margin-bottom:0cm;
@@ -72,7 +72,7 @@ p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagrap
 	line-height:107%;
 	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+.WordSection1 p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
 	{margin-top:0cm;
 	margin-right:0cm;
 	margin-bottom:8.0pt;
@@ -80,34 +80,34 @@ p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxS
 	line-height:107%;
 	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
-span.Ttulo1Car
+.WordSection1 span.Ttulo1Car
 	{mso-style-name:"Título 1 Car";
 	mso-style-link:"Título 1";
 	font-family:"Times New Roman","serif";
 	font-weight:bold;}
-span.Ttulo2Car
+.WordSection1 span.Ttulo2Car
 	{mso-style-name:"Título 2 Car";
 	mso-style-link:"Título 2";
 	font-family:"Times New Roman","serif";
 	font-weight:bold;}
-span.UnresolvedMention
+.WordSection1 span.UnresolvedMention
 	{mso-style-name:"Unresolved Mention";
 	color:#605E5C;
 	background:#E1DFDD;}
-.MsoChpDefault
+.WordSection1 .MsoChpDefault
 	{font-family:"Calibri","sans-serif";}
-.MsoPapDefault
+.WordSection1 .MsoPapDefault
 	{margin-bottom:8.0pt;
 	line-height:107%;}
 @page WordSection1
 	{size:595.3pt 841.9pt;
 	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
-div.WordSection1
+.WordSection1 div.WordSection1
 	{page:WordSection1;}
  /* List Definitions */
- ol
+.WordSection1 ol
 	{margin-bottom:0cm;}
-ul
+.WordSection1 ul
 	{margin-bottom:0cm;}
 -->
 </style>

@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
     
 
-    <title>Asemar</title>
+    <title>Dividae</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -4863,23 +4863,7 @@ a.more-link[data-v-167ae8c1] {
                                         <div data-v-5fddf304="" class=""></div>
                                     </li>
                                 </ul>
-                                <div data-v-5fddf304="" class="navbar-nav ml-auto">
-                                    <div data-v-5fddf304="" class="blockAcceso">
-                                        <a data-v-5fddf304="" href="{{url('/')}}/login" class="btn btn-acceso">
-                                            <span data-v-5fddf304="" class="btn-text-acceso">
-                                                Acceso
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div data-v-5fddf304="" class="blockRegistro">
-                                        <a data-v-5fddf304="" href="{{url('/')}}/register" class="btn btn-registerHome">
-                                            <span data-v-5fddf304="" class="text-register-btn">
-                                                Regístrate
-                                                <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right" />
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
+                                @include('front.loginButtons')
                                 <!---->
                             </div>
                         </div>

@@ -22,6 +22,8 @@
 @section('content')
    {{-- @include('users.partials._form') --}}
 
+   @include('progressbar', ['step' => 2])
+
    @if(session()->has('msj'))
     <x-adminlte-alert theme="success" dismissable>
         {{ session('msj') }}

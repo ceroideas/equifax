@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="ZTvvFBs0fJ6f864MWTU3BPQOJfKdC9Xa0PneA26E">
     
 
-    <title>Asemar</title>
+    <title>Dividae</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -4814,11 +4814,9 @@ a.more-link[data-v-167ae8c1] {
                             Tarifas
                         </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/contacto" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             Contacto
-                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul> <div data-v-5fddf304="" class="navbar-nav ml-auto"><div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('/')}}/login" class="btn btn-acceso"><span data-v-5fddf304="" class="btn-text-acceso">
-                            Acceso
-                        </span></a></div> <div data-v-5fddf304="" class="blockRegistro"><a data-v-5fddf304="" href="{{url('/')}}/register" class="btn btn-registerHome"><span data-v-5fddf304="" class="text-register-btn">
-                            Regístrate
-                            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right"></span></a></div></div> <!----></div></div></nav> <div data-v-c7d18d50="" data-v-effc9f78="" class="container About"><div data-v-c7d18d50="" data-v-effc9f78="" class="row"><div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="About-title">¿Quiénes somos?</div></div> <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="About-text">
+                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul> 
+                        @include('front.loginButtons')
+                         <!----></div></div></nav> <div data-v-c7d18d50="" data-v-effc9f78="" class="container About"><div data-v-c7d18d50="" data-v-effc9f78="" class="row"><div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="About-title">¿Quiénes somos?</div></div> <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="About-text">
 
                               <p><b>Dividae</b> es una plataforma 100% online que ofrece a empresarios y autónomos la solución para reclamar facturas que nunca les pagaron. Esta línea de negocio es parte de <b>Atlante</b>, uno de los principales proveedores de servicios de recuperación de deuda de España. </p>
 

@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
     
 
-    <title>Asemar</title>
+    <title>Dividae</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -4859,11 +4859,9 @@ a.more-link[data-v-167ae8c1] {
                             Tarifas
                         </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/contacto" aria-current="page" class="nav-link router-link-exact-active router-link-active"><span data-v-5fddf304="" class="Type-something">
                             Contacto
-                        </span></a> <div data-v-5fddf304="" class="punto-active"></div></li></ul> <div data-v-5fddf304="" class="navbar-nav ml-auto"><div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('/')}}/login" class="btn btn-acceso"><span data-v-5fddf304="" class="btn-text-acceso">
-                            Acceso
-                        </span></a></div> <div data-v-5fddf304="" class="blockRegistro"><a data-v-5fddf304="" href="{{url('/')}}/register" class="btn btn-registerHome"><span data-v-5fddf304="" class="text-register-btn">
-                            Regístrate
-                            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right"></span></a></div></div> <!----></div></div></nav> <div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto container"><div data-v-cfd2b624="" data-v-effc9f78="" class="row"><div data-v-cfd2b624="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 block-text"><div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto-subtitle">
+                        </span></a> <div data-v-5fddf304="" class="punto-active"></div></li></ul> 
+                        @include('front.loginButtons')
+                         <!----></div></div></nav> <div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto container"><div data-v-cfd2b624="" data-v-effc9f78="" class="row"><div data-v-cfd2b624="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 block-text"><div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto-subtitle">
                         ¿Podemos ayudarte?
                     </div> <div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto-title mb-5">
                         Contacto

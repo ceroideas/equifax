@@ -20,6 +20,8 @@
 @stop
 
 @section('content')
+
+    @include('progressbar', ['step' => 1])
    {{-- @include('users.partials._form') --}}
    @if(session()->has('claim_client') || session()->has('claim_third_party'))
    <x-adminlte-alert theme="info">

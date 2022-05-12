@@ -726,6 +726,12 @@ class ClaimsController extends Controller
             $name = $r->file->getClientOriginalName();
             $r->file->move($path,$name);
             $c->apud_acta = $name;
+
+            if ($c->last_invoice) {
+                $c->status = 7;
+            }else{
+                $c->status = 10;
+            }
             $c->save();
         }
 
