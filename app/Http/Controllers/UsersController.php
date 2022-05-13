@@ -264,13 +264,13 @@ class UsersController extends Controller
     public function migrar()
     {
 
-        return \App\Models\Invoice::all();
+        // return \App\Models\Invoice::all();
         // return \App\Models\ActuationDocument::all();
-        // \App\Models\Invoice::truncate();
-        // \App\Models\Claim::truncate();
-        // \App\Models\Debt::truncate();
-        /*\App\Models\Actuation::truncate();
-        \App\Models\ActuationDocument::truncate();*/
+        \App\Models\Invoice::truncate();
+        \App\Models\Claim::truncate();
+        \App\Models\Debt::truncate();
+        \App\Models\Actuation::truncate();
+        \App\Models\ActuationDocument::truncate();
         /*$a = 1500;
 
         return $a.='|'.(0);*/

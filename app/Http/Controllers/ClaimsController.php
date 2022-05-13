@@ -131,6 +131,8 @@ class ClaimsController extends Controller
     public function store(Request $request)
     {
         // dd(session('claim_client'), session('claim_debtor'), session('claim_debt'), session('claim_agreement'));
+        // $debt = session('claim_debt');
+
         $claim = new Claim();
 
         if(session('claim_client')){
@@ -164,32 +166,32 @@ class ClaimsController extends Controller
             $debt->agreement = true;
             $debt->agreement_id = $agreement->id;
             $claim->agreement_id = $agreement->id;
+        }
 
-            if (Carbon::parse($debt->debt_expiration_date)->diffInYears(Carbon::now()) >= 3) {
+        if (Carbon::parse($debt->debt_expiration_date)->diffInYears(Carbon::now()) >= 3) {
+            $claim->status = 0;
+        }else{
+
+            if (session('type_other')) {
                 $claim->status = 0;
             }else{
+                
+                $claim->status = 7;
+                $claim->claim_type = 2;
 
-                if (session('type_other')) {
-                    $claim->status = 0;
-                }else{
-                    
-                    $claim->status = 7;
-                    $claim->claim_type = 2;
+                $c = Configuration::first();
 
-                    $c = Configuration::first();
-
-                    $invoice = new Invoice;
-                    $invoice->claim_id = $claim->id;
-                    $invoice->user_id = $claim->user_id;
-                    $invoice->amount = $c ? $c->fixed_fees : '0';
-                    $invoice->type = 'fixed_fees';
-                    $invoice->description = "Pago de honorarios para inicio de proceso Extrajudicial";
-                    $invoice->save();
-                }
+                $invoice = new Invoice;
+                $invoice->claim_id = $claim->id;
+                $invoice->user_id = $claim->user_id;
+                $invoice->amount = $c ? $c->fixed_fees : '0';
+                $invoice->type = 'fixed_fees';
+                $invoice->description = "Pago de honorarios para inicio de proceso Extrajudicial";
+                $invoice->save();
             }
-            $debt->save();
-            $claim->save();
         }
+        $debt->save();
+        $claim->save();
 
         $path = '/uploads/claims/' . $claim->id . '/documents/';
 
@@ -264,7 +266,11 @@ class ClaimsController extends Controller
         $request->session()->forget('claim_agreement');
         $request->session()->forget('type_other');
 
-        return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
+        if ($claim->last_invoice){
+            return redirect('/claims/payment/' . $claim->id)->with('msj', 'Reclamación creada exitosamente, se ha generado una factura por honorarios, deberá realizar el pago correspondiente para poder proceder con la reclamación');
+        }else{
+            return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
+        }
 
     }
 

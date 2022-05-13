@@ -882,7 +882,8 @@
   } */
 }
 .blockBackoffice {
-  padding: 50px 0;
+  min-height: 54vh;
+  padding-top: 50px;
   background-color: #fff;
   /*     @media (min-width: 1024px){
       .row{
@@ -1487,6 +1488,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
 }
 .card-title {
   margin: 0 !important;
+  text-align: left;
 }
 .btn-tool {
     top: 12px;

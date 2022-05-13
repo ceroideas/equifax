@@ -23,17 +23,27 @@
 <style>
 	.operation-cards {
 		margin: 10px;
-		width: 40px;
+		width: 39px;
+	}
+
+	.operation-cards#first-card
+	{
+		margin-left: 0;
+	}
+
+	.operation-cards#last-card
+	{
+		margin-right: 0;
 	}
 </style>
 
-    {{-- @if(session()->has('msj'))
+    @if(session()->has('msj'))
         <x-adminlte-alert theme="success" dismissable>
             {{ session('msj') }}
         </x-adminlte-alert>
     @endif
 
-    @if(!$claim->isViable())
+    {{-- @if(!$claim->isViable())
         <x-adminlte-modal id="modalMin" title="Informe de Inviabilidad" theme="primary" size="lg" v-centered="true">
             <div class="card">    
                 <div class="card-body">
@@ -185,12 +195,12 @@
 					<div id="paymentErrorMsg"></div>
 
 					<div class="operation-cards__container" style="width: 100%; text-align: center;">
-                        <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-visa.svg" class="operation-cards">
+                        <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-visa.svg" id="first-card" class="operation-cards">
                         <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-mastercard.svg" class="operation-cards">
                         <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-amex.svg" class="operation-cards">
                         <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-discover.svg" class="operation-cards">
                         <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-jcb.svg" class="operation-cards">
-                        <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-dinnerclub.svg" class="operation-cards">
+                        <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-dinnerclub.svg" id="last-card" class="operation-cards">
                     </div>
             </div>
         </div>
