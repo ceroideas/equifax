@@ -87,7 +87,7 @@
                     <td>{{ $invoice->type }}</td>
                     <td>
                      <nobr>
-                        <a href="{{ url('/my-invoices/' . $invoice->id ) }}">
+                        <a target="_blank" href="{{ url('/claims/invoices/' . $invoice->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>

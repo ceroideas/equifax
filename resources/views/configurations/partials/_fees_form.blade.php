@@ -56,6 +56,60 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="tax" label="IVA%" placeholder="IVA" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->tax : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="invoice_name" label="Pagado a nombre de..." placeholder="Nombre" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->invoice_name : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="invoice_address_line_1" label="Dirección de pago Linea 1" placeholder="Dirección" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->invoice_address_line_1 : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="invoice_address_line_2" label="Dirección de pago Linea 2 " placeholder="Dirección" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->invoice_address_line_2 : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+
+            <div class="col-sm-6">
+                <x-adminlte-input name="invoice_email" label="Email de factura " placeholder="Email" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->invoice_email : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+
 
         <div class="card-footer">
             <div class="row">

@@ -162,6 +162,63 @@
                                 @endif
                                
                             </div>
+
+                            @if (!Auth::user()->isClient())
+                                <div class="post">
+
+                                    <h6>Deudor con código postal: {{$claim->debtor->cop}}</h6>
+
+                                    <select name="postal_code_id" class="js-data-example-ajax form-control">
+                                        @if ($claim->debtor->cop)
+                                        @php
+                                            $pc = \App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
+                                        @endphp
+                                            @if ($pc)
+                                                <option value="{{$pc->id}}">{{$pc->code.' - '.$pc->province}}</option>
+                                            @endif
+                                        @endif
+                                    </select>
+
+                                    <br>
+
+                                    @if ($claim->debtor->cop)
+
+                                    @php                                        
+                                        $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
+
+                                        $juzgado = "--";
+                                        $procurador = "--";
+
+                                        if ($pc) {
+                                            $type = App\Models\Type::where('locality',$pc->province)->first();
+
+                                            if ($type) {
+                                                $juzgado = $type->type;
+
+                                                $party = App\Models\Party::where('locality',$pc->province)->first();
+
+                                                if ($party) {
+                                                    $procurador = $party->procurator;
+                                                }
+                                            }
+                                        }
+                                    @endphp 
+
+                                    <div class="form-group">
+                                        <b>JUZGADO:</b> <span id="juzgado">{{$juzgado}}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <b>PROCURADOR:</b> <span id="procurador">{{$procurador}}</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <a href="{{url('exportTemplate',$claim->id)}}" class="btn btn-success"> <i class="fas fa-file"></i> Descargar DDA MONITORIO DIVIDAE Word</a>
+                                    </div>
+
+                                    @endif
+                                   
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -359,7 +416,7 @@
                             <div class="row text-center">
                                 <div class="col-sm-6 offset-sm-3">
                                     <div class="alert-danger">
-                                        <span>Reclamación Finalizada</span>
+                                        <p>Reclamación Finalizada</p>
                                     </div>
                                 </div>
                             </div>
@@ -369,7 +426,7 @@
                             <div class="row text-center">
                                 <div class="col-sm-6 offset-sm-3">
                                     <div class="alert-success">
-                                        <span>{{ $claim->getType() }}</span>
+                                        <p>{{ $claim->getType() }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -431,4 +488,46 @@
 
 
 
+@stop
+
+@section('js')
+    <script>
+        
+        $('.js-data-example-ajax').select2({
+          placeholder: 'Busca por código',
+          language: {
+            searching: function() {
+                return "Buscando";
+            },
+            noResults: function() {
+                return "No hay resultados";
+            }
+          },
+          ajax: {
+            url: '{{url('api/load-postal-codes')}}',
+            dataType: 'json',
+            processResults: function (data) {
+                return {
+                  results: data,
+                  pagination: {
+                    more: false
+                  }
+                }
+            },
+          }
+        });
+
+        $('[name="postal_code_id"]').on('change', function(event) {
+            event.preventDefault();
+            /* Act on the event */
+            $.post('{{url('api/save-postal-code')}}', {id: {{$claim->id}}, postal_code_id: $(this).val()}, function(data, textStatus, xhr) {
+                /*optional stuff to do after success */
+                console.log(data);
+
+                $('#juzgado').text(data[0]);
+                $('#procurador').text(data[1]);
+            });
+        });
+
+    </script>
 @stop

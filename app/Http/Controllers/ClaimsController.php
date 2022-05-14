@@ -19,6 +19,7 @@ use Carbon\Carbon;
 
 use Excel;
 use App\Exports\ClaimsExport;
+use App\Exports\InvoiceExport;
 
 class ClaimsController extends Controller
 {
@@ -635,6 +636,13 @@ class ClaimsController extends Controller
 
         return view('claims.invoices', compact('invoices'));
     }
+    public function myInvoice($id)
+    {
+        $i = Invoice::find($id);
+        $c = Configuration::first();
+
+        return view('invoice', compact('c','i'));
+    }
 
     public function actuations($id)
     {
@@ -747,5 +755,10 @@ class ClaimsController extends Controller
     public function exportAll()
     {
         return Excel::download(new ClaimsExport, 'all_claims-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
+    }
+
+    public function excelInvoice($id)
+    {
+        return Excel::download(new InvoiceExport($id), 'invoice-id_'.$id.'-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 }

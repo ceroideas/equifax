@@ -32,6 +32,11 @@ class ConfigurationsController extends Controller
         if($request['judicial']){
             $configuration->judicial_fees = $data['judicial'];
         }
+        $configuration->tax = $data['tax'];
+        $configuration->invoice_name = $data['invoice_name'];
+        $configuration->invoice_address_line_1 = $data['invoice_address_line_1'];
+        $configuration->invoice_address_line_2 = $data['invoice_address_line_2'];
+        $configuration->invoice_email = $data['invoice_email'];
         $configuration->save();
 
         return redirect('configurations/fees')->with('msj' , 'Tasas guardadas correctamente');
@@ -49,6 +54,11 @@ class ConfigurationsController extends Controller
         if($request['judicial']){
             $configuration->judicial_fees = $data['judicial'];
         }
+        $configuration->tax = isset($data['tax']) ? $data['tax'] : null;
+        $configuration->invoice_name = isset($data['invoice_name']) ? $data['invoice_name'] : null;
+        $configuration->invoice_address_line_1 = isset($data['invoice_address_line_1']) ? $data['invoice_address_line_1'] : null;
+        $configuration->invoice_address_line_2 = isset($data['invoice_address_line_2']) ? $data['invoice_address_line_2'] : null;
+        $configuration->invoice_email = isset($data['invoice_email']) ? $data['invoice_email'] : null;
         $configuration->update();
 
         return redirect('configurations/fees')->with('msj' , 'Tasas actualziadas correctamente');
@@ -65,7 +75,21 @@ class ConfigurationsController extends Controller
         if(request('judicial')){
             $rules['judicial'] = 'numeric';
         }
-
+        if(request('tax')){
+            $rules['tax'] = 'required';
+        }
+        if(request('invoice_name')){
+            $rules['invoice_name'] = 'required';
+        }
+        if(request('invoice_address_line_1')){
+            $rules['invoice_address_line_1'] = 'required';
+        }
+        if(request('invoice_address_line_2')){
+            $rules['invoice_address_line_2'] = 'required';
+        }
+        if(request('invoice_email')){
+            $rules['invoice_email'] = 'required';
+        }
 
         return request()->validate($rules);
 

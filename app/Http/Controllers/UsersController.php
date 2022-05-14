@@ -263,14 +263,18 @@ class UsersController extends Controller
 
     public function migrar()
     {
-
+        Schema::table('claims', function(Blueprint $table) {
+            //
+            $table->integer('postal_code_id')->nullable();
+        });
+        // return \App\Models\Party::all();
         // return \App\Models\Invoice::all();
         // return \App\Models\ActuationDocument::all();
-        \App\Models\Invoice::truncate();
+        /*\App\Models\Invoice::truncate();
         \App\Models\Claim::truncate();
         \App\Models\Debt::truncate();
         \App\Models\Actuation::truncate();
-        \App\Models\ActuationDocument::truncate();
+        \App\Models\ActuationDocument::truncate();*/
         /*$a = 1500;
 
         return $a.='|'.(0);*/
@@ -306,6 +310,41 @@ class UsersController extends Controller
             $table->integer('actuation_id')->nullable();
             $table->string('document_name')->nullable();
             $table->timestamps();
+        });*/
+
+        /*Schema::table('configurations', function(Blueprint $table) {
+            //
+            $table->string('tax')->nullable();
+            $table->string('invoice_name')->nullable();
+            $table->string('invoice_address_line_1')->nullable();
+            $table->string('invoice_address_line_2')->nullable();
+            $table->string('invoice_email')->nullable();
+        });*/
+
+        /*Schema::create('postal_codes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code')->nullable();
+            $table->string('province')->nullable();
+            $table->timestamps();
+            //
+        });
+
+        Schema::create('types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('locality')->nullable();
+            $table->string('comunity')->nullable();
+            $table->string('type')->nullable();
+            $table->timestamps();
+            //
+        });
+
+        Schema::create('parties', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('locality')->nullable();
+            $table->string('province')->nullable();
+            $table->string('procurator')->nullable();
+            $table->timestamps();
+            //
         });*/
     }
 }

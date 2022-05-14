@@ -31,6 +31,7 @@ return new class extends Migration
         Schema::table('claims', function(Blueprint $table) {
             //
             $table->string('apud_acta')->nullable();
+            $table->integer('postal_code_id')->nullable();
         });
     }
 

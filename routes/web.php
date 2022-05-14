@@ -9,6 +9,7 @@ use App\Http\Controllers\DebtsController;
 use App\Http\Controllers\AgreementsController;
 use App\Http\Controllers\ConfigurationsController;
 use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\WordController;
 use App\Http\Controllers\Auth\RegisterController;
 
 /*
@@ -85,6 +86,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/clear-option-two', [ClaimsController::class, 'flushOptionTwo']);
     Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
     Route::get('/invoices', [ClaimsController::class , 'myInvoices']);
+    Route::get('/invoices/{id}', [ClaimsController::class , 'myInvoice']);
     Route::get('/actuations/{id}', [ClaimsController::class , 'actuations']);
     Route::post('/actuations/{id}', [ClaimsController::class , 'saveActuation']);
     Route::get('/flush-options', [ClaimsController::class, 'flushAll']);
@@ -177,5 +179,12 @@ Route::group(['prefix'  => 'configurations'], function(){
 });
 
 /**/
+Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
 
 Route::get('migrar', [UsersController::class, 'migrar']);
+
+Route::get('exportTemplate/{id}', [WordController::class, 'exportTemplate']);
+
+Route::post('importParty', [WordController::class, 'importParty']);
+Route::post('importPostalCode', [WordController::class, 'importPostalCode']);
+Route::post('importType', [WordController::class, 'importType']);

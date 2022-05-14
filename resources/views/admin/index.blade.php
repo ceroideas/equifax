@@ -30,7 +30,40 @@
     </x-adminlte-alert>
     @endif
 
+    @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin() )
+        <div class="row">
+            <div class="col-sm-4">
+                <form action="{{url('importPostalCode')}}" enctype="multipart/form-data" method="POST">
+                    {{csrf_field()}}
+                    <label for="importPostalCode" class="btn btn-info btn-sm">
+                        Subir Excel para Códigos Postales
+                    </label>
+                    <input type="file" name="file" style="display: none;" id="importPostalCode" class="upload-excel">
+                </form>
+            </div>
+            <div class="col-sm-4">
+                <form action="{{url('importType')}}" enctype="multipart/form-data" method="POST">
+                    {{csrf_field()}}
+                    <label for="importType" class="btn btn-info btn-sm">
+                        Subir Excel para Tipos de Procedimiento
+                    </label>
+                    <input type="file" name="file" style="display: none;" id="importType" class="upload-excel">
+                </form>
+            </div>
+
+            <div class="col-sm-4">
+                <form action="{{url('importParty')}}" enctype="multipart/form-data" method="POST">
+                    {{csrf_field()}}
+                    <label for="importParty" class="btn btn-info btn-sm">
+                        Subir Excel para Partidos Judíciales
+                    </label>
+                    <input type="file" name="file" style="display: none;" id="importParty" class="upload-excel">
+                </form>
+            </div>
+        </div>
+    @endif
     <div class="row">
+
         @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin() )
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-warning ">
@@ -93,3 +126,12 @@
 
 
 @stop
+
+@section('js')
+<script>
+    $('.upload-excel').on('change',function(e){
+        e.preventDefault();
+        $(this).parent().submit();
+    })
+</script>
+@endsection
