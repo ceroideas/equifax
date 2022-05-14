@@ -71,3 +71,5 @@ php artisan serve
 ```bash
 php artisan migrate
 ```
+
+- Para cargar a la base de datos de documentos (codigos postales, juzgados y procuradores), desde el admin hay 3 botones en los cuales se deberan cargar unos documentos que se encuentran en la raiz del proyecto comprimidos (no vale con los originales por alguna razon del formato, éstos ya están modificados), y se deben cargar correctamente "postal codes" en el boton 1, "types" en el boton 2, y "parties" en el 3
