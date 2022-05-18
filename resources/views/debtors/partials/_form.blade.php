@@ -114,6 +114,14 @@
                     </x-slot></x-adminlte-textarea>
             </div>
             <div class="col-sm-6">
+                <x-adminlte-input name="cop" label="Código Postal *" placeholder="Código Postal" type="number"
+                igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->cop   :  ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-map-marker"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
                 <x-adminlte-input name="location" label="Población *" placeholder="Población" type="text"
                     igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->location   :  ''}}">
                         <x-slot name="appendSlot">
@@ -121,14 +129,6 @@
                                 <i class="fas fa-map-marker"></i>
                             </div>
                         </x-slot>
-                </x-adminlte-input>
-                <x-adminlte-input name="cop" label="Código Postal *" placeholder="Código Postal" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->cop   :  ''}}">
-                    <x-slot name="appendSlot">
-                        <div class="input-group-text bg-dark">
-                            <i class="fas fa-map-marker"></i>
-                        </div>
-                    </x-slot>
                 </x-adminlte-input>
             </div>
         </div>
@@ -175,4 +175,15 @@
         $('input[value="{{ old('type') }}"]').attr('checked', true);
     </script>
 @endif
+
+<script>
+    $("#cop").change(function(event) {
+        
+        $.get('{{url('getPopulation')}}/'+($(this).val()), function(data, textStatus) {
+            if (data) {
+                $('#location').val(data.province);
+            }
+        });
+    });
+</script>
 @stop

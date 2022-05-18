@@ -18,6 +18,18 @@
         margin-right: 10px !important;
         margin-left: 10px !important;
     }
+    .input-group-prepend, .input-group-append {
+        width: 5%;
+    }
+
+    .input-group-prepend button, .input-group-append button {
+        width: 100%;
+    }
+
+    .slider {
+        width: calc(90% - 20px) !important;
+        top: 5px;
+    }
 </style>
 
 
@@ -48,7 +60,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <x-adminlte-select name="espera" label="Espera *" class=""
+                <x-adminlte-select name="espera" label="Espera *" id="espera_input" class=""
                 igroup-size="sm" enable-old-support="true">
                     <option selected disabled></option>
                     <option {{ session('claim_agreement') ? (session('claim_agreement')->wait == '1 Mes' ? 'selected' : '') : ''}}>1 Mes</option>
@@ -77,7 +89,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <x-adminlte-textarea name="observaciones" label="Observaciones / Explicaciones *" rows=4 enable-old-support="true" placeholder="Indica alguna pecularidad o condición sobre éste acuerdo">
+                <x-adminlte-textarea name="observaciones" label="Observaciones / Explicaciones" rows=4 enable-old-support="true" placeholder="Indica alguna pecularidad o condición sobre éste acuerdo">
                     {{ session('claim_agreement') ? session('claim_agreement')->observation : ''}}
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -89,7 +101,22 @@
         </div>
         <div class="card-footer">
             <div class="row">
-                <span class="float-left">(*) Los Campos marcados son requeridos.</span>
+
+                <div class="col-sm-12 text-left">
+                    <span>(*) Los Campos marcados son requeridos.</span>
+                </div>
+
+                <div class="col-sm-12 text-left">
+                    <span class="d-none" id="quitas">
+                        “<i>Usted esta dispuesto a que la deuda sea saldada si se recupera la cantidad de... <b><span></span></b></i>”.
+                    </span>
+                </div>
+
+                <div class="col-sm-12 text-left">
+                    <span class="d-none" id="espera">
+                        “<i>La cuota mensual durante <b><span></span></b> meses es de <b><label></label></b></i>”.
+                    </span>
+                </div>
             </div>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save"/>
@@ -101,8 +128,34 @@
 @section('js')
 
     <script>
+
+        function calcularCuotas()
+        {
+            let meses = parseInt($('#espera_input').val());
+            if ($('#deudas_otros_input').val() > 0 && (meses && meses != 1)) {
+                console.log(meses);
+                $('#espera').removeClass('d-none').find('span').text(meses)
+                $('#espera').find('label').text(($('#deudas_otros_input').val()/meses)+'€')
+            }else{
+                $('#espera').addClass('d-none');
+
+            }
+        }
+
         $('#deudas_otros_input').on('slide change', function () {
             $('[for="deudas_otros_input"]').text("Quitas * ("+$(this).val()+"€)");
+
+            if ($(this).val() > 0) {
+                $('#quitas').removeClass('d-none').find('span').text($(this).val()+'€');
+            }else{
+                $('#quitas').addClass('d-none');
+            }
+
+            calcularCuotas();
         });
+
+        $('#espera_input').on('change',function(){
+            calcularCuotas();
+        })
     </script>
 @stop

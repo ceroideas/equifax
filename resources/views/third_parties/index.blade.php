@@ -31,6 +31,8 @@
     $heads = [
         ['label' => 'DNI'],
         'Nombre Completo',
+        'Representante Legal',
+        'DNI Representante',
         
         // ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
@@ -38,7 +40,7 @@
 
     $config = [
        
-        'columns' => [null, null, ['orderable' => false]],
+        'columns' => [null, null, null, null, ['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
@@ -69,6 +71,8 @@
                 <tr>
                     <td>{{ $third_party->dni }}</td>
                     <td>{{ $third_party->name }}</td>
+                    <td>{{ $third_party->legal_representative }}</td>
+                    <td>{{ $third_party->representative_dni }}</td>
                     
                     {{-- <td>{{ $third_party->getStatus() }}</td> --}}
                     <td>

@@ -201,7 +201,13 @@
                         <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-discover.svg" class="operation-cards">
                         <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-jcb.svg" class="operation-cards">
                         <img src="https://api.paycomet.com/gateway/PAYCOMET_template/img/operation-dinnerclub.svg" id="last-card" class="operation-cards">
+
+                        <br>
+                        <br>
+
+                    	<img src="{{url('logo-paycomet.png')}}" alt="" style="width: 100%;">
                     </div>
+
             </div>
         </div>
     </div>

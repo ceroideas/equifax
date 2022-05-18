@@ -66,10 +66,16 @@
         </div>
         <div class="card-footer">
             <div class="row">
-                <span class="float-left">(*) Los Campos marcados son requeridos.</span>
+                <div class="col-sm-12 text-left">
+                    
+                <span>(*) Los Campos marcados son requeridos.</span>
+                </div>
             </div>
             <div class="row">
-                <span class="float-left">(**) Para éste tipo de Deuda los Administradores tendrán que evaluar y estudiarla para decidir si es tomada en cuenta o no, puede toamr más tiempo con respecto a las otras elecciones.</span>
+                <div class="col-sm-12 text-left">
+                    
+                <span>(**) Para éste tipo de Deuda los Administradores tendrán que evaluar y estudiarla para decidir si es tomada en cuenta o no, puede to,ar más tiempo con respecto a las otras elecciones.</span>
+                </div>
             </div>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save"/>

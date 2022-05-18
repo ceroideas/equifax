@@ -31,6 +31,7 @@
             'Monto cancelado',
             'Fecha del pago',
             'Tipo de cobro',
+            'Status',
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
         $config = [
@@ -47,6 +48,7 @@
             'Monto cancelado',
             'Fecha del pago',
             'Tipo de cobro',
+            'Status',
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
         $config = [
@@ -78,13 +80,14 @@
                 <tr>
                     <td>{{ $invoice->id }}</td>
                     @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
-                        <td>{{ $invoice->claim->client->name }}</td>
+                        <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
                     @endif
                     <td>#{{ $invoice->claim->id }}</td>
                     <td>{{ $invoice->description }}</td>
                     <td>{{ $invoice->amount }}€</td>
                     <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d-m-Y H:i') }}</td>
                     <td>{{ $invoice->type }}</td>
+                    <td>{{ $invoice->status == 1 ? 'Pagado' : 'Pendiente' }}</td>
                     <td>
                      <nobr>
                         <a target="_blank" href="{{ url('/claims/invoices/' . $invoice->id ) }}">

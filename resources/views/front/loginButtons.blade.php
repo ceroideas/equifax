@@ -11,6 +11,14 @@
 			border-top-right-radius: 37.5px !important;
     		border-bottom-right-radius: 37.5px !important;
 		}
+
+		.blockAcceso .btn-nueva[data-v-5fddf304] {
+		  height: 40px;
+		  margin-right: 16px;
+		  border-radius: 37.5px;
+		  background-color: #1e7e34;
+		  color: #fff;
+		}
 	</style>	
 	@if (Auth::check())
 		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('claims/select-client')}}" class="btn btn-nueva"><span data-v-5fddf304="" class="btn-text-acceso">

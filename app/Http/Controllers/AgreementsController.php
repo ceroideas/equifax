@@ -38,7 +38,7 @@ class AgreementsController extends Controller
         $agreement = new Agreement();
         $agreement->take = $request['quitas'];
         $agreement->wait = $request['espera'];
-        $agreement->observation = $request['observaciones'];
+        $agreement->observation = $request['observaciones'] ? $request['observaciones'] : '';
 
 
         session()->put('claim_agreement', $agreement);
@@ -109,10 +109,12 @@ class AgreementsController extends Controller
             
             'quitas' => 'required',
             'espera' => 'required',
-            'observaciones' => 'required'
 
         ];
 
+        if (request('observaciones')) {
+            $rules['observaciones'] = 'required';
+        }
 
         return request()->validate($rules);
     }

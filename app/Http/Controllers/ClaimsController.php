@@ -81,10 +81,11 @@ class ClaimsController extends Controller
     public function stepTwo()
     {
 
+        return redirect('debtors');
+
         if(session()->has('claim_client') || (session()->has('claim_third_party') && session()->get('claim_third_party') != 'waiting')){
             return view('claims.create_step_2');
         }
-        
 
         return redirect('claims/select-client');
     }
@@ -347,7 +348,11 @@ class ClaimsController extends Controller
         }
 
         if ($request['tipo_viabilidad'] == 1) {
-            $claim->status = 11;
+            if ($claim->owner->apud_acta) {
+                $claim->status = 7;
+            }else{
+                $claim->status = 11;
+            }
         }else{
             $claim->status = 7;
 
@@ -361,11 +366,12 @@ class ClaimsController extends Controller
         $invoice = new Invoice;
         $invoice->claim_id = $claim->id;
         $invoice->user_id = $claim->user_id;
-        $invoice->amount = $amount;
         $invoice->amounts = $amounts;
         if ($request['tipo_viabilidad'] == 1) {
+            $invoice->amount = 70;
             $invoice->description = "Pago de honorarios para inicio de proceso Judicial";
         }else{
+            $invoice->amount = $amount;
             $invoice->description = "Pago de honorarios para inicio de proceso Extrajudicial";
         }
         $invoice->type = $type;
@@ -488,6 +494,8 @@ class ClaimsController extends Controller
     public function saveDebtor(Request $request){
 
         $request->session()->put('claim_debtor', $request->id);
+
+        return redirect('debts/create/step-one');
 
         return redirect('/claims/create-debt')->with('msj', 'Se ha guardado tu elección temporalmente');
 
@@ -662,7 +670,7 @@ class ClaimsController extends Controller
         $a->description = $r->description;
         $a->actuation_date = $r->actuation_date;
         $a->type = $r->type ? 1 : null;
-        $a->mailable = $r->mailable;
+        $a->mailable = $r->mailable ? 1 : null;
         $a->save();
 
         $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
@@ -734,12 +742,12 @@ class ClaimsController extends Controller
     {
         $c = Claim::find($r->id);
 
-        $path = public_path().'/uploads/claims/' . $c->id . '/apud/';
+        $path = public_path().'/uploads/users/' . $c->owner->id . '/apud/';
 
         if ($r->file) {
             $name = $r->file->getClientOriginalName();
             $r->file->move($path,$name);
-            $c->apud_acta = $name;
+            $c->owner->apud_acta = $name;
 
             if ($c->last_invoice) {
                 $c->status = 7;
@@ -747,6 +755,7 @@ class ClaimsController extends Controller
                 $c->status = 10;
             }
             $c->save();
+            $c->owner->save();
         }
 
         return back()->with('msj', 'Se ha subido el archivo!');

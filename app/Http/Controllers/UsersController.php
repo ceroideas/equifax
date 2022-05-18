@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\PostalCode;
 use App\Rules\Iban;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -261,16 +262,29 @@ class UsersController extends Controller
 
     }
 
+    public function getPopulation($code)
+    {
+        return PostalCode::where('code',$code)->first();
+    }
+
     public function migrar()
     {
-        Schema::table('claims', function(Blueprint $table) {
+        return \App\Models\Claim::all();
+        /*Schema::table('third_parties', function(Blueprint $table) {
+            //
+            $table->string('legal_representative')->nullable();
+            $table->string('representative_dni')->nullable();
+        });*/
+        
+        /*Schema::table('claims', function(Blueprint $table) {
             //
             $table->integer('postal_code_id')->nullable();
-        });
+        });*/
         // return \App\Models\Party::all();
         // return \App\Models\Invoice::all();
         // return \App\Models\ActuationDocument::all();
-        /*\App\Models\Invoice::truncate();
+        /*\App\Models\Agreement::truncate();
+        \App\Models\Invoice::truncate();
         \App\Models\Claim::truncate();
         \App\Models\Debt::truncate();
         \App\Models\Actuation::truncate();
@@ -283,10 +297,10 @@ class UsersController extends Controller
             $table->integer('type')->nullable();
         });*/
 
-        /*Schema::table('claims', function(Blueprint $table) {
+        Schema::table('users', function(Blueprint $table) {
             //
             $table->string('apud_acta')->nullable();
-        });*/
+        });
         
         /*Schema::table('invoices', function(Blueprint $table) {
             //
