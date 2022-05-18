@@ -63,7 +63,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe  Principal</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->total_amount }}</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->total_amount }}€</span>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe Pendiente</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->total_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->total_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}€</span>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Abonos Realizados</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ ($claim->amountClaimed() + $claim->debt->partials_amount) ? ($claim->amountClaimed() + $claim->debt->partials_amount) : 'N/A' }}</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ ($claim->amountClaimed() + $claim->debt->partials_amount) ? ($claim->amountClaimed() + $claim->debt->partials_amount).'€' : '--' }}</span>
                                 </div>
                             </div>
                         </div>
@@ -137,6 +137,9 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
+                                    <div class="col-12"><b>Tipo de la deuda :</b><p> {{ $claim->debt->getType() }} @if ($claim->debt->getType() == 'Otro:')
+                                        {{ '('.$claim->debt->type_extra.')'}}
+                                    @endif</p></div>
                                 </div>
                             </div>
 
@@ -145,7 +148,7 @@
 
                                 @if($claim->debt->hasAgreement())
                                 <div class="row">
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Quitas:</b> <p>{{ $claim->debt->agreements->take }}</p></div>
+                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Quitas:</b> <p>{{ $claim->debt->agreements->take }}€</p></div>
                                     <div class="col-lg-3 col-sm-6 col-md-6"><b>Espera:</b> <p>{{ $claim->debt->agreements->wait }} </p></div>
                                     <div class="col-lg-6 col-sm-12 col-md-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
                                 </div>
@@ -159,6 +162,63 @@
                                 @endif
                                
                             </div>
+
+                            @if (!Auth::user()->isClient())
+                                <div class="post">
+
+                                    <h6>Deudor con código postal: {{$claim->debtor->cop}}</h6>
+
+                                    <select name="postal_code_id" class="js-data-example-ajax form-control">
+                                        @if ($claim->debtor->cop)
+                                        @php
+                                            $pc = \App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
+                                        @endphp
+                                            @if ($pc)
+                                                <option value="{{$pc->id}}">{{$pc->code.' - '.$pc->province}}</option>
+                                            @endif
+                                        @endif
+                                    </select>
+
+                                    <br>
+
+                                    @if ($claim->debtor->cop)
+
+                                    @php                                        
+                                        $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
+
+                                        $juzgado = "--";
+                                        $procurador = "--";
+
+                                        if ($pc) {
+                                            $type = App\Models\Type::where('locality',$pc->province)->first();
+
+                                            if ($type) {
+                                                $juzgado = $type->type;
+
+                                                $party = App\Models\Party::where('locality',$pc->province)->first();
+
+                                                if ($party) {
+                                                    $procurador = $party->procurator;
+                                                }
+                                            }
+                                        }
+                                    @endphp 
+
+                                    <div class="form-group">
+                                        <b>JUZGADO:</b> <span id="juzgado">{{$juzgado}}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <b>PROCURADOR:</b> <span id="procurador">{{$procurador}}</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <a href="{{url('exportTemplate',$claim->id)}}" class="btn btn-success"> <i class="fas fa-file"></i> Descargar DDA MONITORIO DIVIDAE Word</a>
+                                    </div>
+
+                                    @endif
+                                   
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -228,7 +288,7 @@
                     </div>
                 
                     <br>
-                    @if($claim->isPending())
+                    @if(/*$claim->isPending()*/true)
                         <h5 class="mt-5 text-muted">Documentación de la Deuda</h5>
                         
                         <ul class="list-unstyled">
@@ -356,7 +416,7 @@
                             <div class="row text-center">
                                 <div class="col-sm-6 offset-sm-3">
                                     <div class="alert-danger">
-                                        <span>Reclamación Finalizada</span>
+                                        <p>Reclamación Finalizada</p>
                                     </div>
                                 </div>
                             </div>
@@ -366,20 +426,40 @@
                             <div class="row text-center">
                                 <div class="col-sm-6 offset-sm-3">
                                     <div class="alert-success">
-                                        <span>{{ $claim->getType() }}</span>
+                                        <p>{{ $claim->getType() }}</p>
                                     </div>
                                 </div>
                             </div>
                         @endif
 
+                        @if ($claim->viable_observation)
+                            <div class="text-center my-3">
+                                <b>Observaciones del Administrador: </b>
+                               <p> {{ $claim->viable_observation }}</p>
+                            </div>
+                        @endif
 
-                        <div class="text-center my-3">
-                            <b>Observaciones del Administrador: </b>
-                           <p> {{ $claim->viable_observation }}</p>
-                        </div>
+                        @if ($claim->isFinished() && $claim->claim_type == 2)
+                            <div class="text-center my-3">
+                            
+                            <a href="{{ url('claims/'. $claim->id . '/viable',1) }}" class="btn btn-sm btn-primary">Reclamación Judicial Viable</a>
+                        
+                            <a href="{{ url('claims/'. $claim->id . '/non-viable',1) }}" class="btn btn-sm btn-danger">Reclamación Judicial Inviable</a>
+
+                            </div>
+                        @endif
+
+                        @if ($claim->claim_type == 1 && $claim->apud_acta)
+                            <div class="text-center my-3">
+                                <b>Observaciones del Administrador: </b>
+                                <li>
+                                    <a href="{{ url('uploads/claims/' . $claim->id . '/apud',$claim->apud_acta) }}" class="btn-link text-secondary" target="_blank" download="Apud Acta #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Apud Acta</a>
+                                </li>
+                            </div>
+                        @endif
                     @endif
 
-                    @if (Auth::user()->isAdmin() && !$claim->isFinished())
+                    @if (Auth::user()->isAdmin() && !$claim->isFinished() && !$claim->isPending())
                         <div class="text-center">
                             <x-adminlte-button label="Finalizar Reclamación" data-toggle="modal" data-target="#modalFinish" theme="info"/>
 
@@ -408,4 +488,46 @@
 
 
 
+@stop
+
+@section('js')
+    <script>
+        
+        $('.js-data-example-ajax').select2({
+          placeholder: 'Busca por código',
+          language: {
+            searching: function() {
+                return "Buscando";
+            },
+            noResults: function() {
+                return "No hay resultados";
+            }
+          },
+          ajax: {
+            url: '{{url('api/load-postal-codes')}}',
+            dataType: 'json',
+            processResults: function (data) {
+                return {
+                  results: data,
+                  pagination: {
+                    more: false
+                  }
+                }
+            },
+          }
+        });
+
+        $('[name="postal_code_id"]').on('change', function(event) {
+            event.preventDefault();
+            /* Act on the event */
+            $.post('{{url('api/save-postal-code')}}', {id: {{$claim->id}}, postal_code_id: $(this).val()}, function(data, textStatus, xhr) {
+                /*optional stuff to do after success */
+                console.log(data);
+
+                $('#juzgado').text(data[0]);
+                $('#procurador').text(data[1]);
+            });
+        });
+
+    </script>
 @stop

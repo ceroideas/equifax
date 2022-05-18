@@ -20,6 +20,10 @@
 @stop
 
 @section('content')
+
+
+   @include('progressbar', ['step' => 5])
+
    @if(session()->has('msj'))
    <x-adminlte-alert theme="success" dismissable>
        <span> {{ session('msj') }}</span>

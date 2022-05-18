@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
     
 
-    <title>Asemar</title>
+    <title>Dividae</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -355,6 +355,29 @@
   text-align: center;
   color: #fff;
 }
+
+.blockAcceso .btn-nueva[data-v-5fddf304] {
+  height: 40px;
+  margin-right: 16px;
+  border-radius: 37.5px;
+  background-color: #1e7e34;
+  color: #fff;
+}
+.blockAcceso .btn-nueva .btn-text-acceso[data-v-5fddf304] {
+  height: 17px;
+  font-family: Roobert;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+  top: 2px;
+  position: relative;
+}
+
 .blockRegistro .btn-registerHome[data-v-5fddf304] {
   border-radius: 37.5px;
   background-color: #2c60aa;
@@ -4851,7 +4874,7 @@ a.more-link[data-v-167ae8c1] {
 <body>
     <div id="app"><main><div data-v-effc9f78="" data-v-cfd2b624=""><div data-v-cfd2b624="" data-v-effc9f78="" class="block-Contacto"><nav data-v-5fddf304="" data-v-cfd2b624="" class="navbar navbar-expand-lg navbar-dark" data-v-effc9f78=""><div data-v-5fddf304="" class="container"><a data-v-5fddf304="" href="{{url('/')}}/" class="navbar-brand router-link-active" style=""><div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304="" src="{{url('landing')}}/assets/grafico-logo-negativo.png" class="graficologonegativo"></div></a> <a data-v-5fddf304="" href="{{url('/')}}/" class="navbar-brand router-link-active" style="display: none;"><div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304="" src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologonegativo"></div></a> <button data-v-5fddf304="" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span data-v-5fddf304="" class="navbar-toggler-icon"></span></button> <div data-v-5fddf304="" id="navbarCollapse" class="navbar-collapse" style="display: none;"><ul data-v-5fddf304="" class="navbar-nav"><li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/testimonios" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             Testimonios
-                        </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/quienes_somos" class="nav-link"><span data-v-5fddf304="" class="Type-something">
+                        </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/quienes-somos" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             ¿Quiénes somos?
                         </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/preguntas" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             ¿Tienes dudas?
@@ -4859,11 +4882,9 @@ a.more-link[data-v-167ae8c1] {
                             Tarifas
                         </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/contacto" aria-current="page" class="nav-link router-link-exact-active router-link-active"><span data-v-5fddf304="" class="Type-something">
                             Contacto
-                        </span></a> <div data-v-5fddf304="" class="punto-active"></div></li></ul> <div data-v-5fddf304="" class="navbar-nav ml-auto"><div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('/')}}/login" class="btn btn-acceso"><span data-v-5fddf304="" class="btn-text-acceso">
-                            Acceso
-                        </span></a></div> <div data-v-5fddf304="" class="blockRegistro"><a data-v-5fddf304="" href="{{url('/')}}/register" class="btn btn-registerHome"><span data-v-5fddf304="" class="text-register-btn">
-                            Regístrate
-                            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right"></span></a></div></div> <!----></div></div></nav> <div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto container"><div data-v-cfd2b624="" data-v-effc9f78="" class="row"><div data-v-cfd2b624="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 block-text"><div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto-subtitle">
+                        </span></a> <div data-v-5fddf304="" class="punto-active"></div></li></ul> 
+                        @include('front.loginButtons')
+                         <!----></div></div></nav> <div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto container"><div data-v-cfd2b624="" data-v-effc9f78="" class="row"><div data-v-cfd2b624="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 block-text"><div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto-subtitle">
                         ¿Podemos ayudarte?
                     </div> <div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto-title mb-5">
                         Contacto
@@ -4880,17 +4901,17 @@ a.more-link[data-v-167ae8c1] {
                         contacto@recovery.com
                     </div></div> <div data-v-cfd2b624="" data-v-effc9f78="" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-3"><img data-v-cfd2b624="" data-v-effc9f78="" src="{{url('landing')}}/assets/icon-large-contacto-location.png" class="img-fluid"> <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
                         Madrid
-                        <p data-v-cfd2b624="" data-v-effc9f78="" class="location-street">Dirección</p></div></div></div></div></div> <div data-v-837e15c2="" data-v-cfd2b624="" class="block-CheckClaim" data-v-effc9f78=""><div data-v-837e15c2="" class="container CheckClaim"><div data-v-837e15c2="" class="row"><div data-v-837e15c2="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-837e15c2="" class="CheckClaim-title">
-                    ¿Quieres saber si tu reclamación es viable?
-                </div> <div data-v-837e15c2="" class="CheckClaim-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
-                </div> <div data-v-837e15c2=""><a data-v-837e15c2="" href="{{url('/')}}/new_claim" class="CheckClaim-btn btn">Comprobar deuda <img data-v-837e15c2="" src="{{url('landing')}}/assets/icons-arrow-right-white.png" class="img-fluid"></a></div></div> <div data-v-837e15c2="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 my-5"><img data-v-837e15c2="" src="{{url('landing')}}/assets/grafico-ilustraciones-simulador.png" class="img-fluid"></div></div></div></div> <footer data-v-a242bae8="" data-v-effc9f78=""><div data-v-a242bae8="" class="container pb-5"><div data-v-a242bae8="" class="row row-cols-2 footer-content"><div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><a data-v-a242bae8="" href="{{url('/')}}/" class="align-items-center mb-3 link-dark"><p data-v-a242bae8=""><img data-v-a242bae8="" src="{{url('landing')}}/assets/grafico-logo-negativo.png" class="graficologonegativo"></p></a> <p data-v-a242bae8="" class=" footer-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.</p></div> <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><h5 data-v-a242bae8="" class="footer-title "> Sobre nosotros</h5> <ul data-v-a242bae8="" class="nav flex-column"><li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('/')}}/" class="nav-link p-0 footer-text router-link-active">Inicio</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('/')}}/quienes_somos" class="nav-link p-0 footer-text">¿Quiénes somos?</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('/')}}/preguntas" class="nav-link p-0 footer-text">Preguntas frecuentes</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="nav-link p-0 footer-text router-link-exact-active router-link-active">Contacto</a></li></ul></div> <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><h5 data-v-a242bae8="" class="footer-title ">Legal</h5> <ul data-v-a242bae8="" class="nav flex-column"><li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">Aviso legal</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">Política de privacidad</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">Política de cookies</a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">Términos y condiciones</a></li></ul></div> <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><h5 data-v-a242bae8="" class="footer-title ">Contacto</h5> <ul data-v-a242bae8="" class="nav flex-column"><li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icons-phone-white.png" class="img-fluid"> +34 654 321 345
-                        </a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icons-email-white.png" class="img-fluid"> contacto@recovery.com
-                        </a></li></ul></div></div> <div data-v-a242bae8="" class="row row-cols-2 justify-content-start border-top pt-4"><div data-v-a242bae8="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 copyright-text">
-                    © Recovery 2021 . All Rights Reserved.
-                </div> <div data-v-a242bae8="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 icons-social d-flex justify-content-end"><a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-whatsapp.png" class="img-fluid s-icon"></a> <a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-instagram.png" class="img-fluid"></a></div></div></div></footer></div></main></div>
+                        <p data-v-cfd2b624="" data-v-effc9f78="" class="location-street">Dirección</p></div></div></div></div></div>
+
+              @include('footer')
+
+              </div></main></div>
     <!-- Scripts -->
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
 </body></html>

@@ -5,7 +5,7 @@
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
  /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
+ .WordSection1 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{color: #7A7A7A;
 		margin-top:0cm;
 	margin-right:0cm;
@@ -14,7 +14,7 @@
 	line-height:107%;
 	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+.WordSection1 p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	{margin-top:0cm;
 	margin-right:0cm;
 	margin-bottom:8.0pt;
@@ -22,7 +22,7 @@ p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	line-height:107%;
 	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+.WordSection1 p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
 	{margin-top:0cm;
 	margin-right:0cm;
 	margin-bottom:0cm;
@@ -31,7 +31,7 @@ p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphC
 	line-height:107%;
 	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+.WordSection1 p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
 	{margin-top:0cm;
 	margin-right:0cm;
 	margin-bottom:0cm;
@@ -40,7 +40,7 @@ p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagrap
 	line-height:107%;
 	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+.WordSection1 p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
 	{margin-top:0cm;
 	margin-right:0cm;
 	margin-bottom:8.0pt;
@@ -48,20 +48,20 @@ p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxS
 	line-height:107%;
 	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
-.MsoChpDefault
+.WordSection1 .MsoChpDefault
 	{font-family:"Calibri","sans-serif";}
-.MsoPapDefault
+.WordSection1 .MsoPapDefault
 	{margin-bottom:8.0pt;
 	line-height:107%;}
-@page WordSection1
+.WordSection1 @page WordSection1
 	{size:595.3pt 841.9pt;
 	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
-div.WordSection1
+.WordSection1 div.WordSection1
 	{page:WordSection1;}
  /* List Definitions */
- ol
+ .WordSection1 ol
 	{margin-bottom:0cm;}
-ul
+.WordSection1 ul
 	{margin-bottom:0cm;}
 -->
 </style>

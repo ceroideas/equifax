@@ -17,7 +17,7 @@
 @endif
 
 
-<x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline" body-class="" title="Registro de Deuda (Parte 3) - Documentación">
+<x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline" body-class="" title="Registro de Deuda - Documentación">
 
 
 

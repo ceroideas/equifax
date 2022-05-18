@@ -22,6 +22,8 @@
 @section('content')
    {{-- @include('users.partials._form') --}}
 
+   @include('progressbar', ['step' => 3])
+
     <x-adminlte-alert theme="info" dismissable>
         <span>Si elige NO sus opciones anteriores serán descartadas y tendrá que volver a empezar el proceso.</span>
     </x-adminlte-alert>

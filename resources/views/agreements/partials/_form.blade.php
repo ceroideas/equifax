@@ -1,6 +1,6 @@
-<x-adminlte-alert theme="info">
+{{-- <x-adminlte-alert theme="info">
   
-</x-adminlte-alert>
+</x-adminlte-alert> --}}
 
 @if(session()->has('msj'))
 <x-adminlte-alert theme="success" dismissable>
@@ -101,7 +101,7 @@
 @section('js')
 
     <script>
-        $('#deudas_otros_input').on('slide', function () {
+        $('#deudas_otros_input').on('slide change', function () {
             $('[for="deudas_otros_input"]').text("Quitas * ("+$(this).val()+"€)");
         });
     </script>

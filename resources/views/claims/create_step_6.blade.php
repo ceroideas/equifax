@@ -20,6 +20,9 @@
 @stop
 
 @section('content')
+
+
+   @include('progressbar', ['step' => 6])
     
     <x-adminlte-alert theme="info">
         <span>¡Importante Si elige NO se eliminará toda la data recopilada hasta ahora del proceso y deberá empezar uno nuevo!</span>

@@ -22,6 +22,11 @@
 
 @section('content')
 {{-- Configuración del componente para el datatable --}}
+    
+    @if(session()->has('claim_third_party') && session()->has('claim_third_party') == 'waiting')
+    @include('progressbar', ['step' => 1])
+    @endif
+
     @php
     $heads = [
         ['label' => 'DNI'],

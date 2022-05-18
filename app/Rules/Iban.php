@@ -27,9 +27,9 @@ class Iban implements Rule
     {
         $value = trim($value);
         $value=strtoupper($value);
-        $value=str_replace(array(" ","-"),"",$value);
+        $value=str_replace(array(" ",""),"",$value);
 
-        if(strlen($value)==20){
+        if(strlen($value)==20 || strlen($value)==24){
             # obtenemos los codigos de las dos letras
             $letra1 = $value[0];
             $letra2 = $value[1];

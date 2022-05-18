@@ -7,6 +7,9 @@ use App\Rules\Iban;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
 use Auth;
 
 class UsersController extends Controller
@@ -147,6 +150,7 @@ class UsersController extends Controller
 
         $user->update([
 
+            'type' => $request->type,
             'name' => $request->name,
             'email' => $request->email,
             'dni' => $request->dni,
@@ -255,5 +259,92 @@ class UsersController extends Controller
 
         return redirect()->back()->with('msj', 'Usuario Revocado Correctamente');
 
+    }
+
+    public function migrar()
+    {
+        Schema::table('claims', function(Blueprint $table) {
+            //
+            $table->integer('postal_code_id')->nullable();
+        });
+        // return \App\Models\Party::all();
+        // return \App\Models\Invoice::all();
+        // return \App\Models\ActuationDocument::all();
+        /*\App\Models\Invoice::truncate();
+        \App\Models\Claim::truncate();
+        \App\Models\Debt::truncate();
+        \App\Models\Actuation::truncate();
+        \App\Models\ActuationDocument::truncate();*/
+        /*$a = 1500;
+
+        return $a.='|'.(0);*/
+        /*Schema::table('users', function(Blueprint $table) {
+            //
+            $table->integer('type')->nullable();
+        });*/
+
+        /*Schema::table('claims', function(Blueprint $table) {
+            //
+            $table->string('apud_acta')->nullable();
+        });*/
+        
+        /*Schema::table('invoices', function(Blueprint $table) {
+            //
+            $table->string('amounts')->nullable();
+        });*/
+
+        /*Schema::table('invoices', function(Blueprint $table) {
+            //
+            $table->string('description')->nullable();
+        });*/
+
+        /*Schema::table('invoices', function(Blueprint $table) {
+            //
+            $table->integer('discount_id')->nullable(); // por si se hace una tabla de cupones
+            $table->integer('discount_qty')->nullable(); // por si se hace fijo
+            $table->string('discount_type')->nullable(); // por si se hace fijo
+        });*/
+
+        /*Schema::create('actuation_documents', function (Blueprint $table) {
+            $table->id();
+            $table->integer('actuation_id')->nullable();
+            $table->string('document_name')->nullable();
+            $table->timestamps();
+        });*/
+
+        /*Schema::table('configurations', function(Blueprint $table) {
+            //
+            $table->string('tax')->nullable();
+            $table->string('invoice_name')->nullable();
+            $table->string('invoice_address_line_1')->nullable();
+            $table->string('invoice_address_line_2')->nullable();
+            $table->string('invoice_email')->nullable();
+        });*/
+
+        /*Schema::create('postal_codes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code')->nullable();
+            $table->string('province')->nullable();
+            $table->timestamps();
+            //
+        });
+
+        Schema::create('types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('locality')->nullable();
+            $table->string('comunity')->nullable();
+            $table->string('type')->nullable();
+            $table->timestamps();
+            //
+        });
+
+        Schema::create('parties', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('locality')->nullable();
+            $table->string('province')->nullable();
+            $table->string('procurator')->nullable();
+            $table->timestamps();
+            //
+        });*/
     }
 }

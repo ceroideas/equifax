@@ -9,6 +9,7 @@ use App\Http\Controllers\DebtsController;
 use App\Http\Controllers\AgreementsController;
 use App\Http\Controllers\ConfigurationsController;
 use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\WordController;
 use App\Http\Controllers\Auth\RegisterController;
 
 /*
@@ -85,6 +86,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/clear-option-two', [ClaimsController::class, 'flushOptionTwo']);
     Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
     Route::get('/invoices', [ClaimsController::class , 'myInvoices']);
+    Route::get('/invoices/{id}', [ClaimsController::class , 'myInvoice']);
     Route::get('/actuations/{id}', [ClaimsController::class , 'actuations']);
     Route::post('/actuations/{id}', [ClaimsController::class , 'saveActuation']);
     Route::get('/flush-options', [ClaimsController::class, 'flushAll']);
@@ -92,8 +94,8 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/pending', [ClaimsController::class, 'pending']);
     Route::get('/{claim}', [ClaimsController::class, 'show']);
     Route::get('payment/{claim}', [ClaimsController::class, 'payment']);
-    Route::get('{claim}/viable', [ClaimsController::class , 'viable']);
-    Route::get('{claim}/non-viable', [ClaimsController::class , 'nonViable']);
+    Route::get('{claim}/viable/{id?}', [ClaimsController::class , 'viable']);
+    Route::get('{claim}/non-viable/{id?}', [ClaimsController::class , 'nonViable']);
     Route::get('/close/{claim}', [ClaimsController::class , 'close']);
     Route::post('/non-viable/{claim}/save', [ClaimsController::class, 'setNonViable']);
     Route::post('/viable/{claim}/save', [ClaimsController::class, 'setViable']);
@@ -101,8 +103,11 @@ Route::group(['prefix' => 'claims'], function(){
     Route::post('payment', [PaymentsController::class, 'payment']);
     Route::post('payToken', [PaymentsController::class, 'payToken']);
 
+    Route::post('uploadApudActa', [ClaimsController::class, 'uploadApudActa']);
+
 });
 
+Route::get('export-all', [ClaimsController::class, 'exportAll']);
 
 
 /* Terceros */
@@ -172,3 +177,14 @@ Route::group(['prefix'  => 'configurations'], function(){
     Route::put('{configuration}/fees', [ConfigurationsController::class, 'feesUpdate']);
 
 });
+
+/**/
+Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
+
+Route::get('migrar', [UsersController::class, 'migrar']);
+
+Route::get('exportTemplate/{id}', [WordController::class, 'exportTemplate']);
+
+Route::post('importParty', [WordController::class, 'importParty']);
+Route::post('importPostalCode', [WordController::class, 'importPostalCode']);
+Route::post('importType', [WordController::class, 'importType']);

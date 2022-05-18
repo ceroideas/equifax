@@ -50,7 +50,13 @@ class PaymentsController extends Controller
                 $c = Claim::find($r->claim_id);
 
                 if ($c->status == 7) {
-                    $c->status = 8;
+                    if ($c->claim_type == 1) {
+                        if (!$c->last_invoice) {
+                            $c->status = 10;
+                        }
+                    }else{
+                        $c->status = 8;
+                    }
                 }
 
                 $c->save();
@@ -118,7 +124,11 @@ class PaymentsController extends Controller
                 $c = Claim::find($r->claim_id);
 
                 if ($c->status == 7) {
-                    $c->status = 8;
+                    if ($c->claim_type == 1) {
+                        $c->status = 10;
+                    }else{
+                        $c->status = 8;
+                    }
                 }
 
                 $c->save();

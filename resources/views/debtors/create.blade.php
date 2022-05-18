@@ -20,5 +20,8 @@
 @stop
 
 @section('content')
+    @if(session()->has('claim_client') || session()->has('claim_third_party'))
+    @include('progressbar', ['step' => 2])
+    @endif
    @include('debtors.partials._form')
 @stop

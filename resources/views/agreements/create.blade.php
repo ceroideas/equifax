@@ -22,5 +22,6 @@
 @stop
 
 @section('content')
+   @include('progressbar', ['step' => 5])
    @include('agreements.partials._form')
 @stop

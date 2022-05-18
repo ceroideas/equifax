@@ -45,6 +45,10 @@ $config = [
         @csrf
         @method('POST')
 
+        @isset ($id)
+            <input type="hidden" name="non_viable_judicial" value="1">
+        @endisset
+
         <x-adminlte-text-editor name="informe_inviabilidad" label="Redactar el Informe de Inviabilidad" label-class="text-danger" igroup-size="sm" placeholder="Escribe algún texto.." :config="$config"/>
 
         <div class="card-footer">
