@@ -66,10 +66,23 @@
                                    {{ $third_party->name }}
                                 </p>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 <strong><i class="fas fa-id-card mr-1"></i>DNI / CIF:</strong>
                                 <p class="text-muted text-uppercase">
                                    {{ $third_party->dni }}
+                                </p>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <strong><i class="fas fa-book mr-1"></i>Nombre Representante Legal:</strong>
+                                <p class="text-muted text-uppercase">
+                                   {{ $third_party->legal_representative }}
+                                </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <strong><i class="fas fa-id-card mr-1"></i>DNI / CIF Representante:</strong>
+                                <p class="text-muted text-uppercase">
+                                   {{ $third_party->representative_dni }}
                                 </p>
                             </div>
                             {{-- <div class="col-sm-3">

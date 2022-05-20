@@ -67,7 +67,7 @@
 <div class="steps">
   <ul id="progressbar">
     <li class="{{$step >= 1 ? 'active' : ''}}">Datos de demandante</li>
-    <li class="{{$step >= 2 ? 'active' : ''}}">Registro de deudor</li>
+    <li class="{{$step >= 2 ? 'active' : ''}}">Selecciona el deudor</li>
     <li class="{{$step >= 3 ? 'active' : ''}}">Registro de deuda</li>
     <li class="{{$step >= 4 ? 'active' : ''}}">Documentación de deuda</li>
     <li class="{{$step >= 5 ? 'active' : ''}}">Acuerdo de pagos</li>

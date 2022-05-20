@@ -94,8 +94,8 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-6">
-                <x-adminlte-input name="importe_pendiente" label="Importe Pendientes de Pago *" placeholder="Importe Pendientes de Pago" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->pending_amount : ''}}">
+                <x-adminlte-input name="abonos" label="Abonos Realizados por el Deudor" placeholder="Abonos Realizados por el Deudor (La suma de lo abonado)" type="tag"
+                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->partials_amount : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -104,8 +104,8 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="abonos" label="Abonos Realizados por el Deudor" placeholder="Abonos Realizados por el Deudor (La suma de lo abonado)" type="tag"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->partials_amount : ''}}">
+                <x-adminlte-input readonly name="importe_pendiente" label="Importe Pendientes de Pago *" placeholder="Importe Pendientes de Pago" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->pending_amount : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -142,3 +142,32 @@
         </div>
     </form>
 </x-adminlte-card>
+
+@section('js')
+
+<script>
+
+    $('[name="importe"],[name="iva"],[name="abonos"]').change(function(event) {
+        /* Act on the event */
+        let importe = parseFloat($('[name="importe"]').val());
+        let iva = parseFloat($('[name="iva"]').val());
+        let abonos = parseFloat($('[name="abonos"]').val());
+
+        console.log(importe,iva,abonos);
+
+        let pendiente = parseFloat(importe);
+
+        if (importe != null && iva != null && abonos != null) {
+            pendiente += parseFloat(((importe * iva)/100));
+
+            pendiente -= parseFloat(abonos);
+        }
+
+        if (pendiente > 0) {
+            $('[name="importe_pendiente"]').val(pendiente);
+        }
+    });
+    
+</script>
+
+@stop

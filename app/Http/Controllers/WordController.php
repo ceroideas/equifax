@@ -38,7 +38,7 @@ class WordController extends Controller
 
         $claim = Claim::find($id);
 
-        $pc = PostalCode::find($claim->postal_code_id);
+        $pc = PostalCode::where('code',$claim->debtor->cop)->first();
 
         $type = Type::where('locality',$pc->province)->first();
 

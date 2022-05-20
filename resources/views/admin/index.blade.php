@@ -35,18 +35,28 @@
             <div class="col-sm-4">
                 <form action="{{url('importPostalCode')}}" enctype="multipart/form-data" method="POST">
                     {{csrf_field()}}
-                    <label for="importPostalCode" class="btn btn-info btn-sm">
+                    <div class="btn-group btn-group-toggle">
+                      <label for="importPostalCode" class="btn btn-info btn-sm">
                         Subir Excel para Códigos Postales
-                    </label>
+                     </label>
+                      <a download="Ejemplo Excel para Códigos Postales.xlsx" href="{{url('excels/postal_codes.xlsx')}}" class="btn btn-secondary">
+                        Ejemplo
+                      </a>
+                    </div>
                     <input type="file" name="file" style="display: none;" id="importPostalCode" class="upload-excel">
                 </form>
             </div>
             <div class="col-sm-4">
                 <form action="{{url('importType')}}" enctype="multipart/form-data" method="POST">
                     {{csrf_field()}}
-                    <label for="importType" class="btn btn-info btn-sm">
+                    <div class="btn-group btn-group-toggle">
+                      <label for="importType" class="btn btn-info btn-sm">
                         Subir Excel para Tipos de Procedimiento
-                    </label>
+                      </label>
+                      <a download="Ejemplo Excel para Tipos de Procedimiento.xlsx" href="{{url('excels/types.xlsx')}}" class="btn btn-secondary">
+                        Ejemplo
+                      </a>
+                    </div>
                     <input type="file" name="file" style="display: none;" id="importType" class="upload-excel">
                 </form>
             </div>
@@ -54,13 +64,19 @@
             <div class="col-sm-4">
                 <form action="{{url('importParty')}}" enctype="multipart/form-data" method="POST">
                     {{csrf_field()}}
-                    <label for="importParty" class="btn btn-info btn-sm">
+                    <div class="btn-group btn-group-toggle">
+                      <label for="importParty" class="btn btn-info btn-sm">
                         Subir Excel para Partidos Judíciales
-                    </label>
+                      </label>
+                      <a download="Ejemplo Excel para Partidos Judíciales.xlsx" href="{{url('excels/parties.xlsx')}}" class="btn btn-secondary">
+                        Ejemplo
+                      </a>
+                    </div>
                     <input type="file" name="file" style="display: none;" id="importParty" class="upload-excel">
                 </form>
             </div>
         </div>
+        <br>
     @endif
     <div class="row">
 

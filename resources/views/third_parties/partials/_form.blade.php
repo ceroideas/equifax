@@ -128,6 +128,32 @@
                     </x-slot>
             </x-adminlte-input>
             </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="legal_representative" label="Nombre del representante legal *" placeholder="Nombre del representante legal" type="text"
+                igroup-size="sm" value="{{  isset($third_party) ?  $third_party->legal_representative   :  ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-file"></i>
+                        </div>
+                    </x-slot>
+            </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="representative_dni" label="DNI / CIF del representante legal *" placeholder="DNI / CIF del representante legal" type="text"
+                igroup-size="sm" value="{{  isset($third_party) ?  $third_party->representative_dni   :  ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-file"></i>
+                        </div>
+                    </x-slot>
+            </x-adminlte-input>
+            </div>
+
             <div class="col-sm-6">
                 <x-adminlte-input name="dni_img" label="Copia del DNI / CIF *" placeholder="Copia del DNI / CIF" type="file"
                 igroup-size="sm">
@@ -140,8 +166,14 @@
             </div>
         </div>
 
+        <hr>
+
+
+
         <div class="card-footer">
-            <span class="float-left">Los Campos marcado con (*) son requeridos.</span>
+            <span class="float-left">Los Campos marcado con (*) son requeridos.</span> <br>
+
+            <span class="float-left">** El adjunto de copia de DNI es del representante legal.</span>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
             <a href="{{ url('/third-parties/') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>

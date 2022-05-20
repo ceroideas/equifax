@@ -42,41 +42,6 @@
 
 
 <body>
-  <div data-v-e8aafb5e="" class="modal-vue modal fade" id="reclamacion-viable">
-
-    <div data-v-e8aafb5e="" role="document" class="modal-dialog"><div data-v-e8aafb5e="" class="modal-content"><div data-v-e8aafb5e="" class="modal-header"><button data-v-e8aafb5e="" type="button" data-dismiss="modal" aria-label="Close" class="close"><span data-v-e8aafb5e="" aria-hidden="true">×</span></button></div> <div data-v-e8aafb5e="" class="modal-body"><div data-v-e8aafb5e="" class="modal-img text-center"><img data-v-e8aafb5e="" src="{{url('landing/assets/grafico-ilustraciones-simulador-exito.png')}}" class="img-fluid"></div> <!----> <div data-v-e8aafb5e="" class="modal-text-info text-center">
-                            Su reclamación es viable <a data-v-e8aafb5e=""><img data-v-e8aafb5e="" src="{{url('landing/assets/icons-info-line.png')}}" class="img-fluid"></a></div> <div data-v-e8aafb5e="" class="modal-text text-center">
-                            ¡Registre su reclamación para que nuestros abogados comiencen a trabajar!
-                        </div></div> <div data-v-e8aafb5e="" class="modal-footer"><a data-v-e8aafb5e="" href="{{url('register')}}" class="btn btn-modal"><span data-v-e8aafb5e="" class="footer-text">¡Regístrate y recupera tu deuda!</span></a></div></div></div></div>
-
-
-  <div class="modal fade" id="consulta-viabilidad">
-    <div class="modal-dialog">
-
-      <div class="modal-content">
-        
-        <div data-v-66372912="" id="form-p"><div data-v-e8aafb5e="" data-v-66372912=""><form data-v-e8aafb5e="" class="formulario-reclamacion"><!----> <div data-v-e8aafb5e="" class="reclamacion-title">
-              Consulte si es viable su reclamación
-          </div> <hr data-v-e8aafb5e="" class="Line-Copy"> <div data-v-e8aafb5e="" class="row mb-4"><div data-v-e8aafb5e="" class="col-12 RangoDeuda"><div data-v-e8aafb5e="" class="form-outline my-2"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="customRange1" class="form-label range-label">
-                              El importe de tu deuda asciende a…
-                          </label> <span data-v-e8aafb5e="" class="importe-range1">
-                              0 €
-                          </span> <input data-v-e8aafb5e="" required type="range" min="0" max="100000" value="0" id="rangeDeuda"> <div data-v-e8aafb5e=""><small data-v-e8aafb5e="" class="small-text">0€</small> <small data-v-e8aafb5e="" class="small-text d-right">100.000€</small></div> <!----></div></div></div> <div data-v-e8aafb5e="" class="col-12 my-1 RangoImporte"><div data-v-e8aafb5e="" class="form-outline"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="customRange2" class="form-label range-label">
-                              La antiguedad de tu deuda es…
-                          </label> <span data-v-e8aafb5e="" class="importe-range1">
-                              0-30 días
-                          </span> <input data-v-e8aafb5e="" type="range" min="0" max="4" value="0" step="1" id="rangeDeuda" class="rangeDeuda1"> <div data-v-e8aafb5e=""><small data-v-e8aafb5e="" class="small-text">0 - 30 días</small> <small data-v-e8aafb5e="" class="small-text d-right">+ 10 años</small></div></div></div></div> <div data-v-e8aafb5e="" class="col-12 mt-3"><div data-v-e8aafb5e="" class="form-outline"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="TipoAcreedor">
-                              Eres… (tipo de acreedor)
-                          </label> <div data-v-e8aafb5e="" class="row block-radio"><div data-v-e8aafb5e="" class="col-md-4 col-sm-4"><div data-v-e8aafb5e="" class="form-check radio-item"><input data-v-e8aafb5e="" type="radio" name="type" id="Persona física" class="form-check-input" value="Persona física"> <label data-v-e8aafb5e="" for="Persona física" class="form-check-label">Persona física</label></div></div><div data-v-e8aafb5e="" class="col-md-4 col-sm-4"><div data-v-e8aafb5e="" class="form-check radio-item"><input data-v-e8aafb5e="" type="radio" name="type" id="Persona jurídica" class="form-check-input" value="Persona jurídica"> <label data-v-e8aafb5e="" for="Persona jurídica" class="form-check-label">Persona jurídica</label></div></div><div data-v-e8aafb5e="" class="col-md-4 col-sm-4"><div data-v-e8aafb5e="" class="form-check radio-item"><input data-v-e8aafb5e="" type="radio" name="type" id="Autónomo" class="form-check-input" value="Autónomo" required> <label data-v-e8aafb5e="" for="Autónomo" class="form-check-label">Autónomo</label></div></div></div> <span data-v-e8aafb5e="" class=""></span> <span data-v-e8aafb5e="" class="invalid-feedback">El campo es requerido</span></div></div></div> <div data-v-e8aafb5e="" class="col-12 mt-3"><div data-v-e8aafb5e="" class="form-outline"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="TipoDocumento">
-                              ¿Dispones del documento que soporta la deuda?
-                          </label> <div data-v-e8aafb5e="" class="row block-radio"><div data-v-e8aafb5e="" class="col disponibilidad-radio"><div data-v-e8aafb5e="" class="form-check form-check-inline radio-item"><input data-v-e8aafb5e="" type="radio" id="Si" class="form-check-input" required name="document" value="Si"> <label data-v-e8aafb5e="" for="Si" class="form-check-label">Si</label></div><div data-v-e8aafb5e="" class="form-check form-check-inline radio-item"><input data-v-e8aafb5e="" type="radio" id="No" class="form-check-input" required name="document" value="No"> <label data-v-e8aafb5e="" for="No" class="form-check-label">No</label></div> <span data-v-e8aafb5e="" class=""></span> <span data-v-e8aafb5e="" class="invalid-feedback">El campo es requerido</span></div> <div data-v-e8aafb5e="" class="col select-documento"><!----></div></div></div></div></div></div> <hr data-v-e8aafb5e="" class="Line-Copy"> <div data-v-e8aafb5e="" class="text-center"><button data-v-e8aafb5e="" class="btn btn-form-deuda">COMPROBAR DEUDA</button></div></form> <div data-v-e8aafb5e="" class="modal-vue"><!----> <!----></div></div></div>
-      </div>
-
-    </div>
-  </div>
-
-
-
 
     <div id="app"><main>
       <div data-v-effc9f78="" data-v-63cd6604=""><div data-v-66372912="" data-v-63cd6604="" class="portada-3dblue" data-v-effc9f78="">
@@ -120,7 +85,7 @@
                                 ¿Quieres saber si tu reclamación es viable?
                             </div> <div data-v-66372912="" class="col-4 Scroll-btn"><button data-v-66372912="" class="btn btn-light">Comprobar</button></div></div></div></div>
 
-                  </div></div></div> <div data-v-494d1a60="" data-v-63cd6604="" id="como-funciona" data-v-effc9f78=""><div data-v-494d1a60="" class="card text-center card-reclamacion container"><div data-v-494d1a60="" id="block-reclamacion"><div data-v-494d1a60="" class="text-reclamacion mb-4 mt-4">NUESTRA FILOSIFÍA</div></div> <div data-v-494d1a60="" class="blockBTN"><div data-v-494d1a60="" class="text-center">
+                  </div></div></div> <div data-v-494d1a60="" data-v-63cd6604="" id="como-funciona" data-v-effc9f78=""><div data-v-494d1a60="" class="card text-center card-reclamacion container"><div data-v-494d1a60="" id="block-reclamacion"><div data-v-494d1a60="" class="text-reclamacion mb-4 mt-4">NUESTRA FILOSOFÍA</div></div> <div data-v-494d1a60="" class="blockBTN"><div data-v-494d1a60="" class="text-center">
 
                     {{-- <a data-v-494d1a60="" class="changetype btn active"><span data-v-494d1a60="" class="text-btn">Reclamación amistosa</span></a>
                     <a data-v-494d1a60="" class="changetype btn"><span data-v-494d1a60="" class="text-btn">Reclamación judicial</span></a> --}}
@@ -145,9 +110,9 @@
                           </p>
                         </div>
 
-                        <div class="floating-bubble" style="width: 180px; height: 180px; padding: 10px; border-radius: 200px; background-color: #2c60aa; position: relative; margin: auto">
+                        <div class="floating-bubble" style="width: 180px; height: 180px; padding: 10px; border-radius: 200px; border:1px solid #2c60aa; position: relative; margin: auto">
                           
-                          <div style="height: fit-content; position: absolute; margin: auto; top: 0; bottom: 0; left: 0; right: 0; color: #fff">La <b>suscripción</b> y <br> el análisis de la <br> <b>reclamación</b> es <br> totalmente <br> gratuito!</div>
+                          <div style="height: fit-content; position: absolute; margin: auto; top: 0; bottom: 0; left: 0; right: 0; color: #051c2c">La <b>suscripción</b> y <br> el análisis de la <br> <b>reclamación</b> es <br> totalmente <br> gratuito!</div>
 
                         </div>
 
@@ -198,7 +163,7 @@
                                     (Funcionalidad 3) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 </p></li> --}}
 
-                              </ul></div> <div data-v-9cc878a2="" class="card-footer bg-transparent shadow-sm"><a data-v-9cc878a2="" href="" aria-current="page" class="btn btn-tarifa router-link-exact-active router-link-active" type="button">
+                              </ul></div> <div data-v-9cc878a2="" onclick="window.open('{{url('tarifas')}}','_self')" class="card-footer bg-transparent shadow-sm"><a data-v-9cc878a2="" href="#" aria-current="page" class="btn btn-tarifa router-link-exact-active router-link-active" type="button">
                             DESCUBRIR MÁS
                             <!----> <span data-v-9cc878a2=""><img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-arrow-right-black.png" class="iconsarrow-right"></span></a></div></div></div>
 
@@ -346,6 +311,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+  @yield('extrajs')
+
     <script>
       
       var owl = $('#testimonios').owlCarousel({
@@ -365,46 +332,6 @@
               }
           }
       });
-
-      $('#rangeDeuda').on('input',function(event) {
-        /* Act on the event */
-        console.log($(this).val())
-        $('.importe-range1:first').text($(this).val()+' €')
-      });
-
-      $('.rangeDeuda1').on('input',function(event) {
-        let text = "0-30 días"
-        let val = $(this).val();
-        switch (val)
-        {
-          case "1": 
-            text = '1-3 años';
-            break;
-          case "2": 
-            text = '4-6 años';
-            break;
-          case "3": 
-            text = '7-9 años';
-            break;
-          case "4": 
-            text = '+10 años';
-            break;
-          default:
-            text = '0-30 días'
-        }
-        console.log(val,typeof val,text)
-        $('.importe-range1:last').text(text)
-      });
-
-      $('.formulario-reclamacion').on('submit',function(e){
-        e.preventDefault();
-
-        $('#consulta-viabilidad').modal('hide')
-
-        setTimeout(()=>{
-          $('#reclamacion-viable').modal('show')
-        },200)
-      })
 
       $('.changetype').click(function (e) {
         e.preventDefault();

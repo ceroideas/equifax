@@ -58,8 +58,9 @@ class ThirdPartiesController extends Controller
         $thirdParty->address = $data['address'];
         $thirdParty->location = $data['location'];
         $thirdParty->cop = $data['cop'];
-        $thirdParty->iban = $data['iban'];
+        $thirdParty->iban = array_key_exists('iban', $data) ? $data['iban'] : null;
         $thirdParty->user_id = Auth::user()->id;
+        $thirdParty->legal_representative = array_key_exists('legal_representative',$data) ? $data['legal_representative']: null;
         $thirdParty->save();
 
         $path = $request->file('dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/dni', 'public');
@@ -67,8 +68,15 @@ class ThirdPartiesController extends Controller
         if($request->file('poder_legal')){
             $poa_path = $request->file('poder_legal')->store('uploads/third-parties/' . $thirdParty->id . '/poa', 'public');
         }
+
+        /*$rep_dni = "";
+        if($request->file('representative_dni')){
+            $rep_dni = $request->file('representative_dni')->store('uploads/third-parties/' . $thirdParty->id . '/rep', 'public');
+        }*/
         $thirdParty->dni_img = $path;
         $thirdParty->poa = $poa_path;
+        /*$thirdParty->representative_dni = $rep_dni;*/
+        $thirdParty->representative_dni = array_key_exists('representative_dni',$data) ? $data['representative_dni']: null;
         $thirdParty->save();
         return redirect('third-parties')->with(['msj' => 'Acreditación de Tercero creada exitosamente!']);
 
@@ -122,7 +130,9 @@ class ThirdPartiesController extends Controller
         $thirdParty->address = $data['address'];
         $thirdParty->location = $data['location'];
         $thirdParty->cop = $data['cop'];
-        $thirdParty->iban = $data['iban'];
+        $thirdParty->iban = array_key_exists('iban', $data) ? $data['iban'] : null;
+        $thirdParty->legal_representative = array_key_exists('legal_representative',$data) ? $data['legal_representative']: null;
+        $thirdParty->representative_dni = array_key_exists('representative_dni',$data) ? $data['representative_dni']: null;
         $thirdParty->save();
 
         if($request->file('dni_img')){
@@ -152,6 +162,19 @@ class ThirdPartiesController extends Controller
             $thirdParty->save();
      
         }
+
+        /*if($request->file('representative_dni')){
+
+            if ($thirdParty->representative_dni != NULL) {
+
+                Storage::disk('public')->delete($thirdParty->representative_dni);
+
+            }
+
+            $rep_dni = $request->file('representative_dni')->store('uploads/third-parties/' . $thirdParty->id . '/rep', 'public');
+            $thirdParty->representative_dni = $rep_dni;
+            $thirdParty->save();
+        }*/
 
         return redirect()->back()->with(['msj' => 'Acreditación de Tercero actualizada exitosamente!']);
     }
@@ -191,6 +214,9 @@ class ThirdPartiesController extends Controller
         if(request('iban')){
             $rules['iban'] = [new Iban];
         }
+
+        if(request('legal_representative')){$rules['legal_representative'] = 'required';}
+        if(request('representative_dni')){$rules['representative_dni'] = 'required';}
 
         if(request()->method() == 'PUT'){
 

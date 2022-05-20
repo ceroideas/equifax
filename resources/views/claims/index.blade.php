@@ -56,7 +56,9 @@
         </x-adminlte-alert>
     @endif
 
-    <a href="{{url('export-all')}}" class="btn btn-sm btn-warning">Exportar Reclamaciones</a>
+    @if (!Auth::user()->isClient())
+        <a href="{{url('export-all')}}" class="btn btn-sm btn-warning">Exportar Reclamaciones</a>
+    @endif
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
@@ -65,9 +67,9 @@
                     <td>{{ $claim->id }}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
-                    <td>{{ $claim->debt->total_amount }}€</td>
+                    <td>{{ $claim->debt->pending_amount }}€</td>
                     <td>{{ $claim->amountClaimed() + $claim->debt->partials_amount }}€</td>
-                    <td>{{ $claim->debt->total_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}€</td>
+                    <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}€</td>
                     <td>{{ $claim->getType() }}</td>
                     <td>{{ $claim->getStatus() }}</td>
                     <td>
@@ -84,7 +86,7 @@
                             </button> --}}
                         @endcan
 
-                        @if (Auth::user()->id == $claim->user_id && $claim->status == 11 && $claim->claim_type == 1)
+                        @if (Auth::user()->id == $claim->owner_id && $claim->status == 11 && $claim->claim_type == 1)
                             <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
                                 {{csrf_field()}}
                                 <input type="hidden" name="id" value="{{$claim->id}}">
@@ -109,7 +111,7 @@
                             </a>
                         @endif
 
-                        @if (Auth::user()->id == $claim->user_id && $claim->last_invoice)
+                        @if (Auth::user()->id == $claim->owner_id && $claim->last_invoice)
                             @if ($claim->status != -1)
                             <a href="{{ url('/claims/payment/' . $claim->id ) }}">
                                 <button class="btn btn-xs btn-default text-info mx-1 shadow" title="Pagar">

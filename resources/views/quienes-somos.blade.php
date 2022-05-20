@@ -56,7 +56,7 @@
 .modal-vue .modal-dialog .modal-content .modal-body .dialog-text[data-v-e8aafb5e] {
   opacity: 0.8;
   border-radius: 4px;
-  background-color: #051c2c;
+  background-color:  #051c2c;
   padding: 10px 16px;
 }
 .modal-vue .modal-dialog .modal-content .modal-body .dialog-text .info-text[data-v-e8aafb5e] {
@@ -81,7 +81,7 @@
   line-height: 1.56;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .modal-vue .modal-dialog .modal-content .modal-body .modal-text-info[data-v-e8aafb5e] {
   font-family: CynthoNext;
@@ -92,7 +92,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .modal-vue .modal-dialog .modal-content .modal-footer .btn-modal[data-v-e8aafb5e] {
   height: 40px;
@@ -127,7 +127,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .formulario-reclamacion #rangeDeuda[data-v-e8aafb5e] {
   width: 100%;
@@ -142,7 +142,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .formulario-reclamacion .importe-range1[data-v-e8aafb5e] {
   font-family: Roobert;
@@ -153,7 +153,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
   float: right;
 }
 .formulario-reclamacion .small-text[data-v-e8aafb5e] {
@@ -237,8 +237,8 @@
 }
 .formulario-reclamacion .btn[data-v-e8aafb5e]:hover {
   background-color: #fff;
-  border-color: #051c2c;
-  color: #051c2c;
+  border-color:  #051c2c;
+  color: #285ba3;
 }</style><style>#social-sidebar[data-v-7b4478c1] {
   /* position: fixed;
   top: 50%;
@@ -422,7 +422,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 @media (max-width: 425px) {
 .scroll-header .blockAcceso[data-v-5fddf304] {
@@ -446,7 +446,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 @media (max-width: 400px) {
 .nav-link.router-link-active[data-v-5fddf304] {
@@ -649,7 +649,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 #como-funciona #block-reclamacion .Lorem-ipsum-dolor-si[data-v-494d1a60] {
   width: 65%;
@@ -681,7 +681,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   float: left;
 }
 #como-funciona .card-reclamacion .Lorem-ipsum-dolor-si[data-v-494d1a60] {
@@ -746,7 +746,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }</style><style>.blockTarifa[data-v-9cc878a2] {
   margin-top: 50px;
 }
@@ -766,7 +766,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .blockTarifa .blockCard .card[data-v-9cc878a2] {
   border: 0px;
@@ -787,7 +787,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .blockTarifa .blockCard .badge-price[data-v-9cc878a2] {
   border-radius: 8px;
@@ -832,7 +832,7 @@
   margin: -40px 0 0px;
   padding: 12px 0 12px 0;
   border-radius: 8px 8px 0 0;
-  background-color: #051c2c;
+  background-color:  #051c2c;
   font-family: Roobert;
   font-size: 14px;
   font-weight: 500;
@@ -867,7 +867,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .blockRecovery .Recovery-img[data-v-43503c2a] {
   -moz-text-align-last: center;
@@ -884,7 +884,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .blockRecovery .Recovery-text[data-v-43503c2a] {
   font-family: CynthoNext;
@@ -994,7 +994,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   margin: 8px 15px;
 }
 .blockOpiniones .content .Opinion .block-DR .price-DR .text-style-1[data-v-455dcd3f] {
@@ -1011,7 +1011,7 @@
   font-style: normal;
   line-height: 1.5;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   margin-left: 55px;
 }
 .blockOpiniones .content .Opinion-cliente[data-v-455dcd3f] {
@@ -1022,7 +1022,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   margin-left: 55px;
 }
 .blockOpiniones .content .Opinion-text[data-v-455dcd3f] {
@@ -1076,7 +1076,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .blockOpiniones .content .OCliente-text[data-v-455dcd3f] {
   font-family: CynthoNext;
@@ -1105,7 +1105,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .blockExitos .Exitos-img[data-v-dd3c5654] {
   margin-top: 13px;
@@ -1123,7 +1123,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .blockContacto .Contacto-btn[data-v-18ec2fe4] {
   font-family: CynthoNext;
@@ -1249,7 +1249,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   margin-bottom: 20px;
 }
 .blockQSomos .card .QSomos-text[data-v-63cd6604] {
@@ -1315,7 +1315,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-CheckClaim .CheckClaim-text[data-v-837e15c2] {
   margin-top: 20px;
@@ -1423,7 +1423,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-PFrecuentes-collapse .Selected[data-v-038cfd70] {
   border-radius: 16px;
@@ -1443,7 +1443,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-PFrecuentes-collapse .block-Accordion .accordion .card[data-v-038cfd70] {
   border: none;
@@ -1530,7 +1530,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 </style><style>.block-NEquipo[data-v-3860c0f6] {
   padding: 40px 0;
@@ -1545,7 +1545,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
   margin: 40px 0 40px;
 }
 .block-NEquipo .NEquipo-content .card[data-v-3860c0f6] {
@@ -1567,7 +1567,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   line-height: 1.4;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-NEquipo .NEquipo-content .card .NEquipo-puesto[data-v-3860c0f6] {
   font-family: Roobert;
@@ -1578,7 +1578,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }</style><style>.block-About[data-v-c7d18d50] {
   -o-object-fit: contain;
      object-fit: contain;
@@ -1587,11 +1587,11 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
 }
 @media (min-width: 768px) {
 .block-About[data-v-c7d18d50] {
-    height: 432px;
+    height: 336px;
 }
 }
 .block-About .About-title[data-v-c7d18d50] {
-  margin-top: 40px;
+  margin-top: 30px;
   font-family: Nordeco;
   font-size: 52px;
   font-weight: normal;
@@ -1626,7 +1626,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-Claim-video .Claim-text[data-v-c7d18d50] {
   margin-top: 10px;
@@ -1671,7 +1671,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 @media (min-width: 768px) {
 .block-nosotros .Nosotros-title[data-v-c7d18d50] {
@@ -1710,7 +1710,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Block-FormContact .FormContact .btn-primary[data-v-ab748da8] {
   border-radius: 37.5px;
@@ -1784,7 +1784,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-ShowContact .ShowContact .ShowContact-text .location-street[data-v-cfd2b624] {
   font-family: Roobert;
@@ -1850,7 +1850,7 @@ input:valid ~ .show-hide i[data-v-5a228f80] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-FormLogin .login-form .card-title[data-v-5a228f80] {
   margin-top: 30px;
@@ -1862,7 +1862,7 @@ input:valid ~ .show-hide i[data-v-5a228f80] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-FormLogin .login-form form .form-text[data-v-5a228f80] {
   font-family: CynthoNext;
@@ -1872,7 +1872,7 @@ input:valid ~ .show-hide i[data-v-5a228f80] {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-FormLogin .login-form form .pwd-recovery[data-v-5a228f80] {
   font-family: CynthoNext;
@@ -1883,7 +1883,7 @@ input:valid ~ .show-hide i[data-v-5a228f80] {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-FormLogin .login-form form .btn-login[data-v-5a228f80] {
   font-family: Roobert;
@@ -1925,7 +1925,7 @@ input:valid ~ .show-hide i[data-v-5a228f80] {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   border-radius: 37.5px;
   border: solid 1px #051c2c;
   float: right;
@@ -1983,7 +1983,7 @@ input:valid ~ .show-hide i[data-v-5a228f80] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ResetPwd-card .card-text[data-v-41baacce] {
   font-family: Roobert;
@@ -2007,7 +2007,7 @@ input:valid ~ .show-hide i[data-v-5a228f80] {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ResetPwd #submitForm .block-btn[data-v-41baacce] {
   margin-top: 25px;
@@ -2092,7 +2092,7 @@ input:valid ~ .show-hide i[data-v-d4f9cbe2] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .modal-vue .modal-dialog .modal-content .modal-footer .btn-modal[data-v-d4f9cbe2] {
   height: 40px;
@@ -2110,7 +2110,7 @@ input:valid ~ .show-hide i[data-v-d4f9cbe2] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .blockLogin[data-v-d4f9cbe2] {
   background-color: #f8fafc;
@@ -2139,7 +2139,7 @@ input:valid ~ .show-hide i[data-v-d4f9cbe2] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .blockLogin .Recovery-text[data-v-d4f9cbe2] {
   font-family: CynthoNext;
@@ -2197,7 +2197,7 @@ input:valid ~ .show-hide i[data-v-d4f9cbe2] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-FormLogin .login-form .card-title[data-v-d4f9cbe2] {
   margin-top: 30px;
@@ -2209,7 +2209,7 @@ input:valid ~ .show-hide i[data-v-d4f9cbe2] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-FormLogin .login-form form .pwd-recovery[data-v-d4f9cbe2] {
   font-family: Roobert;
@@ -2220,7 +2220,7 @@ input:valid ~ .show-hide i[data-v-d4f9cbe2] {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-FormLogin .login-form form .btn-login[data-v-d4f9cbe2] {
   font-family: Roobert;
@@ -2262,7 +2262,7 @@ input:valid ~ .show-hide i[data-v-d4f9cbe2] {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   border-radius: 37.5px;
   border: solid 1px #051c2c;
   float: right;
@@ -2321,7 +2321,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .blockLogin .Recovery-text {
   font-family: Roobert;
@@ -2379,7 +2379,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-FormLogin .login-form .card-title {
   margin-top: 30px;
@@ -2391,7 +2391,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-FormLogin .login-form form .pwd-recovery {
   font-family: Roobert;
@@ -2402,7 +2402,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .block-FormLogin .login-form form .btn-login {
   font-family: Roobert;
@@ -2413,7 +2413,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
   border-radius: 37.5px;
   background-color: #55f5a3;
   margin-top: 30px;
@@ -2439,7 +2439,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   border-radius: 37.5px;
   border: solid 1px #051c2c;
   float: right;
@@ -2478,7 +2478,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }</style><style>.BlockCliente[data-v-110d8d2b] {
   background-color: #e65927;
   padding-bottom: 10px;
@@ -2523,7 +2523,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Cliente .ClienteIzq-bottom[data-v-110d8d2b] {
   padding-top: 100px;
@@ -2538,7 +2538,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Cliente .ClienteIzq-bottom .menuBottom[data-v-110d8d2b] {
   text-align: center;
@@ -2552,7 +2552,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }</style><style>.modal-vue .fade-enter[data-v-994d5cde],
 .modal-vue .fade-leave-to[data-v-994d5cde] {
   transform: translateX(10px);
@@ -2591,7 +2591,7 @@ input:valid ~ .show-hide i {
 .modal-vue .modal-dialog .modal-content .modal-body .dialog-text[data-v-994d5cde] {
   opacity: 0.8;
   border-radius: 4px;
-  background-color: #051c2c;
+  background-color:  #051c2c;
   padding: 10px 16px;
 }
 .modal-vue .modal-dialog .modal-content .modal-body .dialog-text .info-text[data-v-994d5cde] {
@@ -2616,7 +2616,7 @@ input:valid ~ .show-hide i {
   line-height: 1.56;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .modal-vue .modal-dialog .modal-content .modal-body .modal-text-info[data-v-994d5cde] {
   font-family: CynthoNext;
@@ -2627,7 +2627,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .modal-vue .modal-dialog .modal-content .modal-footer .btn-modal[data-v-994d5cde] {
   height: 40px;
@@ -2662,7 +2662,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .formulario-reclamacion #rangeDeuda[data-v-994d5cde] {
   width: 100%;
@@ -2677,7 +2677,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .formulario-reclamacion .importe-range1[data-v-994d5cde] {
   font-family: Roobert;
@@ -2688,7 +2688,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
   float: right;
 }
 .formulario-reclamacion .small-text[data-v-994d5cde] {
@@ -2772,8 +2772,8 @@ input:valid ~ .show-hide i {
 }
 .formulario-reclamacion .btn[data-v-994d5cde]:hover {
   background-color: #fff;
-  border-color: #051c2c;
-  color: #051c2c;
+  border-color:  #051c2c;
+  color: #285ba3;
 }</style><style>.modal-vue .fade-enter[data-v-532fcf25],
 .modal-vue .fade-leave-to[data-v-532fcf25] {
   transform: translateX(10px);
@@ -2823,7 +2823,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   margin-bottom: 15px;
 }
 .ClienteDer-title .perfilComplete[data-v-532fcf25] {
@@ -2904,7 +2904,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.17;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   margin-bottom: 5px;
 }
 .ClienteDer .newReclamacion .blockRight-subtitle[data-v-532fcf25] {
@@ -2915,7 +2915,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.33;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   margin-bottom: 10px;
 }
 .ClienteDer .newReclamacion .blockRight-button .btn-newClaim[data-v-532fcf25] {
@@ -2934,7 +2934,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ClienteDer .MyClaims-header .claims-all[data-v-532fcf25] {
   font-family: Roobert;
@@ -2945,7 +2945,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 @media (min-width: 668px) {
 .ClienteDer .MyClaims-header .claims-all[data-v-532fcf25] {
@@ -2980,7 +2980,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.4;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ClienteDer .MyClaims .block-cards .card-columns .card .btnUnique[data-v-532fcf25] {
   margin-top: 28px;
@@ -3012,7 +3012,7 @@ input:valid ~ .show-hide i {
   line-height: 1.56;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ClienteDer .MyClaims .block-right .btn-checkDebt[data-v-532fcf25] {
   border-radius: 37.5px;
@@ -3028,7 +3028,7 @@ input:valid ~ .show-hide i {
   color: #fff;
 }</style><style>.btn-save[data-v-50c65af6] {
   border-radius: 37.5px;
-  background-color: #051c2c;
+  background-color:  #051c2c;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -3043,7 +3043,7 @@ input:valid ~ .show-hide i {
   border-radius: 37.5px;
 }</style><style>.btn-save[data-v-beb10cda] {
   border-radius: 37.5px;
-  background-color: #051c2c;
+  background-color:  #051c2c;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -3058,7 +3058,7 @@ input:valid ~ .show-hide i {
   border-radius: 37.5px;
 }</style><style>.btn-save[data-v-58bd35e9] {
   border-radius: 37.5px;
-  background-color: #051c2c;
+  background-color:  #051c2c;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -3084,7 +3084,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.4;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .perfilCliente-header .incomplete[data-v-50ef3d5e] {
   border-radius: 4px;
@@ -3110,7 +3110,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
   cursor: pointer;
 }
 .perfilCliente-header .editPass[data-v-50ef3d5e] {
@@ -3123,7 +3123,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
   cursor: pointer;
 }
 .perfilCliente .line-bottom[data-v-50ef3d5e] {
@@ -3155,7 +3155,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockCard.card .borrador[data-v-02ce8cf3] {
   font-family: Roobert;
@@ -3178,7 +3178,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockCard.card .BlockSubTitle[data-v-02ce8cf3] {
   margin-top: 20px;
@@ -3189,7 +3189,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.4;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockCard.card .Cardline-bottom[data-v-02ce8cf3] {
   margin-top: 10px;
@@ -3254,7 +3254,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.4;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockCard.card .OpClaimText[data-v-02ce8cf3] {
   font-family: CynthoNext;
@@ -3275,7 +3275,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockCard.card .blockBtn[data-v-02ce8cf3] {
   margin: 30px 0px;
@@ -3302,7 +3302,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockResumen .resumen-edit[data-v-07c800bf] {
   font-family: Roobert;
@@ -3313,7 +3313,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockResumen .Cardline-bottom[data-v-07c800bf] {
   margin-top: 10px;
@@ -3332,7 +3332,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockResumen .list-group .list-group-item .detailt-input[data-v-07c800bf] {
   font-family: Roobert;
@@ -3343,7 +3343,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockResumen .list-group .list-group-item .resumen-title[data-v-07c800bf] {
   font-family: Roobert;
@@ -3353,7 +3353,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockResumen .list-group .list-group-item .resumen-pago[data-v-07c800bf] {
   font-family: Roobert;
@@ -3374,7 +3374,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockResumen .list-group .list-group-item .importe-total[data-v-07c800bf] {
   font-family: Roobert;
@@ -3385,7 +3385,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .BlockResumen .list-group .line-bottom[data-v-07c800bf] {
   margin-top: 10px;
@@ -3399,7 +3399,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.31;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   margin-bottom: 15px;
 }
 .BlockResumen .list-group .contact-text[data-v-07c800bf] {
@@ -3424,7 +3424,7 @@ input:valid ~ .show-hide i {
   line-height: 1.17;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .line-bottom[data-v-4eb8c287] {
   border-radius: 16px;
@@ -3451,7 +3451,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card[data-v-4eb8c287] {
   border-radius: 16px;
@@ -3466,7 +3466,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .borrador[data-v-4eb8c287] {
   font-family: Roobert;
@@ -3489,7 +3489,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .BlockSubTitle[data-v-4eb8c287] {
   margin-top: 20px;
@@ -3500,7 +3500,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.4;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .Cardline-bottom[data-v-4eb8c287] {
   margin-top: 10px;
@@ -3526,7 +3526,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .form-check-label[data-v-4eb8c287] {
   font-family: CynthoNext;
@@ -3568,7 +3568,7 @@ input:valid ~ .show-hide i {
   line-height: 1.17;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .line-bottom[data-v-799a0de0] {
   border-radius: 16px;
@@ -3595,7 +3595,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card[data-v-799a0de0] {
   border-radius: 16px;
@@ -3610,7 +3610,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .borrador[data-v-799a0de0] {
   font-family: Roobert;
@@ -3631,7 +3631,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .BlockSubTitle[data-v-799a0de0] {
   margin-top: 20px;
@@ -3642,7 +3642,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.4;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .Cardline-bottom[data-v-799a0de0] {
   margin-top: 10px;
@@ -3666,7 +3666,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .Document.card .form-check-label[data-v-799a0de0] {
   font-family: CynthoNext;
@@ -3680,7 +3680,7 @@ input:valid ~ .show-hide i {
 }
 .Deudor .BlockCard.card .Document.card .btn-save[data-v-799a0de0] {
   border-radius: 37.5px;
-  background-color: #051c2c;
+  background-color:  #051c2c;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -3711,7 +3711,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.4;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .tipoPago .Cardline-bottom[data-v-799a0de0] {
   margin-top: 10px;
@@ -3736,7 +3736,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .PrecioTotal-importe[data-v-799a0de0] {
   font-family: Roobert;
@@ -3747,7 +3747,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockCard.card .TerminosCondiciones[data-v-799a0de0] {
   margin-bottom: 60px;
@@ -3802,7 +3802,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockResumen .resumen-edit[data-v-799a0de0] {
   font-family: Roobert;
@@ -3813,7 +3813,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockResumen .Cardline-bottom[data-v-799a0de0] {
   margin-top: 10px;
@@ -3832,7 +3832,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockResumen .list-group .list-group-item .detailt-input[data-v-799a0de0] {
   font-family: Roobert;
@@ -3843,7 +3843,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockResumen .list-group .list-group-item .resumen-title[data-v-799a0de0] {
   font-family: Roobert;
@@ -3853,7 +3853,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockResumen .list-group .list-group-item .resumen-pago[data-v-799a0de0] {
   font-family: Roobert;
@@ -3874,7 +3874,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockResumen .list-group .list-group-item .importe-total[data-v-799a0de0] {
   font-family: Roobert;
@@ -3885,7 +3885,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Deudor .BlockResumen .list-group .line-bottom[data-v-799a0de0] {
   margin-top: 10px;
@@ -3899,7 +3899,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.31;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   margin-bottom: 15px;
 }
 .Deudor .BlockResumen .list-group .contact-text[data-v-799a0de0] {
@@ -3933,7 +3933,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .ref[data-v-e558d370] {
   font-family: Roobert;
@@ -3943,7 +3943,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
   margin-bottom: 10px;
 }
 .ModalReclamacion .card .ref-val[data-v-e558d370] {
@@ -3954,7 +3954,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card-text[data-v-e558d370] {
   font-family: CynthoNext;
@@ -3994,7 +3994,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.4;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .BlockData .line-bottom[data-v-e558d370] {
   margin-top: 10px;
@@ -4013,7 +4013,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .BlockData .list-group .list-group-item .detailt-input[data-v-e558d370] {
   font-family: Roobert;
@@ -4024,7 +4024,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .BlockData .list-group .list-group-item .resumen-title[data-v-e558d370] {
   font-family: Roobert;
@@ -4034,7 +4034,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .BlockData .Cardline-bottom[data-v-e558d370] {
   margin: 10px 0;
@@ -4055,7 +4055,7 @@ input:valid ~ .show-hide i {
   line-height: 1.17;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Tarifa .line-bottom[data-v-12fc0943] {
   border-radius: 16px;
@@ -4092,7 +4092,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Tarifa.hidden[data-v-12fc0943] {
   display: none;
@@ -4122,7 +4122,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ClienteDer .blockTop .blockButtons .blockClaim .btn-newclaim[data-v-1ddd7adb] {
   border-radius: 37.5px;
@@ -4141,7 +4141,7 @@ input:valid ~ .show-hide i {
 }
 .ClienteDer .btnTab[data-v-1ddd7adb] {
   border-radius: 16px;
-  background-color: #051c2c;
+  background-color:  #051c2c;
 }
 .ClienteDer .btnTab input[type=radio][data-v-1ddd7adb] {
   opacity: 0;
@@ -4205,7 +4205,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ClienteDer .table .text-table .type_claim[data-v-1ddd7adb] {
   font-family: Roobert;
@@ -4319,7 +4319,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.4;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .Representacion-header .btn-actions[data-v-9bfde6aa] {
   float: right;
@@ -4332,7 +4332,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
   cursor: pointer;
 }
 .Representacion .line-bottom[data-v-9bfde6aa] {
@@ -4356,7 +4356,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card[data-v-0cb2147a] {
   border-radius: 16px;
@@ -4423,7 +4423,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .ref-val[data-v-0cb2147a] {
   font-weight: normal;
@@ -4436,7 +4436,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.85;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .dateClaim-text[data-v-0cb2147a] {
   font-family: CynthoNext;
@@ -4486,7 +4486,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: 1.4;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .BlockData .line-bottom[data-v-0cb2147a] {
   margin-top: 10px;
@@ -4505,7 +4505,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .BlockData .list-group .list-group-item .detailt-input[data-v-0cb2147a] {
   font-family: Roobert;
@@ -4516,7 +4516,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .BlockData .list-group .list-group-item .resumen-title[data-v-0cb2147a] {
   font-family: Roobert;
@@ -4526,7 +4526,7 @@ input:valid ~ .show-hide i {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #051c2c;
+  color: #285ba3;
 }
 .ModalReclamacion .card .BlockData .Cardline-bottom[data-v-0cb2147a] {
   margin: 10px 0;
@@ -4904,6 +4904,8 @@ a.more-link[data-v-167ae8c1] {
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+@yield('extrajs')
 
     <script>
       

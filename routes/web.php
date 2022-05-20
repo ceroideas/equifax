@@ -103,9 +103,10 @@ Route::group(['prefix' => 'claims'], function(){
     Route::post('payment', [PaymentsController::class, 'payment']);
     Route::post('payToken', [PaymentsController::class, 'payToken']);
 
-    Route::post('uploadApudActa', [ClaimsController::class, 'uploadApudActa']);
 
 });
+
+Route::post('uploadApudActa', [ClaimsController::class, 'uploadApudActa']);
 
 Route::get('export-all', [ClaimsController::class, 'exportAll']);
 
@@ -188,3 +189,5 @@ Route::get('exportTemplate/{id}', [WordController::class, 'exportTemplate']);
 Route::post('importParty', [WordController::class, 'importParty']);
 Route::post('importPostalCode', [WordController::class, 'importPostalCode']);
 Route::post('importType', [WordController::class, 'importType']);
+
+Route::get('getPopulation/{code}', [UsersController::class, 'getPopulation']);

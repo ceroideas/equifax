@@ -107,7 +107,7 @@ class DebtorsController extends Controller
      */
     public function update(Request $request, Debtor $debtor)
     {
-        $data = $this->validateRequest();
+        $data = $this->validateRequest($debtor->id);
 
         $debtor->name = $data['name'];
         $debtor->email = $data['email'];
@@ -136,13 +136,13 @@ class DebtorsController extends Controller
         return redirect('/debtors')->with('msj', 'Deudor Eliminado Correctamente');
     }
 
-    public function validateRequest(){
+    public function validateRequest($id = null){
 
         $rules = [
             'type' => 'required',
             'name' => 'required|min:8|max:255',
-            'email' => 'required|email|unique:users',
-            'dni' => 'required|min:8|max:10|unique:users',
+            'email' => 'required|email|unique:debtors,email,'.$id,
+            'dni' => 'required|min:8|max:10|unique:debtors',
             'tlf' => 'required|min:9|max:14',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
@@ -151,8 +151,8 @@ class DebtorsController extends Controller
         ];
 
         if(request()->method() == 'PUT'){
-            $rules['email'] = 'required|email|unique:users,email,'.request()->debtor->id;
-            $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->debtor->id;
+            $rules['email'] = 'required|email|unique:debtors,email,'.request()->debtor->id;
+            $rules['dni'] = 'required|min:8|max:10|unique:debtors,dni,' . request()->debtor->id;
         }
 
         return request()->validate($rules);

@@ -63,7 +63,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe  Principal</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->total_amount }}€</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount }}€</span>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe Pendiente</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->total_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}€</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}€</span>
                                 </div>
                             </div>
                         </div>
@@ -449,11 +449,11 @@
                             </div>
                         @endif
 
-                        @if ($claim->claim_type == 1 && $claim->apud_acta)
+                        @if ($claim->claim_type == 1 && $claim->owner->apud_acta)
                             <div class="text-center my-3">
-                                <b>Observaciones del Administrador: </b>
-                                <li>
-                                    <a href="{{ url('uploads/claims/' . $claim->id . '/apud',$claim->apud_acta) }}" class="btn-link text-secondary" target="_blank" download="Apud Acta #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Apud Acta</a>
+                                {{-- <b>Apud Acta: </b> --}}
+                                <li style="list-style: none;">
+                                    <a href="{{ url('uploads/users/' . $claim->owner->id . '/apud',$claim->owner->apud_acta) }}" class="btn-link text-secondary" target="_blank" download="Apud Acta - {{ $claim->owner->name }} - {{ $claim->owner->dni }}.pdf"><i class="far fa-fw fa-file"></i>Apud Acta</a>
                                 </li>
                             </div>
                         @endif
