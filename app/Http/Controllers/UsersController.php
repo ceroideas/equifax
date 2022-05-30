@@ -338,10 +338,13 @@ class UsersController extends Controller
 
     public function migrar()
     {
-        Schema::table('claims', function(Blueprint $table) {
+        /*\App\Models\Actuation::truncate();
+        \App\Models\ActuationDocument::truncate();
+        return \App\Models\Actuation::all();*/
+        /*Schema::table('claims', function(Blueprint $table) {
             //
             $table->string('phase')->nullable();
-        });
+        });*/
         /*\App\Models\Actuation::truncate();
         \App\Models\ActuationDocument::truncate();
         

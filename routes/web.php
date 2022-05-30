@@ -207,3 +207,6 @@ Route::get('getPopulation/{code}', [UsersController::class, 'getPopulation']);
 Route::get('getHito/{blade}', [DebtsController::class, 'getHito']);
 
 Route::get('loadActuations/{phase}', [ClaimsController::class, 'loadActuations']);
+
+
+Route::post('import-actuations', [ClaimsController::class, 'importActuations']);

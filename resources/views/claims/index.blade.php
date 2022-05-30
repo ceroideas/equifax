@@ -59,6 +59,15 @@
 
     @if (!Auth::user()->isClient())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-warning">Exportar Reclamaciones</a>
+
+        <form action="{{url('import-actuations')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
+            @csrf
+            
+            <label style="margin: 0;" for="actuations" class="btn btn-info btn-sm">Importar Actuaciones</label>
+
+            <input name="file" type="file" id="actuations" style="display: none;">
+        
+        </form>
     @endif
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">

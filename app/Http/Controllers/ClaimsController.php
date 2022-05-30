@@ -22,6 +22,8 @@ use Excel;
 use App\Exports\ClaimsExport;
 use App\Exports\InvoiceExport;
 
+use App\Imports\HitosImport;
+
 class ClaimsController extends Controller
 {
     /**
@@ -32,7 +34,7 @@ class ClaimsController extends Controller
     public function index()
     {
         if(Auth::user()->isClient()){
-            $claims = Auth::user()->claims()->whereNotIn('status',[-1,0,1]);
+            $claims = Auth::user()->claims()->whereNotIn('status',[-1,0,1])->get();
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $claims = Claim::all();
         }
@@ -428,7 +430,7 @@ class ClaimsController extends Controller
         $this->validateNonViable();
 
         $claim->observation = $request['informe_inviabilidad'];
-        if ($r->non_viable_judicial) {
+        if ($request->non_viable_judicial) {
             $claim->claim_type = 1;
         }
         $claim->status = 1;
@@ -858,5 +860,15 @@ class ClaimsController extends Controller
         $fase = config('app.phases')[$phase];
 
         return view('claims.hitos', compact('fase'));
+    }
+
+    public function importActuations(Request $r)
+    {
+        if ($r->hasFile('file')) {
+            $r->file->move(public_path().'/uploads/excel','actuations.xlsx');
+            Excel::import(new HitosImport, public_path().'/uploads/excel/actuations.xlsx');
+        }
+
+        return back()->with('msj','Se ha cargado correctamente el archivo excel!');
     }
 }
