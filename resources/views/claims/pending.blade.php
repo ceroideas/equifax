@@ -122,10 +122,10 @@
                             </button>
                         </a>
 
-                        <a href="{{ url('/claims/' . $claim->id ) }}">
-                            <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
-                                <i class="fa fa-lg fa-fw fa-eye"></i>
-                            </button>
+                        <a href="{{ url('/claims/actuations/' . $claim->id ) }}">
+                                <button class="btn btn-xs btn-default text-warning mx-1 shadow" title="Actuaciónes">
+                                    <i class="fa fa-lg fa-fw fa-list"></i>
+                                </button>
                         </a>
                     </nobr>
                     </td>
