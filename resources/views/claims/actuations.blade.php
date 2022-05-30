@@ -62,7 +62,7 @@
         	<div class="row">
         		<div class="col-md-12">
 
-        			<div class="row">
+        			<div class="row text-left">
         			@forelse ($actuations as $act)
 
         				<div class="col-sm-12">
@@ -81,7 +81,7 @@
         					@if ($act->amount)
         					<br>
         						
-        						<b>Monto reclamado:</b> {{$act->amount}}€ <br>
+        						<b>Monto recuperado:</b> {{$act->amount}}€ <br>
         						@if ($act->invoice)
         						<b>Monto a facturar:</b> {{$act->invoice->amount}}€ <br> 
         						<b>Status de la factura:</b> {!!$act->invoice->status ? '<span class="text-success">Pagado</span>' : '<span class="text-info">Pendiente</span>'!!}
