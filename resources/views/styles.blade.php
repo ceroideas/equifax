@@ -895,7 +895,7 @@
     margin: 0 !important;
 }
 }</style><style>.blockRecovery[data-v-43503c2a] {
-  padding: 50px 0;
+  /*padding: 50px 0;*/
   background-color: #f8fafc;
   /*     @media (min-width: 1024px){
       .row{
