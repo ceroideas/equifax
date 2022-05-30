@@ -459,7 +459,7 @@
                             </div>
                         @endif
 
-                        @if ($claim->isFinished() && $claim->claim_type == 2)
+                        @if ($claim->isFinished() && $claim->claim_type == 2 && !Auth::user()->isClient())
                             <div class="text-center my-3">
                             
                             <a href="{{ url('claims/'. $claim->id . '/viable',1) }}" class="btn btn-sm btn-primary">Reclamación Judicial Viable</a>
