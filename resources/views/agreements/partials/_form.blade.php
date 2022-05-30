@@ -15,11 +15,11 @@
 
 <style>
     #deudas_otros_input-slider {
-        margin-right: 10px !important;
-        margin-left: 10px !important;
+        margin-right: 16px !important;
+        margin-left: 16px !important;
     }
     .input-group-prepend, .input-group-append {
-        width: 5%;
+        width: 8%;
     }
 
     .input-group-prepend button, .input-group-append button {
@@ -27,7 +27,7 @@
     }
 
     .slider {
-        width: calc(90% - 20px) !important;
+        width: calc(88% - 80px) !important;
         top: 5px;
     }
 </style>
@@ -46,11 +46,12 @@
                 {{session('claim_debt.pending_amount')}} --}}
                 @php
                 @endphp
-                <label for="deudas_otros_input">Quitas * {{ old() ? '('.old('quitas').'€)' : '' }}</label>
-                <x-adminlte-input-slider min="0" max="{{session('claim_debt.pending_amount')}}" id="deudas_otros_input" name="quitas" placeholder="Quitas" type="text" class=""
+                <label for="deudas_otros_input">¿Qué importe sería satisfactorio para dar la deuda por saldada? * {{ old() ? '('.old('quitas').'€)' : '' }}</label>
+
+                <x-adminlte-input-slider min="{{ session('claim_debt.pending_amount')/2 }}" max="{{ session('claim_debt.pending_amount') }}" id="deudas_otros_input" name="quitas" placeholder="Quitas" type="text" class=""
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_agreement') ? session('claim_agreement')->take : ''}}" >
                     <x-slot name="prependSlot">
-                        <x-adminlte-button theme="warning" label="0€"/>
+                        <x-adminlte-button theme="warning" label="{{session('claim_debt.pending_amount')/2}}€"/>
                     </x-slot>
                     <x-slot name="appendSlot">
                         <x-adminlte-button theme="warning" label="{{session('claim_debt.pending_amount')}}€"/>
@@ -60,7 +61,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <x-adminlte-select name="espera" label="Espera *" id="espera_input" class=""
+                <x-adminlte-select name="espera" label="¿Qué plazo máximo concederías al deudor para saldar la deuda? *" id="espera_input" class=""
                 igroup-size="sm" enable-old-support="true">
                     <option selected disabled></option>
                     <option {{ session('claim_agreement') ? (session('claim_agreement')->wait == '1 Mes' ? 'selected' : '') : ''}}>1 Mes</option>
@@ -97,6 +98,17 @@
                         </div>
                     </x-slot>
                 </x-adminlte-textarea>
+            </div>
+
+            <div class="col-sm-12">
+                <x-adminlte-input name="iban" label="Ingrese su N° De Cuenta Corriente" placeholder="N° De Cuenta Corriente" type="text"
+                igroup-size="sm" value="{{ Auth::user()->iban }}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-key"></i>
+                        </div>
+                    </x-slot>
+            </x-adminlte-input>
             </div>
         </div>
         <div class="card-footer">
@@ -135,7 +147,7 @@
             if ($('#deudas_otros_input').val() > 0 && (meses && meses != 1)) {
                 console.log(meses);
                 $('#espera').removeClass('d-none').find('span').text(meses)
-                $('#espera').find('label').text(($('#deudas_otros_input').val()/meses)+'€')
+                $('#espera').find('label').text( ($('#deudas_otros_input').val()/meses).toFixed(2) +'€')
             }else{
                 $('#espera').addClass('d-none');
 
@@ -143,7 +155,7 @@
         }
 
         $('#deudas_otros_input').on('slide change', function () {
-            $('[for="deudas_otros_input"]').text("Quitas * ("+$(this).val()+"€)");
+            $('[for="deudas_otros_input"]').text("¿Qué importe sería satisfactorio para dar la deuda por saldada? * ("+$(this).val()+"€)");
 
             if ($(this).val() > 0) {
                 $('#quitas').removeClass('d-none').find('span').text($(this).val()+'€');

@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', 'Usuarios')
+@section('title', 'Reclamaciones Finalizadas')
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Reclamaciones Pendientes</h1>
+                <h1>Reclamaciones Finalizadas</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Reclamaciones Pendientes</li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Reclamaciones Finalizadas</li>
                 </ol>
             </div>
         </div>
@@ -25,16 +25,20 @@
     @php
     $heads = [
         'ID',
-        'Cliente',
+        'Gestoría/Asociación',
+        'Acreedor',
         'Deudor',
-        ['label' => 'Importe Pendiente'],
-        ['label' => 'Acuerdo'],
-        ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
+        'Importe reclamado',
+        'Cobros recibidos',
+        'Importe pendiente de pago',
+        ['label' => 'Tipo de Reclamación'],
+        ['label' => 'Hito'],
+        ['label' => 'Estatus','width' => 5],
     ];
 
     $config = [
        
-        'columns' => [null, null, null, null, null,['orderable' => false]],
+        'columns' => [null, null, null, null, null, null, null, null, null, ['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
@@ -47,17 +51,60 @@
         </x-adminlte-alert>
     @endif
 
+    @if(session()->has('err'))
+        <x-adminlte-alert theme="warning" dismissable>
+            {{ session('err') }}
+        </x-adminlte-alert>
+    @endif
+
+    @if (!Auth::user()->isClient())
+        <a href="{{url('export-finished')}}" class="btn btn-sm btn-warning">Exportar Reclamaciones Finalizadas</a>
+    @endif
+
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($claims as $claim)
                 <tr>
-                    <td>{{ $claim->id }}</td>
+                    <td>{{ $claim->debt->document_number }}</td>
+                    <td>
+
+                        @php                                        
+                            $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
+
+                            $juzgado = "--";
+                            $procurador = "--";
+
+                            if ($pc) {
+                                $type = App\Models\Type::where('locality',$pc->province)->first();
+
+                                if ($type) {
+                                    $juzgado = $type->type;
+
+                                    $party = App\Models\Party::where('locality',$pc->province)->first();
+
+                                    if ($party) {
+                                        $procurador = $party->procurator;
+                                    }
+                                }
+                            }
+                        @endphp 
+
+                    {{ $juzgado.'/'.$procurador }}</td>
+                    <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
+                    <td>{{ $claim->debtor->name }}</td>
+                    <td>{{ $claim->debt->pending_amount }}€</td>
+                    <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
+                    <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
+                    <td>{{ $claim->getType() }}</td>
+                    <td>{{ $claim->getHito() }}</td>
+                    {{-- <td>{{ $claim->id }}</td>
                     <td>{{ $claim->user_id ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
                     <td>{{ $claim->debt->pending_amount }}</td>
                     <td>{{ $claim->debt->agreement == true ? 'Si Tiene' : 'No Tiene' }}</td>
+                    <td> --}}
                     <td>
-                     <nobr>
+                    <nobr>
                         @if(Auth::user()->id === $claim->user_id && $claim->status  == 1)
                             <a href="{{ url('/claims/' . $claim->id . '/edit/') }}">
                                 <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">

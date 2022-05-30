@@ -67,6 +67,11 @@ Route::group(['prefix' => 'users'], function(){
 
 });
 
+Route::get('change-password', function(){
+    return view('users.change-password');
+});
+Route::post('change-password', [UsersController::class, 'changePassword']);
+
 /* Reclamaciones */ 
 
 Route::group(['prefix' => 'claims'], function(){
@@ -102,13 +107,20 @@ Route::group(['prefix' => 'claims'], function(){
 
     Route::post('payment', [PaymentsController::class, 'payment']);
     Route::post('payToken', [PaymentsController::class, 'payToken']);
+    /**/
+    Route::post('check_debtor', [ClaimsController::class, 'checkDebtor']);
+    /**/
 
 
 });
 
+Route::get('viability', [ClaimsController::class, 'viability']);
+
 Route::post('uploadApudActa', [ClaimsController::class, 'uploadApudActa']);
 
 Route::get('export-all', [ClaimsController::class, 'exportAll']);
+Route::get('export-finished', [ClaimsController::class, 'exportFinished']);
+Route::get('export-users', [UsersController::class, 'exportUsers']);
 
 
 /* Terceros */
@@ -191,3 +203,7 @@ Route::post('importPostalCode', [WordController::class, 'importPostalCode']);
 Route::post('importType', [WordController::class, 'importType']);
 
 Route::get('getPopulation/{code}', [UsersController::class, 'getPopulation']);
+/**/
+Route::get('getHito/{blade}', [DebtsController::class, 'getHito']);
+
+Route::get('loadActuations/{phase}', [ClaimsController::class, 'loadActuations']);

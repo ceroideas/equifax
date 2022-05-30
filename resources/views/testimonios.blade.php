@@ -35,42 +35,87 @@
                             Contacto
                         </span></a> <div data-v-5fddf304="" class=""></div></li></ul> 
                         @include('front.loginButtons')
-                         <!----></div></div></nav> <div data-v-eb5d4bee="" data-v-effc9f78="" class="container Testimonios"><div data-v-eb5d4bee="" data-v-effc9f78="" class="row"><div data-v-eb5d4bee="" data-v-effc9f78="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-title">Testimonios</div></div> <div data-v-eb5d4bee="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12"><div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.
-                        Mauris malesuada nisi sit amet augue accumsan tincidunt. Maecenas tincidunt, velit ac porttitor pulvinar.</div></div></div></div> <ul data-v-7b4478c1="" data-v-eb5d4bee="" id="social-sidebar" data-v-effc9f78=""><li data-v-7b4478c1="" class="icons-social"><a data-v-7b4478c1="" href="{{url('/')}}/testimonios" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/icon-whatsapp.png"></a></li> <li data-v-7b4478c1="" class="icons-social"><a data-v-7b4478c1="" href="{{url('/')}}/testimonios" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/icon-instagram.png"></a></li> <li data-v-7b4478c1="" class="follow-social">
-        Síguenos en
-    </li></ul></div> <div data-v-455dcd3f="" data-v-eb5d4bee="" class="blockOpiniones" data-v-effc9f78=""><div data-v-455dcd3f="" class="content"><div data-v-455dcd3f="" class="container Opinion"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
-                            Deuda recuperada
-                        </div> <div data-v-455dcd3f="" class="price-DR">
-                            3.000<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-1.png" class="testimonio-1 img-fluid"></div> <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Gestoría Antonio</div> <div data-v-455dcd3f="" class="Opinion-cliente">Antonio Fernández </div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-455dcd3f="" class="col-10 block-text">
+                         <!----></div></div></nav> <div data-v-eb5d4bee="" data-v-effc9f78="" class="container Testimonios"><div data-v-eb5d4bee="" data-v-effc9f78="" class="row"><div data-v-eb5d4bee="" data-v-effc9f78="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-title">Testimonios</div></div> <div data-v-eb5d4bee="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12"><div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-text"></div></div></div></div>
+                        @include('followus')
+                    </div> 
 
-                              <p>Soy Antonio y tengo una gestoría en La Rioja. <b>Dividae</b> se puso en contacto conmigo para poder ofrecer a mis clientes sus servicios. Dentro de mi cartera de clientes, muchos son los que tienen facturas pendientes de pago y las daban por perdidas.</p>
+                    <div class="container text-center bottom-text">
+                        <p class="text-center">
+                            
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. <br>
+                            Mauris malesuada nisi sit amet augue accumsan tincidunt. Maecenas tincidunt, velit ac porttitor pulvinar.
 
-                              <p>Con Dividae, muchos clientes recuperan sus facturas impagadas y ahora se ha convertido en parte de unos de los servicios esenciales que ofrecemos en la gestoría. Agilizamos en tiempo y ofrecemos transparencia durante todo el proceso. </p>
+                        </p>
+                    </div>
 
-                            </div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="container Opinion mt-5"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="row"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-empresa">Empresa</div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-cliente">Nombre cliente</div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-text mt-4"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="row"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-10 block-text"><p data-v-eb5d4bee="" data-v-455dcd3f="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
-                                    Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.
-                                    Mauris malesuada nisi sit amet augue accumsan tincidunt.</p> <p data-v-eb5d4bee="" data-v-455dcd3f="">Maecenas tincidunt, velit ac porttitor pulvinar, tortor eros
-                                    facilisis libero, vitae commodo nunc quam et ligula. Ut nec
-                                    ipsum sapien. Interdum et malesuada fames ac ante ipsum primis
-                                    in faucibus.</p></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="block-DR"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="text-deuda-recuperada">
-                            Deuda recuperada
-                        </div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="price-DR">
-                            1.500<span data-v-eb5d4bee="" data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-2.png" class="testimonio-1 img-fluid"></div></div></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="container Opinion mt-5"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="row"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="block-DR"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="text-deuda-recuperada">
-                            Deuda recuperada
-                        </div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="price-DR">
-                            10.000<span data-v-eb5d4bee="" data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-3.png" class="testimonio-1 img-fluid"></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-empresa">Empresa</div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-cliente">Nombre cliente</div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="Opinion-text mt-4"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="row"><div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-10 block-text"><p data-v-eb5d4bee="" data-v-455dcd3f="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
-                                    Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.
-                                    Mauris malesuada nisi sit amet augue accumsan tincidunt.</p> <p data-v-eb5d4bee="" data-v-455dcd3f="">Maecenas tincidunt, velit ac porttitor pulvinar, tortor eros
-                                    facilisis libero, vitae commodo nunc quam et ligula. Ut nec
-                                    ipsum sapien. Interdum et malesuada fames ac ante ipsum primis
-                                    in faucibus.</p></div> <div data-v-eb5d4bee="" data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-eb5d4bee="" data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div></div> 
+                    <div data-v-455dcd3f="" data-v-63cd6604="" class="blockOpiniones" data-v-effc9f78="">
+
+                        <div data-v-455dcd3f="" class="content">
+
+                        <div id="test-3" class="owl-carousel owl-theme">
+                            
+                            <div data-v-455dcd3f="" class="container Opinion">
+                                <div data-v-455dcd3f="" class="row">
+
+                                <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
+                                    Deuda recuperada
+                                    </div> <div data-v-455dcd3f="" class="price-DR">
+                                    3.000<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-1.png" class="testimonio-1 img-fluid">
+                                </div>
+
+                                <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Gestoría Antonio</div> <div data-v-455dcd3f="" class="Opinion-cliente">Antonio Fernández </div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-455dcd3f="" class="col-10 block-text">
+
+                                  <p>Soy Antonio y tengo una gestoría en La Rioja. <b>Dividae</b> se puso en contacto conmigo para poder ofrecer a mis clientes sus servicios. Dentro de mi cartera de clientes, muchos son los que tienen facturas pendientes de pago y las daban por perdidas.</p>
+
+                                  <p>Con Dividae, muchos clientes recuperan sus facturas impagadas y ahora se ha convertido en parte de unos de los servicios esenciales que ofrecemos en la gestoría. Agilizamos en tiempo y ofrecemos transparencia durante todo el proceso. </p>
+
+                                </div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div>
+                            </div>
+
+                            <div data-v-455dcd3f="" class="container Opinion">
+                                <div data-v-455dcd3f="" class="row">
+
+                                <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Aparejadora</div> <div data-v-455dcd3f="" class="Opinion-cliente">Alba Rodríguez </div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-455dcd3f="" class="col-10 block-text">
+
+                                  <p>Trabajo desde hace más de 10 como aparejadora y llegó un punto en el que tenía muchas facturas impagadas. No sabía qué hacer… Intenté encontrar un abogado que no saliera por un ojo de la cara, pero no fui capaz de asumirlo económicamente.</p>
+
+                                  <p>Decidí buscar en internet y ahí fue cuando encontré <b>Dividae</b>. Gracias a ellos y su transparencia conseguí recuperar todas aquellas facturas que había dado por perdidas. Además, fue un proceso muy sencillo, en el que me sentí siempre acompañada. </p>
+
+                                </div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div>
+
+                                <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
+                                    Deuda recuperada
+                                    </div> <div data-v-455dcd3f="" class="price-DR">
+                                    1.500<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-2.png" class="testimonio-1 img-fluid">
+                                </div>
+
+                                </div>
+                            </div>
+
+                            <div data-v-455dcd3f="" class="container Opinion">
+                                <div data-v-455dcd3f="" class="row">
+
+                                <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
+                                    Deuda recuperada
+                                    </div> <div data-v-455dcd3f="" class="price-DR">
+                                    10.000<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-3.png" class="testimonio-1 img-fluid">
+                                </div>
+
+                                <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Electricista</div> <div data-v-455dcd3f="" class="Opinion-cliente">Ángel López </div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-455dcd3f="" class="col-10 block-text">
+
+                                  <p>Mi gestor me recomendó <b>Dividae</b>, ya que él más que nadie conoce el estado de mis cuentas y facturas. Me pareció una idea muy innovadora y necesaria en el sector.</p>
+
+                                  <p>Gracias a mi gestoría, he podido recuperar muchas facturas impagadas que tenía olvidadas. El servicio que ofrece mi gestoría gracias a Dividae, se ha convertido en un servicio indispensable. No lo dudes, regístrate y empieza a decir adiós a las facturas impagadas.</p>
+
+                                </div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div>
+                            </div>
+                        </div>
 
 
 
 
-                                    <div data-v-455dcd3f="" class="container OCliente"><div data-v-455dcd3f="" class="OCliente-title">¿Qué opinan nuestros clientes?</div> <div data-v-455dcd3f="" class="OCliente-text">
+
+                            <div data-v-455dcd3f="" class="container OCliente"><div data-v-455dcd3f="" class="OCliente-title">¿Qué opinan nuestros clientes?</div> <div data-v-455dcd3f="" class="OCliente-text">
                 Conoce las opiniones de personas que ya han confiado en <b>Dividae</b>.
             </div>
 
@@ -84,7 +129,7 @@
                             <div data-v-1cb0bef4="" class="card"><div data-v-1cb0bef4="" class="card-body"><div data-v-1cb0bef4="" class="row block-slide-1"><div data-v-1cb0bef4="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 OClientes-blockquote-slides"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/blockquote-up.png" class="img-fluid"></div> <div data-v-1cb0bef4="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides">
                                 Experiencia de Usuario inmejorable. En todo momento conoces el estado de la reclamación. 100% recomendable. 
                             </div></div> <br> <div data-v-1cb0bef4="" class="row block-slide-2"><div data-v-1cb0bef4="" class="col OClientes-img-slides2"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/rectangle3.png"></div> <div data-v-1cb0bef4="" class="col OClientes-text-slides2"><div data-v-1cb0bef4="">
-                                    Laura Fernandez
+                                    Amelia Gonzalez
                                     <br data-v-1cb0bef4="">
                                     @Empresa4
                                 </div></div> <div data-v-1cb0bef4="" class="col OClientes-rating-slides2"><div data-v-1cb0bef4="" class="rating"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"></div></div></div></div></div>
@@ -93,7 +138,7 @@
                                 <div data-v-1cb0bef4="" class="card"><div data-v-1cb0bef4="" class="card-body"><div data-v-1cb0bef4="" class="row block-slide-1"><div data-v-1cb0bef4="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 OClientes-blockquote-slides"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/blockquote-up.png" class="img-fluid"></div> <div data-v-1cb0bef4="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides">
                                 Conocí <b>Dividae</b> por mi gestoría. Transparente y sencillo. Además comienzan la reclamación con un único pago y te mantienen informado siempre. No vas a pagar nada que no sepas. 
                             </div></div> <br> <div data-v-1cb0bef4="" class="row block-slide-2"><div data-v-1cb0bef4="" class="col OClientes-img-slides2"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/rectangle2.png"></div> <div data-v-1cb0bef4="" class="col OClientes-text-slides2"><div data-v-1cb0bef4="">
-                                    Juan Benito Gonzalez 
+                                    Emilio Castro
                                     <br data-v-1cb0bef4="">
                                     @Empresa5
                                 </div></div> <div data-v-1cb0bef4="" class="col OClientes-rating-slides2"><div data-v-1cb0bef4="" class="rating"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"></div></div></div></div></div>
@@ -102,22 +147,15 @@
                                 <div data-v-1cb0bef4="" class="card"><div data-v-1cb0bef4="" class="card-body"><div data-v-1cb0bef4="" class="row block-slide-1"><div data-v-1cb0bef4="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 OClientes-blockquote-slides"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/blockquote-up.png" class="img-fluid"></div> <div data-v-1cb0bef4="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides">
                                 Ahora que conozco <b>Dividae</b>, nunca más dejaré pasar una factura impagada por muy bajo que sea el importe. Repetiré.
                             </div></div> <br> <div data-v-1cb0bef4="" class="row block-slide-2"><div data-v-1cb0bef4="" class="col OClientes-img-slides2"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/rectangle1.png"></div> <div data-v-1cb0bef4="" class="col OClientes-text-slides2"><div data-v-1cb0bef4="">
-                                    Sofía Villaverde 
+                                    Sara Trujillo
                                     <br data-v-1cb0bef4="">
                                     @Empresa6
                                 </div></div> <div data-v-1cb0bef4="" class="col OClientes-rating-slides2"><div data-v-1cb0bef4="" class="rating"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"></div></div></div></div></div>
                           </div>
+                              </div></div></div>
 
 
-
-
-
-
-                              </div>
-
-
-
-                                </div></div> <div data-v-e047c7bc="" data-v-eb5d4bee="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2021</p> <p data-v-e047c7bc="" class="estadisticas-text">año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+100</p> <p data-v-e047c7bc="" class="estadisticas-text">procesos saldados con éxito</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">100.00€</p> <p data-v-e047c7bc="" class="estadisticas-text">en deudas recuperadas</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+50</p> <p data-v-e047c7bc="" class="estadisticas-text">miembros en nuestro equipo</p></div></div></div> <div data-v-dd3c5654="" data-v-eb5d4bee="" class="blockExitos" data-v-effc9f78=""><div data-v-dd3c5654="" class="container"><div data-v-dd3c5654="" class="Exitos-title">
+                    <div data-v-e047c7bc="" data-v-eb5d4bee="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2021</p> <p data-v-e047c7bc="" class="estadisticas-text">año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+100</p> <p data-v-e047c7bc="" class="estadisticas-text">procesos saldados con éxito</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">100.00€</p> <p data-v-e047c7bc="" class="estadisticas-text">en deudas recuperadas</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+50</p> <p data-v-e047c7bc="" class="estadisticas-text">miembros en nuestro equipo</p></div></div></div> <div data-v-dd3c5654="" data-v-eb5d4bee="" class="blockExitos" data-v-effc9f78=""><div data-v-dd3c5654="" class="container"><div data-v-dd3c5654="" class="Exitos-title">
             Casos de éxito
         </div> <div data-v-dd3c5654="" class="row my-5 Exitos"><div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/Planday.png" class="Exitos-img"></div> <div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/Umbraco.png"></div> <div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/Brightpearl.png" class="Exitos-img"></div> <div data-v-dd3c5654="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 Exitos-brands"><img data-v-dd3c5654="" src="{{url('landing')}}/assets/VoloDA.png" class="Exitos-img"></div></div></div></div>
 
@@ -156,6 +194,24 @@
               },
               1000:{
                   items:3
+              }
+          }
+      });
+
+      var owl2 = $('#test-3').owlCarousel({
+          loop:true,
+          margin:10,
+          nav:false,
+          dots: true,
+          responsive:{
+              0:{
+                  items:1
+              },
+              600:{
+                  items:1
+              },
+              1000:{
+                  items:1
               }
           }
       });

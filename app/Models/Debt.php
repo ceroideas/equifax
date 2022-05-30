@@ -19,6 +19,18 @@ class Debt extends Model
 
     }
 
+    public function partialAmounts()
+    {
+        $total = 0;
+        if ($this->partials_amount_details) {
+            foreach (json_decode($this->partials_amount_details,true) as $key => $partial) {
+                $total+=$partial['amount'];
+            }
+        }
+
+        return $total;
+    }
+
     public function getType()
     {
         switch ($this->type) {

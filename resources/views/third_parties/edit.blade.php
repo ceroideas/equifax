@@ -20,5 +20,9 @@
 @stop
 
 @section('content')
+
+@if(session()->has('claim_third_party') && session()->has('claim_third_party') == 'waiting')
+@include('progressbar', ['step' => 1])
+@endif
    @include('third_parties.partials._form')
 @stop

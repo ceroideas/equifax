@@ -56,7 +56,8 @@ class RegisterController extends Controller
             // 'razon_social' => ['required'], 
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'tos' => ['required'] 
+            'tos' => ['required'],
+            // 'newsletter' => []
         ]);
     }
 
@@ -74,6 +75,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+       $user->newsletter = $data['newsletter'] ? 1 : null;
        $user->role = 2;
        $user->save();
        return $user;
@@ -89,6 +91,7 @@ class RegisterController extends Controller
 
                 'name' => $request->name,
                 'email' => $request->email,
+                'newsletter' => 1,
                 'role' => 2,
                 'password' => null,
 

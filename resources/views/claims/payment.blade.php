@@ -62,7 +62,8 @@
 
     <div class="card">
         <div class="card-header card-orange card-outline">
-            <h3 class="card-title">Detalles de Pago - {{ $claim->getStatus() }} <br> <br> Concepto: <b>{{ $claim->last_invoice->description }}</b></h3>
+        	<h3>ACEPTACIÓN Y PAGO</h3>
+            {{-- <h3 class="card-title">Detalles de Pago - {{ $claim->getStatus() }} <br> <br> Concepto: <b>{{ $claim->last_invoice->description }}</b></h3> --}}
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -80,12 +81,12 @@
             			<p>
             				Tienes una tarjeta guardada con el alias <b>({{Auth::user()->card_alias}})</b> <br>
 
-            			<form role="form" action="{{url('claims/payToken')}}"  method="POST">
+            			<form id="pagoPorClick" role="form" action="{{url('claims/payToken')}}"  method="POST">
 							{{csrf_field()}}
 							<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 							<input type="hidden" name="claim_id" value="{{$claim->id}}">
 							<input type="hidden" name="amount" value="{{$amount*100}}">
-            				<button class="subscribe btn btn-primary btn-block" type="submit"> Pagar ({{$amount}}€) Con tarjeta guardada </button>
+            				<button class="subscribe btn btn-primary btn-block" data-toggle="modal" data-target="#terminos-2" type="button"> Pagar ({{$amount}}€) Con tarjeta guardada </button>
             			</form>
 
 
@@ -190,7 +191,8 @@
 							</div>
 
 						</div> <!-- row.// -->
-						<button class="subscribe btn btn-primary btn-block" type="submit"> Pagar ({{$amount}}€) </button>
+						<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#terminos" type="button"> Pagar ({{$amount}}€) </button>
+						<button class="subscribe btn btn-primary btn-block d-none" id="subscribe" type="submit"> Pagar ({{$amount}}€) </button>
 					</form>
 					<div id="paymentErrorMsg"></div>
 
@@ -212,6 +214,68 @@
         </div>
     </div>
 
+<div class="modal fade" id="terminos" style="max-width: 100%;">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+	    
+	    <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
+	    <div class="modal-body">
+
+	        <div style="height: 500px; overflow: auto;">  
+	          {{-- @include('terminos-condiciones')
+
+	          <br> --}}
+
+	          @include('terminos-contratacion')
+
+	          <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar las Condiciones</button>
+	          <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+	        </div>
+	    </div>
+	    {{-- <div class="modal-footer"></div> --}}
+	  </div>
+	</div>
+</div>
+
+<div class="modal fade" id="terminos-2" style="max-width: 100%;">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+	    
+	    <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
+	    <div class="modal-body">
+
+	        <div style="height: 500px; overflow: auto;">  
+	          {{-- @include('terminos-condiciones')
+
+	          <br> --}}
+
+	          @include('terminos-contratacion')
+
+	          <button data-dismiss="modal" id="accept-terms-2" class="btn btn-sm btn-success">Aceptar las Condiciones</button>
+	          <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+	        </div>
+	    </div>
+	    {{-- <div class="modal-footer"></div> --}}
+	  </div>
+	</div>
+</div>
+
 <script src="https://api.paycomet.com/gateway/paycomet.jetiframe.js?lang=es"></script>
 
+@stop
+
+@section('js')
+<script>
+	$('#accept-terms').click(function (e) {
+		e.preventDefault();
+
+		$('#subscribe').click();
+	});
+
+	$('#accept-terms-2').click(function (e) {
+		e.preventDefault();
+
+		$('#pagoPorClick').submit();
+	});
+</script>
 @stop

@@ -333,7 +333,7 @@ return [
                 ],
             ],
         ],
-        [
+        /*[
             'text'    => 'Clientes',
             'icon'    => 'fas fa-fw fa-user',
             'can' =>  ['see-pendings'],
@@ -351,7 +351,7 @@ return [
                     'url'  => '/users',
                 ],
             ],
-        ],
+        ],*/
         [
             'text'    => 'Reclamaciones',
             'icon'    => 'fas fa-fw fa-book',
@@ -364,7 +364,7 @@ return [
                     'url'  => '/claims/select-client',
                 ],
                 [
-                    'text' => 'Reclamaciones Pendientes',
+                    'text' => 'Reclamaciones Finalizadas',
                     'icon' => '',
                     'can' => ['create-claims', 'admin-claims'],
                     'url'  => '/claims/pending',

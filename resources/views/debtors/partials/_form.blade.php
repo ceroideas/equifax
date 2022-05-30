@@ -23,7 +23,7 @@
 
         <div class="row mb-4">
             <div class="col float-center">
-                <h1>¿Qué tipo de Duedor es?</h1>
+                <h1>¿Qué tipo de Deudor es?</h1>
                 <div class="row">
                     <div class="col-sm-2">
                         <x-adminlte-input name="type" type="radio"
@@ -45,7 +45,7 @@
                             </x-slot>
                         </x-adminlte-input>
                     </div>
-                    <div class="col-sm-2">
+                    {{-- <div class="col-sm-2">
                         <x-adminlte-input name="type" type="radio"
                         igroup-size="xs" value="3" >
                             <x-slot name="prependSlot">
@@ -54,7 +54,7 @@
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
-                    </div>
+                    </div> --}}
                </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="email" label="Correo *" placeholder="Ingresa el Correo *" type="email"
+                <x-adminlte-input name="email" label="Correo" placeholder="Ingresa el Correo" type="email"
                     igroup-size="sm"  enable-old-support="true" value="{{  isset($debtor) ?  $debtor->email   :  ''}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">

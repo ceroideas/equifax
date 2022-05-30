@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
                     <li class="breadcrumb-item active">Reclamaciones</li>
                 </ol>
             </div>
@@ -25,19 +25,20 @@
     @php
     $heads = [
         'ID',
-        'Cliente',
+        'Gestoría/Asociación',
+        'Acreedor',
         'Deudor',
-        'Importe total',
         'Importe reclamado',
-        'Importe Pendiente',
+        'Cobros recibidos',
+        'Importe pendiente de pago',
         ['label' => 'Tipo de Reclamación'],
-        ['label' => 'Status'],
-        ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
+        ['label' => 'Hito'],
+        ['label' => 'Estatus','width' => 5],
     ];
 
     $config = [
        
-        'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false]],
+        'columns' => [null, null, null, null, null, null, null, null, null, ['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
@@ -64,22 +65,49 @@
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($claims as $claim)
                 <tr>
-                    <td>{{ $claim->id }}</td>
+                    <td>
+                        {{ $claim->debt->document_number }}</td>
+                    <td>
+
+                        @php                                        
+                            $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
+
+                            $juzgado = "--";
+                            $procurador = "--";
+
+                            if ($pc) {
+                                $type = App\Models\Type::where('locality',$pc->province)->first();
+
+                                if ($type) {
+                                    $juzgado = $type->type;
+
+                                    $party = App\Models\Party::where('locality',$pc->province)->first();
+
+                                    if ($party) {
+                                        $procurador = $party->procurator;
+                                    }
+                                }
+                            }
+                        @endphp 
+
+                    {{ $juzgado.'/'.$procurador }}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
                     <td>{{ $claim->debt->pending_amount }}€</td>
-                    <td>{{ $claim->amountClaimed() + $claim->debt->partials_amount }}€</td>
-                    <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}€</td>
+                    <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
+                    <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
                     <td>{{ $claim->getType() }}</td>
-                    <td>{{ $claim->getStatus() }}</td>
+                    <td>{{ $claim->getHito() }}</td>
+                    {{-- <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td> --}}
+                    {{-- <td>{{ $claim->getStatus() }}</td> --}}
                     <td>
                      <nobr>
                         @can('create', $claim)
-                            <a href="{{ url('/claims/' . $claim->id . '/edit/') }}">
+                            {{-- <a href="{{ url('/claims/' . $claim->id . '/edit/') }}">
                                 <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                                     <i class="fa fa-lg fa-fw fa-pen"></i>
                                 </button>
-                            </a>
+                            </a> --}}
                             <form id="delete-form-{{ $claim->id }}" action="{{ url('/claims/' . $claim->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
                             {{-- <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $claim->id }}').submit();">
                                 <i class="fa fa-lg fa-fw fa-trash"></i>
@@ -95,6 +123,10 @@
                                     <i class="fa fa-lg fa-fw fa-upload"></i>
                                 </label>
                             </form>
+                        @endif
+
+                        @if (!Auth::user()->isClient() && ($claim->isFinished() && $claim->claim_type == 2))
+                            <a href="{{ url('claims/'. $claim->id . '/viable',1) }}" class="btn btn-xs btn-success">Reclamación Judicial</a>
                         @endif
 
                         <a href="{{ url('/claims/' . $claim->id ) }}">

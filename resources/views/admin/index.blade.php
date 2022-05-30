@@ -2,22 +2,51 @@
 
 {{-- @section('title', 'Dashboard') --}}
 
-@section('content_header')
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Dashboard</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
+@if (!Auth::user()->isClient())
+    @section('content_header')
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div>
             </div>
         </div>
+    @stop
+@endif
+
+@if (Auth::user()->isClient())
+    @section('extra_header')
+
+    <div style="background-color: #e65927; color: #fff" class="text-center">
+        
+        <small>Area Clientes</small>
+
+        <h3 style="padding-bottom: 10px !important">Inicio</h3>
+
     </div>
-@stop
+
+    @stop
+@endif
 
 @section('content')
+
+<style>
+    .blockBackoffice {
+        padding-top: 20px;
+    }
+
+    .btn-dividae {
+        border-radius: 20px;
+        border: 1px solid #e65927;
+        color: #e65927 !important;
+    }
+</style>
+
     @if(session()->has('alert'))
     <x-adminlte-alert theme="danger" dismissable>
         {{ session('alert') }}
@@ -78,6 +107,7 @@
         </div>
         <br>
     @endif
+
     <div class="row">
 
         @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin() )
@@ -93,51 +123,217 @@
                     <a href="{{ url('/users/pending') }}" class="small-box-footer"><span class="">Ir a Clientes </span><i class="fas fa-arrow-circle-right text-white"></i></a>
                 </div>
             </div>
+        @else
+        <div class="col-3" style="position: relative;">
+
+            <div style="position: absolute; width: calc(100% - 20px); bottom: 20px;">
+                <h5>¿Podemos ayudarte?</h5>
+
+                <div style="position: relative; height: 200px;">
+                    
+                    <div style="position: absolute; height: 80%; width: 100%; background-color: #e65927; border-radius: 8px; bottom: 0;">
+                        
+                    </div>
+                    <img src="{{url('landing/assets/contacto.png')}}" alt="" style="position: absolute; bottom: 0; right: 0; width: 100%">
+                </div>
+
+                <div class="text-center">
+                    <br>
+                    <span style="background-color: #2c60aa; border-radius: 4px; display: inline-block; width: 32px; margin: auto 20px;">
+                        <a target="_blank" data-v-7b4478c1="" href="https://www.linkedin.com/company/asemar-concursal" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/linkedin.png" style="padding: 4px; width: 100%"></a>
+                    </span>
+
+                    <span style="background-color: #2c60aa; border-radius: 4px; display: inline-block; width: 32px; margin: auto 20px;">
+                        <a target="_blank" data-v-7b4478c1="" href="mailto:info@dividae.com" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/mail.png" style="padding: 4px; width: 100%"></a>
+                    </span>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-9">
+            
+            <div class="card">
+                
+                <div class="card-body text-left">
+                    <h3 style="margin-top: 0;">¡Bienvenido, {{Auth::user()->name}}!</h3>
+
+                    @if (Auth::user()->isClient() && (!Auth::user()->dni || !Auth::user()->iban || !Auth::user()->phone || !Auth::user()->dni || !Auth::user()->cop))
+                    <x-adminlte-alert theme="warning" dismissable>
+                        <div class="row">
+                            <div class="col-9">
+                                Tienes información pendiente de completar en tu perfil. Antes de realizar la contratación de una reclamación, deberás rellenar todos los datos en tu cuenta de cliente.  
+                            </div>
+                            <div class="col-3">
+                                <a data-v-9cc878a2="" href="{{url('users',Auth::id())}}" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto; text-decoration: none;">COMPLETAR AHORA</a>
+                            </div>
+                        </div>
+                    </x-adminlte-alert>
+                    @endif
+
+                    <div style="background-color: #f8fafc; padding: 8px 0;">
+                        <div class="row">
+                            <div class="col-4 text-center" style="border-right: 1px solid silver;">
+                                <img src="{{url('landing/assets/grafico-ilustraciones-simulador.png')}}" alt="" style="width: 60%;">
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-7">
+                                <h4>Contrata una reclamación <br> <small>Y recupera ya tus facturas impagadas</small></h4>
+
+                                <a data-v-9cc878a2="" href="{{url('claims/select-client')}}" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto">NUEVA RECLAMACIÓN</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-9">
+                            <h5>Mis reclamaciones
+
+                                <small onclick="window.open('{{url('claims')}}','_self')" style="font-size: 12px; float: right; cursor: pointer;">Ver todas <i class="fas fa-arrow-right"></i></small>
+                            </h5>  
+
+                            <div class="row">
+                                <div class="col-4">
+
+                                    <div class="card">
+                                        
+                                        <div class="card-body">
+
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <img src="{{url('landing/assets/handshake.png')}}" alt="" style="width: 50%;">
+                                                </div>
+                                                <div class="col-2">
+                                                    <span class="badge badge-info">
+                                                        {{Auth::user()->claims()->whereNotIn('status',[-1,0,1])->where('claim_type',2)->count()}}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <br>
+
+                                            <h6>Reclamaciónes en gestión extrajudicial</h6>
+
+                                            <br>
+
+                                            <div class="text-left">
+                                                <a data-v-63cd6604="" href="{{url('claims')}}" class="btn btn-dividae" data-v-effc9f78="">
+                                                Ver <i class="fas fa-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-4">
+
+                                    <div class="card">
+                                        
+                                        <div class="card-body">
+
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <img src="{{url('landing/assets/auction.png')}}" alt="" style="width: 50%;">
+                                                </div>
+                                                <div class="col-2">
+                                                    <span class="badge badge-info">
+                                                        {{Auth::user()->claims()->whereNotIn('status',[-1,0,1])->where('claim_type',1)->count()}}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <br>
+
+                                            <h6>Reclamaciónes en gestión judicial</h6>
+
+                                            <br>
+
+                                            <div class="text-left">
+                                                <a data-v-63cd6604="" href="{{url('claims')}}" class="btn btn-dividae" data-v-effc9f78="">
+                                                Ver <i class="fas fa-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-4">
+
+                                    <div class="card">
+                                        
+                                        <div class="card-body">
+
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <img src="{{url('landing/assets/archive.png')}}" alt="" style="width: 50%;">
+                                                </div>
+                                                <div class="col-2">
+                                                    <span class="badge badge-info">
+                                                        {{Auth::user()->claims()->whereIn('status',[-1,0,1])->count()}}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <br>
+
+                                            <h6>Reclamaciónes finalizadas/no viables</h6>
+
+                                            <br>
+
+                                            <div class="text-left">
+                                                <a data-v-63cd6604="" href="{{url('claims/pending')}}" class="btn btn-dividae" data-v-effc9f78="">
+                                                Ver <i class="fas fa-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 text-center">
+
+                            
+                            <img src="{{url('landing/assets/save-money.png')}}" alt="" style="width: 50%;">
+                            <br>
+                            <br>
+
+                            <h6>¿Quieres saber si tu <br> reclamación es <br> viable?</h6>
+                            <br>
+
+
+                            <a data-v-9cc878a2="" data-toggle="modal" href="#consulta-viabilidad" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto">COMPROBAR DEUDA</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         @endif
-        <div class="col-lg-3 col-6">
+        {{-- <div class="col-lg-3 col-6">
             <div class="small-box bg-info">
                 <div class="inner">
                     @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin())
                     <h3>{{ $claims }}</h3>
                     @else   
-                    <h3>{{ Auth::user()->claims()->where('status', 0)->count(); }}</h3>
+                    <h3>{{ Auth::user()->claims()->whereIn('status', [-1,0,1])->count(); }}</h3>
                     @endif
-                    <p>Reclamaciones Pendientes</p>
+                    <p>Reclamaciones Finalizadas</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-arrow-circle-right"></i>
                 </div>
                 <a href="{{ url('/claims/pending') }}" class="small-box-footer">Ir a Reclamaciones <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-        </div>
-
-        {{-- <div class="col-lg-3 col-6">
-        
-            <div class="small-box bg-success">
-                <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-                    <p>Bounce Rate</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
         </div> --}}
 
-        {{-- <div class="col-lg-3 col-6">
-        
-            <div class="small-box bg-danger">
-                <div class="inner">
-                    <h3>65</h3>
-                    <p>Unique Visitors</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div> --}}
     </div>
 
 

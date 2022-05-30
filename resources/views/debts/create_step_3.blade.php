@@ -20,6 +20,6 @@
 @stop
 
 @section('content')
-   @include('progressbar', ['step' => 4])
+   @include('progressbar', ['step' => 3])
    @include('debts.partials._form_step_three')
 @stop

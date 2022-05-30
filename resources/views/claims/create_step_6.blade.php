@@ -10,8 +10,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="/claims">Reclamaciones</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/claims">Reclamaciones</a></li>
                     <li class="breadcrumb-item active">Nueva Reclamación</li>
                 </ol>
             </div>
@@ -22,25 +22,50 @@
 @section('content')
 
 
-   @include('progressbar', ['step' => 6])
+   @include('progressbar', ['step' => 5])
     
-    <x-adminlte-alert theme="info">
-        <span>¡Importante Si elige NO se eliminará toda la data recopilada hasta ahora del proceso y deberá empezar uno nuevo!</span>
-    </x-adminlte-alert>
+    {{-- <x-adminlte-alert theme="info">
+        <span>¡Importante Si elige NO se eliminará toda la información recopilada hasta ahora del proceso y deberá empezar uno nuevo!</span>
+    </x-adminlte-alert> --}}
 
-   @if(session()->has('msj'))
+   {{-- @if(session()->has('msj'))
    <x-adminlte-alert theme="success" dismissable>
        <span> {{ session('msj') }}</span>
    </x-adminlte-alert>
-   @endif
+   @endif --}}
+    @if ($prescribe)
+    <x-adminlte-alert theme="success" dismissable>
+       <span> {{ $message }}</span> <br>
+
+            Estás a un paso de decir adiós a tus facturas impagadas.
+    </x-adminlte-alert>
+    @else
+    <x-adminlte-alert theme="warning" dismissable>
+       <span> {{ $message }}</span> <br>
+
+            Esta deuda solo es reclamable extrajudicialmente. Si deseas iniciar con la reclamación proceda al pago.
+    </x-adminlte-alert>
+    @endif
 
    {{-- @dd(session('claim_debt')) --}}
 
-   <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
+   <x-adminlte-card header-class="d-none text-center" theme="orange" theme-mode="outline">
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <h3>A partir de este momento, Ya ha introducido todos los datos requeridos por el sistema.</h3></span>
-            <span><h3>¿Acepta tanto las Políticas de Uso como las Condiciones de Contratación?</h3></span>    
+            <span> <h3>
+            {{-- A partir de este momento, Ya ha introducido todos los datos requeridos por el sistema. --}}
+            Confirmo que todos los datos e información aportada es veráz. * <br>
+
+            <small>
+                <i>* La información que aporte el/la Cliente/a se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esa información en el sistema lo que en ella se vierta, afirme o manifieste. </i>
+            </small>
+        </h3></span>
+
+        <br>
+            <span><h3>
+                ¿Acepta los Términos y Condiciones de uso Generales y Protección de Datos?
+            {{-- ¿Acepta tanto las Políticas de Uso como las Condiciones de Contratación? --}}
+        </h3></span>    
         </div>          
       </div>
       <div class="row">
@@ -52,9 +77,9 @@
                     @include('terminos-condiciones')
                 </p>
 
-                <p>
+                {{-- <p>
                     @include('terminos-contratacion')
-                </p>
+                </p> --}}
 
                 <form id="create-claim-form" action="{{ url('/claims') }}"method="POST" >
                     @csrf

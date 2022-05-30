@@ -22,19 +22,35 @@ return new class extends Migration
             $table->date('debt_date');
             $table->date('debt_expiration_date')->nullable();
             $table->string('pending_amount');
+            
             $table->string('partials_amount')->nullable();
+
             $table->text('additionals')->nullable();
             $table->string('type')->nullable();
             $table->string('type_extra')->nullable();
-            $table->string('factura')->nullable();
+            
+            // 
+            
+            /*$table->string('factura')->nullable();
             $table->string('albaran')->nullable();
             $table->string('contrato')->nullable();
             $table->string('documentacion_pedido')->nullable();
             $table->string('extracto')->nullable();
             $table->string('reconocimiento_deuda')->nullable();
-            $table->string('escritura_notarial')->nullable();
+            $table->string('escritura_notarial')->nullable();*/
+
+            //
+
+            $table->integer('reclamacion_previa_indicar')->nullable();
+            $table->string('fecha_reclamacion_previa')->nullable(); // documento que acredite dicha reclamacion
+
+            $table->text('partials_amount_details')->nullable(); // detalle de pagos y fechas de los pagos
+            
             $table->string('reclamacion_previa')->nullable();
             $table->string('motivo_reclamacion_previa')->nullable();
+
+            //
+
             $table->string('agreement')->nullable();
             $table->text('others')->nullable();
             $table->foreignid('debtor_id');

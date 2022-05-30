@@ -4876,17 +4876,7 @@ a.more-link[data-v-167ae8c1] {
                             ¿Tienes dudas?
                         </div>
                     </div>
-                    <ul data-v-7b4478c1="" data-v-038cfd70="" id="social-sidebar" data-v-effc9f78="" style="">
-                        <li data-v-7b4478c1="" class="icons-social">
-                            <a data-v-7b4478c1="" href="{{url('/')}}/preguntas" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/icon-whatsapp.png" /></a>
-                        </li>
-                        <li data-v-7b4478c1="" class="icons-social">
-                            <a data-v-7b4478c1="" href="{{url('/')}}/preguntas" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/icon-instagram.png" /></a>
-                        </li>
-                        <li data-v-7b4478c1="" class="follow-social">
-                            Síguenos en
-                        </li>
-                    </ul>
+                    @include('followus')
                 </div>
 
                 <div data-v-038cfd70="" data-v-effc9f78="" class="block-PFrecuentes-collapse">

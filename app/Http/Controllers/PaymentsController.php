@@ -65,7 +65,7 @@ class PaymentsController extends Controller
                 $c->last_invoice->status = 1;
                 $c->last_invoice->save();
 
-                return redirect('claims')->with('msj', 'Pago realizado exitosamente, se procede con la reclamación');;
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
 
                 // return response()->json('El pago ha sido efectuado',200);
 
@@ -137,7 +137,7 @@ class PaymentsController extends Controller
                 $c->last_invoice->status = 1;
                 $c->last_invoice->save();
 
-                return redirect('claims')->with('msj', 'Pago realizado exitosamente, se procede con la reclamación');;
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
 
                 // return response()->json('El pago ha sido efectuado',200);
 
