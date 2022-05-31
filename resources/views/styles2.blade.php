@@ -1,4 +1,8 @@
-<style>.modal-vue .fade-enter[data-v-e8aafb5e],
+<style>
+  .dataTables_info, .dataTables_length {
+    text-align: left !important;
+  }
+.modal-vue .fade-enter[data-v-e8aafb5e],
 .modal-vue .fade-leave-to[data-v-e8aafb5e] {
   transform: translateX(10px);
   opacity: 0;
@@ -828,6 +832,31 @@
     margin-top: 40px;
 }
 }
+
+.OPFrecuente > div {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.btn-light-descubre {
+    border-radius: 8px !important;
+    background-color: #e65927;
+    font-family: Roobert;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    /*margin-top: 14px;*/
+    color: #fff !important;
+    margin-left: -10px;
+    border: 1px solid #e65927;
+}
+
 .blockTarifa .blockCard .op-frecuente[data-v-9cc878a2] {
   /* width: 410px; */
   height: 40px;
@@ -859,6 +888,17 @@
           margin-left: 0;
       }
   } */
+}
+.blockBackoffice {
+  min-height: 54vh;
+  padding-top: 50px;
+  background-color: #fff;
+  /*     @media (min-width: 1024px){
+      .row{
+          margin-right: 0;
+          margin-left: 0;
+      }
+  } */ 
 }
 .blockRecovery .RText[data-v-43503c2a] {
   margin-bottom: 50px;
@@ -1359,7 +1399,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
 }
 @media (min-width: 768px) {
 .block-Testimonios[data-v-eb5d4bee] {
-    height: 432px;
+    height: 336px;
 }
 }
 .block-Testimonios .Testimonios-title[data-v-eb5d4bee] {
@@ -1649,7 +1689,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
 }
 @media (min-width: 768px) {
 .block-About[data-v-c7d18d50] {
-    height: 432px;
+    height: 336px;
 }
 }
 .block-About .About-title[data-v-c7d18d50] {
@@ -4852,7 +4892,56 @@ a.more-link[data-v-167ae8c1] {
     font-weight: normal;
     font-style: normal;
 }
+#background-video {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+/*.navbar-dark {
+  background-color: #fff;
+}*/
+
 .owl-carousel img {
   display: inline-block !important;
   width: auto !important;
-}</style>
+}
+
+#title-container {
+  text-align: left;
+  top: 30px;
+  position: relative;
+  padding: 0;
+}
+#title-container ol {
+  padding: 0 !important;
+  background-color: transparent;
+}
+
+#title-container h1 {
+  font-size: 24px;
+}
+
+.dropdown-header {
+text-align: left;
+}
+
+.bottom-text {
+  margin-top: 14px;
+  margin-bottom: 20px;
+  font-family: Roobert;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #285ba3;
+}
+</style>

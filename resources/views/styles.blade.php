@@ -666,13 +666,13 @@
 }
 #como-funciona #block-reclamacion .text-reclamacion[data-v-494d1a60] {
   font-family: Nordeco;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: center;
+  text-align: left;
   color: #285ba3;
 }
 #como-funciona #block-reclamacion .Lorem-ipsum-dolor-si[data-v-494d1a60] {
@@ -849,6 +849,29 @@
     margin-top: 40px;
 }
 }
+.OPFrecuente > div {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.btn-light-descubre {
+    border-radius: 8px !important;
+    background-color: #e65927;
+    font-family: Roobert;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    /*margin-top: 14px;*/
+    color: #fff !important;
+    margin-left: -10px;
+    border: 1px solid #e65927;
+}
 .blockTarifa .blockCard .op-frecuente[data-v-9cc878a2] {
   /* width: 410px; */
   height: 40px;
@@ -872,7 +895,7 @@
     margin: 0 !important;
 }
 }</style><style>.blockRecovery[data-v-43503c2a] {
-  padding: 50px 0;
+  /*padding: 50px 0;*/
   background-color: #f8fafc;
   /*     @media (min-width: 1024px){
       .row{
@@ -1298,7 +1321,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   color: #285ba3;
   text-align: inherit;
 }
-.blockQSomos .card .QSomos-btn[data-v-63cd6604] {
+.QSomos-btn[data-v-63cd6604] {
   border-radius: 37.5px;
   background-color: #e65927;
   font-family: Roobert;
@@ -1312,7 +1335,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   color: #fff;
   margin-top: 10px;
 }
-.blockQSomos .card .QSomos-btn[data-v-63cd6604]:hover {
+.QSomos-btn[data-v-63cd6604]:hover {
   background-color: #fff;
   font-family: Roobert;
   font-size: 14px;
@@ -1384,7 +1407,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
 }
 @media (min-width: 768px) {
 .block-Testimonios[data-v-eb5d4bee] {
-    height: 432px;
+    height: 336px;
 }
 }
 .block-Testimonios .Testimonios-title[data-v-eb5d4bee] {
@@ -4877,5 +4900,18 @@ a.more-link[data-v-167ae8c1] {
 
 .dropdown-header {
 text-align: left;
+}
+
+.bottom-text {
+  margin-top: 14px;
+  margin-bottom: 20px;
+  font-family: Roobert;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #285ba3;
 }
 </style>

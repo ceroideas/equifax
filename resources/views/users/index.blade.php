@@ -27,6 +27,7 @@
         'ID',
         'Nombre Completo',
         ['label' => 'Email'],
+        'Newsletter',
         ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
@@ -46,6 +47,10 @@
         </x-adminlte-alert>
     @endif
 
+    @if (!Auth::user()->isClient())
+        <a href="{{url('export-users')}}" class="btn btn-sm btn-warning">Exportar Usuarios</a>
+    @endif
+
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($users as $user)
@@ -53,6 +58,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ $user->newsletter ? 'Si' : 'No' }}</td>
                     <td>{{ $user->getStatus() }}</td>
                     <td>
                      <nobr>

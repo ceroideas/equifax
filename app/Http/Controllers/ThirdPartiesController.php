@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ThirdParty;
 use App\Rules\Iban;
+use App\Rules\CifNie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Auth;
@@ -60,23 +61,29 @@ class ThirdPartiesController extends Controller
         $thirdParty->cop = $data['cop'];
         $thirdParty->iban = array_key_exists('iban', $data) ? $data['iban'] : null;
         $thirdParty->user_id = Auth::user()->id;
-        $thirdParty->legal_representative = array_key_exists('legal_representative',$data) ? $data['legal_representative']: null;
+        $thirdParty->legal_representative = $data['tipo'] == 1 ? $data['legal_representative']: null;
+        $thirdParty->representative_dni = $data['tipo'] == 1 ? $data['representative_dni']: null;
         $thirdParty->save();
 
-        $path = $request->file('dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/dni', 'public');
+        // $path = $request->file('dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/dni', 'public');
         $poa_path = "";
-        if($request->file('poder_legal')){
-            $poa_path = $request->file('poder_legal')->store('uploads/third-parties/' . $thirdParty->id . '/poa', 'public');
-        }
+        // if($request->file('poder_legal')){
+        $poa_path = $request->file('poder_legal')->store('uploads/third-parties/' . $thirdParty->id . '/poa', 'public');
+        $thirdParty->poa = $poa_path;
+        // }
 
         /*$rep_dni = "";
         if($request->file('representative_dni')){
             $rep_dni = $request->file('representative_dni')->store('uploads/third-parties/' . $thirdParty->id . '/rep', 'public');
         }*/
-        $thirdParty->dni_img = $path;
-        $thirdParty->poa = $poa_path;
+        // $thirdParty->dni_img = $path;
         /*$thirdParty->representative_dni = $rep_dni;*/
-        $thirdParty->representative_dni = array_key_exists('representative_dni',$data) ? $data['representative_dni']: null;
+
+        if ($data['tipo'] == 1) {
+            $rep_path = $request->file('representative_dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/rep', 'public');
+            $thirdParty->representative_dni_img = $rep_path;
+        }
+
         $thirdParty->save();
         return redirect('third-parties')->with(['msj' => 'Acreditación de Tercero creada exitosamente!']);
 
@@ -131,11 +138,11 @@ class ThirdPartiesController extends Controller
         $thirdParty->location = $data['location'];
         $thirdParty->cop = $data['cop'];
         $thirdParty->iban = array_key_exists('iban', $data) ? $data['iban'] : null;
-        $thirdParty->legal_representative = array_key_exists('legal_representative',$data) ? $data['legal_representative']: null;
-        $thirdParty->representative_dni = array_key_exists('representative_dni',$data) ? $data['representative_dni']: null;
+        $thirdParty->legal_representative = $data['tipo'] == 1 ? $data['legal_representative']: null;
+        $thirdParty->representative_dni = $data['tipo'] == 1 ? $data['representative_dni']: null;
         $thirdParty->save();
 
-        if($request->file('dni_img')){
+        /*if($request->file('dni_img')){
 
             if($thirdParty->dni_img != NULL){
                 
@@ -147,7 +154,7 @@ class ThirdPartiesController extends Controller
             $thirdParty->dni_img = $path;
             $thirdParty->save();
      
-        }
+        }*/
 
         if($request->file('poder_legal')){
 
@@ -163,18 +170,18 @@ class ThirdPartiesController extends Controller
      
         }
 
-        /*if($request->file('representative_dni')){
+        if($request->file('representative_dni_img')){
 
-            if ($thirdParty->representative_dni != NULL) {
+            if ($thirdParty->representative_dni_img != NULL) {
 
-                Storage::disk('public')->delete($thirdParty->representative_dni);
+                Storage::disk('public')->delete($thirdParty->representative_dni_img);
 
             }
 
-            $rep_dni = $request->file('representative_dni')->store('uploads/third-parties/' . $thirdParty->id . '/rep', 'public');
-            $thirdParty->representative_dni = $rep_dni;
+            $rep_dni = $request->file('representative_dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/rep', 'public');
+            $thirdParty->representative_dni_img = $rep_dni;
             $thirdParty->save();
-        }*/
+        }
 
         return redirect()->back()->with(['msj' => 'Acreditación de Tercero actualizada exitosamente!']);
     }
@@ -208,6 +215,7 @@ class ThirdPartiesController extends Controller
             'address' => 'required|min:10|max:255',
             'location' => 'required',
             'cop' => 'required',
+            'dni' => 'required',
             
         ];
 
@@ -215,28 +223,50 @@ class ThirdPartiesController extends Controller
             $rules['iban'] = [new Iban];
         }
 
-        if(request('legal_representative')){$rules['legal_representative'] = 'required';}
-        if(request('representative_dni')){$rules['representative_dni'] = 'required';}
+        if(request('dni')){
+            $rules['dni'] = [new CifNie];
+        }
+
+        /*if(request('legal_representative')){$rules['legal_representative'] = 'required';}
+        if(request('representative_dni')){$rules['representative_dni'] = 'required';}*/
 
         if(request()->method() == 'PUT'){
 
-            $rules['dni'] = 'required|min:8|max:10|unique:third_parties,dni, ' . request()->thirdParty->id;
-            $rules['dni_img']  = 'mimes:jpg,png,pdf';
+            // $rules['dni'] = 'required|min:8|max:10|unique:third_parties,dni, ' . request()->thirdParty->id;
+            // $rules['dni_img']  = 'mimes:jpg,png,pdf';
 
-            if(request()->file('poder_legal')){
-                $rules['poder_legal'] = 'required_if:tipo,1|file|mimes:pdf,jpg,png';
+            if (request()->tipo == 1) {
+                if (!request()->thirdParty->representative_dni_img) {
+                    $rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
+                }
+                $rules['legal_representative'] = 'required';
+                $rules['representative_dni'] = 'required';
+            }
+
+            if(!request()->thirdParty->poa){
+                $rules['poder_legal'] = 'required|file|mimes:pdf,jpg,png';
             }
             
         }else{
-            $rules['poder_legal'] = 'required_if:tipo,1|file|mimes:pdf,jpg,png';
-            $rules['dni'] = 'required|min:8|max:10|unique:third_parties';
-            $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
+            // $rules['dni'] = 'required|min:8|max:10|unique:third_parties';
+            // $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
+
+            $rules['poder_legal'] = 'required|file|mimes:pdf,jpg,png';
+
+            if (request()->tipo == 1) {
+                // if (!request()->thirdParty->representative_dni_img) {
+                $rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
+                // }
+                $rules['legal_representative'] = 'required';
+                $rules['representative_dni'] = 'required';
+            }
             
         }
 
         $messages = [
 
-            'poder_legal.required_if' => 'El campo :attribute es obligatorio cuando el campo :other es Jurídico.'
+            // 'poder_legal.required_if' => 'El campo :attribute es obligatorio cuando el campo :other es Jurídico.'
+            'poder_legal.required_if' => 'El campo :attribute es obligatorio'
         ];
 
 

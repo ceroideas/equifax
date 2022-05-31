@@ -41,7 +41,7 @@
                             </x-slot>
                         </x-adminlte-input>
                     </div>
-                    <div class="col-sm-2">
+                    {{-- <div class="col-sm-2">
                         <x-adminlte-input name="type" type="radio"
                         igroup-size="xs" value="3" >
                             <x-slot name="prependSlot">
@@ -50,7 +50,7 @@
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
-                    </div>
+                    </div> --}}
                </div>
             </div>
         </div>
@@ -79,7 +79,17 @@
         </div>
         <div class="row ">
             <div class="col-sm-6">
-                <x-adminlte-input name="dni" label="DNI / CIF" placeholder="DNI / CIF" type="text"
+                <label id="dni">
+                @isset ($user)
+                    @if ($user->type == 2)
+                        DNI-NIE
+                    @else
+                        CIF
+                    @endif
+                @else
+                    DNI
+                @endisset</label>
+                <x-adminlte-input name="dni" placeholder="Información Fiscal" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->dni   :  ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -101,7 +111,17 @@
         </div>
         <div class="row ">
             <div class="col-sm-6">
-                <x-adminlte-textarea name="address" label="Dirección / Domicilio Fiscal" rows=4 enable-old-support="true">{{  isset($user) ?  $user->address   :  ''}}
+                <label id="address">
+                @isset ($user)
+                    @if ($user->type == 2)
+                        Dirección
+                    @else
+                        Domicilio Fiscal
+                    @endif
+                @else
+                    Dirección
+                @endisset</label>
+                <x-adminlte-textarea name="address" rows=4 enable-old-support="true">{{  isset($user) ?  $user->address   :  ''}}
                     <x-slot name="appendSlot" >
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-address-card"></i>
@@ -149,28 +169,65 @@
             </x-adminlte-input>
             </div>
         </div>
-        <div class="row">
+        <div class="row hide-natural d-none">
+            <div class="col-sm-12">
+                <hr>
+            </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="password" label="Contraseña" placeholder="Ingresa la Contraseña" type="password"
-                igroup-size="sm">
+                <x-adminlte-input name="legal_representative" label="Nombre del representante legal *" placeholder="Nombre del representante legal" type="text"
+                igroup-size="sm" value="{{  isset($user) ?  $user->legal_representative   :  ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
-                            <i class="fas fa-key"></i>
+                            <i class="fas fa-file"></i>
                         </div>
                     </x-slot>
             </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="password_confirmation" label="Confirma la Contraseña" placeholder="Confirma la Contraseña" type="password"
-                    igroup-size="sm">
+                <x-adminlte-input name="representative_dni" label="DNI / CIF del representante legal *" placeholder="DNI / CIF del representante legal" type="text"
+                igroup-size="sm" value="{{  isset($user) ?  $user->representative_dni   :  ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
-                            <i class="fas fa-key"></i>
+                            <i class="fas fa-file"></i>
                         </div>
                     </x-slot>
-                </x-adminlte-input>
+            </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="representative_dni_img" label="Poder de representación de la empresa *" type="file"
+                igroup-size="sm">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-file"></i>
+                        </div>
+                    </x-slot>
+            </x-adminlte-input>
             </div>
         </div>
+        @if (!Auth::user()->isClient())
+            <div class="row">
+                <div class="col-sm-6">
+                    <x-adminlte-input name="password" label="Contraseña" placeholder="Ingresa la Contraseña" type="password"
+                    igroup-size="sm">
+                        <x-slot name="appendSlot">
+                            <div class="input-group-text bg-dark">
+                                <i class="fas fa-key"></i>
+                            </div>
+                        </x-slot>
+                </x-adminlte-input>
+                </div>
+                <div class="col-sm-6">
+                    <x-adminlte-input name="password_confirmation" label="Confirma la Contraseña" placeholder="Confirma la Contraseña" type="password"
+                        igroup-size="sm">
+                        <x-slot name="appendSlot">
+                            <div class="input-group-text bg-dark">
+                                <i class="fas fa-key"></i>
+                            </div>
+                        </x-slot>
+                    </x-adminlte-input>
+                </div>
+            </div>
+        @endif
         @can('create', 'user')
             <div class="row">
                 <div class="col-sm-6">
@@ -195,7 +252,8 @@
 </x-adminlte-card>
 
 @section('js')
-@if(isset($user))
+
+@if(isset($user) && !old())
     <script>
         $('input[value="{{ $user->type }}"]').attr('checked', true);
     </script>
@@ -205,4 +263,30 @@
         $('input[value="{{ old('type') }}"]').attr('checked', true);
     </script>
 @endif
+<script>
+
+    $('[name="type"]').on('change',function(){
+        if ($(this).val() == 1) {
+            $('.hide-natural').removeClass('d-none');
+            $('#dni').text('CIF');
+            $('#address').text('Domicilio Fiscal');
+        }else{
+            $('.hide-natural').addClass('d-none');
+            $('#dni').text('DNI-NIE');
+            $('#address').text('Dirección');
+        }
+    });
+
+    let sel = $('[name="type"]:checked').val();
+    if (sel == 1) {
+        $('.hide-natural').removeClass('d-none');
+        $('#dni').text('CIF');
+        $('#address').text('Domicilio Fiscal');
+    }else{
+        $('.hide-natural').addClass('d-none');
+        $('#dni').text('DNI-NIE');
+        $('#address').text('Dirección');
+    }
+    
+</script>
 @stop

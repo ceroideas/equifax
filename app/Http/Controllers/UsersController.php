@@ -5,13 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\PostalCode;
 use App\Rules\Iban;
+use App\Rules\CifNie;
+use App\Models\Claim;
+use App\Models\Debt;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use Carbon\Carbon;
+
 use Auth;
+
+use Excel;
+use App\Exports\UsersExport;
 
 class UsersController extends Controller
 {
@@ -20,6 +29,11 @@ class UsersController extends Controller
         $this->middleware('auth');
         $this->authorizeResource(User::class, 'user');
 
+    }
+
+    public function exportUsers()
+    {
+        return Excel::download(new UsersExport(), 'usuarios-generales-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
     /**
@@ -68,6 +82,16 @@ class UsersController extends Controller
                 
     }
 
+    public function changePassword(Request $request)
+    {
+        $validation = $this->validatePassword();
+
+        Auth::user()->password = bcrypt($request->password);
+        Auth::user()->save();
+
+        return redirect('panel')->with('msj','Tu contraseña se ha cambiado satisfactoriamente!');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -91,10 +115,18 @@ class UsersController extends Controller
             'iban' => $request->iban,
             'role' => $request->role,
             'password' => bcrypt($request->password),
+            'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
+            'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
 
         ]);
+        
         $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
         $user->update(['dni_img' => $path]);
+
+        if($request->file('representative_dni_img')){
+            $path = $request->file('representative_dni_img')->store('uploads/users/' . $user->id . '/representative_dni_img', 'public');
+            $user->update(['representative_dni_img' => $path]);
+        }
         return redirect('/users')->with(['msj' => 'Usuario Creado Exitosamente']);
     }
 
@@ -161,6 +193,8 @@ class UsersController extends Controller
             'cop' => $request->cop,
             'iban' => $request->iban,
             'password' => $password,
+            'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
+            'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
 
         ]);
         if($request->file('dni_img')){
@@ -172,6 +206,18 @@ class UsersController extends Controller
             
             $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
             $user->update(['dni_img' => $path]);
+            $user->pending();
+        }
+
+        if($request->file('representative_dni_img')){
+            if($user->representative_dni_img != NULL){
+                
+                Storage::disk('public')->delete($user->representative_dni_img);
+                
+            }
+            
+            $path = $request->file('representative_dni_img')->store('uploads/users/' . $user->id . '/representative_dni_img', 'public');
+            $user->update(['representative_dni_img' => $path]);
             $user->pending();
         }
 
@@ -202,6 +248,15 @@ class UsersController extends Controller
         return redirect('/users')->with(['msj' => 'Usuario Eliminado Exitosamente']);
     }
 
+    public function validatePassword()
+    {
+        $rules = [
+            'password' => 'required|confirmed'
+        ];
+
+        return request()->validate($rules);
+    }
+
     public function validateRequest(){
 
         $rules = [
@@ -224,6 +279,9 @@ class UsersController extends Controller
             $rules['iban'] = [new Iban];
         }
 
+        if(request('dni')){
+            $rules['dni'] = [new CifNie];
+        }
 
         if(request()->method() == 'PUT'){
 
@@ -231,16 +289,27 @@ class UsersController extends Controller
             // dd('hola');
             $rules['password'] = 'sometimes|confirmed';
             $rules['email'] = 'required|email|unique:users,email,'.request()->user->id;
-            $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->user->id;
+            // $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->user->id;
             if(Auth::user()->dni_img != NUll){
                 $rules['dni_img']  = 'mimes:jpg,png,pdf';
             }else{
                 $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
             }
+            if (request()->type == 1) {
+                $rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
+                $rules['legal_representative'] = 'required';
+                $rules['representative_dni'] = 'required';
+            }
             
         }else{
             $rules['password'] = 'required|confirmed|min:8|max:255';
             $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
+
+            if (request()->type == 1) {
+                $rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
+                $rules['legal_representative'] = 'required';
+                $rules['representative_dni'] = 'required';
+            }
         }
 
         return request()->validate($rules);
@@ -269,7 +338,62 @@ class UsersController extends Controller
 
     public function migrar()
     {
-        return \App\Models\Claim::all();
+        /*\App\Models\Actuation::truncate();
+        \App\Models\ActuationDocument::truncate();
+        return \App\Models\Actuation::all();*/
+        /*Schema::table('claims', function(Blueprint $table) {
+            //
+            $table->string('phase')->nullable();
+        });*/
+        /*\App\Models\Actuation::truncate();
+        \App\Models\ActuationDocument::truncate();
+        
+        return config('app.phases');*/
+        /*Claim::truncate();
+        Debt::truncate();
+        Invoice::truncate();
+        \App\Models\Agreement::truncate();
+        \App\Models\Actuation::truncate();
+        \App\Models\ActuationDocument::truncate();*/
+
+        /*Schema::create('debt_documents', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('debt_id')->nullable();
+            $table->string('document')->nullable();
+            $table->string('type')->nullable();
+            $table->text('hitos')->nullable();
+            $table->timestamps();
+            //
+        });*/
+        /*Schema::table('debts', function(Blueprint $table) {
+            //
+            $table->integer('reclamacion_previa_indicar')->nullable();
+            $table->string('fecha_reclamacion_previa')->nullable(); // documento que acredite dicha reclamacion
+
+            $table->text('partials_amount_details')->nullable(); // detalle de pagos y fechas de los pagos
+        });*/
+        /*Schema::table('users', function(Blueprint $table) {
+            //
+            $table->string('representative_dni_img')->nullable();
+        });
+
+        Schema::table('third_parties', function(Blueprint $table) {
+            //
+            $table->string('representative_dni_img')->nullable();
+        });*/
+
+        /*Schema::table('users', function(Blueprint $table) {
+            //
+            $table->string('legal_representative')->nullable();
+            $table->string('representative_dni')->nullable();
+        });*/
+        /*return User::all();
+        return User::whereIn('id',[29])->delete();
+        Schema::table('users', function(Blueprint $table) {
+            //
+            $table->integer('newsletter')->nullable();
+        });*/
+        // return \App\Models\Claim::all();
         /*Schema::table('third_parties', function(Blueprint $table) {
             //
             $table->string('legal_representative')->nullable();
@@ -297,10 +421,10 @@ class UsersController extends Controller
             $table->integer('type')->nullable();
         });*/
 
-        Schema::table('users', function(Blueprint $table) {
+        /*Schema::table('users', function(Blueprint $table) {
             //
             $table->string('apud_acta')->nullable();
-        });
+        });*/
         
         /*Schema::table('invoices', function(Blueprint $table) {
             //

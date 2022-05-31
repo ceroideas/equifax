@@ -13,7 +13,41 @@
 
 @section('auth_header', __('adminlte::adminlte.register_message'))
 
+@section('css-login')
+<style>
+    .form-control {
+        border-radius: unset !important;
+        border: none !important;
+        border-bottom: 1px solid silver !important;
+    }
+    .input-group-text {
+        border: none !important;
+        border-bottom: 1px solid silver !important;
+    }
+
+    .btn-acceder {
+        background-color: #d95c37 !important;
+        color: #fff !important;
+        border-radius: 8px !important;
+        padding: 10px;
+    }
+</style>
+@stop
+
 @section('auth_body')
+
+    <style>
+.fa-times {
+  color: red;
+}
+
+.fa-check {
+  color: green;
+}
+.db {
+    display: block;
+}
+    </style>
     <form action="{{ $register_url }}" method="post">
         @csrf
 
@@ -55,7 +89,7 @@
 
         {{-- Password field --}}
         <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+            <input type="password" id="NewPassword" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" class="form-control @error('password') is-invalid @enderror"
                    placeholder="{{ __('adminlte::adminlte.password') }}">
 
             <div class="input-group-append">
@@ -67,12 +101,32 @@
                 </div>
             </div>
 
+            {{-- <span role="alert">
+                <strong>La contraseña debe tener mínimo 8 caracteres, 1 letra mayúscula, 1 letra minúscula, 1 número y 1 caracter especial.</strong>
+            </span> --}}
+
+            {{-- <div class="form-group has-feedback">
+              <input class="form-control" id="NewPassword" placeholder="New Password" type="password">
+              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div> --}}
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
         </div>
+
+        <span>
+                
+                <div id="Length" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Mínimo 8 caracteres</label></div>
+                <div id="UpperCase" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Al menos 1 letra en mayus.</label></div>
+                <div id="LowerCase" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Al menos 1 letra en minus.</label></div>
+                <div id="Numbers" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Al menos 1 número.</label></div>
+                <div id="Symbols" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Al menos 1 caracter especial.</label></div>
+
+            </span>
+
+            <br>
 
         {{-- Confirm password field --}}
         <div class="input-group mb-3">
@@ -99,8 +153,14 @@
         {{-- Agreements --}}
 
         <div class="custom-control custom-checkbox mb-3">
+            <input class="custom-control-input" type="checkbox" id="customCheckbox0" value="1" name="newsletter">
+            <label for="customCheckbox0" class="custom-control-label"> Acepto recibir ofertas y novedades de Dividae</a></label>
+        </div>
+
+        <div class="custom-control custom-checkbox mb-3">
+            <a data-toggle="modal" href="#terminos" style="color: #666">
             <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
-            <label for="customCheckbox1" class="custom-control-label">Aceptar los <a data-toggle="modal" href="#terminos">Términos Y Condiciones de uso General Y Protección de Datos</a></label>
+            <label for="customCheckbox1" class="custom-control-label"> Aceptar los Términos Y Condiciones de uso General Y Protección de Datos</label></a>
             @error('tos')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -108,7 +168,28 @@
             @enderror
         </div>
         {{-- Register button --}}
-        <button type="submit" class=" btn btn-block bg-orange {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+        <div class="col-12 text-center">
+            
+            <button type=submit class="btn btn-block btn-acceder {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+                {{-- <span class="fas fa-sign-in-alt"></span> --}}
+                {{ __('adminlte::adminlte.register') }}
+            </button>
+
+            <br>
+
+            <label style="color: gray; font-size: 12px">¿Ya tienes una cuenta? <a href="{{ $login_url }}">Iniciar Sesión</a></label>
+
+            <br>
+            <br>
+
+            <div class="text-center">
+                <img src="{{url('landing/300221.png')}}" alt="" style="width: 28px; margin: 8px">
+                <img src="{{url('landing/1377213.png')}}" alt="" style="width: 28px; margin: 8px">
+            </div>
+            <br>
+
+        </div>
+        {{-- <button type="submit" class=" btn btn-block bg-orange {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
             <span class="fas fa-user-plus"></span>
             {{ __('adminlte::adminlte.register') }}
         </button>
@@ -119,13 +200,12 @@
                 <b>- O -</b> 
             </div>
 
-            {{-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> --}}
             <button type=button class="btn btn-block btn-primary"
               scope="public_profile,email"
               onclick="initLogin();">
               Iniciar sesión con facebook
             </button>
-        </div>
+        </div> --}}
 
     </form>
 
@@ -139,9 +219,9 @@
         <div style="height: 600px; overflow: auto;">  
           @include('terminos-condiciones')
 
-          <br>
+          {{-- <br>
 
-          @include('terminos-contratacion')
+          @include('terminos-contratacion') --}}
 
           <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button>
           <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
@@ -153,13 +233,15 @@
 </div>
 @stop
 
-@section('auth_footer')
+@section('bg-auth',url('landing/images/HP/Tienes dudas/edificio 2.jpg'))
+
+{{-- @section('auth_footer')
     <p class="my-0">
         <a href="{{ $login_url }}">
             {{ __('adminlte::adminlte.i_already_have_a_membership') }}
         </a>
     </p>
-@stop
+@stop --}}
 
 @section('js')
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v13.0&appId=3075857299334927&autoLogAppEvents=1" nonce="mCZWGoDY"></script>
@@ -228,5 +310,47 @@
                 'Thanks for logging in, ' + response.name + '!';*/
             });
           }
+
+function ValidatePassword() {
+  /*Array of rules and the information target*/
+  var rules = [{
+      Pattern: "[A-Z]",
+      Target: "UpperCase"
+    },
+    {
+      Pattern: "[a-z]",
+      Target: "LowerCase"
+    },
+    {
+      Pattern: "[0-9]",
+      Target: "Numbers"
+    },
+    {
+      Pattern: "[!@@#$%^&*]",
+      Target: "Symbols"
+    }
+  ];
+
+  //Just grab the password once
+  var password = $(this).val();
+
+  /*Length Check, add and remove class could be chained*/
+  /*I've left them seperate here so you can see what is going on */
+  /*Note the Ternary operators ? : to select the classes*/
+  $("#Length").removeClass(password.length > 7 ? "fa-times" : "fa-check");
+  $("#Length").addClass(password.length > 7 ? "fa-check" : "fa-times");
+  
+  /*Iterate our remaining rules. The logic is the same as for Length*/
+  for (var i = 0; i < rules.length; i++) {
+
+    $("#" + rules[i].Target).removeClass(new RegExp(rules[i].Pattern).test(password) ? "fa-times" : "fa-check"); 
+    $("#" + rules[i].Target).addClass(new RegExp(rules[i].Pattern).test(password) ? "fa-check" : "fa-times");
+  }
+}
+
+    /*Bind our event to key up for the field. It doesn't matter if it's delete or not*/
+    $(document).ready(function() {
+      $("#NewPassword").on('keyup', ValidatePassword)
+    });
     </script>
 @stop

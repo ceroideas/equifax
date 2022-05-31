@@ -23,4 +23,26 @@ class Actuation extends Model
     {
         return $this->hasMany(ActuationDocument::class);
     }
+
+    public function getSubjectAttribute($attr)
+    {
+        $val = $attr;
+        foreach (config('app.actuations') as $key => $value) {
+            
+            if ($value['hitos']) {
+                foreach ($value['hitos'] as $key1 => $value1) {
+                    if ($value1['id'] == $attr) {
+                        $val = $value1;
+                    }
+                }
+            }else{
+                if ($value['id'] == $attr) {
+                    $val = $value;
+                }
+            }
+
+        }
+
+        return $val['name'];
+    }
 }

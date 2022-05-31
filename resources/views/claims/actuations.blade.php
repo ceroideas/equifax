@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
                     <li class="breadcrumb-item active">Actuaciones | Reclamación #{{ $claim->id }}</li>
                 </ol>
             </div>
@@ -62,7 +62,7 @@
         	<div class="row">
         		<div class="col-md-12">
 
-        			<div class="row">
+        			<div class="row text-left">
         			@forelse ($actuations as $act)
 
         				<div class="col-sm-12">
@@ -71,9 +71,9 @@
 
         					<p>{{$act->description}}</p>
 
-        					<p>
+        					{{-- <p>
         						<b>Resultado de la actuación:</b> {!! $act->type ? '<span class="text-success">Exitoso</span>' : '<span class="text-warning">No exitoso</span>' !!}
-        					</p>
+        					</p> --}}
         					<p>
         						<b>Fecha de la actuación:</b> {!! $act->actuation_date !!}
         					</p>
@@ -81,7 +81,7 @@
         					@if ($act->amount)
         					<br>
         						
-        						<b>Monto reclamado:</b> {{$act->amount}}€ <br>
+        						<b>Monto recuperado:</b> {{$act->amount}}€ <br>
         						@if ($act->invoice)
         						<b>Monto a facturar:</b> {{$act->invoice->amount}}€ <br> 
         						<b>Status de la factura:</b> {!!$act->invoice->status ? '<span class="text-success">Pagado</span>' : '<span class="text-info">Pendiente</span>'!!}
@@ -134,34 +134,47 @@
             @if ((Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) && !$claim->isFinished())
             	<hr>
 
+
             	<form action="{{url('claims/actuations',$claim->id)}}" method="POST" id="actuation-form" enctype="multipart/form-data">
             		{{csrf_field()}}
 
 	            	<h4>Registrar nueva actuación</h4>
 
 	            	<div class="row">
-	            		
+
 	            		<div class="col-sm-6">
 
 	            			<div class="form-group">
 	            				
-	            				<label for="subject">Escenario</label>
+	            				<label for="phase">Fase</label>
 
 	            				@php
 	            					$config = ['tags' => true];
 	            				@endphp
 
-	            				<x-adminlte-select2 name="subject" id="subject" class="form-control select2" :config="$config" required>
-	            					<option>Se ha enviado una carta al deudor</option>
-	            					<option>Se ha enviado un sms certificado al deudor</option>
-	            					<option>Se ha enviado un email al deudor</option>
-	            					<option>Se ha llamado al deudor</option>
-	            					<option>El deudor ha pagado el monto reclamado</option>
-	            					<option>El deudor contesta pero no quiere pagar</option>
-	            					<option>El deudor no contesta o no se ha encontrado el domicilio</option>
-	            					<option>El deudor quiere llegar a un acuerdo de pago</option>
-	            					<option>El deudor ha incumplido el acuerdo de pago</option>
+	            				<x-adminlte-select2 name="phase" id="phase" class="form-control select2" :config="$config" required>
+
+	            					<option disabled=""></option>
+	            					@foreach (config('app.phases') as $key => $ph)
+	            						
+	            						<option {{isset($claim->phase) ? ($claim->phase == $key ? 'selected' : '') : ''}} value="{{$key}}">{{$ph}}</option>
+
+	            					@endforeach
 	            				</x-adminlte-select2>
+
+	            			</div>
+
+	            		</div>
+	            		
+	            		<div class="col-sm-6">
+
+	            			<div class="form-group">
+	            				
+	            				<label for="subject">Hito</label>
+
+	            				<div id="select-ph">
+	            					<i>Seleccione una fase</i>
+	            				</div>
 			                    {{-- @error('subject')
 			                    <span class="invalid-feedback d-block" role="alert">
 			                        <strong>{{ $errors->first() }}</strong>
@@ -218,7 +231,7 @@
 
 	            			</div>
 	            		</div>
-	            		<div class="col-sm-12">
+	            		<div class="col-sm-12 d-none">
 	            			<label for="type">Resultado de la actuación</label>
 	            			<x-adminlte-input-switch name="type" id="type" data-on-text="Exitoso" data-off-text="No Exitoso" data-on-color="teal" checked/>
 	            		</div>
@@ -226,76 +239,92 @@
 
 	            	<hr>
 
-
-
-	            	<div class="row" style="display: none-;" id="invoice-data">
+	            	<div class="row" style="display: none-;">
 	            		<div class="col-sm-12">
-	            			<label for="mailable">¿Desea notificar al cliente de ésta actuación?</label>
-	            			<x-adminlte-input-switch name="mailable" id="mailable" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
+
+	            			<x-adminlte-input name="amount" label="Si se ha recuperado algún monto, especificarlo" placeholder="Monto" min="0" step="0.01" type="number"
+			                    igroup-size="sm" >
+			                        <x-slot name="appendSlot">
+			                            <div class="input-group-text bg-dark">
+			                                <i class="fas fa-euro"></i>
+			                            </div>
+			                        </x-slot>
+			                </x-adminlte-input>
+	            			
 	            		</div>
 	            	</div>
 
-	            	<hr>
 
-	            	<div id="invoice-data">
-	            		
-		            	<div class="row" style="display: none-;">
+	            	<div class="d-none">
+		            	<div class="row" style="display: none-;" id="invoice-data">
 		            		<div class="col-sm-12">
-
-		            			<x-adminlte-input name="amount" label="Si se ha recuperado algún monto, especificarlo" placeholder="Monto" step="0.01" type="number"
-				                    igroup-size="sm" >
-				                        <x-slot name="appendSlot">
-				                            <div class="input-group-text bg-dark">
-				                                <i class="fas fa-euro"></i>
-				                            </div>
-				                        </x-slot>
-				                </x-adminlte-input>
-		            			
-		            		</div>
-		            	</div>
-
-		            	<div class="row">
-		            		<div class="col-sm-12">
-		            			<label for="invoice">¿Desea generar factura por el monto recuperado? (ésto en caso que el deudor haya realizado la transferencia al cliente en vez de a DIVIDAE)</label>
-		            			<x-adminlte-input-switch name="invoice" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
+		            			<label for="mailable">¿Desea notificar al cliente de ésta actuación?</label>
+		            			<x-adminlte-input-switch name="mailable" id="mailable" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
 		            		</div>
 		            	</div>
 
 		            	<hr>
 
-	            	</div>
+		            	<div id="invoice-data">
+		            		
+			            	{{-- <div class="row" style="display: none-;">
+			            		<div class="col-sm-12">
 
-	            	<div id="honorarios-data">
-	            		
-		            	<div class="row">
-		            		<div class="col-sm-12">
-		            			<label for="invoice_2">¿Desea generar factura por el pago de honorarios adicionales?</label>
-		            			<x-adminlte-input-switch name="invoice_2" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
-		            		</div>
+			            			<x-adminlte-input name="amount" label="Si se ha recuperado algún monto, especificarlo" placeholder="Monto" step="0.01" type="number"
+					                    igroup-size="sm" >
+					                        <x-slot name="appendSlot">
+					                            <div class="input-group-text bg-dark">
+					                                <i class="fas fa-euro"></i>
+					                            </div>
+					                        </x-slot>
+					                </x-adminlte-input>
+			            			
+			            		</div>
+			            	</div> --}}
+
+			            	<div class="row">
+			            		<div class="col-sm-12">
+			            			<label for="invoice">¿Desea generar factura por el monto recuperado? (ésto en caso que el deudor haya realizado la transferencia al cliente en vez de a DIVIDAE)</label>
+			            			<x-adminlte-input-switch name="invoice" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
+			            		</div>
+			            	</div>
+
+			            	<hr>
+
 		            	</div>
 
-		            	<div class="row" style="display: none;" id="invoice-data-2">
-		            		<div class="col-sm-12">
+		            	<div id="honorarios-data">
+		            		
+			            	<div class="row">
+			            		<div class="col-sm-12">
+			            			<label for="invoice_2">¿Desea generar factura por el pago de honorarios adicionales?</label>
+			            			<x-adminlte-input-switch name="invoice_2" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
+			            		</div>
+			            	</div>
 
-		            			<x-adminlte-input name="honorarios" label="Si se requiere un pago adicional, especificar" placeholder="Monto" step="0.01" type="number"
-				                    igroup-size="sm" >
-				                        {{-- <x-slot name="appendSlot">
-				                            <div class="input-group-text bg-dark">
-				                                <i class="fas fa-euro"></i>
-				                            </div>
-				                        </x-slot> --}}
-				                </x-adminlte-input>
+			            	<div class="row" style="display: none;" id="invoice-data-2">
+			            		<div class="col-sm-12">
 
-				                <x-adminlte-input name="concepto" label="Concepto de la factura" placeholder="Concepto" type="text"
-				                    igroup-size="sm" >
-				                        {{-- <x-slot name="appendSlot">
-				                            <div class="input-group-text bg-dark">
-				                                <i class="fas fa-euro"></i>
-				                            </div>
-				                        </x-slot> --}}
-				                </x-adminlte-input>
-		            			
-		            		</div>
+			            			<x-adminlte-input name="honorarios" label="Si se requiere un pago adicional, especificar" placeholder="Monto" step="0.01" type="number"
+					                    igroup-size="sm" >
+					                        {{-- <x-slot name="appendSlot">
+					                            <div class="input-group-text bg-dark">
+					                                <i class="fas fa-euro"></i>
+					                            </div>
+					                        </x-slot> --}}
+					                </x-adminlte-input>
+
+					                <x-adminlte-input name="concepto" label="Concepto de la factura" placeholder="Concepto" type="text"
+					                    igroup-size="sm" >
+					                        {{-- <x-slot name="appendSlot">
+					                            <div class="input-group-text bg-dark">
+					                                <i class="fas fa-euro"></i>
+					                            </div>
+					                        </x-slot> --}}
+					                </x-adminlte-input>
+			            			
+			            		</div>
+			            	</div>
 		            	</div>
 	            	</div>
 
@@ -359,5 +388,16 @@
 				console.log("complete");
 			});
 		});
+
+		$('#phase').change(function (e) {
+			e.preventDefault();
+
+			$.get('{{url('loadActuations')}}/'+$(this).val(), function(data) {
+				/*optional stuff to do after success */
+				$('#select-ph').html(data);
+			});
+		});
+
+		$('#phase').trigger('change');
 	</script>
 @stop

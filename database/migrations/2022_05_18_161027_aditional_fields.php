@@ -18,11 +18,16 @@ return new class extends Migration
             //
             $table->string('legal_representative')->nullable();
             $table->string('representative_dni')->nullable();
+            $table->string('representative_dni_img')->nullable();
         });
 
         Schema::table('users', function(Blueprint $table) {
             //
+            $table->string('legal_representative')->nullable();
+            $table->string('representative_dni')->nullable();
+            $table->string('representative_dni_img')->nullable();
             $table->string('apud_acta')->nullable();
+            $table->integer('newsletter')->nullable();
         });
     }
 

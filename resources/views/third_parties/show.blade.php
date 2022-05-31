@@ -28,7 +28,7 @@
 
 
 <x-adminlte-profile-widget name="{{ $third_party->name }}" desc="Representado" theme="orange" header-class="text-white">
-    <div class="col-sm-12 col-md-12 col-lg-6">
+    {{-- <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="card card-orange">
             <div class="card-header text-white">
                 <h3 class="card-title">DNI</h3>
@@ -50,8 +50,8 @@
                 @endif
             </div>
         </div>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-6">
+    </div> --}}
+    <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card card-orange">

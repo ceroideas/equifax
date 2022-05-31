@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Agreement;
 use Illuminate\Http\Request;
+use App\Rules\Iban;
+use Auth;
 
 class AgreementsController extends Controller
 {
@@ -26,6 +28,8 @@ class AgreementsController extends Controller
     {
         if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three')){
 
+            session()->forget('claim_agreement');
+
             return view('agreements.create');
 
         }
@@ -40,9 +44,13 @@ class AgreementsController extends Controller
         $agreement->wait = $request['espera'];
         $agreement->observation = $request['observaciones'] ? $request['observaciones'] : '';
 
+        Auth::user()->iban = $request['iban'];
+        Auth::user()->save();
+
 
         session()->put('claim_agreement', $agreement);
 
+        // return redirect('viability');
         return redirect('claims/accept-terms')->with('msj', 'Datos guardados temporalmente');
 
     }
@@ -111,6 +119,10 @@ class AgreementsController extends Controller
             'espera' => 'required',
 
         ];
+
+        if(request('iban')){
+            $rules['iban'] = [new Iban];
+        }
 
         if (request('observaciones')) {
             $rules['observaciones'] = 'required';

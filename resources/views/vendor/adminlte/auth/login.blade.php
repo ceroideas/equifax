@@ -20,6 +20,27 @@
 
 @section('auth_header', __('adminlte::adminlte.login_message'))
 
+@section('css-login')
+<style>
+    .form-control {
+        border-radius: unset !important;
+        border: none !important;
+        border-bottom: 1px solid silver !important;
+    }
+    .input-group-text {
+        border: none !important;
+        border-bottom: 1px solid silver !important;
+    }
+
+    .btn-acceder {
+        background-color: #d95c37 !important;
+        color: #fff !important;
+        border-radius: 8px !important;
+        padding: 10px;
+    }
+</style>
+@stop
+
 @section('auth_body')
     <form action="{{ $login_url }}" method="post">
         @csrf
@@ -64,8 +85,9 @@
         </div>
 
         {{-- Login field --}}
-        <div class="row">
-            <div class="col-7">
+        <br>
+        <div class="row" style="color: gray !important; font-size: 12px">
+            <div class="col-5">
                 <div class="icheck-primary" title="{{ __('adminlte::adminlte.remember_me_hint') }}">
                     <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -75,29 +97,52 @@
                 </div>
             </div>
 
-            <div class="col-5">
-                <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+            <div class="col-7 text-right">
+                {{-- <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
                     <span class="fas fa-sign-in-alt"></span>
                     {{ __('adminlte::adminlte.sign_in') }}
-                </button>
+                </button> --}}
+                <a href="{{ $password_reset_url }}">Olvidé mi contraseña</a>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 text-center">
 
-                {{-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> --}}
+                <br>
+
+                <button type=submit class="btn btn-block btn-acceder {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+                    {{-- <span class="fas fa-sign-in-alt"></span> --}}
+                    {{ __('adminlte::adminlte.sign_in') }}
+                </button>
+
+                <br>
+
+                <label style="color: gray; font-size: 12px">¿No tienes una cuenta? <a href="{{ $register_url }}">Crear Cuenta</a></label>
+
+                <br>
+                <br>
+
+                <div class="text-center">
+                    <img src="{{url('landing/300221.png')}}" alt="" style="width: 28px; margin: 8px">
+                    <img src="{{url('landing/1377213.png')}}" alt="" style="width: 28px; margin: 8px">
+                </div>
+                <br>
+            </div>
+
+            {{-- <div class="col-12">
                 <button type=button class="btn btn-block btn-primary"
                   scope="public_profile,email"
                   onclick="initLogin();">
                   Iniciar sesión con facebook
                 </button>
-            </div>
+            </div> --}}
         </div>
 
     </form>
 @stop
 
-@section('auth_footer')
-    {{-- Password reset link --}}
+@section('bg-auth',url('landing/images/HP/Tienes dudas/edificio.jpg'))
+
+{{-- @section('auth_footer')
     @if($password_reset_url)
         <p class="my-0">
             <a href="{{ $password_reset_url }}">
@@ -106,7 +151,6 @@
         </p>
     @endif
 
-    {{-- Register link --}}
     @if($register_url)
         <p class="my-0">
             <a href="{{ $register_url }}">
@@ -114,7 +158,7 @@
             </a>
         </p>
     @endif
-@stop
+@stop --}}
 
 @section('js')
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v13.0&appId=3075857299334927&autoLogAppEvents=1" nonce="mCZWGoDY"></script>

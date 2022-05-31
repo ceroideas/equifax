@@ -10,8 +10,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="/claims">Reclamaciones</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/claims">Reclamaciones</a></li>
                     <li class="breadcrumb-item active">Nueva Reclamación</li>
                 </ol>
             </div>
@@ -22,7 +22,7 @@
 @section('content')
 
 
-   @include('progressbar', ['step' => 5])
+   @include('progressbar', ['step' => 4])
 
    @if(session()->has('msj'))
    <x-adminlte-alert theme="success" dismissable>
@@ -38,19 +38,42 @@
       <div class="row">
         <div class="col-sm-12 text-center">
             <span> <button class="btn btn-flat btn-success question-button" href="{{ url('agreements/create') }}">SI</button></span>    
-            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('claims/refuse-agreement') }}">NO</button></span> 
-            <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('debts/create/step-three') }}">Volver</button></span> 
+            <span> <button class="btn btn-flat btn-danger " id="open-swal">NO</button></span> 
+            <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('debts/create/step-one') }}">Volver</button></span> 
         </div>          
       </div>
    </x-adminlte-card>
 @stop
 
 @section('js')
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     
    $('.question-button').on('click', function(){
        console.log($(this).attr('href'));
         location.href = $(this).attr('href');
    });
+
+   $('#open-swal').click(function (e) {
+       e.preventDefault();
+
+       Swal.fire({
+          title: 'Recuerda que la posibilidad de acuerdo facilitará a nuestros letrados la recuperación de tus facturas impagadas',
+          // showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Continuar',
+          cancelButtonText: `Cancelar`,
+          icon: 'warning',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            location.href = '{{url('claims/refuse-agreement')}}';
+          } else if (result.isDenied) {
+            // Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+   });
+
 </script>
 @stop

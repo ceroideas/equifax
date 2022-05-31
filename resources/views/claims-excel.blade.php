@@ -3,46 +3,51 @@
 	<thead>
 		<tr>
 			<th>ID</th>
+			<th>Número de documento</th>
 			<th>Cliente</th>
-			<th>Deudor</th>
-			<th>Importe total</th>
+			<th>Acreedor</th>
+			<th>DNI Acreedor</th>
 			<th>Importe reclamado</th>
-			<th>Importe Pendiente</th>
+			<th>Cobros recibidos</th>
+			<th>Importe pendiente de pago</th>
 			<th>Tipo de Reclamación</th>
 			<th>Status</th>
+
+			<th>Hito</th>
+			<th>ID Hito</th>
 
 			<th>Deudor</th>
 			<th>DNI/CIF del deudor</th>
 			<th>Corre del deudor</th>
 
-			<th>Deudor deudor</th>
+			<th>Deudor dirección</th>
 			<th>Deudor localidad</th>
 			<th>Deudor código postal</th>
 			<th>Deudor teléfono</th>
-			<th>Factura</th>
-			<th>Albarán</th>
-			<th>Contrato de Prestación de Servicios</th>
-			<th>Documentación del Pedido</th>
-			<th>Extracto Bancario</th>
-			<th>Reconocimiento de Deuda</th>
-			<th>Escritura Notarial</th>
-			<th>Reclamación Previa</th>
-			<th>Documentos Extra</th>
+
+			<th>Documentación</th>
+			
 		</tr>
 	</thead>
 
 	<tbody>
 
-		@foreach (App\Models\Claim::all() as $claim)
+		@foreach ($claims as $claim)
 			<tr>
 	            <td>{{ $claim->id }}</td>
+	            <td>{{ $claim->debt->document_number }}</td>
+	            <td>{{ $claim->owner->name }}</td>
 	            <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
-	            <td>{{ $claim->debtor->name }}</td>
+	            <td>{{ ($claim->user_id) ? $claim->client->dni : $claim->representant->dni}}</td>
+	            {{-- <td>{{ $claim->debtor->name }}</td> --}}
 	            <td>{{ $claim->debt->pending_amount }}€</td>
-	            <td>{{ $claim->amountClaimed() + $claim->debt->partials_amount }}€</td>
-	            <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}€</td>
+                <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
+                <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
 	            <td>{{ $claim->getType() }}</td>
 	            <td>{{ $claim->getStatus() }}</td>
+
+	            <td>{{ $claim->getHito() }}</td>
+	            <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td>
 
 	            <td>{{ $claim->debtor->name }}</td>
 	            <td>{{ $claim->debtor->dni }}</td>
@@ -52,71 +57,51 @@
 	            <td>{{ $claim->debtor->location }}</td>
 	            <td>{{ $claim->debtor->cop }}</td>
 	            <td>{{ $claim->debtor->phone }}</td>
-	            <td>
-	            	@if($claim->debt->factura)
-	            		{{-- Factura Reclamo #{{ $claim->id }}:  --}}{{asset($claim->debt->factura)}}
-	            	@else
-	            	N\A
-	            	@endif
-	            </td>
-	            <td>
-					@if($claim->debt->albaran)
-						{{-- Albarán Reclamo #{{ $claim->id }}:  --}}{{asset($claim->debt->albaran)}}
-					@else
-					N\A
-					@endif
-				</td>
-				<td>
-					@if($claim->debt->contrato)
-						{{-- Contrato de Prestación de Servicios Reclamo #{{ $claim->id }}:  --}}{{asset($claim->debt->contrato)}}
-					@else
-					N\A
-					@endif
-				</td>
-				<td>
-					@if($claim->debt->documentacion_pedido)
-						{{-- Documentación del Pedido Reclamo #{{ $claim->id }}:  --}}{{asset($claim->debt->documentacion_pedido)}}
-					@else
-					N\A
-					@endif
-				</td>
-				<td>
-					@if($claim->debt->extracto)
-						{{-- Extracto Bancario Reclamo #{{ $claim->id }}:  --}}{{asset($claim->debt->extracto)}}
-					@else
-					N\A
-					@endif
-				</td>
-				<td>
-					@if($claim->debt->reconocimiento_deuda)
-						{{-- Reconocimiento de Deuda Reclamo #{{ $claim->id }}:  --}}{{asset($claim->debt->reconocimiento_deuda)}}
-					@else
-					N\A
-					@endif
-				</td>
-				<td>
-					@if($claim->debt->escritura_notarial)
-						{{-- Escritura Notarial Reclamo #{{ $claim->id }}:  --}}{{asset($claim->debt->escritura_notarial)}}
-					@else
-					N\A
-					@endif
-				</td>
-				<td>
-					@if($claim->debt->reclamacion_previa)
-						{{-- Reclamación Previa Reclamo #{{ $claim->id }}:  --}}{{asset($claim->debt->reclamacion_previa)}}
-					@else
-					N\A
-					@endif
-				</td>
-				<td>
-					@if($claim->debt->others)
-						@foreach (explode(',', $claim->debt->others) as $doc)
-							{{ asset($doc) }} |
-						@endforeach
-					@else
-					N\A
-					@endif
-	            </td>
+
+            	@foreach (App\Models\DebtDocument::where('debt_id',$claim->debt->id)->get() as $key => $doc)
+                    @switch($doc->type)
+                        @case('factura')
+                        	<td>FACTURA: {{url($doc->document)}}</td>
+                        @break
+						@case('albaran')
+							<td>ALBARÁN: {{url($doc->document)}}</td>
+						@break
+						@case('recibo')
+							<td>RECIBO DE ENTREGA: {{url($doc->document)}}</td>
+						@break
+						@case('contrato')
+							<td>CONTRATO: {{url($doc->document)}}</td>
+						@break
+						@case('hoja_encargo')
+							<td>HOJA DE ENCARGO: {{url($doc->document)}}</td>
+						@break
+						@case('hoja_pedido')
+							<td>HOJA DE PEDIDO: {{url($doc->document)}}</td>
+						@break
+						@case('reconocimiento')
+							<td>RECONOCIMIENTO DE DEUDA: {{url($doc->document)}}</td>
+						@break
+						@case('extracto')
+							<td>EXTRACTO BANCARIO: {{url($doc->document)}}</td>
+						@break
+						@case('escritura')
+							<td>ESCRITURA NOTARIAL: {{url($doc->document)}}</td>
+						@break
+						@case('burofax')
+							<td>BUROFAX: {{url($doc->document)}}</td>
+						@break
+						@case('carta_certificada')
+							<td>CARTA CERTIFICADA: {{url($doc->document)}}</td>
+						@break
+						@case('email')
+							<td>E-MAILS: {{url($doc->document)}}</td>
+						@break
+						@case('otros')
+							<td>OTROS: {{url($doc->document)}}</td>
+						@break
+                    @endswitch
+                    
+                @endforeach
 	        </tr>
 		@endforeach
 

@@ -21,6 +21,7 @@ class User extends Authenticatable
         'type',
         'name',
         'email',
+        'newsletter',
         'dni',
         'phone',
         'address',
@@ -29,6 +30,8 @@ class User extends Authenticatable
         'iban',
         'dni_img',
         'password',
+        'legal_representative',
+        'representative_dni',
     ];
 
     /**

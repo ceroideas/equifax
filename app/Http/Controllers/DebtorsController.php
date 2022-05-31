@@ -54,7 +54,7 @@ class DebtorsController extends Controller
         $debtor = new Debtor();
 
         $debtor->name = $data['name'];
-        $debtor->email = $data['email'];
+        $debtor->email = $data['email'] ? $data['email'] : '';
         $debtor->dni = $data['dni'];
         $debtor->phone = $data['tlf'];
         $debtor->address = $data['address'];
@@ -65,6 +65,10 @@ class DebtorsController extends Controller
         $debtor->user_id = Auth::user()->id;
 
         $debtor->save();
+
+        if (session()->has('claim_client') || session()->has('claim_third_party')) {
+            return redirect('claims/save-debtor/'.$debtor->id);
+        }
 
         return redirect('/debtors')->with('msj', 'Deudor Añadido Correctamente');
 
@@ -110,7 +114,7 @@ class DebtorsController extends Controller
         $data = $this->validateRequest($debtor->id);
 
         $debtor->name = $data['name'];
-        $debtor->email = $data['email'];
+        $debtor->email = $data['email'] ? $data['email'] : '';
         $debtor->dni = $data['dni'];
         $debtor->phone = $data['tlf'];
         $debtor->address = $data['address'];
@@ -119,6 +123,10 @@ class DebtorsController extends Controller
         $debtor->additional = $data['additional'];
         $debtor->type = $data['type'];
         $debtor->save();
+
+        if (session()->has('claim_client') || session()->has('claim_third_party')) {
+            return redirect('claims/save-debtor/'.$debtor->id);
+        }
 
         return redirect('/debtors')->with('msj', 'Deudor Actualizado Correctamente');
     }
@@ -141,7 +149,7 @@ class DebtorsController extends Controller
         $rules = [
             'type' => 'required',
             'name' => 'required|min:8|max:255',
-            'email' => 'required|email|unique:debtors,email,'.$id,
+            'email' => 'unique:debtors,email,'.$id,
             'dni' => 'required|min:8|max:10|unique:debtors',
             'tlf' => 'required|min:9|max:14',
             'address' => 'required|min:10|max:255',
@@ -151,7 +159,7 @@ class DebtorsController extends Controller
         ];
 
         if(request()->method() == 'PUT'){
-            $rules['email'] = 'required|email|unique:debtors,email,'.request()->debtor->id;
+            $rules['email'] = 'unique:debtors,email,'.request()->debtor->id;
             $rules['dni'] = 'required|min:8|max:10|unique:debtors,dni,' . request()->debtor->id;
         }
 

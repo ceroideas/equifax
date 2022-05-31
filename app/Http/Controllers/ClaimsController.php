@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\ThirdParty;
 use App\Models\Debtor;
 use App\Models\Debt;
+use App\Models\DebtDocument;
 use App\Models\Agreement;
 use App\Models\Invoice;
 use App\Models\Actuation;
@@ -21,6 +22,8 @@ use Excel;
 use App\Exports\ClaimsExport;
 use App\Exports\InvoiceExport;
 
+use App\Imports\HitosImport;
+
 class ClaimsController extends Controller
 {
     /**
@@ -31,7 +34,7 @@ class ClaimsController extends Controller
     public function index()
     {
         if(Auth::user()->isClient()){
-            $claims = Auth::user()->claims;
+            $claims = Auth::user()->claims()->whereNotIn('status',[-1,0,1])->get();
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $claims = Claim::all();
         }
@@ -45,9 +48,9 @@ class ClaimsController extends Controller
     public function pending()
     {
         if(Auth::user()->isClient()){
-            $claims = Auth::user()->claims()->where('status', 0)->get();
+            $claims = Auth::user()->claims()->whereIn('status', [-1,0,1])->get();
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
-            $claims = Claim::where('status', 0)->get();
+            $claims = Claim::whereIn('status', [-1,0,1])->get();
         }
 
         return view('claims.pending', [
@@ -120,7 +123,24 @@ class ClaimsController extends Controller
     public function stepSix()
     {
         if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three') && session()->has('claim_agreement')){
-            return view('claims.create_step_6');
+
+            $debt = session('claim_debt');
+
+            if ($debt->fecha_reclamacion_previa) {
+                $presc = Carbon::now()->diffInYears(Carbon::parse($debt->fecha_reclamacion_previa));
+            }else{
+                $presc = Carbon::now()->diffInYears(Carbon::parse($debt->debt_date));
+            }
+
+            $deuda = config('app.deudas')[$debt->type];
+            $prescribe = null;
+            $message = "¡GRACIAS, YA CASI HEMOS TERMINADO!";
+
+            if ($presc < $deuda['prescripcion']) {
+                $prescribe = 1;
+            }
+
+            return view('claims.create_step_6', compact('prescribe','message'));
         }
     }
 
@@ -158,6 +178,7 @@ class ClaimsController extends Controller
         $claim->debt_id = $debt->id;
         $claim->save();
         $debt->claim_id = $claim->id;
+        $debt->document_number = "DIV-".str_pad($claim->id, 4 ,"0", STR_PAD_LEFT);
         $debt->save();
 
         if(session('claim_agreement')  != 'false'){
@@ -197,7 +218,26 @@ class ClaimsController extends Controller
 
         $path = '/uploads/claims/' . $claim->id . '/documents/';
 
-        if($debt->factura){
+        foreach (session('documentos') as $key => $d) {
+            
+            // $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            // $documentos[$key][key($d)]['file'] = $file;
+
+            $bn = basename($d[key($d)]['file']);
+            Storage::disk('public')->move($d[key($d)]['file'], $path . $bn);
+            $d[key($d)]['file'] = $path . $bn;
+
+            // return gettype(json_encode($d));
+
+            $debtd = new DebtDocument;
+            $debtd->debt_id = $debt->id;
+            $debtd->document = $path . $bn;
+            $debtd->type = key($d);
+            $debtd->hitos = json_encode($d);
+            $debtd->save();
+
+        }
+        /*if($debt->factura){
             $factura = basename($debt->factura);
             Storage::disk('public')->move($debt->factura, $path . $factura);
             $debt->factura = $path . $factura;
@@ -256,7 +296,7 @@ class ClaimsController extends Controller
             $debt->others = implode(',', $docs);
         }
 
-        $debt->save();
+        $debt->save();*/
 
         $request->session()->forget('claim_client');
         $request->session()->forget('claim_third_party');
@@ -267,6 +307,7 @@ class ClaimsController extends Controller
         $request->session()->forget('debt_step_three');
         $request->session()->forget('claim_agreement');
         $request->session()->forget('type_other');
+        $request->session()->forget('documentos');
 
         if ($claim->last_invoice){
             return redirect('/claims/payment/' . $claim->id)->with('msj', 'Reclamación creada exitosamente, se ha generado una factura por honorarios, deberá realizar el pago correspondiente para poder proceder con la reclamación');
@@ -389,13 +430,13 @@ class ClaimsController extends Controller
         $this->validateNonViable();
 
         $claim->observation = $request['informe_inviabilidad'];
-        if ($r->non_viable_judicial) {
+        if ($request->non_viable_judicial) {
             $claim->claim_type = 1;
         }
         $claim->status = 1;
         $claim->save();
 
-        if($claim->debt->factura){
+        /*if($claim->debt->factura){
             Storage::disk('public')->delete($claim->debt->factura);
             $claim->debt->factura = NULL;
         }
@@ -441,7 +482,7 @@ class ClaimsController extends Controller
             $claim->debt->others = NULL;
         }
         
-        $claim->debt->save();
+        $claim->debt->save();*/
         
 
         return redirect('claims')->with('msj', 'Informe de Reclamación generado exitosamente');
@@ -526,7 +567,7 @@ class ClaimsController extends Controller
         $request->session()->forget('debt_step_one');
         $request->session()->forget('debt_step_two');
 
-        return redirect('/panel')->with('alert', 'Lo sentimos pero su deuda es inviable');
+        return redirect('/panel')->with('alert', 'Lo sentimos este tipo de deudas no podemos reclamarlas a través de Dividae.');
     }
 
     public function refuseAgreement(){
@@ -536,8 +577,16 @@ class ClaimsController extends Controller
             $debt->agreement = false;
             Session()->put('claim_debt', $debt);
             Session()->put('claim_agreement', 'false');
-            return redirect('claims/accept-terms')->with('msj', 'Se ha guardado tu elección temporalmente');
+
+            // return redirect('viability');
+
+            return redirect('claims/accept-terms');
         }
+    }
+
+    public function viability()
+    {
+        return view('claims.create_step_5_1');
     }
 
     public function flushAll(Request $request)
@@ -661,7 +710,26 @@ class ClaimsController extends Controller
 
     public function saveActuation(Request $r,$id)
     {
-        // return response()->json($r->all(),422);
+        $h = null; // hito
+        $f = null; // fase
+        foreach (config('app.actuations') as $key => $value) {
+            
+            if ($value['hitos']) {
+                foreach ($value['hitos'] as $key1 => $value1) {
+                    if ($value1['id'] == $r->subject) {
+                        $h = $value1;
+                        $f = $value;
+                    }
+                }
+            }else{
+                if ($value['id'] == $r->subject) {
+                    $h = $value;
+                    $f = $value;
+                }
+            }
+
+        }
+        // return response()->json([$f,$h],422);
 
         $a = new Actuation;
         $a->claim_id = $id;
@@ -672,6 +740,9 @@ class ClaimsController extends Controller
         $a->type = $r->type ? 1 : null;
         $a->mailable = $r->mailable ? 1 : null;
         $a->save();
+
+        $a->claim->phase = $r->phase;
+        $a->claim->save();
 
         $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
 
@@ -687,7 +758,7 @@ class ClaimsController extends Controller
             }
         }
 
-        if ($a->mailable) {
+        /*if ($a->mailable) {
             Mail::send('email_to_client', ['a' => $a], function ($message) {            
                 $message->to($claim->owner->email, $claim->owner->name);
                 $message->subject('Actualización de su reclamación #'.$a->id);
@@ -726,7 +797,7 @@ class ClaimsController extends Controller
 
             $a->invoice_id = $invoice->id;
             $a->save();
-        }
+        }*/
     }
 
     public function close($id)
@@ -763,11 +834,41 @@ class ClaimsController extends Controller
 
     public function exportAll()
     {
-        return Excel::download(new ClaimsExport, 'all_claims-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
+        return Excel::download(new ClaimsExport(0), 'all_claims-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
+    }
+
+    public function exportFinished()
+    {
+        return Excel::download(new ClaimsExport(1), 'claims_finished-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
     }
 
     public function excelInvoice($id)
     {
         return Excel::download(new InvoiceExport($id), 'invoice-id_'.$id.'-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
+    public function checkDebtor(Request $r)
+    {
+        if ($r->options == 1 || $r->concurso == 1) {
+            return redirect('claims/invalid-debtor');
+        }
+        return redirect('claims/select-debtor');
+    }
+
+    public function loadActuations($phase)
+    {
+        $fase = config('app.phases')[$phase];
+
+        return view('claims.hitos', compact('fase'));
+    }
+
+    public function importActuations(Request $r)
+    {
+        if ($r->hasFile('file')) {
+            $r->file->move(public_path().'/uploads/excel','actuations.xlsx');
+            Excel::import(new HitosImport, public_path().'/uploads/excel/actuations.xlsx');
+        }
+
+        return back()->with('msj','Se ha cargado correctamente el archivo excel!');
     }
 }

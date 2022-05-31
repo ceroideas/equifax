@@ -146,4 +146,13 @@ class Claim extends Model
         return $this->hasMany(Actuation::class);
     }
 
+    public function getHito()
+    {
+        if ($this->actuations->count()) {
+            return $this->actuations->last()->subject;
+        }
+
+        return false;
+    }
+
 }

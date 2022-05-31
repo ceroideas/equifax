@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
                     <li class="breadcrumb-item active">Reclamación #{{ $claim->id }}</li>
                 </ol>
             </div>
@@ -62,16 +62,8 @@
                         <div class="col-12 col-sm-4">
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
-                                    <span class="info-box-text text-center text-muted">Importe  Principal</span>
+                                    <span class="info-box-text text-center text-muted">Importe  reclamado</span>
                                     <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount }}€</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <div class="info-box bg-light">
-                                <div class="info-box-content">
-                                    <span class="info-box-text text-center text-muted">Importe Pendiente</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount - ($claim->amountClaimed() + $claim->debt->partials_amount) }}€</span>
                                 </div>
                             </div>
                         </div>
@@ -79,8 +71,17 @@
                         <div class="col-12 col-sm-4">
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
-                                    <span class="info-box-text text-center text-muted">Abonos Realizados</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ ($claim->amountClaimed() + $claim->debt->partials_amount) ? ($claim->amountClaimed() + $claim->debt->partials_amount).'€' : '--' }}</span>
+                                    <span class="info-box-text text-center text-muted">Cobros recibidos</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ ($claim->amountClaimed() /*+ $claim->debt->partialAmounts()*/) ? ($claim->amountClaimed() /*+ $claim->debt->partialAmounts()*/).'€' : '--' }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-4">
+                            <div class="info-box bg-light">
+                                <div class="info-box-content">
+                                    <span class="info-box-text text-center text-muted">Importe pendiente de pago</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount - ($claim->amountClaimed() /*+ $claim->debt->partialAmounts()*/) }}€</span>
                                 </div>
                             </div>
                         </div>
@@ -97,12 +98,12 @@
                                     <div class="col-lg-3 col-sm-6 col-md-6"><b>Nombre:</b> <p>{{ $claim->debtor->name }}</p></div>
                                     <div class="col-lg-3 col-sm-6 col-md-6"><b>DNI/CIF:</b> <p>{{ $claim->debtor->dni }} </p></div>
                                     <div class="col-lg-3 col-sm-6 col-md-6"><b>Email:</b> <p>{{ $claim->debtor->email }}</p></div>
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Tipo de Deudor:</b> <p>{{ $claim->debtor->getType() }}</p></div>
+                                    {{-- <div class="col-lg-3 col-sm-6 col-md-6"><b>Tipo de Deudor:</b> <p>{{ $claim->debtor->getType() }}</p></div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-lg-3"><b>Dirección:</b><p> {{ $claim->debtor->address }}</p></div>
                                     <div class="col-lg-3"><b>Localidad:</b> <p>{{ $claim->debtor->location }}</p> </div>
-                                    <div class="col-lg-3"><b>Código Postal:</b><p> {{ $claim->debtor->cop }}</p></div>
+                                    <div class="col-lg-3"><b>Código Postal:</b><p> {{ $claim->debtor->cop }}</p></div> --}}
                                     <div class="col-lg-3"><b>N° Tlf:</b><p> {{ $claim->debtor->phone }}</p></div>
                                 </div>
                                 <div class="row mt-3">
@@ -113,10 +114,10 @@
                             <div class="post clearfix">
                                 <h4>Detalles de la Deuda</h4>
                                 <div class="row">
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Concepto O Justificación:</b> <p>{{ $claim->debt->concept }}</p></div>
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>N° De Documento:</b> <p>{{ $claim->debt->document_number }} </p></div>
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Fecha de la Deuda:</b> <p>{{ $claim->debt->debt_date }}</p></div>
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Fecha de Vencimiento de la Deuda:</b> 
+                                    <div class="col-lg-6 col-sm-6 col-md-6"><b>Concepto O Justificación:</b> <p>{{ $claim->debt->concept }}</p></div>
+                                    {{-- <div class="col-lg-6 col-sm-6 col-md-6"><b>N° De Documento:</b> <p>{{ $claim->debt->document_number }} </p></div> --}}
+                                    <div class="col-lg-6 col-sm-6 col-md-6"><b>Fecha de la Deuda:</b> <p>{{ $claim->debt->debt_date }}</p></div>
+                                    {{-- <div class="col-lg-6 col-sm-6 col-md-6"><b>Fecha de Vencimiento de la Deuda:</b>
 
                                         @if ($claim->debt->debt_expiration_date)
                                             @php
@@ -133,35 +134,43 @@
                                             N/A
                                         @endif
 
-                                    </div>
+                                    </div>--}}
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
-                                    <div class="col-12"><b>Tipo de la deuda :</b><p> {{ $claim->debt->getType() }} @if ($claim->debt->getType() == 'Otro:')
-                                        {{ '('.$claim->debt->type_extra.')'}}
-                                    @endif</p></div>
+                                    <div class="col-12"><b>Tipo de la deuda :</b><p>
+
+                                        @if ($claim->debt->type == '-1')
+                                            {{ '('.$claim->debt->type_extra.')'}}
+                                        @else
+                                            {{ config('app.deudas')[$claim->debt->type]['deuda'] }}
+                                        @endif
+                                    </p></div>
                                 </div>
                             </div>
 
-                            <div class="post">
-                                <h4>Detalles del Acuerdo</h4>
+                            @if ($claim->debt->hasAgreement())
+                                <div class="post">
+                                    <h4>Detalles del Acuerdo</h4>
 
-                                @if($claim->debt->hasAgreement())
-                                <div class="row">
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Quitas:</b> <p>{{ $claim->debt->agreements->take }}€</p></div>
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Espera:</b> <p>{{ $claim->debt->agreements->wait }} </p></div>
-                                    <div class="col-lg-6 col-sm-12 col-md-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
+                                    @if($claim->debt->hasAgreement())
+                                    <div class="row">
+                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>Quitas:</b> <p>{{ $claim->debt->agreements->take }}€</p></div>
+                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>Espera:</b> <p>{{ $claim->debt->agreements->wait }} </p></div>
+                                        <div class="col-lg-6 col-sm-12 col-md-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        
+                                    </div>
+                                    @else 
+                                    <div class="row mt-3">
+                                        <div class="col-12">N/A</div>
+                                    </div>
+                                    @endif
+                                   
                                 </div>
-                                <div class="row mt-3">
-                                    
-                                </div>
-                                @else 
-                                <div class="row mt-3">
-                                    <div class="col-12">N/A</div>
-                                </div>
-                                @endif
-                               
-                            </div>
+                            @endif
+
 
                             @if (!Auth::user()->isClient())
                                 <div class="post">
@@ -212,7 +221,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <a href="{{url('exportTemplate',$claim->id)}}" class="btn btn-success"> <i class="fas fa-file"></i> Descargar DDA MONITORIO DIVIDAE Word</a>
+                                        <a href="{{url('exportTemplate',$claim->id)}}" class="btn btn-success"> <i class="fas fa-file"></i> Descargar Word DDA MONITORIO DIVIDAE</a>
                                     </div>
 
                                     @endif
@@ -225,49 +234,51 @@
 
                 <div class="col-12 col-md-12 col-sm-12 col-lg-4 order-1 order-md-2">
 
+                    <h4>Detalles del acreedor</h4>
+
                     <h3 class="text-primary"><i class="fas fa-user"></i> {{ $claim->user_id ? $claim->client->name : $claim->representant->name  }}</h3>
 
                
                     <div class="text-muted">
                        <div class="row">
-                           <div class="col-sm-4">
+                           <div class="col-sm-6">
                                 <b>DNI/CIF</b>
                                 <p>
                                     {{ $claim->user_id ? $claim->client->dni : $claim->representant->dni }}
                                 </p>
                            </div>
-                           <div class="col-sm-4">
+                           <div class="col-sm-6">
                                 <b>N° de Teléfono</b>
                                 <p>
                                     {{ $claim->user_id ? $claim->client->phone : 'N/A' }}
                                 </p>
                             </div>
-                            <div class="col-sm-4">
+                            {{-- <div class="col-sm-6">
                                 <b>Tipo</b>
                                 <p>
                                     {{ $claim->user_id ? $claim->client->getRole() : 'Representado' }}
                                 </p>
-                           </div>
+                           </div> --}}
                        </div>
                        <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <b>Dirección</b>
                                 <p>
                                     {{ $claim->user_id ? $claim->client->address : $claim->representant->address }}
                                 </p>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <b>Población</b>
                                 <p>
                                     {{ $claim->user_id ? $claim->client->location : $claim->representant->location }}
                                 </p>
                             </div>
-                            <div class="col-sm-4">
+                            {{-- <div class="col-sm-6">
                                 <b>Código Postal</b>
                                 <p>
                                     {{ $claim->user_id ? $claim->client->cop : $claim->representant->cop }}
                                 </p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
 
@@ -292,7 +303,14 @@
                         <h5 class="mt-5 text-muted">Documentación de la Deuda</h5>
                         
                         <ul class="list-unstyled">
-                            <div class="row">
+
+                            @foreach (App\Models\DebtDocument::where('debt_id',$claim->debt->id)->get() as $key => $d)
+                                @php
+                                    $h = json_decode($d['hitos'],true);
+                                @endphp
+                                @include('claims.document', ['doc' => $d, 'idx' => $key, 'h' => $h])
+                            @endforeach
+                            {{-- <div class="row">
                                 <div class="col-sm-4">
 
                                     @if($claim->debt->factura)
@@ -363,8 +381,8 @@
                                     </li>
                                     @endif
                                 </div>
-                            </div>
-                            @if($claim->debt->others)
+                            </div> --}}
+                            {{-- @if($claim->debt->others)
                            
                             <h5 class="mt-3 text-muted">Documentación Extra</h5>
                        
@@ -378,20 +396,19 @@
                                     </div>
                                 @endforeach
                             </div>
-                            @endif
-                            @if($claim->debt->motivo_reclamacion_previa)
+                            @endif --}}
+                            {{-- @if($claim->debt->motivo_reclamacion_previa)
                             <div class="row my-4">
                                 <div class="col">
                                     
                                     <li>
                                         
                                         <p><strong>Motivo Reclamación Previa:</strong> {{ $claim->debt->motivo_reclamacion_previa }}</p>
-                                        {{-- <a href="{{ asset($claim->debt->motivo_reclamacion_previa) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a> --}}
                                     </li>
                                   
                                 </div>
                             </div>
-                            @endif
+                            @endif --}}
                         </ul>
                     @endif
 
@@ -423,13 +440,16 @@
                         
                         @else
 
-                            <div class="row text-center">
-                                <div class="col-sm-6 offset-sm-3">
-                                    <div class="alert-success">
-                                        <p>{{ $claim->getType() }}</p>
+                            @if ($claim->getHito())
+                                <div class="row text-center">
+                                    <div class="col-sm-12">
+                                        <x-adminlte-alert theme="success">
+                                            {{-- <p>{{ $claim->getType() }}</p> --}}
+                                            {{ $claim->getHito() }}
+                                        </x-adminlte-alert>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         @endif
 
                         @if ($claim->viable_observation)
@@ -439,7 +459,7 @@
                             </div>
                         @endif
 
-                        @if ($claim->isFinished() && $claim->claim_type == 2)
+                        @if ($claim->isFinished() && $claim->claim_type == 2 && !Auth::user()->isClient())
                             <div class="text-center my-3">
                             
                             <a href="{{ url('claims/'. $claim->id . '/viable',1) }}" class="btn btn-sm btn-primary">Reclamación Judicial Viable</a>

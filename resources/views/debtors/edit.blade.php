@@ -11,7 +11,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="/panel/debtors">Dedudores</a></li>
+                    <li class="breadcrumb-item"><a href="/panel/debtors">Deudores</a></li>
                     <li class="breadcrumb-item active">Editar Deudor {{ $debtor->name }}</li>
                 </ol>
             </div>
@@ -20,5 +20,8 @@
 @stop
 
 @section('content')
-   @include('debtors.partials._form')
+    @if(session()->has('claim_client') || session()->has('claim_third_party'))
+    @include('progressbar', ['step' => 2])
+    @endif
+    @include('debtors.partials._form')
 @stop

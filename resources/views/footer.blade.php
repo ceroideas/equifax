@@ -7,8 +7,8 @@ b {
   @isset ($contact)
     <div data-v-18ec2fe4="" data-v-c7d18d50="" class="blockContacto" data-v-effc9f78=""><div data-v-18ec2fe4="" class="container mt-5 Contacto"><div data-v-18ec2fe4="" class="row"><div data-v-18ec2fe4="" class="col my-5"><div data-v-18ec2fe4="" class="Contacto-title">
                       Contáctanos, llámanos o escríbenos
-                  </div> <div data-v-18ec2fe4="" class="row my-4"><div data-v-18ec2fe4="" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-phone.png" class="img-fluid mr-1"> +34 654 321 345
-                      </div> <div data-v-18ec2fe4="" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-email.png" class="img-fluid mr-1"> contacto@dividae.com
+                  </div> <div data-v-18ec2fe4="" class="row my-4"><div data-v-18ec2fe4="" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-phone.png" class="img-fluid mr-1"> +34 680 933 286 
+                      </div> <div data-v-18ec2fe4="" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-email.png" class="img-fluid mr-1"> info@dividae.com
                       </div></div> <div data-v-18ec2fe4=""><span data-v-18ec2fe4=""><a data-v-18ec2fe4="" href="{{url('/')}}/contacto" class="btn Contacto-btn">
                               Contacto
                               <img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-down ml-4 img-fluid"></a></span></div></div> <div data-v-18ec2fe4="" class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 my-5"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/grafico-ilustraciones-contacto.png" class="img-fluid"></div></div></div></div>
@@ -71,11 +71,21 @@ b {
 </div>
 </div>
 
-                <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><h5 data-v-a242bae8="" class="footer-title ">Contacto</h5> <ul data-v-a242bae8="" class="nav flex-column"><li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icons-phone-white.png" class="img-fluid"> +34 654 321 345
-                        </a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icons-email-white.png" class="img-fluid"> contacto@recovery.com
+                <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><h5 data-v-a242bae8="" class="footer-title ">Contacto</h5> <ul data-v-a242bae8="" class="nav flex-column"><li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icons-phone-white.png" class="img-fluid"> +34 680 933 286
+                        </a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icons-email-white.png" class="img-fluid"> info@dividae.com
                         </a></li></ul></div></div> <div data-v-a242bae8="" class="row row-cols-2 justify-content-start border-top pt-4"><div data-v-a242bae8="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 copyright-text">
                     © Dividae 2022 . All Rights Reserved.
-                </div> <div data-v-a242bae8="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 icons-social d-flex justify-content-end"><a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-whatsapp.png" class="img-fluid s-icon"></a> <a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-instagram.png" class="img-fluid"></a></div></div></div></footer>
+                </div> 
+
+                <div data-v-a242bae8="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 icons-social d-flex justify-content-end">
+
+                  <a data-v-a242bae8="" href="https://www.linkedin.com/company/asemar-concursal" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/linkedin.png" class="img-fluid"></a>
+
+                  {{-- <a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-whatsapp.png" class="img-fluid s-icon"></a>
+
+                  <a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-instagram.png" class="img-fluid"></a> --}}
+
+                </div></div></div></footer>
 
 
 <div class="modal fade" id="consulta-viabilidad">
@@ -108,7 +118,15 @@ b {
     <div data-v-e8aafb5e="" role="document" class="modal-dialog"><div data-v-e8aafb5e="" class="modal-content"><div data-v-e8aafb5e="" class="modal-header"><button data-v-e8aafb5e="" type="button" data-dismiss="modal" aria-label="Close" class="close"><span data-v-e8aafb5e="" aria-hidden="true">×</span></button></div> <div data-v-e8aafb5e="" class="modal-body"><div data-v-e8aafb5e="" class="modal-img text-center"><img data-v-e8aafb5e="" src="{{url('landing/assets/grafico-ilustraciones-simulador-exito.png')}}" class="img-fluid"></div> <!----> <div data-v-e8aafb5e="" class="modal-text-info text-center">
                             Su reclamación es viable <a data-v-e8aafb5e=""><img data-v-e8aafb5e="" src="{{url('landing/assets/icons-info-line.png')}}" class="img-fluid"></a></div> <div data-v-e8aafb5e="" class="modal-text text-center">
                             ¡Registre su reclamación para que nuestros abogados comiencen a trabajar!
-                        </div></div> <div data-v-e8aafb5e="" class="modal-footer"><a data-v-e8aafb5e="" href="{{url('register')}}" class="btn btn-modal"><span data-v-e8aafb5e="" class="footer-text">¡Regístrate y recupera tu deuda!</span></a></div></div></div></div>
+                        </div></div>
+
+                        @if (!Auth::check())
+                        <div data-v-e8aafb5e="" class="modal-footer"><a data-v-e8aafb5e="" href="{{url('register')}}" class="btn btn-modal"><span data-v-e8aafb5e="" class="footer-text">¡Regístrate y recupera tu deuda!</span></a></div>
+                        @else
+                        <div data-v-e8aafb5e="" class="modal-footer"><a data-v-e8aafb5e="" href="{{url('claims/select-client')}}" class="btn btn-modal"><span data-v-e8aafb5e="" class="footer-text">NUEVA RECLAMACIÓN</span></a></div>
+                        @endif
+
+                      </div></div></div>
 
   @section('extrajs')
 

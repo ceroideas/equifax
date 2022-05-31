@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Debt;
+use App\Models\DebtDocument;
 use App\Models\User;
 use App\Models\Debtor;
 use App\Models\ThirdParty;
@@ -70,7 +71,115 @@ class DebtsController extends Controller
 
     public function saveStepOne(Request $request)
     {
+        $documentos = [];
 
+        if ($request->document) {
+            foreach ($request->document as $key => $d) {
+                switch ($d) {
+                    case "factura":
+
+                        $documentos[] = [ "factura" => [
+                            // "factura" => $request->factura,
+                            "ndoc_factura" => $request->ndoc_factura,
+                            "fecha_factura" => $request->fecha_factura,
+                            "vencimiento_factura" => $request->vencimiento_factura,
+                            "importe_factura" => $request->importe_factura,
+                            "iva_factura" => $request->iva_factura
+                        ]];
+
+                        break;
+                    case "albaran":
+                        $documentos[] = ["albaran" => [
+                            // "albaran" => $request->albaran,
+                            "ndoc_albaran" => $request->ndoc_albaran,
+                            "fecha_albaran" => $request->fecha_albaran,
+                        ]];
+                        break;
+                    case "recibo":
+                        $documentos[] = ["recibo" => [
+                            // "recibo" => $request->recibo,
+                            "fecha_recibo" => $request->fecha_recibo,
+                        ]];
+                        break;
+                    case "contrato":
+                        $documentos[] = ["contrato" => [
+                            // "contrato" => $request->contrato,
+                            "fecha_contrato" => $request->fecha_contrato,
+                        ]];
+                        break;
+                    case "hoja_encargo":
+                        $documentos[] = ["hoja_encargo" => [
+                            // "hoja_encargo" => $request->hoja_encargo,
+                            "fecha_hoja_encargo" => $request->fecha_hoja_encargo,
+                        ]];
+                        break;
+                    case "hoja_pedido":
+                        $documentos[] = ["hoja_pedido" => [
+                            // "hoja_pedido" => $request->hoja_pedido,
+                            "fecha_hoja_pedido" => $request->fecha_hoja_pedido,
+                        ]];
+                        break;
+                    case "reconocimiento":
+                        $documentos[] = ["reconocimiento" => [
+                            // "reconocimiento" => $request->reconocimiento,
+                            "fecha_reconocimiento" => $request->fecha_reconocimiento,
+                            "importe_reconocimiento" => $request->importe_reconocimiento,
+                            "iva_reconocimiento" => $request->iva_reconocimiento,
+                        ]];
+                        break;
+                    case "extracto":
+                        $documentos[] = ["extracto" => [
+                            // "extracto" => $request->extracto,
+                            "fecha_extracto" => $request->fecha_extracto,
+                        ]];
+                        break;
+                    case "escritura":
+                        $documentos[] = ["escritura" => [
+                            // "escritura" => $request->escritura,
+                            "nprot_escritura" => $request->nprot_escritura,
+                            "fecha_escritura" => $request->fecha_escritura,
+                            "nombre_escritura" => $request->nombre_escritura,
+                        ]];
+                        break;
+                    case "burofax":
+                        $documentos[] = ["burofax" => [
+                            // "burofax" => $request->burofax,
+                            "fecha_burofax" => $request->fecha_burofax,
+                        ]];
+                        break;
+                    case "carta_certificada":
+                        $documentos[] = ["carta_certificada" => [
+                            // "carta"=> $request->carta,
+                            "fecha_carta"=> $request->fecha_carta,
+                        ]];
+                        break;
+                    case "email":
+                        $documentos[] = ["email" => [
+                            // "email" => $request->email,
+                            "fecha_email" => $request->fecha_email,
+                        ]];
+                        break;
+                    case "otros":
+                        $documentos[] = ["otros" => [
+                            // "otros" => $request->otros,
+                            "fecha_otros" => $request->fecha_otros,
+                        ]];
+                        break;
+                }
+            }
+        }
+        
+        session()->put('documentos',$documentos);
+
+        /*foreach ($documentos as $key => $d) {
+            $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $documentos[$key][key($d)]['file'] = $file;
+        }
+
+        return "";
+
+        return $documentos;*/
+        
         $data = $this->validateStepOne();
 
         $debt = new Debt();
@@ -78,25 +187,37 @@ class DebtsController extends Controller
         $debt->total_amount = $data['importe'];
         $debt->tax = $data['iva'];
         $debt->concept = $data['concepto'];
-        $debt->document_number = $data['numero_documento'];
+        $debt->document_number = "";
         $debt->debt_date = $data['fecha_deuda'];
         $debt->debt_expiration_date = $data['fecha_vencimiento_deuda'];
         $debt->pending_amount = $data['importe_pendiente'];
         $debt->partials_amount = $data['abonos'];
         $debt->additionals = $data['observaciones'];
 
-        session()->put('claim_debt', $debt);
-        session()->put('debt_step_one', 'completed');
+        $debt->reclamacion_previa_indicar = array_key_exists('reclamacion_previa_indicar', $data) ? $data['reclamacion_previa_indicar'] : null;
+        $debt->motivo_reclamacion_previa = array_key_exists('motivo_reclamacion_previa', $data) ? $data['motivo_reclamacion_previa'] : null;
+        $debt->fecha_reclamacion_previa = array_key_exists('fecha_reclamacion_previa', $data) ? $data['fecha_reclamacion_previa'] : null;
 
-        return redirect('/debts/create/step-two')->with('msj', 'Datos guardados temporalmente');
-    }
+        // $debt->reclamacion_previa = $data['reclamacion_previa'];
 
-    public function saveStepTwo(Request $request)
-    {
+        if($debt->reclamacion_previa){
+            Storage::disk('public')->delete($debt->reclamacion_previa);
+        }
+        if($request['reclamacion_previa']){
 
-        $data = $this->validateStepTwo();
+            $reclamacion_previa = $request->file('reclamacion_previa')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $debt->reclamacion_previa = $reclamacion_previa;
+        }
 
-        $debt = session('claim_debt');
+        $amounts = [];
+
+        if ($request->amounts) {
+            foreach ($request->amounts as $key => $value) {
+                $amounts[] = ["amount" => $value, "date" => $request->dates[$key]];
+            }
+        }
+
+        $debt->partials_amount_details = json_encode($amounts);
 
         $debt->type = $data['tipo_deuda'];
 
@@ -106,13 +227,68 @@ class DebtsController extends Controller
         }
 
         session()->put('claim_debt', $debt);
+        session()->put('debt_step_one', 'completed');
         session()->put('debt_step_two', 'completed');
+        session()->put('debt_step_three', 'completed');
 
-        return redirect('/debts/create/step-three')->with('msj', 'Datos guardados temporalmente');
+        // documentacion
+
+        function rrmdir($dir) { 
+           if (is_dir($dir)) { 
+             $objects = scandir($dir);
+             foreach ($objects as $object) { 
+               if ($object != "." && $object != "..") { 
+                 if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
+                   rrmdir($dir. DIRECTORY_SEPARATOR .$object);
+                 else
+                   unlink($dir. DIRECTORY_SEPARATOR .$object); 
+               } 
+             }
+             rmdir($dir); 
+           } 
+         }
+
+        if (is_dir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'))) {
+            // return "Hola";
+            rrmdir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'));
+        }
+
+        foreach ($documentos as $key => $d) {
+            
+            $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $documentos[$key][key($d)]['file'] = $file;
+
+        }
+
+        session()->put('documentos',$documentos);
+
+        // return redirect('/debts/create/step-two')->with('msj', 'Datos guardados temporalmente');
+        // return redirect('/debts/create/step-three')->with('msj', 'Datos guardados temporalmente');
+        return redirect('/claims/check-agreement')->with('msj', 'Datos guardados temporalmente');
+    }
+
+    public function saveStepTwo(Request $request)
+    {
+
+        // $data = $this->validateStepTwo();
+
+        // $debt = session('claim_debt');
+
+        // $debt->type = $data['tipo_deuda'];
+
+        // if($data['deuda_extra']){
+        //     $debt->type_extra = $data['deuda_extra'];
+        //     session()->put('type_other', true);
+        // }
+
+        // session()->put('claim_debt', $debt);
+        // session()->put('debt_step_two', 'completed');
+
+        // return redirect('/debts/create/step-three')->with('msj', 'Datos guardados temporalmente');
 
     }
 
-    public function saveStepThree(Request $request)
+    /*public function saveStepThree(Request $request)
     {
 
         $this->validateStepThree();
@@ -215,7 +391,7 @@ class DebtsController extends Controller
 
         return redirect('/claims/check-agreement')->with('msj', 'Datos guardados temporalmente');
 
-    }
+    }*/
 
     /**
      * Store a newly created resource in storage.
@@ -279,34 +455,37 @@ class DebtsController extends Controller
             'importe' =>  'required|numeric',
             'iva' =>  'required|numeric',
             'concepto' =>  'required',
-            'numero_documento' =>  'required',
+            // 'numero_documento' =>  'required',
             'fecha_deuda' =>  'required|date',
             'fecha_vencimiento_deuda' =>  'date',
             'importe_pendiente' =>  'required|numeric',
             'abonos' =>  '',
             'observaciones' =>  'required',
-
-
-        ];
-
-        return request()->validate($rules);
-
-        
-    }
-
-    public function validateStepTwo(){
-
-        $rules = [
             'tipo_deuda' =>  'required',
             'deuda_extra' =>  'required_if:tipo_deuda,18|required_if:tipo_deuda,13',
+            'document' =>  'required',
+
+
         ];
+
+        if (request()->reclamacion_previa_indicar == 1) {
+            $rules['motivo_reclamacion_previa'] = 'required';
+            $rules['reclamacion_previa'] = 'required';
+            $rules['fecha_reclamacion_previa'] = 'required';
+            $rules['reclamacion_previa_indicar'] = 'required';
+        }
 
         $messages = [
 
             'deuda_extra.required_if' => 'El campo :attribute es obligatorio cuando el campo :other es otros.'
         ];
 
-        return request()->validate($rules,$messages);
+        return request()->validate($rules, $messages);
+
+        
+    }
+
+    public function validateStepTwo(){
 
         
     }
@@ -334,6 +513,11 @@ class DebtsController extends Controller
         return request()->validate($rules);
 
         
+    }
+
+    public function getHito($blade)
+    {
+        return view('debts.documents.'.$blade)->render();
     }
     
     

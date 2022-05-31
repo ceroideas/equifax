@@ -23,7 +23,7 @@ class HomeController extends Controller
         if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
             return view('admin.index',[
                 'clients' => User::where('role', 2)->where('status', 1)->count(),
-                'claims' => Claim::where('status', 0)->count()
+                'claims' => Claim::whereIn('status', [-1,0,1])->count()
             ]);
         }
         return view('admin.index');

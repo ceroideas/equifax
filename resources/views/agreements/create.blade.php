@@ -8,13 +8,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Registro de Acuerdo</h1>
+                <h1>Condiciones mínimas del acuerdo</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
                     {{-- <li class="breadcrumb-item"><a href="/panel/debtors"></a></li> --}}
-                    <li class="breadcrumb-item active">Registro de Acuerdo</li>
+                    <li class="breadcrumb-item active">Condiciones mínimas del acuerdo</li>
                 </ol>
             </div>
         </div>
