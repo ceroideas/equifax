@@ -21,6 +21,7 @@ use Carbon\Carbon;
 use Excel;
 use App\Exports\ClaimsExport;
 use App\Exports\InvoiceExport;
+use App\Exports\InvoicesExport;
 
 use App\Imports\HitosImport;
 
@@ -209,12 +210,22 @@ class ClaimsController extends Controller
                 $invoice->user_id = $claim->user_id;
                 $invoice->amount = $c ? $c->fixed_fees : '0';
                 $invoice->type = 'fixed_fees';
-                $invoice->description = "Pago de honorarios para inicio de proceso Extrajudicial";
+                $invoice->description = "Pago de tarifa proceso Extrajudicial";
                 $invoice->save();
             }
         }
         $debt->save();
         $claim->save();
+
+        /*$a = new Actuation;
+        $a->claim_id = $claim->id;
+        $a->subject = "001";
+        $a->amount = null;
+        $a->description = "Inicio del proceso extrajudicial";
+        $a->actuation_date = Carbon::now()->format('d-m-Y');
+        $a->type = null;
+        $a->mailable = null;
+        $a->save();*/
 
         $path = '/uploads/claims/' . $claim->id . '/documents/';
 
@@ -364,14 +375,20 @@ class ClaimsController extends Controller
 
         $c = Configuration::first();
 
-        $amount = $c ? $c->fixed_fees : 0;
-        $amounts = $c ? (string)$c->fixed_fees : '0';
-        $type = 'fixed_fees';
+        if ($request['tipo_viabilidad'] == 1) {
+            $amount = $c ? $c->judicial_amount : 0;
+            $amounts = $c ? (string)$c->judicial_amount : '0';
+            $type = 'judicial_amount';
+        }else{
+            $amount = $c ? $c->fixed_fees : 0;
+            $amounts = $c ? (string)$c->fixed_fees : '0';
+            $type = 'fixed_fees';
+        }
 
         if ($request['tipo_viabilidad'] == 1) {
             if ($claim->third_parties_id) {
                 if ($claim->representant->type == 1) {
-                    if ($claim->debt->total_amount > 2000) {
+                    if ($claim->debt->pending_amount > 2000) {
                         $amount += $c ? $c->judicial_fees : 0;
                         $type .= '|judicial_fees';
                         $amounts .= '|'.($c ? $c->judicial_fees : 0);
@@ -379,7 +396,7 @@ class ClaimsController extends Controller
                 }
             }else{
                 if ($claim->client->type == 1) {
-                    if ($claim->debt->total_amount > 2000) {
+                    if ($claim->debt->pending_amount > 2000) {
                         $amount += $c ? $c->judicial_fees : 0;
                         $type .= '|judicial_fees';
                         $amounts .= '|'.($c ? $c->judicial_fees : 0);
@@ -404,19 +421,32 @@ class ClaimsController extends Controller
         }
         $claim->save();
 
-        $invoice = new Invoice;
+        if ($request['tipo_viabilidad'] == 1) {
+            actuationActions("2",$claim->id);
+        }
+
+        /*$invoice = new Invoice;
         $invoice->claim_id = $claim->id;
         $invoice->user_id = $claim->user_id;
         $invoice->amounts = $amounts;
+        $invoice->amount = $amount;
         if ($request['tipo_viabilidad'] == 1) {
-            $invoice->amount = 70;
-            $invoice->description = "Pago de honorarios para inicio de proceso Judicial";
+            $invoice->description = "Pago de tarifa proceso Judicial";
         }else{
-            $invoice->amount = $amount;
-            $invoice->description = "Pago de honorarios para inicio de proceso Extrajudicial";
+            $invoice->description = "Pago de tarifa proceso Extrajudicial";
         }
         $invoice->type = $type;
         $invoice->save();
+
+        $a = new Actuation;
+        $a->claim_id = $claim->id;
+        $a->subject = "4";
+        $a->amount = null;
+        $a->description = null;
+        $a->actuation_date = Carbon::now()->format('d-m-Y');
+        $a->type = null;
+        $a->mailable = null;
+        $a->save();*/
 
         return redirect('claims')->with('msj', 'Reclamación actualziada exitosamente!');
       
@@ -710,35 +740,16 @@ class ClaimsController extends Controller
 
     public function saveActuation(Request $r,$id)
     {
-        $h = null; // hito
-        $f = null; // fase
-        foreach (config('app.actuations') as $key => $value) {
-            
-            if ($value['hitos']) {
-                foreach ($value['hitos'] as $key1 => $value1) {
-                    if ($value1['id'] == $r->subject) {
-                        $h = $value1;
-                        $f = $value;
-                    }
-                }
-            }else{
-                if ($value['id'] == $r->subject) {
-                    $h = $value;
-                    $f = $value;
-                }
-            }
-
-        }
+        // $h = getHito($r->subject)[0];
         // return response()->json([$f,$h],422);
-
         $a = new Actuation;
         $a->claim_id = $id;
         $a->subject = $r->subject;
         $a->amount = $r->amount;
         $a->description = $r->description;
         $a->actuation_date = $r->actuation_date;
-        $a->type = $r->type ? 1 : null;
-        $a->mailable = $r->mailable ? 1 : null;
+        $a->type = null;
+        $a->mailable = null;
         $a->save();
 
         $a->claim->phase = $r->phase;
@@ -758,7 +769,10 @@ class ClaimsController extends Controller
             }
         }
 
-        /*if ($a->mailable) {
+        actuationActions($r->subject,$id,$r->amount,$r->actuation_date,$r->description);
+
+        /*
+        if ($a->mailable) {
             Mail::send('email_to_client', ['a' => $a], function ($message) {            
                 $message->to($claim->owner->email, $claim->owner->name);
                 $message->subject('Actualización de su reclamación #'.$a->id);
@@ -822,8 +836,26 @@ class ClaimsController extends Controller
 
             if ($c->last_invoice) {
                 $c->status = 7;
+
+                $a = Actuation::where('claim_id',$c->id)->where('subject',"302")->first();
+                if ($a) {
+                    $a->delete();
+                }
+
+                $a = new Actuation;
+                $a->claim_id = $c->id;
+                $a->subject = "302";
+                $a->amount = null;
+                $a->description = null;
+                $a->actuation_date = Carbon::now()->format('d-m-Y');
+                $a->type = null;
+                $a->mailable = null;
+                $a->save();
+                
             }else{
                 $c->status = 10;
+
+                actuationActions("302",$c->id);
             }
             $c->save();
             $c->owner->save();
@@ -845,6 +877,11 @@ class ClaimsController extends Controller
     public function excelInvoice($id)
     {
         return Excel::download(new InvoiceExport($id), 'invoice-id_'.$id.'-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
+    public function invoicesExport()
+    {
+        return Excel::download(new InvoicesExport, 'invoices-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
     public function checkDebtor(Request $r)

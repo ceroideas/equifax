@@ -113,6 +113,10 @@ class Claim extends Model
             return true;
         }
 
+        if ($this->getIdHito() && ($this->getIdHito() == 20 || $this->getIdHito() == 19)) {
+            return true;
+        }
+
         return false;
     }
     
@@ -146,13 +150,43 @@ class Claim extends Model
         return $this->hasMany(Actuation::class);
     }
 
-    public function getHito()
+    public function getIdHito()
     {
         if ($this->actuations->count()) {
+            return $this->actuations->last()->getRawOriginal('subject');
+        }
+
+        return false;
+    }
+
+    public function getHito()
+    {
+        if ($this->isFinished()) {
+            return config('app.actuations')[20]['name'];
+        }
+        if ($this->actuations->count()) {
+
+            if ($this->claim_type == 2 && $this->last_invoice) {
+                return "A LA ESPERA DE ACEPTACIÓN Y ABONO HONORARIOS";
+            }
+            /*if ($this->last_invoice) {
+                return "A LA ESPERA DE ACEPTACIÓN Y ABONO HONORARIOS";
+            }*/
             return $this->actuations->last()->subject;
         }
 
         return false;
+    }
+
+    public function getPhase()
+    {
+        if ($this->last_invoice) {
+            return [3,'FASE ACEPTACIÓN Y PAGO'];
+        }
+        if ($this->claim_type == 1) {
+            return [1,'FASE JUDICIAL'];
+        }
+        return [2,'FASE EXTRAJUDICIAL'];
     }
 
 }

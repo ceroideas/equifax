@@ -33,76 +33,85 @@
 	<tbody>
 
 		@foreach ($claims as $claim)
-			<tr>
-	            <td>{{ $claim->id }}</td>
-	            <td>{{ $claim->debt->document_number }}</td>
-	            <td>{{ $claim->owner->name }}</td>
-	            <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
-	            <td>{{ ($claim->user_id) ? $claim->client->dni : $claim->representant->dni}}</td>
-	            {{-- <td>{{ $claim->debtor->name }}</td> --}}
-	            <td>{{ $claim->debt->pending_amount }}€</td>
-                <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
-                <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
-	            <td>{{ $claim->getType() }}</td>
-	            <td>{{ $claim->getStatus() }}</td>
+			@if ($type == 0 &&
+				($claim->actuations()->count() ? 
 
-	            <td>{{ $claim->getHito() }}</td>
-	            <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td>
+					($claim->actuations()->get()->last()->getRawOriginal('subject') == 21)
 
-	            <td>{{ $claim->debtor->name }}</td>
-	            <td>{{ $claim->debtor->dni }}</td>
-	            <td>{{ $claim->debtor->email }}</td>
+				 : false)
 
-	            <td>{{ $claim->debtor->address }}</td>
-	            <td>{{ $claim->debtor->location }}</td>
-	            <td>{{ $claim->debtor->cop }}</td>
-	            <td>{{ $claim->debtor->phone }}</td>
+				|| $type == 1)
+				<tr>
+		            <td>{{ $claim->id }}</td>
+		            <td>{{ $claim->debt->document_number }}</td>
+		            <td>{{ $claim->owner->name }}</td>
+		            <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
+		            <td>{{ ($claim->user_id) ? $claim->client->dni : $claim->representant->dni}}</td>
+		            {{-- <td>{{ $claim->debtor->name }}</td> --}}
+		            <td>{{ $claim->debt->pending_amount }}€</td>
+	                <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
+	                <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
+		            <td>{{ $claim->getType() }}</td>
+		            <td>{{ $claim->getStatus() }}</td>
 
-            	@foreach (App\Models\DebtDocument::where('debt_id',$claim->debt->id)->get() as $key => $doc)
-                    @switch($doc->type)
-                        @case('factura')
-                        	<td>FACTURA: {{url($doc->document)}}</td>
-                        @break
-						@case('albaran')
-							<td>ALBARÁN: {{url($doc->document)}}</td>
-						@break
-						@case('recibo')
-							<td>RECIBO DE ENTREGA: {{url($doc->document)}}</td>
-						@break
-						@case('contrato')
-							<td>CONTRATO: {{url($doc->document)}}</td>
-						@break
-						@case('hoja_encargo')
-							<td>HOJA DE ENCARGO: {{url($doc->document)}}</td>
-						@break
-						@case('hoja_pedido')
-							<td>HOJA DE PEDIDO: {{url($doc->document)}}</td>
-						@break
-						@case('reconocimiento')
-							<td>RECONOCIMIENTO DE DEUDA: {{url($doc->document)}}</td>
-						@break
-						@case('extracto')
-							<td>EXTRACTO BANCARIO: {{url($doc->document)}}</td>
-						@break
-						@case('escritura')
-							<td>ESCRITURA NOTARIAL: {{url($doc->document)}}</td>
-						@break
-						@case('burofax')
-							<td>BUROFAX: {{url($doc->document)}}</td>
-						@break
-						@case('carta_certificada')
-							<td>CARTA CERTIFICADA: {{url($doc->document)}}</td>
-						@break
-						@case('email')
-							<td>E-MAILS: {{url($doc->document)}}</td>
-						@break
-						@case('otros')
-							<td>OTROS: {{url($doc->document)}}</td>
-						@break
-                    @endswitch
-                    
-                @endforeach
-	        </tr>
+		            <td>{{ $claim->getHito() }}</td>
+		            <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td>
+
+		            <td>{{ $claim->debtor->name }}</td>
+		            <td>{{ $claim->debtor->dni }}</td>
+		            <td>{{ $claim->debtor->email }}</td>
+
+		            <td>{{ $claim->debtor->address }}</td>
+		            <td>{{ $claim->debtor->location }}</td>
+		            <td>{{ $claim->debtor->cop }}</td>
+		            <td>{{ $claim->debtor->phone }}</td>
+
+	            	@foreach (App\Models\DebtDocument::where('debt_id',$claim->debt->id)->get() as $key => $doc)
+	                    @switch($doc->type)
+	                        @case('factura')
+	                        	<td>FACTURA: {{url($doc->document)}}</td>
+	                        @break
+							@case('albaran')
+								<td>ALBARÁN: {{url($doc->document)}}</td>
+							@break
+							@case('recibo')
+								<td>RECIBO DE ENTREGA: {{url($doc->document)}}</td>
+							@break
+							@case('contrato')
+								<td>CONTRATO: {{url($doc->document)}}</td>
+							@break
+							@case('hoja_encargo')
+								<td>HOJA DE ENCARGO: {{url($doc->document)}}</td>
+							@break
+							@case('hoja_pedido')
+								<td>HOJA DE PEDIDO: {{url($doc->document)}}</td>
+							@break
+							@case('reconocimiento')
+								<td>RECONOCIMIENTO DE DEUDA: {{url($doc->document)}}</td>
+							@break
+							@case('extracto')
+								<td>EXTRACTO BANCARIO: {{url($doc->document)}}</td>
+							@break
+							@case('escritura')
+								<td>ESCRITURA NOTARIAL: {{url($doc->document)}}</td>
+							@break
+							@case('burofax')
+								<td>BUROFAX: {{url($doc->document)}}</td>
+							@break
+							@case('carta_certificada')
+								<td>CARTA CERTIFICADA: {{url($doc->document)}}</td>
+							@break
+							@case('email')
+								<td>E-MAILS: {{url($doc->document)}}</td>
+							@break
+							@case('otros')
+								<td>OTROS: {{url($doc->document)}}</td>
+							@break
+	                    @endswitch
+	                    
+	                @endforeach
+		        </tr>
+			@endif
 		@endforeach
 
 	</tbody>

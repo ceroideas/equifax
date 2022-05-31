@@ -193,7 +193,7 @@
                     </x-slot>
             </x-adminlte-input>
             </div>
-            <div class="col-sm-6">
+            {{-- <div class="col-sm-6">
                 <x-adminlte-input name="representative_dni_img" label="Poder de representación de la empresa *" type="file"
                 igroup-size="sm">
                     <x-slot name="appendSlot">
@@ -202,7 +202,7 @@
                         </div>
                     </x-slot>
             </x-adminlte-input>
-            </div>
+            </div> --}}
         </div>
         @if (!Auth::user()->isClient())
             <div class="row">

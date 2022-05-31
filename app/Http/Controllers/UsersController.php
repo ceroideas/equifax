@@ -338,12 +338,39 @@ class UsersController extends Controller
 
     public function migrar()
     {
+        /*$u = Auth::user();
+        $u->apud_acta = null;
+        $u->save();
+
+        return "";*/
+        /*$c = Claim::find(1);
+        $c->status = 11;
+        $c->save();
+
+        */
+        // return Claim::all();
+        // return \App\Models\Actuation::all();
+
+        \App\Models\Actuation::truncate();
+        \App\Models\ActuationDocument::truncate();
+        Claim::truncate();
+        Debt::truncate();
+        Invoice::truncate();
+        \App\Models\Agreement::truncate();
+        \App\Models\DebtDocument::truncate();
+
+
+        // return actuationActions(601,22);
         /*\App\Models\Actuation::truncate();
         \App\Models\ActuationDocument::truncate();
         return \App\Models\Actuation::all();*/
         /*Schema::table('claims', function(Blueprint $table) {
             //
             $table->string('phase')->nullable();
+        });*/
+        /*Schema::table('actuations', function(Blueprint $table) {
+            //
+            $table->integer('hito_padre')->nullable();
         });*/
         /*\App\Models\Actuation::truncate();
         \App\Models\ActuationDocument::truncate();
@@ -450,13 +477,27 @@ class UsersController extends Controller
             $table->timestamps();
         });*/
 
-        /*Schema::table('configurations', function(Blueprint $table) {
+        /*Schema::dropIfExists('configurations');
+        Schema::create('configurations', function(Blueprint $table) {
             //
+            $table->increments('id');
+            $table->string('fixed_fees')->nullable();
+            $table->string('percentage_fees')->nullable();
+            $table->string('judicial_amount')->nullable();
+            $table->string('judicial_fees')->nullable();
+            $table->string('verbal_amount')->nullable();
+            $table->string('verbal_fees')->nullable();
+            $table->string('ordinary_amount')->nullable();
+            $table->string('ordinary_fees')->nullable();
+            $table->string('execution')->nullable();
+            $table->string('resource')->nullable();
             $table->string('tax')->nullable();
             $table->string('invoice_name')->nullable();
             $table->string('invoice_address_line_1')->nullable();
             $table->string('invoice_address_line_2')->nullable();
             $table->string('invoice_email')->nullable();
+
+            $table->timestamps();
         });*/
 
         /*Schema::create('postal_codes', function (Blueprint $table) {

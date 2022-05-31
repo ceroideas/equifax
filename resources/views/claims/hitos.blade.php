@@ -6,15 +6,15 @@ $config = ['tags' => true];
 
 	@foreach (config('app.actuations') as $key => $ph)
 
-		@if ($ph['phase'] == $fase)
+		@if (in_array($phase[0], $ph['phase']) && $ph['name'])
 			@if ($ph['hitos'])
 			<optgroup label="{{$ph['name']}}">
 				@foreach ($ph['hitos'] as $ht)
-			    	<option value="{{$ht['id']}}">{{$ht['name']}}</option>
+			    	<option value="{{$ht['id']}}">{{$ht['id']}} - {{$ht['name']}}</option>
 				@endforeach
 			</optgroup>
 			@else
-				<option value="{{$ph['id']}}">- <b>{{$ph['name']}}</b></option>
+				<option value="{{$ph['id']}}">{{$ph['id']}} - <b>{{$ph['name']}}</b></option>
 			@endif
 		@endif
 

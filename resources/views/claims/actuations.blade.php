@@ -67,28 +67,26 @@
 
         				<div class="col-sm-12">
         					
-        					<h5>{{$act->subject}}</h5>
+        					<h6><b style="color: #333">{{$act->subject}}</b> ({!! $act->actuation_date !!})</h6>
 
-        					<p>{{$act->description}}</p>
+        					<p style="margin: 0">{{$act->description}}</p>
 
         					{{-- <p>
         						<b>Resultado de la actuación:</b> {!! $act->type ? '<span class="text-success">Exitoso</span>' : '<span class="text-warning">No exitoso</span>' !!}
         					</p> --}}
-        					<p>
-        						<b>Fecha de la actuación:</b> {!! $act->actuation_date !!}
-        					</p>
+        					{{-- <p>
+        						<b>Fecha de la actuación:</b> 
+        					</p> --}}
 
         					@if ($act->amount)
         					<br>
-        						
-        						<b>Monto recuperado:</b> {{$act->amount}}€ <br>
-        						@if ($act->invoice)
+        						<b style="color: #333">Monto recuperado:</b> {{$act->amount}}€ <br>
+        						{{-- @if ($act->invoice)
         						<b>Monto a facturar:</b> {{$act->invoice->amount}}€ <br> 
         						<b>Status de la factura:</b> {!!$act->invoice->status ? '<span class="text-success">Pagado</span>' : '<span class="text-info">Pendiente</span>'!!}
         						@else
         							<i>No se ha generado una factura</i>
-        						@endif
-
+        						@endif --}}
         					@endif
 
         					@if ($act->documents)
@@ -142,7 +140,7 @@
 
 	            	<div class="row">
 
-	            		<div class="col-sm-6">
+	            		{{-- <div class="col-sm-6">
 
 	            			<div class="form-group">
 	            				
@@ -164,7 +162,7 @@
 
 	            			</div>
 
-	            		</div>
+	            		</div> --}}
 	            		
 	            		<div class="col-sm-6">
 
@@ -173,14 +171,8 @@
 	            				<label for="subject">Hito</label>
 
 	            				<div id="select-ph">
-	            					<i>Seleccione una fase</i>
+	            					@include('claims.hitos', ['phase' => $claim->getPhase()])
 	            				</div>
-			                    {{-- @error('subject')
-			                    <span class="invalid-feedback d-block" role="alert">
-			                        <strong>{{ $errors->first() }}</strong>
-			                    </span>
-			                    @enderror --}}
-
 	            			</div>
 
 	            		</div>
@@ -389,15 +381,14 @@
 			});
 		});
 
-		$('#phase').change(function (e) {
+		/*$('#phase').change(function (e) {
 			e.preventDefault();
 
 			$.get('{{url('loadActuations')}}/'+$(this).val(), function(data) {
-				/*optional stuff to do after success */
 				$('#select-ph').html(data);
 			});
-		});
+		});*/
 
-		$('#phase').trigger('change');
+		// $('#phase').trigger('change');
 	</script>
 @stop

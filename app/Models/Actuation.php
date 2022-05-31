@@ -26,21 +26,30 @@ class Actuation extends Model
 
     public function getSubjectAttribute($attr)
     {
-        $val = $attr;
+        // return $attr;
+        $val = null;
         foreach (config('app.actuations') as $key => $value) {
             
             if ($value['hitos']) {
                 foreach ($value['hitos'] as $key1 => $value1) {
-                    if ($value1['id'] == $attr) {
+                    if ($value1['id'] === $attr) {
                         $val = $value1;
                     }
                 }
             }else{
-                if ($value['id'] == $attr) {
+                if ($value['id'] === $attr) {
                     $val = $value;
                 }
             }
 
+        }
+
+        if (!$val) {
+            foreach (config('app.actuations') as $key => $value) {
+                if ($value['id'] === $attr) {
+                    $val = $value;
+                }
+            }
         }
 
         return $val['name'];

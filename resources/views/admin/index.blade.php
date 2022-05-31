@@ -158,7 +158,7 @@
                 <div class="card-body text-left">
                     <h3 style="margin-top: 0;">¡Bienvenido, {{Auth::user()->name}}!</h3>
 
-                    @if (Auth::user()->isClient() && (!Auth::user()->dni || !Auth::user()->iban || !Auth::user()->phone || !Auth::user()->dni || !Auth::user()->cop))
+                    @if (Auth::user()->isClient() && (!Auth::user()->dni || !Auth::user()->phone || !Auth::user()->cop))
                     <x-adminlte-alert theme="warning" dismissable>
                         <div class="row">
                             <div class="col-9">
