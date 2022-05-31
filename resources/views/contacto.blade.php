@@ -4,7 +4,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
-    
+
 
     <title>Dividae</title>
 
@@ -984,7 +984,7 @@
   background-color: #fff;
   /* @media (min-width: 1280px) {
       margin-left: 130px;
-      margin-right: 130px; 
+      margin-right: 130px;
   } */
   /* &-col1 {
       margin: 50px 0 50px;
@@ -1764,7 +1764,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   font-style: normal;
   line-height: 1.5;
   letter-spacing: normal;
-  color: #254158;
+  color: #285ba3;
 }
 @media (min-width: 768px) {
 .block-nosotros .Nosotros-text[data-v-c7d18d50] {
@@ -4178,7 +4178,7 @@ input:valid ~ .show-hide i {
   background-color: #fff;
   padding: 10px 20px 10px 20px;
   margin-bottom: 80px;
-  /* .table-striped>tbody>tr:nth-child(even)>td, 
+  /* .table-striped>tbody>tr:nth-child(even)>td,
     .table-striped>tbody>tr:nth-child(even)>th {
      background-color: #fff;//cambiar color
     }
@@ -4882,7 +4882,7 @@ a.more-link[data-v-167ae8c1] {
                             Tarifas
                         </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/contacto" aria-current="page" class="nav-link router-link-exact-active router-link-active"><span data-v-5fddf304="" class="Type-something">
                             Contacto
-                        </span></a> <div data-v-5fddf304="" class="punto-active"></div></li></ul> 
+                        </span></a> <div data-v-5fddf304="" class="punto-active"></div></li></ul>
                         @include('front.loginButtons')
                          <!----></div></div></nav> <div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto container"><div data-v-cfd2b624="" data-v-effc9f78="" class="row"><div data-v-cfd2b624="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 block-text"><div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto-subtitle">
                         ¿Podemos ayudarte?
@@ -4894,12 +4894,12 @@ a.more-link[data-v-167ae8c1] {
                 <img data-v-ab748da8="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right img-fluid"></button></span></form></div>
 
                     </div></div></div></div> @include('followus') <div data-v-cfd2b624="" data-v-effc9f78="" class="block-ShowContact"><div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact container"><div data-v-cfd2b624="" data-v-effc9f78="" class="row"><div data-v-cfd2b624="" data-v-effc9f78="" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-3"><img data-v-cfd2b624="" data-v-effc9f78="" src="{{url('landing')}}/assets/icon-large-contacto-phone.png" class="img-fluid"> <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
-                        +34 680 933 286
+                        <a href="tel:+34680933286">+34 680 933 286</a>
                     </div></div> <div data-v-cfd2b624="" data-v-effc9f78="" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-3"><img data-v-cfd2b624="" data-v-effc9f78="" src="{{url('landing')}}/assets/icon-large-contacto-mail.png" class="img-fluid"> <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
-                        info@recovery.com
+                        <a href="mailto:info@dividae.com">info@dividae.com</a>
                     </div></div> <div data-v-cfd2b624="" data-v-effc9f78="" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-3"><img data-v-cfd2b624="" data-v-effc9f78="" src="{{url('landing')}}/assets/icon-large-contacto-location.png" class="img-fluid"> <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
                         Madrid
-                        <p data-v-cfd2b624="" data-v-effc9f78="" class="location-street">Dirección</p></div></div></div></div></div>
+                        <p data-v-cfd2b624="" data-v-effc9f78="" class="location-street">Sede principal</p></div></div></div></div></div>
 
               @include('footer')
 
