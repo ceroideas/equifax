@@ -7,7 +7,7 @@ b {
   @isset ($contact)
     <div data-v-18ec2fe4="" data-v-c7d18d50="" class="blockContacto" data-v-effc9f78=""><div data-v-18ec2fe4="" class="container mt-5 Contacto"><div data-v-18ec2fe4="" class="row"><div data-v-18ec2fe4="" class="col my-5"><div data-v-18ec2fe4="" class="Contacto-title">
                       Contáctanos, llámanos o escríbenos
-                  </div> <div data-v-18ec2fe4="" class="row my-4"><div data-v-18ec2fe4="" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-phone.png" class="img-fluid mr-1"> +34 680 933 286 
+                  </div> <div data-v-18ec2fe4="" class="row my-4"><div data-v-18ec2fe4="" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-phone.png" class="img-fluid mr-1"> +34 680 933 286
                       </div> <div data-v-18ec2fe4="" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"><img data-v-18ec2fe4="" src="{{url('landing')}}/assets/icons-email.png" class="img-fluid mr-1"> info@dividae.com
                       </div></div> <div data-v-18ec2fe4=""><span data-v-18ec2fe4=""><a data-v-18ec2fe4="" href="{{url('/')}}/contacto" class="btn Contacto-btn">
                               Contacto
@@ -16,9 +16,11 @@ b {
   @else
   <div data-v-837e15c2="" data-v-cfd2b624="" class="block-CheckClaim" data-v-effc9f78=""><div data-v-837e15c2="" class="container CheckClaim"><div data-v-837e15c2="" class="row"><div data-v-837e15c2="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-837e15c2="" class="CheckClaim-title">
                       ¿Quieres saber si tu reclamación es viable?
-                  </div> <div data-v-837e15c2="" class="CheckClaim-text">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
-                  </div> <div data-v-837e15c2="">
+                  </div>
+
+
+
+                    <div data-v-837e15c2="">
 
                     {{-- @isset ($modal) --}}
                       <a data-v-837e15c2=""
@@ -48,7 +50,7 @@ b {
 <div class="modal fade" id="terminos" style="max-width: 100%;">
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
-    
+
     <div class="modal-header" style="color: #111">Términos y Condiciones</div>
     <div class="modal-body">
       @include('terminos-condiciones')
@@ -61,7 +63,7 @@ b {
 <div class="modal fade" id="contratacion" style="max-width: 100%;">
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
-    
+
     <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
     <div class="modal-body">
       @include('terminos-contratacion')
@@ -75,7 +77,7 @@ b {
                         </a></li> <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icons-email-white.png" class="img-fluid"> info@dividae.com
                         </a></li></ul></div></div> <div data-v-a242bae8="" class="row row-cols-2 justify-content-start border-top pt-4"><div data-v-a242bae8="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 copyright-text">
                     © Dividae 2022 . All Rights Reserved.
-                </div> 
+                </div>
 
                 <div data-v-a242bae8="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 icons-social d-flex justify-content-end">
 
@@ -92,7 +94,7 @@ b {
     <div class="modal-dialog">
 
       <div class="modal-content">
-        
+
         <div data-v-66372912="" id="form-p"><div data-v-e8aafb5e="" data-v-66372912=""><form data-v-e8aafb5e="" class="formulario-reclamacion"><!----> <div data-v-e8aafb5e="" class="reclamacion-title">
               Consulte si es viable su reclamación
           </div> <hr data-v-e8aafb5e="" class="Line-Copy"> <div data-v-e8aafb5e="" class="row mb-4"><div data-v-e8aafb5e="" class="col-12 RangoDeuda"><div data-v-e8aafb5e="" class="form-outline my-2"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="customRange1" class="form-label range-label">
@@ -142,16 +144,16 @@ b {
         let val = $(this).val();
         switch (val)
         {
-          case "1": 
+          case "1":
             text = '1-3 años';
             break;
-          case "2": 
+          case "2":
             text = '4-6 años';
             break;
-          case "3": 
+          case "3":
             text = '7-9 años';
             break;
-          case "4": 
+          case "4":
             text = '+10 años';
             break;
           default:

@@ -4,7 +4,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="ZTvvFBs0fJ6f864MWTU3BPQOJfKdC9Xa0PneA26E">
-    
+
 
     <title>Dividae</title>
 
@@ -41,7 +41,7 @@
                             Tarifas
                         </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/contacto" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             Contacto
-                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul> 
+                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul>
                         @include('front.loginButtons')
                          <!----></div></div></nav> <div data-v-c7d18d50="" data-v-effc9f78="" class="container About"><div data-v-c7d18d50="" data-v-effc9f78="" class="row"><div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="About-title">¿Quiénes somos?</div></div> <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="About-text">
 
@@ -50,29 +50,32 @@
 
                           @include('followus') </div>
                           <div class="container text-center bottom-text">
-                              
-
+                            <br>
                             <p><b>Dividae</b> es una plataforma 100% online que ofrece a empresarios y autónomos la solución para reclamar facturas que nunca les pagaron. Esta línea de negocio es parte de <b>Atlante</b>, uno de los principales proveedores de servicios de recuperación de deuda de España. </p>
                           </div>
 
-                          <div data-v-c7d18d50="" data-v-effc9f78="" class="block-Claim-video"><div data-v-c7d18d50="" data-v-effc9f78="" class="Claim"><div data-v-c7d18d50="" data-v-effc9f78="" class="container"><div data-v-c7d18d50="" data-v-effc9f78="" class="text-center Claim-title">
-                    Claim - Dividae
-                </div> <div data-v-c7d18d50="" data-v-effc9f78="" class="Claim-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt.
-
-                    <br>
-                </div>
-
-                {{-- <div data-v-c7d18d50="" data-v-effc9f78="" class="Claim-video">
-                  <div data-v-5d313d1e="" data-v-c7d18d50="" class="video-wrapper" data-v-effc9f78=""><div data-v-5d313d1e="" id="video-container" class="video-container"><video data-v-5d313d1e="" controls="controls" id="0" preload="metadata" poster="//cdn.jsdelivr.net/npm/big-buck-bunny-1080p@0.0.6/poster.jpg"><source data-v-5d313d1e="" src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video> <div data-v-5d313d1e="" class="play-button-wrapper"><span data-v-5d313d1e="" title="Play video" id="circle-play-b" class="play-gif" style=""><img data-v-5d313d1e="" src="{{url('landing')}}/assets/icons-play.png"></span></div></div></div></div>
- --}}
-                  </div></div></div> <div data-v-c7d18d50="" data-v-effc9f78="" class="block-nosotros"><div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros container"><div data-v-c7d18d50="" data-v-effc9f78="" class="row"><div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-title">Sobre nosotros</div></div> <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
+                          <!--
+                            <div data-v-c7d18d50="" data-v-effc9f78="" class="block-Claim-video">
+                                <div data-v-c7d18d50="" data-v-effc9f78="" class="Claim">
+                                    <div data-v-c7d18d50="" data-v-effc9f78="" class="container">
+                                        <div data-v-c7d18d50="" data-v-effc9f78="" class="text-center Claim-title">
+                                            Claim - Dividae
+                                        </div>
+                                        <div data-v-c7d18d50="" data-v-effc9f78="" class="Claim-text">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt.
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+                  <div data-v-c7d18d50="" data-v-effc9f78="" class="block-nosotros"><div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros container"><div data-v-c7d18d50="" data-v-effc9f78="" class="row"><div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-title">Sobre nosotros</div></div> <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
 
                   <p>Desde sus inicios, <b>Atlante</b> ha identificado la forma de automatizar y estandarizar los procesos. Ante un sector tradicionalmente poco digitalizado, <b>Atlante</b> se ha centrado en disponer de todos los recursos tecnológicos necesarios para la representación procesal y gestión documental en carteras masivas. </p>
 
-                  <p>Gracias al conocimiento del sector,  su equipo de profesionales y a la firme apuesta tecnológica, en el año 2021 se crea <b>Dividae</b> con la firme intención de convertirse líderes en el mercado, mejorar las eficiencias y ganar en tiempo con la recuperación de facturas impagadas 100% digital. </p>
+                  <p>Gracias al conocimiento del sector,  su equipo de profesionales y a la firme apuesta tecnológica, en el año 2021 se crea <b>Dividae</b> con la firme intención de convertirse en líderes en el mercado, mejorar las eficiencias y ganar en tiempo con la recuperación de facturas impagadas de manera 100% digital. </p>
 
-                </div></div></div></div></div> 
+                </div></div></div></div></div>
 
 {{-- <div data-v-861c26ae="" data-v-c7d18d50="" class="block-SlidesAbout" data-v-effc9f78="">
     <div data-v-861c26ae="" class="SlidesAbout container">
@@ -86,7 +89,7 @@
 	        </div>
 	        <div data-v-861c26ae="">
 	            <img data-v-861c26ae="" src="{{url('landing')}}/assets/slider-equipo-3.png" class="card-text rectangle1 img-fluid" />
-	        </div>            
+	        </div>
     	</div>
     </div>
 </div> --}}
@@ -106,21 +109,21 @@
                     </p></div></div> <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"><div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a="" src="{{url('landing')}}/assets/icon-large-seguridad.png" class="iconlargejusticia img-thumbnails img-fluid"></div> <div data-v-43503c2a=""><p data-v-43503c2a="" class="Recovery-title">
                         Con máxima seguridad jurídica
                     </p> <p data-v-43503c2a="" class="Recovery-text">
-                        Dividae es parte de ANGECO y cuenta con el sello de “Confianza Online”. Además, cumple con todos los requisitos de calidad ofreciendo a sus clientes máxima protección y confidencialidad durante todo el proceso. 
+                        Dividae es parte de ANGECO y cuenta con el sello de “Confianza Online”. Además, cumple con todos los requisitos de calidad ofreciendo a sus clientes máxima protección y confidencialidad durante todo el proceso.
                     </p></div></div> <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"><div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a="" src="{{url('landing')}}/assets/icon-large-justicia.png" class="iconlargejusticia img-thumbnails img-fluid"></div> <div data-v-43503c2a=""><p data-v-43503c2a="" class="Recovery-title">
                         Experiencia contrastada
                     </p> <p data-v-43503c2a="" class="Recovery-text">
-                        Dividae cuenta con experiencia contrastada ya que desde 2016 es uno de los proveedores de servicios de recuperación de deuda de España. 
+                        Dividae cuenta con experiencia contrastada ya que desde 2016 es uno de los proveedores de servicios de recuperación de deuda de España.
                     </p></div></div>
                     <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"><div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a="" src="{{url('landing')}}/assets/icon-large-justicia.png" class="iconlargejusticia img-thumbnails img-fluid"></div> <div data-v-43503c2a=""><p data-v-43503c2a="" class="Recovery-title">
                         Transparente
                     </p> <p data-v-43503c2a="" class="Recovery-text">
-                        No te cobraremos nada sin tu consentimiento. Además, la suscripción y el análisis de la reclamación es totalmente gratuito. 
+                        No te cobraremos nada sin tu consentimiento. Además, la suscripción y el análisis de la reclamación es totalmente gratuito.
                     </p></div></div>
                   </div></div></div>
 
 
-                     <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2016</p> <p data-v-e047c7bc="" class="estadisticas-text">año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+16.000</p> <p data-v-e047c7bc="" class="estadisticas-text">notificaciones diarias</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+120.000</p> <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados desde 2016</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+150.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Demandas</p></div></div></div>
+                     <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2016</p> <p data-v-e047c7bc="" class="estadisticas-text">Año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+16.000</p> <p data-v-e047c7bc="" class="estadisticas-text">notificaciones diarias</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+120.000</p> <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados desde 2016</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+150.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Demandas</p></div></div></div>
 
              {{-- <div data-v-dd3c5654="" data-v-c7d18d50="" class="blockExitos" data-v-effc9f78=""><div data-v-dd3c5654="" class="container"><div data-v-dd3c5654="" class="Exitos-title">
             Casos de éxito
@@ -145,7 +148,7 @@
 @yield('extrajs')
 
     <script>
-      
+
       var owl = $('#about-slider').owlCarousel({
           loop:true,
           margin:20,

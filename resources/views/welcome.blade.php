@@ -4,7 +4,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="vQquIOeFCyXeIRVqPhnUsIPBw3b13PWS9mA9pMmF">
-    
+
 
     <title>Dividae</title>
 
@@ -63,7 +63,7 @@
                             Tarifas
                         </span></a> <div data-v-5fddf304="" class=""></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('contacto')}}" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             Contacto
-                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul> 
+                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul>
                         @include('front.loginButtons')
                          <!----></div></div></nav> <div data-v-66372912="" class="container"><div data-v-66372912="" class="row"><div data-v-66372912="" id="text-p" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                               {{-- <span data-v-66372912="" class="Lorem-ipsum-dolor-si">
@@ -107,7 +107,7 @@
                             <div style="position: absolute; background-color: #e65927; height: 200px; width: 50%; border-radius: 12px;
                             z-index: 0; margin: auto; left: 90px; right: 0; top: 30%;
                             ">
-                                
+
                             </div>
 
                             <img data-v-494d1a60=""
@@ -121,28 +121,26 @@
                                 <div class="row">
                                     <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
-                                        
+
                                         <div data-v-494d1a60="" id="block-reclamacion"><div data-v-494d1a60="" class="text-reclamacion mb-4 mt-4">NUESTRA FILOSOFÍA</div></div>
                                         {{-- <div class="row"> --}}
                                             {{-- <div data-v-494d1a60="" class="col-xl-12 col-lg-12 col-sm-12 col-xs-12"><div data-v-494d1a60="" class="card-text Reclamacion">Reclamación amistosa</div></div> --}}
                                         {{-- </div> --}}
                                         <div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
                                           <p>
-                                            <b>Dividae</b> surge para ofrecer una solución a los miles de autónomos y pequeños empresarios que desconocen que una factura impagada sí puede reclamarse 100% online de forma <b>sencilla, exitosa y económica.</b> 
+                                            <b>Dividae</b> surge para ofrecer una solución a los miles de autónomos y pequeños empresarios que desconocen que una factura impagada sí puede reclamarse 100% online de forma <b>sencilla, exitosa y económica.</b>
                                           </p>
                                           <p>
-                                            Nuestra <b>filosofía</b> se basa en una dinámica de trabajo 100% transparente, informando a nuestros clientes de del estado de la recuperación en tiempo real y de forma automatizada a través del área personal. 
+                                            Nuestra <b>filosofía</b> se basa en una dinámica de trabajo 100% transparente, informando a nuestros clientes del estado de la recuperación en tiempo real y de forma automatizada a través del área personal.
                                           </p>
                                           <p>
                                             ¿Nuestro principal objetivo? Tu libertad y tranquilidad <b>¿Te unes?</b>
                                           </p>
-                                        </div>
 
-                                        <div class="floating-bubble" style="width: 100%; padding: 12px; border-radius: 200px; background-color: #2c60aa; position: relative; margin: auto">
-                                          
-                                          <div style="color: #fff">La <b style="color: #fff">suscripción</b> y el análisis de la <b style="color: #fff">reclamación</b> es <br> totalmente gratuito!</div>
 
                                         </div>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -165,10 +163,16 @@
                       </div> <!----></div>
                   </div>
 
-                    <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78=""><div data-v-9cc878a2="" class="text-center card-tarifa container"><div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div> <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
+                    <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78=""><div data-v-9cc878a2="" class="text-center card-tarifa container"><div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div>
+                    <div class="container text-center bottom-text">
+                        <p><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que no sepas, ser <b>100% transparentes</b> y que tu estés <b>100% tranquilo</b> durante todo el proceso. </p>
+                      </div>
+                    <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
+
+
 
                       <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                        
+
                       </div>
 
                             <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
@@ -189,13 +193,11 @@
                               <li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text">
 
                                 {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
+
                                 <p class="text-left">
-                                    Dividae trabaja de forma clara con las tarifas establecidas.
+                                    Comienza de manera amistosa con una tarifa única.
                                 </p>
-                                <p class="text-left">
-                                    Toda reclamación comienza de manera amistosa con una tarifa única.
-                                </p>
-                                </p>
+
                               </li>
 
                               </ul></div>
@@ -235,19 +237,17 @@
                               <li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text">
 
                                 {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
+
                                 <p class="text-left">
-                                    Dividae trabaja de forma clara con las tarifas establecidas.
+                                    Comienza en este momento con tu reclamación por vía judicial
                                 </p>
-                                <p class="text-left">
-                                    Toda reclamación comienza de manera amistosa con una tarifa única.
-                                </p>
-                                </p>
+
                               </li>
 
                               </ul></div>
 
                               <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                <small>Por solo</small> 69,90€
+                                <small>Desde</small> 69,90€
                               </span>
 
                               <br>
@@ -271,7 +271,7 @@
 
                       <p>Desde sus inicios, <b>Atlante</b> ha identificado la forma de automatizar y estandarizar los procesos. Ante un sector tradicionalmente poco digitalizado, <b>Atlante</b> se ha centrado en disponer de todos los recursos tecnológicos necesarios para la representación procesal y gestión documental en carteras masivas. </p>
 
-                      <p>Gracias al conocimiento del sector,  su equipo de profesionales y a la firme apuesta tecnológica, en el año 2021 se crea <b>Dividae</b> con la firme intención de convertirse líderes en el mercado, mejorar las eficiencias y ganar en tiempo con la recuperación de facturas impagadas 100% digital. </p>
+                      <p>Gracias al conocimiento del sector,  su equipo de profesionales y a la firme apuesta tecnológica, en el año 2021 se crea <b>Dividae</b> con la firme intención de convertirse en líderes en el mercado, mejorar las eficiencias y ganar en tiempo con la recuperación de facturas impagadas de manera 100% digital. </p>
 
 
                     </div> <div data-v-63cd6604="" data-v-effc9f78=""><span data-v-63cd6604="" data-v-effc9f78=""><a data-v-63cd6604="" href="{{url('quienes-somos')}}" class="btn QSomos-btn" data-v-effc9f78="">
@@ -301,21 +301,21 @@
                     <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"><div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a="" src="{{url('landing')}}/assets/icon-large-seguridad.png" class="iconlargejusticia img-thumbnails img-fluid"></div> <div data-v-43503c2a=""><p data-v-43503c2a="" class="Recovery-title">
                         <b>Experiencia Contrastada</b>
                     </p> <p data-v-43503c2a="" class="Recovery-text">
-                        <b>Dividae</b> cuenta con experiencia contrastada desde 2016, siendo uno de los principales proveedores de servicios de recuperación de deuda de España. 
+                        <b>Dividae</b> cuenta con experiencia contrastada desde 2016, siendo uno de los principales proveedores de servicios de recuperación de deuda de España.
                     </p></div></div>
 
 
                     <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"><div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a="" src="{{url('landing')}}/assets/icon-large-justicia.png" class="iconlargejusticia img-thumbnails img-fluid"></div> <div data-v-43503c2a=""><p data-v-43503c2a="" class="Recovery-title">
                         <b>Transparente</b>
                     </p> <p data-v-43503c2a="" class="Recovery-text">
-                        <b>Dividae</b> no te cobrará nada sin tu consentimiento. Además, la suscripción y análisis de la reclamación es totalmente gratuito. 
+                        <b>Dividae</b> no te cobrará nada sin tu consentimiento. Además, la suscripción y análisis de la reclamación es totalmente gratuito.
                     </p></div></div>
                   {{-- </div> --}}
 
               </div></div>
 
 
-                     <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2016</p> <p data-v-e047c7bc="" class="estadisticas-text">año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+16.000</p> <p data-v-e047c7bc="" class="estadisticas-text">notificaciones diarias</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+120.000</p> <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados desde 2016</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+150.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Demandas</p></div></div></div>
+                     <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2016</p> <p data-v-e047c7bc="" class="estadisticas-text">Año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+16.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Notificaciones diarias</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+120.000</p> <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados desde 2016</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+150.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Demandas</p></div></div></div>
 
 
                     <div data-v-455dcd3f="" data-v-63cd6604="" class="blockOpiniones" data-v-effc9f78="">
@@ -323,7 +323,7 @@
                         <div data-v-455dcd3f="" class="content">
 
                         <div id="test-3" class="owl-carousel owl-theme">
-                            
+
                             <div data-v-455dcd3f="" class="container Opinion">
                                 <div data-v-455dcd3f="" class="row">
 
@@ -337,7 +337,7 @@
 
                                   <p>Soy Antonio y tengo una gestoría en La Rioja. <b>Dividae</b> se puso en contacto conmigo para poder ofrecer a mis clientes sus servicios. Dentro de mi cartera de clientes, muchos son los que tienen facturas pendientes de pago y las daban por perdidas.</p>
 
-                                  <p>Con Dividae, muchos clientes recuperan sus facturas impagadas y ahora se ha convertido en parte de unos de los servicios esenciales que ofrecemos en la gestoría. Agilizamos en tiempo y ofrecemos transparencia durante todo el proceso. </p>
+                                  <p>Con <b>Dividae</b>, muchos clientes recuperan sus facturas impagadas y ahora se ha convertido en parte de unos de los servicios esenciales que ofrecemos en la gestoría. Agilizamos en tiempo y ofrecemos transparencia durante todo el proceso. </p>
 
                                 </div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div>
                             </div>
@@ -397,20 +397,20 @@
                           <div id="testimonios" class="owl-carousel owl-theme">
 
                             <div data-v-1cb0bef4="" class="card"><div data-v-1cb0bef4="" class="card-body"><div data-v-1cb0bef4="" class="row block-slide-1"><div data-v-1cb0bef4="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 OClientes-blockquote-slides"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/blockquote-up.png" class="img-fluid"></div> <div data-v-1cb0bef4="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides">
-                                Experiencia de Usuario inmejorable. En todo momento conoces el estado de la reclamación. 100% recomendable. 
+                                Experiencia de Usuario inmejorable. En todo momento conoces el estado de la reclamación. 100% recomendable.
                             </div></div> <br> <div data-v-1cb0bef4="" class="row block-slide-2"><div data-v-1cb0bef4="" class="col OClientes-img-slides2"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/rectangle3.png"></div> <div data-v-1cb0bef4="" class="col OClientes-text-slides2"><div data-v-1cb0bef4="">
-                                    Amelia Gonzalez
+                                    Amelia González
                                     <br data-v-1cb0bef4="">
-                                    @Empresa4
+                                    @AmeliaGlez_
                                 </div></div> <div data-v-1cb0bef4="" class="col OClientes-rating-slides2"><div data-v-1cb0bef4="" class="rating"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"></div></div></div></div></div>
 
 
                                 <div data-v-1cb0bef4="" class="card"><div data-v-1cb0bef4="" class="card-body"><div data-v-1cb0bef4="" class="row block-slide-1"><div data-v-1cb0bef4="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 OClientes-blockquote-slides"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/blockquote-up.png" class="img-fluid"></div> <div data-v-1cb0bef4="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides">
-                                Conocí <b>Dividae</b> por mi gestoría. Transparente y sencillo. Además comienzan la reclamación con un único pago y te mantienen informado siempre. No vas a pagar nada que no sepas. 
+                                Conocí <b>Dividae</b> por mi gestoría. Transparente y sencillo. Además comienzan la reclamación con un único pago y te mantienen informado siempre. No vas a pagar nada que no sepas.
                             </div></div> <br> <div data-v-1cb0bef4="" class="row block-slide-2"><div data-v-1cb0bef4="" class="col OClientes-img-slides2"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/rectangle2.png"></div> <div data-v-1cb0bef4="" class="col OClientes-text-slides2"><div data-v-1cb0bef4="">
                                     Emilio Castro
                                     <br data-v-1cb0bef4="">
-                                    @Empresa5
+                                    @EmiCastro1
                                 </div></div> <div data-v-1cb0bef4="" class="col OClientes-rating-slides2"><div data-v-1cb0bef4="" class="rating"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"></div></div></div></div></div>
 
 
@@ -419,7 +419,7 @@
                             </div></div> <br> <div data-v-1cb0bef4="" class="row block-slide-2"><div data-v-1cb0bef4="" class="col OClientes-img-slides2"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/rectangle1.png"></div> <div data-v-1cb0bef4="" class="col OClientes-text-slides2"><div data-v-1cb0bef4="">
                                     Sara Trujillo
                                     <br data-v-1cb0bef4="">
-                                    @Empresa6
+                                    @SaraTrujilloo
                                 </div></div> <div data-v-1cb0bef4="" class="col OClientes-rating-slides2"><div data-v-1cb0bef4="" class="rating"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"> <img data-v-1cb0bef4="" src="{{url('landing')}}/assets/icons-star.png" class="img-fluid"></div></div></div></div></div>
                           </div>
                               </div></div></div>
@@ -463,14 +463,14 @@
 
     <script src="{{url('landing')}}/plugins/owl/js/owl.carousel.js"></script>
     <script src="{{url('landing')}}/plugins/owl/js/owl.navigation.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   @yield('extrajs')
 
     <script>
-      
+
       var owl = $('#testimonios').owlCarousel({
           loop:true,
           margin:10,
