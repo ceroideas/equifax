@@ -106,7 +106,7 @@
 
                                   <p>Mi gestor me recomendó <b>Dividae</b>, ya que él más que nadie conoce el estado de mis cuentas y facturas. Me pareció una idea muy innovadora y necesaria en el sector.</p>
 
-                                  <p>Gracias a mi gestoría, he podido recuperar muchas facturas impagadas que tenía olvidadas. El servicio que ofrece mi gestoría gracias a Dividae, se ha convertido en un servicio indispensable. No lo dudes, regístrate y empieza a decir adiós a las facturas impagadas.</p>
+                                  <p>Gracias a mi gestoría, he podido recuperar muchas facturas impagadas que tenía olvidadas. El servicio que ofrece mi gestoría gracias a <b>Dividae</b>, se ha convertido en un servicio indispensable. No lo dudes, regístrate y empieza a decir adiós a las facturas impagadas.</p>
 
                                 </div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div>
                             </div>
