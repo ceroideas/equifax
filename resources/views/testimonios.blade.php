@@ -156,12 +156,8 @@
                               </div></div></div>
 
 
-                    <div data-v-e047c7bc="" data-v-eb5d4bee="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2021</p> <p data-v-e047c7bc="" class="estadisticas-text">Año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+100</p> <p data-v-e047c7bc="" class="estadisticas-text">Procesos saldados con éxito</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">100.00€</p> <p data-v-e047c7bc="" class="estadisticas-text">En deudas recuperadas</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+50</p> <p data-v-e047c7bc="" class="estadisticas-text">Miembros en nuestro equipo</p></div></div></div> <div data-v-dd3c5654="" data-v-eb5d4bee="" class="blockExitos" data-v-effc9f78=""><div data-v-dd3c5654="" class="container"><div data-v-dd3c5654="" class="Exitos-title">
+                      <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2016</p> <p data-v-e047c7bc="" class="estadisticas-text">Año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+16.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Notificaciones diarias</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+120.000</p> <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados desde 2016</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+150.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Demandas</p></div></div></div>
 
-        </div>
-
-
-    </div></div>
 
         @include('footer')
 

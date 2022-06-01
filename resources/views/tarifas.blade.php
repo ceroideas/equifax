@@ -169,8 +169,8 @@
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <p style="text-align: center">
-                                    <b>…Y ahora ya podrás decir, que te han devuelto la factura que nunca te pagaron!</b>
+                                <p style="font-size:150%; text-align: center; ">
+                                    <b>…¡Y ahora ya podrás decir que te han devuelto la factura que nunca te pagaron!</b>
                                 </p>
                             </div>
 
