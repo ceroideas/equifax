@@ -891,7 +891,7 @@
   line-height: 1.5;
   letter-spacing: normal;
   text-align: center;
-  color: #254158;
+  color: #285ba3;
 }
 @media (min-width: 1280px) {
 .blockRecovery .Recovery-text[data-v-43503c2a] {
