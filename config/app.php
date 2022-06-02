@@ -439,7 +439,7 @@ return [
                 ['id' => "502",
                 'redirect_to' => null,
                 'email' => false,
-                'name' => 'INCOMPETENCIA TERRITORIAL'],
+                'name' => 'ARCHIVO MONITORIO – INCOMPETENCIA TERRITORIAL'],
                 ['id' => "503",
                 'redirect_to' => null,
                 'email' => false,

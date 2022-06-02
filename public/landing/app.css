@@ -14168,9 +14168,10 @@ input[type=button].btn-block {
   display: block;
   width: 100%;
   padding: 0.25rem 1.5rem;
+  margin-left:15px;
   clear: both;
   font-weight: 400;
-  color: #212529;
+  color: #285ba3;
   text-align: inherit;
   white-space: nowrap;
   background-color: transparent;
@@ -14200,8 +14201,9 @@ input[type=button].btn-block {
   display: block;
   padding: 0.5rem 1.5rem;
   margin-bottom: 0;
-  font-size: 0.7875rem;
-  color: #6c757d;
+  margin-top:3px;
+  font-size: 1.25rem;
+  color: #e65927;
   white-space: nowrap;
 }
 

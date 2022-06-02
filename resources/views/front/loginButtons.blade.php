@@ -36,7 +36,7 @@
 			        </span>
                 </button>
 			    <div class="dropdown-menu">
-				  <a class="dropdown-item" href="{{url('panel')}}">Área personal</a>
+                  <h6 class="dropdown-header"><a style="color:#e65927" href="{{url('panel')}}">Área personal</a></h6>
 				  <a class="dropdown-item" href="{{url('users',Auth::user()->id)}}">Mi perfil</a>
 				  <a class="dropdown-item" href="{{url('change-password')}}">Cambiar contraseña</a>
 				  <h6 class="dropdown-header">Acreditación de terceros</h6>
