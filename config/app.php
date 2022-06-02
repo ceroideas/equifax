@@ -435,7 +435,7 @@ return [
                 ['id' => "501",
                 'redirect_to' => null,
                 'email' => false,
-                'name' => 'ILOCALIZADO'],
+                'name' => 'ARCHIVO MONITORIO – DEUDOR ILOCALIZADO'],
                 ['id' => "502",
                 'redirect_to' => null,
                 'email' => false,

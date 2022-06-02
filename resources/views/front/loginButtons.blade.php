@@ -28,11 +28,13 @@
 		<div data-v-5fddf304="" class="blockRegistro">
 
 			<div class="btn-group">
-				<button data-v-5fddf304="" class="btn btn-registerHome" data-toggle="dropdown"><span data-v-5fddf304="" class="text-register-btn">
-					<img data-v-5fddf304="" src="{{url('landing')}}/assets/profile.png" class="img-profile">
-			        {{Auth::user()->name}}
-			        <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" style="transform: rotate(90deg);" class="iconsarrow-right">
-			    </span></button>
+				<button data-v-5fddf304="" class="btn btn-registerHome" data-toggle="dropdown">
+                    <span data-v-5fddf304="" class="text-register-btn">
+					    <img data-v-5fddf304="" src="{{url('landing')}}/assets/profile.png" class="img-profile">
+			                {{ Str::ucfirst(Str::before(Auth::user()->name, ' ')) }} {{ Str::substr(Str::ucfirst(Str::afterLast(Auth::user()->name, ' ')), 0, 1) }}.
+			            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" style="transform: rotate(90deg);" class="iconsarrow-right">
+			        </span>
+                </button>
 			    <div class="dropdown-menu">
 				  <a class="dropdown-item" href="{{url('panel')}}">Área personal</a>
 				  <a class="dropdown-item" href="{{url('users',Auth::user()->id)}}">Mi perfil</a>
