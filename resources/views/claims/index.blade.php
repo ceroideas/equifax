@@ -71,7 +71,7 @@
     @endif
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
-        <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
+        <x-adminlte-datatable id="table1" :heads="$heads" class="table-responsive" striped hoverable bordered compresed responsive :config="$config">
             @foreach($claims as $claim)
                 <tr>
                     <td>

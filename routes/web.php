@@ -193,6 +193,7 @@ Route::group(['prefix'  => 'configurations'], function(){
 
 /**/
 Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
+Route::get('invoices-export', [ClaimsController::class, 'invoicesExport']);
 
 Route::get('migrar', [UsersController::class, 'migrar']);
 

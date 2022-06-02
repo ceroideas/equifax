@@ -27,16 +27,27 @@ class ConfigurationsController extends Controller
 
         $configuration = new Configuration();
 
-        $configuration->fixed_fees = $data['fijo'];
-        $configuration->percentage_fees = $data['porcentaje'];
-        if($request['judicial']){
-            $configuration->judicial_fees = $data['judicial'];
-        }
-        $configuration->tax = $data['tax'];
-        $configuration->invoice_name = $data['invoice_name'];
-        $configuration->invoice_address_line_1 = $data['invoice_address_line_1'];
-        $configuration->invoice_address_line_2 = $data['invoice_address_line_2'];
-        $configuration->invoice_email = $data['invoice_email'];
+        $configuration->fixed_fees = array_key_exists('fixed_fees', $data) ? $data['fixed_fees'] : null;
+        $configuration->percentage_fees = array_key_exists('percentage_fees', $data) ? $data['percentage_fees'] : null;
+        $configuration->judicial_amount = array_key_exists('judicial_amount', $data) ? $data['judicial_amount'] : null;
+        $configuration->judicial_fees = array_key_exists('judicial_fees', $data) ? $data['judicial_fees'] : null;
+        $configuration->verbal_amount = array_key_exists('verbal_amount', $data) ? $data['verbal_amount'] : null;
+        $configuration->verbal_fees = array_key_exists('verbal_fees', $data) ? $data['verbal_fees'] : null;
+        $configuration->ordinary_amount = array_key_exists('ordinary_amount', $data) ? $data['ordinary_amount'] : null;
+        $configuration->ordinary_fees = array_key_exists('ordinary_fees', $data) ? $data['ordinary_fees'] : null;
+        $configuration->execution = array_key_exists('execution', $data) ? $data['execution'] : null;
+        $configuration->resource = array_key_exists('resource', $data) ? $data['resource'] : null;
+        $configuration->tax = array_key_exists('tax', $data) ? $data['tax'] : null;
+        $configuration->invoice_name = array_key_exists('invoice_name', $data) ? $data['invoice_name'] : null;
+        $configuration->invoice_address_line_1 = array_key_exists('invoice_address_line_1', $data) ? $data['invoice_address_line_1'] : null;
+        $configuration->invoice_address_line_2 = array_key_exists('invoice_address_line_2', $data) ? $data['invoice_address_line_2'] : null;
+        $configuration->invoice_email = array_key_exists('invoice_email', $data) ? $data['invoice_email'] : null;
+        $configuration->tax = array_key_exists('tax', $data) ? $data['tax'] : null;
+        $configuration->invoice_name = array_key_exists('invoice_name', $data) ? $data['invoice_name'] : null;
+        $configuration->invoice_address_line_1 = array_key_exists('invoice_address_line_1', $data) ? $data['invoice_address_line_1'] : null;
+        $configuration->invoice_address_line_2 = array_key_exists('invoice_address_line_2', $data) ? $data['invoice_address_line_2'] : null;
+        $configuration->invoice_email = array_key_exists('invoice_email', $data) ? $data['invoice_email'] : null;
+
         $configuration->save();
 
         return redirect('configurations/fees')->with('msj' , 'Tasas guardadas correctamente');
@@ -49,16 +60,27 @@ class ConfigurationsController extends Controller
 
         $data = $this->validateFees();
 
-        $configuration->fixed_fees = $data['fijo'];
-        $configuration->percentage_fees = $data['porcentaje'];
-        if($request['judicial']){
-            $configuration->judicial_fees = $data['judicial'];
-        }
-        $configuration->tax = isset($data['tax']) ? $data['tax'] : null;
-        $configuration->invoice_name = isset($data['invoice_name']) ? $data['invoice_name'] : null;
-        $configuration->invoice_address_line_1 = isset($data['invoice_address_line_1']) ? $data['invoice_address_line_1'] : null;
-        $configuration->invoice_address_line_2 = isset($data['invoice_address_line_2']) ? $data['invoice_address_line_2'] : null;
-        $configuration->invoice_email = isset($data['invoice_email']) ? $data['invoice_email'] : null;
+        $configuration->fixed_fees = array_key_exists('fixed_fees', $data) ? $data['fixed_fees'] : null;
+        $configuration->percentage_fees = array_key_exists('percentage_fees', $data) ? $data['percentage_fees'] : null;
+        $configuration->judicial_amount = array_key_exists('judicial_amount', $data) ? $data['judicial_amount'] : null;
+        $configuration->judicial_fees = array_key_exists('judicial_fees', $data) ? $data['judicial_fees'] : null;
+        $configuration->verbal_amount = array_key_exists('verbal_amount', $data) ? $data['verbal_amount'] : null;
+        $configuration->verbal_fees = array_key_exists('verbal_fees', $data) ? $data['verbal_fees'] : null;
+        $configuration->ordinary_amount = array_key_exists('ordinary_amount', $data) ? $data['ordinary_amount'] : null;
+        $configuration->ordinary_fees = array_key_exists('ordinary_fees', $data) ? $data['ordinary_fees'] : null;
+        $configuration->execution = array_key_exists('execution', $data) ? $data['execution'] : null;
+        $configuration->resource = array_key_exists('resource', $data) ? $data['resource'] : null;
+        $configuration->tax = array_key_exists('tax', $data) ? $data['tax'] : null;
+        $configuration->invoice_name = array_key_exists('invoice_name', $data) ? $data['invoice_name'] : null;
+        $configuration->invoice_address_line_1 = array_key_exists('invoice_address_line_1', $data) ? $data['invoice_address_line_1'] : null;
+        $configuration->invoice_address_line_2 = array_key_exists('invoice_address_line_2', $data) ? $data['invoice_address_line_2'] : null;
+        $configuration->invoice_email = array_key_exists('invoice_email', $data) ? $data['invoice_email'] : null;
+        $configuration->tax = array_key_exists('tax', $data) ? $data['tax'] : null;
+        $configuration->invoice_name = array_key_exists('invoice_name', $data) ? $data['invoice_name'] : null;
+        $configuration->invoice_address_line_1 = array_key_exists('invoice_address_line_1', $data) ? $data['invoice_address_line_1'] : null;
+        $configuration->invoice_address_line_2 = array_key_exists('invoice_address_line_2', $data) ? $data['invoice_address_line_2'] : null;
+        $configuration->invoice_email = array_key_exists('invoice_email', $data) ? $data['invoice_email'] : null;
+
         $configuration->update();
 
         return redirect('configurations/fees')->with('msj' , 'Tasas actualziadas correctamente');
@@ -67,29 +89,28 @@ class ConfigurationsController extends Controller
 
     public function validateFees(){
 
-        $rules = [ 
-            'fijo' => 'required|numeric',
-            'porcentaje' => 'required|numeric',
-        ];
+        $rules = [];
 
-        if(request('judicial')){
-            $rules['judicial'] = 'numeric';
-        }
-        if(request('tax')){
-            $rules['tax'] = 'required';
-        }
-        if(request('invoice_name')){
-            $rules['invoice_name'] = 'required';
-        }
-        if(request('invoice_address_line_1')){
-            $rules['invoice_address_line_1'] = 'required';
-        }
-        if(request('invoice_address_line_2')){
-            $rules['invoice_address_line_2'] = 'required';
-        }
-        if(request('invoice_email')){
-            $rules['invoice_email'] = 'required';
-        }
+        if(request('fixed_fees')){$rules['fixed_fees'] = 'required';}
+        if(request('percentage_fees')){$rules['percentage_fees'] = 'required';}
+        if(request('judicial_amount')){$rules['judicial_amount'] = 'required';}
+        if(request('judicial_fees')){$rules['judicial_fees'] = 'required';}
+        if(request('verbal_amount')){$rules['verbal_amount'] = 'required';}
+        if(request('verbal_fees')){$rules['verbal_fees'] = 'required';}
+        if(request('ordinary_amount')){$rules['ordinary_amount'] = 'required';}
+        if(request('ordinary_fees')){$rules['ordinary_fees'] = 'required';}
+        if(request('execution')){$rules['execution'] = 'required';}
+        if(request('resource')){$rules['resource'] = 'required';}
+        if(request('tax')){$rules['tax'] = 'required';}
+        if(request('invoice_name')){$rules['invoice_name'] = 'required';}
+        if(request('invoice_address_line_1')){$rules['invoice_address_line_1'] = 'required';}
+        if(request('invoice_address_line_2')){$rules['invoice_address_line_2'] = 'required';}
+        if(request('invoice_email')){$rules['invoice_email'] = 'required';}
+        if(request('tax')){$rules['tax'] = 'required';}
+        if(request('invoice_name')){$rules['invoice_name'] = 'required';}
+        if(request('invoice_address_line_1')){$rules['invoice_address_line_1'] = 'required';}
+        if(request('invoice_address_line_2')){$rules['invoice_address_line_2'] = 'required';}
+        if(request('invoice_email')){$rules['invoice_email'] = 'required';}
 
         return request()->validate($rules);
 

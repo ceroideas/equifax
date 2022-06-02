@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Actuation;
+use App\Models\ActuationDocument;
 use App\Models\Claim;
 use App\Models\Debt;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -18,29 +19,12 @@ class HitosImport implements ToModel, WithHeadingRow
     	$d = Debt::where('document_number',$row['numero_de_documento'])->first();
     	if ($d) {
 
-    		$h = null; // hito
-	        $f = null; // fase
-	        foreach (config('app.actuations') as $key => $value) {
-	            
-	            if ($value['hitos']) {
-	                foreach ($value['hitos'] as $key1 => $value1) {
-	                    if ($value1['id'] == $row['id_hito']) {
-	                        $h = $value1;
-	                        $f = $value;
-	                    }
-	                }
-	            }else{
-	                if ($value['id'] == $row['id_hito']) {
-	                    $h = $value;
-	                    $f = $value;
-	                }
-	            }
+    		$h = getHito( (string) $row['id_hito'])[0];
 
-	        }
+	        // \Log::info([$row['id_hito'],gettype( (string) $row['id_hito'])]);
+	        \Log::info([$h]);
 
-	        // \Log::info([$h,$f]);
-
-	        if ($h && $f) {
+	        if ($h) {
 	            $a = new Actuation;
 		        $a->claim_id = $d->claim_id;
 		        $a->subject = $h['id'];
@@ -56,8 +40,16 @@ class HitosImport implements ToModel, WithHeadingRow
 		        $a->mailable = null;
 		        $a->save();
 
-		        $a->claim->phase = $f['phase'];
-		        $a->claim->save();
+		        if (array_key_exists('archivo', $row) && $row['archivo'] != "") {
+		        	$path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
+		        	copy($row['archivo'], $path.basename($row['archivo']));
+	                $d = new ActuationDocument;
+	                $d->actuation_id = $a->id;
+	                $d->document_name = basename($row['archivo']);
+	                $d->save();
+		        }
+
+		        actuationActions($h['id'],$a->claim_id,$a->amount, $a->actuation_date, $a->description);
 	        }
         }
     }

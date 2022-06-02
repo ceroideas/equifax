@@ -25,7 +25,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <x-adminlte-input name="fijo" label="Fijo *" placeholder="Fijo" type="text"
+                <x-adminlte-input name="fixed_fees" label="Reclamación Amistosa" placeholder="Reclamación Amistosa" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->fixed_fees : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -35,7 +35,7 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="porcentaje" label="Porcentaje de las Deudas *" placeholder="Porcentaje de las Deudas" type="text"
+                <x-adminlte-input name="percentage_fees" label="Porcentaje de las Deudas" placeholder="Porcentaje de las Deudas" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->percentage_fees : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -45,7 +45,17 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="judicial" label="Tasa Judicial " placeholder="Tasa Judicial" type="text"
+                <x-adminlte-input name="judicial_amount" label="Procedimiento Montorio " placeholder="Procedimiento Montorio" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->judicial_amount : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="judicial_fees" label="Tasa " placeholder="Tasa" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->judicial_fees : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -54,7 +64,74 @@
                     </x-slot>
                 </x-adminlte-input>
             </div>
+
+            <div class="col-sm-6">
+                <x-adminlte-input name="verbal_amount" label="Juicios Verbales " placeholder="Juicios Verbales" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_amount : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="verbal_fees" label="Tasa " placeholder="Tasa" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_fees : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+
+            <div class="col-sm-6">
+                <x-adminlte-input name="ordinary_amount" label="Juicios Ordinarios " placeholder="Juicios Ordinarios" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->ordinary_amount : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="ordinary_fees" label="Tasa " placeholder="Tasa" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->ordinary_fees : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+
+            <div class="col-sm-6">
+                <x-adminlte-input name="execution" label="Ejecución " placeholder="Ejecución" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->execution : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+
+            <div class="col-sm-6">
+                <x-adminlte-input name="resource" label="Recurso " placeholder="Recurso" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->resource : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            
         </div>
+
+        <hr>
 
         <div class="row">
             <div class="col-sm-6">

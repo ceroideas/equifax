@@ -36,14 +36,14 @@
         ];
         $config = [
            
-            'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
     }else{
         $heads = [
             'ID',
-            'Reclamación',
             'Cliente',
+            'Reclamación',
             'Concepto',
             'Monto cancelado',
             'Fecha del pago',
@@ -53,7 +53,7 @@
         ];
         $config = [
            
-            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
     }
@@ -74,8 +74,12 @@
         </x-adminlte-alert>
     @endif
 
+    @if (!Auth::user()->isClient())
+        <a href="{{url('invoices-export')}}" class="btn btn-sm btn-warning">Exportar Facturas Pagadas</a>
+    @endif
+
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
-        <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
+        <x-adminlte-datatable id="table1" class="table-responsive" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($invoices as $invoice)
                 <tr>
                     <td>{{ $invoice->id }}</td>
