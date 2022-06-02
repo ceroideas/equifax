@@ -19,7 +19,7 @@
 		  background-color: #1e7e34;
 		  color: #fff;
 		}
-	</style>	
+	</style>
 	@if (Auth::check())
 		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('claims/select-client')}}" class="btn btn-nueva"><span data-v-5fddf304="" class="btn-text-acceso">
 	        Nueva Reclamación
@@ -34,12 +34,12 @@
 			        <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" style="transform: rotate(90deg);" class="iconsarrow-right">
 			    </span></button>
 			    <div class="dropdown-menu">
-				  <a class="dropdown-item" href="{{url('panel')}}">Dashboard</a>
-				  <a class="dropdown-item" href="{{url('users',Auth::user()->id)}}">Mi Perfil</a>
-				  <a class="dropdown-item" href="{{url('change-password')}}">Cambiar Contraseña</a>
-				  <h6 class="dropdown-header">Acreditación de Terceros</h6>
+				  <a class="dropdown-item" href="{{url('panel')}}">Área personal</a>
+				  <a class="dropdown-item" href="{{url('users',Auth::user()->id)}}">Mi perfil</a>
+				  <a class="dropdown-item" href="{{url('change-password')}}">Cambiar contraseña</a>
+				  <h6 class="dropdown-header">Acreditación de terceros</h6>
 				  <a class="dropdown-item" href="{{url('third-parties/create')}}">Añadir nuevo</a>
-				  <a class="dropdown-item" href="{{url('third-parties')}}">Listado de Acreditación de Terceros</a>
+				  <a class="dropdown-item" href="{{url('third-parties')}}">Mis representados</a>
 				  <h6 class="dropdown-header">Deudores</h6>
 				  <a class="dropdown-item" href="{{url('debtors/create')}}">Añadir nuevo</a>
 				  <a class="dropdown-item" href="{{url('debtors')}}">Listado de Deudores</a>
