@@ -24,7 +24,7 @@
 
     <div style="background-color: #e65927; color: #fff" class="text-center">
 
-        <small>Area Clientes</small>
+        <small>Área Clientes</small>
 
         <h3 style="padding-bottom: 10px !important">Inicio</h3>
 
