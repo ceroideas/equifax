@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item active">Reclamación #{{ $claim->id }}</li>
                 </ol>
             </div>
@@ -28,7 +28,7 @@
 
     @if(!$claim->isViable())
         <x-adminlte-modal id="modalMin" title="Informe de Inviabilidad" theme="primary" size="lg" v-centered="true">
-            <div class="card">    
+            <div class="card">
                 <div class="card-body">
                     <div class="row">
                     <div class="col-sm-12">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                         </div>
-        
+
                         <div class="col-12 col-sm-4">
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
@@ -87,12 +87,12 @@
                         </div>
 
                     </div>
-        
+
                     <div class="row">
                         <div class="col-12">
-        
+
                             <h4>Detalles del Deudor</h4>
-                 
+
                             <div class="post">
                                 <div class="row">
                                     <div class="col-lg-3 col-sm-6 col-md-6"><b>Nombre:</b> <p>{{ $claim->debtor->name }}</p></div>
@@ -160,14 +160,14 @@
                                         <div class="col-lg-6 col-sm-12 col-md-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
                                     </div>
                                     <div class="row mt-3">
-                                        
+
                                     </div>
-                                    @else 
+                                    @else
                                     <div class="row mt-3">
                                         <div class="col-12">N/A</div>
                                     </div>
                                     @endif
-                                   
+
                                 </div>
                             @endif
 
@@ -192,7 +192,7 @@
 
                                     @if ($claim->debtor->cop)
 
-                                    @php                                        
+                                    @php
                                         $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
 
                                         $juzgado = "--";
@@ -211,7 +211,7 @@
                                                 }
                                             }
                                         }
-                                    @endphp 
+                                    @endphp
 
                                     <div class="form-group">
                                         <b>JUZGADO:</b> <span id="juzgado">{{$juzgado}}</span>
@@ -225,7 +225,7 @@
                                     </div>
 
                                     @endif
-                                   
+
                                 </div>
                             @endif
                         </div>
@@ -238,7 +238,7 @@
 
                     <h3 class="text-primary"><i class="fas fa-user"></i> {{ $claim->user_id ? $claim->client->name : $claim->representant->name  }}</h3>
 
-               
+
                     <div class="text-muted">
                        <div class="row">
                            <div class="col-sm-6">
@@ -293,15 +293,15 @@
                                 @else
                                 <img src="{{ $claim->user_id ? asset($claim->client->dni_img) : asset($claim->representant->dni_img )}}" alt="" class="img img-fluid img-responsive" width="400" height="200">
                                 @endif
-                                
+
                             </div>
                         </div>
                     </div>
-                
+
                     <br>
                     @if(/*$claim->isPending()*/true)
                         <h5 class="mt-5 text-muted">Documentación de la Deuda</h5>
-                        
+
                         <ul class="list-unstyled">
 
                             @foreach (App\Models\DebtDocument::where('debt_id',$claim->debt->id)->get() as $key => $d)
@@ -383,12 +383,12 @@
                                 </div>
                             </div> --}}
                             {{-- @if($claim->debt->others)
-                           
+
                             <h5 class="mt-3 text-muted">Documentación Extra</h5>
-                       
+
                             <div class="row">
                                 @foreach (explode(',', $claim->debt->others) as $doc)
-                                
+
                                     <div class="col-sm">
                                         <li>
                                             <a href="{{ asset($doc) }}" class="btn-link text-secondary" target="_blank" download="Documento Extra #{{ $loop->iteration }} Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Doc. Extra #{{ $loop->iteration }}</a>
@@ -400,12 +400,12 @@
                             {{-- @if($claim->debt->motivo_reclamacion_previa)
                             <div class="row my-4">
                                 <div class="col">
-                                    
+
                                     <li>
-                                        
+
                                         <p><strong>Motivo Reclamación Previa:</strong> {{ $claim->debt->motivo_reclamacion_previa }}</p>
                                     </li>
-                                  
+
                                 </div>
                             </div>
                             @endif --}}
@@ -413,13 +413,13 @@
                     @endif
 
                     @if((Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()) && $claim->isPending())
-                    
+
                         <div class="text-center mt-5 mb-3 float-bottom">
-                        
+
                             <a href="{{ url('claims/'. $claim->id . '/viable/') }}" class="btn btn-sm btn-primary">Reclamación Viable</a>
-                        
+
                             <a href="{{ url('claims/'. $claim->id . '/non-viable/') }}" class="btn btn-sm btn-danger">Reclamación Inviable</a>
-                        
+
                         </div>
                         @elseif(!$claim->isViable() && !$claim->isPending() && !$claim->isFinished())
 
@@ -437,7 +437,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                         @else
 
                             @if ($claim->getHito())
@@ -461,9 +461,9 @@
 
                         @if ($claim->isFinished() && $claim->claim_type == 2 && !Auth::user()->isClient())
                             <div class="text-center my-3">
-                            
+
                             <a href="{{ url('claims/'. $claim->id . '/viable',1) }}" class="btn btn-sm btn-primary">Reclamación Judicial Viable</a>
-                        
+
                             <a href="{{ url('claims/'. $claim->id . '/non-viable',1) }}" class="btn btn-sm btn-danger">Reclamación Judicial Inviable</a>
 
                             </div>
@@ -512,7 +512,7 @@
 
 @section('js')
     <script>
-        
+
         $('.js-data-example-ajax').select2({
           placeholder: 'Busca por código',
           language: {

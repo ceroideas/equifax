@@ -51,7 +51,7 @@
                </div>
             </div>
         </div>
-        
+
         <div class="row ">
             <div class="col-sm-6">
                 <x-adminlte-input name="name" label="Nombre Completo / Razón Social" placeholder="Información" type="text"
@@ -203,7 +203,7 @@
                         Descargar Documento
                     </a>
                 @endif
-                
+
             @endisset
             </div>
         </div>
@@ -213,7 +213,7 @@
 
 
         <div class="card-footer">
-            <span class="float-left">Los Campos marcado con (*) son requeridos.</span> <br>
+            <span class="float-left">Los campos marcado con (*) son requeridos.</span> <br>
 
             <span class="float-left">** El adjunto de copia de DNI es del representante legal.</span>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
@@ -227,7 +227,7 @@
 
 <script>
     @if (isset($third_party))
-       
+
        $('[name="tipo"][value="{{$third_party->type}}"]').prop('checked', true);
 
     @endif
@@ -274,12 +274,12 @@
                 $('#dni').text('DNI-NIE*');
                 $('#address').text('Dirección');
             }
-            
+
         }
     });
 
    $("#cop").change(function(event) {
-        
+
         $.get('{{url('getPopulation')}}/'+($(this).val()), function(data, textStatus) {
             if (data) {
                 $('#location').val(data.province);

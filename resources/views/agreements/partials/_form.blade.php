@@ -1,5 +1,5 @@
 {{-- <x-adminlte-alert theme="info">
-  
+
 </x-adminlte-alert> --}}
 
 @if(session()->has('msj'))
@@ -115,7 +115,7 @@
             <div class="row">
 
                 <div class="col-sm-12 text-left">
-                    <span>(*) Los Campos marcados son requeridos.</span>
+                    <span>(*) Los campos marcados son requeridos.</span>
                 </div>
 
                 <div class="col-sm-12 text-left">

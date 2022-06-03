@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item"><a href="/claims">Reclamaciones</a></li>
                     @isset ($id)
                     <li class="breadcrumb-item active">Viabilidad Judicial para la Reclamación N#{{ $claim->id }}</li>
@@ -36,7 +36,7 @@
        <span> {{ session('msj') }}</span>
    </x-adminlte-alert>
    @endif
-   
+
 
    @include('claims.partials._form_viable')
 @stop

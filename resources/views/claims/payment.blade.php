@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item active">Pago de Reclamación #{{ $claim->id }}</li>
                 </ol>
             </div>
@@ -45,7 +45,7 @@
 
     {{-- @if(!$claim->isViable())
         <x-adminlte-modal id="modalMin" title="Informe de Inviabilidad" theme="primary" size="lg" v-centered="true">
-            <div class="card">    
+            <div class="card">
                 <div class="card-body">
                     <div class="row">
                     <div class="col-sm-12">
@@ -73,11 +73,11 @@
 
         <div class="card-body">
             <div class="row">
-            	
+
             	<div class="col-md-4 offset-md-4">
 
             		@if (Auth::user()->card_alias)
-            			
+
             			<p>
             				Tienes una tarjeta guardada con el alias <b>({{Auth::user()->card_alias}})</b> <br>
 
@@ -217,11 +217,11 @@
 <div class="modal fade" id="terminos" style="max-width: 100%;">
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
-	    
+
 	    <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
 	    <div class="modal-body">
 
-	        <div style="height: 500px; overflow: auto;">  
+	        <div style="height: 500px; overflow: auto;">
 	          {{-- @include('terminos-condiciones')
 
 	          <br> --}}
@@ -240,11 +240,11 @@
 <div class="modal fade" id="terminos-2" style="max-width: 100%;">
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
-	    
+
 	    <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
 	    <div class="modal-body">
 
-	        <div style="height: 500px; overflow: auto;">  
+	        <div style="height: 500px; overflow: auto;">
 	          {{-- @include('terminos-condiciones')
 
 	          <br> --}}

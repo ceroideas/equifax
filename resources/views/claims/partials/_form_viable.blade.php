@@ -54,7 +54,7 @@ $config = [
         </div>
 
         <div class="row">
-            
+
             <div class="col-sm-6">
                 <div class="form-group text-center">
                     <label for="tipo_viabilidad">Reclamación Judicial</label>
@@ -103,16 +103,16 @@ $config = [
                 </x-adminlte-textarea>
             </div>
         </div>
-        
+
 
         <div class="card-footer">
-           
+
              <div class="row">
-                <span class="float-left">(*) Los Campos marcados son requeridos.</span>
+                <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
             <div class="row">
-                <span class="float-left">(**) Por favor Ingrese toda la información / observaciones importantes sobre para la reclamación .</span>
-            </div> 
+                <span class="float-left">(**) Por favor ingrese toda la información / observaciones importantes sobre para la reclamación .</span>
+            </div>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
             <a href="{{ url('/claims/' . $claim->id ) }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
 
