@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item"><a href="{{url('/')}}/claims">Reclamaciones</a></li>
                     <li class="breadcrumb-item active">Nueva Reclamación</li>
                 </ol>
@@ -36,21 +36,21 @@
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <h1>¿Reclama en nombre del usuario registrado?</h1></span>    
-        </div>          
+            <span> <h1>¿Reclama en nombre del usuario registrado?</h1></span>
+        </div>
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('claims/save-option-one') }}">SI</button></span>    
-            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('claims/clear-option-one') }}">NO</button></span> 
-        </div>          
+            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('claims/save-option-one') }}">SI</button></span>
+            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('claims/clear-option-one') }}">NO</button></span>
+        </div>
       </div>
    </x-adminlte-card>
 @stop
 
 @section('js')
 <script>
-    
+
    $('.question-button').on('click', function(){
        console.log($(this).attr('href'));
         location.href = $(this).attr('href');

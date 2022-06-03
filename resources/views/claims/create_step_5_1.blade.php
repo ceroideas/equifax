@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item"><a href="{{url('/')}}/claims">Reclamaciones</a></li>
                     <li class="breadcrumb-item active">Nueva Reclamación</li>
                 </ol>
@@ -23,7 +23,7 @@
 
 
    @include('progressbar', ['step' => 5])
-    
+
     {{-- <x-adminlte-alert theme="info">
         <span>¡Importante Si elige NO se eliminará toda la data recopilada hasta ahora del proceso y deberá empezar uno nuevo!</span>
     </x-adminlte-alert>
@@ -39,9 +39,9 @@
         <div class="col-sm-12 text-center">
             <span><h3>
                 Confirmo que todos los datos e información aportados es verás
-                
-        </h3></span>    
-        </div>          
+
+        </h3></span>
+        </div>
       </div>
    </x-adminlte-card>
 @stop
@@ -52,7 +52,7 @@
     /*$('.create-claim').on('click', function(){
        $('#create-claim-form').submit();
    });
-    
+
    $('.question-button').on('click', function(){
        console.log($(this).attr('href'));
         location.href = $(this).attr('href');

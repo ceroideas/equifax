@@ -114,7 +114,7 @@
                     </x-slot></x-adminlte-textarea>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="cop" label="Código Postal *" placeholder="Código Postal" type="number"
+                <x-adminlte-input name="cop" label="Código Postal *" placeholder="Código Postal" type="number" min="0"
                 igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->cop   :  ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -133,12 +133,12 @@
             </div>
         </div>
         <div class="row">
-           
+
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="col-sm-12">
-                    <x-adminlte-textarea name="additional" label="Datos Adicionales del Deudor / Observaciones ** " rows=4 enable-old-support="true" placeholder="Ingrese el motivo por el cual no ha conseguido su Deuda, además de cualquier otra información importante al caso.">{{  isset($debtor) ?  $debtor->address   :  ''}}
+                    <x-adminlte-textarea name="additional" label="Datos Adicionales del Deudor / Observaciones ** " rows=4 enable-old-support="true" placeholder="Ingrese el motivo por el cual no ha conseguido su deuda, además de cualquier otra información importante al caso.">{{  isset($debtor) ?  $debtor->address   :  ''}}
                         <x-slot name="appendSlot" >
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-address-card"></i>
@@ -150,10 +150,10 @@
 
         <div class="card-footer">
             <div class="row">
-                <span class="float-left">(*) Los Campos marcados son requeridos.</span>
+                <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
             <div class="row">
-                <span class="float-left">(**) Por favor Ingrese toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
+                <span class="float-left">(**) Por favor ingrese toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
             </div>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
@@ -178,7 +178,7 @@
 
 <script>
     $("#cop").change(function(event) {
-        
+
         $.get('{{url('getPopulation')}}/'+($(this).val()), function(data, textStatus) {
             if (data) {
                 $('#location').val(data.province);
