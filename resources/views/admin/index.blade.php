@@ -158,6 +158,7 @@
                 <div class="card-body text-left">
                     <h3 style="margin-top: 0;">¡Bienvenido, {{Auth::user()->name}}!</h3>
 
+                    {{--  Advertencia datos incompletos profile cliente
                     @if (Auth::user()->isClient() && (!Auth::user()->dni || !Auth::user()->phone || !Auth::user()->cop))
                     <x-adminlte-alert theme="warning" dismissable>
                         <div class="row">
@@ -170,7 +171,7 @@
                         </div>
                     </x-adminlte-alert>
                     @endif
-
+                    --}}
                     <div style="background-color: #f8fafc; padding: 8px 0;">
                         <div class="row">
                             <div class="col-4 text-center" style="border-right: 1px solid silver;">
