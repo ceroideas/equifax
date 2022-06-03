@@ -47,7 +47,7 @@
                     <h6 class="dropdown-header"><a class="menu-profile" href="{{url('panel')}}">Área personal</a></h6>
                     <a class="dropdown-item menu-profile-item" href="{{url('users',Auth::user()->id)}}">Mi perfil</a>
                     <a class="dropdown-item menu-profile-item" href="{{url('change-password')}}">Cambiar contraseña</a>
-                    <h6 class="dropdown-header menu-profile">Acreditación de terceros</h6>
+                    <h6 class="dropdown-header menu-profile">Representación de terceros</h6>
                     <a class="dropdown-item menu-profile-item" href="{{url('third-parties/create')}}">Añadir nuevo</a>
                     <a class="dropdown-item menu-profile-item" href="{{url('third-parties')}}">Mis representados</a>
                     <h6 class="dropdown-header menu-profile">Deudores</h6>
