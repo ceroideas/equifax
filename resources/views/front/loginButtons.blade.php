@@ -19,6 +19,14 @@
 		  background-color: #1e7e34;
 		  color: #fff;
 		}
+        .menu-profile{
+            color:#e65927;
+            font-size:1.25rem;
+        }
+        .menu-profile-item{
+            color:#285ba3;
+            font-size:0.9rem;
+        }
 	</style>
 	@if (Auth::check())
 		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('claims/select-client')}}" class="btn btn-nueva"><span data-v-5fddf304="" class="btn-text-acceso">
@@ -35,23 +43,23 @@
 			            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" style="transform: rotate(90deg);" class="iconsarrow-right">
 			        </span>
                 </button>
-			    <div class="ddown-menu">
-                  <h6 class="ddown-header"><a style="color:#e65927" href="{{url('panel')}}">Área personal</a></h6>
-				  <a class="ddown-item" href="{{url('users',Auth::user()->id)}}">Mi perfil</a>
-				  <a class="ddown-item" href="{{url('change-password')}}">Cambiar contraseña</a>
-				  <h6 class="ddown-header">Acreditación de terceros</h6>
-				  <a class="ddown-item" href="{{url('third-parties/create')}}">Añadir nuevo</a>
-				  <a class="ddown-item" href="{{url('third-parties')}}">Mis representados</a>
-				  <h6 class="ddown-header">Deudores</h6>
-				  <a class="ddown-item" href="{{url('debtors/create')}}">Añadir nuevo</a>
-				  <a class="ddown-item" href="{{url('debtors')}}">Listado de Deudores</a>
-				  <h6 class="ddown-header">Reclamaciones</h6>
-				  <a class="ddown-item" href="{{url('claims')}}">Listado de Reclamaciones</a>
-				  <a class="ddown-item" href="{{url('claims/pending')}}">Reclamaciones no viables</a>
-				  <a class="ddown-item" href="{{url('claims/select-client')}}">Nueva Reclamación</a>
-				  <a class="ddown-item" href="{{url('claims/invoices')}}">Facturas</a>
-				  <div class="dropdown-divider"></div>
-				  <a class="ddown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-fw fa-power-off text-red"></i>Salir</a>
+			    <div class="dropdown-menu">
+                    <h6 class="dropdown-header"><a class="menu-profile" href="{{url('panel')}}">Área personal</a></h6>
+                    <a class="dropdown-item menu-profile-item" href="{{url('users',Auth::user()->id)}}">Mi perfil</a>
+                    <a class="dropdown-item menu-profile-item" href="{{url('change-password')}}">Cambiar contraseña</a>
+                    <h6 class="dropdown-header menu-profile">Acreditación de terceros</h6>
+                    <a class="dropdown-item menu-profile-item" href="{{url('third-parties/create')}}">Añadir nuevo</a>
+                    <a class="dropdown-item menu-profile-item" href="{{url('third-parties')}}">Mis representados</a>
+                    <h6 class="dropdown-header menu-profile">Deudores</h6>
+                    <a class="dropdown-item menu-profile-item" href="{{url('debtors/create')}}">Añadir nuevo</a>
+                    <a class="dropdown-item menu-profile-item" href="{{url('debtors')}}">Listado de Deudores</a>
+                    <h6 class="dropdown-header menu-profile">Reclamaciones</h6>
+                    <a class="dropdown-item menu-profile-item" href="{{url('claims')}}">Listado de Reclamaciones</a>
+                    <a class="dropdown-item menu-profile-item" href="{{url('claims/pending')}}">Reclamaciones no viables</a>
+                    <a class="dropdown-item menu-profile-item" href="{{url('claims/select-client')}}">Nueva Reclamación</a>
+                    <a class="dropdown-item menu-profile-item" href="{{url('claims/invoices')}}">Facturas</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item menu-profile-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-fw fa-power-off text-red"></i>Salir</a>
 				</div>
 			</div>
 		</div>
