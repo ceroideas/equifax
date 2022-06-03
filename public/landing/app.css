@@ -14013,7 +14013,7 @@ input[type=button].btn-block {
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 0.9rem;
-  color: #212529;
+  color: #285ba3;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -14021,6 +14021,26 @@ input[type=button].btn-block {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
 }
+
+.ddown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 0.9rem;
+    color: #285ba3;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+  }
 
 .dropdown-menu-left {
   right: auto;
@@ -14178,7 +14198,7 @@ input[type=button].btn-block {
   border: 0;
 }
 .dropdown-item:hover, .dropdown-item:focus {
-  color: #16181b;
+  color: #285ba3;
   text-decoration: none;
   background-color: #e9ecef;
 }
@@ -14193,10 +14213,46 @@ input[type=button].btn-block {
   background-color: transparent;
 }
 
+
+
+.ddown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    margin-left:15px;
+    clear: both;
+    font-weight: 400;
+    color: #285ba3;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+  }
+  .ddown-item:hover, .ddown-item:focus {
+    color: #285ba3;
+    text-decoration: none;
+    background-color: #e9ecef;
+  }
+  .ddown-item.active, .ddown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #007bff;
+  }
+  .ddown-item.disabled, .ddown-item:disabled {
+    color: #adb5bd;
+    pointer-events: none;
+    background-color: transparent;
+  }
+
+
+
 .dropdown-menu.show {
   display: block;
 }
 
+.ddown-menu.show {
+    display: block;
+  }
 .dropdown-header {
   display: block;
   padding: 0.5rem 1.5rem;
@@ -14210,8 +14266,25 @@ input[type=button].btn-block {
 .dropdown-item-text {
   display: block;
   padding: 0.25rem 1.5rem;
-  color: #212529;
+  color: #285ba3;
 }
+
+
+.ddown-header {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 0;
+    margin-top:3px;
+    font-size: 1.25rem;
+    color: #e65927;
+    white-space: nowrap;
+  }
+
+  .ddown-item-text {
+    display: block;
+    padding: 0.25rem 1.5rem;
+    color: #285ba3;
+  }
 
 .btn-group,
 .btn-group-vertical {
