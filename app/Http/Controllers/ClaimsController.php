@@ -76,7 +76,9 @@ class ClaimsController extends Controller
     public function stepOne()
     {
 
-    
+        if (!isComplete()) {
+            return redirect('users/'.Auth::id())->with('msj','Antes de realizar una nueva reclamación, deberá completar su perfil.');
+        }
         return view('claims.create_step_1');
         
 

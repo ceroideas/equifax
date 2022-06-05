@@ -291,9 +291,9 @@ class UsersController extends Controller
             $rules['email'] = 'required|email|unique:users,email,'.request()->user->id;
             // $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->user->id;
             if(Auth::user()->dni_img != NUll){
-                $rules['dni_img']  = 'mimes:jpg,png,pdf';
+                // $rules['dni_img']  = 'mimes:jpg,png,pdf';
             }else{
-                $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
+                // $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
             }
             if (request()->type == 1) {
                 $rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
@@ -303,10 +303,10 @@ class UsersController extends Controller
             
         }else{
             $rules['password'] = 'required|confirmed|min:8|max:255';
-            $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
+            // $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
 
             if (request()->type == 1) {
-                $rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
+                // $rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
                 $rules['legal_representative'] = 'required';
                 $rules['representative_dni'] = 'required';
             }
@@ -338,6 +338,7 @@ class UsersController extends Controller
 
     public function migrar()
     {
+        return \App\Models\Actuation::all();
         /*$u = Auth::user();
         $u->apud_acta = null;
         $u->save();

@@ -79,7 +79,6 @@
         					</p> --}}
 
         					@if ($act->amount)
-        					<br>
         						<b style="color: #333">Monto recuperado:</b> {{$act->amount}}€ <br>
         						{{-- @if ($act->invoice)
         						<b>Monto a facturar:</b> {{$act->invoice->amount}}€ <br> 

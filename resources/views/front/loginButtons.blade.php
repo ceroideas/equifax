@@ -45,7 +45,7 @@
 				  <a class="dropdown-item" href="{{url('debtors')}}">Listado de Deudores</a>
 				  <h6 class="dropdown-header">Reclamaciones</h6>
 				  <a class="dropdown-item" href="{{url('claims')}}">Listado de Reclamaciones</a>
-				  <a class="dropdown-item" href="{{url('claims/pending')}}">Reclamaciones no viables</a>
+				  <a class="dropdown-item" href="{{url('claims/pending')}}">Reclamaciones finalizadas</a>
 				  <a class="dropdown-item" href="{{url('claims/select-client')}}">Nueva Reclamación</a>
 				  <a class="dropdown-item" href="{{url('claims/invoices')}}">Facturas</a>
 				  <div class="dropdown-divider"></div>

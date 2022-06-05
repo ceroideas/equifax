@@ -25,7 +25,7 @@
     @php
     $heads = [
         'ID',
-        'Gestoría/Asociación',
+        'Usuario',
         'Acreedor',
         'Deudor',
         'Importe reclamado',
@@ -76,30 +76,7 @@
                 <tr>
                     <td>
                         {{ $claim->debt->document_number }}</td>
-                    <td>
-
-                        @php                                        
-                            $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
-
-                            $juzgado = "--";
-                            $procurador = "--";
-
-                            if ($pc) {
-                                $type = App\Models\Type::where('locality',$pc->province)->first();
-
-                                if ($type) {
-                                    $juzgado = $type->type;
-
-                                    $party = App\Models\Party::where('locality',$pc->province)->first();
-
-                                    if ($party) {
-                                        $procurador = $party->procurator;
-                                    }
-                                }
-                            }
-                        @endphp 
-
-                    {{ $juzgado.'/'.$procurador }}</td>
+                    <td>{{ $claim->client->name }}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
                     <td>{{ $claim->debt->pending_amount }}€</td>
