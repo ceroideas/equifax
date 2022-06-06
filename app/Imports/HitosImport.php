@@ -22,13 +22,13 @@ class HitosImport implements ToModel, WithHeadingRow
     		$h = getHito( (string) $row['id_hito'])[0];
 
 	        // \Log::info([$row['id_hito'],gettype( (string) $row['id_hito'])]);
-	        \Log::info([$h]);
+	        \Log::info($row);
 
 	        if ($h) {
 	            $a = new Actuation;
 		        $a->claim_id = $d->claim_id;
 		        $a->subject = $h['id'];
-		        $a->amount = array_key_exists('monto_recuperado', $row) ? $row['monto_recuperado'] : null;
+		        $a->amount = array_key_exists('monto_recuperado', $row) &&  $row['monto_recuperado'] != '' ? $row['monto_recuperado'] : null;
 		        $a->description = array_key_exists('observaciones', $row) ? $row['observaciones'] : null;
 		        if (array_key_exists('fecha_actuacion', $row)) {
 
@@ -41,12 +41,16 @@ class HitosImport implements ToModel, WithHeadingRow
 		        $a->save();
 
 		        if (array_key_exists('archivo', $row) && $row['archivo'] != "") {
-		        	$path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
-		        	copy($row['archivo'], $path.basename($row['archivo']));
-	                $d = new ActuationDocument;
-	                $d->actuation_id = $a->id;
-	                $d->document_name = basename($row['archivo']);
-	                $d->save();
+		        	if ($row['archivo']) {
+			        	$path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
+			        	mkdir(public_path().'/uploads/actuations/' . $a->id,0777);
+			        	mkdir($path,0777);
+			        	copy($row['archivo'], $path.basename($row['archivo']));
+		                $d = new ActuationDocument;
+		                $d->actuation_id = $a->id;
+		                $d->document_name = basename($row['archivo']);
+		                $d->save();
+		        	}
 		        }
 
 		        actuationActions($h['id'],$a->claim_id,$a->amount, $a->actuation_date, $a->description);
