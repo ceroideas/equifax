@@ -32,8 +32,8 @@
         'Cobros recibidos',
         'Importe pendiente de pago',
         ['label' => 'Tipo de Reclamación'],
-        ['label' => 'Hito'],
-        ['label' => 'Estatus','width' => 5],
+        ['label' => 'Estatus'],
+        ['label' => 'Acciones','width' => 5],
     ];
 
     $config = [
