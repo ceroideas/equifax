@@ -18,6 +18,7 @@ use Auth;
 use Storage;
 use Carbon\Carbon;
 
+
 use Excel;
 use App\Exports\ClaimsExport;
 use App\Exports\InvoiceExport;
@@ -67,20 +68,27 @@ class ClaimsController extends Controller
      */
     public function create()
     {
-        
+
         return view('claims.create');
-     
+
 
     }
 
     public function stepOne()
     {
 
+        if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
+            return redirect('users/'.Auth::id())->with('msj','Antes de realizar una nueva reclamación, deberá completar su perfil.');
+        }
+        return view('claims.create_step_1');
+
+
+        /*
         if (!isComplete()) {
             return redirect('users/'.Auth::id())->with('msj','Antes de realizar una nueva reclamación, deberá completar su perfil.');
         }
         return view('claims.create_step_1');
-        
+        */
 
     }
 
@@ -201,7 +209,7 @@ class ClaimsController extends Controller
             if (session('type_other')) {
                 $claim->status = 0;
             }else{
-                
+
                 $claim->status = 7;
                 $claim->claim_type = 2;
 
@@ -232,7 +240,7 @@ class ClaimsController extends Controller
         $path = '/uploads/claims/' . $claim->id . '/documents/';
 
         foreach (session('documentos') as $key => $d) {
-            
+
             // $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             // $documentos[$key][key($d)]['file'] = $file;
 
@@ -451,9 +459,9 @@ class ClaimsController extends Controller
         $a->save();*/
 
         return redirect('claims')->with('msj', 'Reclamación actualziada exitosamente!');
-      
+
     }
-    
+
 
     public function setNonViable(Request $request, Claim $claim)
     {
@@ -504,7 +512,7 @@ class ClaimsController extends Controller
         if($claim->debt->others){
 
             $session_docs = explode(',' , $claim->debt->others);
-           
+
 
             foreach ($session_docs as $d) {
 
@@ -513,12 +521,12 @@ class ClaimsController extends Controller
 
             $claim->debt->others = NULL;
         }
-        
+
         $claim->debt->save();*/
-        
+
 
         return redirect('claims')->with('msj', 'Informe de Reclamación generado exitosamente');
-      
+
     }
 
     /**
@@ -558,7 +566,7 @@ class ClaimsController extends Controller
 
         $request->session()->forget('claim_client');
         $request->session()->put('claim_third_party', $request->id);
-        
+
 
         return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
 
@@ -658,15 +666,15 @@ class ClaimsController extends Controller
                 Storage::disk('public')->delete($debt->reclamacion_previa);
             }
             if($debt->others){
-    
+
                 $session_docs = explode(',' , $debt->others);
-    
+
                 foreach ($session_docs as $d) {
-    
+
                     Storage::disk('public')->delete($d);
                 }
             }
-    
+
         }
 
 
@@ -684,7 +692,7 @@ class ClaimsController extends Controller
 
     public function validateViable(){
         $rules = [
-            
+
             'tipo_viabilidad' => 'required',
             // 'observaciones' => 'required',
         ];
@@ -775,7 +783,7 @@ class ClaimsController extends Controller
 
         /*
         if ($a->mailable) {
-            Mail::send('email_to_client', ['a' => $a], function ($message) {            
+            Mail::send('email_to_client', ['a' => $a], function ($message) {
                 $message->to($claim->owner->email, $claim->owner->name);
                 $message->subject('Actualización de su reclamación #'.$a->id);
             });
@@ -853,7 +861,7 @@ class ClaimsController extends Controller
                 $a->type = null;
                 $a->mailable = null;
                 $a->save();
-                
+
             }else{
                 $c->status = 10;
 
