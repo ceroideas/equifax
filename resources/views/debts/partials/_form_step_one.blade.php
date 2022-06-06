@@ -378,6 +378,10 @@
 </script>
 
 <script>
+    $(document).ready(function(){
+        $("#add-document").click();
+    });
+
     $('#tipo_deuda').on('change', function(){
 
         if($(this).val() == -1){
