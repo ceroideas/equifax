@@ -266,7 +266,7 @@ return [
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
         [
-            'text' => '&Aacute;rea personal',
+            'text' => 'Área personal',
             'url'  => 'panel',
             'icon' => 'fas fa-fw fa-tachometer-alt',
         ],
@@ -617,7 +617,7 @@ return [
     'iframe' => [
         'default_tab' => [
             'url' => '/admin/index',
-            'title' => '&Aacute;rea personal',
+            'title' => 'Área personal',
         ],
         'buttons' => [
             'close' => true,

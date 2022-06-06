@@ -801,7 +801,7 @@ class ClaimsController extends Controller
             $invoice->user_id = $claim->user_id;
             $invoice->amount = $amount;
             $invoice->type = 'percentage_fees';
-            $invoice->description = "Pago de comisión por monto recuperado en reclamación extrajudicial";
+            $invoice->description = "Pago de comisión por importe recuperado en reclamación extrajudicial";
             $invoice->save();
 
             $a->invoice_id = $invoice->id;

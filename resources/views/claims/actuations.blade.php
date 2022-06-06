@@ -79,9 +79,9 @@
         					</p> --}}
 
         					@if ($act->amount)
-        						<b style="color: #333">Monto recuperado:</b> {{$act->amount}}€ <br>
+        						<b style="color: #333">Importe recuperado:</b> {{$act->amount}}€ <br>
         						{{-- @if ($act->invoice)
-        						<b>Monto a facturar:</b> {{$act->invoice->amount}}€ <br>
+        						<b>Importe a facturar:</b> {{$act->invoice->amount}}€ <br>
         						<b>Status de la factura:</b> {!!$act->invoice->status ? '<span class="text-success">Pagado</span>' : '<span class="text-info">Pendiente</span>'!!}
         						@else
         							<i>No se ha generado una factura</i>
@@ -183,6 +183,7 @@
 
 	            				@php
 									$config = ['format' => 'DD-MM-YYYY'];
+                                    //$valor= [date("d-m-Y")]
 								@endphp
 
 	            				<x-adminlte-input-date name="actuation_date" id="actuation_date" :config="$config" required/>
@@ -233,7 +234,7 @@
 	            	<div class="row" style="display: none-;">
 	            		<div class="col-sm-12">
 
-	            			<x-adminlte-input name="amount" label="Si se ha recuperado algún monto, especificarlo" placeholder="Monto" min="0" step="0.01" type="number"
+	            			<x-adminlte-input name="amount" label="Si se ha recuperado algún importe, especificarlo" placeholder="Importe" min="0" step="0.01" type="number"
 			                    igroup-size="sm" >
 			                        <x-slot name="appendSlot">
 			                            <div class="input-group-text bg-dark">
@@ -261,7 +262,7 @@
 			            	{{-- <div class="row" style="display: none-;">
 			            		<div class="col-sm-12">
 
-			            			<x-adminlte-input name="amount" label="Si se ha recuperado algún monto, especificarlo" placeholder="Monto" step="0.01" type="number"
+			            			<x-adminlte-input name="amount" label="Si se ha recuperado algún importe, especificarlo" placeholder="Importe" step="0.01" type="number"
 					                    igroup-size="sm" >
 					                        <x-slot name="appendSlot">
 					                            <div class="input-group-text bg-dark">
@@ -275,7 +276,7 @@
 
 			            	<div class="row">
 			            		<div class="col-sm-12">
-			            			<label for="invoice">¿Desea generar factura por el monto recuperado? (ésto en caso que el deudor haya realizado la transferencia al cliente en vez de a DIVIDAE)</label>
+			            			<label for="invoice">¿Desea generar factura por el importe recuperado? (ésto en caso que el deudor haya realizado la transferencia al cliente en vez de a DIVIDAE)</label>
 			            			<x-adminlte-input-switch name="invoice" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
 			            		</div>
 			            	</div>
@@ -296,7 +297,7 @@
 			            	<div class="row" style="display: none;" id="invoice-data-2">
 			            		<div class="col-sm-12">
 
-			            			<x-adminlte-input name="honorarios" label="Si se requiere un pago adicional, especificar" placeholder="Monto" step="0.01"  min="0"
+			            			<x-adminlte-input name="honorarios" label="Si se requiere un pago adicional, especificar" placeholder="Importe" step="0.01"  min="0"
 					                    igroup-size="sm" >
 					                        {{-- <x-slot name="appendSlot">
 					                            <div class="input-group-text bg-dark">
@@ -334,6 +335,15 @@
 @section('js')
 
 	<script>
+        $( document ).ready(function() {
+            console.log("Ready function");
+            var now = new Date();
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            var today = (day)+"-"+(month)+"-"+now.getFullYear() ;
+            $("#actuation_date").val(today);
+        });
+
 		$('[name="invoice_2"]').on('switchChange.bootstrapSwitch', function(event) {
 			event.preventDefault();
 

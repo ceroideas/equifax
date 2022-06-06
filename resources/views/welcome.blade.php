@@ -315,7 +315,7 @@
                                     <div class="row">
                                         <div class="col-sm-2"></div>
                                         <div class="col-sm-8">
-                                            <a data-v-9cc878a2="" href="{{ url('register') }}" aria-current="page"
+                                            <a data-v-9cc878a2="" href="{{ url('tarifas') }}" aria-current="page"
                                                 class="btn btn-light-descubre" type="button"> DESCUBRIR MÁS</a>
                                         </div>
                                     </div>
@@ -365,7 +365,7 @@
                                     <div class="row">
                                         <div class="col-sm-2"></div>
                                         <div class="col-sm-8">
-                                            <a data-v-9cc878a2="" href="{{ url('register') }}" aria-current="page"
+                                            <a data-v-9cc878a2="" href="{{ url('tarifas') }}" aria-current="page"
                                                 class="btn btn-light-descubre" type="button"> DESCUBRIR MÁS</a>
                                         </div>
                                     </div>
