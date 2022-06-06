@@ -54,7 +54,7 @@
                </div>
             </div>
         </div>
-        
+
         <div class="row ">
             <div class="col-sm-6">
                 <x-adminlte-input name="name" label="Nombre Completo / Razón Social" placeholder="Nombre Completo / Razón Social" type="text"
@@ -159,14 +159,14 @@
             </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="dni_img" label="Copia del DNI / CIF" placeholder="Copia del DNI / CIF" type="file"
+<!--                <x-adminlte-input name="dni_img" label="Copia del DNI / CIF" placeholder="Copia del DNI / CIF" type="file"
                 igroup-size="sm">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-file"></i>
                         </div>
                     </x-slot>
-            </x-adminlte-input>
+            </x-adminlte-input> -->
             </div>
         </div>
         <div class="row hide-natural d-none">
@@ -287,6 +287,6 @@
         $('#dni').text('DNI-NIE');
         $('#address').text('Dirección');
     }
-    
+
 </script>
 @stop
