@@ -78,9 +78,10 @@ class ClaimsController extends Controller
     {
 
         if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
-            return redirect('users/'.Auth::id())->with('msj','Antes de realizar una nueva reclamación, deberá completar su perfil.');
+            return view('claims.create_step_1');
         }
-        return view('claims.create_step_1');
+        return redirect('users/'.Auth::id())->with('msj','Antes de realizar una nueva reclamación, deberá completar su perfil.');
+
 
 
         /*
