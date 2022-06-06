@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item active">{{ $user->name }}</li>
                 </ol>
             </div>
@@ -33,7 +33,7 @@
             <div class="card-header text-white">
                 <h3 class="card-title">DNI</h3>
             </div>
-            
+
             <div class="card-body text-center">
                 @if($user->dni_img)
                     @php
@@ -46,7 +46,7 @@
                     @endif
                 @else
                     <img src="{{  asset( 'img/placeholders/dniplaceholder.jpg' )  }}" alt="{{ $user->name . ' dni'}}" class="img-fluid"/>
-                
+
                 @endif
             </div>
         </div>
@@ -97,7 +97,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-6">
-                            
+
                                 <strong><i class="fas fa-email mr-1"></i>Email:</strong>
                                 <p class="text-muted text-uppercase">
                                     {{ $user->email }}
@@ -105,7 +105,7 @@
                             </div>
                             @if($user->iban)
                             <div class="col-sm-6">
-                            
+
                                 <strong><i class="fas fa-university mr-1"></i>Nro de Cuenta</strong>
                                 <p class="text-muted text-uppercase">
                                     {{ $user->iban }}

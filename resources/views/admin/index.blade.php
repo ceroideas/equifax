@@ -7,11 +7,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Dashboard</h1>
+                    <h1>&Aacute;rea personal</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">&Aacute;rea personal</li>
                     </ol>
                 </div>
             </div>
@@ -23,8 +23,8 @@
     @section('extra_header')
 
     <div style="background-color: #e65927; color: #fff" class="text-center">
-        
-        <small>Area Clientes</small>
+
+        <small>Área Clientes</small>
 
         <h3 style="padding-bottom: 10px !important">Inicio</h3>
 
@@ -130,9 +130,9 @@
                 <h5>¿Podemos ayudarte?</h5>
 
                 <div style="position: relative; height: 200px;">
-                    
+
                     <div style="position: absolute; height: 80%; width: 100%; background-color: #e65927; border-radius: 8px; bottom: 0;">
-                        
+
                     </div>
                     <img src="{{url('landing/assets/contacto.png')}}" alt="" style="position: absolute; bottom: 0; right: 0; width: 100%">
                 </div>
@@ -152,17 +152,18 @@
 
         </div>
         <div class="col-9">
-            
+
             <div class="card">
-                
+
                 <div class="card-body text-left">
                     <h3 style="margin-top: 0;">¡Bienvenido, {{Auth::user()->name}}!</h3>
 
+                    {{--  Advertencia datos incompletos profile cliente
                     @if (Auth::user()->isClient() && (!Auth::user()->dni || !Auth::user()->phone || !Auth::user()->cop))
                     <x-adminlte-alert theme="warning" dismissable>
                         <div class="row">
                             <div class="col-9">
-                                Tienes información pendiente de completar en tu perfil. Antes de realizar la contratación de una reclamación, deberás rellenar todos los datos en tu cuenta de cliente.  
+                                Tienes información pendiente de completar en tu perfil. Antes de realizar la contratación de una reclamación, deberás rellenar todos los datos en tu cuenta de cliente.
                             </div>
                             <div class="col-3">
                                 <a data-v-9cc878a2="" href="{{url('users',Auth::id())}}" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto; text-decoration: none;">COMPLETAR AHORA</a>
@@ -170,7 +171,7 @@
                         </div>
                     </x-adminlte-alert>
                     @endif
-
+                    --}}
                     <div style="background-color: #f8fafc; padding: 8px 0;">
                         <div class="row">
                             <div class="col-4 text-center" style="border-right: 1px solid silver;">
@@ -178,7 +179,7 @@
                             </div>
                             <div class="col-1"></div>
                             <div class="col-7">
-                                <h4>Contrata una reclamación <br> <small>Y recupera ya tus facturas impagadas</small></h4>
+                                <h4>Contrata una reclamación <br> <small>y di adiós a tus facturas impagadas.</small></h4>
 
                                 <a data-v-9cc878a2="" href="{{url('claims/select-client')}}" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto">NUEVA RECLAMACIÓN</a>
                             </div>
@@ -192,13 +193,13 @@
                             <h5>Mis reclamaciones
 
                                 <small onclick="window.open('{{url('claims')}}','_self')" style="font-size: 12px; float: right; cursor: pointer;">Ver todas <i class="fas fa-arrow-right"></i></small>
-                            </h5>  
+                            </h5>
 
                             <div class="row">
                                 <div class="col-4">
 
                                     <div class="card">
-                                        
+
                                         <div class="card-body">
 
                                             <div class="row">
@@ -214,7 +215,7 @@
 
                                             <br>
 
-                                            <h6>Reclamaciónes en gestión extrajudicial</h6>
+                                            <h6>Reclamaciones en gestión extrajudicial</h6>
 
                                             <br>
 
@@ -223,7 +224,7 @@
                                                 Ver <i class="fas fa-arrow-right"></i>
                                                 </a>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
 
@@ -232,7 +233,7 @@
                                 <div class="col-4">
 
                                     <div class="card">
-                                        
+
                                         <div class="card-body">
 
                                             <div class="row">
@@ -248,7 +249,7 @@
 
                                             <br>
 
-                                            <h6>Reclamaciónes en gestión judicial</h6>
+                                            <h6>Reclamaciones en gestión judicial</h6>
 
                                             <br>
 
@@ -257,7 +258,7 @@
                                                 Ver <i class="fas fa-arrow-right"></i>
                                                 </a>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
 
@@ -266,7 +267,7 @@
                                 <div class="col-4">
 
                                     <div class="card">
-                                        
+
                                         <div class="card-body">
 
                                             <div class="row">
@@ -282,7 +283,7 @@
 
                                             <br>
 
-                                            <h6>Reclamaciónes finalizadas/no viables</h6>
+                                            <h6>Reclamaciones finalizadas/no viables</h6>
 
                                             <br>
 
@@ -291,7 +292,7 @@
                                                 Ver <i class="fas fa-arrow-right"></i>
                                                 </a>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
 
@@ -300,7 +301,7 @@
                         </div>
                         <div class="col-3 text-center">
 
-                            
+
                             <img src="{{url('landing/assets/save-money.png')}}" alt="" style="width: 50%;">
                             <br>
                             <br>
@@ -322,7 +323,7 @@
                 <div class="inner">
                     @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin())
                     <h3>{{ $claims }}</h3>
-                    @else   
+                    @else
                     <h3>{{ Auth::user()->claims()->whereIn('status', [-1,0,1])->count(); }}</h3>
                     @endif
                     <p>Reclamaciones Finalizadas</p>

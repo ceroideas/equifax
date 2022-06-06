@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item active">Actuaciones | Reclamación #{{ $claim->id }}</li>
                 </ol>
             </div>
@@ -31,7 +31,7 @@
 
     @if(!$claim->isViable())
         <x-adminlte-modal id="modalMin" title="Informe de Inviabilidad" theme="primary" size="lg" v-centered="true">
-            <div class="card">    
+            <div class="card">
                 <div class="card-body">
                     <div class="row">
                     <div class="col-sm-12">
@@ -58,7 +58,7 @@
         </div>
 
         <div class="card-body">
-            
+
         	<div class="row">
         		<div class="col-md-12">
 
@@ -66,7 +66,7 @@
         			@forelse ($actuations as $act)
 
         				<div class="col-sm-12">
-        					
+
         					<h6><b style="color: #333">{{$act->subject}}</b> ({!! $act->actuation_date !!})</h6>
 
         					<p style="margin: 0">{{$act->description}}</p>
@@ -75,13 +75,13 @@
         						<b>Resultado de la actuación:</b> {!! $act->type ? '<span class="text-success">Exitoso</span>' : '<span class="text-warning">No exitoso</span>' !!}
         					</p> --}}
         					{{-- <p>
-        						<b>Fecha de la actuación:</b> 
+        						<b>Fecha de la actuación:</b>
         					</p> --}}
 
         					@if ($act->amount)
         						<b style="color: #333">Monto recuperado:</b> {{$act->amount}}€ <br>
         						{{-- @if ($act->invoice)
-        						<b>Monto a facturar:</b> {{$act->invoice->amount}}€ <br> 
+        						<b>Monto a facturar:</b> {{$act->invoice->amount}}€ <br>
         						<b>Status de la factura:</b> {!!$act->invoice->status ? '<span class="text-success">Pagado</span>' : '<span class="text-info">Pendiente</span>'!!}
         						@else
         							<i>No se ha generado una factura</i>
@@ -93,9 +93,9 @@
         						@foreach ($act->documents as $document)
 
         						<div class="row">
-        							
+
         							<div class="col-sm-4">
-        								
+
         								<li>
                                         	<a href="{{ url('/uploads/actuations/' . $act->id . '/documents',$document->document_name) }}" class="btn-link text-secondary" target="_blank" download="{{$document->document_name}}"><i class="far fa-fw fa-file"></i>{{$document->document_name}}</a>
                                     	</li>
@@ -111,7 +111,7 @@
         					<hr>
 
         				</div>
-        				
+
         			@empty
 
         			<div class="col-sm-12">
@@ -121,7 +121,7 @@
         				<h4>No se han registrado actuaciones en esta reclamación</h4>
         				@endif
         			</div>
-        				
+
         			@endforelse
         			</div>
 
@@ -142,7 +142,7 @@
 	            		{{-- <div class="col-sm-6">
 
 	            			<div class="form-group">
-	            				
+
 	            				<label for="phase">Fase</label>
 
 	            				@php
@@ -153,7 +153,7 @@
 
 	            					<option disabled=""></option>
 	            					@foreach (config('app.phases') as $key => $ph)
-	            						
+
 	            						<option {{isset($claim->phase) ? ($claim->phase == $key ? 'selected' : '') : ''}} value="{{$key}}">{{$ph}}</option>
 
 	            					@endforeach
@@ -162,11 +162,11 @@
 	            			</div>
 
 	            		</div> --}}
-	            		
+
 	            		<div class="col-sm-6">
 
 	            			<div class="form-group">
-	            				
+
 	            				<label for="subject">Hito</label>
 
 	            				<div id="select-ph">
@@ -178,7 +178,7 @@
 	            		<div class="col-sm-6">
 
 	            			<div class="form-group">
-	            				
+
 	            				<label for="actuation_date">Fecha de la actuación</label>
 
 	            				@php
@@ -193,7 +193,7 @@
 	            		<div class="col-sm-12">
 
 	            			<div class="form-group">
-	            				
+
 	            				<label for="description">Descripción</label>
 
 
@@ -207,7 +207,7 @@
 	            		<div class="col-sm-12">
 
 	            			<div class="form-group">
-	            				
+
 	            				<x-adminlte-input-file id="ifMultiple" name="files[]" label="Archivos de la actuacion"
 								    placeholder="Puede subir varios archivos..." igroup-size="lg" legend="Seleccione" multiple>
 								    {{-- <x-slot name="appendSlot">
@@ -241,7 +241,7 @@
 			                            </div>
 			                        </x-slot>
 			                </x-adminlte-input>
-	            			
+
 	            		</div>
 	            	</div>
 
@@ -257,7 +257,7 @@
 		            	<hr>
 
 		            	<div id="invoice-data">
-		            		
+
 			            	{{-- <div class="row" style="display: none-;">
 			            		<div class="col-sm-12">
 
@@ -269,7 +269,7 @@
 					                            </div>
 					                        </x-slot>
 					                </x-adminlte-input>
-			            			
+
 			            		</div>
 			            	</div> --}}
 
@@ -285,7 +285,7 @@
 		            	</div>
 
 		            	<div id="honorarios-data">
-		            		
+
 			            	<div class="row">
 			            		<div class="col-sm-12">
 			            			<label for="invoice_2">¿Desea generar factura por el pago de honorarios adicionales?</label>
@@ -296,7 +296,7 @@
 			            	<div class="row" style="display: none;" id="invoice-data-2">
 			            		<div class="col-sm-12">
 
-			            			<x-adminlte-input name="honorarios" label="Si se requiere un pago adicional, especificar" placeholder="Monto" step="0.01" type="number"
+			            			<x-adminlte-input name="honorarios" label="Si se requiere un pago adicional, especificar" placeholder="Monto" step="0.01"  min="0"
 					                    igroup-size="sm" >
 					                        {{-- <x-slot name="appendSlot">
 					                            <div class="input-group-text bg-dark">
@@ -313,7 +313,7 @@
 					                            </div>
 					                        </x-slot> --}}
 					                </x-adminlte-input>
-			            			
+
 			            		</div>
 			            	</div>
 		            	</div>
@@ -336,7 +336,7 @@
 	<script>
 		$('[name="invoice_2"]').on('switchChange.bootstrapSwitch', function(event) {
 			event.preventDefault();
-			
+
 			if ($(this).is(':checked')) {
 				$('#invoice-data-2').show();
 				$('#invoice-data').hide();
@@ -348,7 +348,7 @@
 
 		$('[name="invoice"]').on('switchChange.bootstrapSwitch', function(event) {
 			event.preventDefault();
-			
+
 			if ($(this).is(':checked')) {
 				$('#honorarios-data').hide();
 			}else{

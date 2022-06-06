@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item active">{{ $third_party->name }}</li>
                 </ol>
             </div>
@@ -33,7 +33,7 @@
             <div class="card-header text-white">
                 <h3 class="card-title">DNI</h3>
             </div>
-            
+
             <div class="card-body text-center">
                 @if($third_party->dni_img)
                     @php
@@ -46,7 +46,7 @@
                     @endif
                 @else
                     <img src="{{  asset( 'img/placeholders/dniplaceholder.jpg' )  }}" alt="{{ $third_party->name . ' dni'}}" class="img-fluid"/>
-                
+
                 @endif
             </div>
         </div>
@@ -110,7 +110,7 @@
                         <hr>
                         <div class="row">
                             {{-- <div class="col-sm-6">
-                            
+
                                 <strong><i class="fas fa-email mr-1"></i>Email:</strong>
                                 <p class="text-muted text-uppercase">
                                     {{ $third_party->email }}
@@ -118,7 +118,7 @@
                             </div> --}}
                             @if($third_party->iban)
                             <div class="col-sm-6">
-                            
+
                                 <strong><i class="fas fa-university mr-1"></i>Nro de Cuenta</strong>
                                 <p class="text-muted text-uppercase">
                                     {{ $third_party->iban }}
@@ -128,7 +128,7 @@
 
                             @if($third_party->poa)
                             <div class="col-sm-6">
-                            
+
                                 <strong><i class="fas fa-university mr-1"></i>Poder de Representación / Título de Acreditación</strong>
                                 <p class="text-muted text-uppercase">
                                    <a href="{{ asset(  $third_party->poa ) }}" download="Acreditación {{ $third_party->name  . ' ' . $third_party->dni}}">Descargar Documento</a>

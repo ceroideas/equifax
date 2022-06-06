@@ -37,7 +37,7 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="iva" label="IVA *" placeholder="IVA" type="text"
+                <x-adminlte-input name="iva" label="Porcentaje de IVA *" placeholder="Porcentaje de IVA" type="number" step="0.01" min="0"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->tax : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -94,13 +94,13 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" label="Selecciona El Tipo de Deuda *" placeholder="Selecciona El Tipo de Deuda" class="form-control-sm" enable-old-support="true">
+                <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" label="Selecciona el Tipo de Deuda *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true">
 
                     @foreach (config('app.deudas') as $key => $deuda)
                         <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : '' }} value="{{$key}}">{{$deuda['deuda']}}</option>
                     @endforeach
 
-                    <optgroup label="Otro **"> 
+                    <optgroup label="Otro **">
                         <option value="-1">Especifique</option>
                     </optgroup>
                 </x-adminlte-select2>
@@ -115,7 +115,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-6">
-                <x-adminlte-input name="abonos" label="Abonos Realizados por el Deudor" placeholder="Abonos Realizados por el Deudor (La suma de lo abonado)" type="number"
+                <x-adminlte-input name="abonos" label="Abonos Realizados por el Deudor" placeholder="Abonos Realizados por el Deudor (La suma de lo abonado)" type="number" min="0"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->partials_amount : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -127,12 +127,12 @@
             <div class="col-sm-6 total">
 
                 @if (old('amounts'))
-                    <label>Pagos Parciales (en €) y Fecha en que se realizaron</label>
+                    <label>Pagos Parciales (en €) y Fecha en que se realizar&oacute;n</label>
                     @foreach (old('amounts') as $key => $am)
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-8">
-                                    <input type="number" value="{{old('amounts')[$key]}}" required class="form-control form-control-sm" onchange="makeCalculation()" step="0.01" min="0" name="amounts[]">
+                                    <input type="number" min="0" value="{{old('amounts')[$key]}}" required class="form-control form-control-sm" onchange="makeCalculation()" step="0.01" min="0" name="amounts[]">
                                 </div>
                                 <div class="col-sm-4">
                                     <input type="date" value="{{old('dates')[$key]}}" required class="form-control form-control-sm" name="dates[]">
@@ -185,18 +185,18 @@
         <div class="row">
             <div class="col-sm-12">
                 <x-adminlte-select name="reclamacion_previa_indicar" label="¿Ha reclamado usted esta deuda anteriormente? " enable-old-support="true">
-                    <option 
+                    <option
                     {{session('claim_debt') ? (session('claim_debt')->reclamacion_previa_indicar == 0 ? 'selected' : '') : '' }} value="0">NO</option>
-                    <option 
+                    <option
                     {{session('claim_debt') ? (session('claim_debt')->reclamacion_previa_indicar == 1 ? 'selected' : '') : '' }} value="1">SI</option>
                 </x-adminlte-select>
             </div>
-        </div>  
+        </div>
 
         <div id="reclamacion_previa_indicar_box"
 
         class="{{ ((old() && old('reclamacion_previa_indicar') == 1) || (session('claim_debt') && session('claim_debt')->reclamacion_previa_indicar == 1)) ? '' : 'd-none' }}">
-            
+
             <div class="row">
                 <div class="col-sm-6">
                     <x-adminlte-input name="fecha_reclamacion_previa" label="Fecha de la reclamación anterior" type="date"
@@ -236,7 +236,7 @@
 
         <hr>
 
-        <label>Documentación de la Deuda</label>
+        <label>Documentación de la Deuda *</label>
 
         <div class="text-left">
 
@@ -245,6 +245,7 @@
                     <strong>El campo documentos es obligatorio.</strong>
                 </span>
             @endif
+
 
             <div id="all-documents">
 
@@ -268,7 +269,7 @@
                                     <option {{key($d) == "burofax" ? "selected" : ""}} value="burofax">BUROFAX</option>
                                     <option {{key($d) == "carta_certificada" ? "selected" : ""}} value="carta_certificada">CARTA CERTIFICADA</option>
                                     <option {{key($d) == "email" ? "selected" : ""}} value="email">E-MAILS</option>
-                                    <option {{key($d) == "otros" ? "selected" : ""}} value="otros">OTROS</option>
+                                    <option {{key($d) == "otros" ? "selected" : ""}} value="otros">OTROS.</option>
 
                                 </select>
                             </div>
@@ -276,22 +277,22 @@
                             <div class="hitos">
 
                                 @include('debts.documents.'.key($d), ["_i" => $d[key($d)]])
-                                
+
                             </div>
 
-                            <button class="btn btn-sm btn-danger" type="button" onclick="$(this).parent().remove()"> 
+                            <button class="btn btn-sm btn-danger" type="button" onclick="$(this).parent().remove()">
                             <i class="fas fa-times"></i>
                             </button>
 
                             <hr>
                         </div>
                     @endforeach
-                    
+
                 @endif
-                
+
             </div>
-            
-            <button id="add-document" type="button" class="btn btn-success btn-lg"> <i class="fas fa-plus"></i> </button>
+
+            <button id="add-document" type="button" class="btn btn-success btn-lg"> <i class="fas fa-plus"></i> Añadir nuevo documento</button>
 
         </div>
 
@@ -300,10 +301,10 @@
 
         <div class="card-footer">
             <div class="row">
-                <span class="float-left">(*) Los Campos marcados son requeridos.</span>
+                <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
             <div class="row">
-                <span class="float-left">(**) Por favor Ingrese toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
+                <span class="float-left">(**) Por favor ingrese toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
             </div>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save"/>
@@ -373,7 +374,7 @@
         }
 
     })
-    
+
 </script>
 
 <script>
@@ -390,17 +391,17 @@
             $('#deuda_otros').find('label').html('Indique el motivo de la deuda *')
             $('#deudas_otros_input').attr('placeholder', 'Ej: ¿Ha sido dudosa y voluntaria por parte del deudor?');
             $('#deuda_otros').removeClass('d-none');
-            
+
         }*/
         else{
 
             $('#deuda_otros').addClass('d-none');
-            
+
         }
     });
 
     $('[name="reclamacion_previa_indicar"]').change(function(event) {
-        
+
         if ($(this).val() == 1) {
             $('#reclamacion_previa_indicar_box').removeClass('d-none');
         }else{
@@ -418,7 +419,7 @@
 
                 <div class="form-group">
                     <select name="document[]" required class="form-control form-control-sm" onchange="placeHito(this)">
-                        <option value=""></option>
+                        <option value="">TIPO DE DOCUMENTO * </option>
                         <option value="factura">FACTURA</option>
                         <option value="albaran">ALBARÁN</option>
                         <option value="recibo">RECIBO DE ENTREGA</option>
@@ -437,10 +438,10 @@
                 </div>
 
                 <div class="hitos">
-                    
+
                 </div>
 
-                <button class="btn btn-sm btn-danger" type="button" onclick="$(this).parent().remove()"> 
+                <button class="btn btn-sm btn-danger" type="button" onclick="$(this).parent().remove()">
                 <i class="fas fa-times"></i>
                 </button>
 
@@ -452,7 +453,7 @@
     function placeHito(e)
     {
         $.get('{{url('getHito')}}/'+($(e).val()), function(data, textStatus) {
-            /*optional stuff to do after getScript */ 
+            /*optional stuff to do after getScript */
             $(e).parent().parent().find('.hitos').html(data);
         });
     }
