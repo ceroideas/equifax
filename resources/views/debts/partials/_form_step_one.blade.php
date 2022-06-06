@@ -199,7 +199,7 @@
 
             <div class="row">
                 <div class="col-sm-6">
-                    <x-adminlte-input name="fecha_reclamacion_previa" label="Fecha de la reclamación anterior" type="date"
+                    <x-adminlte-input name="fecha_reclamacion_previa" label="Fecha de la reclamación anterior *" type="date"
                     igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->fecha_reclamacion_previa : ''}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
@@ -210,7 +210,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <x-adminlte-input name="reclamacion_previa" label="Documentación de la reclamación anterior" type="file"
+                    <x-adminlte-input name="reclamacion_previa" label="Documentación de la reclamación anterior *" type="file"
                     igroup-size="sm" enable-old-support="true">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
@@ -221,7 +221,7 @@
                 </div>
 
                 <div class="col-sm-12">
-                    <x-adminlte-textarea name="motivo_reclamacion_previa" label="Motivo de oposición alegada por el deudor" rows=4 enable-old-support="true">
+                    <x-adminlte-textarea name="motivo_reclamacion_previa" label="Motivo de oposición alegada por el deudor **" rows=4 enable-old-support="true">
                         {{ session('claim_debt') ? session('claim_debt')->motivo_reclamacion_previa : ''}}
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
