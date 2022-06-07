@@ -218,7 +218,7 @@
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
 
-	    <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
+	    <div class="modal-header" style="color: #111"></div>
 	    <div class="modal-body">
 
 	        <div style="height: 500px; overflow: auto;">
@@ -241,7 +241,7 @@
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
 
-	    <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
+	    <div class="modal-header" style="color: #111"></div>
 	    <div class="modal-body">
 
 	        <div style="height: 500px; overflow: auto;">
