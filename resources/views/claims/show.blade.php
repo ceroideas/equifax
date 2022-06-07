@@ -282,6 +282,7 @@
                         </div>
                     </div>
 
+                    {{--
                     <div>
                         <div class="row">
                             <div class="col text-center">
@@ -297,7 +298,7 @@
                             </div>
                         </div>
                     </div>
-
+                    --}}
                     <br>
                     @if(/*$claim->isPending()*/true)
                         <h5 class="mt-5 text-muted">Documentación de la Deuda</h5>
