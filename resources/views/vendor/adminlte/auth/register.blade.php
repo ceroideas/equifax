@@ -215,7 +215,7 @@
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
 
-    <div class="modal-header" style="color: #111">Términos y Condiciones</div>
+    <div class="modal-header" style="color: #111"></div>
     <div class="modal-body">
 
         <div style="height: 600px; overflow: auto;">

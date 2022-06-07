@@ -146,7 +146,7 @@
 
                         @if ($claim->invoices)
                             <a href="{{ url('/claims/actuations/' . $claim->id ) }}">
-                                <button class="btn btn-xs btn-default text-warning mx-1 shadow" title="Actuaciónes">
+                                <button class="btn btn-xs btn-default text-warning mx-1 shadow" title="Actuaciones">
                                     <i class="fa fa-lg fa-fw fa-list"></i>
                                 </button>
                             </a>

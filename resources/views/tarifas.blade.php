@@ -91,7 +91,7 @@
                               <div class="row">
                                   <div class="col-sm-2"></div>
                                   <div class="col-sm-8">
-                                      <a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">                            DESCUBRIR MÁS</a>
+                                      <a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a>
                                   </div>
                               </div>
 
@@ -133,7 +133,7 @@
                               <div class="row">
                                   <div class="col-sm-2"></div>
                                   <div class="col-sm-8">
-                                      <a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">                            DESCUBRIR MÁS</a>
+                                      <a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a>
                                   </div>
                               </div>
 
@@ -219,7 +219,7 @@
                       			</tr>
                       			<tr>
                       				<td>Ejecución en ámbito nacional</td>
-                      				<td style="text-align: right;">399,90€</td>
+                      				<td style="text-align: right;">149,90€</td>
                       			</tr>
                       		</tbody>
                       	</table>
