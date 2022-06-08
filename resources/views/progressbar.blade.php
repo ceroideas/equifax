@@ -9,13 +9,13 @@
 
 /*progressbar*/
 #progressbar {
-	padding: 5px 0;
-  margin-bottom: 30px;
-  overflow: hidden;
-  /*CSS counters to number the steps*/
-  counter-reset: step;
-  width:100%;
-  text-align: center;
+    padding: 5px 0;
+    margin-bottom: -30px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+    width:100%;
+    text-align: center;
 }
 #progressbar li {
   list-style-type: none;
@@ -38,7 +38,7 @@
 /*progressbar icons*/
 #icons {
 	padding: 5px 0;
-  margin-bottom: 30px;
+  margin-bottom: -60px;
   overflow: hidden;
   /*CSS counters to number the steps*/
   counter-reset: step;
@@ -59,6 +59,34 @@
   background-color: #fff;
   color: #e65927;
   padding: 20px 0;
+
+  margin-right: -3%;
+}
+
+
+#optionbar {
+    padding: 5px 0;
+    margin-bottom: -30px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+    width:100%;
+    text-align: center;
+}
+#optionbar li {
+  list-style-type: none;
+  /*color: rgb(51, 51, 51);*/
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+  width: 22.4%;
+  float: left;
+  position: relative;
+
+  /*clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);*/
+  /*background-color: #f1f1f1;*/
+  color: #e65927;
+  padding: 1px 0;
 
   margin-right: -3%;
 }
@@ -100,8 +128,19 @@
   color: #fff;
   font-weight: bold;
 }
+
+#optionbar li.active {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  #iconos {
+    display: none;
+  }
+}
+
 </style>
-    <div class="steps">
+    <div class="steps" id="iconos">
         <ul id="icons">
             <li><img src="{{ url('landing/assets/progress1.png') }}" alt="Datos acreedor" ></li>
             <li><img src="{{ url('landing/assets/progress2.png') }}" alt="Datos deudor" ></li>
@@ -113,6 +152,16 @@
     </div>
     <div class="steps">
         <ul id="progressbar">
+            <li class="{{$step >= 1 ? 'active' : ''}}"></li>
+            <li class="{{$step >= 2 ? 'active' : ''}}"></li>
+            <li class="{{$step >= 3 ? 'active' : ''}}"></li>
+            <li class="{{$step >= 4 ? 'active' : ''}}"></li>
+            <li class="{{$step >= 5 ? 'active' : ''}}"></li>
+        </ul>
+    </div>
+
+    <div class="steps">
+        <ul id="optionbar">
             <li class="{{$step >= 1 ? 'active' : ''}}">Datos <br> Acreedor</li>
             <li class="{{$step >= 2 ? 'active' : ''}}">Datos <br> Deudor</li>
             <li class="{{$step >= 3 ? 'active' : ''}}">Datos <br> Deuda</li>
