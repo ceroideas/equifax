@@ -51,7 +51,7 @@ b {
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
 
-    <div class="modal-header" style="color: #111">Términos y Condiciones</div>
+    <div class="modal-header" style="color: #111"></div>
     <div class="modal-body">
       @include('terminos-condiciones')
     </div>
@@ -64,7 +64,7 @@ b {
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
 
-    <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
+    <div class="modal-header" style="color: #111"></div>
     <div class="modal-body">
       @include('terminos-contratacion')
     </div>

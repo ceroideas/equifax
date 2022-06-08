@@ -425,14 +425,79 @@
                 <li class="subtitulo"><p class="texto">Comunicar cualquier modificación del crédito reclamado por abono a <span class="dividae">Dividae</span>, ya sea total o parcial.</p></li>
                 <li class="subtitulo"><p class="texto">Conservar la documentación original de la reclamación mientras dure el procedimiento para poder aportarla en el Juzgado si así lo
                     requiere.</p></li>
-                <li class="subtitulo"><p class="texto">No revelar a terceros la contraseña introducida en <a class="dividae" href="{{url('/')}}">www.dividae.com</a>. </p></li>
+                <li class="subtitulo"><p class="texto">No revelar a terceros la contraseña introducida en <a class="dividae" href="{{url('/')}}">www.dividae.com</a>.</p></li>
             </ol>
 
+            <h3 class ="subtitulo">9. INDEMNIDAD Y LÍMITES DE RESPONSABILIDAD</h3>
+            <p class="texto">La veracidad de los datos y documentación que introduce el cliente en la web de <span class="dividae">Dividae</span> son bajo su responsabilidad, garantizando que
+                son ciertos, exactos y responden a la realidad, motivo por el cual Dividae dará por buena dicha información y documentación, no pudiendo responsabilizar a
+                <span class="dividae">Dividae</span> de los perjuicios que se pudieran causar.
+            </p>
+            <p class="texto">El cliente se compromete a mantener indemne a Dividae de cualquier reclamación, daño o perjuicio relacionado con la reclamación de la deuda sin carácter limitativo.</p>
+            <p class="texto">Dividae prestará sus servicios mediante los Letrados y/o Procuradores integrantes de la red de Dividae que:</p>
 
-<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
-justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span></b></p>
+            <ol class="texto" type="a">
+                <li class="subtitulo"><p class="texto">Estarán colegiados en el Colegio de Abogados y/o Procuradores habilitado a tal efecto, de conformidad con las normas que regulan el
+                    procedimiento de colegiación profesional que le permitan la correcta actuación ante Tribunales.</p></li>
+                <li class="subtitulo"><p class="texto">Quedan sometidos a lo pactado en el presente Contrato sobre cesión de venias en caso de reasignación de la representación a un tercero,
+                    así como en los casos de extinción y en lo relativo a la confidencialidad y protección de datos.</p></li>
+                <li class="subtitulo"><p class="texto">Desempeñarán su actividad profesional con escrupulosa observancia de las disposiciones de su Estatuto profesional, así como de las demás
+                    normas éticas y deontológicas de aplicación.</p></li>
+            </ol>
+            <p class="texto"><span class="dividae">Dividae</span> responde ante el CLIENTE por cualquier incidencia, irregularidad, negligencia o falta de diligencia cometida en la actuación de los
+                Letrados y/o Procuradores y otros colaboradores a su servicio o bajo su dependencia, reservándose el derecho a repercutir dichas responsabilidades contra los mismos, en su caso.</p>
 
-<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
-justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span></b></p>
+            <p class="texto">Las Partes acuerdan que la responsabilidad de <span class="dividae">Dividae</span>, sus Socios, empleados que hayan intervenido en el asunto y los Letrados y/o
+                Procuradores contratados quedará limitada a los daños y perjuicios directos, quedando expresamente excluida la reclamación de indemnización por lucro cesante, pérdida de beneficios
+                u oportunidad o daños indirectos</p>
 
-</div>
+            <p class="texto"><span class="dividae">Dividae</span> no garantiza la disponibilidad continua del funcionamiento del portal y no será responsable de la interrupción del servicio por
+                la caída temporal del servidor ni de las posibles omisiones, pérdidas de información, datos, configuraciones, accesos indebidos o vulneración de la confidencialidad que tengan
+                origen en problemas técnicos, de comunicaciones u omisiones humanas causadas por terceros o no imputables a <span class="dividae">Dividae</span> ni a los terceros que desarrollan
+                el trabajo. Asimismo, no se controla con carácter previo la ausencia de virus o elementos en los contenidos que puedan producir alteraciones en el software o hardware de los
+                clientes que visiten la página, por lo que Dividae tan solo será responsable de los daños y perjuicios que se ocasionen a los usuarios de la web y a los clientes según las
+                condiciones expuestas anteriormente y con el límite máximo de la cuantía reclamada en cada caso concreto.</p>
+
+                <h3 class ="subtitulo">10. MODIFICACIONES</h3>
+                <p class="texto"><span class="dividae">Dividae</span> se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su página web, pudiendo cambiar,
+                    suprimir o añadir tanto los contenidos y servicios que se presten a través de la misma como la forma en la que éstos aparezcan presentados. El hecho de usar esta página web
+                    implica que el usuario está de acuerdo con las Condiciones de Uso de <span class="dividae">Dividae</span> y se compromete a aceptar las modificaciones que puedan surgir así,
+                    cada vez que el USUARIO acceda deberá revisar atentamente las mismas. Para el caso de no aceptar estas condiciones, no puede reclamar ninguna deuda con <span class="dividae">Dividae</span>.</p>
+
+                <h3 class ="subtitulo">11. PROTECCIÓN DE DATOS</h3>
+                <p class="texto">El objetivo de la Política de Privacidad de <span class="dividae">Dividae</span> es cumplir la legislación vigente sobre protección de datos personales. A través de
+                    nuestra web <a class="dividae" href="{{url('/')}}">www.dividae.com</a> se recogen datos de carácter personal, necesarios para la gestión y mantenimiento de nuestros servicios.
+                    Los datos serán tratados y protegidos conforme a lo regulado en la Ley Orgánica de 15/1999, de 13 de diciembre de protección de datos de carácter personal y su normativa de
+                    desarrollo, con las medidas de seguridad que sean de aplicación según el Real Decreto 1720/2007 de 21 de diciembre de Protección de Datos de la Unión Europea (RGPD) de aplicación
+                    el 25 de mayo de 2018. La aceptación de las presentes condiciones de contratación implica la aceptación de la política de privacidad.</p>
+
+                <h3 class ="subtitulo">12. VULNERACIÓN DE LAS PRESENTES CONDICIONES DE CONTRATACIÓN</h3>
+                <p class="texto">En caso de que <span class="dividae">Dividae</span> sospeche que un usuario podría haber cometido un acto ilícito en relación con sus términos y condiciones del
+                    servicio, tiene el derecho de investigar el asunto y emprender acciones legales contra el autor, sin perjuicio de proceder a su baja inmediata.</p>
+
+                <h3 class ="subtitulo">13. TERMINACIÓN DEL CONTRATO Y RESOLUCIÓN POR INCUMPLIMIENTO</h3>
+                <p class="texto">Si se diera el caso de que alguna de las partes incumpliera cualquier cláusula descrita en el presente documento, deberá indemnizar a la otra por los daños y
+                    perjuicios ocasionados. </p>
+                <p class="texto">Una vez se haya extinguido la relación contractual entre las partes, <span class="dividae">Dividae</span> procederá a destruir los datos suministrados con la
+                    sola excepción de aquellos que le sirvan para fines estadísticos y de control. Los datos de naturaleza personal no se guardarán, pudiendo someterse dichos datos a un proceso
+                    de disociación. </p>
+                <p class="texto">De existir alguna discrepancia entre las partes, se intentará solucionar la controversia de forma amistosa previamente a acudir a los Tribunales. </p>
+
+                <h3 class ="subtitulo">14. RECLAMACIONES</h3>
+                <p class="texto">Todas las reclamaciones o disputas deberán ser enviadas vía mail a <a class="dividae" href="mailto:info@dividae.com">info@dividae.com</a>, asunto: “RECLAMACIÓN” o “INCIDENCIA”.</p>
+                <p class="texto">El usuario renuncia a todo tipo de reclamaciones contra <span class="dividae">Dividae</span> por los daños, pérdidas, gastos, lesiones sufridas, o sanciones que no sean consecuencia
+                    directa de los servicios ofertados por <span class="dividae">Dividae</span> a través de este sitio web.</p>
+
+                <h3 class ="subtitulo">15. LEGISLACIÓN APLICABLE Y JURISDICCIÓN</h3>
+                <p class="texto">Para la resolución de cualquier controversia que pudiera suscitarse en cuanto a la utilización y uso de la plataforma web o interpretación de las presentes condiciones de contratación,
+                    resultará de aplicación la legislación española vigente. Asimismo, el cliente se somete a la jurisdicción de los Juzgados y Tribunales de la ciudad de Madrid (España) con renuncia expresa a
+                    cualquier otro fuero que pudiera corresponderle. Si tiene alguna duda sobre la utilización de la información contenida en este portal web puede contactar con Dividae mediante el correo electrónico
+                    habilitado al efecto <a class="dividae" href="mailto:info@dividae.com">info@dividae.com</a>.</p>
+
+
+                <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+                justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span></b></p>
+
+                <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+                justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span></b></p>
+</body>
