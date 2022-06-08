@@ -67,7 +67,7 @@
 
         				<div class="col-sm-12">
 
-        					<h6><b style="color: #333">{{$act->subject}}</b> ({!! $act->actuation_date !!})</h6>
+        					<h6><b style="color: #333">{{$act->subject}}</b> ( {!! date('d/m/Y', strtotime($act->actuation_date)) !!} )</h6>
 
         					<p style="margin: 0">{{$act->description}}</p>
 
@@ -79,7 +79,8 @@
         					</p> --}}
 
         					@if ($act->amount)
-        						<b style="color: #333">Importe recuperado:</b> {{$act->amount}}€ <br>
+        						<b style="color: #333">Importe recuperado:</b> {{ number_format($act->amount, 2,',','.') }} € <br>
+
         						{{-- @if ($act->invoice)
         						<b>Importe a facturar:</b> {{$act->invoice->amount}}€ <br>
         						<b>Status de la factura:</b> {!!$act->invoice->status ? '<span class="text-success">Pagado</span>' : '<span class="text-info">Pendiente</span>'!!}

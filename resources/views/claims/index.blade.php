@@ -102,9 +102,9 @@
                     {{ $juzgado.'/'.$procurador }}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
-                    <td>{{ $claim->debt->pending_amount }}€</td>
-                    <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
-                    <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
+                    <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} €</td>
+                    <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} €</td>
+                    <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
                     <td>{{ $claim->getType() }}</td>
                     <td>{{ $claim->getHito() }}</td>
                     {{-- <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td> --}}
