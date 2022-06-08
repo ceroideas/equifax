@@ -51,10 +51,10 @@
                 <x-adminlte-input-slider min="{{ session('claim_debt.pending_amount')/2 }}" max="{{ session('claim_debt.pending_amount') }}" id="deudas_otros_input" name="quitas" placeholder="Quitas" type="text" class=""
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_agreement') ? session('claim_agreement')->take : ''}}" >
                     <x-slot name="prependSlot">
-                        <x-adminlte-button theme="Primary" label="{{number_format(session('claim_debt.pending_amount')/2, 2,',','.') }} €"/>
+                        <x-adminlte-button theme="Primary" label="{{ number_format(session('claim_debt.pending_amount')/2, 2,',','.') }} €"/>
                     </x-slot>
                     <x-slot name="appendSlot">
-                        <x-adminlte-button theme="Primary" label="{{number_format(session('claim_debt.pending_amount'), 2,',','.') }} €"/>
+                        <x-adminlte-button theme="Primary" label="{{ number_format(session('claim_debt.pending_amount'), 2,',','.') }} €"/>
                     </x-slot>
                 </x-adminlte-input-slider>
             </div>
