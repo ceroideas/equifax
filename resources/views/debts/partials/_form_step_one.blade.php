@@ -383,7 +383,7 @@
     });
 
     $('#tipo_deuda').on('change', function(){
-
+        console.log($(this).val());
         if($(this).val() == -1){
 
             $('#deuda_otros').find('label').html('Otro **')

@@ -897,9 +897,22 @@ class ClaimsController extends Controller
 
     public function checkDebtor(Request $r)
     {
-        if ($r->options == 1 || $r->concurso == 1) {
+/*
+        print_r("checkDebtor ");
+        var_dump($r->options); //Deuda no reclamable
+        print_r("concurso ");
+        var_dump($r->concurso); //Concurso de acreedores
+        print_r("Selector ");
+        var_dump($r->tipo_deuda); //Selector
+*/
+
+        //if ($r->options == 1 || $r->concurso == 1 || $r->tipo_deuda == 10 ) {
+        if ($r->concurso == 1 || $r->tipo_deuda == 10 ) {
+//dd("if reclamacion invalida");
+
             return redirect('claims/invalid-debtor');
         }
+//die("fin Reclamacion valida");
         return redirect('claims/select-debtor');
     }
 

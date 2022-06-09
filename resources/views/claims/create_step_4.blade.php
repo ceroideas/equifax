@@ -32,10 +32,11 @@
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
     <form action="{{url('claims/check_debtor')}}" method="POST">
         {{csrf_field()}}
-      <div class="row">
-          <div class="col-sm-12">
 
-              <span> <h1>¿Tu deuda pertenece a alguno de estos tipos?</h1></span>
+        <span> <h1>Selecciona el tipo de deuda</h1></span>
+{{--
+    <div class="row">
+          <div class="col-sm-12">
 
               @foreach (config('app.no_viables') as $no_viable)
 
@@ -56,6 +57,39 @@
 
           </div>
       </div>
+--}}
+      {{-- Select --}}
+
+      <div class="row">
+        <div class="col-sm-12">
+            <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true">
+
+                @foreach (config('app.deudas') as $key => $deuda)
+                    <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : '' }} value="{{$key}}">{{$deuda['deuda']}}</option>
+                @endforeach
+                <optgroup label=""></optgroup>
+                @foreach (config('app.no_viables') as $no_viable)
+                        <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : '' }} value="{{$key+1}}">{{$no_viable['deuda']}}</option>
+                @endforeach
+                <optgroup label="Otro **">
+                    <option value="-1">Especifique</option>
+                </optgroup>
+            </x-adminlte-select2>
+        </div>
+      </div>
+
+        {{-- Select Fin --}}
+
+        <div id="deuda_otros" class="row d-none">
+            <div class="col-sm-12">
+                <x-adminlte-input id="deudas_otros_input" name="deuda_extra" label="Otro **" placeholder="Otro" type="text" class=""
+                igroup-size="sm" enable-old-support="true">
+                </x-adminlte-input>
+            </div>
+        </div>
+
+        {{-- Texto otros --}}
+
       <div class="row">
         <div class="col-sm-12 text-center">
             <span> <h1>¿El deudor está en concurso de acreedores?</h1></span>
@@ -90,15 +124,43 @@
 <script>
 
    $('.question-button').on('click', function(){
-       console.log($(this).attr('href'));
+        console.log("Evalua");
+        console.log($(this).attr('href'));
         location.href = $(this).attr('href');
+
    });
 
    $('[name="options"],[name="concurso"]').on('change',function(){
 
-        if ($('[name="options"]:checked').length && $('[name="concurso"]:checked').length) {
+        //if ($('[name="options"]:checked').length && $('[name="concurso"]:checked').length) {
+        if ($('[name="concurso"]:checked').length) {
             $('.question-button').removeAttr('disabled');
         }
-   })
+        console.log("Preguntas");
+   });
+
+
+
+   $('#tipo_deuda').on('change', function(){
+        console.log($(this).val());
+    if($(this).val() == -1){
+
+        $('#deuda_otros').find('label').html('Otro **')
+        $('#deudas_otros_input').attr('placeholder', 'Indique el tipo de deuda');
+        $('#deuda_otros').removeClass('d-none');
+
+    }/*else if($(this).val() == 13){
+        // console.log($('#deudas_otros_input'));
+        $('#deuda_otros').find('label').html('Indique el motivo de la deuda *')
+        $('#deudas_otros_input').attr('placeholder', 'Ej: ¿Ha sido dudosa y voluntaria por parte del deudor?');
+        $('#deuda_otros').removeClass('d-none');
+
+    }*/
+    else{
+
+        $('#deuda_otros').addClass('d-none');
+    }
+        });
+
 </script>
 @stop
