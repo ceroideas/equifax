@@ -157,16 +157,22 @@
             <label for="customCheckbox0" class="custom-control-label"> Acepto recibir ofertas y novedades de Dividae</a></label>
         </div>
 
+
+
         <div class="custom-control custom-checkbox mb-3">
             <a data-toggle="modal" href="#terminos" style="color: #666">
             <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
-            <label for="customCheckbox1" class="custom-control-label"> Aceptar los Términos Y Condiciones de uso General Y Protección de Datos</label></a>
+            <label for="customCheckbox1" class="custom-control-label"> Aceptar los Términos y Condiciones de uso General y Protección de Datos</label></a>
             @error('tos')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
         </div>
+
+
+
+
         {{-- Register button --}}
         <div class="col-12 text-center">
 
@@ -212,27 +218,27 @@
     </form>
 
     <div class="modal fade" id="terminos" style="max-width: 100%;">
-<div class="modal-dialog modal-lg">
-  <div class="modal-content">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
 
-    <div class="modal-header" style="color: #111"></div>
-    <div class="modal-body">
+                <div class="modal-header" style="color: #111"></div>
+                <div class="modal-body">
 
-        <div style="height: 600px; overflow: auto;">
-          @include('terminos-condiciones')
+                    <div style="height: 600px; overflow: auto;">
+                        @include('terminos-condiciones')
 
-          {{-- <br>
+                        {{-- <br>
 
-          @include('terminos-contratacion') --}}
+                        @include('terminos-contratacion') --}}
 
-          <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button>
-          <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+                        <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button>
+                        <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+                    </div>
+                </div>
+                {{-- <div class="modal-footer"></div> --}}
+            </div>
         </div>
     </div>
-    {{-- <div class="modal-footer"></div> --}}
-  </div>
-</div>
-</div>
 @stop
 
 @section('bg-auth',url('landing/images/HP/Tienes dudas/edificio 2.jpg'))
