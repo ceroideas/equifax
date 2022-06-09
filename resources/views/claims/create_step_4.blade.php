@@ -32,10 +32,11 @@
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
     <form action="{{url('claims/check_debtor')}}" method="POST">
         {{csrf_field()}}
-      <div class="row">
-          <div class="col-sm-12">
 
-              <span> <h1>¿Tu deuda pertenece a alguno de estos tipos?</h1></span>
+        <span> <h1>Selecciona el tipo de deuda</h1></span>
+{{--
+    <div class="row">
+          <div class="col-sm-12">
 
               @foreach (config('app.no_viables') as $no_viable)
 
@@ -56,12 +57,12 @@
 
           </div>
       </div>
-
+--}}
       {{-- Select --}}
 
       <div class="row">
         <div class="col-sm-12">
-            <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" label="Selecciona el Tipo de Deuda *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true">
+            <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true">
 
                 @foreach (config('app.deudas') as $key => $deuda)
                     <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : '' }} value="{{$key}}">{{$deuda['deuda']}}</option>
@@ -131,7 +132,8 @@
 
    $('[name="options"],[name="concurso"]').on('change',function(){
 
-        if ($('[name="options"]:checked').length && $('[name="concurso"]:checked').length) {
+        //if ($('[name="options"]:checked').length && $('[name="concurso"]:checked').length) {
+        if ($('[name="concurso"]:checked').length) {
             $('.question-button').removeAttr('disabled');
         }
         console.log("Preguntas");
@@ -144,7 +146,7 @@
     if($(this).val() == -1){
 
         $('#deuda_otros').find('label').html('Otro **')
-        $('#deudas_otros_input').attr('placeholder', 'Indique la deuda');
+        $('#deudas_otros_input').attr('placeholder', 'Indique el tipo de deuda');
         $('#deuda_otros').removeClass('d-none');
 
     }/*else if($(this).val() == 13){
