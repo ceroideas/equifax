@@ -32,7 +32,7 @@
         'Cobros recibidos',
         'Importe pendiente de pago',
         ['label' => 'Tipo de Reclamación'],
-        ['label' => 'Estatus'],
+        ['label' => 'Status'],
         ['label' => 'Acciones','width' => 5],
     ];
 
