@@ -48,6 +48,7 @@
         <div class="card-header card-orange card-outline">
             <h3 class="card-title">Detalles de la Reclamación - {{ $claim->getStatus() }}</h3>
             <div class="card-tools">
+                <input type="button" class="btn-secondary" name="imprimir" value="Imprimir reclamaci&oacute;n" onclick="window.print();">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
                 </button>
