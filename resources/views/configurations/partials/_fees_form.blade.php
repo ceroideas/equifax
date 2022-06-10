@@ -128,7 +128,7 @@
                     </x-slot>
                 </x-adminlte-input>
             </div>
-            
+
         </div>
 
         <hr>
@@ -190,7 +190,7 @@
 
         <div class="card-footer">
             <div class="row">
-                <span class="float-left">(*) Los Campos marcados son requeridos.</span>
+                <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>

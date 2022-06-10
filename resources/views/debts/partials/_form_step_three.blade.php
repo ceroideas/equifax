@@ -131,7 +131,7 @@
         </div>
         <div class="card-footer">
             <div class="row">
-                <span class="float-left">(*) Los Campos marcados son requeridos.</span>
+                <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
             <div class="row">
                 <span class="float-left">(**) Documentación adicional que sea necesaria e importantes para el caso únicamente.</span>

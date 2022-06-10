@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item active">Facturas</li>
                 </ol>
             </div>
@@ -35,7 +35,7 @@
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
         $config = [
-           
+
             'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
@@ -52,7 +52,7 @@
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
         $config = [
-           
+
             'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];

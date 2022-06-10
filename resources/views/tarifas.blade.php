@@ -4,7 +4,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
-    
+
 
     <title>Dividae</title>
 
@@ -34,13 +34,14 @@
                             Tarifas
                         </span></a> <div data-v-5fddf304="" class="punto-active"></div></li> <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304="" href="{{url('/')}}/contacto" class="nav-link"><span data-v-5fddf304="" class="Type-something">
                             Contacto
-                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul> 
+                        </span></a> <div data-v-5fddf304="" class=""></div></li></ul>
                         @include('front.loginButtons')
                          <!----></div></div></nav> <div data-v-c7d18d50="" data-v-effc9f78="" class="container About"><div data-v-c7d18d50="" data-v-effc9f78="" class="row"><div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="About-title">¿Cuánto Cuesta?</div></div> <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12"><div data-v-c7d18d50="" data-v-effc9f78="" class="About-text">
 
                             </div></div></div></div> @include('followus')</div>
 
                             <div class="container text-center bottom-text">
+                                <br>
                               <p><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que no sepas, ser <b>100% transparentes</b> y que tu estés <b>100% tranquilo</b> durante todo el proceso. </p>
 
                               <p>
@@ -51,7 +52,7 @@
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78=""><div data-v-9cc878a2="" class="text-center card-tarifa container"><div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div> <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
 
                           <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                        
+
                       </div>
 
                             <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
@@ -73,12 +74,10 @@
 
                                 {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
                                 <p class="text-left">
-                                    Dividae trabaja de forma clara con las tarifas establecidas.
+                                    Comienza de manera amistosa con una tarifa única.
                                 </p>
-                                <p class="text-left">
-                                    Toda reclamación comienza de manera amistosa con una tarifa única.
-                                </p>
-                                </p>
+
+
                               </li>
 
                               </ul></div>
@@ -119,11 +118,7 @@
 
                                 {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
                                 <p class="text-left">
-                                    Dividae trabaja de forma clara con las tarifas establecidas.
-                                </p>
-                                <p class="text-left">
-                                    Toda reclamación comienza de manera amistosa con una tarifa única.
-                                </p>
+                                    Comienza en este momento con tu reclamación por vía judicial
                                 </p>
                               </li>
 
@@ -154,43 +149,43 @@
                           {{-- <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
                           <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-title">Explicación Gráfica</div></div> --}}
+                            <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
+                                    <ol>
+                                        <li>Regístrate de forma totalmente gratuita.</li>
+								        <li>Sube a la plataforma toda la información necesaria (Datos de la deuda, datos del deudor, factura…)</li>
+								        <li>Acto seguido a través del área de usuario, podrás saber si la reclamación es viable. </li>
+								        <li>Si es viable y tras tu confirmación, se pagará el importe para comenzar la reclamación extrajudicial: <b>19,90 euros.</b> </li>
+                         	        </ol>
+                                </div>
+                            </div>
 
-                          <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
+                                    <ol start="5">
+                                        <li>Si el  deudor se niega a abonar la cantidad, <b>Dividae</b> recomendará el <b>procedimiento judicial</b> con las siguientes tarifas que encontrarás a continuación, siempre con el consentimiento del cliente. 100% transparente!</li>
+                                        <li><b>Dividae</b> se encarga de la gestión del procedimiento y podrás ver en tiempo real el estado y evolución de la reclamación.  </li>
+                                  </ol>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <p style="font-size:150%; text-align: center; ">
+                                    <b>…¡Y ahora ya podrás decir que te han devuelto la factura que nunca te pagaron!</b>
+                                </p>
+                            </div>
 
-                            <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
 
-                         	<ol>
-								<li>Regístrate de forma totalmente gratuita.</li>		
-								<li>Sube a la plataforma toda la información necesaria (Datos de la deuda, datos del deudor, factura…)</li>		
-								<li>Acto seguido a través del área de usuario, podrás saber si la reclamación es viable. </li>		
-								<li>Si es viable y tras tu confirmación, se pagará el importe para comenzar la reclamación extrajudicial: <b>19,90 euros.</b> </li>		
-                         	</ol>
-                </div></div>
 
-                <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
-                  <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
-                  <ol>
-                    <li>Si el  deudor se niega a abonar la cantidad, <b>Dividae</b> recomendará el <b>procedimiento judicial</b> con las siguientes tarifas que encontrarás a continuación, siempre con el consentimiento del cliente. 100% transparente!</li>    
-                    <li><b>Dividae</b> se encarga de la gestión del procedimiento y podrás ver en tiempo real el estado y evolución de la reclamación.  </li>   
-                  </ol> 
-
-                  <p>
-                  <b>…Y ahora ya podrás decir, que te han devuelto la factura que nunca te pagaron!</b>
-                  </p>
-
-                  </div>
-                </div>
-
-              </div></div></div> 
+              </div></div></div>
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="" style="width: 98%;">
 
 
                 	<div class="row">
-                		
+
                 	  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                        
+
                       </div>
 
                       <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -233,7 +228,7 @@
                       	<p style="color:#051c2c">*Dividae cobrará un 15% sobre las cantidades recuperadas. </p>
 
                       	<p style="color:#051c2c">**Precio fijo que deberá abonarse por la cliente previa al inicio de cada procedimiento. </p>
-                        
+
                       </div>
 
                 	</div>

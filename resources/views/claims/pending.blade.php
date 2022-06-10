@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item active">Reclamaciones Finalizadas</li>
                 </ol>
             </div>
@@ -32,12 +32,12 @@
         'Cobros recibidos',
         'Importe pendiente de pago',
         ['label' => 'Tipo de Reclamación'],
-        ['label' => 'Hito'],
-        ['label' => 'Estatus','width' => 5],
+        ['label' => 'Estatus'],
+        ['label' => 'Acciones','width' => 5],
     ];
 
     $config = [
-       
+
         'columns' => [null, null, null, null, null, null, null, null, null, ['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
@@ -68,7 +68,7 @@
                     <td>{{ $claim->debt->document_number }}</td>
                     <td>
 
-                        @php                                        
+                        @php
                             $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
 
                             $juzgado = "--";
@@ -87,7 +87,7 @@
                                     }
                                 }
                             }
-                        @endphp 
+                        @endphp
 
                     {{ $juzgado.'/'.$procurador }}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>

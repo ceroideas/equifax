@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item active">Terceros Registrados</li>
                 </ol>
             </div>
@@ -22,7 +22,7 @@
 
 @section('content')
 {{-- Configuración del componente para el datatable --}}
-    
+
     @if(session()->has('claim_third_party') && session()->has('claim_third_party') == 'waiting')
     @include('progressbar', ['step' => 1])
     @endif
@@ -33,13 +33,13 @@
         'Nombre Completo',
         'Representante Legal',
         'DNI Representante',
-        
+
         // ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
 
     $config = [
-       
+
         'columns' => [null, null, null, null, ['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
@@ -73,7 +73,7 @@
                     <td>{{ $third_party->name }}</td>
                     <td>{{ $third_party->legal_representative }}</td>
                     <td>{{ $third_party->representative_dni }}</td>
-                    
+
                     {{-- <td>{{ $third_party->getStatus() }}</td> --}}
                     <td>
                      <nobr>

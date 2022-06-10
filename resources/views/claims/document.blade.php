@@ -35,7 +35,7 @@
         							{{$h[key($h)]['importe_factura']}} </div>
         						</div>
         						<div class="col-sm-6">
-        							<div class="form-group"><b>IVA:</b> <br>
+        							<div class="form-group"><b>Porcentaje de IVA:</b> <br>
         							{{$h[key($h)]['iva_factura']}} </div>
         						</div>
         					</div>
@@ -245,7 +245,7 @@
         							{{$h[key($h)]['importe_reconocimiento']}} </div>
         						</div>
         						<div class="col-sm-6">
-        							<div class="form-group"><b>IVA:</b> <br>
+        							<div class="form-group"><b>Porcentaje de IVA:</b> <br>
         							{{$h[key($h)]['iva_reconocimiento']}} </div>
         						</div>
         					</div>

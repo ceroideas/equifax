@@ -121,10 +121,12 @@
                 <br>
                 <br>
 
+                {{-- Iconos Google y Linkedin hasta que se tenga el api
                 <div class="text-center">
                     <img src="{{url('landing/300221.png')}}" alt="" style="width: 28px; margin: 8px">
                     <img src="{{url('landing/1377213.png')}}" alt="" style="width: 28px; margin: 8px">
                 </div>
+                --}}
                 <br>
             </div>
 
@@ -193,7 +195,7 @@
             console.log('statusChangeCallback');
             console.log(response);                   // The current login status of the person.
             if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-              testAPI();  
+              testAPI();
             } else {                                 // Not logged into your webpage or we are unable to tell.
               document.getElementById('status').innerHTML = 'Please log ' +
                 'into this webpage.';

@@ -4,7 +4,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
-    
+
 
     <title>Dividae</title>
 
@@ -891,7 +891,7 @@
   line-height: 1.5;
   letter-spacing: normal;
   text-align: center;
-  color: #254158;
+  color: #285ba3;
 }
 @media (min-width: 1280px) {
 .blockRecovery .Recovery-text[data-v-43503c2a] {
@@ -961,7 +961,7 @@
   background-color: #fff;
   /* @media (min-width: 1280px) {
       margin-left: 130px;
-      margin-right: 130px; 
+      margin-right: 130px;
   } */
   /* &-col1 {
       margin: 50px 0 50px;
@@ -1696,7 +1696,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   font-style: normal;
   line-height: 1.5;
   letter-spacing: normal;
-  color: #254158;
+  color: #285ba3;
 }
 @media (min-width: 768px) {
 .block-nosotros .Nosotros-text[data-v-c7d18d50] {
@@ -4110,7 +4110,7 @@ input:valid ~ .show-hide i {
   background-color: #fff;
   padding: 10px 20px 10px 20px;
   margin-bottom: 80px;
-  /* .table-striped>tbody>tr:nth-child(even)>td, 
+  /* .table-striped>tbody>tr:nth-child(even)>td,
     .table-striped>tbody>tr:nth-child(even)>th {
      background-color: #fff;//cambiar color
     }
@@ -4897,23 +4897,23 @@ a.more-link[data-v-167ae8c1] {
 				        </div>
 
 				        <div class="tabbable">
-				            	
+
 			            	<div class="tab-content">
-			            		
+
 			            		<div class="tab-pane fade show active" id="genericas" style="width: 100%;">
 			            			<div class="accordion" id="accordionExample">
 									  <div class="card">
 									    <div class="card-header" id="headingOne">
 									      <h2 class="mb-0">
 									        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-									          ¿Qué es Dividae y por qué surge?
+									          ¿Qué es <b>Dividae</b> y por qué surge?
 									        </button>
 									      </h2>
 									    </div>
 
 									    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 									      <div class="card-body">
-									        Dividae es una plataforma 100% digital que surge para dar una solución a la recuperación de facturas impagadas de forma sencilla, exitosa y transparente. Uno de nuestros objetivos es el democratizar este sector de una manera transparente y aportando valor.
+									        <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de facturas impagadas de forma sencilla, exitosa y transparente. Uno de nuestros objetivos es el democratizar este sector de una manera transparente y aportando valor.
 									      </div>
 									    </div>
 									  </div>
@@ -4927,7 +4927,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 									      <div class="card-body">
-									        Dividae está formado por un equipo de profesionales de más de 90 personas, abogados y procuradores con una amplia experiencia en el sector de recuperación de deuda.
+									        <b>Dividae</b> está formado por un equipo de profesionales de más de 90 personas, abogados y procuradores con una amplia experiencia en el sector de recuperación de deuda.
 									      </div>
 									    </div>
 									  </div>
@@ -4942,7 +4942,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 									      <div class="card-body">
-									        De forma muy sencilla. Regístrate de forma totalmente gratuita. Una vez registrado y subida toda la documentación requerida para comenzar con la reclamación, conocerás si la reclamación es viable. Si la reclamación es viable y solo tras tu aprobación, se pagará la tarifa para comenzar la reclamación amistosa: 19,90 euros. Dividae se encargará de mantenerte informado en todo momento y en tiempo real a través de la plataforma. 
+									        De forma muy sencilla. Regístrate de forma totalmente gratuita. Una vez registrado y subida toda la documentación requerida para comenzar con la reclamación, conocerás si la reclamación es viable. Si la reclamación es viable y solo tras tu aprobación, se pagará la tarifa para comenzar la reclamación amistosa: 19,90 euros. <b>Dividae</b> se encargará de mantenerte informado en todo momento y en tiempo real a través de la plataforma.
 									      </div>
 									    </div>
 									  </div>
@@ -5006,7 +5006,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
 									      <div class="card-body">
-									        Tanto si nos encontramos en la fase amistosa como si es en la fase judicial, Dividae te transferirá el importe correspondiente menos nuestros honorarios a la cuenta indicada en el área de usuario. 
+									        Tanto si nos encontramos en la fase amistosa como si es en la fase judicial, <b>Dividae</b> te transferirá el importe correspondiente menos nuestros honorarios a la cuenta indicada en el área de usuario.
 									      </div>
 									    </div>
 									  </div>
@@ -5015,13 +5015,13 @@ a.more-link[data-v-167ae8c1] {
 									    <div class="card-header" id="headingEight">
 									      <h2 class="mb-0">
 									        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-									          ¿Cuánto tardará en abonarse el dinero en mi cuenta? 
+									          ¿Cuánto tardará en abonarse el dinero en mi cuenta?
 									        </button>
 									      </h2>
 									    </div>
 									    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
 									      <div class="card-body">
-									        Entre 2-5 días hábiles. 
+									        Entre 2-5 días hábiles.
 									      </div>
 									    </div>
 									  </div>
@@ -5036,7 +5036,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
 									      <div class="card-body">
-									        Sí, deberás acreditar la representación para que podamos reclamar la deuda. No deberá registrarse de nuevo por cada empresa que represente, sino que al registrarse ya puede enviarnos la documentación e información de las facturas impagadas que quiera reclamar de la empresa que representa. 
+									        Sí, deberás acreditar la representación para que podamos reclamar la deuda. No deberá registrarse de nuevo por cada empresa que represente, sino que al registrarse ya puede enviarnos la documentación e información de las facturas impagadas que quiera reclamar de la empresa que representa.
 									      </div>
 									    </div>
 									  </div>
@@ -5057,7 +5057,7 @@ a.more-link[data-v-167ae8c1] {
 
 									    <div id="ecollapseOne" class="collapse show" aria-labelled-by="eheadingOne" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Dividae puede acumular las facturas impagadas de un mismo deudor en la misma demanda, por ello el cliente deberá aportar la información solicitada de cada una de las facturas que se quieren reclamar y anexarlas al mismo expediente sin necesidad de abrir uno nuevo. 
+									        <b>Dividae</b> puede acumular las facturas impagadas de un mismo deudor en la misma demanda, por ello el cliente deberá aportar la información solicitada de cada una de las facturas que se quieren reclamar y anexarlas al mismo expediente sin necesidad de abrir uno nuevo.
 									      </div>
 									    </div>
 									  </div>
@@ -5085,7 +5085,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="ecollapseThree" class="collapse" aria-labelledby="eheadingThree" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Si la reclamación amistosa no ha tenido éxito, se iniciará la reclamación de la demanda de monitorio, siempre y cuando el cliente lo solicite. 
+									        Si la reclamación amistosa no ha tenido éxito, se iniciará la reclamación de la demanda de monitorio, siempre y cuando el cliente lo solicite.
 									      </div>
 									    </div>
 									  </div>
@@ -5115,7 +5115,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="ecollapseFive" class="collapse" aria-labelledby="eheadingFive" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        En este caso, se termina el procedimiento. Dividae detraerá de dicha cantidad abonada por el deudor el correspondiente porcentaje pactado, emitiendo la correspondiente factura a favor del cliente y transfiriendo a su cuenta corriente el dinero remanente hasta el total cobrado del deudor. 
+									        En este caso, se termina el procedimiento. <b>Dividae</b> detraerá de dicha cantidad abonada por el deudor el correspondiente porcentaje pactado, emitiendo la correspondiente factura a favor del cliente y transfiriendo a su cuenta corriente el dinero remanente hasta el total cobrado del deudor.
 									      </div>
 									    </div>
 									  </div>
@@ -5124,13 +5124,13 @@ a.more-link[data-v-167ae8c1] {
 									    <div class="card-header" id="eheadingSix">
 									      <h2 class="mb-0">
 									        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#ecollapseSix" aria-expanded="false" aria-controls="ecollapseSix">
-									          ¿Cómo conoceré cada estado de la reclamación? 
+									          ¿Cómo conoceré cada estado de la reclamación?
 									        </button>
 									      </h2>
 									    </div>
 									    <div id="ecollapseSix" class="collapse" aria-labelledby="eheadingSix" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        El usuario podrá ver en tiempo real el estado de la reclamación en todo el momento a través de la web. 
+									        El usuario podrá ver en tiempo real el estado de la reclamación en todo el momento a través de la web.
 									      </div>
 									    </div>
 									  </div>
@@ -5145,7 +5145,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="ecollapseSeven" class="collapse" aria-labelledby="eheadingSeven" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Para poder presentar la demanda y actuar en su nombre, debemos acreditar en el Juzgado que somos su Abogado y Procurador. En la reclamación amistosa no es necesario el poder para pleitos, por ello solo se lo solicitaremos previamente a que iniciemos la reclamación judicial. Al otorgarnos el poder para pleitos, nos habilita para las posteriores reclamaciones que quiera hacer, es decir, tan sólo deberá hacerlo una vez. 
+									        Para poder presentar la demanda y actuar en su nombre, debemos acreditar en el Juzgado que somos su Abogado y Procurador. En la reclamación amistosa no es necesario el poder para pleitos, por ello solo se lo solicitaremos previamente a que iniciemos la reclamación judicial. Al otorgarnos el poder para pleitos, nos habilita para las posteriores reclamaciones que quiera hacer, es decir, tan sólo deberá hacerlo una vez.
 									      </div>
 									    </div>
 									  </div>
@@ -5160,7 +5160,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="ecollapseEight" class="collapse" aria-labelledby="eheadingEight" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Una tasa judicial tiene como finalidad sufragar el servicio prestado por la Administración de Justicia. Sin embargo, no se abona en todos los procedimientos, sino que tan sólo se deberá hacer frente a la misma si quien reclama es persona jurídica y la cantidad que solicitada es superior a 2.000€. Si quien reclama la deuda es una persona física, no deberá abonar tasa alguna ya que está exenta. 
+									        Una tasa judicial tiene como finalidad sufragar el servicio prestado por la Administración de Justicia. Sin embargo, no se abona en todos los procedimientos, sino que tan sólo se deberá hacer frente a la misma si quien reclama es persona jurídica y la cantidad que solicitada es superior a 2.000€. Si quien reclama la deuda es una persona física, no deberá abonar tasa alguna ya que está exenta.
 									      </div>
 									    </div>
 									  </div>
@@ -5175,7 +5175,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="ecollapseNine" class="collapse" aria-labelledby="eheadingNine" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        En estos casos, el equipo de DIVIDAE procederá a informarle de lo ocurrido y le planteará las diferentes estrategias y los siguientes pasos a seguir. 
+									        En estos casos, el equipo de <b>Dividae</b> procederá a informarle de lo ocurrido y le planteará las diferentes estrategias y los siguientes pasos a seguir.
 									      </div>
 									    </div>
 									  </div>
@@ -5190,7 +5190,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="ecollapseTen" class="collapse" aria-labelledby="eheadingTen" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Sí, en todo momento dispone de la posibilidad de cancelar la reclamación que nos haya hecho. Por nuestra parte presentaremos en el Juzgado el correspondiente escrito, informándole en todo momento de las posibles consecuencias que ello conlleva. 
+									        Sí, en todo momento dispone de la posibilidad de cancelar la reclamación que nos haya hecho. Por nuestra parte presentaremos en el Juzgado el correspondiente escrito, informándole en todo momento de las posibles consecuencias que ello conlleva.
 									      </div>
 									    </div>
 									  </div>
@@ -5205,7 +5205,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="ecollapseEleven" class="collapse" aria-labelledby="eheadingEleven" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Dividae intentará llegar a un acuerdo amistoso a través de su call center o vía email/carta certificada de conformidad con la quita y espera que haya iniciado el cliente. Estarás informado en todo momento de los avances a través de tu área personal. 
+									        <b>Dividae</b> intentará llegar a un acuerdo amistoso a través de su call center o vía email/carta certificada de conformidad con la quita y espera que haya iniciado el cliente. Estarás informado en todo momento de los avances a través de tu área personal.
 									      </div>
 									    </div>
 									  </div>
@@ -5220,7 +5220,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="ecollapseTwelve" class="collapse" aria-labelledby="eheadingTwelve" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Dividae podrá llegar a un acuerdo con el deudor teniendo en cuenta las quitas y esperas indicadas por el cliente. Se hará seguimiento de los pagos del deudor y en caso de que surgiera un impago, Dividae informará al cliente de las múltiples alternativas existentes para continuar con la reclamación hasta obtener la cantidad total adeudada. 
+									        <b>Dividae</b> podrá llegar a un acuerdo con el deudor teniendo en cuenta las quitas y esperas indicadas por el cliente. Se hará seguimiento de los pagos del deudor y en caso de que surgiera un impago, <b>Dividae</b> informará al cliente de las múltiples alternativas existentes para continuar con la reclamación hasta obtener la cantidad total adeudada.
 									      </div>
 									    </div>
 									  </div>
@@ -5235,7 +5235,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="ecollapseThirteen" class="collapse" aria-labelledby="eheadingThirteen" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        No dudes en contactarnos a través de nuestro Asistente Virtual o a través de nuestro email. ¡Estaremos encantados de ayudarte! 
+									        No dudes en contactarnos a través de nuestro Asistente Virtual o a través de nuestro email. ¡Estaremos encantados de ayudarte!
 									      </div>
 									    </div>
 									  </div>
@@ -5248,7 +5248,7 @@ a.more-link[data-v-167ae8c1] {
 				    </div>
 				</div>
 
-                
+
                 @include('footer')
             </div>
         </main>
@@ -5266,7 +5266,7 @@ a.more-link[data-v-167ae8c1] {
 @yield('extrajs')
 
     <script>
-    	
+
     	$('.Categoria-content').click(function (e) {
     		e.preventDefault();
 

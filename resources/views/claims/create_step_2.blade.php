@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item"><a href="{{url('/')}}/claims">Reclamaciones</a></li>
                     <li class="breadcrumb-item active">Nueva Reclamación</li>
                 </ol>
@@ -32,15 +32,15 @@
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <h1>¿El deudor ya está previamente registado?</h1></span>    
-        </div>          
+            <span> <h1>¿El deudor ya está previamente registado?</h1></span>
+        </div>
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('/debtors') }}">SI</button></span>    
-            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('/debtors/create') }}">NO</button></span> 
-            <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('claims/check-debtor') }}">VOLVER</button></span> 
-        </div>          
+            <span> <button class="btn btn-flat btn-success question-button" href="{{ url('/debtors') }}">SI</button></span>
+            <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('/debtors/create') }}">NO</button></span>
+            <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('claims/check-debtor') }}">VOLVER</button></span>
+        </div>
       </div>
    </x-adminlte-card>
 @stop

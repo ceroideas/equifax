@@ -266,7 +266,7 @@ return [
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
         [
-            'text' => 'Dashboard',
+            'text' => '&Aacute;rea personal',
             'url'  => 'panel',
             'icon' => 'fas fa-fw fa-tachometer-alt',
         ],
@@ -617,7 +617,7 @@ return [
     'iframe' => [
         'default_tab' => [
             'url' => '/admin/index',
-            'title' => 'Dashboard',
+            'title' => '&Aacute;rea personal',
         ],
         'buttons' => [
             'close' => true,

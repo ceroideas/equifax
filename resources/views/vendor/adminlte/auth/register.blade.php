@@ -117,7 +117,7 @@
         </div>
 
         <span>
-                
+
                 <div id="Length" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Mínimo 8 caracteres</label></div>
                 <div id="UpperCase" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Al menos 1 letra en mayus.</label></div>
                 <div id="LowerCase" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Al menos 1 letra en minus.</label></div>
@@ -169,7 +169,7 @@
         </div>
         {{-- Register button --}}
         <div class="col-12 text-center">
-            
+
             <button type=submit class="btn btn-block btn-acceder {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
                 {{-- <span class="fas fa-sign-in-alt"></span> --}}
                 {{ __('adminlte::adminlte.register') }}
@@ -182,10 +182,12 @@
             <br>
             <br>
 
+            {{-- Iconos Google y Linkedin hasta que se tenga el api
             <div class="text-center">
                 <img src="{{url('landing/300221.png')}}" alt="" style="width: 28px; margin: 8px">
                 <img src="{{url('landing/1377213.png')}}" alt="" style="width: 28px; margin: 8px">
             </div>
+            --}}
             <br>
 
         </div>
@@ -197,7 +199,7 @@
         <div class="col-12" style="padding: 0">
 
             <div style="text-align: center; padding: 6px 0">
-                <b>- O -</b> 
+                <b>- O -</b>
             </div>
 
             <button type=button class="btn btn-block btn-primary"
@@ -212,11 +214,11 @@
     <div class="modal fade" id="terminos" style="max-width: 100%;">
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
-    
+
     <div class="modal-header" style="color: #111">Términos y Condiciones</div>
     <div class="modal-body">
 
-        <div style="height: 600px; overflow: auto;">  
+        <div style="height: 600px; overflow: auto;">
           @include('terminos-condiciones')
 
           {{-- <br>
@@ -283,7 +285,7 @@
             console.log('statusChangeCallback');
             console.log(response);                   // The current login status of the person.
             if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-              testAPI();  
+              testAPI();
             } else {                                 // Not logged into your webpage or we are unable to tell.
               document.getElementById('status').innerHTML = 'Please log ' +
                 'into this webpage.';
@@ -339,11 +341,11 @@ function ValidatePassword() {
   /*Note the Ternary operators ? : to select the classes*/
   $("#Length").removeClass(password.length > 7 ? "fa-times" : "fa-check");
   $("#Length").addClass(password.length > 7 ? "fa-check" : "fa-times");
-  
+
   /*Iterate our remaining rules. The logic is the same as for Length*/
   for (var i = 0; i < rules.length; i++) {
 
-    $("#" + rules[i].Target).removeClass(new RegExp(rules[i].Pattern).test(password) ? "fa-times" : "fa-check"); 
+    $("#" + rules[i].Target).removeClass(new RegExp(rules[i].Pattern).test(password) ? "fa-times" : "fa-check");
     $("#" + rules[i].Target).addClass(new RegExp(rules[i].Pattern).test(password) ? "fa-check" : "fa-times");
   }
 }
