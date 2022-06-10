@@ -212,15 +212,18 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
                       				<td style="text-align: right;">69,90€</td>
                       			</tr>
                       			<tr>
-                      				<td>Juicios Verbales en ámbito nacional</td>
+                      				<td><span data-toggle="tooltip" data-placement="top" title=" Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o
+bien por la cuantía económica (cuantía menor a 6.000€), requieren una tramitación ágil.">Juicio Verbales</span> en ámbito nacional</td>
                       				<td style="text-align: right;">199,90€</td>
                       			</tr>
                       			<tr>
-                      				<td>Juicios Ordinarios en ámbito nacional</td>
+                      				<td><span data-toggle="tooltip" data-placement="top" title="Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o bien por la cuantía económica
+(cuantía mayor a 6.000€ o imposible de calcular). Es un procedimiento más largo que los descritos anteriormente.">Juicio Ordinarios</span> en ámbito nacional</td>
                       				<td style="text-align: right;">399,90€</td>
                       			</tr>
                       			<tr>
-                      				<td>Ejecución en ámbito nacional</td>
+                      				<td><span data-toggle="tooltip" data-placement="top" title="Es aquél por el que se pretende el cumplimiento de una resolución judicial dictada, de manera que es una manifestación
+del respeto al derecho a la tutela judicial efectiva cuando la parte contraria no cumple con lo indicado en la sentencia.">Ejecución</span> en ámbito nacional</td>
                       				<td style="text-align: right;">149,90€</td>
                       			</tr>
                       		</tbody>
