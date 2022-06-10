@@ -206,7 +206,9 @@
                       				<td style="text-align: right;">19,90€</td>
                       			</tr>
                       			<tr>
-                      				<td>Procedimiento Monitorio en ámbito nacional</td>
+                      				<td>Procedimiento <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">Monitorio</span>
+                                        en ámbito nacional.</td>
                       				<td style="text-align: right;">69,90€</td>
                       			</tr>
                       			<tr>

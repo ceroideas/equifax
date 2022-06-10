@@ -136,7 +136,7 @@
             <p class="texto">El presente documento regula el contrato de servicios formalizado entre el/la Cliente/a y <span class="dividae">Dividae</span> (RENTACARONE S.L.).
                 El/la Cliente debe incorporar sus propios datos, los del DEUDOR y los de la DEUDA en el sistema informático de <span class="dividae">Dividae</span>,
                 para que los profesionales que forman parte de <span class="dividae">Dividae</span> reclamen ante los Juzgados las cantidades debidas y sus correspondientes intereses.
-                Con dicha información, <span class="dividae">Dividae</span> también podrá negociar con el deudor teniendo en cuenta las quitas y esperas indicadas por el cliente.
+                Con dicha información, <span class="dividae">Dividae</span> también podrá negociar con el deudor teniendo en cuenta las <span data-toggle="tooltip" data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quitas</span> y <span data-toggle="tooltip" data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">esperas</span> indicadas por el cliente.
             </p>
 
             <h3 class ="subtitulo">2. CARACTERÍSTICAS DE LA RECLAMACIÓN</h3>
@@ -183,7 +183,7 @@
             <h5 class ="subtitulo">4.1 Gestión Amistosa de la deuda.</h5>
             <p class="texto">Una vez el cliente haya introducido toda la información y documentación requerida por el sistema y la reclamación sea viable, el cliente deberá abonar nuestros honorarios
                 para que <span class="dividae">Dividae</span> inicie las gestiones de reclamación extrajudicial de la deuda. Tras haber recibido dicho pago por parte del cliente, <span class="dividae">Dividae</span>
-                intentará llegar a un acuerdo amistoso a través de su call center o vía e-mail de conformidad con la quita y espera que haya indicado el cliente. Se habilitarán una serie de campos en el
+                intentará llegar a un acuerdo amistoso a través de su call center o vía e-mail de conformidad con la <span data-toggle="tooltip" data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quita</span> y <span data-toggle="tooltip" data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span> que haya indicado el cliente. Se habilitarán una serie de campos en el
                 apartado de “INFORMACIÓN Y DOCUMENTACIÓN DE LA DEUDA” para que el cliente indique los parámetros en los que está dispuesto aceptar un acuerdo.
             </p>
 
@@ -235,10 +235,15 @@
                 <li class="subtitulo"><p class="texto">Tras la recepción de la autorización para apoderamiento apud acta electrónico firmado y el abono de la tasa (si fuera necesaria) por parte del cliente, éste
                     deberá abonar los honorarios descritos en la cláusula 7ª del presente documento. Siempre y cuando el cliente no haya abonado los honorarios, la situación del expediente
                     quedará detallada en la web como “A LA ESPERA DE ABONO HONORARIOS”.</p></li>
-                <li class="subtitulo"><p class="texto">Una vez el cliente haya cumplido todos los anteriores requisitos, <span class="dividae">Dividae</span> presentará la petición inicial del Proceso Monitorio
-                    ante el Juzgado que corresponda, siempre en territorio nacional español. <span class="dividae">Dividae</span> informará al cliente en todo momento de la fase en la que se
-                    encuentra la reclamación judicial. Los servicios de <span class="dividae">Dividae</span> podrán comprender la tramitación completa del procedimiento monitorio, la posible
-                    conversión en juicio verbal u ordinario o en su caso la presentación de la demanda de ejecución, siempre que el CLIENTE, previa autorización, abone los honorarios correspondientes</p></li>
+                <li class="subtitulo"><p class="texto">Una vez el cliente haya cumplido todos los anteriores requisitos, <span class="dividae">Dividae</span> presentará la petición inicial del Proceso
+                    <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">Monitorio</span> ante el Juzgado que corresponda, siempre en territorio nacional español.
+                    <span class="dividae">Dividae</span> informará al cliente en todo momento de la fase en la que se encuentra la reclamación judicial. Los servicios de
+                    <span class="dividae">Dividae</span> podrán comprender la tramitación completa del procedimiento
+                    <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>, la posible conversión en <span data-toggle="tooltip" data-placement="top" title=" Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o
+bien por la cuantía económica (cuantía menor a 6.000€), requieren una tramitación ágil.">Juicio Verbal</span> u ordinario o en su
+                    caso la presentación de la demanda de ejecución, siempre que el CLIENTE, previa autorización, abone los honorarios correspondientes</p></li>
             </ol>
 
             <h5 class ="subtitulo">5.3 Supuestos dentro del Proceso.</h5>
@@ -249,9 +254,14 @@
                     introducir los datos del deudor. Si fuera necesario, <span class="dividae">Dividae</span> solicitará la pertinente averiguación domiciliaria para conocer el nuevo paradero
                     del deudor si la localización facilitada por el cliente no fuese correcta. Si tras sendos intentos por conocer las nuevas señas del deudor no se consigue saber o es en otro
                     partido judicial, la demanda presentada será inadmitida por no localizar al deudor o por incompetencia territorial.</p>
-                    <p class="texto">En el supuesto caso de que el procedimiento monitorio se inadmitiera sea cual fuere la causa, ello no implica modificación ni descuento alguno en los precios
+                    <p class="texto">En el supuesto caso de que el procedimiento
+                        <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>
+                        se inadmitiera sea cual fuere la causa, ello no implica modificación ni descuento alguno en los precios
                         establecidos, no pudiendo reclamar cantidad alguna a <span class="dividae">Dividae</span>. El cliente si lo desea, deberá solicitar de nuevo la reclamación de la deuda.
-                        Para ello, <span class="dividae">Dividae</span> comunicará al CLIENTE la posibilidad de interponer nueva demanda de monitorio, debiendo iniciar el proceso según se expone
+                        Para ello, <span class="dividae">Dividae</span> comunicará al CLIENTE la posibilidad de interponer nueva demanda de
+                        <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>, debiendo iniciar el proceso según se expone
                         en el punto 5.1 del presente.
                     </p>
                 </li>
@@ -268,12 +278,14 @@
                     </p>
                 </li>
                 <li class="subtitulo"><p class="texto"><b>Falta de oposición o de pago por parte del deudor tras la notificación positiva de la demanda.</b> Si se diera el caso de que el deudor no se
-                    opusiera a la demanda ni tampoco abonara la cantidad que se le reclama y el Juzgado dicte Decreto fin de monitorio, se comunicará al cliente, debiendo este proceder según se dispone:</p>
+                    opusiera a la demanda ni tampoco abonara la cantidad que se le reclama y el Juzgado dicte Decreto fin de <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+                    Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>, se comunicará al cliente, debiendo este proceder según se dispone:</p>
                 </li>
                 <ul class="texto">
                     <li>“Quiero continuar con la reclamación”: Si el cliente indicara esta opción, el CLIENTE deberá abonar el importe expuesto en el punto 7 para las Demandas de Ejecución.
                         <span class="dividae">Dividae</span> emitirá la correspondiente factura en concepto de honorarios e iniciará los trámites de ejecución del decreto que ha puesto fin al
-                        procedimiento monitorio.
+                        procedimiento <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>.
                     </li>
                     <li>“No quiero continuar con la reclamación”: Si el cliente indicara esta opción, la web habilitará un campo para que el cliente pueda justificar el motivo por el cual no
                         desea continuar. Una vez <span class="dividae">Dividae</span> presente el escrito informando de los motivos de la no continuación con la reclamación, finalizará el
@@ -290,17 +302,24 @@
                 </ul>
 
                 <li class="subtitulo"><p class="texto"><b>Oposición del deudor a la demanda presentada.</b> En el supuesto caso de que el deudor se oponga a nuestra demanda, el Juzgado dictará
-                    resolución, dando por finalizando el Proceso Monitorio, convirtiéndose en un procedimiento verbal u ordinario dependiendo de la cantidad que se reclame. En el momento en que el
-                    Proceso Monitorio se da por finalizado, los servicios contratados por el cliente terminarán, ya que lo abonado hasta el momento tan solo abarca hasta la consecución del
-                    Proceso Monitorio. </p>
+                    resolución, dando por finalizando el Proceso <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>, convirtiéndose en un procedimiento verbal u ordinario dependiendo de la cantidad que se reclame. En el momento en que el
+                    Proceso <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span> se da por finalizado, los servicios contratados por el cliente terminarán, ya que lo abonado hasta el momento tan solo abarca hasta la consecución del
+                    Proceso <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>. </p>
                     <p class="texto">Es en este momento en el que el cliente debe indicar dentro del plazo que se le haya otorgado si solicita continuar con la reclamación judicial, debiendo abonar nuestros
                         honorarios. Una vez tengamos constancia de que ha aceptado continuar con la reclamación judicial y ha abonado los honorarios, <span class="dividae">Dividae</span> presentará
                         el correspondiente escrito de impugnación a la oposición formulada o presentará demanda de procedimiento ordinario, según correspondiera.</p>
                 </li>
 
-                <li class="subtitulo"><p class="texto"><b>Conversión en Juicio Verbal o Juicio Ordinario.</b> Dividae representará y defenderá al cliente en el procedimiento de juicio verbal u
-                    ordinario hasta sentencia siempre y cuando el cliente haya aceptado continuar con la reclamación judicial dentro del plazo que se le haya otorgado tras conocer la oposición a la
-                    demanda presentada de contrario y haya abonado nuestros honorarios. Si el cliente no responde en el plazo otorgado para ello, se advierte que puede ser condenado en costas
+                <li class="subtitulo"><p class="texto"><b>Conversión en <span data-toggle="tooltip" data-placement="top" title=" Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o
+                    bien por la cuantía económica (cuantía menor a 6.000€), requieren una tramitación ágil.">Juicio verbal</span> o <span data-toggle="tooltip" data-placement="top" title="Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o bien por la cuantía económica
+(cuantía mayor a 6.000€ o imposible de calcular). Es un procedimiento más largo que los descritos anteriormente.">Juicio Ordinario</span>.</b> Dividae representará y defenderá al cliente en el procedimiento de
+                    <span data-toggle="tooltip" data-placement="top" title=" Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o
+bien por la cuantía económica (cuantía menor a 6.000€), requieren una tramitación ágil.">Juicio verbal</span> u ordinario hasta sentencia siempre y cuando el cliente haya aceptado continuar con la reclamación judicial
+                    dentro del plazo que se le haya otorgado tras conocer la oposición a la demanda presentada de contrario y haya abonado nuestros honorarios.
+                    Si el cliente no responde en el plazo otorgado para ello, se advierte que puede ser condenado en costas
                     excluyendo de cualquier responsabilidad o consecuencia derivada de ello a <span class="dividae">Dividae</span>.</p>
                     <p class="texto"><span class="dividae">Dividae</span> podrá reclamar al Cliente documentación adicional para la defensa de sus intereses. Además, el Cliente se compromete a colaborar en
                         caso de tenerse que solicitar su declaración judicial y/o de terceros propuestos por <span class="dividae">Dividae</span> para la consecución exitosa de la reclamación
@@ -308,7 +327,10 @@
                     </p>
                 </li>
 
-                <li class="subtitulo"><p class="texto"><b>Ejecución del decreto que pone fin al procedimiento monitorio.</b> <span class="dividae">Dividae</span> presentará la correspondiente
+                <li class="subtitulo"><p class="texto"><b>Ejecución del decreto que pone fin al procedimiento
+                    <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>
+                    .</b> <span class="dividae">Dividae</span> presentará la correspondiente
                     demanda de ejecución siempre y cuando el cliente haya aceptado continuar con la reclamación judicial y haya abonado nuestros honorarios. Los pagos que realice el deudor en la
                     cuenta de consignaciones del Juzgado se transferirán a la cuenta bancaria titularidad de <span class="dividae">Dividae</span>, ya sea por transferencia del Juzgado o por
                     mandamiento de devolución. Llegado ese momento, <span class="dividae">Dividae</span> detraerá de dichas cantidades consignadas por el deudor el porcentaje establecido en el
@@ -322,12 +344,13 @@
             <p class="texto"><span class="dividae">Dividae</span> informará al cliente de las posibles consecuencias que conllevaría no continuar con la reclamación judicial y, si finalmente se imponen
                 las costas al cliente por cualesquiera sean las razones, el cliente se hará cargo íntegramente del abono de las mismas.</p>
             <p class="texto">Si el cliente ha abonado la tasa judicial o un depósito y desiste de la acción antes de que <span class="dividae">Dividae</span> haya presentado la correspondiente
-                demanda o recurso que lleva aparejada dicha tasa o deposito, se le devolverá la misma. Este es el único supuesto en el que se procederá a devolver cantidades al cliente cuando
+                demanda o recurso que lleva aparejada dicha tasa o <span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósito</span>, se le devolverá la misma. Este es el único supuesto en el que se procederá a devolver cantidades al cliente cuando
                 desista de la acción.</p>
 
             <h5 class ="subtitulo">5.5 Oferta de Acuerdo de Pago del Deudor.</h5>
             <p class="texto">En los supuestos en los que el deudor quiera llegar a un acuerdo, <span class="dividae">Dividae</span> informará al cliente de la propuesta recibida para que decida si la
-                acepta, no la acepta o si quiere proponer un acuerdo diferente al deudor. Debido a que <span class="dividae">Dividae</span> tiene constancia de las quitas y esperas indicadas por el
+                acepta, no la acepta o si quiere proponer un acuerdo diferente al deudor. Debido a que <span class="dividae">Dividae</span> tiene constancia de las <span data-toggle="tooltip" data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quitas</span> y <span data-toggle="tooltip" data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">esperas</span> indicadas por el
                 cliente, si éste autoriza a <span class="dividae">Dividae</span>, procederá a negociar con el deudor en las condiciones detalladas por el cliente. Tanto la negociación con el deudor
                 como la posible homologación del acuerdo, no tiene coste alguno para el cliente. Llegado el momento, <span class="dividae">Dividae</span> informará al cliente de la posibilidad de
                 ejecutar el acuerdo homologado judicialmente o aquellos que hayan sido elevados a público ante Notario si el deudor no cumple con lo acordado. La presentación de la correspondiente
@@ -375,34 +398,44 @@
 
             <p class="texto">La Homologación de un acuerdo solicitado por el cliente no supondrá ningún coste adicional siempre y cuando se haya iniciado el procedimiento judicial ya que se
                 encuentra contemplado dentro del precio establecido para cada fase del procedimiento. </p>
-            <p class="texto">La tasa tan solo deberá abonarse en el procedimiento monitorio si quien reclama la deuda es una persona jurídica y la cantidad a reclamar es superior a 2.000€.
-                El importe de las tasas son las siguientes:</p>
+            <p class="texto">La tasa tan solo deberá abonarse en el procedimiento
+                <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>
+                 si quien reclama la deuda es una persona jurídica y la cantidad a reclamar es superior a 2.000€.
+                El importe de las <span data-toggle="tooltip" data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span> son las siguientes:</p>
 
             <img src="{{ url('landing/assets/condiciones-tasas.png') }}" alt="Tarifa de precios" >
 
             <p class="texto">En el supuesto caso de que el cliente solicite que se presente un recurso a cualquier resolución o <span class="dividae">Dividae</span> asesore sobre su
                 presentación, la redacción e interposición de cualquier recurso no está comprendido en los precios y porcentajes anteriormente citados. Del mismo modo, las correspondientes
-                tasas o depósitos que deban abonarse tampoco se incluye en dichos precios y porcentajes. Llegado el momento, <span class="dividae">Dividae</span> indicará al cliente la
+                <span data-toggle="tooltip" data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span> o <span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+                temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span> que deban abonarse tampoco se incluye en dichos precios y porcentajes. Llegado el momento, <span class="dividae">Dividae</span> indicará al cliente la
                 resolución que se haya notificado, si es susceptible de recurso y la recomendación de los abogados que forman parte del equipo. Además, se le informará al cliente que
-                la decisión está supeditada a un plazo determinado, así como de los honorarios y tasas/depósitos que se deba abonar. Si en dicho plazo que se le concede al cliente para
+                la decisión está supeditada a un plazo determinado, así como de los honorarios y <span data-toggle="tooltip" data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>/<span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+                temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span> que se deba abonar. Si en dicho plazo que se le concede al cliente para
                 tomar la decisión éste no responde, se entenderá que no está interesado en la interposición del recurso. El precio por la interposición y presentación de cualquier recurso,
                 el cliente deberá abonar a <span class="dividae">Dividae</span> la cantidad de CIENTO OCHENTA Y UN EUROS CON CINCUENTA CÉNTIMOS (181,50€) IVA incluido, además del
-                correspondiente depósito. </p>
+                correspondiente <span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+                temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósito</span>. </p>
             <p class="texto">Si es la parte contraria quien presenta el recurso y nosotros debemos oponernos al mismo, <span class="dividae">Dividae</span> indicará al cliente dicho
                 aspecto para que en el plazo concedido por el Juzgado responda cómo proceder. Si en dicho plazo que se le concede al cliente para tomar la decisión éste no responde,
                 se entenderá que no está interesado en la presentación de la oposición al recurso presentado de contrario, siendo él el único responsable de las consecuencias que deriven
                 de dicha decisión, incluida la posible condena en costas. El precio que deberá abonar el cliente a <span class="dividae">Dividae</span> por la presentación del escrito de
                 oposición al recurso presentado de contrario es CIENTO OCHENTA Y UN EUROS CON CINCUENTA CÉNTIMOS (181,50€) IVA incluido. </p>
-            <p class="texto">En cuanto a los depósitos para recurrir, el cliente deberá hacerse cargo del abono de las mismas. En función del recurso que se trate la cantidad será
+            <p class="texto">En cuanto a los <span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+                temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span> para recurrir, el cliente deberá hacerse cargo del abono de las mismas. En función del recurso que se trate la cantidad será
                 diferente: </p>
 
             <img src="{{ url('landing/assets/condiciones-depositos.png') }}" alt="Tarifa de precios" >
             <p class="texto">En la plataforma se indican las diferentes formas de pago por las que el cliente puede abonar los honorarios, el porcentaje de las cantidades recobradas y
-                las tasas/depósitos. Tanto para abonar el precio fijo pactado como para abonar el pago correspondiente a las cantidades recobradas, <span class="dividae">Dividae</span>
+                las <span data-toggle="tooltip" data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>/<span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+                temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span>. Tanto para abonar el precio fijo pactado como para abonar el pago correspondiente a las cantidades recobradas, <span class="dividae">Dividae</span>
                 emitirá una factura por dicha cantidad fija y otra por la resultante de aplicar el 15% a la cantidad recuperada. La factura se remitirá por mail al cliente y se anexará
                 en la plataforma en el apartado de “ÁREA DE USUARIO”. </p>
-            <p class="texto">Si el importe de las tasas, impuestos o depósitos varía, tanto si son al alza o a la baja, serán repercutidas al cliente. De resultar estimado el recurso
-                presentado, se le devolverá el depósito al cliente.</p>
+            <p class="texto">Si el importe de las <span data-toggle="tooltip" data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>, impuestos o <span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+                temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span> varía, tanto si son al alza o a la baja, serán repercutidas al cliente. De resultar estimado el recurso
+                presentado, se le devolverá el <span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+                temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósito</span> al cliente.</p>
             <p class="texto">Los anteriores precios y porcentajes indicados podrán variar, por lo que el cliente debe revisar las condiciones generales de a contratación y el presente
                 documento antes de solicitar la reclamación de una deuda.</p>
             <p class="texto">Los gastos que deriven de los procedimientos como por ejemplo de Notarios, Registradores, Peritos, comunicaciones postales, burofaxes, certimails o cualquier
