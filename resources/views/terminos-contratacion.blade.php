@@ -164,7 +164,8 @@
             <p class="texto">Para que el equipo de <span class="dividae">Dividae</span> pueda reclamar la deuda, el cliente deberá introducir en la web  <a class="dividae" href="{{url('/')}}">www.dividae.com</a>
                 sus datos personales, además de los datos de la deuda y los del deudor. Una vez haya introducido el cliente sus datos personales, <span class="dividae">Dividae</span> remitirá
                 un correo electrónico a la dirección de e-mail que haya introducido para la verificación de la cuenta. La veracidad de los datos tanto de la deuda como del deudor
-                introducidos por el cliente son bajo su responsabilidad, garantizando que son ciertos, exactos y responden a la realidad.
+                introducidos por el cliente son bajo su responsabilidad, garantizando que son ciertos, exactos y responden a la realidad. En el supuesto caso de que el CLIENTE represente a
+                un tercero, será responsable de recabar de su representado las autorizaciones pertinentes para reclamar en su nombre.
             </p>
 
             <p class="texto">Tras introducir sus propios datos personales, el cliente deberá aceptar tanto las Políticas de Uso como las Condiciones de Contratación. El cliente dispondrá en todo
@@ -228,7 +229,7 @@
                     <span class="dividae">Dividae</span> no podrá iniciar la reclamación judicial de la deuda. Durante el tiempo que el cliente no haya firmado la autorización, la situación del
                     expediente quedará detallada en la web como “A LA ESPERA DE FIRMA APODERAMIENTO APUD ACTA”.</p></li>
                 <li class="subtitulo"><p class="texto">Una vez que el cliente haya firmado la autorización para apoderamiento apud acta electrónico, deberá abonar la tasa judicial si fuera necesaria (siempre que el
-                    cliente y/o acreedor sea persona jurídica y el importe de la deuda a reclamar sea superior a 2.000€). El impago de la tasa judicial comportaría la inadmisión de la demanda,
+                    cliente y/o acreedor sea persona jurídica y el importe de la deuda a reclamar es superior a 2.000€). El impago de la tasa judicial comportaría la inadmisión de la demanda,
                     por lo que hasta que el cliente no abone la tasa la situación del expediente quedará detallada en la web como “A LA ESPERA DE ABONO TASA”, situación que se prolongará máxime
                     hasta 3 meses desde que se le requiera al cliente el abono de la misma. </p></li>
                 <li class="subtitulo"><p class="texto">Tras la recepción de la autorización para apoderamiento apud acta electrónico firmado y el abono de la tasa (si fuera necesaria) por parte del cliente, éste
@@ -258,6 +259,9 @@
                     debido en la cuenta de consignaciones del Juzgado, éste transferirá las cantidades consignadas a la cuenta titular de <span class="dividae">Dividae</span> o emitirá el
                     correspondiente mandamiento de pago. Dividae detraerá de dichas cantidades abonadas por el deudor el porcentaje indicado en el punto 7 del presente, emitiendo la correspondiente
                     factura a favor del cliente y transfiriendo a su cuenta corriente el dinero remanente hasta el total cobrado del deudor.</p>
+                    <p class="texto">El cliente se compromete a informar a DIVIDAE del pago, ya sea parcial o total, por parte del deudor o el juzgado en su propia cuenta, en metálico o por
+                        cualquier otro medio, a fin de que DIVIDAE detraiga los importes objeto de reclamación o cierre el expediente en caso de cumplirse el total pago de la deuda.
+                    </p>
                     <p class="texto">En el momento en que <span class="dividae">Dividae</span>. tenga conocimiento de dicho abono por parte del deudor, remitirá al cliente una factura por el
                         porcentaje de las cantidades recuperadas en concepto de honorarios. El cliente deberá abonar la factura emitida por Dividae y en el supuesto caso de que la misma no sea
                         atendida, Dividae se reserva las acciones legales que estime pertinentes para el cobro de la factura.
@@ -342,7 +346,7 @@
                 cantidades recuperadas en concepto de honorarios. El cliente deberá abonar la factura emitida por <span class="dividae">Dividae</span> y en el supuesto caso de que la misma no sea
                 atendida, <span class="dividae">Dividae</span> se reserva las acciones legales que estime pertinentes para el cobro de la factura. </p>
 
-            <h3 class ="subtitulo">6. GESTIÓN JUDICIAL DE LA DEUDA</h3>
+            <h3 class ="subtitulo">6. DURACIÓN Y TERRITORIO</h3>
             <p class="texto">El inicio de los servicios entre el cliente y <span class="dividae">Dividae</span> entrará en vigor a partir de que el cliente cumpla con todos los requisitos que la
                 web le indique, haya abonado los honorarios y <span class="dividae">Dividae</span> acepte la reclamación de la deuda, tal y como se ha descrito en el presente documento. Por cada
                 reclamación de deuda se inicia un nuevo contrato entre las partes. La duración de cada contrato es hasta que las actuaciones jurídicas propias del procedimiento lleguen a su fin,
@@ -352,7 +356,7 @@
             <p class="texto"><span class="dividae">Dividae</span> se reserva el derecho de dar por finalizada la reclamación una vez transcurra el plazo indicado de 4 años.</p>
             <p class="texto">El contrato celebrado entre las partes tan sólo tiene vigencia en el territorio español.</p>
 
-            <h3 class ="subtitulo">7. GESTIÓN JUDICIAL DE LA DEUDA</h3>
+            <h3 class ="subtitulo">7. PRECIOS Y FORMA DE PAGO</h3>
             <p class="texto"><span class="dividae">Dividae</span> establece los siguientes criterios de pago en función de la situación en la que se encuentre el procedimiento. En todo momento los
                 honorarios de <span class="dividae">Dividae</span> serán una cantidad fija y un porcentaje de la cantidad final recuperada, todo ello con el correspondiente IVA. El porcentaje de la
                 cantidad final recuperada se cobrará por <span class="dividae">Dividae</span> indistintamente si el deudor ha abonado dichos importes en la cuenta de consignaciones del Juzgado,
@@ -378,8 +382,8 @@
 
             <p class="texto">En el supuesto caso de que el cliente solicite que se presente un recurso a cualquier resolución o <span class="dividae">Dividae</span> asesore sobre su
                 presentación, la redacción e interposición de cualquier recurso no está comprendido en los precios y porcentajes anteriormente citados. Del mismo modo, las correspondientes
-                tasas o depósitos que deban abonarse tampoco se incluyen en dichos precios y porcentajes. Llegado el momento, <span class="dividae">Dividae</span> indicará al cliente la
-                resolución que se haya notificado, si es susceptible de recurso y la recomendación de los abogados que forman parte del equipo. Además, se le informará al cliente de que
+                tasas o depósitos que deban abonarse tampoco se incluye en dichos precios y porcentajes. Llegado el momento, <span class="dividae">Dividae</span> indicará al cliente la
+                resolución que se haya notificado, si es susceptible de recurso y la recomendación de los abogados que forman parte del equipo. Además, se le informará al cliente que
                 la decisión está supeditada a un plazo determinado, así como de los honorarios y tasas/depósitos que se deba abonar. Si en dicho plazo que se le concede al cliente para
                 tomar la decisión éste no responde, se entenderá que no está interesado en la interposición del recurso. El precio por la interposición y presentación de cualquier recurso,
                 el cliente deberá abonar a <span class="dividae">Dividae</span> la cantidad de CIENTO OCHENTA Y UN EUROS CON CINCUENTA CÉNTIMOS (181,50€) IVA incluido, además del
@@ -408,7 +412,7 @@
                 cometida por los letrados y/o procuradores que designe para el desarrollo y ejecución de los servicios lo pactados en esta Carta de Encargo.</p>
             <p class="texto">En caso de que haya condena en costas favorable al CLIENTE o acuerdo en el que se le reconozca el derecho a percibir dichas costas, <span class="dividae">Dividae</span>
                 tendrá derecho al cobro de las costas que en concepto de honorarios de procurador y/o letrado sean abonadas por el/los obligado/s al pago de la deuda reclamada, previa
-                devolución al CLIENTE del importe de los honorarios y suplidos abonados por ese expediente conforme a la condición anterior. </p>
+                devolución al CLIENTE del importe de los honorarios y suplidos abonados por ese expediente conforme a la condición anterior.<b>MANIFESTACIONES Y RESPONSABILIDADES DE LAS PARTES.</b> </p>
 
             <h3 class ="subtitulo">8. MANIFESTACIONES Y RESPONSABILIDADES DE LAS PARTES </h3>
             <h5 class ="subtitulo">8.1</h5>
