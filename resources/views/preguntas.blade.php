@@ -4972,7 +4972,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
 									      <div class="card-body">
-									        Una vez te hayas registrado en el área de usuario, deberás adjuntar la información y documentación de la deuda: Tipo de duda, documentación que acredite la deuda, información del deudor, datos del deudor, posibilidad de <span data-toggle="tooltip" data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quita</span> y <span data-toggle="tooltip" data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span>…
+									        Una vez te hayas registrado en el área de usuario, deberás adjuntar la información y documentación de la deuda: Tipo de duda, documentación que acredite la deuda, información del deudor, datos del deudor, posibilidad de <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quita</span> y <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span>…
 
 									        <br><br>
 
@@ -5086,7 +5086,7 @@ a.more-link[data-v-167ae8c1] {
 									    <div id="ecollapseThree" class="collapse" aria-labelledby="eheadingThree" data-parent="#eaccordionExample">
 									      <div class="card-body">
 									        Si la reclamación amistosa no ha tenido éxito, se iniciará la reclamación de la demanda de
-                                            <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+                                            <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
 Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>
                                             , siempre y cuando el cliente lo solicite.
 									      </div>
@@ -5157,7 +5157,7 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
 									    <div class="card-header" id="eheadingEight">
 									      <h2 class="mb-0">
 									        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#ecollapseEight" aria-expanded="false" aria-controls="ecollapseEight">
-									          ¿Qué son las <span data-toggle="tooltip" data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span> judiciales?
+									          ¿Qué son las <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span> judiciales?
 									        </button>
 									      </h2>
 									    </div>
@@ -5208,7 +5208,7 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
 									    </div>
 									    <div id="ecollapseEleven" class="collapse" aria-labelledby="eheadingEleven" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        <b>Dividae</b> intentará llegar a un acuerdo amistoso a través de su call center o vía email/carta certificada de conformidad con la <span data-toggle="tooltip" data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quita</span> y <span data-toggle="tooltip" data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span> que haya iniciado el cliente. Estarás informado en todo momento de los avances a través de tu área personal.
+									        <b>Dividae</b> intentará llegar a un acuerdo amistoso a través de su call center o vía email/carta certificada de conformidad con la <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quita</span> y <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span> que haya iniciado el cliente. Estarás informado en todo momento de los avances a través de tu área personal.
 									      </div>
 									    </div>
 									  </div>
@@ -5223,7 +5223,7 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
 									    </div>
 									    <div id="ecollapseTwelve" class="collapse" aria-labelledby="eheadingTwelve" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        <b>Dividae</b> podrá llegar a un acuerdo con el deudor teniendo en cuenta las <span data-toggle="tooltip" data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quitas</span> y <span data-toggle="tooltip" data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">esperas</span> indicadas por el cliente. Se hará seguimiento de los pagos del deudor y en caso de que surgiera un impago, <b>Dividae</b> informará al cliente de las múltiples alternativas existentes para continuar con la reclamación hasta obtener la cantidad total adeudada.
+									        <b>Dividae</b> podrá llegar a un acuerdo con el deudor teniendo en cuenta las <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quitas</span> y <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">esperas</span> indicadas por el cliente. Se hará seguimiento de los pagos del deudor y en caso de que surgiera un impago, <b>Dividae</b> informará al cliente de las múltiples alternativas existentes para continuar con la reclamación hasta obtener la cantidad total adeudada.
 									      </div>
 									    </div>
 									  </div>
