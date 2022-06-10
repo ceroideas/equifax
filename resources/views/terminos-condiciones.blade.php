@@ -204,7 +204,7 @@ a:visited, span.MsoHyperlinkFollowed
         <p class="subtitulo">4. USO DEL PORTAL Y SUS SERVICIOS</p>
         <p class="texto">Una vez registrado en la página web se le enviará automáticamente un email a la cuenta de correo facilitado en el formulario de registro con el fin de
             que confirme su alta. Los usuarios que infrinjan las reglas recogidas en los términos y condiciones no podrán continuar con la reclamación de la deuda realizada a
-            través de <a class="dividae" href="{{url('/')}}">www.dividae.com</a> y perderán, en su caso, las cantidades que hubieran entregado como honorarios o tasas,
+            través de <a class="dividae" href="{{url('/')}}">www.dividae.com</a> y perderán, en su caso, las cantidades que hubieran entregado como honorarios o <span data-toggle="tooltip" data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>,
             reservándose RENTACARONE S.L. el derecho a ejercitar las acciones legales oportunas a efectos de exigir responsabilidad por los daños y perjuicios causados.
             La información que aporte el Usuario se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esa información en el sistema lo que en ella
             se vierta, afirme o manifieste, por lo que ninguna responsabilidad cabe exigir a <span class="dividae">Dividae</span> en caso de que se produzca una condena en
@@ -278,17 +278,25 @@ a:visited, span.MsoHyperlinkFollowed
         </p>
         <p class="texto"><span class="dividae">Dividae</span> indicará al Usuario si la resolución que se haya notificado es susceptible de recurso, y los abogados que forman parte del equipo harán una
             recomendación al respecto. Además, se le informará al Usuario que la decisión sobre la interposición u oposición al recurso está supeditada a un plazo determinado, así como de los
-            honorarios y tasas/depósitos que se deba abonar. Si en dicho plazo que se le concede al Usuario para tomar la decisión éste no responde, se entenderá que no está interesado en la
-            interposición del recurso. El precio por la interposición o para la oposición de cualquier recurso, así como los depósitos constan en las condiciones generales de la contratación.
+            honorarios y <span data-toggle="tooltip" data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>/<span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+            temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span> que se deba abonar. Si en dicho plazo que se le concede al Usuario para tomar la decisión éste no responde, se entenderá que no está interesado en la
+            interposición del recurso. El precio por la interposición o para la oposición de cualquier recurso, así como los <span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+            temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span> constan en las condiciones generales de la contratación.
         </p>
-        <p class="texto">En la plataforma se indican las diferentes formas de pago por las que el Usuario puede abonar los honorarios, el porcentaje de las cantidades recobradas y las tasas/depósitos.
+        <p class="texto">En la plataforma se indican las diferentes formas de pago por las que el Usuario puede abonar los honorarios, el porcentaje de las cantidades recobradas y las <span data-toggle="tooltip" data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>/<span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+            temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span>.
             Tanto para abonar el precio fijo pactado como para abonar el pago correspondiente a las cantidades recobradas, Dividae emitirá una factura por dicha cantidad fija y otra por la resultante
             de aplicar el porcentaje a la cantidad recuperada. La factura se remitirá por mail al Usuario y se anexará en la plataforma en el apartado de “ÁREA DE USUARIO”.
         </p>
-        <p class="texto">Si el importe de las tasas, impuestos o depósitos variara, tanto si son al alza o a la baja, serían repercutidas al Usuario. De resultar estimado el recurso presentado,
-            se le devolvería el depósito al Usuario.
+        <p class="texto">Si el importe de las <span data-toggle="tooltip" data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>, impuestos o <span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+            temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span> variara, tanto si son al alza o a la baja, serían repercutidas al Usuario. De resultar estimado el recurso presentado,
+            se le devolvería el <span data-toggle="tooltip" data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+            temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósito</span> al usuario.
         </p>
-        <p class="texto">La tasa tan solo deberá abonarse en el procedimiento monitorio si quien reclama la deuda es una persona jurídica y la cantidad a reclamar es superior a 2.000€.</p>
+        <p class="texto">La tasa tan solo deberá abonarse en el procedimiento
+            <span data-toggle="tooltip" data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>
+            si quien reclama la deuda es una persona jurídica y la cantidad a reclamar es superior a 2.000€.</p>
         <p class="texto">Los precios y porcentajes indicados en las condiciones generales de la contratación podrán variar, por lo que el Usuario debe revisar las mismas y el presente documento
             antes de solicitar la reclamación de una deuda.
         </p>
