@@ -43,21 +43,9 @@
             </x-slot>
         </x-adminlte-modal>
     @endif
-    <button type="button" class="btn btn-secondary" data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Tooltip on arriba">
-        Tooltip on top
-      </button>
-      <button type="button" class="btn btn-secondary" data-toggle="tooltip" style="color:#e65927; data-placement="right" title="Tooltip on right">
-        Tooltip on right
-      </button>
-      <button type="button" class="btn btn-secondary" data-toggle="tooltip" style="color:#e65927; data-placement="bottom" title="Tooltip on bottom">
-        Tooltip on bottom
-      </button>
-      <button type="button" class="btn btn-secondary" data-toggle="tooltip" style="color:#e65927; data-placement="left" title="Tooltip on left">
-        Tooltip on left
-      </button>
     <div class="card">
         <div class="card-header card-orange card-outline">
-            <h3 class="card-title"  data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Tooltip on arriba" >Detalles de la Reclamación - {{ $claim->getStatus() }}</h3>
+            <h3 class="card-title"  style="color:#e65927;" >Detalles de la Reclamación - {{ $claim->getStatus() }}</h3>
             <div class="card-tools">
                 <input type="button" class="btn-secondary" name="imprimir" value="Imprimir reclamaci&oacute;n" onclick="window.print();">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
