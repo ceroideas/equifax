@@ -67,7 +67,7 @@ class WordController extends Controller
         $section->addText('Documento nº4: Burofax remitido');
         $section->addText('Documento nº5: Justificante de recepción del burofax');
 
-        
+
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         $name = 'DDA MONITORIO DIVIDAE __'.$claim->id.'__'.Carbon::now()->format('d-m-Y_H_i').'.docx';
         $objWriter->save(public_path().'/documents/'.$name);

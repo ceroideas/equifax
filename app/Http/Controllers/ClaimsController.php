@@ -526,7 +526,7 @@ class ClaimsController extends Controller
         $claim->debt->save();*/
 
 
-        return redirect('claims')->with('msj', 'Informe de Reclamación generado exitosamente');
+        return redirect('claims')->with('msj', 'Informe de reclamación generado exitosamente');
 
     }
 

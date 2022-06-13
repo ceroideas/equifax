@@ -76,10 +76,10 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    
+
     {
         return view('users.create');
-                
+
     }
 
     public function changePassword(Request $request)
@@ -102,7 +102,7 @@ class UsersController extends Controller
     {
 
         $validation = $this->validateRequest();
-       
+
         $user = $model_user->create([
 
             'name' => $request->name,
@@ -119,7 +119,7 @@ class UsersController extends Controller
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
 
         ]);
-        
+
         $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
         $user->update(['dni_img' => $path]);
 
@@ -127,7 +127,7 @@ class UsersController extends Controller
             $path = $request->file('representative_dni_img')->store('uploads/users/' . $user->id . '/representative_dni_img', 'public');
             $user->update(['representative_dni_img' => $path]);
         }
-        return redirect('/users')->with(['msj' => 'Usuario Creado Exitosamente']);
+        return redirect('/users')->with(['msj' => 'Usuario creado exitosamente']);
     }
 
     /**
@@ -199,11 +199,11 @@ class UsersController extends Controller
         ]);
         if($request->file('dni_img')){
             if($user->dni_img != NULL){
-                
+
                 Storage::disk('public')->delete($user->dni_img);
-                
+
             }
-            
+
             $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
             $user->update(['dni_img' => $path]);
             $user->pending();
@@ -211,23 +211,23 @@ class UsersController extends Controller
 
         if($request->file('representative_dni_img')){
             if($user->representative_dni_img != NULL){
-                
+
                 Storage::disk('public')->delete($user->representative_dni_img);
-                
+
             }
-            
+
             $path = $request->file('representative_dni_img')->store('uploads/users/' . $user->id . '/representative_dni_img', 'public');
             $user->update(['representative_dni_img' => $path]);
             $user->pending();
         }
 
         if(Auth::user()->can('create', 'user')){
-            return redirect('/users')->with(['msj' => 'Usuario Actualizado Exitosamente']);
+            return redirect('/users')->with(['msj' => 'Usuario actualizado exitosamente']);
         }
 
-        return redirect()->back()->with(['msj' => 'Datos Actualizado Exitosamente, espere por la revisión']);
+        return redirect()->back()->with(['msj' => 'Datos actualizado exitosamente']);
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -235,17 +235,17 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
-    
+
     {
         if($user->dni_img != NULL){
-                
+
             Storage::disk('public')->delete($user->dni_img);
-            
+
         }
-        
+
         $user->delete();
 
-        return redirect('/users')->with(['msj' => 'Usuario Eliminado Exitosamente']);
+        return redirect('/users')->with(['msj' => 'Usuario eliminado exitosamente']);
     }
 
     public function validatePassword()
@@ -267,7 +267,7 @@ class UsersController extends Controller
             'address' => 'required|min:10|max:255',
             'location' => 'required',
             'cop' => 'required|numeric',
-        
+
         ];
 
 
@@ -300,7 +300,7 @@ class UsersController extends Controller
                 $rules['legal_representative'] = 'required';
                 $rules['representative_dni'] = 'required';
             }
-            
+
         }else{
             $rules['password'] = 'required|confirmed|min:8|max:255';
             // $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
@@ -319,7 +319,7 @@ class UsersController extends Controller
 
         $user->approval();
 
-        return redirect()->back()->with('msj', 'Usuario Aprobado Correctamente');
+        return redirect()->back()->with('msj', 'Usuario aprobado correctamente');
 
     }
 
@@ -327,7 +327,7 @@ class UsersController extends Controller
 
         $user->denial();
 
-        return redirect()->back()->with('msj', 'Usuario Revocado Correctamente');
+        return redirect()->back()->with('msj', 'Usuario revocado correctamente');
 
     }
 
@@ -375,7 +375,7 @@ class UsersController extends Controller
         });*/
         /*\App\Models\Actuation::truncate();
         \App\Models\ActuationDocument::truncate();
-        
+
         return config('app.phases');*/
         /*Claim::truncate();
         Debt::truncate();
@@ -427,7 +427,7 @@ class UsersController extends Controller
             $table->string('legal_representative')->nullable();
             $table->string('representative_dni')->nullable();
         });*/
-        
+
         /*Schema::table('claims', function(Blueprint $table) {
             //
             $table->integer('postal_code_id')->nullable();
@@ -453,7 +453,7 @@ class UsersController extends Controller
             //
             $table->string('apud_acta')->nullable();
         });*/
-        
+
         /*Schema::table('invoices', function(Blueprint $table) {
             //
             $table->string('amounts')->nullable();

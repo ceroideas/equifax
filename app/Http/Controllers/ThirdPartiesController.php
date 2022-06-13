@@ -85,9 +85,9 @@ class ThirdPartiesController extends Controller
         }
 
         $thirdParty->save();
-        return redirect('third-parties')->with(['msj' => 'Acreditación de Tercero creada exitosamente!']);
+        return redirect('third-parties')->with(['msj' => 'Acreditación de tercero creada exitosamente!']);
 
-        
+
 
 
 
@@ -145,29 +145,29 @@ class ThirdPartiesController extends Controller
         /*if($request->file('dni_img')){
 
             if($thirdParty->dni_img != NULL){
-                
+
                 Storage::disk('public')->delete($thirdParty->dni_img);
-                
+
             }
-            
+
             $path = $request->file('dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/dni', 'public');
             $thirdParty->dni_img = $path;
             $thirdParty->save();
-     
+
         }*/
 
         if($request->file('poder_legal')){
 
             if($thirdParty->poa != NULL){
-                
+
                 Storage::disk('public')->delete($thirdParty->poa);
-                
+
             }
-            
+
             $poa_path = $request->file('poder_legal')->store('uploads/third-parties/' . $thirdParty->id . '/poa', 'public');
             $thirdParty->poa = $poa_path;
             $thirdParty->save();
-     
+
         }
 
         if($request->file('representative_dni_img')){
@@ -183,7 +183,7 @@ class ThirdPartiesController extends Controller
             $thirdParty->save();
         }
 
-        return redirect()->back()->with(['msj' => 'Acreditación de Tercero actualizada exitosamente!']);
+        return redirect()->back()->with(['msj' => 'Acreditación de tercero actualizada exitosamente!']);
     }
 
     /**
@@ -195,14 +195,14 @@ class ThirdPartiesController extends Controller
     public function destroy(ThirdParty $thirdParty)
     {
         if($thirdParty->dni_img != NULL){
-                
+
             Storage::disk('public')->delete($thirdParty->dni_img);
-            
+
         }
-        
+
         $thirdParty->delete();
 
-        return redirect('/third-parties')->with(['msj' => 'Tercero Eliminado Exitosamente']);
+        return redirect('/third-parties')->with(['msj' => 'Tercero eliminado exitosamente']);
     }
 
     public function validateRequest(){
@@ -216,7 +216,7 @@ class ThirdPartiesController extends Controller
             'location' => 'required',
             'cop' => 'required',
             'dni' => 'required',
-            
+
         ];
 
         if(request('iban')){
@@ -246,7 +246,7 @@ class ThirdPartiesController extends Controller
             if(!request()->thirdParty->poa){
                 $rules['poder_legal'] = 'required|file|mimes:pdf,jpg,png';
             }
-            
+
         }else{
             // $rules['dni'] = 'required|min:8|max:10|unique:third_parties';
             // $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
@@ -260,7 +260,7 @@ class ThirdPartiesController extends Controller
                 $rules['legal_representative'] = 'required';
                 $rules['representative_dni'] = 'required';
             }
-            
+
         }
 
         $messages = [

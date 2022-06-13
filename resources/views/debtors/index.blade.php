@@ -52,7 +52,7 @@
     @endif
     @if(!session()->has('claim_client') && !session()->has('claim_third_party'))
         <x-adminlte-alert theme="info" dismissable>
-        <span>Para utilizar un Deudor, Inicie un proceso de reclamación</span>
+        <span>Para utilizar un deudor, inicia un proceso de reclamación</span>
         </x-adminlte-alert>
     @endif
 
