@@ -213,7 +213,7 @@ class ClaimsController extends Controller
 
                 $claim->status = 7;
                 $claim->claim_type = 2;
-
+/*
                 $c = Configuration::first();
 
                 $invoice = new Invoice;
@@ -223,8 +223,23 @@ class ClaimsController extends Controller
                 $invoice->type = 'fixed_fees';
                 $invoice->description = "Pago de tarifa proceso Extrajudicial";
                 $invoice->save();
+                */
             }
         }
+
+/* Generamos factura en cualquier estado*/
+        $c = Configuration::first();
+
+        $invoice = new Invoice;
+        $invoice->claim_id = $claim->id;
+        $invoice->user_id = $claim->user_id;
+        $invoice->amount = $c ? $c->fixed_fees : '0';
+        $invoice->type = 'fixed_fees';
+        $invoice->description = "Pago de tarifa proceso Extrajudicial";
+        $invoice->save();
+
+/*Fin generacion de factura */
+
         $debt->save();
         $claim->save();
 
@@ -331,11 +346,13 @@ class ClaimsController extends Controller
         $request->session()->forget('type_other');
         $request->session()->forget('documentos');
 
-        if ($claim->last_invoice){
+
+        //if ($claim->last_invoice){
             return redirect('/claims/payment/' . $claim->id)->with('msj', 'Reclamación creada exitosamente, se ha generado una factura por honorarios, deberá realizar el pago correspondiente para poder proceder con la reclamación');
-        }else{
-            return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
-        }
+        //}else{
+            // Redirigia al panel y quedaba pendiente de pago, ahora debe pasar por caja para iniciar  extrajudicial
+            // return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
+        //}
 
     }
 

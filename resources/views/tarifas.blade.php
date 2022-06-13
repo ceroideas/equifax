@@ -222,7 +222,7 @@ bien por la cuantía económica (cuantía menor a 6.000€), requieren una trami
                       				<td style="text-align: right; color:#285ba3">399,90€</td>
                       			</tr>
                       			<tr>
-                      				<td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es aquél por el que se pretende el cumplimiento de una resolución judicial dictada, de manera que es una manifestación
+                      				<td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es aquel por el que se pretende el cumplimiento de una resolución judicial dictada, de manera que es una manifestación
 del respeto al derecho a la tutela judicial efectiva cuando la parte contraria no cumple con lo indicado en la sentencia." style="color:#e65927;">Ejecución</span> en ámbito nacional</td>
                       				<td style="text-align: right; color:#285ba3">149,90€</td>
                       			</tr>
