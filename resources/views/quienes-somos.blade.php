@@ -364,7 +364,7 @@
                                         <b>Experiencia Contrastada</b>
                                     </p>
                                     <p data-v-43503c2a="" class="Recovery-text">
-                                        <b>Dividae</b> cuenta con experiencia contrastada desde 2016, siendo uno de los
+                                        <b>Atlante</b> cuenta con experiencia contrastada desde 2016, siendo uno de los
                                         principales proveedores de servicios de recuperación de deuda de España.
                                     </p>
                                 </div>
