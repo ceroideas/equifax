@@ -15064,12 +15064,19 @@ input[type=button].btn-block {
 }
 
 .navbar {
-  position: relative;
+  /*position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem;*/
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  position: fixed !important;
+  text-align: right !important;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 .navbar .container,
 .navbar .container-fluid,
