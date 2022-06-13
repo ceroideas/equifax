@@ -77,7 +77,7 @@
                     <td>
                         {{ $claim->debt->document_number }}</td>
                     <td>
-
+                        {{--  Partido judicial, no se usara
                         @php
                             $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
 
@@ -98,8 +98,9 @@
                                 }
                             }
                         @endphp
-
-                    {{ $juzgado.'/'.$procurador }}</td>
+                    --}}
+                    {{-- $juzgado.'/'.$procurador --}}
+                        {{Auth::user()->name}}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
                     <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} €</td>
