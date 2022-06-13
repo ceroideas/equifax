@@ -277,13 +277,13 @@
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
 
                                     <p>Desde sus inicios, <b>Atlante</b> ha identificado la forma de automatizar y
-                                        estandarizar los procesos. Ante un sector tradicionalmente poco digitalizado,
+                                        estandarizar los procesos en el ámbito de la recuperación de la deuda. Ante un sector tradicionalmente poco digitalizado,
                                         <b>Atlante</b> se ha centrado en disponer de todos los recursos tecnológicos
                                         necesarios para la representación procesal y gestión documental en carteras
                                         masivas. </p>
 
                                     <p>Gracias al conocimiento del sector, su equipo de profesionales y a la firme
-                                        apuesta tecnológica, en el año 2021 se crea <b>Dividae</b> con la firme
+                                        apuesta tecnológica, en el año 2021 nace <b>Dividae</b> con la firme
                                         intención de convertirse en líderes en el mercado, mejorar las eficiencias y
                                         ganar en tiempo con la recuperación de facturas impagadas de manera 100%
                                         digital. </p>
@@ -350,7 +350,7 @@
                                         <b>Máxima seguridad Jurídica</b>
                                     </p>
                                     <p data-v-43503c2a="" class="Recovery-text">
-                                        <b>Dividae</b> es parte de ANGECO y cumple con todos los requisitos de calidad.
+                                        <b>Dividae</b> como parte <b>Atlante</b>, es parte de ANGECO y cumple con todos los requisitos de calidad.
                                     </p>
                                 </div>
                             </div>

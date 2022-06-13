@@ -913,7 +913,7 @@
           margin-right: 0;
           margin-left: 0;
       }
-  } */ 
+  } */
 }
 .blockRecovery .RText[data-v-43503c2a] {
   margin-bottom: 50px;
@@ -1017,7 +1017,7 @@
   background-color: #fff;
   /* @media (min-width: 1280px) {
       margin-left: 130px;
-      margin-right: 130px; 
+      margin-right: 130px;
   } */
   /* &-col1 {
       margin: 50px 0 50px;
@@ -4171,7 +4171,7 @@ input:valid ~ .show-hide i {
   background-color: #fff;
   padding: 10px 20px 10px 20px;
   margin-bottom: 80px;
-  /* .table-striped>tbody>tr:nth-child(even)>td, 
+  /* .table-striped>tbody>tr:nth-child(even)>td,
     .table-striped>tbody>tr:nth-child(even)>th {
      background-color: #fff;//cambiar color
     }
@@ -4864,7 +4864,7 @@ a.more-link[data-v-167ae8c1] {
 }
 #background-video {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   object-fit: cover;
   position: absolute;
   left: 0;

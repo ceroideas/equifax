@@ -460,7 +460,7 @@
                                         <b>Máxima seguridad Jurídica</b>
                                     </p>
                                     <p data-v-43503c2a="" class="Recovery-text">
-                                        <b>Dividae</b> es parte de ANGECO y cumple con todos los requisitos de calidad.
+                                        <b>Dividae</b> como parte <b>Atlante</b>, es parte de ANGECO y cumple con todos los requisitos de calidad.
                                     </p>
                                 </div>
                             </div>

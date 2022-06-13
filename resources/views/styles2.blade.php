@@ -4894,7 +4894,7 @@ a.more-link[data-v-167ae8c1] {
 }
 #background-video {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   object-fit: cover;
   position: absolute;
   left: 0;
