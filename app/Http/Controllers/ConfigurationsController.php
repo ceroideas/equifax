@@ -83,7 +83,7 @@ class ConfigurationsController extends Controller
 
         $configuration->update();
 
-        return redirect('configurations/fees')->with('msj' , 'Tasas actualziadas correctamente');
+        return redirect('configurations/fees')->with('msj' , 'Tasas actualizadas correctamente');
 
     }
 

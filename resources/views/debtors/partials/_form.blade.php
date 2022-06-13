@@ -11,7 +11,7 @@
     @endif
 
     <x-adminlte-alert theme="info" dismissable>
-        <span>¡Importante! recuerde que si el Deudor se encuentra en Concurso de Acreedores la reclamación es inviable</span>
+        <span>¡Importante! recuerda que si el deudor se encuentra en concurso de acreedores la reclamación es inviable</span>
     </x-adminlte-alert>
     <form action="@if(isset($debtor)){{ url('/debtors/' . $debtor->id) }}@else{{ url('/debtors') }}@endif" method="POST" enctype="multipart/form-data">
         @csrf

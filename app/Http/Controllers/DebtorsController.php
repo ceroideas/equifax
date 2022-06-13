@@ -21,7 +21,7 @@ class DebtorsController extends Controller
         }elseif(Auth::user()->isSuperAdmin() ){
             $debtors = Debtor::all();
         }
-       
+
 
         return view('debtors.index', [
 
@@ -70,7 +70,7 @@ class DebtorsController extends Controller
             return redirect('claims/save-debtor/'.$debtor->id);
         }
 
-        return redirect('/debtors')->with('msj', 'Deudor Añadido Correctamente');
+        return redirect('/debtors')->with('msj', 'Deudor añadido correctamente');
 
     }
 
@@ -128,7 +128,7 @@ class DebtorsController extends Controller
             return redirect('claims/save-debtor/'.$debtor->id);
         }
 
-        return redirect('/debtors')->with('msj', 'Deudor Actualizado Correctamente');
+        return redirect('/debtors')->with('msj', 'Deudor actualizado correctamente');
     }
 
     /**
@@ -141,7 +141,7 @@ class DebtorsController extends Controller
     {
         $debtor->delete();
 
-        return redirect('/debtors')->with('msj', 'Deudor Eliminado Correctamente');
+        return redirect('/debtors')->with('msj', 'Deudor eliminado correctamente');
     }
 
     public function validateRequest($id = null){

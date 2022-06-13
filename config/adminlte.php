@@ -358,6 +358,12 @@ return [
             'can' =>  ['create-claims', 'admin-claims'],
             'submenu' => [
                 [
+                    'text' => 'Listado de Reclamaciones',
+                    'icon' => '',
+                    'can' => ['create-claims', 'admin-claims'],
+                    'url'  => '/claims',
+                ],
+                [
                     'text' => 'Nueva Reclamación',
                     'icon' => '',
                     'can' => 'create-claims',
@@ -368,12 +374,6 @@ return [
                     'icon' => '',
                     'can' => ['create-claims', 'admin-claims'],
                     'url'  => '/claims/pending',
-                ],
-                [
-                    'text' => 'Listado de Reclamaciones',
-                    'icon' => '',
-                    'can' => ['create-claims', 'admin-claims'],
-                    'url'  => '/claims',
                 ],
                 [
                     'text' => 'Facturas',

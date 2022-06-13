@@ -54,7 +54,7 @@
         <div class="col-sm-12 text-center">
             <span> <h3>
             {{-- A partir de este momento, Ya ha introducido todos los datos requeridos por el sistema. --}}
-            Confirmo que todos los datos e información aportada es veráz. * <br>
+            Confirmo que todos los datos e información aportada es veraz. * <br>
 
             <small>
                 <i>* La información que aporte el/la Cliente/a se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esa información en el sistema lo que en ella se vierta, afirme o manifieste. </i>
