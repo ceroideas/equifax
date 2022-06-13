@@ -118,7 +118,7 @@
 
                                 {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
                                 <p class="text-left">
-                                    Comienza en este momento con tu reclamación por vía judicial
+                                    Comienza con tu reclamación por vía judicial
                                 </p>
                               </li>
 
