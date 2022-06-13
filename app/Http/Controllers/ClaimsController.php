@@ -350,7 +350,7 @@ class ClaimsController extends Controller
         //if ($claim->last_invoice){
             return redirect('/claims/payment/' . $claim->id)->with('msj', 'Reclamación creada exitosamente, se ha generado una factura por honorarios, deberá realizar el pago correspondiente para poder proceder con la reclamación');
         //}else{
-            // Redirigia al panel y quedaba pendiente de pago, ahora debe pasar por caja para iniciar  extrajudicial
+            // Redirigia al panel y quedaba pendiente viabilidad por parte de administracion
             // return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
         //}
 
