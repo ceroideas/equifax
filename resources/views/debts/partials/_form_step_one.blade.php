@@ -92,24 +92,29 @@
                 </x-adminlte-input>
             </div>
         </div>
+        <p>tipo seleccionado: {{session('tipo_deuda')}}</p>
         <div class="row">
             <div class="col-sm-12">
-                <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" label="Selecciona el Tipo de Deuda *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true">
+
+                <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" label="Deuda seleccionada *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true" disabled>
 
                     @foreach (config('app.deudas') as $key => $deuda)
-                        <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : '' }} value="{{$key}}">{{$deuda['deuda']}}</option>
+                        <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : (session('tipo_deuda')==$key ? 'selected' : '') }} value="{{$key}}">{{$deuda['deuda']}}</option>
+                        {{--<option {{(session('tipo_deuda')==$key ? 'selected' : '')}} value="{{$key}}">{{$deuda['deuda']}}</option>--}}
                     @endforeach
 
                     <optgroup label="Otro **">
-                        <option value="-1">Especifique</option>
+                        <option {{session('tipo_deuda')==-1 ? 'selected' : ''}} value="-1">Especifique</option>
                     </optgroup>
+
                 </x-adminlte-select2>
+
             </div>
         </div>
         <div id="deuda_otros" class="row d-none">
             <div class="col-sm-12">
                 <x-adminlte-input id="deudas_otros_input" name="deuda_extra" label="Otro **" placeholder="Otro" type="text" class=""
-                igroup-size="sm" enable-old-support="true">
+                igroup-size="sm" enable-old-support="true" value="{{session('deuda_extra')}}" disabled>
                 </x-adminlte-input>
             </div>
         </div>
@@ -380,8 +385,18 @@
 <script>
     $(document).ready(function(){
         $("#add-document").click();
+        if($('#tipo_deuda').val() == -1){
+            //console.log("Otros");
+            $('#deuda_otros').find('label').html('Otro **')
+            $('#deudas_otros_input').attr('placeholder', 'Indique la deuda');
+            $('#deuda_otros').removeClass('d-none');
+        }else{
+            //console.log('deuda normal');
+            $('#deuda_otros').addClass('d-none');
+        }
     });
 
+    /* No se usara onchange*/
     $('#tipo_deuda').on('change', function(){
         console.log($(this).val());
         if($(this).val() == -1){
