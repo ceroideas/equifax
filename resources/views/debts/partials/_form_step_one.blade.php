@@ -1,4 +1,4 @@
-<x-adminlte-alert theme="info">
+<x-adminlte-alert theme="primary">
     <span>¡Importante! Solo se puede reclamar una (1) deuda por concepto al mismo deudor, en caso de poseer múltiples conceptos debe registrar una reclamación para cada concepto.</span>
     <br>
     {{-- <span>¡Importante! Recuerde que es responable de toda la información adjuntada en éste apartado así como la veracidad de la misma y entiende de las consecuencias en caso de no resolverse de forma positiva el litigio.</span>
@@ -304,7 +304,7 @@
                 <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
             <div class="row">
-                <span class="float-left">(**) Por favor ingrese toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
+                <span class="float-left">(**) Por favor ingresa toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
             </div>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save"/>
