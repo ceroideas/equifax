@@ -15,11 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-
-    <link rel="stylesheet" href="{{ url('landing') }}/plugins/owl/owl.carousel.min.css">
-    <link rel="stylesheet" href="{{ url('landing') }}/plugins/owl/owl.theme.default.min.css">
-
-    <link href="{{ url('landing') }}/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('landing') }}/app_quental.css">
     @include('styles2')
 
     <style>
