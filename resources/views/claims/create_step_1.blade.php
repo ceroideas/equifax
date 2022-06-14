@@ -24,7 +24,7 @@
     @include('progressbar', ['step' => 1])
    {{-- @include('users.partials._form') --}}
    @if(session()->has('claim_client') || session()->has('claim_third_party'))
-   <x-adminlte-alert theme="info">
+   <x-adminlte-alert theme="primary">
        <span> Tu elección actual es: {{ (session('claim_client')) ? 'SI' : 'NO'}}</span>
    </x-adminlte-alert>
    @endif

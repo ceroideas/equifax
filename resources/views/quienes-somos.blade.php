@@ -247,7 +247,7 @@
                     <br>
                     <p><b>Dividae</b> es una plataforma 100% online que ofrece a empresarios y autónomos la solución
                         para reclamar facturas que nunca les pagaron. Esta línea de negocio es parte de <b>
-                            <a href="https://www.atlantelt.com" target="_blank">Atlante</a></b>,
+                            <a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>,
                         uno de los principales proveedores de servicios de recuperación de deuda de España. </p>
                 </div>
 
@@ -277,9 +277,9 @@
                                 class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
 
-                                    <p>Desde sus inicios, <b><a href="https://www.atlantelt.com" target="_blank">Atlante</a></b> ha identificado la forma de automatizar y
+                                    <p>Desde sus inicios, <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b> ha identificado la forma de automatizar y
                                         estandarizar los procesos en el ámbito de la recuperación de la deuda. Ante un sector tradicionalmente poco digitalizado,
-                                        <b><a href="https://www.atlantelt.com" target="_blank">Atlante</a></b> se ha centrado en disponer de todos los recursos tecnológicos
+                                        <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b> se ha centrado en disponer de todos los recursos tecnológicos
                                         necesarios para la representación procesal y gestión documental en carteras
                                         masivas. </p>
 
@@ -351,7 +351,7 @@
                                         <b>Máxima seguridad Jurídica</b>
                                     </p>
                                     <p data-v-43503c2a="" class="Recovery-text">
-                                        <b>Dividae</b> como parte <b><a href="https://www.atlantelt.com" target="_blank">Atlante</a></b>, es parte de ANGECO y cumple con todos los requisitos de calidad.
+                                        <b>Dividae</b>, como línea de negocio de <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>, es parte de ANGECO y cumple con todos los requisitos de calidad.
                                     </p>
                                 </div>
                             </div>
@@ -365,7 +365,7 @@
                                         <b>Experiencia Contrastada</b>
                                     </p>
                                     <p data-v-43503c2a="" class="Recovery-text">
-                                        <b><a href="https://www.atlantelt.com" target="_blank">Atlante</a></b> cuenta con experiencia contrastada desde 2016, siendo uno de los
+                                        <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b> cuenta con experiencia contrastada desde 2016, siendo uno de los
                                         principales proveedores de servicios de recuperación de deuda de España.
                                     </p>
                                 </div>

@@ -576,7 +576,7 @@ class ClaimsController extends Controller
 
         $this->flushOptionTwo();
 
-        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 
@@ -586,7 +586,7 @@ class ClaimsController extends Controller
         $request->session()->put('claim_third_party', $request->id);
 
 
-        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 
@@ -596,7 +596,7 @@ class ClaimsController extends Controller
 
         return redirect('debts/create/step-one');
 
-        return redirect('/claims/create-debt')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/claims/create-debt')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 
@@ -605,7 +605,7 @@ class ClaimsController extends Controller
         $request->session()->forget('claim_client');
         $request->session()->put('claim_third_party', 'waiting');
 
-        return redirect('/third-parties')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/third-parties')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 
@@ -613,7 +613,7 @@ class ClaimsController extends Controller
 
         request()->session()->forget('claim_third_party');
 
-        // return redirect('/third-parties')->with('msj', 'Se ha guardado tu elección temporalmente');
+        // return redirect('/third-parties')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 

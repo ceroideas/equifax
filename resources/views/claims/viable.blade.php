@@ -32,7 +32,7 @@
 @section('content')
    {{-- @include('users.partials._form') --}}
    @if(session()->has('msj'))
-   <x-adminlte-alert theme="info" dismissable>
+   <x-adminlte-alert theme="primary" dismissable>
        <span> {{ session('msj') }}</span>
    </x-adminlte-alert>
    @endif

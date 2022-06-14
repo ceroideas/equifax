@@ -109,7 +109,7 @@
                                     <div class="col-lg-3"><b>N° Tlf:</b><p> {{ $claim->debtor->phone }}</p></div>
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debtor->additional }}</p></div>
+                                    <div class="col-12"><b>Datos adicionales del deudor / Observaciones :</b><p> {{ $claim->debtor->additional }}</p></div>
                                 </div>
                             </div>
 
@@ -140,7 +140,7 @@
                                     </div>--}}
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
+                                    <div class="col-12"><b>Datos adicionales del deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
                                     <div class="col-12"><b>Tipo de la deuda :</b><p>
 
                                         @if ($claim->debt->type == '-1')
@@ -485,7 +485,7 @@
 
                     @if (Auth::user()->isAdmin() && !$claim->isFinished() && !$claim->isPending())
                         <div class="text-center">
-                            <x-adminlte-button label="Finalizar Reclamación" data-toggle="modal" data-target="#modalFinish" theme="info"/>
+                            <x-adminlte-button label="Finalizar Reclamación" data-toggle="modal" data-target="#modalFinish" theme="primary"/>
 
                             <x-adminlte-modal id="modalFinish" title="¿Desea dar por finalizada la reclamación actual?" theme="primary" size="sm" v-centered="true">
                                 {{-- <div class="card">     --}}

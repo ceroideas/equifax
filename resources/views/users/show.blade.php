@@ -145,7 +145,7 @@
                          <a href="#" class="btn btn-danger btn-block" onclick="event.preventDefault(); document.getElementById('user-denial').submit();"><b>Revocar</b></a>
                      </nobr>
                 @else
-                    <x-adminlte-alert theme="info" dismissable>
+                    <x-adminlte-alert theme="primary" dismissable>
                         <span>El Cliente aún no ha completado sus datos.</span>
                     </x-adminlte-alert>
                 @endif
