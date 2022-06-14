@@ -225,7 +225,7 @@ class UsersController extends Controller
             return redirect('/users')->with(['msj' => 'Usuario actualizado exitosamente']);
         }
 
-        return redirect()->back()->with(['msj' => 'Datos actualizado exitosamente']);
+        return redirect()->back()->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!']);
     }
 
     /**

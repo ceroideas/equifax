@@ -80,7 +80,7 @@ class ClaimsController extends Controller
         if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
             return view('claims.create_step_1');
         }
-        return redirect('users/'.Auth::id())->with('msj','Antes de realizar una nueva reclamación, deberá completar su perfil.');
+        return redirect('users/'.Auth::id())->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');
 
 
 
