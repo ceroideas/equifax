@@ -144,13 +144,30 @@ class ClaimsController extends Controller
                 $presc = Carbon::now()->diffInYears(Carbon::parse($debt->debt_date));
             }
 
+        /* TODO: Borrar debug */
+        /*print_r("Claims Controller -> Step six ");echo "<br>";
+        var_dump(config('app.deudas')[$debt->type]);echo "<br>";*/
+
+
+
+
             $deuda = config('app.deudas')[$debt->type];
             $prescribe = null;
             $message = "¡GRACIAS, YA CASI HEMOS TERMINADO!";
 
+            /* TODO: Borrar debug */
+            /*var_dump($deuda['prescripcion']);
+            print_r($deuda['prescripcion']);*/
+
             if ($presc < $deuda['prescripcion']) {
                 $prescribe = 1;
             }
+            /* TODO: Borrar debug */
+            /*print_r("Evalua prescripción ");echo "<br>";
+            print_r($presc);echo " es menor que: "; print_r($deuda['prescripcion']);echo "<br>";
+            print_r("Prescribe? ");echo "<br>";
+            print_r($prescribe);*/
+            //die();
 
             return view('claims.create_step_6', compact('prescribe','message'));
         }

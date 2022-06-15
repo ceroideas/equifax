@@ -95,7 +95,7 @@
         <div class="row">
             <div class="col-sm-12">
 
-                <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" label="Deuda seleccionada *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true" disabled>
+                <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" label="Deuda seleccionada *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true" >
 
                     @foreach (config('app.deudas') as $key => $deuda)
                         <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : (session('tipo_deuda')==$key ? 'selected' : '') }} value="{{$key}}">{{$deuda['deuda']}}</option>
@@ -113,7 +113,7 @@
         <div id="deuda_otros" class="row d-none">
             <div class="col-sm-12">
                 <x-adminlte-input id="deudas_otros_input" name="deuda_extra" label="Otro **" placeholder="Otro" type="text" class=""
-                igroup-size="sm" enable-old-support="true" value="{{session('deuda_extra')}}" disabled>
+                igroup-size="sm" enable-old-support="true" value="{{session('deuda_extra')}}" >
                 </x-adminlte-input>
             </div>
         </div>
