@@ -92,7 +92,6 @@
                 </x-adminlte-input>
             </div>
         </div>
-        <p>tipo seleccionado: {{session('tipo_deuda')}}</p>
         <div class="row">
             <div class="col-sm-12">
 

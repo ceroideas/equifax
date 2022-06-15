@@ -124,8 +124,8 @@
 <script>
 
    $('.question-button').on('click', function(){
-        console.log("Evalua");
-        console.log($(this).attr('href'));
+        //console.log("Evalua");
+        //console.log($(this).attr('href'));
         location.href = $(this).attr('href');
 
    });
@@ -136,13 +136,13 @@
         if ($('[name="concurso"]:checked').length) {
             $('.question-button').removeAttr('disabled');
         }
-        console.log("Preguntas");
+        //console.log("Preguntas");
    });
 
 
 
    $('#tipo_deuda').on('change', function(){
-        console.log($(this).val());
+        //console.log($(this).val());
     if($(this).val() == -1){
 
         $('#deuda_otros').find('label').html('Otro **')
