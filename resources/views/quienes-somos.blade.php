@@ -225,7 +225,7 @@
                         <div data-v-c7d18d50="" data-v-effc9f78="" class="row">
                             <div data-v-c7d18d50="" data-v-effc9f78=""
                                 class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <div data-v-c7d18d50="" data-v-effc9f78="" class="About-title">¿Quiénes somos?</div>
+                                <div data-v-c7d18d50="" data-v-effc9f78="" class="About-title">Sobre nosotros</div>
                             </div>
                             <div data-v-c7d18d50="" data-v-effc9f78=""
                                 class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">

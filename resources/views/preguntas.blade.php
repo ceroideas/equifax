@@ -4869,11 +4869,11 @@ a.more-link[data-v-167ae8c1] {
                         </div>
                     </nav>
                     <div data-v-038cfd70="" data-v-effc9f78="" class="container PFrecuentes">
-                        <div data-v-038cfd70="" data-v-effc9f78="" class="PFrecuentes-subtitle">
+                        <!--<div data-v-038cfd70="" data-v-effc9f78="" class="PFrecuentes-subtitle">
                             Preguntas frecuentes
-                        </div>
+                        </div>-->
                         <div data-v-038cfd70="" data-v-effc9f78="" class="PFrecuentes-title">
-                            ¿Tienes dudas?
+                            Preguntas frecuentes
                         </div>
                     </div>
                     @include('followus')
