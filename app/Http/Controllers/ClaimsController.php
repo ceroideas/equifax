@@ -207,7 +207,7 @@ class ClaimsController extends Controller
         $claim->debt_id = $debt->id;
         $claim->save();
         $debt->claim_id = $claim->id;
-        $debt->document_number = "DIV-".str_pad($claim->id, 4 ,"0", STR_PAD_LEFT);
+        $debt->document_number = "DVD-".str_pad($claim->id, 4 ,"0", STR_PAD_LEFT);
         $debt->save();
 
         if(session('claim_agreement')  != 'false'){
