@@ -35,7 +35,7 @@
                             Contacto
                         </span></a> <div data-v-5fddf304="" class=""></div></li></ul>
                         @include('front.loginButtons')
-                         <!----></div></div></nav> <div data-v-eb5d4bee="" data-v-effc9f78="" class="container Testimonios"><div data-v-eb5d4bee="" data-v-effc9f78="" class="row"><div data-v-eb5d4bee="" data-v-effc9f78="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-title">Testimonios</div></div> <div data-v-eb5d4bee="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12"><div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-text"></div></div></div></div>
+                         <!----></div></div></nav> <div data-v-eb5d4bee="" data-v-effc9f78="" class="container Testimonios"><div data-v-eb5d4bee="" data-v-effc9f78="" class="row"><div data-v-eb5d4bee="" data-v-effc9f78="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12"><div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-title">La opinión de nuestros clientes</div></div> <div data-v-eb5d4bee="" data-v-effc9f78="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12"><div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-text"></div></div></div></div>
                         @include('followus')
                     </div>
 
