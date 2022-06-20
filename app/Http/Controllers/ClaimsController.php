@@ -252,7 +252,7 @@ class ClaimsController extends Controller
         $invoice->user_id = $claim->user_id;
         $invoice->amount = $c ? $c->fixed_fees : '0';
         $invoice->type = 'fixed_fees';
-        $invoice->description = "Pago de tarifa proceso Extrajudicial";
+        $invoice->description = "Pago de la tarifa procedimiento Extrajudicial";
         $invoice->save();
 
 /*Fin generacion de factura */
@@ -493,7 +493,7 @@ class ClaimsController extends Controller
         $a->mailable = null;
         $a->save();*/
 
-        return redirect('claims')->with('msj', 'Reclamación actualziada exitosamente!');
+        return redirect('claims')->with('msj', 'Reclamación actualizada exitosamente!');
 
     }
 
