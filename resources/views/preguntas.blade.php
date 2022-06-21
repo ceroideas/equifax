@@ -4913,7 +4913,7 @@ a.more-link[data-v-167ae8c1] {
 
 									    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 									      <div class="card-body">
-									        <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de facturas impagadas de forma sencilla, exitosa y transparente. Uno de nuestros objetivos es el democratizar este sector de una manera transparente y aportando valor.
+									        <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de facturas impagadas de forma sencilla, exitosa y transparente. Uno de nuestros objetivos es el de democratizar este sector de una manera transparente y aportando valor.
 									      </div>
 									    </div>
 									  </div>
@@ -4972,10 +4972,8 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
 									      <div class="card-body">
-									        Una vez te hayas registrado en el área de usuario, deberás adjuntar la información y documentación de la deuda: Tipo de duda, documentación que acredite la deuda, información del deudor, datos del deudor, posibilidad de <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quita</span> y <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span>…
-
+									        Una vez te hayas registrado en el área de usuario, deberás adjuntar la información y documentación de la deuda: Tipo de duda, documentación que acredite la deuda, información del deudor, datos del deudor…
 									        <br><br>
-
 									        Esta información, tendrá que cargarse en el área personal con un formato digital, ya que casi todas las empresas emiten las facturas en este formato, normalmente en PDF. Si tus facturas están impresas en papel, solo bastará con adjuntarlas en formato imagen.
 									      </div>
 									    </div>
@@ -5085,9 +5083,9 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="ecollapseThree" class="collapse" aria-labelledby="eheadingThree" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Si la reclamación amistosa no ha tenido éxito, se iniciará la reclamación de la demanda de
+									        Si la reclamación amistosa no ha tenido éxito, se iniciará la reclamación de la demanda del
                                             <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
-Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">procedimiento monitorio</span>
                                             , siempre y cuando el cliente lo solicite.
 									      </div>
 									    </div>
@@ -5157,7 +5155,7 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
 									    <div class="card-header" id="eheadingEight">
 									      <h2 class="mb-0">
 									        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#ecollapseEight" aria-expanded="false" aria-controls="ecollapseEight">
-									          ¿Qué son las <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span> judiciales?
+									          ¿Qué son las <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas judiciales</span>?
 									        </button>
 									      </h2>
 									    </div>
@@ -5193,7 +5191,7 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
 									    </div>
 									    <div id="ecollapseTen" class="collapse" aria-labelledby="eheadingTen" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Sí, en todo momento dispone de la posibilidad de cancelar la reclamación que nos haya hecho. Por nuestra parte presentaremos en el Juzgado el correspondiente escrito, informándole en todo momento de las posibles consecuencias que ello conlleva.
+                                            Sí, en todo momento dispones de la posibilidad de cancelar la reclamación que hayas hecho. Por nuestra parte presentaremos en el Juzgado el correspondiente escrito, informándote en todo momento de las posibles consecuencias que ello conlleva.
 									      </div>
 									    </div>
 									  </div>
@@ -5208,7 +5206,7 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
 									    </div>
 									    <div id="ecollapseEleven" class="collapse" aria-labelledby="eheadingEleven" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        <b>Dividae</b> intentará llegar a un acuerdo amistoso a través de su call center o vía email/carta certificada de conformidad con la <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quita</span> y <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span> que haya iniciado el cliente. Estarás informado en todo momento de los avances a través de tu área personal.
+									        <b>Dividae</b> intentará llegar a un acuerdo amistoso a través de su call center o vía email/carta certificada. Estarás informado en todo momento de los avances a través de tu área personal.
 									      </div>
 									    </div>
 									  </div>

@@ -213,7 +213,7 @@
 
 
         <div class="card-footer">
-            <span class="float-left">Los campos marcado con (*) son requeridos.</span> <br>
+            <span class="float-left">Los campos marcados con (*) son requeridos.</span> <br>
 
             <span class="float-left">** El adjunto de copia de DNI es del representante legal.</span>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
