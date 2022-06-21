@@ -8,14 +8,14 @@
 	    </th>
 	  	</tr>
 	  </table>
-	  
+
 	  <table>
 	  <tr>
 	    <th style="width: 170px;"> <strong>Fecha: <br></strong> {{ $i->created_at->format('d-m-Y') }}</th>
 	    <th style="width: 170px;"> <strong>Reclamación Nº: <br></strong> {{$i->claim->id}}</th>
 	    <th style="width: 170px;"> <strong>Referencia Nº: <br></strong> {{$i->id}}</th>
 	    <th style="width: 170px;"> <strong>Factura Nº: <br></strong> DV{{$i->id}}</th>
-		  
+
 	  </tr>
 	  </table>
 
@@ -28,7 +28,7 @@
 		      {{ $c->invoice_address_line_2 }}<br>
 			  {{ $c->invoice_email }}
 	      </td>
-	    
+
 	      <td colspan="2" style="text-align: right; height: 120px;">
 	    	<strong>Facturado a:</strong> <br>
 			  {{$i->claim->owner->name}} <br>
@@ -38,7 +38,7 @@
 	      </td>
 	    </tr>
 	  </table>
-		
+
     <table class="table mb-0">
 		<thead class="card-header">
           <tr>
@@ -56,19 +56,22 @@
           </tbody>
 		  <tfoot class="card-footer">
 		  	@php
-		  		$tax = ($i->amount*$c->tax)/100;
+		  		/*$tax = ($i->amount*$c->tax)/100;*/
+                $subtotal = ($i->amount / (($c->tax/100)+1));
+                $tax = ($i->amount - $subtotal);
 		  	@endphp
 			<tr>
               <td colspan="3" style="text-align: right;"><strong>Sub Total:</strong></td>
-              <td style="text-align: right;">{{number_format(($i->amount - $tax) ,2)}}€</td>
+              <!--<td style="text-align: right;">{{number_format(($i->amount - $tax) ,2,',','.')}} €</td>-->
+              <td style="text-align: right;">{{number_format(($subtotal) ,2,',','.')}} €</td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: right;"><strong>IVA ({{$c->tax}}%):</strong></td>
-              <td style="text-align: right;">{{ number_format($tax ,2)}}€</td>
+              <td style="text-align: right;">{{ number_format($tax ,2,',','.')}} €</td>
             </tr>
 			<tr>
               <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
-              <td style="text-align: right;">{{ number_format($i->amount ,2) }}€</td>
+              <td style="text-align: right;">{{ number_format($i->amount ,2,',','.') }} €</td>
             </tr>
 		  </tfoot>
     </table>
