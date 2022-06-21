@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
 <title>Factura #{{$i->claim->id.'/'.$i->id}}</title>
 <div class="container-fluid">
-	
+
 	<div class="container invoice-container">
 	  <!-- Header -->
 	  <header>
@@ -18,15 +18,15 @@
 	  </div>
 	  <hr>
 	  </header>
-	  
+
 	  <!-- Main Content -->
 	  <main>
 	  <div class="row">
-	    <div class="col-sm-3"><strong>Fecha: <br></strong> {{ $i->created_at->format('d-m-Y') }}</div>
+	    <div class="col-sm-3"><strong>Fecha: <br></strong> {{ $i->created_at->format('d/m/Y') }}</div>
 	    <div class="col-sm-3"> <strong>Reclamación Nº: <br></strong> {{$i->claim->id}}</div>
 	    <div class="col-sm-3"> <strong>Referencia Nº: <br></strong> {{$i->id}}</div>
 	    <div class="col-sm-3 text-sm-right"> <strong>Factura Nº: <br></strong> DV{{$i->id}}</div>
-		  
+
 	  </div>
 	  <hr>
 	  <div class="row">
@@ -52,7 +52,7 @@
 	      </address>
 	    </div>
 	  </div>
-		
+
 	  <div class="card">
 	    <div class="card-body p-0">
 	      <div class="table-responsive">
@@ -75,19 +75,23 @@
 	          </tbody>
 			  <tfoot class="card-footer">
 			  	@php
-			  		$tax = ($i->amount*$c->tax)/100;
+			  		/*$tax = ($i->amount*$c->tax)/100;*/
+
+                    $subtotal = ($i->amount / (($c->tax/100)+1));
+                    $tax = ($i->amount - $subtotal);
 			  	@endphp
 				<tr>
 	              <td colspan="2" class="text-right"><strong>Sub Total:</strong></td>
-	              <td class="text-right">{{number_format(($i->amount - $tax) ,2)}}€</td>
+	              <!--<td class="text-right">{{number_format(($i->amount - $tax) ,2)}}€</td>-->
+                  <td class="text-right">{{number_format(($subtotal) ,2,',','.')}} €</td>
 	            </tr>
 	            <tr>
 	              <td colspan="2" class="text-right"><strong>IVA ({{$c->tax}}%):</strong></td>
-	              <td class="text-right">{{ number_format($tax ,2)}}€</td>
+	              <td class="text-right">{{ number_format($tax ,2,',','.')}} €</td>
 	            </tr>
 				<tr>
 	              <td colspan="2" class="text-right"><strong>Total:</strong></td>
-	              <td class="text-right">{{ number_format($i->amount ,2) }}€</td>
+	              <td class="text-right">{{ number_format($i->amount ,2,',','.') }} €</td>
 	            </tr>
 			  </tfoot>
 	        </table>
