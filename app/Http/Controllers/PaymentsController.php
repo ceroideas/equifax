@@ -70,7 +70,7 @@ class PaymentsController extends Controller
                         actuationActions("302",$c->id);
                     }
                 }else{
-                    actuationActions("302",$c->id);
+                    actuationActions("-1",$c->id);
                 }
 
                 return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
@@ -150,7 +150,7 @@ class PaymentsController extends Controller
                         actuationActions("302",$c->id);
                     }   
                 }else{
-                    actuationActions("302",$c->id);
+                    actuationActions("-1",$c->id);
                 }
 
 

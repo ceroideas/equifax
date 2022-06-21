@@ -3,6 +3,9 @@
 use App\Models\Actuation;
 use App\Models\Claim;
 use App\Models\Debt;
+use App\Models\Hito;
+use App\Models\SendEmail;
+use App\Models\Template;
 use App\Models\Invoice;
 use App\Models\Configuration;
 use Carbon\Carbon;
@@ -16,24 +19,27 @@ function getHito($id_hito)
 {
 	$h = null;
 	$f = null;
-	foreach (config('app.actuations') as $key => $value) {
-
-        if ($value['hitos']) {
-            foreach ($value['hitos'] as $key1 => $value1) {
-                if ($value1['id'] === $id_hito) {
+	// foreach (config('app.actuations') as $key => $value) {
+	foreach (Hito::whereNull('parent_id')->get() as $key => $value) {
+        if (count($value->hitos)) {
+            foreach ($value->hitos as $key1 => $value1) {
+                // if ($value1['id'] === $id_hito) {
+                if ($value1->ref_id === $id_hito) {
                     $h = $value1;
                     $f = $value;
+
+                    return [$h,$f];
                 }
             }
         }else{
-            if ($value['id'] === $id_hito) {
+            if ($value->ref_id === $id_hito) {
                 $h = $value;
                 $f = $value;
+
+                return [$h,$f];
             }
         }
     }
-
-    return [$h,$f];
 }
 
 function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $observations = null)
@@ -44,30 +50,46 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 	$type = [];
 	$claim = Claim::find($claim_id);
 
-	if ($claim->claim_type == 2) {
+	/*if ($claim->claim_type == 2) {
 
-		$a = new Actuation;
-        $a->claim_id = $claim_id;
-        $a->subject = "001";
-        $a->amount = null;
-        $a->description = null;
-        $a->actuation_date = Carbon::now()->format('d-m-Y');
+		if ($h) {
+			if ($h['redirect_to'] != "20") {
+				
+				$a = new Actuation;
+		        $a->claim_id = $claim_id;
+		        $a->subject = "001";
+		        $a->amount = null;
+		        $a->description = null;
+		        $a->actuation_date = Carbon::now()->format('d-m-Y');
+		        
+		        $a->hito_padre = $h['id'];
 
-        $a->hito_padre = $h['id'];
+		        $a->type = null;
+		        $a->mailable = $h['email'] ? 1 : null;
 
-        $a->type = null;
-        $a->mailable = $h['email'] ? 1 : null;
+		        $a->save();
 
-        $a->save();
+			}else{
+
+				$a = new Actuation;
+		        $a->claim_id = $claim_id;
+		        $a->subject = "20";
+		        $a->amount = null;
+		        $a->description = null;
+		        $a->actuation_date = Carbon::now()->format('d-m-Y');
+		        
+		        $a->hito_padre = $h['id'];
+
+		        $a->type = null;
+		        $a->mailable = $h['email'] ? 1 : null;
+
+		        $a->save();
+			}
+		}
+
 
 	}
-	else if ($h) {
-
-		// comprobar si el hito debe enviar un email
-
-		if ($h['email']) {
-			// code...
-		}
+	else */if ($h) {
 
 		// comprobar si el hito es de la fase de cobro directamente
 
@@ -92,25 +114,48 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		else */
 		if($h['redirect_to'])
 		{
-			$a = new Actuation;
-	        $a->claim_id = $claim_id;
-	        $a->subject = $h['redirect_to'];
-	        $a->amount = $amount;
-	        $a->description = $observations;
-	        $a->actuation_date = $date ? $date : Carbon::now()->format('d-m-Y');
 
-	        $a->hito_padre = $h['id'];
+			if ($h['id'] != "-1") {
+				$a = new Actuation;
+		        $a->claim_id = $claim_id;
+		        $a->subject = $h['redirect_to'];
+		        $a->amount = $amount;
+		        $a->description = $observations;
+		        $a->actuation_date = $date ? $date : Carbon::now()->format('d-m-Y');
+		        
+		        $a->hito_padre = $h['id'];
 
-	        $a->type = null;
-	        $a->mailable = $h['email'] ? 1 : null;
+		        $a->type = null;
+		        $a->mailable = $h['email'] ? 1 : null;
 
-	        $a->save();
+		        $a->save();
 
+		        // comprobar si el hito debe enviar un email
+
+				if ($h['template_id']) {
+					// code...
+					$se = new SendEmail;
+					$se->addresse = $claim ? $claim->owner->email : '';
+					$se->template_id = $h['template_id'];
+					$se->actuation_id = $a->id;
+					$se->save();
+				}
+			}
+	        
 			// comprobar si la redirección es al inicio del proceso de cobros (carga apud acta)
 
 			if ($h['redirect_to'] === "301") {
 
 				$c = Configuration::first();
+
+				if ($claim->owner->apud_acta) {
+	                $claim->status = 7;
+	            }else{
+	                $claim->status = 11;
+	            }
+
+				$claim->claim_type = 1;
+				$claim->save();
 
 				if ($c) {
 					foreach ($h['type'] as $key => $value) {

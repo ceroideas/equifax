@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Template;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Auth;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -78,6 +80,15 @@ class RegisterController extends Controller
        $user->newsletter = isset($data['newsletter']) ? 1 : 0;
        $user->role = 2;
        $user->save();
+
+
+       $tmp = Template::find(1);
+        Mail::send('email_base_2', ['tmp' => $tmp], function ($message) use($tmp, $user) {
+            $message->to($user->email, $user->name);
+            $message->subject($tmp->title);
+        });
+
+
        return $user;
     }
 
@@ -96,6 +107,12 @@ class RegisterController extends Controller
                 'password' => null,
 
             ]);
+
+            $tmp = Template::find(1);
+            Mail::send('email_base_2', ['tmp' => $tmp], function ($message) use($tmp, $user) {
+                $message->to($user->email, $user->name);
+                $message->subject($tmp->title);
+            });
         }
 
         return Auth::loginUsingId($user->id);

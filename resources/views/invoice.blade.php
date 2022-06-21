@@ -75,19 +75,15 @@
 	          </tbody>
 			  <tfoot class="card-footer">
 			  	@php
-			  		/*$tax = ($i->amount*$c->tax)/100;*/
-
-                    $subtotal = ($i->amount / (($c->tax/100)+1));
-                    $tax = ($i->amount - $subtotal);
+			  		$tax = ($i->amount * 100)/(100 + $c->tax);
 			  	@endphp
 				<tr>
 	              <td colspan="2" class="text-right"><strong>Sub Total:</strong></td>
-	              <!--<td class="text-right">{{number_format(($i->amount - $tax) ,2)}}€</td>-->
-                  <td class="text-right">{{number_format(($subtotal) ,2,',','.')}} €</td>
+	              <td class="text-right">{{ number_format($tax ,2)}}€</td>
 	            </tr>
 	            <tr>
 	              <td colspan="2" class="text-right"><strong>IVA ({{$c->tax}}%):</strong></td>
-	              <td class="text-right">{{ number_format($tax ,2,',','.')}} €</td>
+	              <td class="text-right">{{number_format(($i->amount - $tax) ,2)}}€</td>
 	            </tr>
 				<tr>
 	              <td colspan="2" class="text-right"><strong>Total:</strong></td>

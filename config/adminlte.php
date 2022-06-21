@@ -394,6 +394,19 @@ return [
                     'can' => 'see-fees',
                     'url'  => '/configurations/fees',
                 ],
+                [
+                    'text' => 'Hitos',
+                    'icon' => '',
+                    'can' => 'admin-claims',
+                    'url'  => '/configurations/hitos',
+                ],
+                [
+                    'text' => 'Plantillas de Emails',
+                    'icon' => '',
+                    'can' => 'admin-claims',
+                    'url'  => '/configurations/templates',
+                ],
+
             ],
         ],
         // ['header' => 'labels'],

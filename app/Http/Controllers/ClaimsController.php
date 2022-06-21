@@ -7,6 +7,9 @@ use App\Models\User;
 use App\Models\ThirdParty;
 use App\Models\Debtor;
 use App\Models\Debt;
+use App\Models\SendEmail;
+use App\Models\Template;
+use App\Models\Hito;
 use App\Models\DebtDocument;
 use App\Models\Agreement;
 use App\Models\Invoice;
@@ -20,6 +23,8 @@ use Carbon\Carbon;
 
 
 use Excel;
+use Mail;
+
 use App\Exports\ClaimsExport;
 use App\Exports\InvoiceExport;
 use App\Exports\InvoicesExport;
@@ -800,6 +805,16 @@ class ClaimsController extends Controller
         $a->claim->phase = $r->phase;
         $a->claim->save();
 
+        $h = getHito($r->subject)[0];
+
+        if ($h && $h['template_id']) {
+            $se = new SendEmail;
+            $se->addresse = $a->claim ? $a->claim->owner->email : '';
+            $se->template_id = $h['template_id'];
+            $se->actuation_id = $a->id;
+            $se->save();
+        }
+
         $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
 
         if ($r->files) {
@@ -973,5 +988,48 @@ class ClaimsController extends Controller
         }
 
         return back()->with('msj','Se ha cargado correctamente el archivo excel!');
+    }
+
+    public function addCountEmail($id)
+    {
+        $se = SendEmail::find($id);
+
+        $se->views += 1;
+        $se->save();
+    }
+
+    public function sendEmailClient($se)
+    {
+        $o = User::where('email',$se->addresse)->first();
+
+        if (($se->hito()->send_times > $se->send_count && $se->updated_at->diffInMinutes(Carbon::now()) >= ($se->hito()->send_interval ? $se->hito()->send_interval : 8)) ||
+            ($se->hito()->send_times > $se->send_count && !$se->hito()->send_interval)) {
+
+            $tmp = $se->template;
+            Mail::send('email_base', ['se' => $se], function ($message) use($tmp, $o) {
+                $message->to($o->email, $o->name);
+                $message->subject($tmp->title);
+            });
+
+            $se->send_count += 1;
+            $se->save();
+
+        }else{
+            if ($se->updated_at->diffInMinutes(Carbon::now()) >= ($se->hito()->send_interval ? $se->hito()->send_interval : 8) || !$se->hito()->send_interval) {
+                $se->send_status = 1; // esto es para detener el envio
+                $se->save();
+            }else{
+                echo 'aun no pasa el tiempo-'.$se->id;
+            }
+        }
+    }
+
+    public function sendEmailsCron()
+    {
+        $ses = SendEmail::whereNull('send_status')->whereNull('views')->get();
+
+        foreach ($ses as $key => $se) {
+            return $this->sendEmailClient($se);
+        }
     }
 }

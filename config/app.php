@@ -717,7 +717,15 @@ return [
             'email' => true,
             'redirect_to' => null,
             'hitos' => null,
-        ]
+        ],
+        [
+            'id' => "-1",
+            'phase' => null,
+            'name' => 'TOKEN',
+            'email' => true,
+            'redirect_to' => "001",
+            'hitos' => null,
+        ],
     ],
     'aliases' => Facade::defaultAliases()->merge([
 

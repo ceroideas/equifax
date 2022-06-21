@@ -188,8 +188,25 @@ Route::group(['prefix'  => 'configurations'], function(){
     Route::get('/fees', [ConfigurationsController::class, 'fees']);
     Route::post('/fees', [ConfigurationsController::class, 'feesStore']);
     Route::put('{configuration}/fees', [ConfigurationsController::class, 'feesUpdate']);
+    //
+    Route::get('/hitos', [ConfigurationsController::class, 'hitos']);
+    Route::get('/hitos/create', [ConfigurationsController::class, 'createHitos']);
+    Route::get('/hitos/{id}/edit', [ConfigurationsController::class, 'createHitos']);
+
+    Route::post('/hitos/save', [ConfigurationsController::class, 'saveHitos']);
+    Route::post('/hitos/{id}/update', [ConfigurationsController::class, 'updateHitos']);
+
+    Route::get('/templates', [ConfigurationsController::class, 'templates']);
+    Route::get('/templates/create', [ConfigurationsController::class, 'createTemplate']);
+    Route::get('/templates/{id}/edit', [ConfigurationsController::class, 'createTemplate']);
+
+    Route::post('/templates/save', [ConfigurationsController::class, 'saveTemplate']);
+    Route::post('/templates/{id}/update', [ConfigurationsController::class, 'updateTemplate']);
+
 
 });
+Route::delete('/template/{id}', [ConfigurationsController::class, 'deleteTemplates']);
+Route::delete('/hitos/{id}', [ConfigurationsController::class, 'deleteHitos']);
 
 /**/
 Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
@@ -211,3 +228,8 @@ Route::get('loadActuations/{phase}', [ClaimsController::class, 'loadActuations']
 
 
 Route::post('import-actuations', [ClaimsController::class, 'importActuations']);
+
+
+
+Route::get('addCountEmail/{id}', [ClaimsController::class, 'addCountEmail']);
+Route::get('sendEmailsCron', [ClaimsController::class, 'sendEmailsCron']);

@@ -28,16 +28,17 @@ class Actuation extends Model
     {
         // return $attr;
         $val = null;
-        foreach (config('app.actuations') as $key => $value) {
+        // foreach (config('app.actuations') as $key => $value) {
+        foreach (Hito::whereNull('parent_id')->get() as $key => $value) {
             
-            if ($value['hitos']) {
-                foreach ($value['hitos'] as $key1 => $value1) {
-                    if ($value1['id'] === $attr) {
+            if ($value->hitos) {
+                foreach ($value->hitos as $key1 => $value1) {
+                    if ($value1->ref_id === $attr) {
                         $val = $value1;
                     }
                 }
             }else{
-                if ($value['id'] === $attr) {
+                if ($value->ref_id === $attr) {
                     $val = $value;
                 }
             }
@@ -45,8 +46,9 @@ class Actuation extends Model
         }
 
         if (!$val) {
-            foreach (config('app.actuations') as $key => $value) {
-                if ($value['id'] === $attr) {
+            // foreach (config('app.actuations') as $key => $value) {
+            foreach (Hito::whereNull('parent_id')->get() as $key => $value) {
+                if ($value->ref_id === $attr) {
                     $val = $value;
                 }
             }

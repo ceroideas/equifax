@@ -8,6 +8,9 @@ use App\Rules\Iban;
 use App\Rules\CifNie;
 use App\Models\Claim;
 use App\Models\Debt;
+use App\Models\Template;
+use App\Models\Hito;
+use App\Models\SendEmail;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +21,8 @@ use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
 
 use Auth;
+
+use Mail;
 
 use Excel;
 use App\Exports\UsersExport;
@@ -338,7 +343,101 @@ class UsersController extends Controller
 
     public function migrar()
     {
-        return \App\Models\Actuation::all();
+        $temp = [
+            ['001', 2, 1, 0],
+            ['1', 6, 1, 0],
+            ['101', 6, 1, 0],
+            ['102', 6, 1, 0],
+            ['103', 6, 1, 0],
+            ['104', 6, 1, 0],
+            ['105', 6, 1, 0],
+            ['106', 6, 1, 0],
+
+            ['2', 7, 1, 0],
+            ['3', 9, 1, 0],
+            ['301', 9, 1, 0],
+            ['302', 9, 1, 0],
+            ['303', 10, 1, 0],
+            ['4', 4, 1, 0],
+            ['5', 4, 1, 0],
+            ['6', 9, 1, 0],
+            ['601', 9, 1, 0],
+            ['602', 9, 1, 0],
+            ['603', 9, 1, 0],
+            ['604', 8, 1, 0],
+            ['701', 9, 2, 72],
+            ['702', 9, 2, 72],
+            ['9', 9, 1, 0],
+            ['1005', 4, 1, 0],
+            ['1006', 4, 1, 0],
+            ['1101', 9, 2, 72],
+            ['1102', 9, 2, 72],
+            ['12', 9, 1, 0],
+            ['1304', 9, 1, 0],
+            ['15', 4, 1, 0],
+            ['16', 5, 1, 0],
+            ['17', 4, 1, 0],
+            ['1701', 4, 1, 0],
+            ['1702', 4, 1, 0],
+            ['1703', 9, 1, 0],
+            ['19', 11, 1, 0],
+            ['20', 6, 1, 0],
+            ['21', 10, 1, 0]
+        ];
+
+        foreach ($temp as $key => $value) {
+            $h = Hito::where('ref_id',$value[0])->first();
+            $h->template_id = $value[1];
+            $h->send_times = $value[2];
+            $h->send_interval = $value[3];
+            $h->save();
+        }
+        // $tmp = Template::find(1);
+        // Mail::send('email_base', ['tmp' => $tmp], function ($message) use($tmp) {
+        //     $message->to('jorgesolano92@gmail.com', 'Jorge Solano');
+        //     $message->subject($tmp->title);
+        // });
+        /*Schema::create('hitos', function (Blueprint $table) {
+            $table->id();
+            $table->string('ref_id')->nullable();
+            $table->string('parent_id')->nullable();
+            $table->string('phase')->nullable();
+            $table->string('name')->nullable();
+            $table->string('redirect_to')->nullable();
+
+            $table->integer('template_id')->nullable(); // email
+            $table->integer('send_interval')->nullable();
+            $table->integer('send_times')->nullable();
+
+            $table->timestamps();
+        });
+
+        Schema::create('templates', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->nullable();
+            $table->string('top_logo')->nullable();
+            $table->text('top_content')->nullable();
+            $table->text('header_content')->nullable();
+            $table->string('header_image')->nullable();
+            $table->text('body_content')->nullable();
+            $table->text('footer_content')->nullable();
+            $table->string('cta_button')->nullable();
+            $table->string('cta_button_link')->nullable();
+            $table->string('signature')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('send_emails', function (Blueprint $table) {
+            $table->id();
+            $table->integer('template_id')->nullable();
+            $table->integer('actuation_id')->nullable();
+            $table->integer('send_status')->nullable();
+            $table->integer('send_count')->nullable();
+            $table->integer('views')->nullable();
+            $table->timestamps();
+        });*/
+
+        // return \App\Models\Actuation::all();
         /*$u = Auth::user();
         $u->apud_acta = null;
         $u->save();
@@ -352,13 +451,13 @@ class UsersController extends Controller
         // return Claim::all();
         // return \App\Models\Actuation::all();
 
-        \App\Models\Actuation::truncate();
-        \App\Models\ActuationDocument::truncate();
-        Claim::truncate();
-        Debt::truncate();
-        Invoice::truncate();
-        \App\Models\Agreement::truncate();
-        \App\Models\DebtDocument::truncate();
+        // \App\Models\Actuation::truncate();
+        // \App\Models\ActuationDocument::truncate();
+        // Claim::truncate();
+        // Debt::truncate();
+        // Invoice::truncate();
+        // \App\Models\Agreement::truncate();
+        // \App\Models\DebtDocument::truncate();
 
 
         // return actuationActions(601,22);
