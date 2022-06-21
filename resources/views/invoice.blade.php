@@ -22,7 +22,7 @@
 	  <!-- Main Content -->
 	  <main>
 	  <div class="row">
-	    <div class="col-sm-3"><strong>Fecha: <br></strong> {{ $i->created_at->format('d-m-Y') }}</div>
+	    <div class="col-sm-3"><strong>Fecha: <br></strong> {{ $i->created_at->format('d/m/Y') }}</div>
 	    <div class="col-sm-3"> <strong>Reclamación Nº: <br></strong> {{$i->claim->id}}</div>
 	    <div class="col-sm-3"> <strong>Referencia Nº: <br></strong> {{$i->id}}</div>
 	    <div class="col-sm-3 text-sm-right"> <strong>Factura Nº: <br></strong> DV{{$i->id}}</div>

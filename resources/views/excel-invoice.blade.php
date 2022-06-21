@@ -11,7 +11,7 @@
 
 	  <table>
 	  <tr>
-	    <th style="width: 170px;"> <strong>Fecha: <br></strong> {{ $i->created_at->format('d-m-Y') }}</th>
+	    <th style="width: 170px;"> <strong>Fecha: <br></strong> {{ $i->created_at->format('d/m/Y') }}</th>
 	    <th style="width: 170px;"> <strong>Reclamación Nº: <br></strong> {{$i->claim->id}}</th>
 	    <th style="width: 170px;"> <strong>Referencia Nº: <br></strong> {{$i->id}}</th>
 	    <th style="width: 170px;"> <strong>Factura Nº: <br></strong> DV{{$i->id}}</th>
