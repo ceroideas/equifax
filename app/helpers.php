@@ -3,6 +3,9 @@
 use App\Models\Actuation;
 use App\Models\Claim;
 use App\Models\Debt;
+use App\Models\Hito;
+use App\Models\SendEmail;
+use App\Models\Template;
 use App\Models\Invoice;
 use App\Models\Configuration;
 use Carbon\Carbon;
@@ -16,24 +19,27 @@ function getHito($id_hito)
 {
 	$h = null;
 	$f = null;
-	foreach (config('app.actuations') as $key => $value) {
-	            
-        if ($value['hitos']) {
-            foreach ($value['hitos'] as $key1 => $value1) {
-                if ($value1['id'] === $id_hito) {
+	// foreach (config('app.actuations') as $key => $value) {
+	foreach (Hito::whereNull('parent_id')->get() as $key => $value) {
+        if (count($value->hitos)) {
+            foreach ($value->hitos as $key1 => $value1) {
+                // if ($value1['id'] === $id_hito) {
+                if ($value1->ref_id === $id_hito) {
                     $h = $value1;
                     $f = $value;
+
+                    return [$h,$f];
                 }
             }
         }else{
-            if ($value['id'] === $id_hito) {
+            if ($value->ref_id === $id_hito) {
                 $h = $value;
                 $f = $value;
+
+                return [$h,$f];
             }
         }
     }
-
-    return [$h,$f];
 }
 
 function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $observations = null)
@@ -85,12 +91,6 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 	}
 	else */if ($h) {
 
-		// comprobar si el hito debe enviar un email
-
-		if ($h['email']) {
-			// code...
-		}
-
 		// comprobar si el hito es de la fase de cobro directamente
 
 		/*if ($h['id'] == 301 || $h['id'] == 302) {
@@ -129,6 +129,17 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        $a->mailable = $h['email'] ? 1 : null;
 
 		        $a->save();
+
+		        // comprobar si el hito debe enviar un email
+
+				if ($h['template_id']) {
+					// code...
+					$se = new SendEmail;
+					$se->addresse = $claim ? $claim->owner->email : '';
+					$se->template_id = $h['template_id'];
+					$se->actuation_id = $a->id;
+					$se->save();
+				}
 			}
 	        
 			// comprobar si la redirección es al inicio del proceso de cobros (carga apud acta)

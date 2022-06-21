@@ -266,7 +266,7 @@ return [
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
         [
-            'text' => '&Aacute;rea personal',
+            'text' => 'Área personal',
             'url'  => 'panel',
             'icon' => 'fas fa-fw fa-tachometer-alt',
         ],
@@ -394,6 +394,19 @@ return [
                     'can' => 'see-fees',
                     'url'  => '/configurations/fees',
                 ],
+                [
+                    'text' => 'Hitos',
+                    'icon' => '',
+                    'can' => 'admin-claims',
+                    'url'  => '/configurations/hitos',
+                ],
+                [
+                    'text' => 'Plantillas de Emails',
+                    'icon' => '',
+                    'can' => 'admin-claims',
+                    'url'  => '/configurations/templates',
+                ],
+
             ],
         ],
         // ['header' => 'labels'],
@@ -617,7 +630,7 @@ return [
     'iframe' => [
         'default_tab' => [
             'url' => '/admin/index',
-            'title' => '&Aacute;rea personal',
+            'title' => 'Área personal',
         ],
         'buttons' => [
             'close' => true,

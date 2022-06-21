@@ -6,6 +6,8 @@ use App\Models\Configuration;
 use Illuminate\Http\Request;
 /*use App\Models\Debt;
 use Carbon\Carbon;*/
+use App\Models\Hito;
+use App\Models\Template;
 
 class ConfigurationsController extends Controller
 {
@@ -115,6 +117,155 @@ class ConfigurationsController extends Controller
         return request()->validate($rules);
 
 
+    }
+
+    public function hitos()
+    {
+        // Hito::truncate();
+        // foreach (config('app.actuations') as $key => $value) {
+
+        //     $h = new Hito;
+        //     $h->ref_id = $value['id'];
+        //     $h->parent_id = null;
+        //     $h->phase = $value['phase'];
+        //     $h->name = $value['name'];
+        //     $h->redirect_to = $value['redirect_to'];
+        //     $h->save();
+
+        //     if ($value['hitos']){
+        //         foreach ($value['hitos'] as $ht){
+        //             $h = new Hito;
+        //             $h->ref_id = $ht['id'];
+        //             $h->parent_id = $value['id'];
+        //             $h->phase = null;
+        //             $h->name = $ht['name'];
+        //             $h->redirect_to = $ht['redirect_to'];
+        //             $h->save();
+        //         }
+        //     }
+        // }
+
+        $hitos = Hito::all();
+
+        return view('hitos.index',compact('hitos'));
+    }
+
+    public function templates()
+    {
+        $templates = Template::all();
+
+        return view('templates.index', compact('templates'));
+    }
+
+    public function createTemplate($id = null){
+
+        $tmp = Template::find($id);
+
+        return view('templates.create', compact('tmp'));
+    }
+
+    public function saveTemplate(Request $r)
+    {
+        $t = new Template;
+        $t->title = $r->title;
+
+        if ($r->top_logo) {
+            $top_logo = $r->file('top_logo')->store('uploads/templates', 'public');
+            $t->top_logo = $top_logo;
+        }
+
+        if ($r->header_image) {
+            $header_image = $r->file('header_image')->store('uploads/templates', 'public');
+            $t->header_image = $header_image;
+        }
+
+        $t->top_content = $r->top_content;
+        $t->header_content = $r->header_content;
+        $t->body_content = $r->body_content;
+        $t->footer_content = $r->footer_content;
+        $t->cta_button = $r->cta_button;
+        $t->cta_button_link = $r->cta_button_link;
+        $t->signature = $r->signature;
+        $t->save();
+
+        return redirect('configurations/templates')->with('msj','Se ha guardado la información de la plantilla');
+    }
+
+    public function updateTemplate(Request $r, $id)
+    {
+        $t = Template::find($id);
+        $t->title = $r->title;
+        
+        if ($r->top_logo) {
+            $top_logo = $r->file('top_logo')->store('uploads/templates', 'public');
+            $t->top_logo = $top_logo;
+        }
+
+        if ($r->header_image) {
+            $header_image = $r->file('header_image')->store('uploads/templates', 'public');
+            $t->header_image = $header_image;
+        }
+
+        $t->top_content = $r->top_content;
+        $t->header_content = $r->header_content;
+        $t->body_content = $r->body_content;
+        $t->footer_content = $r->footer_content;
+        $t->cta_button = $r->cta_button;
+        $t->cta_button_link = $r->cta_button_link;
+        $t->signature = $r->signature;
+        $t->save();
+
+        return redirect('configurations/templates')->with('msj','Se ha guardado la información de la plantilla');
+    }
+
+    public function createHitos($id = null){
+
+        $ht = Hito::find($id);
+
+        return view('hitos.create', compact('ht'));
+    }
+
+    public function saveHitos(Request $r)
+    {
+        $h = new Hito;
+        $h->ref_id = $r->ref_id;
+        $h->parent_id = $r->parent_id;
+        $h->phase = $r->phase;
+        $h->name = $r->name;
+        $h->redirect_to = $r->redirect_to;
+        $h->template_id = $r->template_id;
+        $h->send_interval = $r->send_interval;
+        $h->send_times = $r->send_times;
+        $h->save();
+
+        return redirect('configurations/hitos')->with('msj','Se ha guardado la información del hito');
+    }
+
+    public function updateHitos(Request $r, $id)
+    {
+        $h = Hito::find($id);
+        $h->ref_id = $r->ref_id;
+        $h->parent_id = $r->parent_id;
+        $h->phase = $r->phase;
+        $h->name = $r->name;
+        $h->redirect_to = $r->redirect_to;
+        $h->template_id = $r->template_id;
+        $h->send_interval = $r->send_interval;
+        $h->send_times = $r->send_times;
+        $h->save();
+
+        return redirect('configurations/hitos')->with('msj','Se ha guardado la información del hito');
+    }
+
+    /**/
+
+    public function deleteTemplates($id)
+    {
+        return $id;
+    }
+    public function deleteHitos($id)
+    {
+        return $id;
     }
 
 
