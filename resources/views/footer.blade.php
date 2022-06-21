@@ -51,7 +51,7 @@ b {
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
 
-    <div class="modal-header" style="color: #111">Términos y Condiciones</div>
+    <div class="modal-header" style="color: #111"></div>
     <div class="modal-body">
       @include('terminos-condiciones')
     </div>
@@ -64,7 +64,7 @@ b {
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
 
-    <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
+    <div class="modal-header" style="color: #111"></div>
     <div class="modal-body">
       @include('terminos-contratacion')
     </div>
@@ -81,7 +81,7 @@ b {
 
                 <div data-v-a242bae8="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 icons-social d-flex justify-content-end">
 
-                  <a data-v-a242bae8="" href="https://www.linkedin.com/company/asemar-concursal" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/linkedin.png" class="img-fluid"></a>
+                  <a data-v-a242bae8="" href="https://www.linkedin.com/company/86028193/admin/" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/linkedin.png" class="img-fluid"></a>
 
                   {{-- <a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-whatsapp.png" class="img-fluid s-icon"></a>
 
@@ -102,12 +102,32 @@ b {
                           </label> <span data-v-e8aafb5e="" class="importe-range1">
                               0 €
                           </span> <input data-v-e8aafb5e="" required type="range" min="0" max="100000" value="0" id="rangeDeuda"> <div data-v-e8aafb5e=""><small data-v-e8aafb5e="" class="small-text">0€</small> <small data-v-e8aafb5e="" class="small-text d-right">100.000€</small></div> <!----></div></div></div> <div data-v-e8aafb5e="" class="col-12 my-1 RangoImporte"><div data-v-e8aafb5e="" class="form-outline"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="customRange2" class="form-label range-label">
-                              La antiguedad de tu deuda es…
+                              La antig&uuml;edad de tu deuda es…
                           </label> <span data-v-e8aafb5e="" class="importe-range1">
                               0-30 días
                           </span> <input data-v-e8aafb5e="" type="range" min="0" max="4" value="0" step="1" id="rangeDeuda" class="rangeDeuda1"> <div data-v-e8aafb5e=""><small data-v-e8aafb5e="" class="small-text">0 - 30 días</small> <small data-v-e8aafb5e="" class="small-text d-right">+ 10 años</small></div></div></div></div> <div data-v-e8aafb5e="" class="col-12 mt-3"><div data-v-e8aafb5e="" class="form-outline"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="TipoAcreedor">
                               Eres… (tipo de acreedor)
-                          </label> <div data-v-e8aafb5e="" class="row block-radio"><div data-v-e8aafb5e="" class="col-md-4 col-sm-4"><div data-v-e8aafb5e="" class="form-check radio-item"><input data-v-e8aafb5e="" type="radio" name="type" id="Persona física" class="form-check-input" value="Persona física"> <label data-v-e8aafb5e="" for="Persona física" class="form-check-label">Persona física</label></div></div><div data-v-e8aafb5e="" class="col-md-4 col-sm-4"><div data-v-e8aafb5e="" class="form-check radio-item"><input data-v-e8aafb5e="" type="radio" name="type" id="Persona jurídica" class="form-check-input" value="Persona jurídica"> <label data-v-e8aafb5e="" for="Persona jurídica" class="form-check-label">Persona jurídica</label></div></div><div data-v-e8aafb5e="" class="col-md-4 col-sm-4"><div data-v-e8aafb5e="" class="form-check radio-item"><input data-v-e8aafb5e="" type="radio" name="type" id="Autónomo" class="form-check-input" value="Autónomo" required> <label data-v-e8aafb5e="" for="Autónomo" class="form-check-label">Autónomo</label></div></div></div> <span data-v-e8aafb5e="" class=""></span> <span data-v-e8aafb5e="" class="invalid-feedback">El campo es requerido</span></div></div></div> <div data-v-e8aafb5e="" class="col-12 mt-3"><div data-v-e8aafb5e="" class="form-outline"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="TipoDocumento">
+                          </label> <div data-v-e8aafb5e="" class="row block-radio">
+                            <div data-v-e8aafb5e="" class="col-md-4 col-sm-4">
+                                <div data-v-e8aafb5e="" class="form-check radio-item">
+                                    <input data-v-e8aafb5e="" type="radio" name="type" id="Persona física" class="form-check-input" value="Persona física">
+                                    <label data-v-e8aafb5e="" for="Persona física" class="form-check-label">Persona física</label>
+                                </div>
+                            </div>
+                            <div data-v-e8aafb5e="" class="col-md-4 col-sm-4">
+                                <div data-v-e8aafb5e="" class="form-check radio-item">
+                                    <input data-v-e8aafb5e="" type="radio" name="type" id="Persona jurídica" class="form-check-input" value="Persona jurídica">
+                                    <label data-v-e8aafb5e="" for="Persona jurídica" class="form-check-label">Persona jurídica</label>
+                                </div>
+                            </div>
+                            {{-- Opcion autonomo
+                            <div data-v-e8aafb5e="" class="col-md-4 col-sm-4">
+                                <div data-v-e8aafb5e="" class="form-check radio-item">
+                                    <input data-v-e8aafb5e="" type="radio" name="type" id="Autónomo" class="form-check-input" value="Autónomo" required>
+                                    <label data-v-e8aafb5e="" for="Autónomo" class="form-check-label">Autónomo</label>
+                                </div>
+                            </div>--}}
+                        </div> <span data-v-e8aafb5e="" class=""></span> <span data-v-e8aafb5e="" class="invalid-feedback">El campo es requerido</span></div></div></div> <div data-v-e8aafb5e="" class="col-12 mt-3"><div data-v-e8aafb5e="" class="form-outline"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="TipoDocumento">
                               ¿Dispones del documento que soporta la deuda?
                           </label> <div data-v-e8aafb5e="" class="row block-radio"><div data-v-e8aafb5e="" class="col disponibilidad-radio"><div data-v-e8aafb5e="" class="form-check form-check-inline radio-item"><input data-v-e8aafb5e="" type="radio" id="Si" class="form-check-input" required name="document" value="Si"> <label data-v-e8aafb5e="" for="Si" class="form-check-label">Si</label></div><div data-v-e8aafb5e="" class="form-check form-check-inline radio-item"><input data-v-e8aafb5e="" type="radio" id="No" class="form-check-input" required name="document" value="No"> <label data-v-e8aafb5e="" for="No" class="form-check-label">No</label></div> <span data-v-e8aafb5e="" class=""></span> <span data-v-e8aafb5e="" class="invalid-feedback">El campo es requerido</span></div> <div data-v-e8aafb5e="" class="col select-documento"><!----></div></div></div></div></div></div> <hr data-v-e8aafb5e="" class="Line-Copy"> <div data-v-e8aafb5e="" class="text-center"><button data-v-e8aafb5e="" class="btn btn-form-deuda">COMPROBAR DEUDA</button></div></form> <div data-v-e8aafb5e="" class="modal-vue"><!----> <!----></div></div></div>
       </div>

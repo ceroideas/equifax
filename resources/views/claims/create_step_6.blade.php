@@ -54,7 +54,7 @@
         <div class="col-sm-12 text-center">
             <span> <h3>
             {{-- A partir de este momento, Ya ha introducido todos los datos requeridos por el sistema. --}}
-            Confirmo que todos los datos e información aportada es veráz. * <br>
+            Confirmo que todos los datos e información aportada es veraz. * <br>
 
             <small>
                 <i>* La información que aporte el/la Cliente/a se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esa información en el sistema lo que en ella se vierta, afirme o manifieste. </i>
@@ -68,13 +68,26 @@
         </h3></span>
         </div>
       </div>
-      <div class="row">
+
+<div class="custom-control custom-checkbox mb-3">
+    <a data-toggle="modal" href="#terminos" style="color: #666">
+    <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
+    <label for="customCheckbox1" class="custom-control-label"> Aceptar los Términos y Condiciones de uso General</label></a>
+    @error('tos')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
+
+    <div class="row">
         <div class="col-sm-12 text-center">
-
-            <div style="overflow: auto; height: 600px;">
-
+            {{--<div style="overflow: auto; height: 600px;">--}}
+            <div>
                 <p>
+                {{-- <p>
                     @include('terminos-condiciones')
+                    --}}
                 </p>
 
                 {{-- <p>
@@ -85,9 +98,36 @@
                     @csrf
                     @method('POST')
                 </form>
+
+                <div class="modal fade" id="terminos" style="max-width: 100%;">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <div class="modal-header" style="color: #111"></div>
+                            <div class="modal-body">
+
+                                <div style="height: 600px; overflow: auto;">
+                                    @include('terminos-condiciones')
+
+                                    {{-- <br>
+
+                                    @include('terminos-contratacion') --}}
+
+                                    {{-- <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button> --}}
+                                    <button data-dismiss="modal" id="accept-terms" class="btn btn-flat btn-success create-claim">Aceptar los términos</button>
+                                    <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+                                </div>
+                            </div>
+                            {{-- <div class="modal-footer"></div> --}}
+                        </div>
+                    </div>
+                </div>
+
+{{--
                 <span> <button class="btn btn-flat btn-success create-claim">SI</button></span>
                 <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('claims/flush-options') }}">NO</button></span>
                 <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('claims/check-agreement') }}">Volver</button></span>
+--}}
             </div>
         </div>
       </div>
@@ -105,5 +145,10 @@
        console.log($(this).attr('href'));
         location.href = $(this).attr('href');
    });
+
+   $('#accept-terms').click(function(event) {
+            /* Act on the event */
+            $('#customCheckbox1').prop('checked', true)
+        });
 </script>
 @stop

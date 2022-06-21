@@ -21,6 +21,7 @@ use Auth;
 use Storage;
 use Carbon\Carbon;
 
+
 use Excel;
 use Mail;
 
@@ -72,20 +73,28 @@ class ClaimsController extends Controller
      */
     public function create()
     {
-        
+
         return view('claims.create');
-     
+
 
     }
 
     public function stepOne()
     {
 
+        if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
+            return view('claims.create_step_1');
+        }
+        return redirect('users/'.Auth::id())->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');
+
+
+
+        /*
         if (!isComplete()) {
             return redirect('users/'.Auth::id())->with('msj','Antes de realizar una nueva reclamación, deberá completar su perfil.');
         }
         return view('claims.create_step_1');
-        
+        */
 
     }
 
@@ -140,13 +149,30 @@ class ClaimsController extends Controller
                 $presc = Carbon::now()->diffInYears(Carbon::parse($debt->debt_date));
             }
 
+        /* TODO: Borrar debug */
+        /*print_r("Claims Controller -> Step six ");echo "<br>";
+        var_dump(config('app.deudas')[$debt->type]);echo "<br>";*/
+
+
+
+
             $deuda = config('app.deudas')[$debt->type];
             $prescribe = null;
             $message = "¡GRACIAS, YA CASI HEMOS TERMINADO!";
 
+            /* TODO: Borrar debug */
+            /*var_dump($deuda['prescripcion']);
+            print_r($deuda['prescripcion']);*/
+
             if ($presc < $deuda['prescripcion']) {
                 $prescribe = 1;
             }
+            /* TODO: Borrar debug */
+            /*print_r("Evalua prescripción ");echo "<br>";
+            print_r($presc);echo " es menor que: "; print_r($deuda['prescripcion']);echo "<br>";
+            print_r("Prescribe? ");echo "<br>";
+            print_r($prescribe);*/
+            //die();
 
             return view('claims.create_step_6', compact('prescribe','message'));
         }
@@ -186,7 +212,7 @@ class ClaimsController extends Controller
         $claim->debt_id = $debt->id;
         $claim->save();
         $debt->claim_id = $claim->id;
-        $debt->document_number = "DIV-".str_pad($claim->id, 4 ,"0", STR_PAD_LEFT);
+        $debt->document_number = "DVD-".str_pad($claim->id, 4 ,"0", STR_PAD_LEFT);
         $debt->save();
 
         if(session('claim_agreement')  != 'false'){
@@ -206,10 +232,10 @@ class ClaimsController extends Controller
             if (session('type_other')) {
                 $claim->status = 0;
             }else{
-                
+
                 $claim->status = 7;
                 $claim->claim_type = 2;
-
+/*
                 $c = Configuration::first();
 
                 $invoice = new Invoice;
@@ -219,8 +245,23 @@ class ClaimsController extends Controller
                 $invoice->type = 'fixed_fees';
                 $invoice->description = "Pago de tarifa proceso Extrajudicial";
                 $invoice->save();
+                */
             }
         }
+
+/* Generamos factura en cualquier estado*/
+        $c = Configuration::first();
+
+        $invoice = new Invoice;
+        $invoice->claim_id = $claim->id;
+        $invoice->user_id = $claim->user_id;
+        $invoice->amount = $c ? $c->fixed_fees : '0';
+        $invoice->type = 'fixed_fees';
+        $invoice->description = "Pago de la tarifa procedimiento Extrajudicial";
+        $invoice->save();
+
+/*Fin generacion de factura */
+
         $debt->save();
         $claim->save();
 
@@ -237,7 +278,7 @@ class ClaimsController extends Controller
         $path = '/uploads/claims/' . $claim->id . '/documents/';
 
         foreach (session('documentos') as $key => $d) {
-            
+
             // $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             // $documentos[$key][key($d)]['file'] = $file;
 
@@ -327,11 +368,13 @@ class ClaimsController extends Controller
         $request->session()->forget('type_other');
         $request->session()->forget('documentos');
 
-        if ($claim->last_invoice){
+
+        //if ($claim->last_invoice){
             return redirect('/claims/payment/' . $claim->id)->with('msj', 'Reclamación creada exitosamente, se ha generado una factura por honorarios, deberá realizar el pago correspondiente para poder proceder con la reclamación');
-        }else{
-            return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
-        }
+        //}else{
+            // Redirigia al panel y quedaba pendiente viabilidad por parte de administracion
+            // return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
+        //}
 
     }
 
@@ -455,10 +498,10 @@ class ClaimsController extends Controller
         $a->mailable = null;
         $a->save();*/
 
-        return redirect('claims')->with('msj', 'Reclamación actualziada exitosamente!');
-      
+        return redirect('claims')->with('msj', 'Reclamación actualizada exitosamente!');
+
     }
-    
+
 
     public function setNonViable(Request $request, Claim $claim)
     {
@@ -509,7 +552,7 @@ class ClaimsController extends Controller
         if($claim->debt->others){
 
             $session_docs = explode(',' , $claim->debt->others);
-           
+
 
             foreach ($session_docs as $d) {
 
@@ -518,12 +561,12 @@ class ClaimsController extends Controller
 
             $claim->debt->others = NULL;
         }
-        
-        $claim->debt->save();*/
-        
 
-        return redirect('claims')->with('msj', 'Informe de Reclamación generado exitosamente');
-      
+        $claim->debt->save();*/
+
+
+        return redirect('claims')->with('msj', 'Informe de reclamación generado exitosamente');
+
     }
 
     /**
@@ -555,7 +598,7 @@ class ClaimsController extends Controller
 
         $this->flushOptionTwo();
 
-        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 
@@ -563,9 +606,9 @@ class ClaimsController extends Controller
 
         $request->session()->forget('claim_client');
         $request->session()->put('claim_third_party', $request->id);
-        
 
-        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu elección temporalmente');
+
+        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 
@@ -575,7 +618,7 @@ class ClaimsController extends Controller
 
         return redirect('debts/create/step-one');
 
-        return redirect('/claims/create-debt')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/claims/create-debt')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 
@@ -584,7 +627,7 @@ class ClaimsController extends Controller
         $request->session()->forget('claim_client');
         $request->session()->put('claim_third_party', 'waiting');
 
-        return redirect('/third-parties')->with('msj', 'Se ha guardado tu elección temporalmente');
+        return redirect('/third-parties')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 
@@ -592,7 +635,7 @@ class ClaimsController extends Controller
 
         request()->session()->forget('claim_third_party');
 
-        // return redirect('/third-parties')->with('msj', 'Se ha guardado tu elección temporalmente');
+        // return redirect('/third-parties')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 
@@ -663,15 +706,15 @@ class ClaimsController extends Controller
                 Storage::disk('public')->delete($debt->reclamacion_previa);
             }
             if($debt->others){
-    
+
                 $session_docs = explode(',' , $debt->others);
-    
+
                 foreach ($session_docs as $d) {
-    
+
                     Storage::disk('public')->delete($d);
                 }
             }
-    
+
         }
 
 
@@ -689,7 +732,7 @@ class ClaimsController extends Controller
 
     public function validateViable(){
         $rules = [
-            
+
             'tipo_viabilidad' => 'required',
             // 'observaciones' => 'required',
         ];
@@ -790,7 +833,7 @@ class ClaimsController extends Controller
 
         /*
         if ($a->mailable) {
-            Mail::send('email_to_client', ['a' => $a], function ($message) {            
+            Mail::send('email_to_client', ['a' => $a], function ($message) {
                 $message->to($claim->owner->email, $claim->owner->name);
                 $message->subject('Actualización de su reclamación #'.$a->id);
             });
@@ -807,7 +850,7 @@ class ClaimsController extends Controller
             $invoice->user_id = $claim->user_id;
             $invoice->amount = $amount;
             $invoice->type = 'percentage_fees';
-            $invoice->description = "Pago de comisión por monto recuperado en reclamación extrajudicial";
+            $invoice->description = "Pago de comisión por importe recuperado en reclamación extrajudicial";
             $invoice->save();
 
             $a->invoice_id = $invoice->id;
@@ -868,7 +911,7 @@ class ClaimsController extends Controller
                 $a->type = null;
                 $a->mailable = null;
                 $a->save();
-                
+
             }else{
                 $c->status = 10;
 
@@ -903,9 +946,30 @@ class ClaimsController extends Controller
 
     public function checkDebtor(Request $r)
     {
-        if ($r->options == 1 || $r->concurso == 1) {
+        /*
+        print_r("checkDebtor ");
+        var_dump($r->options); //Deuda no reclamable
+        print_r("concurso ");
+        var_dump($r->concurso); //Concurso de acreedores
+        print_r("Selector ");
+        var_dump($r->tipo_deuda); //Selector
+        var_dump(session('tipo_deuda'));
+        */
+        //if ($r->options == 1 || $r->concurso == 1 || $r->tipo_deuda == 10 ) {
+        if ($r->concurso == 1 || $r->tipo_deuda == 10 ) {
+
+
             return redirect('claims/invalid-debtor');
         }
+
+
+        // Almacenamos eleccion
+        session()->put('tipo_deuda',$r->tipo_deuda);//, $request->tipo_deuda
+        session()->put('deuda_extra',$r->deuda_extra);//, $request->tipo_deuda
+        /*
+        var_dump(session('tipo_deuda'));
+        var_dump(session('deuda_extra'));
+        */
         return redirect('claims/select-debtor');
     }
 

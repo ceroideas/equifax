@@ -1,8 +1,9 @@
 <div {{ $attributes->merge(['class' => $makeCardClass()]) }}>
 
-    {{-- Profile header --}}
+    {{-- Profile header
     <div class="{{ $makeHeaderClass() }}" style="{{ $makeHeaderStyle() }}">
-
+--}}
+<div class="text-white" style="border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem; height: 135px; padding: 1rem; text-align: center;background-color:#e65927;">
         {{-- User image --}}
         <div class="widget-user-image">
             @if(isset($img))

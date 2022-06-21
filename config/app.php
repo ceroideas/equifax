@@ -256,6 +256,13 @@ return [
             "extrajudicial" => true,
             "judicial"=> true,
             "cataluna" => 10
+        ],
+        [
+            "deuda" => "Otro",
+            "prescripcion" => 5,
+            "extrajudicial" => true,
+            "judicial"=> true,
+            "cataluna" => 10
         ]
     ],
 

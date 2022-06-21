@@ -10,8 +10,8 @@
     </x-adminlte-alert>
     @endif
 
-    <x-adminlte-alert theme="info" dismissable>
-        <span>¡Importante! recuerde que si el Deudor se encuentra en Concurso de Acreedores la reclamación es inviable</span>
+    <x-adminlte-alert theme="primary" dismissable>
+        <span>¡Importante! Recuerda que si el deudor se encuentra en concurso de acreedores la reclamación es inviable</span>
     </x-adminlte-alert>
     <form action="@if(isset($debtor)){{ url('/debtors/' . $debtor->id) }}@else{{ url('/debtors') }}@endif" method="POST" enctype="multipart/form-data">
         @csrf
@@ -138,7 +138,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="col-sm-12">
-                    <x-adminlte-textarea name="additional" label="Datos Adicionales del Deudor / Observaciones ** " rows=4 enable-old-support="true" placeholder="Ingrese el motivo por el cual no ha conseguido su deuda, además de cualquier otra información importante al caso.">{{  isset($debtor) ?  $debtor->address   :  ''}}
+                    <x-adminlte-textarea name="additional" label="Datos adicionales del deudor / Observaciones ** " rows=4 enable-old-support="true" placeholder="Ingresa el motivo por el cual no ha conseguido su deuda, además de cualquier otra información importante al caso.">{{  isset($debtor) ?  $debtor->address   :  ''}}
                         <x-slot name="appendSlot" >
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-address-card"></i>
@@ -153,7 +153,7 @@
                 <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
             <div class="row">
-                <span class="float-left">(**) Por favor ingrese toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
+                <span class="float-left">(**) Por favor ingresa toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
             </div>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>

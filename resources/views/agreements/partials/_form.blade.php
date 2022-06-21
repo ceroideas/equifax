@@ -46,15 +46,15 @@
                 {{session('claim_debt.pending_amount')}} --}}
                 @php
                 @endphp
-                <label for="deudas_otros_input">¿Qué importe sería satisfactorio para dar la deuda por saldada? * {{ old() ? '('.old('quitas').'€)' : '' }}</label>
+                <label for="deudas_otros_input">¿Qué importe sería satisfactorio para dar la deuda por saldada? *{{ old() ? '('.old('quitas').' €)' : '' }}</label>
 
                 <x-adminlte-input-slider min="{{ session('claim_debt.pending_amount')/2 }}" max="{{ session('claim_debt.pending_amount') }}" id="deudas_otros_input" name="quitas" placeholder="Quitas" type="text" class=""
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_agreement') ? session('claim_agreement')->take : ''}}" >
                     <x-slot name="prependSlot">
-                        <x-adminlte-button theme="warning" label="{{session('claim_debt.pending_amount')/2}}€"/>
+                        <x-adminlte-button theme="Primary" label="{{ number_format(session('claim_debt.pending_amount')/2, 2,',','.') }} €"/>
                     </x-slot>
                     <x-slot name="appendSlot">
-                        <x-adminlte-button theme="warning" label="{{session('claim_debt.pending_amount')}}€"/>
+                        <x-adminlte-button theme="Primary" label="{{ number_format(session('claim_debt.pending_amount'), 2,',','.') }} €"/>
                     </x-slot>
                 </x-adminlte-input-slider>
             </div>
@@ -63,8 +63,8 @@
             <div class="col-sm-12">
                 <x-adminlte-select name="espera" label="¿Qué plazo máximo concederías al deudor para saldar la deuda? *" id="espera_input" class=""
                 igroup-size="sm" enable-old-support="true">
-                    <option selected disabled></option>
-                    <option {{ session('claim_agreement') ? (session('claim_agreement')->wait == '1 Mes' ? 'selected' : '') : ''}}>1 Mes</option>
+                    <option selected disabled>Selecciona una opción</option>
+                    <option {{ session('claim_agreement') ? (session('claim_agreement')->wait == '1 Mes' ? 'selected' : '') : ''}}>Pago único</option>
                     <option {{ session('claim_agreement') ? (session('claim_agreement')->wait == '2 Meses' ? 'selected' : '') : ''}}>2 Meses</option>
                     <option {{ session('claim_agreement') ? (session('claim_agreement')->wait == '3 Meses' ? 'selected' : '') : ''}}>3 Meses</option>
                     <option {{ session('claim_agreement') ? (session('claim_agreement')->wait == '4 Meses' ? 'selected' : '') : ''}}>4 Meses</option>
@@ -101,7 +101,7 @@
             </div>
 
             <div class="col-sm-12">
-                <x-adminlte-input name="iban" label="Ingrese su N° De Cuenta Corriente" placeholder="N° De Cuenta Corriente" type="text"
+                <x-adminlte-input name="iban" label="Identifique nº de cuenta donde ingresaremos las cantidades recuperadas" placeholder="Número de cuenta corriente" type="text"
                 igroup-size="sm" value="{{ Auth::user()->iban }}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -120,13 +120,13 @@
 
                 <div class="col-sm-12 text-left">
                     <span class="d-none" id="quitas">
-                        “<i>Usted esta dispuesto a que la deuda sea saldada si se recupera la cantidad de... <b><span></span></b></i>”.
+                        “<i>Usted esta dispuesto a que la deuda sea saldada si se recupera al menos la cantidad de... <b><span></span></b></i>”.
                     </span>
                 </div>
 
                 <div class="col-sm-12 text-left">
                     <span class="d-none" id="espera">
-                        “<i>La cuota mensual durante <b><span></span></b> meses es de <b><label></label></b></i>”.
+                        “<i>La cuota mensual durante <b><span></span></b> meses es de: <b><label></label></b></i>”.
                     </span>
                 </div>
             </div>
@@ -141,13 +141,21 @@
 
     <script>
 
+        $( document ).ready(function() {
+            console.log('Documento cargado');
+
+        });
+
         function calcularCuotas()
         {
             let meses = parseInt($('#espera_input').val());
             if ($('#deudas_otros_input').val() > 0 && (meses && meses != 1)) {
-                console.log(meses);
+                //console.log(meses);
                 $('#espera').removeClass('d-none').find('span').text(meses)
-                $('#espera').find('label').text( ($('#deudas_otros_input').val()/meses).toFixed(2) +'€')
+                $('#espera').find('label').text( ($('#deudas_otros_input').val()/meses).toFixed(2).toString().replace(".", ",") +' €')  /*Aqui se parsea a 2 decimales con coma*/
+
+                //console.log($('#espera').find('label').text( ($('#deudas_otros_input').val()/meses) +' €'));
+
             }else{
                 $('#espera').addClass('d-none');
 
@@ -155,10 +163,11 @@
         }
 
         $('#deudas_otros_input').on('slide change', function () {
-            $('[for="deudas_otros_input"]').text("¿Qué importe sería satisfactorio para dar la deuda por saldada? * ("+$(this).val()+"€)");
+            $('[for="deudas_otros_input"]').text("¿Qué importe sería satisfactorio para dar la deuda por saldada? * ("+$(this).val()+",00 €)");
+            /*console.log('formatear importe: '+ $(this).val() + typeof($(this).val()));*/
 
             if ($(this).val() > 0) {
-                $('#quitas').removeClass('d-none').find('span').text($(this).val()+'€');
+                $('#quitas').removeClass('d-none').find('span').text($(this).val()+',00 €');
             }else{
                 $('#quitas').addClass('d-none');
             }

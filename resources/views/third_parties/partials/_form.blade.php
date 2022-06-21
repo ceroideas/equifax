@@ -67,12 +67,12 @@
                 <label id="dni">
                 @isset ($third_party)
                     @if ($third_party->type == 2)
-                        DNI-NIE*
+                        DNI-NIE *
                     @else
-                        CIF*
+                        CIF *
                     @endif
                 @else
-                    DNI*
+                    DNI *
                 @endisset</label>
                 <x-adminlte-input name="dni" placeholder="Información Fiscal" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{  isset($third_party) ?  $third_party->dni   :  ''}}">
@@ -89,12 +89,12 @@
                 <label id="address">
                 @isset ($third_party)
                     @if ($third_party->type == 2)
-                        Dirección
+                        Dirección *
                     @else
-                        Domicilio Fiscal
+                        Domicilio Fiscal *
                     @endif
                 @else
-                    Dirección
+                    Dirección *
                 @endisset</label>
                 <x-adminlte-textarea name="address" rows=1 enable-old-support="true">{{  isset($third_party) ?  $third_party->address   :  ''}}
                     <x-slot name="appendSlot" >
@@ -213,7 +213,7 @@
 
 
         <div class="card-footer">
-            <span class="float-left">Los campos marcado con (*) son requeridos.</span> <br>
+            <span class="float-left">Los campos marcados con (*) son requeridos.</span> <br>
 
             <span class="float-left">** El adjunto de copia de DNI es del representante legal.</span>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
@@ -238,12 +238,12 @@
         $('input[name="tipo"][value="{{ $third_party->type }}"]').attr('checked', true);
         if({{  $third_party->type === "1" }}){
             $('.poa-div').removeClass('d-none');
-            $('#dni').text('CIF*');
-            $('#address').text('Domicilio Fiscal');
+            $('#dni').text('CIF *');
+            $('#address').text('Domicilio Fiscal *');
         }else{
              $('.poa-div').addClass('d-none');
-             $('#dni').text('DNI-NIE*');
-            $('#address').text('Dirección');
+             $('#dni').text('DNI-NIE *');
+            $('#address').text('Dirección *');
         }
     </script>
 @elseif(old('tipo'))
@@ -252,12 +252,12 @@
         $('input[name="tipo"][value="{{ old('tipo') }}"]').attr('checked', true);
         if({{ old('tipo') === "1" }}){
              $('.poa-div').removeClass('d-none');
-             $('#dni').text('CIF*');
-            $('#address').text('Domicilio Fiscal');
+             $('#dni').text('CIF *');
+            $('#address').text('Domicilio Fiscal *');
         }else{
              $('.poa-div').addClass('d-none');
-             $('#dni').text('DNI-NIE*');
-            $('#address').text('Dirección');
+             $('#dni').text('DNI-NIE *');
+            $('#address').text('Dirección *');
         }
     </script>
 @endif
@@ -267,12 +267,12 @@
         if(this.checked) {
             if(this.value === "1"){
                 $('.poa-div').removeClass('d-none');
-                $('#dni').text('CIF*');
-                $('#address').text('Domicilio Fiscal');
+                $('#dni').text('CIF *');
+                $('#address').text('Domicilio Fiscal *');
             }else{
                 $('.poa-div').addClass('d-none');
-                $('#dni').text('DNI-NIE*');
-                $('#address').text('Dirección');
+                $('#dni').text('DNI-NIE *');
+                $('#address').text('Dirección *');
             }
 
         }

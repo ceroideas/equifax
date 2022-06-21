@@ -15,7 +15,7 @@
 <p style="margin-bottom: 30px;text-align: justify;"><b><u>PRIMERO. -</u></b>  Que el {{Carbon\Carbon::now()->format('d-m-Y')}} <b>BESTAX ABOGADOS & ASESORES TRIBUTARIOS</b> y la parte demandada, {{$claim->debtor->name}}, suscribieron un contrato de colaboración profesional de asesoría y gestoría, cuya copia se acompaña a esta demanda como <b><u>Documento nº2</u></b>. </p>
 
 <p style="margin-bottom: 30px;text-align: justify;">En dicho contrato se establece los honorarios de mi mandante por los servicios prestados, el periodo de facturación y el método de pago. Además, se expone de forma clara las consecuencias de no atender los pagos de las mensualidades pactadas.</p>
-		
+
 <p style="margin-bottom: 30px;text-align: justify;"><b><u>SEGUNDO.-</u></b> La parte demandada incumplió la obligación de pago de alguna de las mensualidades facturadas por mi mandante tal y como recoge el contrato. </p>
 
 <p style="margin-bottom: 30px;text-align: justify;">La parte demandada ha originado una deuda por importe de {{$claim->debt->total_amount}} EUROS que no ha sido reintegrada a la fecha de interposición de la presente demanda. Aportamos como <b><u>Documento nº3</u></b> las facturas impagadas por la parte demandada. </p>
@@ -48,8 +48,11 @@
 
 <b><u>CUARTO.- PROCEDIMIENTO </u></b>
 
-<p style="margin-bottom: 30px;text-align: justify;">Conforme a lo preceptuado en el artículo 812 de la LEC, se tramitará por el proceso Monitorio la solicitud del pago de la deuda dineraria contraída de cualquier importe, líquida, determinada, vencida y exigible, así como debidamente acreditada con la documental aportada.</p>
- 
+<p style="margin-bottom: 30px;text-align: justify;">Conforme a lo preceptuado en el artículo 812 de la LEC, se tramitará por el proceso
+    <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">Monitorio</span> la solicitud del pago de la deuda dineraria
+contraída de cualquier importe, líquida, determinada, vencida y exigible, así como debidamente acreditada con la documental aportada.</p>
+
 <b><u>QUINTO.- FONDO DEL ASUNTO</u></b>
 
 <p style="margin-bottom: 30px;text-align: justify;"><b>A) Reglas generales de las obligaciones:</b> Artículos 1088, 1089, 1091, 1100, 1101, 1102, 1104, 1106, 1108, y concordantes del Código Civil, sobre obligaciones nacidas de los contratos, las cuales tienen fuerza de ley entre las partes. </p>
@@ -63,7 +66,7 @@
 <b><u>SEXTO.- COSTAS</u></b>
 
 <p style="margin-bottom: 30px;text-align: justify;">Conforme al artículo 394 de la LEC, las costas serán impuestas a aquella parte cuyas pretensiones sean totalmente rechazadas, por lo que deberán imponerse al demandado, si se opusiere. </p>
-				
+
 <p style="margin-bottom: 30px;text-align: justify;">Por lo expuesto, </p>
 
 <p style="margin-bottom: 30px;text-align: justify;"><b>SOLICITO AL JUZGADO:</b> Que teniendo por presentado este escrito con sus documentos adjuntos y copia de todo ello, lo admita a trámite y tenga por formulada petición de <b>PROCEDIMIENTO MONITORIO</b> contra {{$claim->debtor->name}}, acordando requerir de pago a la parte demandada de la deuda que se reclama de <b><u>{{$claim->debt->total_amount}} EUROS</u></b>, y si no pagase o presentase oposición o no compareciese, se dicte por el Letrado de la Administración de Justicia Decreto dando traslado a esta parte para instar el correspondiente despacho de ejecución. </p>

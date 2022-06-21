@@ -1,5 +1,7 @@
-<x-adminlte-alert theme="info">
-    <span>¡Importante! Solo se puede reclamar una (1) deuda por concepto al mismo deudor, en caso de poseer múltiples conceptos debe registrar una reclamación para cada concepto.</span>
+<x-adminlte-alert theme="primary">
+    <span>¡Importante! Solo se puede reclamar una deuda por concepto al mismo deudor, en caso de poseer múltiples conceptos debe registrar una reclamación para cada concepto.
+        ¡No olvides rellenar el mayor número de datos para que nuestro equipo de letrados pueda disponer de toda la información!
+    </span>
     <br>
     {{-- <span>¡Importante! Recuerde que es responable de toda la información adjuntada en éste apartado así como la veracidad de la misma y entiende de las consecuencias en caso de no resolverse de forma positiva el litigio.</span>
     <br> --}}
@@ -94,22 +96,26 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" label="Selecciona el Tipo de Deuda *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true">
+
+                <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" label="Deuda seleccionada *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true" >
 
                     @foreach (config('app.deudas') as $key => $deuda)
-                        <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : '' }} value="{{$key}}">{{$deuda['deuda']}}</option>
+                        <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : (session('tipo_deuda')==$key ? 'selected' : '') }} value="{{$key}}">{{$deuda['deuda']}}</option>
+                        {{--<option {{(session('tipo_deuda')==$key ? 'selected' : '')}} value="{{$key}}">{{$deuda['deuda']}}</option>--}}
                     @endforeach
 
                     <optgroup label="Otro **">
-                        <option value="-1">Especifique</option>
+                        <option {{session('tipo_deuda')==-1 ? 'selected' : ''}} value="-1">Especifique</option>
                     </optgroup>
+
                 </x-adminlte-select2>
+
             </div>
         </div>
         <div id="deuda_otros" class="row d-none">
             <div class="col-sm-12">
                 <x-adminlte-input id="deudas_otros_input" name="deuda_extra" label="Otro **" placeholder="Otro" type="text" class=""
-                igroup-size="sm" enable-old-support="true">
+                igroup-size="sm" enable-old-support="true" value="{{session('deuda_extra')}}" >
                 </x-adminlte-input>
             </div>
         </div>
@@ -199,7 +205,7 @@
 
             <div class="row">
                 <div class="col-sm-6">
-                    <x-adminlte-input name="fecha_reclamacion_previa" label="Fecha de la reclamación anterior" type="date"
+                    <x-adminlte-input name="fecha_reclamacion_previa" label="Fecha de la reclamación anterior *" type="date"
                     igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->fecha_reclamacion_previa : ''}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
@@ -210,7 +216,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <x-adminlte-input name="reclamacion_previa" label="Documentación de la reclamación anterior" type="file"
+                    <x-adminlte-input name="reclamacion_previa" label="Documentación de la reclamación anterior *" type="file"
                     igroup-size="sm" enable-old-support="true">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
@@ -221,7 +227,7 @@
                 </div>
 
                 <div class="col-sm-12">
-                    <x-adminlte-textarea name="motivo_reclamacion_previa" label="Motivo de oposición alegada por el deudor" rows=4 enable-old-support="true">
+                    <x-adminlte-textarea name="motivo_reclamacion_previa" label="Motivo de oposición alegada por el deudor **" rows=4 enable-old-support="true">
                         {{ session('claim_debt') ? session('claim_debt')->motivo_reclamacion_previa : ''}}
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
@@ -304,7 +310,7 @@
                 <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
             <div class="row">
-                <span class="float-left">(**) Por favor ingrese toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
+                <span class="float-left">(**) Por favor ingresa toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
             </div>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save"/>
@@ -378,8 +384,22 @@
 </script>
 
 <script>
-    $('#tipo_deuda').on('change', function(){
+    $(document).ready(function(){
+        $("#add-document").click();
+        if($('#tipo_deuda').val() == -1){
+            //console.log("Otros");
+            $('#deuda_otros').find('label').html('Otro **')
+            $('#deudas_otros_input').attr('placeholder', 'Indique la deuda');
+            $('#deuda_otros').removeClass('d-none');
+        }else{
+            //console.log('deuda normal');
+            $('#deuda_otros').addClass('d-none');
+        }
+    });
 
+    /* No se usara onchange*/
+    $('#tipo_deuda').on('change', function(){
+        console.log($(this).val());
         if($(this).val() == -1){
 
             $('#deuda_otros').find('label').html('Otro **')

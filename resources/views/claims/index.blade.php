@@ -32,7 +32,7 @@
         'Cobros recibidos',
         'Importe pendiente de pago',
         ['label' => 'Tipo de Reclamación'],
-        ['label' => 'Estatus'],
+        ['label' => 'Status'],
         ['label' => 'Acciones','width' => 5],
     ];
 
@@ -77,7 +77,7 @@
                     <td>
                         {{ $claim->debt->document_number }}</td>
                     <td>
-
+                        {{--  Partido judicial, no se usara
                         @php
                             $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
 
@@ -98,13 +98,14 @@
                                 }
                             }
                         @endphp
-
-                    {{ $juzgado.'/'.$procurador }}</td>
+                    --}}
+                    {{-- $juzgado.'/'.$procurador --}}
+                        {{Auth::user()->name}}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
-                    <td>{{ $claim->debt->pending_amount }}€</td>
-                    <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
-                    <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
+                    <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} €</td>
+                    <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} €</td>
+                    <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
                     <td>{{ $claim->getType() }}</td>
                     <td>{{ $claim->getHito() }}</td>
                     {{-- <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td> --}}
@@ -146,7 +147,7 @@
 
                         @if ($claim->invoices)
                             <a href="{{ url('/claims/actuations/' . $claim->id ) }}">
-                                <button class="btn btn-xs btn-default text-warning mx-1 shadow" title="Actuaciónes">
+                                <button class="btn btn-xs btn-default text-warning mx-1 shadow" title="Actuaciones">
                                     <i class="fa fa-lg fa-fw fa-list"></i>
                                 </button>
                             </a>

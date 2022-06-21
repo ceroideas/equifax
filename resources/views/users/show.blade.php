@@ -28,6 +28,7 @@
 
 
 <x-adminlte-profile-widget name="{{ $user->name }}" desc="{{ $user->getRole() }}" theme="orange" header-class="text-white">
+{{--  DNI
     <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="card card-orange">
             <div class="card-header text-white">
@@ -51,11 +52,12 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-6">
+--}}
+    <div class="col-sm-12 col-md-12">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card card-orange">
-                    <div class="card-header text-white">
+                    <div class="card-header text-white" style="background-color:#e65927">
                         <h3 class="card-title">Detalles</h3>
                     </div>
                     <div class="card-body">
@@ -143,7 +145,7 @@
                          <a href="#" class="btn btn-danger btn-block" onclick="event.preventDefault(); document.getElementById('user-denial').submit();"><b>Revocar</b></a>
                      </nobr>
                 @else
-                    <x-adminlte-alert theme="info" dismissable>
+                    <x-adminlte-alert theme="primary" dismissable>
                         <span>El Cliente aún no ha completado sus datos.</span>
                     </x-adminlte-alert>
                 @endif
@@ -153,7 +155,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <nobr>
-                    <a href="{{ route('user.edit', $user) }}" class="btn btn-default btn-block my-4"><b>Editar Perfil</b></a>
+                    <a href="{{ route('user.edit', $user) }}" class="btn btn-default btn-block my-4"><b>Completar Perfil</b></a>
                 </nobr>
             </div>
          </div>
