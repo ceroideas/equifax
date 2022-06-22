@@ -288,9 +288,9 @@ class DebtsController extends Controller
 
         session()->put('documentos',$documentos);
 
-        // return redirect('/debts/create/step-two')->with('msj', 'Datos guardados temporalmente');
-        // return redirect('/debts/create/step-three')->with('msj', 'Datos guardados temporalmente');
-        return redirect('/claims/check-agreement')->with('msj', 'Datos guardados temporalmente');
+        // return redirect('/debts/create/step-two')->with('msj', 'Datos guardados exitosamente');
+        // return redirect('/debts/create/step-three')->with('msj', 'Datos guardados exitosamente');
+        return redirect('/claims/check-agreement')->with('msj', 'Datos guardados exitosamente');
     }
 
     public function saveStepTwo(Request $request)
@@ -310,7 +310,7 @@ class DebtsController extends Controller
         // session()->put('claim_debt', $debt);
         // session()->put('debt_step_two', 'completed');
 
-        // return redirect('/debts/create/step-three')->with('msj', 'Datos guardados temporalmente');
+        // return redirect('/debts/create/step-three')->with('msj', 'Datos guardados exitosamente');
 
     }
 
@@ -415,7 +415,7 @@ class DebtsController extends Controller
         session()->put('debt_step_three', 'completed');
         // dd($debt);
 
-        return redirect('/claims/check-agreement')->with('msj', 'Datos guardados temporalmente');
+        return redirect('/claims/check-agreement')->with('msj', 'Datos guardados exitosamente');
 
     }*/
 

@@ -25,7 +25,7 @@
     @php
     $heads = [
         'ID',
-        'Gestoría/Asociación',
+        'Usuario',
         'Acreedor',
         'Deudor',
         'Importe reclamado',
