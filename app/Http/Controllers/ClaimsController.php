@@ -948,20 +948,34 @@ class ClaimsController extends Controller
     {
         /*
         print_r("checkDebtor ");
-        var_dump($r->options); //Deuda no reclamable
+        var_dump($r->options); //Deuda no reclamable //null
         print_r("concurso ");
-        var_dump($r->concurso); //Concurso de acreedores
+        var_dump($r->concurso); //Concurso de acreedores //string(1)
         print_r("Selector ");
-        var_dump($r->tipo_deuda); //Selector
-        var_dump(session('tipo_deuda'));
-        */
-        //if ($r->options == 1 || $r->concurso == 1 || $r->tipo_deuda == 10 ) {
-        if ($r->concurso == 1 || $r->tipo_deuda == 10 ) {
+        var_dump($r->tipo_deuda); //Selector  string(11)
+        var_dump(session('tipo_deuda'));  //string(11)
+        print_r("checkDebtor ");echo "<br>";
+        dump($r->tipo_deuda);
+        print_r("No viable ");echo "<br>";
+        dump($r->no_viable);
+        die();*/
 
+        if ($r->concurso == 1 || $r->tipo_deuda == 17 ) {
+
+            $r->session()->forget('claim_client');
+            $r->session()->forget('claim_debtor');
+            $r->session()->forget('claim_debt');
+            $r->session()->forget('debt_step_one');
+            $r->session()->forget('debt_step_two');
+
+            return redirect('/panel')->with('alert', 'Lo sentimos, dadas las características de tu deuda no podemos tramitarla.
+            Nos pondremos en contacto contigo para ampliarte información y poder ofrecerte alternativas');
+        }
+
+        if ($r->concurso == 1 || $r->tipo_deuda >= 11 ) {
 
             return redirect('claims/invalid-debtor');
         }
-
 
         // Almacenamos eleccion
         session()->put('tipo_deuda',$r->tipo_deuda);//, $request->tipo_deuda

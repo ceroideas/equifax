@@ -258,12 +258,19 @@ return [
             "cataluna" => 10
         ],
         [
+            "deuda" => "HIPOTECARIA / ALQUILERES BIENES INMUEBLES. RECUPERACIÓN DE CANTIDADES ECONÓMICAS",
+            "prescripcion" => 5,
+            "extrajudicial" => true,
+            "judicial"=> true,
+            "cataluna" => 10
+        ],
+        /*[
             "deuda" => "Otro",
             "prescripcion" => 5,
             "extrajudicial" => true,
             "judicial"=> true,
             "cataluna" => 10
-        ]
+        ]*/
     ],
 
     "no_viables" => [
@@ -299,6 +306,12 @@ return [
         ],
         [
             "deuda" => "DEUDAS NO DOCUMENTADAS",
+            "prescripcion" => 1,
+            "extrajudicial" => false,
+            "judicial" => false
+        ],
+        [
+            "deuda" => "HIPOTECARIA / ALQUILERES BIENES INMUEBLES. RECUPERACIÓN DE CANTIDADES ECONÓMICAS + DESAHUCIO",
             "prescripcion" => 1,
             "extrajudicial" => false,
             "judicial" => false
