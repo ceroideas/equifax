@@ -68,8 +68,8 @@
                     <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : '' }} value="{{$key}}">{{$deuda['deuda']}}</option>
                 @endforeach
                 <optgroup label=""></optgroup>
-                @foreach (config('app.no_viables') as $no_viable)
-                        <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : '' }} value="{{$key+1}}">{{$no_viable['deuda']}}</option>
+                @foreach (config('app.no_viables') as $clave => $no_viable)
+                    <option {{session('claim_debt') ? (session('claim_debt')->type == $clave ? 'selected' : '') : '' }} value="{{$clave+11}}">{{$clave+11}} - {{$no_viable['deuda']}}</option>
                 @endforeach
                 <optgroup label="Otro **">
                     <option value="-1">Especifique</option>
@@ -142,7 +142,7 @@
 
 
    $('#tipo_deuda').on('change', function(){
-        //console.log($(this).val());
+        console.log('Valor seleccionado: '+$(this).val());
     if($(this).val() == -1){
 
         $('#deuda_otros').find('label').html('Otro **')
