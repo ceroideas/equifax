@@ -101,7 +101,7 @@
             </div>
 
             <div class="col-sm-12">
-                <x-adminlte-input name="iban" label="Identifique nº de cuenta donde ingresaremos las cantidades recuperadas" placeholder="Número de cuenta corriente" type="text"
+                <x-adminlte-input name="iban" label="Identifica el Nº de Cuenta donde ingresaremos las cantidades recuperadas" placeholder="Número de cuenta corriente" type="text"
                 igroup-size="sm" value="{{ Auth::user()->iban }}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -120,7 +120,7 @@
 
                 <div class="col-sm-12 text-left">
                     <span class="d-none" id="quitas">
-                        “<i>Usted esta dispuesto a que la deuda sea saldada si se recupera al menos la cantidad de... <b><span></span></b></i>”.
+                        “<i>Estas dispuesto a que la deuda sea saldada si se recupera al menos la cantidad de... <b><span></span></b></i>”.
                     </span>
                 </div>
 
