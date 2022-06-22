@@ -9,7 +9,7 @@
 	<div width="100%" style="background: #f8f8f8; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 100%; color: #514d6a;">
 	  	<div style="max-width: 480px; padding:50px 0;  margin: 0px auto; font-size: 14px;">
 	  		<div style="">
-	  			<img src="{{url('addCountEmail')}}/{{$se->id}}" alt="">
+
 			    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
 			      	<tbody>
 			        	<tr>
