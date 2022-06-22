@@ -57,7 +57,7 @@
             Confirmo que todos los datos e información aportada es veraz. * <br>
 
             <small>
-                <i>* La información que aporte el/la Cliente/a se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esa información en el sistema lo que en ella se vierta, afirme o manifieste. </i>
+                <i>La información que aporte el/la Cliente se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esta información en el sistema. * </i>
             </small>
         </h3></span>
 

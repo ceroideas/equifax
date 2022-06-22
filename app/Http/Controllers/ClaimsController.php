@@ -158,7 +158,7 @@ class ClaimsController extends Controller
 
             $deuda = config('app.deudas')[$debt->type];
             $prescribe = null;
-            $message = "¡GRACIAS, YA CASI HEMOS TERMINADO!";
+            $message = "¡Gracias, ya hemos terminado!";
 
             /* TODO: Borrar debug */
             /*var_dump($deuda['prescripcion']);
