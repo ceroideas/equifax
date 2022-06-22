@@ -54,7 +54,7 @@
     @endif
 
     @if(session()->has('claim_client'))
-        <x-adminlte-alert theme="info" dismissable>
+        <x-adminlte-alert theme="primary" dismissable>
            <span>Para utilizar un Tercero, elija "NO" al iniciar el proceso de reclamación</span>
         </x-adminlte-alert>
     @endif

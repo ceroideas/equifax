@@ -38,7 +38,7 @@
 				            			<b>Fecha:</b> {{ $a->actuation_date }}
 				            		</p>
 				            		<p style="margin-top: 0px;margin-bottom: 0px">
-				            			<b>¿Se ha recuperado algún monto?:</b> {{ isset($a->amount) ? $a->amount.'€' : 'No' }}
+				            			<b>¿Se ha recuperado algún importe?:</b> {{ isset($a->amount) ? $a->amount.'€' : 'No' }}
 				            		</p>
 				            		<p style="margin-top: 0px;">
 				            			<b>Asunto:</b> {{ $a->subject }}

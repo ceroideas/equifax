@@ -39,9 +39,9 @@
 				<button data-v-5fddf304="" class="btn btn-registerHome" data-toggle="dropdown">
                     <span data-v-5fddf304="" class="text-register-btn">
 					    <img data-v-5fddf304="" src="{{url('landing')}}/assets/profile.png" class="img-profile">
-			                {{ Str::ucfirst(Str::before(Auth::user()->name, ' ')) }} {{ Str::substr(Str::ucfirst(Str::afterLast(Auth::user()->name, ' ')), 0, 1) }}.
+			                {{ Str::ucfirst(Str::before(Auth::user()->name, ' ')) }} {{ Str::substr(Str::ucfirst(Str::after(Auth::user()->name, ' ')), 0, 1) }}.
 			            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" style="transform: rotate(90deg);" class="iconsarrow-right">
-			        </span>
+                    </span>
                 </button>
 			    <div class="dropdown-menu">
                     <h6 class="dropdown-header"><a class="menu-profile" href="{{url('panel')}}">Área personal</a></h6>

@@ -52,10 +52,14 @@ class CifNie implements Rule
         }
         //algoritmo para comprobacion de codigos tipo CIF
         $suma = $num[2] + $num[4] + $num[6];
+
+
+
         for ($i = 1; $i < 8; $i += 2)
         {
-            $suma += substr((2 * $num[$i]),0,1) + substr((2 * $num[$i]), 1, 1);
+            $suma += intval(substr((2 * $num[$i]),0,1)) + intval(substr((2 * $num[$i]), 1, 1));
         }
+
         $n = 10 - substr($suma, strlen($suma) - 1, 1);
         //comprobacion de NIFs especiales (se calculan como CIFs o como NIFs)
         if (preg_match('/^[KLM]{1}/', $cif))

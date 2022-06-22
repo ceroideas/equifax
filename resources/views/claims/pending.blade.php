@@ -32,7 +32,7 @@
         'Cobros recibidos',
         'Importe pendiente de pago',
         ['label' => 'Tipo de Reclamación'],
-        ['label' => 'Estatus'],
+        ['label' => 'Status'],
         ['label' => 'Acciones','width' => 5],
     ];
 
@@ -92,9 +92,9 @@
                     {{ $juzgado.'/'.$procurador }}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ $claim->debtor->name }}</td>
-                    <td>{{ $claim->debt->pending_amount }}€</td>
-                    <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
-                    <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
+                    <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} €</td>
+                    <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} €</td>
+                    <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
                     <td>{{ $claim->getType() }}</td>
                     <td>{{ $claim->getHito() }}</td>
                     {{-- <td>{{ $claim->id }}</td>
@@ -123,7 +123,7 @@
                         </a>
 
                         <a href="{{ url('/claims/actuations/' . $claim->id ) }}">
-                                <button class="btn btn-xs btn-default text-warning mx-1 shadow" title="Actuaciónes">
+                                <button class="btn btn-xs btn-default text-warning mx-1 shadow" title="Actuaciones">
                                     <i class="fa fa-lg fa-fw fa-list"></i>
                                 </button>
                         </a>

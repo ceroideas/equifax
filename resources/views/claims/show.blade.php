@@ -43,11 +43,11 @@
             </x-slot>
         </x-adminlte-modal>
     @endif
-
     <div class="card">
         <div class="card-header card-orange card-outline">
-            <h3 class="card-title">Detalles de la Reclamación - {{ $claim->getStatus() }}</h3>
+            <h3 class="card-title"  style="color:#e65927;" >Detalles de la Reclamación - {{ $claim->debt->document_number }} - {{ $claim->getStatus() }} </h3>
             <div class="card-tools">
+                <input type="button" class="btn-secondary" name="imprimir" value="Imprimir reclamaci&oacute;n" onclick="window.print();">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
                 </button>
@@ -63,7 +63,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe  reclamado</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount }}€</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{number_format($claim->debt->pending_amount, 2,',','.') }} €</span>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Cobros recibidos</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ ($claim->amountClaimed() /*+ $claim->debt->partialAmounts()*/) ? ($claim->amountClaimed() /*+ $claim->debt->partialAmounts()*/).'€' : '--' }}</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ (number_format($claim->amountClaimed(), 2,',','.') /*+ $claim->debt->partialAmounts()*/) ? (number_format($claim->amountClaimed(), 2,',','.') /*+ $claim->debt->partialAmounts()*/).' €' : '--' }}</span>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,9 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe pendiente de pago</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount - ($claim->amountClaimed() /*+ $claim->debt->partialAmounts()*/) }}€</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed() ), 2,',','.') }} €</span>
+                                    {{--<span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount - ($claim->amountClaimed() /*+ $claim->debt->partialAmounts()*/) }}€</span>--}}
+
                                 </div>
                             </div>
                         </div>
@@ -107,16 +109,17 @@
                                     <div class="col-lg-3"><b>N° Tlf:</b><p> {{ $claim->debtor->phone }}</p></div>
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debtor->additional }}</p></div>
+                                    <div class="col-12"><b>Datos adicionales del deudor / Observaciones :</b><p> {{ $claim->debtor->additional }}</p></div>
                                 </div>
                             </div>
 
                             <div class="post clearfix">
                                 <h4>Detalles de la Deuda</h4>
                                 <div class="row">
-                                    <div class="col-lg-6 col-sm-6 col-md-6"><b>Concepto O Justificación:</b> <p>{{ $claim->debt->concept }}</p></div>
+                                    <div class="col-lg-6 col-sm-6 col-md-6"><b>Concepto o Justificación:</b> <p>{{ $claim->debt->concept }}</p></div>
                                     {{-- <div class="col-lg-6 col-sm-6 col-md-6"><b>N° De Documento:</b> <p>{{ $claim->debt->document_number }} </p></div> --}}
-                                    <div class="col-lg-6 col-sm-6 col-md-6"><b>Fecha de la Deuda:</b> <p>{{ $claim->debt->debt_date }}</p></div>
+                                    {{--<div class="col-lg-6 col-sm-6 col-md-6"><b>Fecha de la Deuda:</b> <p>{{ $claim->debt->debt_date }}</p></div> --}}
+                                    <div class="col-lg-6 col-sm-6 col-md-6"><b>Fecha de la Deuda:</b> <p>{{ date('d/m/Y', strtotime($claim->debt->debt_date)) }}</p></div>
                                     {{-- <div class="col-lg-6 col-sm-6 col-md-6"><b>Fecha de Vencimiento de la Deuda:</b>
 
                                         @if ($claim->debt->debt_expiration_date)
@@ -137,7 +140,7 @@
                                     </div>--}}
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
+                                    <div class="col-12"><b>Datos adicionales del deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
                                     <div class="col-12"><b>Tipo de la deuda :</b><p>
 
                                         @if ($claim->debt->type == '-1')
@@ -155,9 +158,9 @@
 
                                     @if($claim->debt->hasAgreement())
                                     <div class="row">
-                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>Quitas:</b> <p>{{ $claim->debt->agreements->take }}€</p></div>
-                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>Espera:</b> <p>{{ $claim->debt->agreements->wait }} </p></div>
-                                        <div class="col-lg-6 col-sm-12 col-md-12"><b>Datos Adicionales del Deudor / Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
+                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>Mínimo:</b> <p>{{ $claim->debt->agreements->take }}€</p></div>
+                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>Máximo <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span>:</b> <p>{{ $claim->debt->agreements->wait }} </p></div>
+                                        <div class="col-lg-6 col-sm-12 col-md-12"><b>Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
                                     </div>
                                     <div class="row mt-3">
 
@@ -282,6 +285,7 @@
                         </div>
                     </div>
 
+                    {{--
                     <div>
                         <div class="row">
                             <div class="col text-center">
@@ -297,7 +301,7 @@
                             </div>
                         </div>
                     </div>
-
+                    --}}
                     <br>
                     @if(/*$claim->isPending()*/true)
                         <h5 class="mt-5 text-muted">Documentación de la Deuda</h5>
@@ -481,7 +485,7 @@
 
                     @if (Auth::user()->isAdmin() && !$claim->isFinished() && !$claim->isPending())
                         <div class="text-center">
-                            <x-adminlte-button label="Finalizar Reclamación" data-toggle="modal" data-target="#modalFinish" theme="info"/>
+                            <x-adminlte-button label="Finalizar Reclamación" data-toggle="modal" data-target="#modalFinish" theme="primary"/>
 
                             <x-adminlte-modal id="modalFinish" title="¿Desea dar por finalizada la reclamación actual?" theme="primary" size="sm" v-centered="true">
                                 {{-- <div class="card">     --}}

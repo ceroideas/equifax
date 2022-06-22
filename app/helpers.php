@@ -185,7 +185,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 					}
 				}
 
-				$description = "Pago de tarifa proceso ";
+				$description = "Pago de la tarifa procedimiento ";
 
 				switch ($h['type']) {
 					case 'judicial_amount':
@@ -217,7 +217,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 				if ($claim->owner->apud_acta) {
 					return actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
 				}
-				
+
 			}
 
 			// comprobar si la redirección es al inicio del proceso de cobros (generacion de cobro)
@@ -228,25 +228,25 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 			}
 
 			// comprobar si la redirección es al inicio del proceso de cobros (generacion de cobro)
-			
+
 			if ($h['redirect_to'] === "303") {
 				return actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
 			}
 
 			// comprobar si el cliente acepta el acuerdo
-			
+
 			if ($h['redirect_to'] === "1703") {
 				// se debe generar un boton de aceptación para que el cliente acepte el acuerdo alcanzado, acto seguido se pasa al siguiente paso
 			}
-			
+
 			// comprobar si finaliza la reclamación
-			
+
 			if ($h['redirect_to'] === "20") {
 				// la reclamación queda aqui y se considera finalizada
 			}
 
 			// comprobar si continua con la reclamación
-			
+
 			if ($h['redirect_to'] === "21") {
 				// la reclamación queda aqui porque es el inicio del proceso e id del hito para exportar las reclamaciones
 			}

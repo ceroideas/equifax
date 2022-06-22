@@ -174,7 +174,7 @@
 
 							<div class="col-sm-4">
 								<div class="form-group">
-									<label data-toggle="tooltip" title=""
+									<label data-toggle="tooltip" style="color:#e65927; title=""
 										data-original-title="3 digits code on back side of the card">CVV <i
 											class="fa fa-question-circle"></i></label>
 									<div id="paycomet-cvc2" style="height: 36px; padding:0px;"></div>
@@ -218,7 +218,7 @@
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
 
-	    <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
+	    <div class="modal-header" style="color: #111"></div>
 	    <div class="modal-body">
 
 	        <div style="height: 500px; overflow: auto;">
@@ -241,7 +241,7 @@
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
 
-	    <div class="modal-header" style="color: #111">Condiciones de Contratación</div>
+	    <div class="modal-header" style="color: #111"></div>
 	    <div class="modal-body">
 
 	        <div style="height: 500px; overflow: auto;">

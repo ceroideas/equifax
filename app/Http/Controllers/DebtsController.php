@@ -168,7 +168,7 @@ class DebtsController extends Controller
                 }
             }
         }
-        
+
         session()->put('documentos',$documentos);
 
         /*foreach ($documentos as $key => $d) {
@@ -179,7 +179,22 @@ class DebtsController extends Controller
         return "";
 
         return $documentos;*/
-        
+
+
+/* TODO: borrar debug
+        print_r("Debts Controller -> Save step one ");echo "<br>";
+        var_dump($request->tipo_deuda);echo "<br>";
+        print_r("______________ Isset _____________");echo "<br>";
+        if(isset($request->tipo_deuda)){
+            print_r("Existe deuda");echo "<br>";
+        }else{
+            print_r("NO hay deuda");echo "<br>";
+        }*/
+        //print_r("______________ Request_____________");echo "<br>";
+        //var_dump($request);echo "<br>";
+
+
+
         $data = $this->validateStepOne();
 
         $debt = new Debt();
@@ -219,7 +234,18 @@ class DebtsController extends Controller
 
         $debt->partials_amount_details = json_encode($amounts);
 
-        $debt->type = $data['tipo_deuda'];
+        if($data['tipo_deuda']==-1){
+            $debt->type = 10;
+        }else{
+            $debt->type = $data['tipo_deuda'];
+        }
+
+
+        /* TODO: borrar debug */
+        /*print_r("Debts type -> Save step one ");echo "<br>";
+        print_r($data['tipo_deuda']);echo "<br>";
+        print_r($debt->type);echo "<br>";*/
+        //die();
 
         if($data['deuda_extra']){
             $debt->type_extra = $data['deuda_extra'];
@@ -233,19 +259,19 @@ class DebtsController extends Controller
 
         // documentacion
 
-        function rrmdir($dir) { 
-           if (is_dir($dir)) { 
+        function rrmdir($dir) {
+           if (is_dir($dir)) {
              $objects = scandir($dir);
-             foreach ($objects as $object) { 
-               if ($object != "." && $object != "..") { 
+             foreach ($objects as $object) {
+               if ($object != "." && $object != "..") {
                  if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
                    rrmdir($dir. DIRECTORY_SEPARATOR .$object);
                  else
-                   unlink($dir. DIRECTORY_SEPARATOR .$object); 
-               } 
+                   unlink($dir. DIRECTORY_SEPARATOR .$object);
+               }
              }
-             rmdir($dir); 
-           } 
+             rmdir($dir);
+           }
          }
 
         if (is_dir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'))) {
@@ -254,7 +280,7 @@ class DebtsController extends Controller
         }
 
         foreach ($documentos as $key => $d) {
-            
+
             $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             $documentos[$key][key($d)]['file'] = $file;
 
@@ -293,7 +319,7 @@ class DebtsController extends Controller
 
         $this->validateStepThree();
 
-        
+
         // dd($request->file('documentos_extras'));
 
 
@@ -343,22 +369,22 @@ class DebtsController extends Controller
             $albaran = $request->file('albaran')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             $debt->albaran = $albaran;
         }
-        
+
         if($request['contrato']){
             $contrato = $request->file('contrato')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             $debt->contrato = $contrato;
         }
-        
+
         if($request['documentacion_pedido']){
             $documentacion_pedido = $request->file('documentacion_pedido')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             $debt->documentacion_pedido = $documentacion_pedido;
         }
-        
+
         if($request['extracto']){
             $extracto = $request->file('extracto')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             $debt->extracto = $extracto;
         }
-        
+
         if($request['reconocimiento_deuda']){
             $reconocimiento_deuda = $request->file('reconocimiento_deuda')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             $debt->reconocimiento_deuda = $reconocimiento_deuda;
@@ -368,7 +394,7 @@ class DebtsController extends Controller
             $escritura_notarial = $request->file('escritura_notarial')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             $debt->escritura_notarial = $escritura_notarial;
         }
-       
+
         if($request['reclamacion_previa']){
             $reclamacion_previa = $request->file('reclamacion_previa')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             $motivo_reclamacion_previa = $request['motivo_reclamacion_previa'];
@@ -378,7 +404,7 @@ class DebtsController extends Controller
 
         if($request['documentos_extras']){
             $docs = [];
-            for ($i=0; $i < count($request['documentos_extras']); $i++) { 
+            for ($i=0; $i < count($request['documentos_extras']); $i++) {
                 $docs[] = $request->file('documentos_extras')[$i]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
             }
 
@@ -482,12 +508,12 @@ class DebtsController extends Controller
 
         return request()->validate($rules, $messages);
 
-        
+
     }
 
     public function validateStepTwo(){
 
-        
+
     }
 
     public function validateStepThree(){
@@ -512,13 +538,13 @@ class DebtsController extends Controller
 
         return request()->validate($rules);
 
-        
+
     }
 
     public function getHito($blade)
     {
         return view('debts.documents.'.$blade)->render();
     }
-    
-    
+
+
 }

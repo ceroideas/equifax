@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-sm-12 text-center">
             <span><h3>
-                Confirmo que todos los datos e información aportados es verás
+                Confirmo que todos los datos e información aportados es veras
 
         </h3></span>
         </div>

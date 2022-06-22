@@ -1,6 +1,6 @@
 <table id="table1" style="width:100%" class="table table-bordered table-hover table-striped dataTable" compresed="compresed" responsive="responsive">
 
-    
+
     <thead>
         <tr>
                             <th>
@@ -16,7 +16,7 @@
                     Concepto
                 </th>
                             <th>
-                    Monto cancelado
+                    Importe
                 </th>
                             <th>
                     Fecha del pago
@@ -30,9 +30,9 @@
                     </tr>
     </thead>
 
-    
+
     <tbody>
-    	
+
     	@foreach(App\Models\Invoice::where('status',1)->get() as $invoice)
             <tr>
                 <td>{{ $invoice->id }}</td>
@@ -50,6 +50,6 @@
 
     </tbody>
 
-    
-    
+
+
 </table>

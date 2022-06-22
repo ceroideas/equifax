@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="https://asemarrecovery.quentalstaging.com/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('landing') }}/app_quental.css">
 
     @include('styles2')
 <style>.progressbar{-webkit-transition:width 1s ease;transition:width 1s ease}.vue-step-wizard{background-color:#f7f8fc;width:900px;margin:auto;padding:40px}.step-progress{height:1rem;background:#fff;border-radius:1rem;margin:1rem 0}.step-progress .bar{content:"";height:1rem;border-radius:1rem;background-color:#4b8aeb}.step-pills{display:-webkit-box;display:-ms-flexbox;display:flex;background-color:#fff;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:1rem;border-radius:1rem;-webkit-box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important}.step-pills .step-item{background-color:#f5f5f5;border-radius:10px;padding:5px 20px;list-style-type:none;padding:.5rem 1.5rem}.step-pills .step-item a{text-decoration:none;color:#7b7b7b}.step-pills .step-item.active{border:1px solid #4b8aeb}.step-pills .step-item.validated{border:1px solid #008011}.step-body{background-color:#fff;margin-left:auto;-webkit-box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important}.step-body,.step-footer{padding:1rem;border-radius:1rem}.step-footer{margin-left:auto;margin:1rem 0;text-align:center}.step-button{font-weight:700;line-height:1;text-transform:uppercase;position:relative;max-width:30rem;text-align:center;border:1px solid;border-radius:12px;color:#22292f;color:rgba(34,41,47,var(--text-opacity));padding:.5rem 1.25rem;font-size:.875rem;margin:.5rem;color:#fff;outline:none!important;-webkit-box-shadow:none!important;box-shadow:none!important}.step-button-next{background-color:#126fde}.step-button-previous{background-color:#3deaba}.step-button-submit{background-color:#4fa203}.step-button-reset{background-color:#037da2}.tabStatus{display:inline-block;width:1.5rem;height:1.5rem;margin-right:.5rem;line-height:1.5rem;color:#fff;text-align:center;background:rgba(0,0,0,.38);border-radius:50%}</style>
@@ -91,7 +91,7 @@
                               <div class="row">
                                   <div class="col-sm-2"></div>
                                   <div class="col-sm-8">
-                                      <a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">                            DESCUBRIR MÁS</a>
+                                      <a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a>
                                   </div>
                               </div>
 
@@ -118,7 +118,7 @@
 
                                 {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
                                 <p class="text-left">
-                                    Comienza en este momento con tu reclamación por vía judicial
+                                    Comienza con tu reclamación por vía judicial
                                 </p>
                               </li>
 
@@ -133,7 +133,7 @@
                               <div class="row">
                                   <div class="col-sm-2"></div>
                                   <div class="col-sm-8">
-                                      <a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">                            DESCUBRIR MÁS</a>
+                                      <a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a>
                                   </div>
                               </div>
 
@@ -163,7 +163,7 @@
                             <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
                                     <ol start="5">
-                                        <li>Si el  deudor se niega a abonar la cantidad, <b>Dividae</b> recomendará el <b>procedimiento judicial</b> con las siguientes tarifas que encontrarás a continuación, siempre con el consentimiento del cliente. 100% transparente!</li>
+                                        <li>Si el  deudor se niega a abonar la cantidad, <b>Dividae</b> recomendará el <b>procedimiento judicial</b> con las siguientes tarifas que encontrarás a continuación, siempre con el consentimiento del cliente. ¡Es 100% transparente!</li>
                                         <li><b>Dividae</b> se encarga de la gestión del procedimiento y podrás ver en tiempo real el estado y evolución de la reclamación.  </li>
                                   </ol>
                                 </div>
@@ -201,33 +201,39 @@
 
                       		<tbody>
                       			<tr>
-                      				<td>Reclamación amistosa</td>
-                      				<td rowspan="5" style="text-align: center; vertical-align: middle;">15%</td>
-                      				<td style="text-align: right;">19,90€</td>
+                      				<td style="color:#285ba3">Reclamación amistosa</td>
+                      				<td rowspan="5" style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>
+                      				<td style="text-align: right;color:#285ba3;">19,90€</td>
                       			</tr>
                       			<tr>
-                      				<td>Procedimiento Monitorio en ámbito nacional</td>
-                      				<td style="text-align: right;">69,90€</td>
+                      				<td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles." style="color:#e65927;">Procedimiento Monitorio</span>
+                                        en ámbito nacional.</td>
+                      				<td style="text-align: right; color:#285ba3">69,90€</td>
                       			</tr>
                       			<tr>
-                      				<td>Juicios Verbales en ámbito nacional</td>
-                      				<td style="text-align: right;">199,90€</td>
+                      				<td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o
+bien por la cuantía económica (cuantía menor a 6.000€), requieren una tramitación ágil." style="color:#e65927;">Juicio Verbales</span> en ámbito nacional</td>
+                      				<td style="text-align: right; color:#285ba3">199,90€</td>
                       			</tr>
                       			<tr>
-                      				<td>Juicios Ordinarios en ámbito nacional</td>
-                      				<td style="text-align: right;">399,90€</td>
+                      				<td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o bien por la cuantía económica
+(cuantía mayor a 6.000€ o imposible de calcular). Es un procedimiento más largo que los descritos anteriormente." style="color:#e65927;">Juicio Ordinarios</span> en ámbito nacional</td>
+                      				<td style="text-align: right; color:#285ba3">399,90€</td>
                       			</tr>
                       			<tr>
-                      				<td>Ejecución en ámbito nacional</td>
-                      				<td style="text-align: right;">399,90€</td>
+                      				<td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es aquel por el que se pretende el cumplimiento de una resolución judicial dictada, de manera que es una manifestación
+del respeto al derecho a la tutela judicial efectiva cuando la parte contraria no cumple con lo indicado en la sentencia." style="color:#e65927;">Ejecución</span> en ámbito nacional</td>
+                      				<td style="text-align: right; color:#285ba3">149,90€</td>
                       			</tr>
                       		</tbody>
                       	</table>
 
+                        <p style="color:#285ba3; font-style: italic;">IVA no incluido</p>
 
-                      	<p style="color:#051c2c">*Dividae cobrará un 15% sobre las cantidades recuperadas. </p>
+                      	<p style="color:#285ba3; font-style: italic;">* Dividae cobrará un 15% sobre las cantidades recuperadas.</p>
 
-                      	<p style="color:#051c2c">**Precio fijo que deberá abonarse por la cliente previa al inicio de cada procedimiento. </p>
+                      	<p style="color:#285ba3; font-style: italic;">** Precio fijo que deberá abonarse por la cliente previa al inicio de cada procedimiento.</p>
 
                       </div>
 
