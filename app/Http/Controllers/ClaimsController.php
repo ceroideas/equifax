@@ -158,7 +158,7 @@ class ClaimsController extends Controller
 
             $deuda = config('app.deudas')[$debt->type];
             $prescribe = null;
-            $message = "¡GRACIAS, YA CASI HEMOS TERMINADO!";
+            $message = "¡Gracias, ya hemos terminado!";
 
             /* TODO: Borrar debug */
             /*var_dump($deuda['prescripcion']);
@@ -370,7 +370,7 @@ class ClaimsController extends Controller
 
 
         //if ($claim->last_invoice){
-            return redirect('/claims/payment/' . $claim->id)->with('msj', 'Reclamación creada exitosamente, se ha generado una factura por honorarios, deberá realizar el pago correspondiente para poder proceder con la reclamación');
+            return redirect('/claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
         //}else{
             // Redirigia al panel y quedaba pendiente viabilidad por parte de administracion
             // return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
