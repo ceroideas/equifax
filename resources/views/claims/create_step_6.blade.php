@@ -72,12 +72,20 @@
 <div class="custom-control custom-checkbox mb-3">
     <a data-toggle="modal" href="#terminos" style="color: #666">
     <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
-    <label for="customCheckbox1" class="custom-control-label"> Aceptar los Términos y Condiciones de uso General</label></a>
+    <label for="customCheckbox1" class="custom-control-label">* Aceptar los Términos y Condiciones de uso General</label></a>
     @error('tos')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
     @enderror
+</div>
+
+<div class="card-footer">
+    <div class="row">
+        <span class="float-left">(*) Los campos marcados son requeridos.</span>
+    </div>
+    <!--<x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save" id="btnsiguiente"/>-->
+    <a href="{{ url('claims/check-agreement') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
 </div>
 
     <div class="row">
@@ -150,5 +158,11 @@
             /* Act on the event */
             $('#customCheckbox1').prop('checked', true)
         });
+
+/*        $('#btnsiguiente').click(function(event) {
+            console.log("Boton aceptar");
+            /* Act on the event */
+  /*          $('#customCheckbox1').prop('checked', true)
+        });*/
 </script>
 @stop
