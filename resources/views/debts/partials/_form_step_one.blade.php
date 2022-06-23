@@ -354,6 +354,8 @@
 
     $('[name="importe"],[name="iva"],.amounts').change(makeCalculation);
 
+    $('[name="importe"],[name="iva"],.amounts').click(makeCalculation);
+
     $('[name="abonos"]').on('change',function(){
 
         let element = `
