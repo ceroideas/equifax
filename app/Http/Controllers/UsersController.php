@@ -230,7 +230,7 @@ class UsersController extends Controller
             return redirect('/users')->with(['msj' => 'Usuario actualizado exitosamente']);
         }
 
-        return redirect()->back()->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!']);
+        return redirect('claims/select-client')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
     }
 
     /**
