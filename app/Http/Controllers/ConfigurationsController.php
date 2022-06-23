@@ -121,29 +121,31 @@ class ConfigurationsController extends Controller
 
     public function hitos()
     {
-        // Hito::truncate();
-        // foreach (config('app.actuations') as $key => $value) {
+        /*Hito::truncate();
+        foreach (config('app.actuations') as $key => $value) {
 
-        //     $h = new Hito;
-        //     $h->ref_id = $value['id'];
-        //     $h->parent_id = null;
-        //     $h->phase = $value['phase'];
-        //     $h->name = $value['name'];
-        //     $h->redirect_to = $value['redirect_to'];
-        //     $h->save();
+            $h = new Hito;
+            $h->ref_id = $value['id'];
+            $h->parent_id = null;
+            $h->phase = $value['phase'];
+            $h->name = $value['name'];
+            $h->redirect_to = $value['redirect_to'];
+            $h->type = isset($value['type']) ? $value['type'] : null;
+            $h->save();
 
-        //     if ($value['hitos']){
-        //         foreach ($value['hitos'] as $ht){
-        //             $h = new Hito;
-        //             $h->ref_id = $ht['id'];
-        //             $h->parent_id = $value['id'];
-        //             $h->phase = null;
-        //             $h->name = $ht['name'];
-        //             $h->redirect_to = $ht['redirect_to'];
-        //             $h->save();
-        //         }
-        //     }
-        // }
+            if ($value['hitos']){
+                foreach ($value['hitos'] as $ht){
+                    $h = new Hito;
+                    $h->ref_id = $ht['id'];
+                    $h->parent_id = $value['id'];
+                    $h->phase = null;
+                    $h->name = $ht['name'];
+                    $h->redirect_to = $ht['redirect_to'];
+                    $h->type = isset($value['type']) ? $value['type'] : null;
+                    $h->save();
+                }
+            }
+        }*/
 
         $hitos = Hito::all();
 

@@ -25,6 +25,8 @@ return new class extends Migration
             $table->integer('send_interval')->nullable();
             $table->integer('send_times')->nullable();
 
+            $table->string('type')->nullable();
+
             $table->timestamps();
         });
     }

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Hito extends Model
 {
     protected $casts = [
-        "phase" => "array"
+        "phase" => "array",
+        "type" => "array",
     ];
 
     public function getPhases()
