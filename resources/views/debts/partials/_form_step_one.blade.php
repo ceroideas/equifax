@@ -163,10 +163,9 @@
                 @endif
 
             </div>
-
             <div class="col-sm-6">
                 <x-adminlte-input readonly name="importe_pendiente" label="Importe Pendientes de Pago *" placeholder="Importe Pendientes de Pago" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->pending_amount : ''}}">
+                igroup-size="sm" enable-old-support="true" value="">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>

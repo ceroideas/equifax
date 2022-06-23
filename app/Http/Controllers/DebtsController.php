@@ -486,7 +486,7 @@ class DebtsController extends Controller
             'fecha_vencimiento_deuda' =>  'date',
             'importe_pendiente' =>  'required|numeric',
             'abonos' =>  '',
-            'observaciones' =>  'required',
+            'observaciones' =>  '',
             'tipo_deuda' =>  'required',
             'deuda_extra' =>  'required_if:tipo_deuda,18|required_if:tipo_deuda,13',
             'document' =>  'required',
