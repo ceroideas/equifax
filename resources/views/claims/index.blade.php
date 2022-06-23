@@ -107,7 +107,7 @@
                     <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} €</td>
                     <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
                     <td>{{ $claim->getType() }}</td>
-                    <td>{{ $claim->getIdHito() }}</td>
+                    <td>{{ $claim->getHito() }}</td>
                     {{-- <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td> --}}
                     {{-- <td>{{ $claim->getStatus() }}</td> --}}
                     <td>
