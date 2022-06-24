@@ -41,16 +41,17 @@
 
     <style>
 .floating-social-bar {
+    display:flex;
     border-radius: 10px;
     position:fixed;
     bottom: 4px;
-    left:60%;
+    left:70%;
     width: 30%;
-    height: 8%;
+    height: 7%;
     padding: 5px 0;
-    text-align: center;
+    text-align: left;
     background-color: #2c60aa;
-    font-family: arial;
+    font-family: 'Roobert', Arial, Helvetica, sans-serif, serif;
     color:#ffff;
     z-index: 999;
 }
@@ -80,6 +81,15 @@
 
 .floating-social-bar button:focus {
     outline: none;
+}
+
+.floating-social-bar span {
+    /*flex: 0 0 50%;*/
+    max-width: 50%;
+    margin-left: 3%;
+}
+.floating-social-bar img {
+    margin-left: 3%;
 }
 
 .floating-text {
@@ -198,7 +208,7 @@
                             </div>
                             {{-- Elemento flotante redes sociales --}}
                             @include('followus')
-                            {{-- Elemento flotante comprobar deuda --}}
+                            {{-- Elemento flotante comprobar deuda
                             <div data-v-66372912="" id="pagetop" data-toggle="modal" data-target="#consulta-viabilidad"
                                 class="fixed right bottom" style="display: none-;">
                                 <div data-v-66372912="" id="blockform-scroll">
@@ -225,17 +235,18 @@
                 {{-- Floating social bar --}}
                 <div data-v-66372912="" id="pagetop" data-toggle="modal" data-target="#consulta-viabilidad" class="fixed right bottom" style="display: none-;">
                     <div class="floating-social-bar">
-                        <span>* ¿Comprueba si tu reclamacion es viable?</span>
+                        <img src="{{ url('landing') }}/assets/group.png">
+                        <span>¿Comprueba si tu reclamacion es viable?</span>
                         <button>Comprobar</button>
                     </div>
                 </div>
 
 
-                {{-- boton --}}
+                {{-- boton
                 <button class="floating-button">
                     Comprobar2
                 </button>
-
+                --}}
 
                 <div class="floating-text">
                     Texto <a href="#" target="_blank">centro</a>
