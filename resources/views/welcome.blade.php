@@ -149,7 +149,7 @@
                                         <div data-v-66372912="" class="col-2 Scroll-icon"><img data-v-66372912=""
                                                 src="{{ url('landing') }}/assets/group.png"></div>
                                         <div data-v-66372912="" class="col-6 Scroll-text">
-                                            ¿Quieres saber si tu reclamación es viable?
+                                            ¿Quieres saber si tu reclamación es viable?.
                                         </div>
                                         <div data-v-66372912="" class="col-4 Scroll-btn"><button data-v-66372912=""
                                                 class="btn btn-light">Comprobar</button></div>
