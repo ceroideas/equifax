@@ -39,6 +39,72 @@
     <link href="{{ url('landing') }}/app.css" rel="stylesheet">
     @include('styles')
 
+    <style>
+.floating-social-bar {
+    display:flex;
+    border-radius: 10px;
+    position:fixed;
+    bottom: 4px;
+    left:70%;
+    width: 30%;
+    height: 7%;
+    padding: 5px 0;
+    text-align: left;
+    background-color: #2c60aa;
+    font-family: 'Roobert', Arial, Helvetica, sans-serif, serif;
+    color:#ffff;
+    z-index: 999;
+}
+
+
+/*Antes .floating-button*/
+.floating-social-bar button {
+	border-radius: 37.5px;
+	background-color: #e65927;
+	border: 1px solid #e65927;
+	box-shadow: 0 16px 22px -17px #e65927;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	line-height: 12px;
+	padding: 12px 20px;
+	position: fixed;
+	bottom: 15px;
+	right: 20px;
+	z-index: 999;
+}
+
+.floating-social-bar button:hover {
+    background-color: #ffffff;
+	color: #e65927;
+}
+
+.floating-social-bar button:focus {
+    outline: none;
+}
+
+.floating-social-bar span {
+    /*flex: 0 0 50%;*/
+    max-width: 50%;
+    margin-left: 3%;
+}
+.floating-social-bar img {
+    margin-left: 3%;
+}
+
+.floating-text {
+	background-color: #001F61;
+	border-radius: 10px 10px 0 0;
+	color: #fff;
+	font-family: 'Muli';
+	padding: 7px 15px;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	z-index: 998;
+}
     </style>
 
 
@@ -140,26 +206,52 @@
 
 
                             </div>
+                            {{-- Elemento flotante redes sociales --}}
                             @include('followus')
+                            {{-- Elemento flotante comprobar deuda
                             <div data-v-66372912="" id="pagetop" data-toggle="modal" data-target="#consulta-viabilidad"
-                                class="fixed right-0 bottom-0" style="display: none-;">
+                                class="fixed right bottom" style="display: none-;">
                                 <div data-v-66372912="" id="blockform-scroll">
-
                                     <div data-v-66372912="" class="row Scroll">
-                                        <div data-v-66372912="" class="col-2 Scroll-icon"><img data-v-66372912=""
-                                                src="{{ url('landing') }}/assets/group.png"></div>
-                                        <div data-v-66372912="" class="col-6 Scroll-text">
-                                            ¿Quieres saber si tu reclamación es viable?.
+                                        <div data-v-66372912="" class="col-2 Scroll-icon">
+                                            <img data-v-66372912="" src="{{ url('landing') }}/assets/group.png">
                                         </div>
-                                        <div data-v-66372912="" class="col-4 Scroll-btn"><button data-v-66372912=""
-                                                class="btn btn-light">Comprobar</button></div>
+                                        <div data-v-66372912="" class="col-6 Scroll-text">
+                                            ¿Comprueba si tu reclamación es viable?
+                                        </div>
+                                        <div data-v-66372912="" class="col-4 Scroll-btn">
+                                            <button data-v-66372912="" class="btn btn-light">Comprobar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            {{-- FIN: Elemento flotante comprobar deuda --}}
 
                         </div>
                     </div>
                 </div>
+
+
+                {{-- Floating social bar --}}
+                <div data-v-66372912="" id="pagetop" data-toggle="modal" data-target="#consulta-viabilidad" class="fixed right bottom" style="display: none-;">
+                    <div class="floating-social-bar">
+                        <img src="{{ url('landing') }}/assets/group.png">
+                        <span>¿Comprueba si tu reclamacion es viable?</span>
+                        <button>Comprobar</button>
+                    </div>
+                </div>
+
+
+                {{-- boton
+                <button class="floating-button">
+                    Comprobar2
+                </button>
+                --}}
+
+                <div class="floating-text">
+                    Texto <a href="#" target="_blank">centro</a>
+                </div>
+
 
                 <div data-v-494d1a60="" data-v-63cd6604="" id="como-funciona" data-v-effc9f78="">
 
