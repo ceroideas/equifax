@@ -343,7 +343,10 @@ class UsersController extends Controller
 
     public function migrar()
     {
-        $temp = [
+        // Auth::loginUsingId(39);
+        // return Claim::all();
+
+        /*$temp = [
             ['001', 2, 1, 0],
             ['1', 6, 1, 0],
             ['101', 6, 1, 0],
@@ -391,7 +394,7 @@ class UsersController extends Controller
             $h->send_times = $value[2];
             $h->send_interval = $value[3];
             $h->save();
-        }
+        }*/
         // $tmp = Template::find(1);
         // Mail::send('email_base', ['tmp' => $tmp], function ($message) use($tmp) {
         //     $message->to('jorgesolano92@gmail.com', 'Jorge Solano');
