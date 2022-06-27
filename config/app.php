@@ -275,6 +275,12 @@ return [
 
     "no_viables" => [
         [
+            "deuda" => "HIPOTECARIA / ALQUILERES BIENES INMUEBLES. RECUPERACIÓN DE CANTIDADES ECONÓMICAS + DESAHUCIO",
+            "prescripcion" => 1,
+            "extrajudicial" => false,
+            "judicial" => false
+        ],
+        [
             "deuda" => "TRIBUTARIAS Y DE LA SEGURIDAD SOCIAL ",
             "prescripcion" => 4,
             "extrajudicial" => false,
@@ -286,12 +292,12 @@ return [
             "extrajudicial" => false,
             "judicial" => false
         ],
-        [
+        /*[
             "deuda" => "HIPOTECARIA/ALQUILERES BIENES INMUEBLES",
             "prescripcion" => 2,
             "extrajudicial" => false,
             "judicial" => false
-        ],
+        ],*/
         [
             "deuda" => "RESPONSABILIDAD EXTRACONTRACTUAL / DAÑOS Y PERJUICIOS",
             "prescripcion" => 1,
@@ -306,12 +312,6 @@ return [
         ],
         [
             "deuda" => "DEUDAS NO DOCUMENTADAS",
-            "prescripcion" => 1,
-            "extrajudicial" => false,
-            "judicial" => false
-        ],
-        [
-            "deuda" => "HIPOTECARIA / ALQUILERES BIENES INMUEBLES. RECUPERACIÓN DE CANTIDADES ECONÓMICAS + DESAHUCIO",
             "prescripcion" => 1,
             "extrajudicial" => false,
             "judicial" => false

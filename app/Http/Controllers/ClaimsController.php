@@ -960,7 +960,7 @@ class ClaimsController extends Controller
         dump($r->no_viable);
         die();*/
 
-        if ($r->concurso == 1 || $r->tipo_deuda == 17 ) {
+        if ($r->concurso == 1 || $r->tipo_deuda == 11 ) {
 
             $r->session()->forget('claim_client');
             $r->session()->forget('claim_debtor');
