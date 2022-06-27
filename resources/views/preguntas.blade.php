@@ -1402,6 +1402,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   color: #fff;
 }
 .block-PFrecuentes .PFrecuentes-title[data-v-038cfd70] {
+  margin-top: 40px;
   font-family: Nordeco;
   font-size: 56px;
   font-weight: normal;

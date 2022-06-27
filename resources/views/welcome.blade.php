@@ -263,7 +263,7 @@
                 <div data-v-66372912="" id="pagetop" data-toggle="modal" data-target="#consulta-viabilidad" class="fixed right bottom" style="display: none-;">
                     <div class="floating-social-bar">
                         <img src="{{ url('landing') }}/assets/group.png">
-                        <span>¿Comprueba si tu reclamacion es viable?</span>
+                        <span>¿Quieres saber si tu reclamación es viable?</span>
                         <button>Comprobar</button>
                     </div>
                 </div>
