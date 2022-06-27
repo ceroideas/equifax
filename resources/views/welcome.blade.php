@@ -93,23 +93,7 @@
 }
 
 
-/* Barra inferior central*/
-/*.floating-text {
-    transform: rotate(-90deg);
-	background-color: #001F61;
-	border-radius: 10px 10px 0 0;
-	color: #fff;
-	font-family: 'Muli';
-	padding: 7px 15px;
-	position: fixed;
-	bottom: 0;
-	left: 40%;
-	transform: translateX(-50%);
-	text-align: center;
-	z-index: 998;
-}*/
-
-    </style>
+</style>
 
 
 
@@ -248,17 +232,6 @@
                     </div>
                 </div>
 
-
-                {{-- boton
-                <button class="floating-button">
-                    Comprobar2
-                </button>
-                --}}
-
-                {{-- <div class="floating-text">
-                    Texto <a href="#" target="_blank">centro</a>
-                </div>
-                --}}
 
 
                 <div data-v-494d1a60="" data-v-63cd6604="" id="como-funciona" data-v-effc9f78="">
