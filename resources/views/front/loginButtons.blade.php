@@ -13,7 +13,7 @@
 		}
 
 		.blockAcceso .btn-nueva[data-v-5fddf304] {
-		  height: 40px;
+		  /*height: 40px;*/
 		  margin-right: 16px;
 		  border-radius: 37.5px;
 		  background-color: #1e7e34;
@@ -31,6 +31,7 @@
 	@if (Auth::check())
 		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('claims/select-client')}}" class="btn btn-nueva"><span data-v-5fddf304="" class="btn-text-acceso">
 	        Nueva Reclamación
+            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right">
 	        </span></a></div>
 
 		<div data-v-5fddf304="" class="blockRegistro">
@@ -71,7 +72,7 @@
 
 		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('login')}}" class="btn btn-acceso"><span data-v-5fddf304="" class="btn-text-acceso">
 	        Perfil Personal
-	        </span></a></div>
+	        <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right"></span></a></div>
 
 	    <div data-v-5fddf304="" class="blockRegistro"><a data-v-5fddf304="" href="{{url('register')}}" class="btn btn-registerHome"><span data-v-5fddf304="" class="text-register-btn">
 	        Regístrate
