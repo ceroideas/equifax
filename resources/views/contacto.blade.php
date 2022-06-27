@@ -273,26 +273,31 @@
     left: -6%;
 }
 }
-@media (min-width: 768px) and (max-width: 1000px) {
+@media (min-width: 200px) and (max-width: 1000px) {
 #social-sidebar[data-v-7b4478c1] {
     left: -8%;
+    visibility: hidden;
+
 }
 }
-@media (min-width: 430px) and (max-width: 750px) {
+/*@media (min-width: 430px) and (max-width: 750px) {
 #social-sidebar[data-v-7b4478c1] {
     left: -15%;
+    visibility: hidden;
 }
 }
 @media (min-width: 375px) and (max-width: 425px) {
 #social-sidebar[data-v-7b4478c1] {
     left: -18%;
+    visibility: hidden;
 }
 }
 @media (min-width: 320px) and (max-width: 370px) {
 #social-sidebar[data-v-7b4478c1] {
     left: -21%;
+    visibility: hidden;
 }
-}
+}*/
 #social-sidebar .follow-social[data-v-7b4478c1] {
   transform: rotate(-90deg);
   font-family: Roobert;
