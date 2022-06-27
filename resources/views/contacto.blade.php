@@ -260,7 +260,7 @@
 }
 @media (min-width: 1440px) and (max-width: 1590px) {
 #social-sidebar[data-v-7b4478c1] {
-    left: 2%;
+    left: -4%;
 }
 }
 @media (min-width: 1280px) and (max-width: 1400px) {
