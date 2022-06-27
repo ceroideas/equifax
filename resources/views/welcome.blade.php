@@ -92,7 +92,10 @@
     margin-left: 3%;
 }
 
+
+/* Barra inferior central*/
 .floating-text {
+    transform: rotate(-90deg);
 	background-color: #001F61;
 	border-radius: 10px 10px 0 0;
 	color: #fff;
@@ -100,11 +103,12 @@
 	padding: 7px 15px;
 	position: fixed;
 	bottom: 0;
-	left: 50%;
+	left: 40%;
 	transform: translateX(-50%);
 	text-align: center;
 	z-index: 998;
 }
+
     </style>
 
 
@@ -227,6 +231,9 @@
                             </div>
                             {{-- FIN: Elemento flotante comprobar deuda --}}
 
+
+
+
                         </div>
                     </div>
                 </div>
@@ -246,7 +253,7 @@
                 <button class="floating-button">
                     Comprobar2
                 </button>
-                --}}
+--}}
 
                 <div class="floating-text">
                     Texto <a href="#" target="_blank">centro</a>
