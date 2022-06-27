@@ -92,6 +92,44 @@
     margin-left: 3%;
 }
 
+@media (min-width: 100px) and (max-width: 1000px) {
+.floating-social-bar {
+    visibility: hidden;
+}
+
+
+.floating-comprobar button {
+    border-radius: 37.5px;
+	background-color: #e65927;
+	border: 1px solid #e65927;
+	box-shadow: 0 16px 22px -17px #e65927;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	line-height: 12px;
+	padding: 12px 20px;
+	position: fixed;
+	bottom: 15px;
+	right: 20px;
+	z-index: 999;
+}
+
+
+.floating-comprobar button:hover {
+    background-color: #ffffff;
+	color: #e65927;
+}
+
+.floating-comprobar button:focus {
+    outline: none;
+}
+
+
+
+
+}
+
+
 
 </style>
 
@@ -225,6 +263,14 @@
                         <img src="{{ url('landing') }}/assets/group.png">
                         <span>¿Comprueba si tu reclamacion es viable?</span>
                         <button>Comprobar</button>
+                    </div>
+                </div>
+
+
+                {{-- Floating boton --}}
+                <div data-v-66372912="" id="pagetop" data-toggle="modal" data-target="#consulta-viabilidad" class="fixed right bottom" style="display: none-;">
+                    <div class="floating-comprobar">
+                        <button>Comprobar deuda</button>
                     </div>
                 </div>
 
