@@ -123,10 +123,12 @@
 .floating-comprobar button:focus {
     outline: none;
 }
+}
 
-
-
-
+@media (min-width: 1001px) and (max-width: 2048px) {
+.floating-comprobar {
+    visibility: hidden;
+}
 }
 
 
