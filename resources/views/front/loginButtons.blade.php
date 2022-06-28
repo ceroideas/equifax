@@ -27,6 +27,17 @@
             color:#285ba3;
             font-size:0.9rem;
         }
+        @media (max-width: 960px) {
+        	.blockAcceso, .blockRegistro {
+        		margin-top: 16px;
+        	}
+        }
+
+        @media (max-width: 1024px) {
+        	.blockAcceso, .blockRegistro {
+        		font-size: 12px !important;
+        	}
+        }
 	</style>
 	@if (Auth::check())
 		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('claims/select-client')}}" class="btn btn-nueva"><span data-v-5fddf304="" class="btn-text-acceso">
@@ -44,7 +55,7 @@
 			            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" style="transform: rotate(90deg);" class="iconsarrow-right">
                     </span>
                 </button>
-			    <div class="dropdown-menu">
+			    <div class="dropdown-menu" style="position: absolute;">
                     <h6 class="dropdown-header"><a class="menu-profile" href="{{url('panel')}}">Área personal</a></h6>
                     <a class="dropdown-item menu-profile-item" href="{{url('users',Auth::user()->id)}}">Mi perfil</a>
                     <a class="dropdown-item menu-profile-item" href="{{url('change-password')}}">Cambiar contraseña</a>

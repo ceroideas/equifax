@@ -167,9 +167,15 @@
                                         class="graficologonegativo"></div>
                             </a> <button data-v-5fddf304="" type="button" data-toggle="collapse"
                                 data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-                                aria-label="Toggle navigation" class="navbar-toggler"><span data-v-5fddf304=""
-                                    class="navbar-toggler-icon"></span></button>
-                            <div data-v-5fddf304="" id="navbarCollapse" class="navbar-collapse" style="display: none;">
+                                aria-label="Toggle navigation" class="navbar-toggler">
+
+                                <span data-v-5fddf304=""
+                                    class="navbar-toggler-icon" style="color: #333">
+                                        <img src="https://icon-library.com/images/burger-menu-icon/burger-menu-icon-4.jpg" alt="" style="width: 100%;">
+                                    </span>
+
+                                </button>
+                            <div data-v-5fddf304="" id="navbarCollapse" class="collapse navbar-collapse">
                                 <ul data-v-5fddf304="" class="navbar-nav">
                                     <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                                             href="{{ url('testimonios') }}" class="nav-link"><span
@@ -307,7 +313,7 @@
                                     </div>
 
                                     <img data-v-494d1a60=""
-                                        style="position: relative; border-radius: 12px; z-index: 1; top: 40%; width: 120%; max-width: 120%"
+                                        style="position: relative; border-radius: 12px; z-index: 1; top: 40%; width: 80vw; max-width: 120%"
                                         other="{{ url('landing') }}/assets/judicial.jpg"
                                         src="{{ url('landing') }}/images/HP/HP/Nuestra filosofía/equipo manos.jpg"
                                         class="img-amistosa img-fluid">

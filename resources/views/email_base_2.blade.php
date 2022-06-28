@@ -5,6 +5,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Dividae</title>
 </head>
+<style>
+	li a {
+		color: transparent;
+	}
+</style>
 <body style="margin:0px; background: #f8f8f8;">
 	<div width="100%" style="background: #f8f8f8; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 100%; color: #514d6a;">
 	  	<div style="max-width: 480px; padding:50px 0;  margin: 0px auto; font-size: 14px;">
@@ -12,16 +17,15 @@
 			    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
 			      	<tbody>
 			        	<tr>
-			          		<td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px">
+			          		<td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
 			          			<img src="{{ url($tmp->top_logo) }}" style="border:none;width: 150px;margin-left: 10px;">
 
 			          			<br>
 
 			          			{!! $tmp->top_content !!}
 
-			          			<div style="width: 100%; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
-                                    
-			          				<div style="background-color: rgba(255, 255, 255, .9); color: #e65927; padding: 16px; width: fit-content;">
+			          			<div style="width: auto; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
+			          				<div style="background-color: rgba(255, 255, 255, .9); color: #fd7e14; padding: 16px; width: fit-content;">
 			          					{!! $tmp->header_content !!}
 			          				</div>
 			          			</div>

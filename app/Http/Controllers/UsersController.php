@@ -341,6 +341,15 @@ class UsersController extends Controller
         return PostalCode::where('code',$code)->first();
     }
 
+    public function testEmail($email = 'jorgesolano92@gmail.com')
+    {
+        $tmp = Template::find(1);
+        Mail::send('email_base_2', ['tmp' => $tmp], function ($message) use($tmp,$email) {
+            $message->to($email, 'PRUEBA CLIENTE');
+            $message->subject($tmp->title);
+        });
+    }
+
     public function migrar()
     {
         // Auth::loginUsingId(39);

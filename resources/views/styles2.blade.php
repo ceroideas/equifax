@@ -571,11 +571,11 @@
 #blockform-scroll[data-v-66372912] {
   position: fixed;
   top: 80%;
-  right: 20%;
-  width: 20%;
+  right: 32px;
+  width: 340px;
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(96, 97, 112, 0.16), 0 0 2px 0 rgba(40, 41, 61, 0.04);
-  background-color: #254158;
+  background-color: #285ba3;
   z-index: 999999;
 }
 @media (min-width: 1440px) and (max-width: 1600px) {
