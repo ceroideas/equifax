@@ -124,7 +124,7 @@
                 </div>
             </div>
         @else
-        <div class="col-3" style="position: relative;">
+        <div class="col-md-3 col-sm-3 col-xs-12 d-none d-sm-block" style="position: relative;">
 
             <div style="position: absolute; width: calc(100% - 20px); bottom: 20px;">
                 <h5>¿Podemos ayudarte?</h5>
@@ -151,7 +151,7 @@
 
 
         </div>
-        <div class="col-9">
+        <div class="col-md-9 col-sm-9 col-xs-12">
 
             <div class="card">
 
@@ -189,14 +189,14 @@
                     <br>
 
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-md-9 col-sm-12 col-xs-12">
                             <h5>Mis reclamaciones
 
                                 <small onclick="window.open('{{url('claims')}}','_self')" style="font-size: 12px; float: right; cursor: pointer;">Ver todas <i class="fas fa-arrow-right"></i></small>
                             </h5>
 
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
 
                                     <div class="card">
 
@@ -230,7 +230,7 @@
 
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
 
                                     <div class="card">
 
@@ -264,7 +264,7 @@
 
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
 
                                     <div class="card">
 
@@ -299,10 +299,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3 text-center">
+                        <div class="col-md-3 col-sm-12 col-xs-12 text-center">
 
 
-                            <img src="{{url('landing/assets/save-money.png')}}" alt="" style="width: 50%;">
+                            <img src="{{url('landing/assets/save-money.png')}}" alt="" style="width: 50%; max-width: 80px;">
                             <br>
                             <br>
 
