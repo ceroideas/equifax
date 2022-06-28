@@ -27,6 +27,11 @@
             color:#285ba3;
             font-size:0.9rem;
         }
+        @media (max-width: 768px) {
+        	.blockAcceso, .blockRegistro {
+        		margin-top: 16px;
+        	}
+        }
 	</style>
 	@if (Auth::check())
 		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('claims/select-client')}}" class="btn btn-nueva"><span data-v-5fddf304="" class="btn-text-acceso">

@@ -5,6 +5,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Eliteadmin Responsive web app kit</title>
 </head>
+<style>
+	li a {
+		color: transparent;
+	}
+</style>
 <body style="margin:0px; background: #f8f8f8;">
 	<div width="100%" style="background: #f8f8f8; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 100%; color: #514d6a;">
 	  	<div style="max-width: 480px; padding:50px 0;  margin: 0px auto; font-size: 14px;">

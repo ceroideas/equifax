@@ -190,7 +190,7 @@
                                     </div>
 
                                     <img data-v-494d1a60=""
-                                        style="position: relative; border-radius: 12px; z-index: 1; top: 40%; width: 120%; max-width: 120%"
+                                        style="position: relative; border-radius: 12px; z-index: 1; top: 40%; width: 80vw; max-width: 120%"
                                         other="{{ url('landing') }}/assets/judicial.jpg"
                                         src="{{ url('landing') }}/images/HP/HP/Nuestra filosofía/equipo manos.jpg"
                                         class="img-amistosa img-fluid">
