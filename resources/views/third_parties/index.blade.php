@@ -105,5 +105,12 @@
             @endforeach
         </x-adminlte-datatable>
     </x-adminlte-card>
+    <div class="card-footer">
+        <div class="row">
+            <span class="float-left">(*) Selecciona o añade un tercero</span>
+        </div>
+        <!--<x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save" id="btnsiguiente"/>-->
+        <a href="{{ url('claims/select-client') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
+    </div>
 
 @stop

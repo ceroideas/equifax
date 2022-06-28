@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Eliteadmin Responsive web app kit</title>
+	<title>Dividae</title>
 </head>
 <style>
 	li a {
@@ -32,8 +32,8 @@
 			          		</td>
 			          	</tr>
 			        	<tr>
-			          		<td style="background:#fd7e14; padding:5px; color:#fff; text-align:left;">
-			          			<div style="padding: 10px; background-color: #fd7e14; color: #fff !important;">
+			          		<td style="background:#e65927; padding:5px; color:#fff; text-align:left;">
+			          			<div style="padding: 10px; background-color: #e65927; color: #fff !important;">
 			          				{!! $tmp->body_content !!}
 			          				<br>
 			          				{!! $tmp->footer_content !!}
@@ -45,7 +45,7 @@
 			          			<br>
 			          			@if ($tmp->cta_button)
 			          				<a href="{{$tmp->cta_button_link}}">
-			          				<button style="width: 80%; background-color: #fd7e14; color: #fff !important; padding: 8px; border-radius: 4px;">
+			          				<button style="width: 80%; background-color: #e65927; color: #fff !important; padding: 8px; border-radius: 4px;">
 			          					{{$tmp->cta_button}}
 			          				</button>
 			          				</a>

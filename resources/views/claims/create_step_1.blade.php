@@ -25,7 +25,7 @@
    {{-- @include('users.partials._form') --}}
    @if(session()->has('claim_client') || session()->has('claim_third_party'))
    <x-adminlte-alert theme="primary">
-       <span> Tu elección actual es: {{ (session('claim_client')) ? 'SI' : 'NO'}}</span>
+       <span> Tu elección actual es: {{ (session('claim_client')) ? 'SI' : 'Reclamación a nombre de un tercero'}}</span>
    </x-adminlte-alert>
    @endif
    @if(session()->has('msj'))

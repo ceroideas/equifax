@@ -155,7 +155,7 @@ class DebtorsController extends Controller
             'address' => 'required|min:10|max:255',
             'location' => 'required',
             'cop' => 'required',
-            'additional' => 'required',
+            'additional' => '',
         ];
 
         if(request()->method() == 'PUT'){

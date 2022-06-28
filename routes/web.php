@@ -72,10 +72,10 @@ Route::get('change-password', function(){
 });
 Route::post('change-password', [UsersController::class, 'changePassword']);
 
-/* Reclamaciones */ 
+/* Reclamaciones */
 
 Route::group(['prefix' => 'claims'], function(){
-    Route::get('/', [ClaimsController::class, 'index']);
+    Route::get('/', [ClaimsController::class, 'index'])->middleware('auth');
     Route::get('/invalid-debtor', [ClaimsController::class, 'invalidDebtor']);
     Route::get('/create', [ClaimsController::class, 'create']);
     Route::get('/select-client', [ClaimsController::class, 'stepOne']);
@@ -97,7 +97,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/flush-options', [ClaimsController::class, 'flushAll']);
     Route::post('/', [ClaimsController::class, 'store']);
     Route::get('/pending', [ClaimsController::class, 'pending']);
-    Route::get('/{claim}', [ClaimsController::class, 'show']);
+    Route::get('/{claim}', [ClaimsController::class, 'show'])->middleware('auth');
     Route::get('payment/{claim}', [ClaimsController::class, 'payment']);
     Route::get('{claim}/viable/{id?}', [ClaimsController::class , 'viable']);
     Route::get('{claim}/non-viable/{id?}', [ClaimsController::class , 'nonViable']);
@@ -133,9 +133,9 @@ Route::group(['prefix' => 'third-parties'], function(){
     Route::get('/{thirdParty}/edit', [ThirdPartiesController::class, 'edit']);
     Route::put('/{thirdParty}', [ThirdPartiesController::class, 'update']);
     Route::delete('/{thirdParty}', [ThirdPartiesController::class, 'destroy']);
-    
-    
-    
+
+
+
 });
 
 /* Deudores */
@@ -148,9 +148,9 @@ Route::group(['prefix' => 'debtors'], function(){
     Route::get('/{debtor}/edit', [DebtorsController::class, 'edit']);
     Route::put('/{debtor}', [DebtorsController::class, 'update']);
     Route::delete('/{debtor}', [DebtorsController::class, 'destroy']);
-    
-    
-    
+
+
+
 });
 
 /* Deudas */
@@ -169,9 +169,9 @@ Route::group(['prefix' => 'debts'], function(){
     // Route::get('/{debtor}/edit', [DebtorsController::class, 'edit']);
     // Route::put('/{debtor}', [DebtorsController::class, 'update']);
     // Route::delete('/{debtor}', [DebtorsController::class, 'destroy']);
-    
-    
-    
+
+
+
 });
 
 /* Acuerdos */
