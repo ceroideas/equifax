@@ -18,7 +18,7 @@
 			    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
 			      	<tbody>
 			        	<tr>
-			          		<td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px; position: relative;">
+			          		<td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px; position: relative; text-align: center;">
 			          			<img src="{{ url($se->template->top_logo) }}" style="border:none;width: 150px;margin-left: 10px;">
 
 			          			<br>
