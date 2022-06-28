@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Eliteadmin Responsive web app kit</title>
+	<title>Dividae</title>
 </head>
 <body style="margin:0px; background: #f8f8f8;">
 	<div width="100%" style="background: #f8f8f8; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 100%; color: #514d6a;">
@@ -20,15 +20,15 @@
 			          			{!! $tmp->top_content !!}
 
 			          			<div style="width: 100%; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
-			          				<div style="background-color: rgba(255, 255, 255, .9); color: #fd7e14; padding: 16px; width: fit-content;">
+			          				<div style="background-color: rgba(255, 255, 255, .9); color: #e65927; padding: 16px; width: fit-content;">
 			          					{!! $tmp->header_content !!}
 			          				</div>
 			          			</div>
 			          		</td>
 			          	</tr>
 			        	<tr>
-			          		<td style="background:#fd7e14; padding:5px; color:#fff; text-align:left;">
-			          			<div style="padding: 10px; background-color: #fd7e14; color: #fff !important;">
+			          		<td style="background:#e65927; padding:5px; color:#fff; text-align:left;">
+			          			<div style="padding: 10px; background-color: #e65927; color: #fff !important;">
 			          				{!! $tmp->body_content !!}
 			          				<br>
 			          				{!! $tmp->footer_content !!}
@@ -40,7 +40,7 @@
 			          			<br>
 			          			@if ($tmp->cta_button)
 			          				<a href="{{$tmp->cta_button_link}}">
-			          				<button style="width: 80%; background-color: #fd7e14; color: #fff !important; padding: 8px; border-radius: 4px;">
+			          				<button style="width: 80%; background-color: #e65927; color: #fff !important; padding: 8px; border-radius: 4px;">
 			          					{{$tmp->cta_button}}
 			          				</button>
 			          				</a>
