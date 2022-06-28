@@ -14,13 +14,13 @@
 			        	<tr>
 			          		<td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px">
 			          			<img src="{{ url($tmp->top_logo) }}" style="border:none;width: 150px;margin-left: 10px;">
-                                <p>Aqui va logo con ruta: {{ url($tmp->top_logo) }} fin</p>
+
 			          			<br>
 
 			          			{!! $tmp->top_content !!}
 
 			          			<div style="width: 100%; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
-                                    <p>Aqui va header con ruta: {{ url($tmp->header_image) }} fin</p>
+                                    
 			          				<div style="background-color: rgba(255, 255, 255, .9); color: #e65927; padding: 16px; width: fit-content;">
 			          					{!! $tmp->header_content !!}
 			          				</div>
