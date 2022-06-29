@@ -54,10 +54,10 @@
         <div class="col-sm-12 text-center">
             <span> <h3>
             {{-- A partir de este momento, Ya ha introducido todos los datos requeridos por el sistema. --}}
-            Confirmo que todos los datos e información aportada es veraz. * <br>
+            Confirmo que todos los datos e información aportada es veraz.<br>
 
             <small>
-                <i>La información que aporte el/la Cliente se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esta información en el sistema. * </i>
+                <i>La información que aporte el/la Cliente se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esta información en el sistema.</i>
             </small>
         </h3></span>
 
@@ -72,7 +72,7 @@
 <div class="custom-control custom-checkbox mb-3">
     <a data-toggle="modal" href="#terminos" style="color: #666">
     <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
-    <label for="customCheckbox1" class="custom-control-label">* Aceptar los Términos y Condiciones de uso General</label></a>
+    <label for="customCheckbox1" class="custom-control-label">Aceptar los Términos y Condiciones de uso General *</label></a>
     @error('tos')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
