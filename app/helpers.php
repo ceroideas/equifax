@@ -139,6 +139,17 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 					$se->template_id = $h['template_id'];
 					$se->actuation_id = $a->id;
 					$se->save();
+
+					$o = User::where('email',$se->addresse)->first();
+
+					$tmp = $se->template;
+		            Mail::send('email_base', ['se' => $se], function ($message) use($tmp, $o) {
+		                $message->to($o->email, $o->name);
+		                $message->subject($tmp->title);
+		            });
+
+		            $se->send_count += 1;
+		            $se->save();
 				}
 			}
 	        

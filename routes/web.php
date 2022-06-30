@@ -232,6 +232,6 @@ Route::post('import-actuations', [ClaimsController::class, 'importActuations']);
 
 
 Route::get('addCountEmail/{id}', [ClaimsController::class, 'addCountEmail']);
-Route::get('sendEmailsCron', [ClaimsController::class, 'sendEmailsCron']);
-
 Route::get('testEmail/{email?}', [UsersController::class, 'testEmail']);
+
+Route::get('sendEmailsCron', [ClaimsController::class, 'sendEmailsCron'])->middleware('guest');
