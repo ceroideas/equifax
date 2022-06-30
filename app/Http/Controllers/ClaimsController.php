@@ -1044,7 +1044,9 @@ class ClaimsController extends Controller
         $ses = SendEmail::whereNull('send_status')->whereNull('views')->get();
 
         foreach ($ses as $key => $se) {
-            return $this->sendEmailClient($se);
+            $this->sendEmailClient($se);
         }
+
+        return "Ok";
     }
 }
