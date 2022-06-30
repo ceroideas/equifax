@@ -92,7 +92,7 @@
     margin-left: 3%;
 }
 
-@media (min-width: 100px) and (max-width: 1000px) {
+@media (min-width: 100px) and (max-width: 1200px) {
 .floating-social-bar {
     visibility: hidden;
 }
@@ -125,7 +125,7 @@
 }
 }
 
-@media (min-width: 1001px) and (max-width: 2048px) {
+@media (min-width: 1201px) {
 .floating-comprobar {
     visibility: hidden;
 }
