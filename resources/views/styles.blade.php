@@ -858,7 +858,7 @@
 }
 
 .btn-light-descubre {
-    border-radius: 8px !important;
+    border-radius: 37.5px !important;
     background-color: #e65927;
     font-family: Roobert;
     font-size: 14px;

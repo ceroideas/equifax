@@ -440,6 +440,7 @@
                                         <div class="col-sm-8">
                                             <a data-v-9cc878a2="" href="{{ url('tarifas') }}" aria-current="page"
                                                 class="btn btn-light-descubre" type="button"> DESCUBRIR MÁS</a>
+                                                <br>
                                         </div>
                                     </div>
 
@@ -490,6 +491,7 @@
                                         <div class="col-sm-8">
                                             <a data-v-9cc878a2="" href="{{ url('tarifas') }}" aria-current="page"
                                                 class="btn btn-light-descubre" type="button"> DESCUBRIR MÁS</a>
+                                                <br>
                                         </div>
                                     </div>
 
