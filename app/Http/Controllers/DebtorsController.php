@@ -149,8 +149,8 @@ class DebtorsController extends Controller
         $rules = [
             'type' => 'required',
             'name' => 'required|min:8|max:255',
-            'email' => 'unique:debtors,email,'.$id,
-            'dni' => 'required|min:8|max:10|unique:debtors',
+            'email' => '',
+            'dni' => 'required|min:8|max:10',
             'tlf' => 'required|min:9|max:14',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
@@ -159,8 +159,8 @@ class DebtorsController extends Controller
         ];
 
         if(request()->method() == 'PUT'){
-            $rules['email'] = 'unique:debtors,email,'.request()->debtor->id;
-            $rules['dni'] = 'required|min:8|max:10|unique:debtors,dni,' . request()->debtor->id;
+            //$rules['email'] = 'unique:debtors,email,'.request()->debtor->id;
+            //$rules['dni'] = 'required|min:8|max:10|unique:debtors,dni,' . request()->debtor->id;
         }
 
         return request()->validate($rules);

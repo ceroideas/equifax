@@ -83,7 +83,7 @@
                               </ul></div>
 
                               <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                <small>Por solo</small> 19,90€
+                                <small>Por solo</small> 19,90 €
                               </span>
 
                               <br>
@@ -91,7 +91,7 @@
                               <div class="row">
                                   <div class="col-sm-2"></div>
                                   <div class="col-sm-8">
-                                      <a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a>
+                                      <br>{{--<a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a>--}}
                                   </div>
                               </div>
 
@@ -125,7 +125,7 @@
                               </ul></div>
 
                               <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                <small>Por solo</small> 69,90€
+                                <small>Por solo</small> 69,90 €
                               </span>
 
                               <br>
@@ -133,7 +133,7 @@
                               <div class="row">
                                   <div class="col-sm-2"></div>
                                   <div class="col-sm-8">
-                                      <a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a>
+                                      <br>{{--<a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a>--}}
                                   </div>
                               </div>
 
@@ -203,28 +203,28 @@
                       			<tr>
                       				<td style="color:#285ba3">Reclamación amistosa</td>
                       				<td rowspan="5" style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>
-                      				<td style="text-align: right;color:#285ba3;">19,90€</td>
+                      				<td style="text-align: right;color:#285ba3;">19,90 €</td>
                       			</tr>
                       			<tr>
                       				<td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
 Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles." style="color:#e65927;">Procedimiento Monitorio</span>
                                         en ámbito nacional.</td>
-                      				<td style="text-align: right; color:#285ba3">69,90€</td>
+                      				<td style="text-align: right; color:#285ba3">69,90 €</td>
                       			</tr>
                       			<tr>
                       				<td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o
 bien por la cuantía económica (cuantía menor a 6.000€), requieren una tramitación ágil." style="color:#e65927;">Juicio Verbales</span> en ámbito nacional</td>
-                      				<td style="text-align: right; color:#285ba3">199,90€</td>
+                      				<td style="text-align: right; color:#285ba3">199,90 €</td>
                       			</tr>
                       			<tr>
                       				<td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o bien por la cuantía económica
 (cuantía mayor a 6.000€ o imposible de calcular). Es un procedimiento más largo que los descritos anteriormente." style="color:#e65927;">Juicio Ordinarios</span> en ámbito nacional</td>
-                      				<td style="text-align: right; color:#285ba3">399,90€</td>
+                      				<td style="text-align: right; color:#285ba3">399,90 €</td>
                       			</tr>
                       			<tr>
                       				<td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es aquel por el que se pretende el cumplimiento de una resolución judicial dictada, de manera que es una manifestación
 del respeto al derecho a la tutela judicial efectiva cuando la parte contraria no cumple con lo indicado en la sentencia." style="color:#e65927;">Ejecución</span> en ámbito nacional</td>
-                      				<td style="text-align: right; color:#285ba3">149,90€</td>
+                      				<td style="text-align: right; color:#285ba3">149,90 €</td>
                       			</tr>
                       		</tbody>
                       	</table>

@@ -960,7 +960,7 @@ class ClaimsController extends Controller
         dump($r->no_viable);
         die();*/
 
-        if ($r->concurso == 1 || $r->tipo_deuda == 11 ) {
+        if ($r->concurso == 1 || $r->tipo_deuda >= 12) {
 
             $r->session()->forget('claim_client');
             $r->session()->forget('claim_debtor');
@@ -968,13 +968,14 @@ class ClaimsController extends Controller
             $r->session()->forget('debt_step_one');
             $r->session()->forget('debt_step_two');
 
-            return redirect('/panel')->with('alert', 'Lo sentimos, dadas las características de tu deuda no podemos tramitarla.
-            Nos pondremos en contacto contigo para ampliarte información y poder ofrecerte alternativas');
+            return redirect('claims/invalid-debtor');
+
         }
 
-        if ($r->concurso == 1 || $r->tipo_deuda >= 11 ) {
+        if ($r->concurso == 0 && $r->tipo_deuda == 11 ) {
 
-            return redirect('claims/invalid-debtor');
+            return redirect('/panel')->with('alert', 'Lo sentimos, dadas las características de tu deuda no podemos tramitarla.
+            Nos pondremos en contacto contigo para ampliarte información y poder ofrecerte alternativas');
         }
 
         // Almacenamos eleccion
