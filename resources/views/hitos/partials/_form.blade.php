@@ -43,7 +43,7 @@
 
             <div class="col-sm-4">
 
-                <x-adminlte-select2 name="phase" igroup-size="sm" enable-old-support="true" label="Fase en que se muestra (hito padre)" multiple>
+                <x-adminlte-select2 name="phase[]" enable-old-support="true" label="Fase en que se muestra (hito padre)" multiple="multiple">
                     <option {{isset($ht) && $ht->phase ? (in_array(1, $ht->phase) ? 'selected' : '') : ''}} value="1">Judicial</option>
                     <option {{isset($ht) && $ht->phase ? (in_array(2, $ht->phase) ? 'selected' : '') : ''}} value="2">Extrajudicial</option>
                 </x-adminlte-select2>
