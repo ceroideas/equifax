@@ -32,7 +32,7 @@
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
       <div class="row">
         <div class="col-sm-12 text-center">
-            <span> <h1>En el supuesto caso de que la parte contraria se interese en llegar a un acuerdo de pago y establecer un calendario de pagos, ¿estaría interesado?</h1></span>
+            <span> <h1>En el supuesto caso de que la parte contraria esté interesada en llegar a un acuerdo ¿lo aceptarías?</h1></span>
         </div>
       </div>
       <div class="row">
@@ -59,9 +59,10 @@
        e.preventDefault();
 
        Swal.fire({
-          title: 'Recuerda que la posibilidad de acuerdo facilitará a nuestros letrados la recuperación de tus facturas impagadas',
+          title: '<span style="color:#285ba3">Recuerda que la posibilidad de acuerdo facilitará a nuestros letrados la recuperación de tus facturas impagadas</span>',
           // showDenyButton: true,
           showCancelButton: true,
+          confirmButtonColor: '#e65927',
           confirmButtonText: 'Continuar',
           cancelButtonText: `Cancelar`,
           icon: 'warning',

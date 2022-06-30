@@ -86,7 +86,7 @@
 							<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 							<input type="hidden" name="claim_id" value="{{$claim->id}}">
 							<input type="hidden" name="amount" value="{{$amount*100}}">
-            				<button class="subscribe btn btn-primary btn-block" data-toggle="modal" data-target="#terminos-2" type="button"> Pagar ({{$amount}}€) Con tarjeta guardada </button>
+            				<button class="subscribe btn btn-primary btn-block" data-toggle="modal" data-target="#terminos-2" type="button"> Pagar ({{number_format($amount ,2,',','.')}} €) Con tarjeta guardada </button>
             			</form>
 
 
@@ -191,8 +191,8 @@
 							</div>
 
 						</div> <!-- row.// -->
-						<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#terminos" type="button"> Pagar ({{$amount}}€) </button>
-						<button class="subscribe btn btn-primary btn-block d-none" id="subscribe" type="submit"> Pagar ({{$amount}}€) </button>
+						<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#terminos" type="button"> Pagar ({{number_format($amount ,2,',','.')}} €) </button>
+						<button class="subscribe btn btn-primary btn-block d-none" id="subscribe" type="submit"> Pagar ({{number_format($amount ,2,',','.')}} €) </button>
 					</form>
 					<div id="paymentErrorMsg"></div>
 

@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Eliteadmin Responsive web app kit</title>
+	<title>Dividae</title>
 </head>
 <style>
 	li a {
@@ -14,7 +14,7 @@
 	<div width="100%" style="background: #f8f8f8; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 100%; color: #514d6a;">
 	  	<div style="max-width: 480px; padding:50px 0;  margin: 0px auto; font-size: 14px;">
 	  		<div style="">
-	  			<img src="{{url('addCountEmail')}}/{{$se->id}}" alt="">
+
 			    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
 			      	<tbody>
 			        	<tr>
@@ -33,8 +33,8 @@
 			          		</td>
 			          	</tr>
 			        	<tr>
-			          		<td style="background:#fd7e14; padding:5px; color:#fff; text-align:left;">
-			          			<div style="padding: 10px; background-color: #fd7e14; color: #fff !important;">
+			          		<td style="background:#e65927; padding:5px; color:#fff; text-align:left;">
+			          			<div style="padding: 10px; background-color: #e65927; color: #fff !important;">
 			          				{!! $se->template->body_content !!}
 			          				<br>
 			          				{!! $se->template->footer_content !!}
@@ -46,7 +46,7 @@
 			          			<br>
 			          			@if ($se->template->cta_button)
 			          				<a href="{{$se->template->cta_button_link}}">
-			          				<button style="width: 80%; background-color: #fd7e14; color: #fff !important; padding: 8px; border-radius: 4px;">
+			          				<button style="width: 80%; background-color: #e65927; color: #fff !important; padding: 8px; border-radius: 4px;">
 			          					{{$se->template->cta_button}}
 			          				</button>
 			          				</a>

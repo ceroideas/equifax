@@ -260,7 +260,7 @@
 }
 @media (min-width: 1440px) and (max-width: 1590px) {
 #social-sidebar[data-v-7b4478c1] {
-    left: 2%;
+    left: -4%;
 }
 }
 @media (min-width: 1280px) and (max-width: 1400px) {
@@ -273,26 +273,31 @@
     left: -6%;
 }
 }
-@media (min-width: 768px) and (max-width: 1000px) {
+@media (min-width: 200px) and (max-width: 1000px) {
 #social-sidebar[data-v-7b4478c1] {
     left: -8%;
+    visibility: hidden;
+
 }
 }
-@media (min-width: 430px) and (max-width: 750px) {
+/*@media (min-width: 430px) and (max-width: 750px) {
 #social-sidebar[data-v-7b4478c1] {
     left: -15%;
+    visibility: hidden;
 }
 }
 @media (min-width: 375px) and (max-width: 425px) {
 #social-sidebar[data-v-7b4478c1] {
     left: -18%;
+    visibility: hidden;
 }
 }
 @media (min-width: 320px) and (max-width: 370px) {
 #social-sidebar[data-v-7b4478c1] {
     left: -21%;
+    visibility: hidden;
 }
-}
+}*/
 #social-sidebar .follow-social[data-v-7b4478c1] {
   transform: rotate(-90deg);
   font-family: Roobert;
@@ -357,16 +362,16 @@
 }
 
 .blockAcceso .btn-nueva[data-v-5fddf304] {
-  height: 40px;
+  /*height: 40px;*/
   margin-right: 16px;
   border-radius: 37.5px;
   background-color: #1e7e34;
   color: #fff;
 }
 .blockAcceso .btn-nueva .btn-text-acceso[data-v-5fddf304] {
-  height: 17px;
+  /*height: 17px;*/
   font-family: Roobert;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -374,8 +379,8 @@
   letter-spacing: normal;
   text-align: center;
   color: #fff;
-  top: 2px;
-  position: relative;
+  /*top: 2px;
+  position: relative;*/
 }
 
 .blockRegistro .btn-registerHome[data-v-5fddf304] {

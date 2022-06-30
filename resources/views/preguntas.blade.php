@@ -260,7 +260,7 @@
 }
 @media (min-width: 1440px) and (max-width: 1590px) {
 #social-sidebar[data-v-7b4478c1] {
-    left: 2%;
+    left: -4%;
 }
 }
 @media (min-width: 1280px) and (max-width: 1400px) {
@@ -273,12 +273,15 @@
     left: -6%;
 }
 }
-@media (min-width: 768px) and (max-width: 1000px) {
+@media (min-width: 200px) and (max-width: 1000px) {
 #social-sidebar[data-v-7b4478c1] {
     left: -8%;
+    visibility: hidden;
+
 }
 }
-@media (min-width: 430px) and (max-width: 750px) {
+
+/*@media (min-width: 430px) and (max-width: 750px) {
 #social-sidebar[data-v-7b4478c1] {
     left: -15%;
 }
@@ -290,9 +293,9 @@
 }
 @media (min-width: 320px) and (max-width: 370px) {
 #social-sidebar[data-v-7b4478c1] {
-    left: -21%;
+    left: -18%;
 }
-}
+}*/
 #social-sidebar .follow-social[data-v-7b4478c1] {
   transform: rotate(-90deg);
   font-family: Roobert;
@@ -1399,6 +1402,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   color: #fff;
 }
 .block-PFrecuentes .PFrecuentes-title[data-v-038cfd70] {
+  margin-top: 40px;
   font-family: Nordeco;
   font-size: 56px;
   font-weight: normal;

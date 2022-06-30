@@ -51,7 +51,7 @@ class AgreementsController extends Controller
         session()->put('claim_agreement', $agreement);
 
         // return redirect('viability');
-        return redirect('claims/accept-terms')->with('msj', 'Datos guardados temporalmente');
+        return redirect('claims/accept-terms')->with('msj', 'Datos guardados exitosamente');
 
     }
 
@@ -63,7 +63,7 @@ class AgreementsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -114,7 +114,7 @@ class AgreementsController extends Controller
     public function validateRequest(){
 
         $rules = [
-            
+
             'quitas' => 'required',
             'espera' => 'required',
 
