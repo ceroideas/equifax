@@ -225,7 +225,7 @@
                                 {{-- <span data-v-66372912="" class="Lorem-ipsum-dolor-si">
                                 Lorem ipsum dolor sit amet, consectetur
                               </span> --}}
-                                <div data-v-66372912=""><span data-v-66372912="" class="Te-ayudamos-a-recupe">
+                                <div data-v-66372912="" style="padding-top: 60px;"><span data-v-66372912="" class="Te-ayudamos-a-recupe">
                                         Di adiós a las facturas <br> impagadas
                                     </span></div>
                                 <div data-v-66372912="">
