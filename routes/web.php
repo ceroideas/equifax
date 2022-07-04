@@ -235,3 +235,8 @@ Route::get('addCountEmail/{id}', [ClaimsController::class, 'addCountEmail']);
 Route::get('testEmail/{email?}', [UsersController::class, 'testEmail']);
 
 Route::get('sendEmailsCron', [ClaimsController::class, 'sendEmailsCron'])->middleware('guest');
+
+/* Ruta publica para mensajes y notificaciones generales */
+Route::get('info', function(){
+    return view('info-public')->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');
+});

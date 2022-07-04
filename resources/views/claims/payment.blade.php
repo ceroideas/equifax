@@ -76,42 +76,39 @@
 
             	<div class="col-md-4 offset-md-4">
 
-            		@if (Auth::user()->card_alias)
+                    @if(Auth::user())
+                        @if (Auth::user()->card_alias)
+                            <p>Tienes una tarjeta guardada con el alias <b>({{Auth::user()->card_alias}})</b> <br>
 
-            			<p>
-            				Tienes una tarjeta guardada con el alias <b>({{Auth::user()->card_alias}})</b> <br>
-
-            			<form id="pagoPorClick" role="form" action="{{url('claims/payToken')}}"  method="POST">
-							{{csrf_field()}}
-							<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-							<input type="hidden" name="claim_id" value="{{$claim->id}}">
-							<input type="hidden" name="amount" value="{{$amount*100}}">
-            				<button class="subscribe btn btn-primary btn-block" data-toggle="modal" data-target="#terminos-2" type="button"> Pagar ({{number_format($amount ,2,',','.')}} €) Con tarjeta guardada </button>
-            			</form>
-
-
-            			</p>
-
-            			<hr>
-
-            		@endif
+                                <form id="pagoPorClick" role="form" action="{{url('claims/payToken')}}"  method="POST">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                    <input type="hidden" name="claim_id" value="{{$claim->id}}">
+                                    <input type="hidden" name="amount" value="{{$amount*100}}">
+                                    <button class="subscribe btn btn-primary btn-block" data-toggle="modal" data-target="#terminos-2" type="button"> Pagar ({{number_format($amount ,2,',','.')}} €) Con tarjeta guardada </button>
+                                </form>
+                            </p>
+                            <hr>
+                        @endif
+                    @endif
 
             		<form role="form" id="paycometPaymentForm" action="{{url('claims/payment')}}"  method="POST">
 						<input type="hidden" name="amount" value="{{$amount*100}}">
 						<input type="hidden" name="claim_id" value="{{$claim->id}}">
-						<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+						<input type="hidden" name="user_id" value="{{Auth::user() ? Auth::user()->id: ""}}">
 						<input type="hidden" data-paycomet="jetID" value="{{config('jet.arg4')}}">
 						{{csrf_field()}}
-						<div class="form-group">
-							<label for="card_alias">Alias para guardar ésta tarjeta para futuros pagos</label>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fa fa-user"></i></span>
-								</div>
-								<input type="text" class="form-control" name="card_alias" placeholder="(Ej. Tarjeta de Pedro)">
-							</div> <!-- input-group.// -->
-						</div> <!-- form-group.// -->
-
+                        @if(Auth::user())
+                            <div class="form-group">
+                                <label for="card_alias">Alias para guardar ésta tarjeta para futuros pagos</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="card_alias" placeholder="(Ej. Tarjeta de Pedro)">
+                                </div> <!-- input-group.// -->
+                            </div> <!-- form-group.// -->
+                        @endif
 						<div class="form-group">
 							<label for="username">Nombre completo (en la tarjeta)</label>
 							<div class="input-group">
