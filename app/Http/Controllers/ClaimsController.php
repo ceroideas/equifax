@@ -1049,4 +1049,32 @@ class ClaimsController extends Controller
 
         return "Ok";
     }
+
+
+    public function info($id)
+    {
+        //dump($id);
+        $infopago = config('app.infopago');
+
+        /*dump($infopago);echo "<br>";
+        $hito = array_search($id,$infopago);*/
+
+        foreach($infopago as $key => $value){
+            if($value["hito"]==$id){
+        /*        dump($value);
+                dump($value["hito"]);
+                dump($value["msg"]);*/
+                $hito = $value["hito"];
+                $msg = $value["msg"];
+            }
+
+        }
+
+      //  dump($hito);
+      //  dump($msg);
+
+
+        //return view('claims.hitos', compact('fase'));
+        return view('info-public', compact('hito', 'msg'));
+    }
 }

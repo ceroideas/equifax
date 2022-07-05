@@ -214,7 +214,7 @@
                                         <a data-v-5fddf304="" href="{{ url('tarifas') }}" class="nav-link">
                                             <span data-v-5fddf304="" class="Type-something">Tarifas</span>
                                         </a>
-                                        <div data-v-5fddf304="" class="punto-active"></div>
+
                                     </li>
                                     <li data-v-5fddf304="" class="nav-item">
                                         <a data-v-5fddf304="" href="{{ url('/') }}/contacto" class="nav-link">
@@ -253,6 +253,14 @@
                                 <b>vía judicial,</b> ya que según tu reclamación consideramos que puede prosperar.
                             </p>
                             <p>Para continuar la <b>vía judicial</b>, tienes que abonar la tarifa correspondiente al procedimiento monitorio *</p>
+                            @isset($hito)
+                                <p>Hito: {{$hito}}</p>
+                            @endisset
+
+                            @isset($msg)
+                                <p>Mensaje: {{$msg}}</p>
+                            @endisset
+
                         </div>
                     </div>
                 </div>
@@ -300,13 +308,14 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
                         </table>
 
                         <div class="row">
-                            <div class="col-sm-8"></div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-9"></div>
+                            <div class="col-sm-3">
                                 <a data-v-9cc878a2="" href="https://dividae.com/dividae/public/claims/payment/36" aria-current="page"
                                     class="btn btn-light-descubre" type="button">Proceder al pago</a>
                                     <br>
                             </div>
                         </div>
+
 
                         <p style="color:#285ba3; font-style: italic;">IVA no incluido</p>
 
