@@ -746,5 +746,48 @@ return [
         // ...
     ])->toArray(),
 
+    'infopago' => [
+        ['hito'=>"2",
+         'msg'=>'¡Vaya! No hemos conseguido alcanzar un acuerdo con tu deudor, Dividae te recomienda que continues por la vía judicial, ya que según tu reclamación consideramos que puede prosperar.
+                Para continuar la vía judicial, tienes que abonar la tarifa correspondiente al procedimiento monitorio * '
+        ],
+        ['hito'=>"601",
+         'msg'=>'¡Vaya! El juzgado no ha localizado al deudor con la información que nos has facilitado, pero aún nos queda camino juntos, ya que durante el procedimiento hemos identificado un nuevo domicilio donde localizarlo/a.
+                Para continuar por la vía judicial, Dividae te recomienda  que abones la tarifa correspondiente al procedimiento monitorio * '
+       ],
+       ['hito'=>"602",
+        'msg'=>'¡Vaya! La información que has aportado no es suficiente para reclamar la deuda por el procedimiento monitorio. Pero aún nos queda camino juntos, ya que sí es posible seguir reclamándola por el procedimiento verbal*.
+               Para seguir avanzando, necesitamos que abones la tarifa del procedimiento verbal * '
+        ],
+        ['hito'=>"603",
+        'msg'=>'¡Vaya! La información que has aportado no es suficiente para reclamar la deuda por el procedimiento monitorio. Pero aún nos queda camino juntos, ya que sí es posible seguir reclamándola por el procedimiento ordinario*.
+               Para seguir avanzando, necesitamos que abones la tarifa del procedimiento ordinario * '
+        ],
+        ['hito'=>"701",
+        'msg'=>'¡Vaya! El deudor se ha opuesto a tu demanda, parece que nos encontramos con una deuda discutida y tu procedimiento va a derivar en un verbal por decisión judicial.
+                Para seguir avanzando tendrás que abonar la tarifa del procedimiento verbal * '
+        ],
+        ['hito'=>"702",
+        'msg'=>'¡Vaya! El deudor se ha opuesto a tu demanda, parece que nos encontramos con una deuda discutida y tu procedimiento va a derivar en un verbal por decisión judicial.
+               Para seguir avanzando tendrás que abonar la tarifa del procedimiento ordinario * '
+        ],
+        ['hito'=>"1101",
+         'msg'=>'¡Vaya! La parte contraria no está de acuerdo con la resolución establecida por el Juzgado, para poder oponernos a su recurso necesitamos que tomes una decisión.
+                Para seguir con la reclamación tendrás que abonar la tarifa correspondiente para comenzar un recurso de contrario *'
+        ],
+        ['hito'=>"1102",
+        'msg'=>'Como sabes, el Juzgado ha desestimado tu reclamación. Tras analizar la resolución, te recomendamos recurrirla.
+               Para seguir avanzando tendrás que abonar la tarifa recurso* y el depósito recurrir apelación **.'
+        ],
+        ['hito'=>"12",
+         'msg'=>'¡Buenas noticias! La resolución nos ha dado la razón. Para poder recuperar la deuda, Dividae te recomienda presentar una demanda de ejecución para embargar los bienes de tu deudor. Para ello necesitamos que tomes una decisión: Proceder con la ejecución.
+               Para seguir, Dividae te recomienda abonar la tarifa ejecución*.'
+        ],
+        ['hito'=>"1703",
+         'msg'=>'¡Buenas noticias! La resolución nos ha dado la razón. Para poder recuperar la deuda, Dividae te recomienda presentar una demanda de ejecución para embargar los bienes de tu deudor. Para ello necesitamos que tomes una decisión: Proceder con la ejecución.
+              Para seguir, Dividae te recomienda abonar la tarifa ejecución*.'
+        ]
+    ]
+
 
 ];
