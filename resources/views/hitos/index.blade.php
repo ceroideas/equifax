@@ -71,11 +71,13 @@
                                 <i class="fa fa-lg fa-fw fa-pen"></i>
                             </button>
                         </a>
+                        <!-- Boton eliminar hito -->
+                        <!--
                         <form id="delete-form-{{ $hito->id }}" action="{{ url('/hitos/' . $hito->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
                         <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $hito->id }}').submit();">
                             <i class="fa fa-lg fa-fw fa-trash"></i>
                         </button>
-
+                        -->
                     </nobr>
                     </td>
                 </tr>

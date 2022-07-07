@@ -58,7 +58,7 @@
             </div>
 
             <div class="col-sm-6">
-                
+
                 <x-adminlte-select2 name="parent_id" igroup-size="sm" enable-old-support="true" label="Hito padre">
                     <option selected></option>
                     @foreach (App\Models\Hito::whereNull('parent_id')->get() as $h)
@@ -87,9 +87,9 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <x-adminlte-select2 name="template_id" igroup-size="sm" enable-old-support="true" label="Enviar email">
-                        <option selected></option>
+                        <option>Plantilla email</option>
                         @foreach (App\Models\Template::all() as $t)
-                            <option value="{{$t->id}}">{{$t->title}}</option>
+                            <option {{$ht ? ($ht->template_id == $t->id ? 'selected' : '') : ''}} value="{{$t->id}}">{{ $t->id }} - {{$t->title}}</option>
                         @endforeach
                     </x-adminlte-select2>
                 </div>
@@ -124,5 +124,3 @@
         </div>
     </form>
 </x-adminlte-card>
-
-

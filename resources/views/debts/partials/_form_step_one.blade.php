@@ -133,7 +133,7 @@
             <div class="col-sm-6 total">
 
                 @if (old('amounts'))
-                    <label>Pagos Parciales (en €) y Fecha en que se realizar&oacute;n</label>
+                    <label>Pagos Parciales (en €) y fecha en que se realizar&oacute;n</label>
                     @foreach (old('amounts') as $key => $am)
                         <div class="form-group">
                             <div class="row">
@@ -147,7 +147,7 @@
                         </div>
                     @endforeach
                 @elseif (session('claim_debt') && session('claim_debt')->partials_amount_details)
-                    <label>Pagos Parciales (en €) y Fecha en que se realizaron</label>
+                    <label>Pagos Parciales (en €) y fecha en que se realizar&oacute;n</label>
                     @foreach (json_decode(session('claim_debt')->partials_amount_details,true) as $key => $am)
                         <div class="form-group">
                             <div class="row">
@@ -372,7 +372,7 @@
         if ($(this).val() == 0) {
             $('.total').html("");
         }else{
-            $('.total').html('<label>Pagos Parciales (en €) y Fecha en que se realizaron</label>');
+            $('.total').html('<label>Pagos Parciales (en €) y fecha en que se realizar&oacute;n</label>');
             for (var i = 0; i < $(this).val(); i++) {
                 $('.total').append(element);
             }

@@ -28,7 +28,7 @@
             'ID',
             'Reclamación',
             'Concepto',
-            'Importe cancelado',
+            'Importe',
             'Fecha del pago',
             'Tipo de cobro',
             'Status',
@@ -45,7 +45,7 @@
             'Cliente',
             'Reclamación',
             'Concepto',
-            'Importe cancelado',
+            'Importe',
             'Fecha del pago',
             'Tipo de cobro',
             'Status',
@@ -88,8 +88,8 @@
                     @endif
                     <td>#{{ $invoice->claim->id }}</td>
                     <td>{{ $invoice->description }}</td>
-                    <td>{{ $invoice->amount }}€</td>
-                    <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d-m-Y H:i') }}</td>
+                    <td>{{ number_format(($invoice->amount) ,2,',','.')}} €</td>
+                    <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d/m/Y') }}</td>
                     <td>{{ $invoice->type }}</td>
                     <td>{{ $invoice->status == 1 ? 'Pagado' : 'Pendiente' }}</td>
                     <td>
