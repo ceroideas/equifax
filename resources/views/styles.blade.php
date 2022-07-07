@@ -324,13 +324,17 @@
 }
 @media (max-width: 425px) {
 .blockAcceso[data-v-5fddf304] {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
     margin-top: 15px;
+}
+
+.blockRegistro[data-v-5fddf304]{
+    margin-bottom: 15px;
 }
 }
 .blockAcceso .btn-acceso[data-v-5fddf304] {
   /*height: 40px;*/
-  margin-right: 16px;
+  margin-right: 10px;
   border-radius: 37.5px;
   border: solid 1px #e65927;
   color: #e65927;
@@ -373,6 +377,7 @@
 }
 
 .blockRegistro .btn-registerHome[data-v-5fddf304] {
+  margin-right: 10px;
   border-radius: 37.5px;
   background-color: #2c60aa;
 }
@@ -439,13 +444,13 @@
 }
 @media (max-width: 425px) {
 .scroll-header .blockAcceso[data-v-5fddf304] {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
     margin-top: 15px;
 }
 }
 .scroll-header .blockAcceso .btn-acceso[data-v-5fddf304] {
-  height: 40px;
-  margin-right: 16px;
+  /*height: 40px;*/
+  margin-right: 10px;
   border-radius: 37.5px;
   border: solid 1px #051c2c;
 }
