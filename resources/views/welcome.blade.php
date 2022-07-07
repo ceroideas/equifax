@@ -306,14 +306,14 @@
                                         style="width: 200px; position: absolute; border-bottom: 4px solid #e65927; top: 50%; z-index: 2; left: -40px;">
                                     </div>
 
-                                    <div style="position: absolute; background-color: #e65927; height: 200px; width: 50%; border-radius: 12px;
+                                    <div style="position: absolute; background-color: #e65927; height: 1px; width: 1px; border-radius: 12px;
                             z-index: 0; margin: auto; left: 90px; right: 0; top: 30%;
                             ">
 
                                     </div>
 
                                     <img data-v-494d1a60=""
-                                        style="position: relative; border-radius: 12px; z-index: 1; top: 40%; width: 80vw; max-width: 120%"
+                                        style="border-radius: 12px; z-index: 1; top: 40%; width: 80vw; max-width: 120%"
                                         other="{{ url('landing') }}/assets/judicial.jpg"
                                         src="{{ url('landing') }}/images/HP/HP/Nuestra filosofía/equipo manos.jpg"
                                         class="img-amistosa img-fluid">
