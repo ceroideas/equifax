@@ -344,7 +344,7 @@
                                                         <b>adiós a tus facturas impagadas</b>.
                                                     </p>
                                                     <p>
-                                                        Conoce más acerca de <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>.
+                                                        Conoce más acerca de <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>."
                                                     </p>
 
 
