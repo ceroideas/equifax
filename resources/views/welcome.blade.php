@@ -567,9 +567,9 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Plataforma 100% Digital</b>
                                     </p>
-                                    <p data-v-43503c2a="" class="Recovery-text">
+                                    {{--<p data-v-43503c2a="" class="Recovery-text">
                                         Podrás conocer el proceso de la reclamación en tiempo real.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
 
@@ -581,9 +581,10 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Máxima seguridad Jurídica</b>
                                     </p>
+                                   {{--
                                     <p data-v-43503c2a="" class="Recovery-text">
                                         <b>Dividae</b>, como línea de negocio de <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>, es parte de ANGECO y cumple con todos los requisitos de calidad.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
 
@@ -595,10 +596,11 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Experiencia Contrastada</b>
                                     </p>
+                                    {{--
                                     <p data-v-43503c2a="" class="Recovery-text">
                                         <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b> cuenta con experiencia contrastada desde 2016, siendo uno de los
                                         principales proveedores de servicios de recuperación de deuda de España.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
 
@@ -611,10 +613,11 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Transparente</b>
                                     </p>
+                                    {{--
                                     <p data-v-43503c2a="" class="Recovery-text">
                                         <b>Dividae</b> no te cobrará nada sin tu consentimiento. Además, la suscripción
                                         y análisis de la reclamación es totalmente gratuito.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
                             {{-- </div> --}}
