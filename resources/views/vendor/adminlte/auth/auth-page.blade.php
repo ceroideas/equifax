@@ -16,13 +16,17 @@
 
 {{-- @section('classes_body'){{ ($auth_type ?? 'login') . '-page' }}@stop --}}
 @section('classes_body') {{'container'}} @stop
-
+<style>
+.loginbox {
+    color: rgb(250, 192, 2);
+    padding-right: 50px !important;
+}
+</style>
 @section('body')
 <div class="row" style="margin: auto; margin-top: 10vh; border-radius: 20px; width: 800px; box-shadow: 0 0 15px rgba(0, 0, 0, .3); overflow: hidden;">
     <div class="col-sm-6">
         {{-- <div class="{{ $auth_type ?? 'login' }}-box"> --}}
-        <div class="container">
-
+        <div class="container loginbox">
             {{-- Logo --}}
             <br>
             <br>
