@@ -28,7 +28,7 @@
             <br>
             <br>
             <div class="{{ $auth_type ?? 'login' }}-logo">
-                <a href="{{ $dashboard_url }}">
+                <a href="{{ url('/') }}">
                     <img src="{{ asset(config('adminlte.logo_img')) }}" height="50">
                     {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
                 </a>
