@@ -325,7 +325,7 @@
 }
 @media (max-width: 425px) {
 .blockAcceso[data-v-5fddf304] {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
     margin-top: 15px;
 }
 }
