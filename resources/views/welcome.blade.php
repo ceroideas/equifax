@@ -335,20 +335,16 @@
                                                 {{-- </div> --}}
                                                 <div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
                                                     <p>
-                                                        <b>Dividae</b> surge para ofrecer una solución a los miles de
-                                                        autónomos y pequeños empresarios que desconocen que una factura
-                                                        impagada sí puede reclamarse 100% online de forma <b>sencilla,
-                                                            exitosa y económica.</b>
+                                                        "<b>Dividae</b> busca democratizar el mundo de la reclamación de facturas impagadas a nivel digital de una manera
+                                                        <b>automatizada</b> y <b>trasparente</b>, basándose en una dinámica de trabajo
+                                                        <b>sencilla</b>, <b>exitosa</b> y <b>económica</b>.
                                                     </p>
                                                     <p>
-                                                        Nuestra <b>filosofía</b> se basa en una dinámica de trabajo 100%
-                                                        transparente, informando a nuestros clientes del estado de la
-                                                        recuperación en tiempo real y de forma automatizada a través del
-                                                        área personal.
+                                                        ¿Nuestro principal objetivo? Que empieces a decir
+                                                        <b>adiós a tus facturas impagadas</b>.
                                                     </p>
                                                     <p>
-                                                        ¿Nuestro principal objetivo? Tu libertad y tranquilidad <b>¿Te
-                                                            unes?</b>
+                                                        Conoce más acerca de <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>.
                                                     </p>
 
 
@@ -503,6 +499,7 @@
                         </div>
                     </div>
                 </div>
+                {{--
                 <div data-v-63cd6604="" data-v-effc9f78="" class="blockQSomos">
                     <div data-v-63cd6604="" data-v-effc9f78="" class="container card">
                         <div data-v-63cd6604="" data-v-effc9f78="" class="row">
@@ -547,7 +544,7 @@
                                     style="border-radius: 12px;" class="img-fluid"></div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
 
 
 
@@ -570,9 +567,9 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Plataforma 100% Digital</b>
                                     </p>
-                                    <p data-v-43503c2a="" class="Recovery-text">
+                                    {{--<p data-v-43503c2a="" class="Recovery-text">
                                         Podrás conocer el proceso de la reclamación en tiempo real.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
 
@@ -584,9 +581,10 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Máxima seguridad Jurídica</b>
                                     </p>
+                                   {{--
                                     <p data-v-43503c2a="" class="Recovery-text">
                                         <b>Dividae</b>, como línea de negocio de <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>, es parte de ANGECO y cumple con todos los requisitos de calidad.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
 
@@ -598,10 +596,11 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Experiencia Contrastada</b>
                                     </p>
+                                    {{--
                                     <p data-v-43503c2a="" class="Recovery-text">
                                         <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b> cuenta con experiencia contrastada desde 2016, siendo uno de los
                                         principales proveedores de servicios de recuperación de deuda de España.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
 
@@ -614,10 +613,11 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Transparente</b>
                                     </p>
+                                    {{--
                                     <p data-v-43503c2a="" class="Recovery-text">
                                         <b>Dividae</b> no te cobrará nada sin tu consentimiento. Además, la suscripción
                                         y análisis de la reclamación es totalmente gratuito.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
                             {{-- </div> --}}
