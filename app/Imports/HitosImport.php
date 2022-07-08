@@ -18,16 +18,14 @@ class HitosImport implements ToModel, WithHeadingRow
     	// \Log::info($row);
     	$d = Debt::where('document_number',$row['numero_de_documento'])->first();
     	if ($d) {
-
     		$h = getHito( (string) $row['id_hito'])[0];
-
 	        // \Log::info([$row['id_hito'],gettype( (string) $row['id_hito'])]);
 	        \Log::info($row);
 
 	        if ($h) {
 	            $a = new Actuation;
 		        $a->claim_id = $d->claim_id;
-		        $a->subject = $h['id'];
+		        $a->subject = $h['ref_id'];
 		        $a->amount = array_key_exists('monto_recuperado', $row) &&  $row['monto_recuperado'] != '' ? $row['monto_recuperado'] : null;
 		        $a->description = array_key_exists('observaciones', $row) ? $row['observaciones'] : null;
 		        if (array_key_exists('fecha_actuacion', $row)) {
@@ -53,7 +51,7 @@ class HitosImport implements ToModel, WithHeadingRow
 		        	}
 		        }
 
-		        actuationActions($h['id'],$a->claim_id,$a->amount, $a->actuation_date, $a->description);
+		        actuationActions($h['ref_id'],$a->claim_id,$a->amount, $a->actuation_date, $a->description);
 	        }
         }
     }

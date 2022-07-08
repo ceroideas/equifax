@@ -8,6 +8,7 @@ use App\Models\SendEmail;
 use App\Models\Template;
 use App\Models\Invoice;
 use App\Models\Configuration;
+use App\Models\User;
 use Carbon\Carbon;
 use App\Models\User;
 

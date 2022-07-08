@@ -141,7 +141,7 @@ class ConfigurationsController extends Controller
                     $h->phase = null;
                     $h->name = $ht['name'];
                     $h->redirect_to = $ht['redirect_to'];
-                    $h->type = isset($value['type']) ? $value['type'] : null;
+                    $h->type = isset($ht['type']) ? $ht['type'] : null;
                     $h->save();
                 }
             }
