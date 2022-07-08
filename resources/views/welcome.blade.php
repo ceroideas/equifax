@@ -335,7 +335,7 @@
                                                 {{-- </div> --}}
                                                 <div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
                                                     <p>
-                                                        "<b>Dividae</b> busca democratizar el mundo de la reclamación de facturas impagadas a nivel digital de una manera
+                                                        <b>Dividae</b> busca democratizar el mundo de la reclamación de facturas impagadas a nivel digital de una manera
                                                         <b>automatizada</b> y <b>trasparente</b>, basándose en una dinámica de trabajo
                                                         <b>sencilla</b>, <b>exitosa</b> y <b>económica</b>.
                                                     </p>
@@ -344,7 +344,7 @@
                                                         <b>adiós a tus facturas impagadas</b>.
                                                     </p>
                                                     <p>
-                                                        Conoce más acerca de <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>."
+                                                        Conoce más acerca de <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>.
                                                     </p>
 
 
