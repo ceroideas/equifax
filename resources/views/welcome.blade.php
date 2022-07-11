@@ -465,7 +465,7 @@
                                                     {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
 
                                                 <p class="text-left">
-                                                    Comienza de manera con tu reclamación por vía extrajudicial.
+                                                    Comienza de manera con tu reclamación por vía extrajudicial
                                                 </p>
 
                                             </li>

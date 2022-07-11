@@ -74,7 +74,7 @@
 
                                 {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
                                 <p class="text-left">
-                                    Comienza con tu reclamacion por vía extrajudicial.
+                                    Comienza con tu reclamacion por vía extrajudicial
                                 </p>
                               </li>
 
