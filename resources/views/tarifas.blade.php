@@ -91,7 +91,7 @@
                               <div class="row">
                                   <div class="col-sm-2"></div>
                                   <div class="col-sm-8">
-                                      <br>{{--<a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a>--}}
+                                      <br><a data-v-9cc878a2="" href="#tbltarifas" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a><br>
                                   </div>
                               </div>
 
@@ -133,7 +133,7 @@
                               <div class="row">
                                   <div class="col-sm-2"></div>
                                   <div class="col-sm-8">
-                                      <br>{{--<a data-v-9cc878a2="" href="{{url('register')}}" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a>--}}
+                                      <br><a data-v-9cc878a2="" href="#tbltarifas" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a><br>
                                   </div>
                               </div>
 
@@ -190,7 +190,8 @@
 
                       <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
 
-                      	<table class="table table-bordered table-hover">
+
+                      	<table id="tbltarifas" class="table table-bordered table-hover">
                       		<thead>
                       			<tr>
                       				<th style="background-color: #e65927; text-align: center; color: #fff">Tipo de procedimiento</th>
