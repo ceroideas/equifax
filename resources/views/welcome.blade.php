@@ -150,7 +150,7 @@
                    </video>
 
                     <div data-v-66372912="" class="block-CMO-FUNCIONA"><a data-v-66372912="" href="#como-funciona"
-                            class="CMO-FUNCIONA">NUESTRA FILOSOFÍA <img data-v-66372912=""
+                            class="CMO-FUNCIONA">NUESTRA MISIÓN <img data-v-66372912=""
                                 src="{{ url('landing') }}/assets/icons-arrow-down-white.png"
                                 class="iconsarrow-down img-fluid"></a></div>
 
@@ -327,8 +327,7 @@
                                             <div class="col-sm-10">
 
                                                 <div data-v-494d1a60="" id="block-reclamacion">
-                                                    <div data-v-494d1a60="" class="text-reclamacion mb-4 mt-4">NUESTRA
-                                                        FILOSOFÍA</div>
+                                                    <div data-v-494d1a60="" class="text-reclamacion mb-4 mt-4">NUESTRA MISIÓN</div>
                                                 </div>
                                                 {{-- <div class="row"> --}}
                                                 {{-- <div data-v-494d1a60="" class="col-xl-12 col-lg-12 col-sm-12 col-xs-12"><div data-v-494d1a60="" class="card-text Reclamacion">Reclamación amistosa</div></div> --}}
@@ -366,17 +365,68 @@
                                                     </a></span></div>
                                         </div>
                                     </div>
-
-
-
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  <!-- Fin bloque nuestra filosofia -->
 
+
+                {{-- Bloque por que dividae --}}
+                <div data-v-43503c2a="" data-v-63cd6604="" class="blockRecovery" data-v-effc9f78="">
+                    <div data-v-43503c2a="" class="container">
+                        <div data-v-43503c2a="" class="text-center RText">
+                            ¿Por qué <b>Dividae</b>?
+                        </div>
+
+                        <div data-v-43503c2a="" class="row Recovery">
+                            <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
+                                        src="{{ url('landing') }}/assets/icon-large-justicia.png"
+                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                <div data-v-43503c2a="">
+                                    <p data-v-43503c2a="" class="Recovery-title">
+                                        <b>Plataforma 100% Digital</b>
+                                    </p>
+                                </div>
                             </div>
 
+                            <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
+                                        src="{{ url('landing') }}/assets/icon-large-digital.png"
+                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                <div data-v-43503c2a="">
+                                    <p data-v-43503c2a="" class="Recovery-title">
+                                        <b>Máxima seguridad Jurídica</b>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
+                                        src="{{ url('landing') }}/assets/icon-large-seguridad.png"
+                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                <div data-v-43503c2a="">
+                                    <p data-v-43503c2a="" class="Recovery-title">
+                                        <b>Experiencia Contrastada</b>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
+                                        src="{{ url('landing') }}/assets/icon-large-justicia.png"
+                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                <div data-v-43503c2a="">
+                                    <p data-v-43503c2a="" class="Recovery-title">
+                                        <b>Transparente</b>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <!---->
                     </div>
-                </div>
+                </div>  {{-- Fin bloque porque dividae --}}
+
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
@@ -498,7 +548,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div>   {{-- Fin bloque cuanto cuesta --}}
                 {{--
                 <div data-v-63cd6604="" data-v-effc9f78="" class="blockQSomos">
                     <div data-v-63cd6604="" data-v-effc9f78="" class="container card">
@@ -549,84 +599,6 @@
 
 
                 <div data-v-43503c2a="" data-v-63cd6604="" class="blockRecovery" data-v-effc9f78="">
-
-                    <div data-v-43503c2a="" class="container">
-                        <div data-v-43503c2a="" class="text-center RText">
-                            ¿Por qué <b>Dividae</b>?
-                        </div>
-
-                        <div data-v-43503c2a="" class="row Recovery">
-
-                            {{-- <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"> --}}
-
-                            <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
-                                        src="{{ url('landing') }}/assets/icon-large-justicia.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
-                                <div data-v-43503c2a="">
-                                    <p data-v-43503c2a="" class="Recovery-title">
-                                        <b>Plataforma 100% Digital</b>
-                                    </p>
-                                    {{--<p data-v-43503c2a="" class="Recovery-text">
-                                        Podrás conocer el proceso de la reclamación en tiempo real.
-                                    </p>--}}
-                                </div>
-                            </div>
-
-                            <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
-                                        src="{{ url('landing') }}/assets/icon-large-digital.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
-                                <div data-v-43503c2a="">
-                                    <p data-v-43503c2a="" class="Recovery-title">
-                                        <b>Máxima seguridad Jurídica</b>
-                                    </p>
-                                   {{--
-                                    <p data-v-43503c2a="" class="Recovery-text">
-                                        <b>Dividae</b>, como línea de negocio de <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>, es parte de ANGECO y cumple con todos los requisitos de calidad.
-                                    </p>--}}
-                                </div>
-                            </div>
-
-                            <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
-                                        src="{{ url('landing') }}/assets/icon-large-seguridad.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
-                                <div data-v-43503c2a="">
-                                    <p data-v-43503c2a="" class="Recovery-title">
-                                        <b>Experiencia Contrastada</b>
-                                    </p>
-                                    {{--
-                                    <p data-v-43503c2a="" class="Recovery-text">
-                                        <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b> cuenta con experiencia contrastada desde 2016, siendo uno de los
-                                        principales proveedores de servicios de recuperación de deuda de España.
-                                    </p>--}}
-                                </div>
-                            </div>
-
-
-                            <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
-                                        src="{{ url('landing') }}/assets/icon-large-justicia.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
-                                <div data-v-43503c2a="">
-                                    <p data-v-43503c2a="" class="Recovery-title">
-                                        <b>Transparente</b>
-                                    </p>
-                                    {{--
-                                    <p data-v-43503c2a="" class="Recovery-text">
-                                        <b>Dividae</b> no te cobrará nada sin tu consentimiento. Además, la suscripción
-                                        y análisis de la reclamación es totalmente gratuito.
-                                    </p>--}}
-                                </div>
-                            </div>
-                            {{-- </div> --}}
-
-                        </div>
-
-                    </div>
-
-
                     <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78="">
                         <div data-v-e047c7bc="" class="row estadisticas container">
                             <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
