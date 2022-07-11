@@ -9,6 +9,17 @@
 	li a {
 		color: transparent;
 	}
+    h3{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 25px;
+
+    }
+
+    h4{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 17px;
+    }
+
 </style>
 
 <body width="100%" style="margin:0px; background: #f8f8f8;">
@@ -34,9 +45,9 @@
           <tr>
               <th>
                   <div style="padding: 10px; background-color: #e65927; color: #fff !important;">
-                      {!! $se->template->body_content !!}
+                      <h3>{!! $se->template->body_content !!}</h3>
                       <br>
-                      {!! $se->template->footer_content !!}
+                      <h4>{!! $se->template->footer_content !!}</h4>
                   </div>
               </th>
           </tr>

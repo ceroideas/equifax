@@ -670,7 +670,7 @@
   border-radius: 16px;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
-  background-color: #f8fafc;
+  background-color: transparent;
 }
 #como-funciona .card-reclamacion .Reclamacion[data-v-494d1a60] {
   font-family: CynthoNext;
