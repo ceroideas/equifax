@@ -15,14 +15,12 @@
 
     <table style="width:33%">
           <tr>
-            <p>{{ $se->template->top_logo }}</p>
               <th><img src="{{ url($se->template->top_logo) }}" style="border:none;width: 150px;margin-left: 10px;"></th>
           </tr>
           <tr>
               <th>{!! $se->template->top_content !!}</th>
           </tr>
           <tr>
-            <p>{{$se->template->header_image}}</p>
               <img src="{{url($se->template->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">
           </tr>
           <tr>
