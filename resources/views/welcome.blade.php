@@ -315,7 +315,7 @@
                                     <img data-v-494d1a60=""
                                         style="border-radius: 12px; z-index: 1; top: 40%; width: 80vw; max-width: 120%"
                                         other="{{ url('landing') }}/assets/judicial.jpg"
-                                        src="{{ url('landing') }}/images/HP/HP/Nuestra filosofía/equipo manos.jpg"
+                                        src="{{ url('landing') }}/images/HP/HP/Nuestra filosofía/equipo_dividae.jpg"
                                         class="img-amistosa img-fluid">
                                 </div>
 
@@ -334,11 +334,11 @@
                                                 {{-- </div> --}}
                                                 <div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
                                                     <p>
-                                                        <b>Dividae</b> busca democratizar el mundo de la reclamación de facturas impagadas a nivel digital de una manera
+                                                        <b>Dividae</b>, queremos democratizar el mundo de las facturas impagadas a nivel digital de una manera
                                                         <b>automatizada</b> y <b>trasparente</b>.
                                                     </p>
                                                     <p>
-                                                        ¿Nuestro principal objetivo? Que empieces a decir
+                                                        ¿Nuestro principal objetivo? Que empieces a decir <b>adiós a tus facturas impagadas</b>.
                                                     </p>
                                                     <p>
                                                         Conoce más acerca de <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>.
