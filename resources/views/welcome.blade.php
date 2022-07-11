@@ -145,7 +145,7 @@
                 <div data-v-66372912="" data-v-63cd6604="" class="portada-3dblue" data-v-effc9f78="">
 
 
-                   <video id="background-video" autoplay loop muted poster="{{ url('landing/cover.jpg') }}">
+                   <video id="background-video" autoplay loop muted >
                         <source src="{{ url('landing/videohome.mp4') }}" type="video/mp4">
                    </video>
 
