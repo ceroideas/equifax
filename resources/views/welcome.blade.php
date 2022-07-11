@@ -145,9 +145,9 @@
                 <div data-v-66372912="" data-v-63cd6604="" class="portada-3dblue" data-v-effc9f78="">
 
 
-                    <video id="background-video" autoplay loop muted poster="{{ url('landing/cover.jpg') }}">
-                        <source src="{{ url('landing/video.mp4') }}" type="video/mp4">
-                    </video>
+                   <video id="background-video" autoplay loop muted poster="{{ url('landing/cover.jpg') }}">
+                        <source src="{{ url('landing/videohome.mp4') }}" type="video/mp4">
+                   </video>
 
                     <div data-v-66372912="" class="block-CMO-FUNCIONA"><a data-v-66372912="" href="#como-funciona"
                             class="CMO-FUNCIONA">NUESTRA FILOSOFÍA <img data-v-66372912=""
