@@ -74,10 +74,8 @@
 
                                 {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
                                 <p class="text-left">
-                                    Comienza de manera amistosa con una tarifa única.
+                                    Comienza con tu reclamacion por vía extrajudicial.
                                 </p>
-
-
                               </li>
 
                               </ul></div>
