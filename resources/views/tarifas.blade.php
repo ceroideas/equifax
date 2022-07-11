@@ -160,7 +160,7 @@
                                 </div>
                             </div>
 
-                            <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div id="tbltarifas" data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
                                     <ol start="5">
                                         <li>Si el  deudor se niega a abonar la cantidad, <b>Dividae</b> recomendará el <b>procedimiento judicial</b> con las siguientes tarifas que encontrarás a continuación, siempre con el consentimiento del cliente. ¡Es 100% transparente!</li>
