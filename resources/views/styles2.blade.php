@@ -765,10 +765,10 @@
   border-radius: 16px;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
-  background-color: #f8fafc;
+  background-color: #ffffff;
 }
 .blockTarifa .card-tarifa .text-tarifa[data-v-9cc878a2] {
-  padding-bottom: 70px;
+  padding-bottom: 50px;
   font-family: Nordeco;
   font-size: 40px;
   font-weight: normal;
