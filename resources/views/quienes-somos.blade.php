@@ -241,9 +241,9 @@
                 </div>
                 <div class="container text-center bottom-text">
                     <br>
-                    <p><b>Dividae</b> es una plataforma 100% online que ofrece a empresarios y autónomos la solución
-                        para reclamar facturas que nunca les pagaron. Esta línea de negocio es parte de <b>
-                            <a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>,
+                    <p><b>Dividae</b> es una plataforma 100% online, que ofrece a empresarios y autónomos la solución para
+                        reclamar facturas que nunca les pagaron. Esta línea de negocio es parte de
+                        <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>,
                         uno de los principales proveedores de servicios de recuperación de deuda de España. </p>
                 </div>
 
