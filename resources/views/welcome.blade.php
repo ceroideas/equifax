@@ -359,7 +359,7 @@
                                                     data-v-effc9f78=""><a data-v-63cd6604=""
                                                         href="{{ url('register') }}" class="btn QSomos-btn"
                                                         data-v-effc9f78="">
-                                                        REGÍSTRATE
+                                                        Regístrate
                                                     </a></span></div>
                                         </div>
                                     </div>
@@ -430,7 +430,7 @@
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
                         <div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div>
                         <div class="container text-center bottom-text">
-                            <p><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que
+                            <p style="font-weight:normal !important"><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que
                                 no sepas, ser <b>100% transparentes</b> y que tu estés <b>100% tranquilo</b> durante
                                 todo el proceso. </p>
                         </div>
@@ -464,7 +464,7 @@
 
                                                     {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
 
-                                                <p class="text-left">
+                                                <p style="color:#285ba3; text-align: center;">
                                                     Comienza de manera con tu reclamación por vía extrajudicial
                                                 </p>
 
@@ -483,7 +483,7 @@
                                         <div class="col-sm-2"></div>
                                         <div class="col-sm-8">
                                             <a data-v-9cc878a2="" href="{{ url('tarifas') }}" aria-current="page"
-                                                class="btn btn-light-descubre" type="button"> DESCUBRIR MÁS</a>
+                                                class="btn btn-light-descubre" type="button"> Descubrir más</a>
                                                 <br>
                                         </div>
                                     </div>
@@ -515,7 +515,7 @@
 
                                                     {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
 
-                                                <p class="text-left">
+                                                <p style="color:#285ba3; text-align: center;">
                                                     Comienza con tu reclamación por vía judicial
                                                 </p>
 
@@ -534,7 +534,7 @@
                                         <div class="col-sm-2"></div>
                                         <div class="col-sm-8">
                                             <a data-v-9cc878a2="" href="{{ url('tarifas') }}" aria-current="page"
-                                                class="btn btn-light-descubre" type="button"> DESCUBRIR MÁS</a>
+                                                class="btn btn-light-descubre" type="button"> Descubrir más</a>
                                                 <br>
                                         </div>
                                     </div>
@@ -633,7 +633,7 @@
                                             class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1">
                                             <div data-v-455dcd3f="" class="block-DR">
                                                 <div data-v-455dcd3f="" class="text-deuda-recuperada">
-                                                    Deuda recuperada
+                                                    Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
                                                     10.000<span data-v-455dcd3f="" class="text-style-1">€</span></div>
@@ -710,7 +710,7 @@
                                             class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1">
                                             <div data-v-455dcd3f="" class="block-DR">
                                                 <div data-v-455dcd3f="" class="text-deuda-recuperada">
-                                                    Deuda recuperada
+                                                    Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
                                                     1.500<span data-v-455dcd3f="" class="text-style-1">€</span></div>
@@ -729,7 +729,7 @@
                                             class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1">
                                             <div data-v-455dcd3f="" class="block-DR">
                                                 <div data-v-455dcd3f="" class="text-deuda-recuperada">
-                                                    Deuda recuperada
+                                                    Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
                                                     3.500<span data-v-455dcd3f="" class="text-style-1">€</span>
