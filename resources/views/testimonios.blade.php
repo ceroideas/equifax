@@ -59,7 +59,7 @@
                                 <div data-v-455dcd3f="" class="row">
 
                                 <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
-                                    Deuda recuperada
+                                    Cantidad recuperada
                                     </div> <div data-v-455dcd3f="" class="price-DR">
                                     10.000<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-1.png" class="testimonio-1 img-fluid">
                                 </div>
@@ -110,7 +110,7 @@
                             </div></div></div>
 
                                 <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
-                                    Deuda recuperada
+                                    Cantidad recuperada
                                     </div> <div data-v-455dcd3f="" class="price-DR">
                                     1.500<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-2.png" class="testimonio-1 img-fluid">
                                 </div>
@@ -122,7 +122,7 @@
                                 <div data-v-455dcd3f="" class="row">
 
                                 <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
-                                    Deuda recuperada
+                                    Cantidad recuperada
                                     </div> <div data-v-455dcd3f="" class="price-DR">
                                     3.500<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-3.png" class="testimonio-1 img-fluid">
                                 </div>

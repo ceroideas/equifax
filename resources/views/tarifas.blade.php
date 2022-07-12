@@ -40,12 +40,13 @@
 
                             </div></div></div></div> @include('followus')</div>
 
-                            {{--<div class="container text-center bottom-text">--}}
-
+                            <div class="container text-center bottom-text">
+                                <br>
 
                                     <p style="color:#285ba3; text-align: center;"><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que no sepas, ser <b>100% transparentes</b> y que tu estés <b>100% tranquilo</b> durante todo el proceso. </p>
 
                                     <p style="color:#285ba3; text-align: center;">Te explicamos paso a paso las fases de la reclamación y sus tarifas.</p>
+                            </div>
 
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78=""><div data-v-9cc878a2="" class="text-center card-tarifa container"><div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div> <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
@@ -88,7 +89,7 @@
                               <div class="row">
                                   <div class="col-sm-2"></div>
                                   <div class="col-sm-8">
-                                      <br><a data-v-9cc878a2="" href="#tbltarifas" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a><br>
+                                      <br><a data-v-9cc878a2="" href="#tbltarifas" aria-current="page" class="btn btn-light-descubre" type="button">Descubrir más</a><br>
                                   </div>
                               </div>
 
@@ -130,7 +131,7 @@
                               <div class="row">
                                   <div class="col-sm-2"></div>
                                   <div class="col-sm-8">
-                                      <br><a data-v-9cc878a2="" href="#tbltarifas" aria-current="page" class="btn btn-light-descubre" type="button">DESCUBRIR MÁS</a><br>
+                                      <br><a data-v-9cc878a2="" href="#tbltarifas" aria-current="page" class="btn btn-light-descubre" type="button">Descubrir más</a><br>
                                   </div>
                               </div>
 

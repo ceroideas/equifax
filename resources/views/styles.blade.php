@@ -879,6 +879,7 @@
     color: #fff !important;
     margin-left: -10px;
     border: 1px solid #e65927;
+    padding: 12px 20px;
 }
 .blockTarifa .blockCard .op-frecuente[data-v-9cc878a2] {
   /* width: 410px; */
@@ -1343,6 +1344,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   text-align: center;
   color: #fff;
   margin-top: 10px;
+  padding: 12px 20px;
 }
 .QSomos-btn[data-v-63cd6604]:hover {
   background-color: #fff;
@@ -1408,6 +1410,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   color: #fff;
   border-radius: 37.5px;
   background-color: #e65927;
+  padding: 12px 20px;
 }</style><style>.block-Testimonios[data-v-eb5d4bee] {
   -o-object-fit: contain;
      object-fit: contain;
