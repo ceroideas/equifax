@@ -61,28 +61,53 @@
                                 <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
                                     Deuda recuperada
                                     </div> <div data-v-455dcd3f="" class="price-DR">
-                                    3.000<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-1.png" class="testimonio-1 img-fluid">
+                                    10.000<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-1.png" class="testimonio-1 img-fluid">
                                 </div>
 
-                                <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Gestoría Antonio</div> <div data-v-455dcd3f="" class="Opinion-cliente">Antonio Fernández </div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-455dcd3f="" class="col-10 block-text">
+                                <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Gestoría AFER</div> <div data-v-455dcd3f="" class="Opinion-cliente">Antonio Fernández </div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row">
+                                    {{--<div data-v-455dcd3f="" class="col-1 blockquote-up">
+                                        <img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote">
+                                    </div>--}}
+                                    <div data-v-455dcd3f="" class="col-10 block-text">
 
-                                  <p>Soy Antonio y tengo una gestoría en La Rioja. <b>Dividae</b> se puso en contacto conmigo para poder ofrecer a mis clientes sus servicios. Dentro de mi cartera de clientes, muchos son los que tienen facturas pendientes de pago y las daban por perdidas.</p>
+                                        <p>"Soy Antonio y tengo una gestoría en La Rioja. <b>Dividae</b> se
+                                            puso en contacto conmigo para incorporar el servicio de recuperación
+                                            de facturas impagadas y poder ofrecer valor añadido a mis clientes,
+                                            ya que son muchos los que tienen facturas pendientes de pago y las daban por perdidas.</p>
 
-                                  <p>Con <b>Dividae</b>, muchos clientes recuperan sus facturas impagadas y ahora se ha convertido en parte de unos de los servicios esenciales que ofrecemos en la gestoría. Agilizamos en tiempo y ofrecemos transparencia durante todo el proceso. </p>
+                                        <p>Con <b>Dividae</b>, muchos de mis clientes ya han recuperado sus facturas impagadas y
+                                            se ha convertido en un servicio esencial de la gestoría.
+                                        <b>Dividae</b>, agiliza en tiempos y ofrece un servicio transparente durante todo el servicio.</p>
 
-                                </div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div>
+                                </div>
+                                {{--<div data-v-455dcd3f="" class="col-1 blockquote-down">
+                                    <img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote">
+                                </div>--}}
+                            </div></div></div></div>
                             </div>
 
                             <div data-v-455dcd3f="" class="container Opinion">
                                 <div data-v-455dcd3f="" class="row">
 
-                                <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Aparejadora</div> <div data-v-455dcd3f="" class="Opinion-cliente">Alba Rodríguez </div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-455dcd3f="" class="col-10 block-text">
+                                <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Aparejadora</div> <div data-v-455dcd3f="" class="Opinion-cliente">Alba Rodríguez </div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row">
+                                    {{--<div data-v-455dcd3f="" class="col-1 blockquote-up">
+                                        <img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote">
+                                    </div>--}}
+                                     <div data-v-455dcd3f="" class="col-10 block-text">
 
-                                  <p>Trabajo desde hace más de 10 como aparejadora y llegó un punto en el que tenía muchas facturas impagadas. No sabía qué hacer… Intenté encontrar un abogado que no saliera por un ojo de la cara, pero no fui capaz de asumirlo económicamente.</p>
+                                        <p>"Trabajo desde hace más de 10 años como aparejadora y llegó un punto en el que tenía
+                                            muchas facturas impagadas que daba por perdidas. Intenté encontrar un abogado que
+                                            no saliera por un ojo de la cara, pero no fui capaz de asumir el coste.</p>
 
-                                  <p>Decidí buscar en internet y ahí fue cuando encontré <b>Dividae</b>. Gracias a ellos y su transparencia conseguí recuperar todas aquellas facturas que había dado por perdidas. Además, fue un proceso muy sencillo, en el que me sentí siempre acompañada. </p>
+                                        <p>Decidí realizar una búsqueda en internet y ahí es cuando encontré <b>Dividae</b>.
+                                            Gracias a este novedoso y transparente servicio, conseguí recuperar las facturas
+                                            que tenía pendientes. Además, fue un proceso muy sencillo, en el que me sentí siempre acompañada".</p>
 
-                                </div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div>
+                                </div>
+                                {{--<div data-v-455dcd3f="" class="col-1 blockquote-down">
+                                    <img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote">
+                                </div>--}}
+                            </div></div></div>
 
                                 <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
                                     Deuda recuperada
@@ -99,16 +124,27 @@
                                 <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
                                     Deuda recuperada
                                     </div> <div data-v-455dcd3f="" class="price-DR">
-                                    10.000<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-3.png" class="testimonio-1 img-fluid">
+                                    3.500<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-3.png" class="testimonio-1 img-fluid">
                                 </div>
 
-                                <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Electricista</div> <div data-v-455dcd3f="" class="Opinion-cliente">Ángel López </div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row"><div data-v-455dcd3f="" class="col-1 blockquote-up"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote"></div> <div data-v-455dcd3f="" class="col-10 block-text">
+                                <div data-v-455dcd3f="" class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 Opinion-col2"><div data-v-455dcd3f="" class="Opinion-empresa">Electricista</div> <div data-v-455dcd3f="" class="Opinion-cliente">Ángel López </div> <div data-v-455dcd3f="" class="Opinion-text"><div data-v-455dcd3f="" class="row">
+                                    {{--<div data-v-455dcd3f="" class="col-1 blockquote-up">
+                                        <img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-up.png" class="blockquote">
+                                    </div>--}}
+                                    <div data-v-455dcd3f="" class="col-10 block-text">
 
-                                  <p>Mi gestor me recomendó <b>Dividae</b>, ya que él más que nadie conoce el estado de mis cuentas y facturas. Me pareció una idea muy innovadora y necesaria en el sector.</p>
+                                        <p>"Mi gestor me recomendó <b>Dividae</b>, ya que él más que nadie conoce
+                                            el estado de mis cuentas y facturas. Desde el principio,
+                                            me pareció una idea innovadora y necesaria en el sector.</p>
 
-                                  <p>Gracias a mi gestoría, he podido recuperar muchas facturas impagadas que tenía olvidadas. El servicio que ofrece mi gestoría gracias a <b>Dividae</b>, se ha convertido en un servicio indispensable. No lo dudes, regístrate y empieza a decir adiós a las facturas impagadas.</p>
+                                        <p>Gracias a mi gestoría, he podido recuperar muchas de las facturas impagadas que tenía olvidadas.
+                                            El servicio que ofrece mi gestoría gracias a <b>Dividae</b>, ya es indispensable para todos sus clientes.</p>
 
-                                </div> <div data-v-455dcd3f="" class="col-1 blockquote-down"><img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote"></div></div></div></div></div>
+                                </div>
+                                {{--<div data-v-455dcd3f="" class="col-1 blockquote-down">
+                                    <img data-v-455dcd3f="" src="{{url('landing')}}/assets/blockquote-down.png" class="blockquote">
+                                </div>--}}
+                            </div></div></div></div>
                             </div>
                         </div>
 
@@ -156,7 +192,7 @@
                               </div></div></div>
 
 
-                      <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2016</p> <p data-v-e047c7bc="" class="estadisticas-text">Año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+16.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Notificaciones diarias</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+120.000</p> <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados desde 2016</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+150.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Demandas</p></div></div></div>
+                      <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78=""><div data-v-e047c7bc="" class="row estadisticas container"><div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">2021</p> <p data-v-e047c7bc="" class="estadisticas-text">Año de creación</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+16.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Notificaciones diarias</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+120.000</p> <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados</p></div> <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6"><p data-v-e047c7bc="" class="estadisticas-title">+150.000</p> <p data-v-e047c7bc="" class="estadisticas-text">Demandas</p></div></div></div>
 
 
         @include('footer')

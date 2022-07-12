@@ -788,7 +788,7 @@
   background-color: #ffffff;
 }
 .blockTarifa .card-tarifa .text-tarifa[data-v-9cc878a2] {
-  padding-bottom: 50px;
+  padding-bottom: 20px;
   font-family: Nordeco;
   font-size: 40px;
   font-weight: normal;
@@ -798,6 +798,7 @@
   letter-spacing: normal;
   text-align: center;
   color: #285ba3;
+  padding-top:40px;
 }
 .blockTarifa .blockCard .card[data-v-9cc878a2] {
   border: 0px;
@@ -923,7 +924,7 @@
   } */
 }
 .blockRecovery .RText[data-v-43503c2a] {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   font-family: Nordeco;
   font-size: 40px;
   font-weight: normal;
@@ -933,6 +934,7 @@
   letter-spacing: normal;
   text-align: center;
   color: #285ba3;
+  padding-top: 40px;
 }
 .blockRecovery .Recovery-img[data-v-43503c2a] {
   -moz-text-align-last: center;
@@ -1034,7 +1036,7 @@
   border-radius: 8px;
   border: solid 1px #285ba3;
   background-color: #fff;
-  width: 30%;
+  width: 35%;
   position: absolute;
   top: 22%;
   left: 80%;
@@ -4911,7 +4913,7 @@ text-align: left;
 
 .bottom-text {
   margin-top: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-family: Roobert;
   font-size: 16px;
   font-weight: bold;

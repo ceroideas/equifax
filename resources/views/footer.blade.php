@@ -96,7 +96,7 @@ b {
       <div class="modal-content">
 
         <div data-v-66372912="" id="form-p"><div data-v-e8aafb5e="" data-v-66372912=""><form data-v-e8aafb5e="" class="formulario-reclamacion"><!----> <div data-v-e8aafb5e="" class="reclamacion-title">
-              Consulte si es viable su reclamación
+            Consulta si tu reclamación es viable
           </div> <hr data-v-e8aafb5e="" class="Line-Copy"> <div data-v-e8aafb5e="" class="row mb-4"><div data-v-e8aafb5e="" class="col-12 RangoDeuda"><div data-v-e8aafb5e="" class="form-outline my-2"><div data-v-e8aafb5e="" class="form-group"><label data-v-e8aafb5e="" for="customRange1" class="form-label range-label">
                               El importe de tu deuda asciende a…
                           </label> <span data-v-e8aafb5e="" class="importe-range1">
