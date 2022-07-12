@@ -700,8 +700,8 @@
 #como-funciona .card-reclamacion[data-v-494d1a60] {
   padding: 24px 19px 37px 32px;
   border-radius: 16px;
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  /*-webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);*/
   background-color: transparent;
 }
 #como-funciona .card-reclamacion .Reclamacion[data-v-494d1a60] {
@@ -783,8 +783,8 @@
 }
 .blockTarifa .card-tarifa[data-v-9cc878a2] {
   border-radius: 16px;
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  /*-webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);*/
   background-color: #ffffff;
 }
 .blockTarifa .card-tarifa .text-tarifa[data-v-9cc878a2] {
