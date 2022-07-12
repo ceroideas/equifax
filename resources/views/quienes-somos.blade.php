@@ -400,7 +400,7 @@
                 <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78="">
                     <div data-v-e047c7bc="" class="row estadisticas container">
                         <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                            <p data-v-e047c7bc="" class="estadisticas-title">2016</p>
+                            <p data-v-e047c7bc="" class="estadisticas-title">2021</p>
                             <p data-v-e047c7bc="" class="estadisticas-text">Año de creación</p>
                         </div>
                         <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
@@ -409,7 +409,7 @@
                         </div>
                         <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
                             <p data-v-e047c7bc="" class="estadisticas-title">+120.000</p>
-                            <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados desde 2016</p>
+                            <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados</p>
                         </div>
                         <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
                             <p data-v-e047c7bc="" class="estadisticas-title">+150.000</p>
