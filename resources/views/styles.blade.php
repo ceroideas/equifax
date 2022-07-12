@@ -1036,7 +1036,7 @@
   border-radius: 8px;
   border: solid 1px #285ba3;
   background-color: #fff;
-  width: 30%;
+  width: 35%;
   position: absolute;
   top: 22%;
   left: 80%;

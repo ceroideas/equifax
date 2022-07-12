@@ -648,13 +648,13 @@
                                             <div data-v-455dcd3f="" class="Opinion-cliente">Antonio Fernández </div>
                                             <div data-v-455dcd3f="" class="Opinion-text">
                                                 <div data-v-455dcd3f="" class="row">
-                                                    <div data-v-455dcd3f="" class="col-1 blockquote-up"><img
+                                                    {{--<div data-v-455dcd3f="" class="col-1 blockquote-up"><img
                                                             data-v-455dcd3f=""
                                                             src="{{ url('landing') }}/assets/blockquote-up.png"
-                                                            class="blockquote"></div>
+                                                            class="blockquote"></div>--}}
                                                     <div data-v-455dcd3f="" class="col-10 block-text">
 
-                                                        <p>Soy Antonio y tengo una gestoría en La Rioja. <b>Dividae</b>
+                                                        <p>"Soy Antonio y tengo una gestoría en La Rioja. <b>Dividae</b>
                                                             se puso en contacto conmigo para poder ofrecer a mis
                                                             clientes sus servicios. Dentro de mi cartera de clientes,
                                                             muchos son los que tienen facturas pendientes de pago y las
@@ -664,13 +664,13 @@
                                                             impagadas y ahora se ha convertido en parte de unos de los
                                                             servicios esenciales que ofrecemos en la gestoría.
                                                             Agilizamos en tiempo y ofrecemos transparencia durante todo
-                                                            el proceso. </p>
+                                                            el proceso". </p>
 
                                                     </div>
-                                                    <div data-v-455dcd3f="" class="col-1 blockquote-down"><img
+                                                    {{--<div data-v-455dcd3f="" class="col-1 blockquote-down"><img
                                                             data-v-455dcd3f=""
                                                             src="{{ url('landing') }}/assets/blockquote-down.png"
-                                                            class="blockquote"></div>
+                                                            class="blockquote"></div>--}}
                                                 </div>
                                             </div>
                                         </div>
@@ -686,13 +686,13 @@
                                             <div data-v-455dcd3f="" class="Opinion-cliente">Alba Rodríguez </div>
                                             <div data-v-455dcd3f="" class="Opinion-text">
                                                 <div data-v-455dcd3f="" class="row">
-                                                    <div data-v-455dcd3f="" class="col-1 blockquote-up"><img
+                                                    {{--<div data-v-455dcd3f="" class="col-1 blockquote-up"><img
                                                             data-v-455dcd3f=""
                                                             src="{{ url('landing') }}/assets/blockquote-up.png"
-                                                            class="blockquote"></div>
+                                                            class="blockquote"></div>--}}
                                                     <div data-v-455dcd3f="" class="col-10 block-text">
 
-                                                        <p>Trabajo desde hace más de 10 como aparejadora y llegó un
+                                                        <p>"Trabajo desde hace más de 10 como aparejadora y llegó un
                                                             punto en el que tenía muchas facturas impagadas. No sabía
                                                             qué hacer… Intenté encontrar un abogado que no saliera por
                                                             un ojo de la cara, pero no fui capaz de asumirlo
@@ -702,13 +702,13 @@
                                                             <b>Dividae</b>. Gracias a ellos y su transparencia conseguí
                                                             recuperar todas aquellas facturas que había dado por
                                                             perdidas. Además, fue un proceso muy sencillo, en el que me
-                                                            sentí siempre acompañada. </p>
+                                                            sentí siempre acompañada".</p>
 
                                                     </div>
-                                                    <div data-v-455dcd3f="" class="col-1 blockquote-down"><img
+                                                    {{--<div data-v-455dcd3f="" class="col-1 blockquote-down"><img
                                                             data-v-455dcd3f=""
                                                             src="{{ url('landing') }}/assets/blockquote-down.png"
-                                                            class="blockquote"></div>
+                                                            class="blockquote"></div>--}}
                                                 </div>
                                             </div>
                                         </div>
@@ -752,13 +752,13 @@
                                             <div data-v-455dcd3f="" class="Opinion-cliente">Ángel López </div>
                                             <div data-v-455dcd3f="" class="Opinion-text">
                                                 <div data-v-455dcd3f="" class="row">
-                                                    <div data-v-455dcd3f="" class="col-1 blockquote-up"><img
+                                                    {{--<div data-v-455dcd3f="" class="col-1 blockquote-up"><img
                                                             data-v-455dcd3f=""
                                                             src="{{ url('landing') }}/assets/blockquote-up.png"
-                                                            class="blockquote"></div>
+                                                            class="blockquote"></div>--}}
                                                     <div data-v-455dcd3f="" class="col-10 block-text">
 
-                                                        <p>Mi gestor me recomendó <b>Dividae</b>, ya que él más que
+                                                        <p>"Mi gestor me recomendó <b>Dividae</b>, ya que él más que
                                                             nadie conoce el estado de mis cuentas y facturas. Me pareció
                                                             una idea muy innovadora y necesaria en el sector.</p>
 
@@ -766,13 +766,13 @@
                                                             impagadas que tenía olvidadas. El servicio que ofrece mi
                                                             gestoría gracias a <b>Dividae</b>, se ha convertido en un
                                                             servicio indispensable. No lo dudes, regístrate y empieza a
-                                                            decir adiós a las facturas impagadas.</p>
+                                                            decir adiós a las facturas impagadas".</p>
 
                                                     </div>
-                                                    <div data-v-455dcd3f="" class="col-1 blockquote-down"><img
+                                                    {{--<div data-v-455dcd3f="" class="col-1 blockquote-down"><img
                                                             data-v-455dcd3f=""
                                                             src="{{ url('landing') }}/assets/blockquote-down.png"
-                                                            class="blockquote"></div>
+                                                            class="blockquote"></div>--}}
                                                 </div>
                                             </div>
                                         </div>
