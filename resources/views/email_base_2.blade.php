@@ -10,8 +10,8 @@
 		color: transparent;
 	}
 </style>
-<body style="margin:0px; background: #e97d7d;">
-	<div width="50%" style="background: #d81010; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
+<body style="margin:0px; background: #fff;">
+	<div width="50%" style="background: #fff; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
 	  	<div style="max-width: 650px; padding:50px 0;  margin: 0px auto; font-size: 14px;">
 	  		<div style="">
 			    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">

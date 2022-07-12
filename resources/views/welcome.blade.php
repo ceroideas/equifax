@@ -334,7 +334,7 @@
                                                 {{-- </div> --}}
                                                 <div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
                                                     <p>
-                                                        <b>Dividae</b>, queremos democratizar el mundo de las facturas impagadas a nivel digital de una manera
+                                                        En <b>Dividae</b>, queremos democratizar el mundo de las facturas impagadas a nivel digital de una manera
                                                         <b>automatizada</b> y <b>trasparente</b>.
                                                     </p>
                                                     <p>

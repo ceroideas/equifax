@@ -22,7 +22,7 @@
 
 </style>
 
-<body width="100%" style="margin:0px; background: #f8f8f8;">
+<body width="100%" style="margin:0px; background: #fff;">
 
     <table style="width:33%">
           <tr>
