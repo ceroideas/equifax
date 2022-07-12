@@ -40,14 +40,13 @@
 
                             </div></div></div></div> @include('followus')</div>
 
-                            <div class="container text-center bottom-text">
-                                <br>
-                              <p><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que no sepas, ser <b>100% transparentes</b> y que tu estés <b>100% tranquilo</b> durante todo el proceso. </p>
+                            {{--<div class="container text-center bottom-text">--}}
 
-                              <p>
-                                Te explicamos paso a paso las fases de la reclamación y sus tarifas.
-                              </p>
-                            </div>
+
+                                    <p style="color:#285ba3; text-align: center;"><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que no sepas, ser <b>100% transparentes</b> y que tu estés <b>100% tranquilo</b> durante todo el proceso. </p>
+
+                                    <p style="color:#285ba3; text-align: center;">Te explicamos paso a paso las fases de la reclamación y sus tarifas.</p>
+
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78=""><div data-v-9cc878a2="" class="text-center card-tarifa container"><div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div> <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
 
@@ -73,7 +72,7 @@
                               <li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text">
 
                                 {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
-                                <p class="text-left">
+                                <p style="color:#285ba3; text-align: center;">
                                     Comienza con tu reclamacion por vía extrajudicial
                                 </p>
                               </li>
@@ -115,7 +114,7 @@
                               <li data-v-9cc878a2=""><p data-v-9cc878a2="" class="card-text">
 
                                 {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
-                                <p class="text-left">
+                                <p style="color:#285ba3; text-align: center;">
                                     Comienza con tu reclamación por vía judicial
                                 </p>
                               </li>
@@ -142,7 +141,9 @@
                           </div></div></div>
 
 
-                         <div data-v-c7d18d50="" data-v-effc9f78="" class="block-nosotros"><div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros container"><div data-v-c7d18d50="" data-v-effc9f78="" class="row">
+                         <div data-v-c7d18d50="" data-v-effc9f78="" class="block-nosotros">
+                            <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros container">
+                                <div data-v-c7d18d50="" data-v-effc9f78="" class="row">
 
                           {{-- <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
 

@@ -265,8 +265,7 @@
                 <div data-v-c7d18d50="" data-v-effc9f78="" class="block-nosotros">
                     <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros container">
                         <div data-v-c7d18d50="" data-v-effc9f78="" class="row">
-                            <div data-v-c7d18d50="" data-v-effc9f78=""
-                                class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-title">Sobre nosotros</div>
                             </div>
                             <div data-v-c7d18d50="" data-v-effc9f78=""
@@ -284,14 +283,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="container text-center bottom-text">
 
+                <div class="container text-center bottom-text">
                     <img data-v-494d1a60=""
-                    style="border-radius: 12px; z-index: 1; top: 40%; width: 80vw; max-width: 120%"
-                    other="{{ url('landing') }}/assets/judicial.jpg"
+                    style="border-radius: 12px;"
                     src="{{ url('landing') }}/images/HP/HP/Nuestra filosofía/equipo_dividae.jpg"
                     class="img-amistosa img-fluid">
                 </div>
+
 
 
                 {{-- <div data-v-861c26ae="" data-v-c7d18d50="" class="block-SlidesAbout" data-v-effc9f78="">
