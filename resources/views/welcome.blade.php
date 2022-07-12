@@ -150,8 +150,8 @@
                    </video>
 
                     <div data-v-66372912="" class="block-CMO-FUNCIONA"><a data-v-66372912="" href="#como-funciona"
-                            class="CMO-FUNCIONA">NUESTRA MISIÓN <img data-v-66372912=""
-                                src="{{ url('landing') }}/assets/icons-arrow-down-white.png"
+                            class="CMO-FUNCIONA"><img data-v-66372912=""
+                                src="{{ url('landing') }}/assets/icons-arrow-down.png"
                                 class="iconsarrow-down img-fluid"></a></div>
 
                     <nav data-v-5fddf304="" data-v-66372912="" class="navbar navbar-expand-lg navbar-dark">
