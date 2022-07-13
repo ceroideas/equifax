@@ -55,10 +55,10 @@
 
                         <div id="test-3" class="owl-carousel owl-theme">
 
-                            <div data-v-455dcd3f="" class="container Opinion">
+                            <div data-v-455dcd3f="" class="container Opinion" >
                                 <div data-v-455dcd3f="" class="row">
 
-                                <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
+                                <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada" style="color:#285ba3;">
                                     Cantidad recuperada
                                     </div> <div data-v-455dcd3f="" class="price-DR">
                                     10.000<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-1.png" class="testimonio-1 img-fluid">
@@ -70,14 +70,14 @@
                                     </div>--}}
                                     <div data-v-455dcd3f="" class="col-10 block-text">
 
-                                        <p>"Soy Antonio y tengo una gestoría en La Rioja. <b>Dividae</b> se
+                                        <p style="color:#285ba3;">"Soy Antonio y tengo una gestoría en La Rioja. <b>Dividae</b> se
                                             puso en contacto conmigo para incorporar el servicio de recuperación
                                             de facturas impagadas y poder ofrecer valor añadido a mis clientes,
                                             ya que son muchos los que tienen facturas pendientes de pago y las daban por perdidas.</p>
 
-                                        <p>Con <b>Dividae</b>, muchos de mis clientes ya han recuperado sus facturas impagadas y
+                                        <p style="color:#285ba3;">Con <b>Dividae</b>, muchos de mis clientes ya han recuperado sus facturas impagadas y
                                             se ha convertido en un servicio esencial de la gestoría.
-                                        <b>Dividae</b>, agiliza en tiempos y ofrece un servicio transparente durante todo el servicio.</p>
+                                        <b>Dividae</b>, agiliza en tiempos y ofrece un servicio transparente durante todo el servicio".</p>
 
                                 </div>
                                 {{--<div data-v-455dcd3f="" class="col-1 blockquote-down">
@@ -95,11 +95,11 @@
                                     </div>--}}
                                      <div data-v-455dcd3f="" class="col-10 block-text">
 
-                                        <p>"Trabajo desde hace más de 10 años como aparejadora y llegó un punto en el que tenía
+                                        <p style="color:#285ba3;">"Trabajo desde hace más de 10 años como aparejadora y llegó un punto en el que tenía
                                             muchas facturas impagadas que daba por perdidas. Intenté encontrar un abogado que
                                             no saliera por un ojo de la cara, pero no fui capaz de asumir el coste.</p>
 
-                                        <p>Decidí realizar una búsqueda en internet y ahí es cuando encontré <b>Dividae</b>.
+                                        <p style="color:#285ba3;">Decidí realizar una búsqueda en internet y ahí es cuando encontré <b>Dividae</b>.
                                             Gracias a este novedoso y transparente servicio, conseguí recuperar las facturas
                                             que tenía pendientes. Además, fue un proceso muy sencillo, en el que me sentí siempre acompañada".</p>
 
@@ -109,7 +109,7 @@
                                 </div>--}}
                             </div></div></div>
 
-                                <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
+                                <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada" style="color:#285ba3;">
                                     Cantidad recuperada
                                     </div> <div data-v-455dcd3f="" class="price-DR">
                                     1.500<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-2.png" class="testimonio-1 img-fluid">
@@ -121,7 +121,7 @@
                             <div data-v-455dcd3f="" class="container Opinion">
                                 <div data-v-455dcd3f="" class="row">
 
-                                <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada">
+                                <div data-v-455dcd3f="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 Opinion-col1"><div data-v-455dcd3f="" class="block-DR"><div data-v-455dcd3f="" class="text-deuda-recuperada" style="color:#285ba3;">
                                     Cantidad recuperada
                                     </div> <div data-v-455dcd3f="" class="price-DR">
                                     3.500<span data-v-455dcd3f="" class="text-style-1">€</span></div></div> <img data-v-455dcd3f="" src="{{url('landing')}}/assets/testimonio-3.png" class="testimonio-1 img-fluid">
@@ -133,12 +133,12 @@
                                     </div>--}}
                                     <div data-v-455dcd3f="" class="col-10 block-text">
 
-                                        <p>"Mi gestor me recomendó <b>Dividae</b>, ya que él más que nadie conoce
+                                        <p style="color:#285ba3;">"Mi gestor me recomendó <b>Dividae</b>, ya que él más que nadie conoce
                                             el estado de mis cuentas y facturas. Desde el principio,
                                             me pareció una idea innovadora y necesaria en el sector.</p>
 
-                                        <p>Gracias a mi gestoría, he podido recuperar muchas de las facturas impagadas que tenía olvidadas.
-                                            El servicio que ofrece mi gestoría gracias a <b>Dividae</b>, ya es indispensable para todos sus clientes.</p>
+                                        <p style="color:#285ba3;">Gracias a mi gestoría, he podido recuperar muchas de las facturas impagadas que tenía olvidadas.
+                                            El servicio que ofrece mi gestoría gracias a <b>Dividae</b>, ya es indispensable para todos sus clientes".</p>
 
                                 </div>
                                 {{--<div data-v-455dcd3f="" class="col-1 blockquote-down">
@@ -152,7 +152,7 @@
 
 
 
-                            <div data-v-455dcd3f="" class="container OCliente"><div data-v-455dcd3f="" class="OCliente-title">¿Qué opinan nuestros clientes?</div> <div data-v-455dcd3f="" class="OCliente-text">
+                            <div data-v-455dcd3f="" class="container OCliente"><div data-v-455dcd3f="" class="OCliente-title">¿Qué opinan nuestros clientes?</div> <div data-v-455dcd3f="" class="OCliente-text" style="color:#285ba3;">
                 Conoce las opiniones de personas que ya han confiado en <b>Dividae</b>.
             </div>
 
@@ -161,9 +161,9 @@
 
 
 
-                          <div id="testimonios" class="owl-carousel owl-theme">
+                          <div id="testimonios" class="owl-carousel owl-theme" >
 
-                            <div data-v-1cb0bef4="" class="card"><div data-v-1cb0bef4="" class="card-body"><div data-v-1cb0bef4="" class="row block-slide-1"><div data-v-1cb0bef4="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 OClientes-blockquote-slides"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/blockquote-up.png" class="img-fluid"></div> <div data-v-1cb0bef4="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides">
+                            <div data-v-1cb0bef4="" class="card"><div data-v-1cb0bef4="" class="card-body"><div data-v-1cb0bef4="" class="row block-slide-1"><div data-v-1cb0bef4="" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 OClientes-blockquote-slides"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/blockquote-up.png" class="img-fluid"></div> <div data-v-1cb0bef4="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides" >
                                 Experiencia de Usuario inmejorable. En todo momento conoces el estado de la reclamación. 100% recomendable.
                             </div></div> <br> <div data-v-1cb0bef4="" class="row block-slide-2"><div data-v-1cb0bef4="" class="col OClientes-img-slides2"><img data-v-1cb0bef4="" src="{{url('landing')}}/assets/rectangle3.png"></div> <div data-v-1cb0bef4="" class="col OClientes-text-slides2"><div data-v-1cb0bef4="">
                                     Amelia González

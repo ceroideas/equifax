@@ -43,7 +43,7 @@
                             <div class="container text-center bottom-text">
                                 <br>
 
-                                    <p style="color:#285ba3; text-align: center;"><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que no sepas, ser <b>100% transparentes</b> y que tu estés <b>100% tranquilo</b> durante todo el proceso. </p>
+                                    <p style="color:#285ba3; text-align: center;"><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que no sepas, ser <b>100% transparentes</b> y que tú estés <b>100% tranquilo</b> durante todo el proceso. </p>
 
                                     <p style="color:#285ba3; text-align: center;">Te explicamos paso a paso las fases de la reclamación y sus tarifas.</p>
                             </div>
