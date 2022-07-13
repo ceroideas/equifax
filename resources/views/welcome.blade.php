@@ -335,7 +335,7 @@
                                                 <div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
                                                     <p>
                                                         En <b>Dividae</b>, queremos democratizar el mundo de las facturas impagadas a nivel digital de una manera
-                                                        <b>automatizada</b> y <b>trasparente</b>.
+                                                        <b>automatizada</b> y <b>transparente</b>.
                                                     </p>
                                                     <p>
                                                         ¿Nuestro principal objetivo? Que empieces a decir <b>adiós a tus facturas impagadas</b>.
