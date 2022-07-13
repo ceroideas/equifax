@@ -4813,6 +4813,8 @@ a.more-link[data-v-167ae8c1] {
         <main>
             <div data-v-effc9f78="" data-v-038cfd70="">
                 <div data-v-038cfd70="" data-v-effc9f78="" class="block-PFrecuentes">
+
+                    {{--
                     <nav data-v-5fddf304="" data-v-038cfd70="" class="navbar navbar-expand-lg navbar-light" data-v-effc9f78="">
                         <div data-v-5fddf304="" class="container">
                             <a data-v-5fddf304="" href="{{url('/')}}" class="navbar-brand router-link-active" style="display: none;">
@@ -4871,7 +4873,9 @@ a.more-link[data-v-167ae8c1] {
                                 <!---->
                             </div>
                         </div>
-                    </nav>
+                    </nav>--}}
+                    @include('front.navbar')
+
                     <div data-v-038cfd70="" data-v-effc9f78="" class="container PFrecuentes">
                         <!--<div data-v-038cfd70="" data-v-effc9f78="" class="PFrecuentes-subtitle">
                             Preguntas frecuentes
