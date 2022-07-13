@@ -431,7 +431,7 @@
                         <div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div>
                         <div class="container text-center bottom-text">
                             <p style="font-weight:normal !important"><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que
-                                no sepas, ser <b>100% transparentes</b> y que tu estés <b>100% tranquilo</b> durante
+                                no sepas, ser <b>100% transparentes</b> y que tú estés <b>100% tranquilo</b> durante
                                 todo el proceso. </p>
                         </div>
                         <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
@@ -465,7 +465,7 @@
                                                     {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
 
                                                 <p style="color:#285ba3; text-align: center;">
-                                                    Comienza de manera con tu reclamación por vía extrajudicial
+                                                    Comienza con tu reclamacion por vía extrajudicial
                                                 </p>
 
                                             </li>
@@ -661,7 +661,7 @@
 
                                                         <p>Con <b>Dividae</b>, muchos de mis clientes ya han recuperado sus facturas impagadas y
                                                             se ha convertido en un servicio esencial de la gestoría.
-                                                        <b>Dividae</b>, agiliza en tiempos y ofrece un servicio transparente durante todo el servicio.</p>
+                                                        <b>Dividae</b>, agiliza en tiempos y ofrece un servicio transparente durante todo el servicio".</p>
 
                                                     </div>
                                                     {{--<div data-v-455dcd3f="" class="col-1 blockquote-down"><img
@@ -756,7 +756,7 @@
                                                             me pareció una idea innovadora y necesaria en el sector.</p>
 
                                                         <p>Gracias a mi gestoría, he podido recuperar muchas de las facturas impagadas que tenía olvidadas.
-                                                            El servicio que ofrece mi gestoría gracias a <b>Dividae</b>, ya es indispensable para todos sus clientes.</p>
+                                                            El servicio que ofrece mi gestoría gracias a <b>Dividae</b>, ya es indispensable para todos sus clientes".</p>
 
                                                     </div>
                                                     {{--<div data-v-455dcd3f="" class="col-1 blockquote-down"><img

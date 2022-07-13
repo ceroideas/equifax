@@ -1766,6 +1766,8 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   line-height: 1.5;
   letter-spacing: normal;
   color: #285ba3;
+  text-align: justify;
+
 }
 @media (min-width: 768px) {
 .block-nosotros .Nosotros-text[data-v-c7d18d50] {

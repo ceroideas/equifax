@@ -161,6 +161,7 @@
         <main>
             <div data-v-effc9f78="" data-v-c7d18d50="">
                 <div data-v-c7d18d50="" data-v-effc9f78="" class="block-About">
+                    {{--
                     <nav data-v-5fddf304="" data-v-c7d18d50="" class="navbar navbar-expand-lg navbar-dark"
                         data-v-effc9f78="">
                         <div data-v-5fddf304="" class="container"><a data-v-5fddf304="" href="{{ url('/') }}"
@@ -220,7 +221,10 @@
                                 <!---->
                             </div>
                         </div>
-                    </nav>
+                    </nav>--}}
+
+                    @include('front.navbar')
+
                     <div data-v-c7d18d50="" data-v-effc9f78="" class="container About">
                         <div data-v-c7d18d50="" data-v-effc9f78="" class="row">
                             <div data-v-c7d18d50="" data-v-effc9f78=""
