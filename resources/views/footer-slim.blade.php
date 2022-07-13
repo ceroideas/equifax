@@ -79,12 +79,12 @@
                 <ul data-v-a242bae8="" class="nav flex-column">
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
-                                src="{{ url('landing') }}/assets/icons-phone-white.png" class="img-fluid"> +34 680 933 286
+                                src="{{ url('landing') }}/assets/icons-phone-white.png" class="img-fluid"> <a href="tel:+34680933286">+34 680933286</a>
                         </a></li>
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
                                 src="{{ url('landing') }}/assets/icons-email-white.png" class="img-fluid">
-                            info@dividae.com
+                                <a href="mailto:info@dividae.com">info@dividae.com</a>
                         </a></li>
                 </ul>
             </div>
