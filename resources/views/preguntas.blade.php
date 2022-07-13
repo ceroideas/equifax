@@ -13,7 +13,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="https://asemarrecovery.quentalstaging.com/css/app.css" rel="stylesheet">
+    <!--<link href="https://asemarrecovery.quentalstaging.com/css/app.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="{{ url('landing') }}/app_quental.css">
+
+    @include('styles2')
 <style>.modal-vue .fade-enter[data-v-e8aafb5e],
 .modal-vue .fade-leave-to[data-v-e8aafb5e] {
   transform: translateX(10px);
@@ -1408,7 +1411,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: normal;
+  line-height: 1.29;
   letter-spacing: normal;
   color: #fff;
 }
@@ -4812,8 +4815,8 @@ a.more-link[data-v-167ae8c1] {
     <div id="app">
         <main>
             <div data-v-effc9f78="" data-v-038cfd70="">
-                <div data-v-038cfd70="" data-v-effc9f78="" class="block-PFrecuentes">
-
+                {{--<div data-v-038cfd70="" data-v-effc9f78="" class="block-PFrecuentes">--}}
+                <div data-v-eb5d4bee="" data-v-effc9f78="" class="block-Testimonios">
                     {{--
                     <nav data-v-5fddf304="" data-v-038cfd70="" class="navbar navbar-expand-lg navbar-light" data-v-effc9f78="">
                         <div data-v-5fddf304="" class="container">
@@ -4876,14 +4879,33 @@ a.more-link[data-v-167ae8c1] {
                     </nav>--}}
                     @include('front.navbar')
 
-                    <div data-v-038cfd70="" data-v-effc9f78="" class="container PFrecuentes">
+                    <!--<div data-v-038cfd70="" data-v-effc9f78="" class="container PFrecuentes">-->
                         <!--<div data-v-038cfd70="" data-v-effc9f78="" class="PFrecuentes-subtitle">
                             Preguntas frecuentes
                         </div>-->
-                        <div data-v-038cfd70="" data-v-effc9f78="" class="PFrecuentes-title">
+                        <!--<div data-v-038cfd70="" data-v-effc9f78="" class="PFrecuentes-title">
                             Preguntas frecuentes
                         </div>
+                    </div>-->
+
+
+                    <div data-v-eb5d4bee="" data-v-effc9f78="" class="container Testimonios">
+                        <div data-v-eb5d4bee="" data-v-effc9f78="" class="row">
+                            <div data-v-eb5d4bee="" data-v-effc9f78=""
+                                class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                <div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-title">Preguntas frecuentes</div>
+                            </div>
+                            <div data-v-eb5d4bee="" data-v-effc9f78=""
+                                class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                <div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-subtitle"></div>
+                            </div>
+                        </div>
                     </div>
+
+
+
+
+
                     @include('followus')
                 </div>
 
