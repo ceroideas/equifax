@@ -327,18 +327,18 @@
                                             <div class="col-sm-10">
 
                                                 <div data-v-494d1a60="" id="block-reclamacion">
-                                                    <div data-v-494d1a60="" class="text-reclamacion mb-4 mt-4">Nuestra misi&oacute;n</div>
+                                                    <div data-v-494d1a60="" class="text-reclamacion mb-4 mt-4">¿Cu&aacute;l es nuestra <b>misi&oacute;n</b>?</div>
                                                 </div>
                                                 {{-- <div class="row"> --}}
                                                 {{-- <div data-v-494d1a60="" class="col-xl-12 col-lg-12 col-sm-12 col-xs-12"><div data-v-494d1a60="" class="card-text Reclamacion">Reclamación amistosa</div></div> --}}
                                                 {{-- </div> --}}
                                                 <div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
                                                     <p>
-                                                        En <b>Dividae</b>, queremos democratizar el mundo de la recuperaci&oacute;n de las facturas impagadas a nivel digital de una manera
+                                                        En <b>Dividae</b>, queremos democratizar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital de una manera
                                                         <b>automatizada</b> y <b>transparente</b>.
                                                     </p>
                                                     <p>
-                                                        ¿Nuestro principal objetivo? Que empieces a decir <b>adi&oacute;s a tus facturas impagadas</b>.
+                                                        ¿Nuestro principal objetivo? Que digas <b>adi&oacute;s a tus facturas impagadas</b>.
                                                     </p>
                                                     <p>
                                                         Conoce m&aacute;s acerca de <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>.
