@@ -38,6 +38,27 @@
         border-radius: 8px !important;
         padding: 10px;
     }
+
+
+    @media (max-width: 600px) {
+        .btn-acceder {
+        /*background-color: #2a3deb !important;
+        color: #fff !important;
+        border-radius: 8px !important;
+        padding: 10px;*/
+        font-weight: bold;
+    }
+    .container {
+        padding:0px;
+        margin: 0px;
+    }
+
+
+    }
+
+
+
+
 </style>
 @stop
 
