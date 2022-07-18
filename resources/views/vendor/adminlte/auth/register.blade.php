@@ -31,6 +31,14 @@
         border-radius: 8px !important;
         padding: 10px;
     }
+
+    @media (max-width: 600px) {
+        .container {
+            padding:0px;
+            margin: 0px;
+        }
+    }
+
 </style>
 @stop
 
