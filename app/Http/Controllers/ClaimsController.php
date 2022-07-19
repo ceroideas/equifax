@@ -1063,6 +1063,7 @@ class ClaimsController extends Controller
         /* Recuperar si existe factura pendiente de pago, recuperaremos conceptos y enviamos enlace de pago */
         $invoice = Invoice::where('claim_id',$id)->first();
         /* $invoice->status = 1 pagada, null pendiente de pago*/
+        dump($invoice);
         if(isset($invoice)&& $invoice->status == null){
             /* Recuperar si el ultimo hito corresponde al 301 o 302 recuperar el que lo genero app.infopago */
             $actuaciones = Actuation::where('claim_id',$id)
