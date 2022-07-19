@@ -24,10 +24,10 @@
     <form action="{{ url('/change-password/') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')
-        
+
         <div class="row">
             <div class="col-sm-6">
-                <x-adminlte-input name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" label="Contraseña" placeholder="Ingresa la Contraseña" type="password"
+                <x-adminlte-input name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_#])[A-Za-z\d@$!%*?&-_#]{8,}$" label="Contraseña" placeholder="Ingresa la Contraseña" type="password"
                 igroup-size="sm">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -37,7 +37,7 @@
             </x-adminlte-input>
 
             <span>
-                
+
                 <div id="Length" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Mínimo 8 caracteres</label></div>
                 <div id="UpperCase" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Al menos 1 letra en mayus.</label></div>
                 <div id="LowerCase" class="db fas fa-times"> <label style="font-family: arial; font-size: 12px; font-weight: 100 !important;">Al menos 1 letra en minus.</label></div>
@@ -84,7 +84,7 @@
       Target: "Numbers"
     },
     {
-      Pattern: "[!@@#$%^&*]",
+      Pattern: "[!@@#$%^&*-_/]",
       Target: "Symbols"
     }
   ];
@@ -97,11 +97,11 @@
   /*Note the Ternary operators ? : to select the classes*/
   $("#Length").removeClass(password.length > 7 ? "fa-times" : "fa-check");
   $("#Length").addClass(password.length > 7 ? "fa-check" : "fa-times");
-  
+
   /*Iterate our remaining rules. The logic is the same as for Length*/
   for (var i = 0; i < rules.length; i++) {
 
-    $("#" + rules[i].Target).removeClass(new RegExp(rules[i].Pattern).test(password) ? "fa-times" : "fa-check"); 
+    $("#" + rules[i].Target).removeClass(new RegExp(rules[i].Pattern).test(password) ? "fa-times" : "fa-check");
     $("#" + rules[i].Target).addClass(new RegExp(rules[i].Pattern).test(password) ? "fa-check" : "fa-times");
   }
 }

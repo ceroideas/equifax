@@ -97,7 +97,7 @@
 
         {{-- Password field --}}
         <div class="input-group mb-3">
-            <input type="password" id="NewPassword" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" class="form-control @error('password') is-invalid @enderror"
+            <input type="password" id="NewPassword" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_#])[A-Za-z\d@$!%*?&-_#]{8,}$" class="form-control @error('password') is-invalid @enderror"
                    placeholder="{{ __('adminlte::adminlte.password') }}">
 
             <div class="input-group-append">
@@ -342,7 +342,7 @@ function ValidatePassword() {
       Target: "Numbers"
     },
     {
-      Pattern: "[!@@#$%^&*]",
+      Pattern: "[!@@#$%^&*_-/]",
       Target: "Symbols"
     }
   ];
