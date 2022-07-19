@@ -1053,28 +1053,84 @@ class ClaimsController extends Controller
 
     public function info($id)
     {
-        //dump($id);
         $infopago = config('app.infopago');
+        $titulo="";
+        $hito="";
+        $msg="";
+        $concepto="";
+        $importe="";
 
-        /*dump($infopago);echo "<br>";
-        $hito = array_search($id,$infopago);*/
+        /* Recuperar si existe factura pendiente de pago, recuperaremos conceptos y enviamos enlace de pago */
+        $invoice = Invoice::where('claim_id',$id)->first();
+        /* $invoice->status = 1 pagada, null pendiente de pago*/
+        if(isset($invoice)&& $invoice->status == null){
+            /* Recuperar si el ultimo hito corresponde al 301 o 302 recuperar el que lo genero app.infopago */
+            $actuaciones = Actuation::where('claim_id',$id)
+                    ->orderBy('id', 'desc')
+                    ->get();
+                    dump($actuaciones);
+                    dump($actuaciones[0]->subject);
+                    die();
+                    /* Recorrer array al reves*/
+                    foreach($actuaciones as $key => $value ){
+                        dump($value->id);
+                        dump($value->claim_id); //33
+                        dump($value->subject);
+
+                        if($value->subject=='A LA ESPERA DE FIRMA APODERAMIENTO APUD ACTA'){
+                            print_r('Buscar');
+                        }else{
+                            print_r("No buscar");
+                        }
+                        if($value->subject=="301"){
+                            print_r('Buscar 301 ');
+                        }else{
+                            print_r("No buscar 301");
+                        }
+                    }
+            if(isset($hito)){
+                dump($hito);
+                //dump($hito[0]);
+            }else{
+                print_r('No existen actuaciones');
+            }
+
+        }else{
+            print_r('No existe factura');
+        }
+
+
+
 
         foreach($infopago as $key => $value){
             if($value["hito"]==$id){
-        /*        dump($value);
-                dump($value["hito"]);
-                dump($value["msg"]);*/
                 $hito = $value["hito"];
+                $titulo = $value["titulo"];
                 $msg = $value["msg"];
             }
-
         }
+        dump($id); //33
+        dump($hito);
+        dump($titulo);
+        dump($msg);
+        die();
+      /* Necesitamos enviar recuperar importes y conceptos
 
-      //  dump($hito);
-      //  dump($msg);
+        $c = Configuration::first();
+        dump($c);
+        dump($c->judicial_amount);
+        $importe = ($c->judicial_amount / (($c->tax/100)+1));
+        dump($importe);
+        $importe=number_format($importe, 2,',','.');
+        dump($importe);
+        die();*/
+
+        /* Los importes y conceptos se traen desde app*/
+        /* Recuperamos la factura */
+
 
 
         //return view('claims.hitos', compact('fase'));
-        return view('info-public', compact('hito', 'msg'));
+        return view('info-public', compact('hito', 'titulo','msg','concepto','importe'));
     }
 }
