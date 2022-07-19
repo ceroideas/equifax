@@ -246,21 +246,13 @@
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
-                        <div data-v-9cc878a2="" class="text-tarifa">FIN EXTRAJUDICIAL -PENDIENTE MONITORIO</div>
+                        <div data-v-9cc878a2="" class="text-tarifa">
+                                <p>{{$titulo}}</p>
+                        </div>
 
                         <div class="container text-center bottom-text">
-                            <p>¡Vaya! <b>No hemos conseguido</b> alcanzar un acuerdo con tu deudor, <b>Dividae</b> te recomienda que continues por la
-                                <b>vía judicial,</b> ya que según tu reclamación consideramos que puede prosperar.
-                            </p>
-                            <p>Para continuar la <b>vía judicial</b>, tienes que abonar la tarifa correspondiente al procedimiento monitorio *</p>
-                            @isset($hito)
-                                <p>Hito: {{$hito}}</p>
-                            @endisset
-
-                            @isset($msg)
-                                <p>Mensaje: {{$msg}}</p>
-                            @endisset
-
+                                <p>{{$msg}}</p>
+                                <p>{{$hito}}</p>
                         </div>
                     </div>
                 </div>
@@ -290,12 +282,12 @@
                             <tbody>
                                 <tr>
                                 <td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
-Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">Procedimiento monitorio</span></td>
+Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">{{$concepto}}</span></td>
                                     <!--<td rowspan="5"
                                         style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>-->
-                                    <td style="text-align: right;color:#285ba3;">69,90 €</td>
+                                    <td style="text-align: right;color:#285ba3;">{{$importe}} €</td>
                                 </tr>
-                                <tr>
+{{--                                <tr>
                                     <td style="color:#285ba3"><span data-toggle="tooltip"
                                             style="color:#e65927; data-placement="top"
                                             title="Es la vía de reclamación civil de cantidades más rápida y ágil.
@@ -303,14 +295,14 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
                                             style="color:#e65927;">Tasas</span>
                                     </td>
                                     <td style="text-align: right; color:#285ba3">90,00 €</td>
-                                </tr>
+                                </tr>--}}
                             </tbody>
                         </table>
 
                         <div class="row">
                             <div class="col-sm-9"></div>
                             <div class="col-sm-3">
-                                <a data-v-9cc878a2="" href="https://dividae.com/dividae/public/claims/payment/36" aria-current="page"
+                                <a data-v-9cc878a2="" href="https://dividae.com/payment/36" aria-current="page"
                                     class="btn btn-light-descubre" type="button">Proceder al pago</a>
                                     <br>
                             </div>
