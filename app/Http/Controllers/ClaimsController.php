@@ -1061,41 +1061,49 @@ class ClaimsController extends Controller
         $importe="";
 
         /* Recuperar si existe factura pendiente de pago, recuperaremos conceptos y enviamos enlace de pago */
-        $invoice = Invoice::where('claim_id',$id)->first();
-        /* $invoice->status = 1 pagada, null pendiente de pago*/
-        dump($invoice);
-        if(isset($invoice)&& $invoice->status == null){
-            /* Recuperar si el ultimo hito corresponde al 301 o 302 recuperar el que lo genero app.infopago */
-            $actuaciones = Actuation::where('claim_id',$id)
-                    ->orderBy('id', 'desc')
-                    ->get();
-                    dump($actuaciones);
-                    dump($actuaciones[0]->subject);
-                    die();
-                    /* Recorrer array al reves*/
-                    foreach($actuaciones as $key => $value ){
-                        dump($value->id);
-                        dump($value->claim_id); //33
-                        dump($value->subject);
+        $invoice = Invoice::where('claim_id',$id)
+                                    ->orderBy('id','desc')
+                                    ->take(1)
+                                    ->get();
+        /* $invoice[0]->status = 1 pagada, null pendiente de pago*/
+        if(isset($invoice)){
+            if($invoice[0]->status == null){
 
-                        if($value->subject=='A LA ESPERA DE FIRMA APODERAMIENTO APUD ACTA'){
-                            print_r('Buscar');
-                        }else{
-                            print_r("No buscar");
-                        }
-                        if($value->subject=="301"){
-                            print_r('Buscar 301 ');
-                        }else{
-                            print_r("No buscar 301");
-                        }
+
+                /* Recuperar si el ultimo hito corresponde al 301 o 302 recuperar el que lo genero app.infopago */
+                $actuaciones = Actuation::where('claim_id',$id)
+                                     ->orderBy('id', 'desc')
+                                    ->get();
+                dump($actuaciones);
+                dump($actuaciones[0]->subject);
+                //die();
+                /* Recorrer array al reves*/
+                foreach($actuaciones as $key => $value ){
+                    dump($value->id);
+                    dump($value->claim_id); //33
+                    dump($value->subject);
+
+                if($value->subject=='A LA ESPERA DE FIRMA APODERAMIENTO APUD ACTA'){
+                        print_r('Buscar');
+                    }else{
+                        print_r("No buscar");
                     }
-            if(isset($hito)){
-                dump($hito);
-                //dump($hito[0]);
-            }else{
-                print_r('No existen actuaciones');
-            }
+                    if($value->subject=="301"){
+                        print_r('Buscar 301 ');
+                    }else{
+                        print_r("No buscar 301");
+                    }
+                }
+                if(isset($hito)){
+                    dump($hito);
+                    //dump($hito[0]);
+                }else{
+                    print_r('No existen actuaciones');
+                }
 
+            }else{
+                print_r('No existe factura pendiente de pago');
+            }
         }else{
             print_r('No existe factura');
         }
@@ -1114,7 +1122,7 @@ class ClaimsController extends Controller
         dump($hito);
         dump($titulo);
         dump($msg);
-        die();
+        //die();
       /* Necesitamos enviar recuperar importes y conceptos
 
         $c = Configuration::first();
