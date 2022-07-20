@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
+            {{--<div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
                 <h5 data-v-a242bae8="" class="footer-title ">Contacto</h5>
                 <ul data-v-a242bae8="" class="nav flex-column">
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
@@ -86,6 +86,21 @@
                                 src="{{ url('landing') }}/assets/icons-email-white.png" class="img-fluid">
                                 <a href="mailto:info@dividae.com">info@dividae.com</a>
                         </a></li>
+                </ul>
+            </div>--}}
+            <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                <h5 data-v-a242bae8="" class="footer-title ">Contacto</h5>
+                <ul data-v-a242bae8="" class="nav flex-column">
+                    <li data-v-a242bae8="" class="nav-item mb-2">
+                        <a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">
+                            <img data-v-a242bae8="" src="http://127.0.0.1:8000/landing/assets/icons-phone-white.png" class="img-fluid"> +34 680 933 286
+                        </a>
+                    </li>
+                    <li data-v-a242bae8="" class="nav-item mb-2">
+                        <a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">
+                            <img data-v-a242bae8="" src="http://127.0.0.1:8000/landing/assets/icons-email-white.png" class="img-fluid"> info@dividae.com
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
