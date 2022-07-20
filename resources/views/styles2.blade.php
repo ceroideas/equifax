@@ -1091,6 +1091,7 @@
   line-height: 1.5;
   letter-spacing: normal;
   color: #254158;
+  text-align: justify;
 }
 .blockOpiniones .content .Opinion-text .row[data-v-455dcd3f] {
   margin-top: 25px;

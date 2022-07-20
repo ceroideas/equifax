@@ -639,7 +639,7 @@
                                                     Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
-                                                    10.000<span data-v-455dcd3f="" class="text-style-1">€</span></div>
+                                                    10.220<span data-v-455dcd3f="" class="text-style-1">€</span></div>
                                             </div> <img data-v-455dcd3f=""
                                                 src="{{ url('landing') }}/assets/testimonio-1.png"
                                                 class="testimonio-1 img-fluid">
@@ -716,7 +716,7 @@
                                                     Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
-                                                    1.500<span data-v-455dcd3f="" class="text-style-1">€</span></div>
+                                                    1.640<span data-v-455dcd3f="" class="text-style-1">€</span></div>
                                             </div> <img data-v-455dcd3f=""
                                                 src="{{ url('landing') }}/assets/testimonio-2.png"
                                                 class="testimonio-1 img-fluid">
@@ -735,7 +735,7 @@
                                                     Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
-                                                    3.500<span data-v-455dcd3f="" class="text-style-1">€</span>
+                                                    3.550<span data-v-455dcd3f="" class="text-style-1">€</span>
                                                 </div>
                                             </div> <img data-v-455dcd3f=""
                                                 src="{{ url('landing') }}/assets/testimonio-3.png"
