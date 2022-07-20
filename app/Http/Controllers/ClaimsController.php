@@ -30,6 +30,7 @@ use App\Exports\InvoiceExport;
 use App\Exports\InvoicesExport;
 
 use App\Imports\HitosImport;
+use App\Models\Linvoice;
 
 class ClaimsController extends Controller
 {
@@ -259,6 +260,18 @@ class ClaimsController extends Controller
         $invoice->type = 'fixed_fees';
         $invoice->description = "Pago de la tarifa procedimiento Extrajudicial";
         $invoice->save();
+
+        /* Generar lineas de factura */
+        $linvoice = new Linvoice;
+        $linvoice->codlin = $claim->id;
+        $linvoice->poslin = 1;
+        $linvoice->artlin = "EXT-001";
+        $linvoice->deslin = "Pago de la tarifa procedimiento Extrajudicial";
+        $linvoice->canlin = 1;
+        $linvoice->ivalin = 0;
+        $linvoice->prelin = $c ? $c->fixed_fees : '0';
+        $linvoice->totlin = $c ? ($c->fixed_fees * 1) : '0';
+        $linvoice->save();
 
 /*Fin generacion de factura */
 
