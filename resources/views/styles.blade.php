@@ -508,6 +508,7 @@
 }
 .Lorem-ipsum-dolor-si p {
   font-family: Roobert !important;
+  text-align: justify;
 }
 .Lorem-ipsum-dolor-si[data-v-66372912] {
   font-family: CynthoNext;
@@ -1102,6 +1103,7 @@
   line-height: 1.5;
   letter-spacing: normal;
   color: #285ba3;
+  text-align: justify;
 }
 .blockOpiniones .content .Opinion-text .row[data-v-455dcd3f] {
   margin-top: 25px;

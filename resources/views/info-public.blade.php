@@ -264,7 +264,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <div class="content">
-                            <div class="center"><img src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologopositivo"></div>
+                            <!--<div class="center"><img src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologopositivo"></div>-->
                           </div>
 
                         <table class="table table-bordered table-hover">
@@ -300,12 +300,13 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
                         </table>
 
                         <div class="row">
-                            <div class="col-sm-9"></div>
+                            <div class="col-sm-5"></div>
                             <div class="col-sm-3">
                                 <a data-v-9cc878a2="" href="https://dividae.com/payment/36" aria-current="page"
                                     class="btn btn-light-descubre" type="button">Proceder al pago</a>
                                     <br>
                             </div>
+                            <div class="col-sm-3"></div>
                         </div>
 
 
