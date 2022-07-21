@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('linvoices', function (Blueprint $table) {
             $table->id();
-            $table->integer('codlin')->nullable();
+            $table->integer('invoice_id')->nullable();
             $table->integer('poslin')->nullable();
             $table->string('artlin')->nullable();
             $table->string('deslin')->nullable();

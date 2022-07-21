@@ -263,7 +263,7 @@ class ClaimsController extends Controller
 
         /* Generar lineas de factura */
         $linvoice = new Linvoice;
-        $linvoice->codlin = $claim->id;
+        $linvoice->invoice_id = $claim->id;
         $linvoice->poslin = 1;
         $linvoice->artlin = "EXT-001";
         $linvoice->deslin = "Pago de la tarifa procedimiento Extrajudicial";
