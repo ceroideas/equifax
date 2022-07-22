@@ -37,10 +37,10 @@
 
             <div class="col-sm-6">
                 <x-adminlte-select2 id="fixed_fees_tax" name="fixed_fees_tax" label="% IVA reclamación amistosa" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
-                    <option value="IVA21" selected>21%</option>
-                    <option value="IVA10">10%</option>
-                    <option value="IVA4">4%</option>
-                    <option value="IVA0">Excento</option>
+                    <option value="IVA21" {{ isset($configuration) ? ($configuration->fixed_fees_tax == "IVA21"?'selected': '') : ''}}>21%</option>
+                    <option value="IVA10" {{ isset($configuration) ? ($configuration->fixed_fees_tax == "IVA10"?'selected': '') : ''}}>10%</option>
+                    <option value="IVA4" {{ isset($configuration) ? ($configuration->fixed_fees_tax == "IVA4"?'selected': '') : ''}}>4%</option>
+                    <option value="IVA0" {{ isset($configuration) ? ($configuration->fixed_fees_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
                 </x-adminlte-select2>
             </div>
         </div>
@@ -58,10 +58,10 @@
             </div>
             <div class="col-sm-3">
                 <x-adminlte-select2 id="judicial_amount_tax" name="judicial_amount_tax" label="% IVA Procedimiento monitorio" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
-                    <option value="IVA21" selected>21%</option>
-                    <option value="IVA10">10%</option>
-                    <option value="IVA4">4%</option>
-                    <option value="IVA0">Excento</option>
+                    <option value="IVA21" {{ isset($configuration) ? ($configuration->judicial_amount_tax == "IVA21"?'selected': '') : ''}}>21%</option>
+                    <option value="IVA10" {{ isset($configuration) ? ($configuration->judicial_amount_tax == "IVA10"?'selected': '') : ''}}>10%</option>
+                    <option value="IVA4" {{ isset($configuration) ? ($configuration->judicial_amount_tax == "IVA4"?'selected': '') : ''}}>4%</option>
+                    <option value="IVA0" {{ isset($configuration) ? ($configuration->judicial_amount_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
                 </x-adminlte-select2>
             </div>
             <div class="col-sm-3">
@@ -76,10 +76,10 @@
             </div>
             <div class="col-sm-3">
                 <x-adminlte-select2 id="judicial_fees_tax" name="judicial_fees_tax" label="% IVA tasa monitorio" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
-                    <option value="IVA21">21%</option>
-                    <option value="IVA10">10%</option>
-                    <option value="IVA4">4%</option>
-                    <option value="IVA0" selected>Excento</option>
+                    <option value="IVA21" {{ isset($configuration) ? ($configuration->judicial_fees_tax == "IVA21"?'selected': '') : ''}}>21%</option>
+                    <option value="IVA10" {{ isset($configuration) ? ($configuration->judicial_fees_tax == "IVA10"?'selected': '') : ''}}>10%</option>
+                    <option value="IVA4" {{ isset($configuration) ? ($configuration->judicial_fees_tax == "IVA4"?'selected': '') : ''}}>4%</option>
+                    <option value="IVA0" {{ isset($configuration) ? ($configuration->judicial_fees_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
                 </x-adminlte-select2>
             </div>
         </div>
@@ -97,10 +97,10 @@
             </div>
             <div class="col-sm-3">
                 <x-adminlte-select2 id="verbal_amount_tax" name="verbal_amount_tax" label="% IVA Juicios verbales" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
-                    <option value="IVA21" selected>21%</option>
-                    <option value="IVA10">10%</option>
-                    <option value="IVA4">4%</option>
-                    <option value="IVA0">Excento</option>
+                    <option value="IVA21" {{ isset($configuration) ? ($configuration->verbal_amount_tax == "IVA21"?'selected': '') : ''}}>21%</option>
+                    <option value="IVA10" {{ isset($configuration) ? ($configuration->verbal_amount_tax == "IVA10"?'selected': '') : ''}}>10%</option>
+                    <option value="IVA4" {{ isset($configuration) ? ($configuration->verbal_amount_tax == "IVA4"?'selected': '') : ''}}>4%</option>
+                    <option value="IVA0" {{ isset($configuration) ? ($configuration->verbal_amount_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
                 </x-adminlte-select2>
             </div>
             <div class="col-sm-3">
@@ -115,10 +115,10 @@
             </div>
             <div class="col-sm-3">
                 <x-adminlte-select2 id="verbal_fees_tax" name="verbal_fees_tax" label="% IVA tasa juicios verbales" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
-                    <option value="IVA21">21%</option>
-                    <option value="IVA10">10%</option>
-                    <option value="IVA4">4%</option>
-                    <option value="IVA0" selected>Excento</option>
+                    <option value="IVA21" {{ isset($configuration) ? ($configuration->verbal_fees_tax == "IVA21"?'selected': '') : ''}}>21%</option>
+                    <option value="IVA10" {{ isset($configuration) ? ($configuration->verbal_fees_tax == "IVA10"?'selected': '') : ''}}>10%</option>
+                    <option value="IVA4" {{ isset($configuration) ? ($configuration->verbal_fees_tax == "IVA4"?'selected': '') : ''}}>4%</option>
+                    <option value="IVA0" {{ isset($configuration) ? ($configuration->verbal_fees_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
                 </x-adminlte-select2>
             </div>
         </div>
@@ -136,10 +136,10 @@
             </div>
             <div class="col-sm-3">
                 <x-adminlte-select2 id="ordinary_amount_tax" name="ordinary_amount_tax" label="% IVA juicios ordinarios" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
-                    <option value="IVA21" selected>21%</option>
-                    <option value="IVA10">10%</option>
-                    <option value="IVA4">4%</option>
-                    <option value="IVA0">Excento</option>
+                    <option value="IVA21" {{ isset($configuration) ? ($configuration->ordinary_amount_tax == "IVA21"?'selected': '') : ''}}>21%</option>
+                    <option value="IVA10" {{ isset($configuration) ? ($configuration->ordinary_amount_tax == "IVA10"?'selected': '') : ''}}>10%</option>
+                    <option value="IVA4" {{ isset($configuration) ? ($configuration->ordinary_amount_tax == "IVA4"?'selected': '') : ''}}>4%</option>
+                    <option value="IVA0" {{ isset($configuration) ? ($configuration->ordinary_amount_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
                 </x-adminlte-select2>
             </div>
             <div class="col-sm-3">
@@ -154,10 +154,10 @@
             </div>
             <div class="col-sm-3">
                 <x-adminlte-select2 id="ordinary_fees_tax" name="ordinary_fees_tax" label="% IVA tasa juicios ordinarios" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
-                    <option value="IVA21">21%</option>
-                    <option value="IVA10">10%</option>
-                    <option value="IVA4">4%</option>
-                    <option value="IVA0" selected>Excento</option>
+                    <option value="IVA21" {{ isset($configuration) ? ($configuration->ordinary_fees_tax == "IVA21"?'selected': '') : ''}}>21%</option>
+                    <option value="IVA10" {{ isset($configuration) ? ($configuration->ordinary_fees_tax == "IVA10"?'selected': '') : ''}}>10%</option>
+                    <option value="IVA4" {{ isset($configuration) ? ($configuration->ordinary_fees_tax == "IVA4"?'selected': '') : ''}}>4%</option>
+                    <option value="IVA0" {{ isset($configuration) ? ($configuration->ordinary_fees_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
                 </x-adminlte-select2>
             </div>
         </div>
@@ -175,10 +175,10 @@
             </div>
             <div class="col-sm-3">
                 <x-adminlte-select2 id="execution_tax" name="execution_tax" label="% IVA Ejecución" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
-                    <option value="IVA21" selected>21%</option>
-                    <option value="IVA10">10%</option>
-                    <option value="IVA4">4%</option>
-                    <option value="IVA0">Excento</option>
+                    <option value="IVA21" {{ isset($configuration) ? ($configuration->execution_tax == "IVA21"?'selected': '') : ''}}>21%</option>
+                    <option value="IVA10" {{ isset($configuration) ? ($configuration->execution_tax == "IVA10"?'selected': '') : ''}}>10%</option>
+                    <option value="IVA4" {{ isset($configuration) ? ($configuration->execution_tax == "IVA4"?'selected': '') : ''}}>4%</option>
+                    <option value="IVA0" {{ isset($configuration) ? ($configuration->execution_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
                 </x-adminlte-select2>
             </div>
             <div class="col-sm-3">
@@ -193,10 +193,10 @@
             </div>
             <div class="col-sm-3">
                 <x-adminlte-select2 id="resource_tax" name="resource_tax" label="% IVA Recurso" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
-                    <option value="IVA21" selected>21%</option>
-                    <option value="IVA10">10%</option>
-                    <option value="IVA4">4%</option>
-                    <option value="IVA0">Excento</option>
+                    <option value="IVA21" {{ isset($configuration) ? ($configuration->resource_tax == "IVA21"?'selected': '') : ''}}>21%</option>
+                    <option value="IVA10" {{ isset($configuration) ? ($configuration->resource_tax == "IVA10"?'selected': '') : ''}}>10%</option>
+                    <option value="IVA4" {{ isset($configuration) ? ($configuration->resource_tax == "IVA4"?'selected': '') : ''}}>4%</option>
+                    <option value="IVA0" {{ isset($configuration) ? ($configuration->resource_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
                 </x-adminlte-select2>
             </div>
 
