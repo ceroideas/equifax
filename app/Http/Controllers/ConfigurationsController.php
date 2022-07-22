@@ -9,6 +9,7 @@ use Carbon\Carbon;*/
 use App\Models\Hito;
 use App\Models\Template;
 
+
 class ConfigurationsController extends Controller
 {
 
@@ -49,6 +50,16 @@ class ConfigurationsController extends Controller
         $configuration->invoice_address_line_1 = array_key_exists('invoice_address_line_1', $data) ? $data['invoice_address_line_1'] : null;
         $configuration->invoice_address_line_2 = array_key_exists('invoice_address_line_2', $data) ? $data['invoice_address_line_2'] : null;
         $configuration->invoice_email = array_key_exists('invoice_email', $data) ? $data['invoice_email'] : null;
+        /*nuevos campos impuestos*/
+        $configuration->fixed_fees_tax = array_key_exists('fixed_fees_tax', $data) ? $data['fixed_fees_tax'] : null;
+        $configuration->judicial_amount_tax = array_key_exists('judicial_amount_tax', $data) ? $data['judicial_amount_tax'] : null;
+        $configuration->judicial_fees_tax = array_key_exists('judicial_fees_tax', $data) ? $data['judicial_fees_tax'] : null;
+        $configuration->verbal_amount_tax = array_key_exists('verbal_amount_tax', $data) ? $data['verbal_amount_tax'] : null;
+        $configuration->verbal_fees_tax = array_key_exists('verbal_fees_tax', $data) ? $data['verbal_fees_tax'] : null;
+        $configuration->ordinary_amount_tax = array_key_exists('ordinary_amount_tax', $data) ? $data['ordinary_amount_tax'] : null;
+        $configuration->ordinary_fees_tax = array_key_exists('ordinary_fees_tax', $data) ? $data['ordinary_fees_tax'] : null;
+        $configuration->execution_tax = array_key_exists('execution_tax', $data) ? $data['execution_tax'] : null;
+        $configuration->resource_tax = array_key_exists('resource_tax', $data) ? $data['resource_tax'] : null;
 
         $configuration->save();
 
@@ -82,6 +93,17 @@ class ConfigurationsController extends Controller
         $configuration->invoice_address_line_1 = array_key_exists('invoice_address_line_1', $data) ? $data['invoice_address_line_1'] : null;
         $configuration->invoice_address_line_2 = array_key_exists('invoice_address_line_2', $data) ? $data['invoice_address_line_2'] : null;
         $configuration->invoice_email = array_key_exists('invoice_email', $data) ? $data['invoice_email'] : null;
+        /*nuevos campos impuestos*/
+        $configuration->fixed_fees_tax = array_key_exists('fixed_fees_tax', $data) ? $data['fixed_fees_tax'] : null;
+        $configuration->judicial_amount_tax = array_key_exists('judicial_amount_tax', $data) ? $data['judicial_amount_tax'] : null;
+        $configuration->judicial_fees_tax = array_key_exists('judicial_fees_tax', $data) ? $data['judicial_fees_tax'] : null;
+        $configuration->verbal_amount_tax = array_key_exists('verbal_amount_tax', $data) ? $data['verbal_amount_tax'] : null;
+        $configuration->verbal_fees_tax = array_key_exists('verbal_fees_tax', $data) ? $data['verbal_fees_tax'] : null;
+        $configuration->ordinary_amount_tax = array_key_exists('ordinary_amount_tax', $data) ? $data['ordinary_amount_tax'] : null;
+        $configuration->ordinary_fees_tax = array_key_exists('ordinary_fees_tax', $data) ? $data['ordinary_fees_tax'] : null;
+        $configuration->execution_tax = array_key_exists('execution_tax', $data) ? $data['execution_tax'] : null;
+        $configuration->resource_tax = array_key_exists('resource_tax', $data) ? $data['resource_tax'] : null;
+
 
         $configuration->update();
 
@@ -113,6 +135,16 @@ class ConfigurationsController extends Controller
         if(request('invoice_address_line_1')){$rules['invoice_address_line_1'] = 'required';}
         if(request('invoice_address_line_2')){$rules['invoice_address_line_2'] = 'required';}
         if(request('invoice_email')){$rules['invoice_email'] = 'required';}
+        if(request('fixed_fees_tax')){$rules['fixed_fees_tax'] = 'required';}
+        if(request('judicial_amount_tax')){$rules['judicial_amount_tax'] = 'required';}
+        if(request('judicial_fees_tax')){$rules['judicial_fees_tax'] = 'required';}
+        if(request('verbal_amount_tax')){$rules['verbal_amount_tax'] = 'required';}
+        if(request('verbal_fees_tax')){$rules['verbal_fees_tax'] = 'required';}
+        if(request('ordinary_amount_tax')){$rules['ordinary_amount_tax'] = 'required';}
+        if(request('ordinary_fees_tax')){$rules['ordinary_fees_tax'] = 'required';}
+        if(request('execution_tax')){$rules['execution_tax'] = 'required';}
+        if(request('resource_tax')){$rules['resource_tax'] = 'required';}
+
 
         return request()->validate($rules);
 
@@ -197,7 +229,7 @@ class ConfigurationsController extends Controller
     {
         $t = Template::find($id);
         $t->title = $r->title;
-        
+
         if ($r->top_logo) {
             $top_logo = $r->file('top_logo')->store('uploads/templates', 'public');
             $t->top_logo = $top_logo;
