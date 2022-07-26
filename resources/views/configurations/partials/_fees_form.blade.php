@@ -24,8 +24,34 @@
         @endif
 
         <div class="row">
+            <h4>Reclamación Extrajudicial</h4>
+        </div>
+        <div class="row">
             <div class="col-sm-6">
-                <x-adminlte-input name="fixed_fees" label="Importe Reclamación Amistosa" placeholder="Reclamación Amistosa" type="text"
+                <x-adminlte-input name="extra_code" label="Código Reclamación Extrajudicial" placeholder="Código Reclamación Extrajudicial" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->extra_code : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="extra_concept" label="Concepto Reclamación Extrajudicial" placeholder="Concepto Reclamación Extrajudicial" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->extra_concept : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="fixed_fees" label="Importe Reclamación Extrajudicial" placeholder="Reclamación Extrajudicial" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->fixed_fees : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -36,7 +62,7 @@
             </div>
 
             <div class="col-sm-6">
-                <x-adminlte-select2 id="fixed_fees_tax" name="fixed_fees_tax" label="% IVA reclamación amistosa" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
+                <x-adminlte-select2 id="fixed_fees_tax" name="fixed_fees_tax" label="% IVA reclamación extrajudicial" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
                     <option value="IVA21" {{ isset($configuration) ? ($configuration->fixed_fees_tax == "IVA21"?'selected': '') : ''}}>21%</option>
                     <option value="IVA10" {{ isset($configuration) ? ($configuration->fixed_fees_tax == "IVA10"?'selected': '') : ''}}>10%</option>
                     <option value="IVA4" {{ isset($configuration) ? ($configuration->fixed_fees_tax == "IVA4"?'selected': '') : ''}}>4%</option>
@@ -45,6 +71,53 @@
             </div>
         </div>
         <hr>
+        <div class="row">
+            <h4>Procedimiento monitorio</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="judicial_amount_code" label="Código Procedimiento monitorio" placeholder="Código Procedimiento monitorio" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->judicial_amount_code : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="judicial_amount_concept" label="Concepto Procedimiento monitorio" placeholder="Concepto Procedimiento monitorio" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->judicial_amount_concept : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="judicial_fees_code" label="Código tasas Procedimiento monitorio" placeholder="Código tasas Procedimiento monitorio" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->judicial_fees_code : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="judicial_fees_concept" label="Concepto tasas Procedimiento monitorio" placeholder="Concepto tasas Procedimiento monitorio" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->judicial_fees_concept : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-3">
                 <x-adminlte-input name="judicial_amount" label="Importe Procedimiento Montorio " placeholder="Procedimiento Montorio" type="text"
@@ -85,6 +158,55 @@
         </div>
         <hr>
         <div class="row">
+            <h4>Jucios verbales</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="verbal_amount_code" label="Código Jucios verbales" placeholder="Código Jucios verbales" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_amount_code : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="verbal_amount_concept" label="Concepto Jucios verbales" placeholder="Concepto Jucios verbales" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_amount_concept : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="verbal_fees_code" label="Código tasas Jucios verbales" placeholder="Código tasas Jucios verbales" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_fees_code : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="verbal_fees_concept" label="Concepto tasas Jucios verbales" placeholder="Concepto tasas Jucios verbales" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_fees_concept : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-sm-3">
                 <x-adminlte-input name="verbal_amount" label="Importe Juicios Verbales " placeholder="Juicios Verbales" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_amount : ''}}">
@@ -123,6 +245,54 @@
             </div>
         </div>
         <hr>
+        <div class="row">
+            <h4>Jucios ordinarios</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="ordinary_amount_code" label="Código Jucios ordinarios" placeholder="Código Jucios ordinarios" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->ordinary_amount_code : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="ordinary_amount_concept" label="Concepto Jucios ordinarios" placeholder="Concepto Jucios ordinarios" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->ordinary_amount_concept : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="ordinay_fees_code" label="Código tasas Jucios ordinarios" placeholder="Código tasas Jucios ordinarios" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->ordinay_fees_code : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="ordinary_fees_concept" label="Concepto tasas Jucios ordinarios" placeholder="Concepto tasas Jucios ordinarios" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->ordinary_fees_concept : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-3">
                 <x-adminlte-input name="ordinary_amount" label="Importe Juicios Ordinarios " placeholder="Juicios Ordinarios" type="text"
@@ -163,6 +333,53 @@
         </div>
         <hr>
         <div class="row">
+            <h4>Ejecución</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="execution_code" label="Código Ejecución" placeholder="Código Ejecución" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->execution_code : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="excecution_concept" label="Concepto Ejecución" placeholder="Concepto Ejecución" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->excecution_concept : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="resource_code" label="Código Recurso" placeholder="Código Recurso" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->resource_code : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="resource_concept" label="Concepto Recurso" placeholder="Concepto Recurso" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->resource_concept : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-3">
                 <x-adminlte-input name="execution" label="Importe Ejecución " placeholder="Importe Ejecución" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->execution : ''}}">
@@ -202,6 +419,9 @@
 
         </div>
         <hr>
+        <div class="row">
+            <h4>Configuración facturas</h4>
+        </div>
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="tax" label="Porcentaje general de IVA" placeholder="% IVA" type="text"
