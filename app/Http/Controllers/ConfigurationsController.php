@@ -60,6 +60,25 @@ class ConfigurationsController extends Controller
         $configuration->ordinary_fees_tax = array_key_exists('ordinary_fees_tax', $data) ? $data['ordinary_fees_tax'] : null;
         $configuration->execution_tax = array_key_exists('execution_tax', $data) ? $data['execution_tax'] : null;
         $configuration->resource_tax = array_key_exists('resource_tax', $data) ? $data['resource_tax'] : null;
+        /* Campos conceptos y code */
+        $configuration->extra_code = array_key_exists('extra_code', $data) ? $data['extra_code'] : null;
+        $configuration->extra_concept = array_key_exists('extra_concept', $data) ? $data['extra_concept'] : null;
+        $configuration->judicial_amount_code = array_key_exists('judicial_amount_code', $data) ? $data['judicial_amount_code'] : null;
+        $configuration->judicial_amount_concept = array_key_exists('judicial_amount_concept', $data) ? $data['judicial_amount_concept'] : null;
+        $configuration->judicial_fees_code = array_key_exists('judicial_fees_code', $data) ? $data['judicial_fees_code'] : null;
+        $configuration->judicial_fees_concept = array_key_exists('judicial_fees_concept', $data) ? $data['judicial_fees_concept'] : null;
+        $configuration->verbal_amount_code = array_key_exists('verbal_amount_code', $data) ? $data['verbal_amount_code'] : null;
+        $configuration->verbal_amount_concept = array_key_exists('verbal_amount_concept', $data) ? $data['verbal_amount_concept'] : null;
+        $configuration->verbal_fees_code = array_key_exists('verbal_fees_code', $data) ? $data['verbal_fees_code'] : null;
+        $configuration->verbal_fees_concept = array_key_exists('verbal_fees_concept', $data) ? $data['verbal_fees_concept'] : null;
+        $configuration->ordinary_amount_code = array_key_exists('ordinary_amount_code', $data) ? $data['ordinary_amount_code'] : null;
+        $configuration->ordinary_amount_concept = array_key_exists('ordinary_amount_concept', $data) ? $data['ordinary_amount_concept'] : null;
+        $configuration->ordinay_fees_code = array_key_exists('ordinay_fees_code', $data) ? $data['ordinay_fees_code'] : null;
+        $configuration->ordinary_fees_concept = array_key_exists('ordinary_fees_concept', $data) ? $data['ordinary_fees_concept'] : null;
+        $configuration->execution_code = array_key_exists('execution_code', $data) ? $data['execution_code'] : null;
+        $configuration->excecution_concept = array_key_exists('excecution_concept', $data) ? $data['excecution_concept'] : null;
+        $configuration->resource_code = array_key_exists('resource_code', $data) ? $data['resource_code'] : null;
+        $configuration->resource_concept = array_key_exists('resource_concept', $data) ? $data['resource_concept'] : null;
 
         $configuration->save();
 
@@ -70,7 +89,8 @@ class ConfigurationsController extends Controller
     public function feesUpdate(Request $request, Configuration $configuration){
 
         $this->authorize('see-fees');
-
+            dump($configuration);
+            //die();
         $data = $this->validateFees();
 
         $configuration->fixed_fees = array_key_exists('fixed_fees', $data) ? $data['fixed_fees'] : null;
@@ -103,7 +123,7 @@ class ConfigurationsController extends Controller
         $configuration->ordinary_fees_tax = array_key_exists('ordinary_fees_tax', $data) ? $data['ordinary_fees_tax'] : null;
         $configuration->execution_tax = array_key_exists('execution_tax', $data) ? $data['execution_tax'] : null;
         $configuration->resource_tax = array_key_exists('resource_tax', $data) ? $data['resource_tax'] : null;
-        /* Campos conceptos y code */
+        /* Campos conceptos y code*/
         $configuration->extra_code = array_key_exists('extra_code', $data) ? $data['extra_code'] : null;
         $configuration->extra_concept = array_key_exists('extra_concept', $data) ? $data['extra_concept'] : null;
         $configuration->judicial_amount_code = array_key_exists('judicial_amount_code', $data) ? $data['judicial_amount_code'] : null;
@@ -166,7 +186,7 @@ class ConfigurationsController extends Controller
         if(request('extra_code')){$rules['extra_code'] = 'required';}
         if(request('extra_concept')){$rules['extra_concept'] = 'required';}
         if(request('judicial_amount_code')){$rules['judicial_amount_code'] = 'required';}
-        if(request('judicial_amount_concept')){$rules['resourjudicial_amount_concepte_tax'] = 'required';}
+        if(request('judicial_amount_concept')){$rules['judicial_amount_concept'] = 'required';}
         if(request('judicial_fees_code')){$rules['judicial_fees_code'] = 'required';}
         if(request('judicial_fees_concept')){$rules['judicial_fees_concept'] = 'required';}
         if(request('verbal_amount_code')){$rules['verbal_amount_code'] = 'required';}
