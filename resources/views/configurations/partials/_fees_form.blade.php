@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="extra_code" label="Código Reclamación Extrajudicial" placeholder="Código Reclamación Extrajudicial" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->extra_code : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->extra_code : ''}}" disabled>
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -77,7 +77,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="judicial_amount_code" label="Código Procedimiento monitorio" placeholder="Código Procedimiento monitorio" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->judicial_amount_code : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->judicial_amount_code : ''}}" disabled>
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -99,7 +99,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="judicial_fees_code" label="Código tasas Procedimiento monitorio" placeholder="Código tasas Procedimiento monitorio" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->judicial_fees_code : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->judicial_fees_code : ''}}" disabled>
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -163,7 +163,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="verbal_amount_code" label="Código Jucios verbales" placeholder="Código Jucios verbales" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_amount_code : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_amount_code : ''}}" disabled>
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -186,7 +186,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="verbal_fees_code" label="Código tasas Jucios verbales" placeholder="Código tasas Jucios verbales" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_fees_code : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->verbal_fees_code : ''}}" disabled>
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -251,7 +251,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="ordinary_amount_code" label="Código Jucios ordinarios" placeholder="Código Jucios ordinarios" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->ordinary_amount_code : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->ordinary_amount_code : ''}}" disabled>
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -274,7 +274,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="ordinay_fees_code" label="Código tasas Jucios ordinarios" placeholder="Código tasas Jucios ordinarios" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->ordinay_fees_code : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->ordinay_fees_code : ''}}" disabled>
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -338,7 +338,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="execution_code" label="Código Ejecución" placeholder="Código Ejecución" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->execution_code : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->execution_code : ''}}" disabled>
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -360,7 +360,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="resource_code" label="Código Recurso" placeholder="Código Recurso" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->resource_code : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->resource_code : ''}}" disabled>
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>

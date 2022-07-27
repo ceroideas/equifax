@@ -89,8 +89,7 @@ class ConfigurationsController extends Controller
     public function feesUpdate(Request $request, Configuration $configuration){
 
         $this->authorize('see-fees');
-            dump($configuration);
-            //die();
+
         $data = $this->validateFees();
 
         $configuration->fixed_fees = array_key_exists('fixed_fees', $data) ? $data['fixed_fees'] : null;
