@@ -59,6 +59,7 @@ class DebtorsController extends Controller
         $debtor->phone = $data['tlf'];
         $debtor->address = $data['address'];
         $debtor->location = $data['location'];
+        $debtor->province = $data['province'];
         $debtor->cop = $data['cop'];
         $debtor->additional = $data['additional'];
         $debtor->type = $data['type'];
@@ -119,6 +120,7 @@ class DebtorsController extends Controller
         $debtor->phone = $data['tlf'];
         $debtor->address = $data['address'];
         $debtor->location = $data['location'];
+        $debtor->province = $data['province'];
         $debtor->cop = $data['cop'];
         $debtor->additional = $data['additional'];
         $debtor->type = $data['type'];
@@ -154,6 +156,7 @@ class DebtorsController extends Controller
             'tlf' => 'required|min:9|max:14',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
+            'province' => 'required',
             'cop' => 'required',
             'additional' => '',
         ];
