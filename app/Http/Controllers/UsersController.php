@@ -115,6 +115,7 @@ class UsersController extends Controller
             'phone' => $request->tlf,
             'address' => $request->address,
             'location' => $request->location,
+            'province' => $request->province,
             'cop' => $request->cop,
             'iban' => $request->iban,
             'role' => $request->role,
@@ -194,6 +195,7 @@ class UsersController extends Controller
             'phone' => $request->tlf,
             'address' => $request->address,
             'location' => $request->location,
+            'province' => $request->province,
             'cop' => $request->cop,
             'iban' => $request->iban,
             'password' => $password,
@@ -271,6 +273,7 @@ class UsersController extends Controller
             'tlf' => 'required|min:9|max:14',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
+            'province' => 'required',
             'cop' => 'required|numeric',
 
         ];

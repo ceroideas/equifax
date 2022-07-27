@@ -137,8 +137,8 @@
                             </div>
                         </x-slot>
                 </x-adminlte-input>
-                <x-adminlte-input name="cop" label="Código Postal" placeholder="Código Postal" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->cop   :  ''}}">
+                <x-adminlte-input name="province" label="Provincia" placeholder="Provincia" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->province   :  ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-map-marker"></i>
@@ -167,6 +167,14 @@
                         </div>
                     </x-slot>
             </x-adminlte-input> -->
+            <x-adminlte-input name="cop" label="Código Postal" placeholder="Código Postal" type="text"
+            igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->cop   :  ''}}">
+                <x-slot name="appendSlot">
+                    <div class="input-group-text bg-dark">
+                        <i class="fas fa-map-marker"></i>
+                    </div>
+                </x-slot>
+            </x-adminlte-input>
             </div>
         </div>
         <div class="row hide-natural d-none">

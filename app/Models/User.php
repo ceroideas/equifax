@@ -26,6 +26,7 @@ class User extends Authenticatable
         'phone',
         'address',
         'location',
+        'province',
         'cop',
         'iban',
         'dni_img',

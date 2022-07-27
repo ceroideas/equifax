@@ -91,10 +91,12 @@
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Población: </strong>
                                 <p class="text-muted text-uppercase">{{ $user->location }}</p>
                             </div>
+
                             <div class="col-sm-3">
-                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Código Postal: </strong>
-                                <p class="text-muted text-uppercase">{{ $user->cop }}</p>
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Provincia: </strong>
+                                <p class="text-muted text-uppercase">{{ $user->province }}</p>
                             </div>
+
                         </div>
                         <hr>
                         <div class="row">
@@ -105,8 +107,12 @@
                                     {{ $user->email }}
                                 </p>
                             </div>
+                            <div class="col-sm-3">
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Código Postal: </strong>
+                                <p class="text-muted text-uppercase">{{ $user->cop }}</p>
+                            </div>
                             @if($user->iban)
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
 
                                 <strong><i class="fas fa-university mr-1"></i>Nro de Cuenta</strong>
                                 <p class="text-muted text-uppercase">
