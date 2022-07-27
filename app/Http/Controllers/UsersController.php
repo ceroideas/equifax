@@ -123,6 +123,7 @@ class UsersController extends Controller
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
+            'discount'=> $request->discount,
         ]);
 
         $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
@@ -202,6 +203,7 @@ class UsersController extends Controller
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
+            'discount'=> $request->discount,
 
         ]);
         if($request->file('dni_img')){

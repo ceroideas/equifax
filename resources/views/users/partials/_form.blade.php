@@ -250,6 +250,16 @@
                         </x-slot>
                     </x-adminlte-select>
                 </div>
+                <div class="col-sm-6">
+                    <x-adminlte-input name="discount" label="Porcentaje de descuento" placeholder="Porcentaje de descuento" min="0" max="100" step="0.01" type="number"
+                    igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->discount   :  ''}}">
+                        <x-slot name="appendSlot">
+                            <div class="input-group-text bg-dark">
+                                <i class="fas fa-map-marker"></i>
+                            </div>
+                        </x-slot>
+                    </x-adminlte-input>
+                </div>
             </div>
         @endcan
         <div class="card-footer">

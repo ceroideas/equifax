@@ -34,6 +34,7 @@ class User extends Authenticatable
         'legal_representative',
         'representative_dni',
         'taxcode',
+        'discount',
     ];
 
     /**
