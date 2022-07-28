@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('deslin')->nullable();
             $table->integer('canlin')->nullable();
             $table->string('dtolin')->nullable();
-            $table->integer('ivalin')->nullable();
+            $table->string('ivalin')->nullable();
             $table->string('prelin')->nullable();
             $table->string('totlin')->nullable();
             $table->timestamps();
