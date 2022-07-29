@@ -278,35 +278,76 @@ class ClaimsController extends Controller
             fixed_fees_tax: impuestos
             fixed_fees = importe */
 
-            /* Iva cliente*/
-            if(Auth::user()->taxcode =='IVA0'){
+            /* Iva cliente si es excento Prioriza el iva del cliente*/
+
             /* Grabamos las lineas siguiendo el criterio del iva del cliente */
                 $linvoice = new Linvoice;
                 $linvoice->invoice_id = $claim->id;
                 $linvoice->poslin = 1;
-                $linvoice->artlin = $c->extra_code;
+                $linvoice->artlin = $c->extra_code?$c->extra_code:'nulo';
                 $linvoice->deslin = $c->extra_concept;
                 $linvoice->canlin = 1;
-                $linvoice->ivalin = 'IVA0';
+
+                $linvoice->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
+
                 $linvoice->prelin = $c->fixed_fees;
                 $linvoice->totlin = $linvoice->canlin * $linvoice->prelin;// CALCULADO cantidad, precio
                 $linvoice->save();
 
                 /* Acumulamos en cabeceras */
                 /* todos los importes van en neto4 al ser cliente sin IVA */
-                $invoice->net4fac = $linvoice->totlin;
-                $invoice->pdto4fac = Auth::user()->discount;
-                $invoice->idto4fac = round(($invoice->pdto4fac*100),2);// Calcular descuento
-                $invoice->bas4fac = round(($invoice->net4fac - $invoice->idto4fac),2);
+                if(Auth::user()->taxcode =='IVA0'){
 
-                /* Totalizamos*/
-                $invoice->totfac = $invoice->bas4fac; // no lleva impuestos por lo que es igual que la base
-                $invoice->save();
-            }else{
-                    // comprobar el impuesto del concepto
-                    if($c->fixed_fees_tax == 'IVA21'){
+                    $invoice->net4fac = $linvoice->totlin;
+                    $invoice->pdto4fac = Auth::user()->discount;
+                    $invoice->idto4fac = round(($invoice->pdto4fac*100),2);// Calcular descuento
+                    $invoice->bas4fac = round(($invoice->net4fac - $invoice->idto4fac),2);
+
+                    /* Totalizamos*/
+                    $invoice->totfac = $invoice->bas4fac; // no lleva impuestos por lo que es igual que la base
+                    $invoice->save();
+                }else{
+                    /* Cliente al 21*/
+                    /*Comprobamos iva del concepto*/
+                    if($c->fixed_fees_tax =='IVA0'){
+                        $invoice->net4fac = $linvoice->totlin;
+                        $invoice->pdto4fac = Auth::user()->discount;
+                        $invoice->idto4fac = round(($invoice->pdto4fac*100),2);// Calcular descuento
+                        $invoice->bas4fac = round(($invoice->net4fac - $invoice->idto4fac),2);
+
+                        /* porcentajes de iva  Cliente iva*/
+                        $invoice->piva1fac = '21';
+                        $invoice->piva2fac = '10';
+                        $invoice->piva3fac = '4';
+
+                        /* Totalizamos*/
+                        $invoice->totfac = $invoice->bas4fac; // no lleva impuestos por lo que es igual que la base
+                        $invoice->save();
+                    }else{
+
+                        $invoice->net1fac = $linvoice->totlin;
+                        $invoice->pdto1fac = Auth::user()->discount;
+                        $invoice->idto1fac = round(($invoice->pdto1fac*100),2);// Calcular descuento
+                        $invoice->bas1fac = round(($invoice->net1fac - $invoice->idto1fac),2);
+
+                        /* porcentajes de iva  Cliente iva*/
+                        $invoice->piva1fac = '21';
+                        $invoice->piva2fac = '10';
+                        $invoice->piva3fac = '4';
+
+                        /* Calcular importe iva*/
+                        $invoice->iiva1fac = round($invoice->bas1fac*($invoice->piva1fac / 100 ),2);
+
+                        /* Totalizamos*/
+                        $invoice->totfac =  round($invoice->bas1fac+$invoice->iiva1fac,2);
+                        $invoice->save();
 
                     }
+
+                }
+
+
+
 
                             /*$invoice->net1fac = $c->fixed_fees;
                         $invoice->net2fac = 0;
@@ -336,13 +377,11 @@ class ClaimsController extends Controller
                         $invoice->iiva2fac
                         $invoice->iiva3fac
 
-                        $invoice->totfac*/
+                        $invoice->totfac
 
+                        $invoice->save();*/
 
-
-                        $invoice->save();
-
-                        /* Generar lineas de factura */
+                        /* Generar lineas de factura  old version
                         $linvoice = new Linvoice;
                         $linvoice->invoice_id = $claim->id;
                         $linvoice->poslin = 1;
@@ -355,11 +394,6 @@ class ClaimsController extends Controller
                         $linvoice->save();
 
                     /*Fin generacion de factura */
-
-                 }
-
-
-
 
         }else{
             /* Mostrar mensaje de error falta configuracion id=1*/

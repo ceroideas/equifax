@@ -14,7 +14,7 @@
 	        <th style="width: 170px;"> <strong>Fecha:</strong></th>
 	        <th style="width: 170px;"> <strong>Reclamación Nº:</strong></th>
             <th style="width: 170px;"></th>
-	        <th style="width: 170px;"> <strong></strong></th>
+	        <th style="width: 170px;"></th>
 	        <th style="width: 170px;"> <strong>Factura Nº:</strong></th>
 	      </tr>
           <tr>
@@ -22,30 +22,30 @@
 	        <th>{{$i->claim->id}}</th>
             <th></th>
 	        <th></th>
-	        <th>{{$i->id}}</th>
+	        <th>DVD-{{$i->id}}</th>
 	      </tr>
 	  </table>
 
 	  <table>
 	      <tr>
-            <td colspan="2"><strong>Pagado a:</strong></td>
-            <td colspan="3" style="text-align: right;"><strong>Facturado a:</strong></td>
+            <td colspan="3" ><strong>Facturado a:</strong></td>
+            <td colspan="2" style="text-align: right;"><strong>Pagado a:</strong></td>
           </tr>
 		  <tr>
-            <td colspan="2">{{ $c->invoice_name }}</td>
-            <td colspan="3" style="text-align: right;">{{$i->cnofac}} </td>
+            <td colspan="3" >{{$i->cnofac}} </td>
+            <td colspan="2" style="text-align: right;">{{ $c->invoice_name }}</td>
         </tr>
 		  <tr>
-            <td colspan="2">{{ $c->invoice_address_line_1 }}</td>
-            <td colspan="3" style="text-align: right;">{{$i->cdofac}}, {{$i->cpofac}}, {{$i->cprfac}} </td>
+            <td colspan="3" >{{$i->cdofac}}, {{$i->cpofac}}, {{$i->cprfac}} </td>
+            <td colspan="2" style="text-align: right;">{{ $c->invoice_address_line_1 }}</td>
         </tr>
 		  <tr>
-            <td colspan="2">{{ $c->invoice_address_line_2 }}</td>
-            <td colspan="3" style="text-align: right;">{{$i->cnifac}} </td>
+            <td colspan="3" >{{$i->cnifac}} </td>
+            <td colspan="2" style="text-align: right;">{{ $c->invoice_address_line_2 }}</td>
         </tr>
 		  <tr>
-            <td colspan="2">{{ $c->invoice_email }}</td>
-            <td colspan="3" style="text-align: right;">{{$i->claim->owner->email}}</td>
+            <td colspan="3" >{{$i->claim->owner->email}}</td>
+            <td colspan="2" style="text-align: right;">{{ $c->invoice_email }}</td>
         </tr>
 
 	  </table>
