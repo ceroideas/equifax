@@ -255,6 +255,7 @@ class ClaimsController extends Controller
 
         if(isset($c)){
             $invoice = new Invoice;
+            $invoice->id = $claim->id;
             $invoice->claim_id = $claim->id;
             $invoice->user_id = $claim->user_id;
             $invoice->amount = $c->fixed_fees;
@@ -878,10 +879,11 @@ class ClaimsController extends Controller
     }
     public function myInvoice($id)
     {
+
         $i = Invoice::find($id);
         $c = Configuration::first();
-
-        return view('invoice', compact('c','i'));
+        $lines = Linvoice::where('invoice_id',$id)->get();
+        return view('invoice', compact('c','i','lines'));
     }
 
     public function actuations($id)

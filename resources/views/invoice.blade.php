@@ -25,12 +25,12 @@
 	    <div class="col-sm-3"><strong>Fecha: <br></strong> {{ $i->created_at->format('d/m/Y') }}</div>
 	    <div class="col-sm-3"> <strong>Reclamación Nº: <br></strong> {{$i->claim->id}}</div>
 	    <div class="col-sm-3"> <strong>Referencia Nº: <br></strong> {{$i->id}}</div>
-	    <div class="col-sm-3 text-sm-right"> <strong>Factura Nº: <br></strong> DV{{$i->id}}</div>
+	    <div class="col-sm-3 text-sm-right"> <strong>Factura Nº: <br></strong> DVD-{{$i->id}}</div>
 
 	  </div>
 	  <hr>
 	  <div class="row">
-	    <div class="col-sm-6 text-sm-right order-sm-1"> <strong>Pagado a:</strong>
+	    <div class="col-sm-6 text-sm-right order-sm-1"> <strong>Pagado a: </strong>
 	      <address>
 	      {{ $c->invoice_name }}<br>
 	      {{ $c->invoice_address_line_1 }}<br>
@@ -40,15 +40,11 @@
 	    </div>
 	    <div class="col-sm-6 order-sm-0"> <strong>Facturado a:</strong>
 	      <address>
-		  {{$i->claim->owner->name}} <br>
-		  {{$i->claim->owner->address}}, {{$i->claim->owner->location}} <br>
-		  {{$i->claim->owner->dni}} <br>
+		  {{$i->cnofac}} <br>
+		  {{$i->cdofac}}, {{$i->cpofac}}, {{$i->cprfac}} <br>
+		  {{$i->cnifac}} <br>
 		  {{$i->claim->owner->email}} <br>
 
-	      {{-- Smith Rhodes<br>
-	      15 Hodges Mews, High Wycombe<br>
-	      HP12 3JL<br>
-	      United Kingdom --}}
 	      </address>
 	    </div>
 	  </div>
@@ -60,36 +56,83 @@
 			<thead class="card-header">
 	          <tr>
 	            {{-- <td class="col-3 w-auto border-0" style="width: 100px !important"><strong>Servicio</strong></td> --}}
-				<td colspan="2" class="col-10 w-auto border-0"><strong>Descripción</strong></td>
-				<td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Cantidad</strong></td>
+				<td colspan="2" class="col-5 w-auto border-0"><strong>Descripción</strong></td>
+				<td class="col-1 w-auto text-center border-0" style="width: 100px !important"><strong>Cantidad</strong></td>
+                <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Precio</strong></td>
+                <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>IVA</strong></td>
+                <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Total</strong></td>
 	          </tr>
 	        </thead>
-	          <tbody>
-				<tr>
-	              {{-- <td class="col-3 w-auto border-0">Camión completo</td> --}}
-	              <td colspan="2" class="col-10 w-auto text-1 border-0">
-	              	{{$i->description}}
-	              </td>
-	              <td class="col-2 w-auto text-center border-0">1</td>
-	            </tr>
-	          </tbody>
-			  <tfoot class="card-footer">
-			  	@php
-			  		$tax = ($i->amount * 100)/(100 + $c->tax);
-			  	@endphp
-				<tr>
-	              <td colspan="2" class="text-right"><strong>Sub Total:</strong></td>
-	              <td class="text-right">{{ number_format($tax ,2,',','.')}} €</td>
-	            </tr>
-	            <tr>
-	              <td colspan="2" class="text-right"><strong>IVA ({{$c->tax}}%):</strong></td>
-	              <td class="text-right">{{number_format(($i->amount - $tax) ,2,',','.')}} €</td>
-	            </tr>
-				<tr>
-	              <td colspan="2" class="text-right"><strong>Total:</strong></td>
-	              <td class="text-right">{{ number_format($i->amount ,2,',','.') }} €</td>
-	            </tr>
-			  </tfoot>
+	            <tbody>
+
+                    @foreach ($lines as $value)
+                        <tr>
+                            <td colspan="2" class="col-5 w-auto text-1 border-0">
+                            {{$value['deslin']}}
+                            </td>
+                            <td class="col-1 w-auto text-center border-0">{{$value['canlin']}}</td>
+                            <td class="col-2 w-auto text-center border-0">{{number_format($value['prelin'],2,',','.')}}</td>
+                            @if ($value['ivalin']=='IVA0')
+                            <td class="col-2 w-auto text-center border-0">0%</td>
+                            @elseif($value['ivalin']=='IVA10')
+                            <td class="col-2 w-auto text-center border-0">10%</td>
+                            @elseif($value['ivalin']=='IVA4')
+                            <td class="col-2 w-auto text-center border-0">4%</td>
+                            @else
+                            <td class="col-2 w-auto text-center border-0">21%</td>
+                            @endif
+                            <td class="col-2 w-auto text-center border-0">{{number_format($value['totlin'],2,',','.')}}</td>
+                        </tr>
+                    @endforeach
+	            </tbody>
+
+                <tfoot class="card-footer">
+                    <tr>
+                        <td colspan="2" class="col-5 w-auto border-0"><strong></strong></td>
+                        <td class="col-1 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Subtotal:</strong></td>
+                        {{-- Sumatorio de Bases --}}
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>
+                            {{number_format($i->bas1fac+$i->bas2fac+$i->bas3fac+$i->bas4fac,2,',','.')}}
+                        </strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="col-5 w-auto border-0"><strong></strong></td>
+                        <td class="col-1 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>IVA:</strong></td>{{-- Sumatoria de ivas --}}
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>
+                            {{number_format($i->iiva1fac+$i->iiva2fac+$i->iiva3fac,2,',','.')}}
+                        </strong></td>
+                      </tr>
+                      <tr>
+                        <td colspan="2" class="col-5 w-auto border-0"><strong></strong></td>
+                        <td class="col-1 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Total:</strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>{{number_format($i->totfac,2,',','.')}}</strong></td>
+                      </tr>
+                  </tfoot>
+
+{{--                <tfoot class="card-footer">
+                    @php
+                        $tax = ($i->amount * 100)/(100 + $c->tax);
+                    @endphp
+                    <tr>
+                    <td colspan="2" class="text-right"><strong>Sub Total:</strong></td>
+                    <td class="text-right">{{ number_format($tax ,2,',','.')}} €</td>
+                    </tr>
+                    <tr>
+                    <td colspan="2" class="text-right"><strong>IVA ({{$c->tax}}%):</strong></td>
+                    <td class="text-right">{{number_format(($i->amount - $tax) ,2,',','.')}} €</td>
+                    </tr>
+                    <tr>
+                    <td colspan="2" class="text-right"><strong>Total:</strong></td>
+                    <td class="text-right">{{ number_format($i->amount ,2,',','.') }} €</td>
+                    </tr>
+			    </tfoot>
+--}}
 	        </table>
 	      </div>
 	    </div>
