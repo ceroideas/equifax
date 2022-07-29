@@ -260,7 +260,7 @@ class ClaimsController extends Controller
             $invoice->user_id = $claim->user_id;
             $invoice->amount = $c->fixed_fees;
             $invoice->type = 'fixed_fees';
-            $invoice->description = "Pago de la tarifa procedimiento Extrajudicial";
+            $invoice->description = $c->extra_concept;
             /* Traemos los datos del cliente */
             $invoice->cnofac = Auth::user()->name;
             $invoice->cdofac = Auth::user()->address;
