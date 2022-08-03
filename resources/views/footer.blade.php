@@ -325,10 +325,10 @@
                         class="img-fluid"></div>
                 <!---->
                 <div data-v-e8aafb5e="" class="modal-text-info text-center">
-                    Su reclamación es viable <a data-v-e8aafb5e=""><img data-v-e8aafb5e=""
+                    Tu reclamación es viable <a data-v-e8aafb5e=""><img data-v-e8aafb5e=""
                             src="{{ url('landing/assets/icons-info-line.png') }}" class="img-fluid"></a></div>
                 <div data-v-e8aafb5e="" class="modal-text text-center">
-                    ¡Registre su reclamación para que nuestros abogados comiencen a trabajar!
+                    ¡Registra tu reclamación para que nuestros abogados comiencen a trabajar!
                 </div>
             </div>
 
