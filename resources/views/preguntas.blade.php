@@ -4943,7 +4943,7 @@ a.more-link[data-v-167ae8c1] {
 
 									    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 									      <div class="card-body">
-									        <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de facturas impagadas de forma sencilla, exitosa y transparente. Uno de nuestros objetivos es el de democratizar este sector de una manera transparente y aportando valor.
+									        <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de facturas impagadas de forma sencilla, exitosa y transparente. Uno de nuestros objetivos es el de revolucionar este sector de una manera transparente y aportando valor.
 									      </div>
 									    </div>
 									  </div>
