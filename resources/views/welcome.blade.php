@@ -337,7 +337,7 @@
                                                 {{-- </div> --}}
                                                 <div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
                                                     <p>
-                                                        En <b>Dividae</b>, queremos democratizar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital de una manera
+                                                        En <b>Dividae</b>, queremos revolucionar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital de una manera
                                                         <b>automatizada</b> y <b>transparente</b>.
                                                     </p>
                                                     <p>
@@ -890,7 +890,7 @@
                                                 <div data-v-1cb0bef4=""
                                                     class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides">
                                                     Ahora que conozco <b>Dividae</b>, nunca más dejaré pasar una factura
-                                                    impagada por muy bajo que sea el importe. Repetiré.
+                                                    impagada. Repetiré.
                                                 </div>
                                             </div> <br>
                                             <div data-v-1cb0bef4="" class="row block-slide-2">

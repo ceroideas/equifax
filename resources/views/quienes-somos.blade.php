@@ -279,7 +279,7 @@
                                         líder en el sector de la recuperación de deuda en España, que, a través de la aplicación de una tecnología avanzada, permite ofrecer a sus clientes elevados niveles de <b>eficiencia</b> y <b>calidad</b> en todos sus servicios.
 
                                     <p>Gracias al conocimiento del sector, su equipo de profesionales y su firme apuesta tecnológica, en el año 2021 nace
-                                        <b>Dividae</b> para democratizar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital.</p>
+                                        <b>Dividae</b> para revolucionar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital.</p>
                                 </div>
                             </div>
                         </div>
