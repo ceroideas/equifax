@@ -342,7 +342,7 @@ function ValidatePassword() {
       Target: "Numbers"
     },
     {
-      Pattern: "[!@@#$%^&*_-/]",
+      Pattern: "[!@@#$%^&*_-]",
       Target: "Symbols"
     }
   ];

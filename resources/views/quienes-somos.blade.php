@@ -276,7 +276,7 @@
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
 
                                     <p><b>Dividae</b> forma parte de <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>,
-                                        líder en el sector de la recuperación de deuda en España, que, a través de la aplicación de una tecnología avanzada, permite ofrecer a sus clientes elevados niveles de <b>eficiencia</b> y <b>calidad</b> en todos sus servicios.
+                                        líder en el sector de la recuperación de deuda en España, que, a través de la aplicación de una tecnología avanzada, permite ofrecer a sus clientes elevados niveles de <b>eficiencia</b> y <b>calidad</b> en todos sus servicios.
 
                                     <p>Gracias al conocimiento del sector, su equipo de profesionales y su firme apuesta tecnológica, en el año 2021 nace
                                         <b>Dividae</b> para democratizar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital.</p>

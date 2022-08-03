@@ -53,52 +53,61 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-sm-3">
-                                <strong><i class="fas fa-id-card mr-1"></i>DNI / CIF:</strong>
-                                <p class="text-muted text-uppercase">
-                                   {{ $debtor->dni }}
-                                </p>
-                            </div>
-                            <div class="col-sm-3">
+
+                            <div class="col-sm-4">
                                 <strong><i class="fas fa-book mr-1"></i>Nombre Completo / Razón Social:</strong>
                                 <p class="text-muted text-uppercase">
                                    {{ $debtor->name }}
                                 </p>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
+                                <strong><i class="fas fa-id-card mr-1"></i>DNI / CIF:</strong>
+                                <p class="text-muted text-uppercase">
+                                   {{ $debtor->dni }}
+                                </p>
+                            </div>
+
+                            <div class="col-sm-4">
                                 <strong><i class="fas fa-envelope mr-1"></i>Email:</strong>
                                 <p class="text-muted text-uppercase">
                                    {{ $debtor->email }}
                                 </p>
                             </div>
-                            <div class="col-sm-3">
+                        </div>
+                        <hr>
+                        <div class="row">
+
+                            <div class="col-sm-4">
                                 <strong><i class="fas fa-phone mr-1"></i>N° Tlf:</strong>
                                 <p class="text-muted text-uppercase">
                                    {{ $debtor->phone }}
                                 </p>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Dirección: </strong>
                                 <p class="text-muted text-uppercase">{{ $debtor->address }}</p>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Población: </strong>
                                 <p class="text-muted text-uppercase">{{ $debtor->location }}</p>
                             </div>
-                            <div class="col-sm-3">
-                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Código Postal: </strong>
-                                <p class="text-muted text-uppercase">{{ $debtor->cop }}</p>
-                            </div>
-                            <div class="col-sm-3">
-                                <strong><i class="fas fa-id-card mr-1"></i> Tipo </strong>
-                                <p class="text-muted text-uppercase">{{ $debtor->getType() }}</p>
-                            </div>
+
+
                         </div>
                         <hr>
                         <div class="row">
+                            <div class="col-sm-4">
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Provincia: </strong>
+                                <p class="text-muted text-uppercase">{{ $debtor->province }}</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Código Postal: </strong>
+                                <p class="text-muted text-uppercase">{{ $debtor->cop }}</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <strong><i class="fas fa-id-card mr-1"></i> Tipo </strong>
+                                <p class="text-muted text-uppercase">{{ $debtor->getType() }}</p>
+                            </div>
                             {{-- <div class="col-sm-6">
 
                                 <strong><i class="fas fa-email mr-1"></i>Email:</strong>
@@ -106,7 +115,8 @@
                                     {{ $debtor->email }}
                                 </p>
                             </div> --}}
-                            @if($debtor->iban)
+
+                            {{--@if($debtor->iban)
                             <div class="col-sm-6">
 
                                 <strong><i class="fas fa-university mr-1"></i>Nro de Cuenta</strong>
@@ -114,7 +124,7 @@
                                     {{ $debtor->iban }}
                                 </p>
                             </div>
-                            @endif
+                            @endif--}}
                         </div>
                     </div>
                 </div>

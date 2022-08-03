@@ -126,12 +126,11 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-
-                <x-adminlte-input name="iban" label="N° De Cuenta Corriente" placeholder="N° De Cuenta Corriente" type="text"
-                igroup-size="sm" value="{{  isset($third_party) ?  $third_party->iban   :  ''}}" enable-old-support="true">
+                <x-adminlte-input name="province" label="Provincia *" placeholder="Provincia" type="text"
+                igroup-size="sm" value="{{  isset($third_party) ?  $third_party->province   :  ''}}" enable-old-support="true">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
-                            <i class="fas fa-university"></i>
+                            <i class="fas map-marker"></i>
                         </div>
                     </x-slot>
                 </x-adminlte-input>
@@ -146,19 +145,33 @@
                             <i class="fas fa-file"></i>
                         </div>
                     </x-slot>
-            </x-adminlte-input>
+                </x-adminlte-input>
 
-            @isset ($third_party)
-                @if ($third_party->poa)
-                    @php
-                        $ext = array_reverse(explode('.', $third_party->poa))[0];
-                    @endphp
-                    <a href="{{url('uploads/users/' . $third_party->id . '/poa',$third_party->poa)}}" download="Título de acreditación.{{$ext}}">
-                        Descargar Documento
-                    </a>
-                @endif
-            @endisset
+
+                @isset ($third_party)
+                    @if ($third_party->poa)
+                        @php
+                            $ext = array_reverse(explode('.', $third_party->poa))[0];
+                        @endphp
+                        <a href="{{url('uploads/users/' . $third_party->id . '/poa',$third_party->poa)}}" download="Título de acreditación.{{$ext}}">
+                            Descargar Documento
+                        </a>
+                    @endif
+                @endisset
             </div>
+
+
+            <div class="col-sm-6">
+                <x-adminlte-input name="iban" label="N° De Cuenta Corriente" placeholder="N° De Cuenta Corriente" type="text"
+                igroup-size="sm" value="{{  isset($third_party) ?  $third_party->iban   :  ''}}" enable-old-support="true">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-university"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+
         </div>
 
         <hr>
