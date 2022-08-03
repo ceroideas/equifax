@@ -258,7 +258,7 @@ class ClaimsController extends Controller
             $invoice->id = $claim->id;
             $invoice->claim_id = $claim->id;
             $invoice->user_id = $claim->user_id;
-            $invoice->amount = $c->fixed_fees;
+            //$invoice->amount = $c->fixed_fees;
             $invoice->type = 'fixed_fees';
             $invoice->description = $c->extra_concept;
             /* Traemos los datos del cliente */
@@ -305,6 +305,7 @@ class ClaimsController extends Controller
 
                     /* Totalizamos*/
                     $invoice->totfac = $invoice->bas4fac; // no lleva impuestos por lo que es igual que la base
+                    $invoice->amount=$invoice->bas4fac;
                     $invoice->save();
                 }else{
                     /* Cliente al 21*/
@@ -322,6 +323,7 @@ class ClaimsController extends Controller
 
                         /* Totalizamos*/
                         $invoice->totfac = $invoice->bas4fac; // no lleva impuestos por lo que es igual que la base
+                        $invoice->amount=$invoice->bas4fac;
                         $invoice->save();
                     }else{
 
@@ -340,16 +342,13 @@ class ClaimsController extends Controller
 
                         /* Totalizamos*/
                         $invoice->totfac =  round($invoice->bas1fac+$invoice->iiva1fac,2);
+                        $invoice->amount=$invoice->totfac;
                         $invoice->save();
 
                     }
 
                 }
-
-
-
-
-                            /*$invoice->net1fac = $c->fixed_fees;
+                      /*$invoice->net1fac = $c->fixed_fees;
                         $invoice->net2fac = 0;
                         $invoice->net3fac = 0;
                         $invoice->net4fac = 0;*/
