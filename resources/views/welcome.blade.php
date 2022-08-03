@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ url('landing') }}/plugins/owl/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ url('landing') }}/plugins/owl/owl.theme.default.min.css">
 
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="c407bf19-3d4d-481c-a62b-c46cc4fd3031" data-blockingmode="auto" type="text/javascript"></script>
+
     {{-- @foreach (config('adminlte.plugins') as $pluginName => $plugin)
       @if ($plugin['active'] || View::getSection('plugins.' . ($plugin['name'] ?? $pluginName)))
           @foreach ($plugin['files'] as $file)
@@ -133,8 +135,8 @@
 
 
 
-</style>
-
+    </style>
+</head>
 
 
 <body>
