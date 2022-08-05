@@ -85,6 +85,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/check-agreement', [ClaimsController::class, 'stepFive']);
     Route::get('/accept-terms', [ClaimsController::class, 'stepSix']);
     Route::get('/save-option-one', [ClaimsController::class, 'saveOptionOne']);
+    Route::post('/save-client', [ClaimsController::class, 'saveClient']);
     Route::get('/save-option-two/{id}', [ClaimsController::class, 'saveOptionTwo']);
     Route::get('/save-debtor/{id}', [ClaimsController::class, 'saveDebtor']);
     Route::get('/clear-option-one', [ClaimsController::class, 'flushOptionOne']);

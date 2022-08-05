@@ -28,6 +28,7 @@ class User extends Authenticatable
         'location',
         'cop',
         'iban',
+        'role',
         'dni_img',
         'password',
         'legal_representative',
@@ -74,6 +75,12 @@ class User extends Authenticatable
         }
     }
 
+    public function isGestor(){
+        if($this->role === 3){
+            return true;
+        }
+    }
+
     public function getRole(){
         switch ($this->role) {
             case 0:
@@ -84,6 +91,9 @@ class User extends Authenticatable
                 break;
             case 2:
                 return 'Cliente';
+                break;
+            case 3:
+                return 'Gestoría';
                 break;
             default:
                 return 'Cliente';

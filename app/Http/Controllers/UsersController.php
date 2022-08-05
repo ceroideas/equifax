@@ -124,8 +124,10 @@ class UsersController extends Controller
 
         ]);
 
-        $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
-        $user->update(['dni_img' => $path]);
+        if ($request->file('dni_img')) {
+            $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
+            $user->update(['dni_img' => $path]);
+        }
 
         if($request->file('representative_dni_img')){
             $path = $request->file('representative_dni_img')->store('uploads/users/' . $user->id . '/representative_dni_img', 'public');
@@ -196,6 +198,7 @@ class UsersController extends Controller
             'location' => $request->location,
             'cop' => $request->cop,
             'iban' => $request->iban,
+            'role' => $request->role,
             'password' => $password,
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
@@ -351,6 +354,12 @@ class UsersController extends Controller
 
     public function migrar()
     {
+        Schema::table('claims', function(Blueprint $table) {
+            //
+            $table->integer('gestor_id')->nullable();
+        });
+
+        return "";
         // return Hito::all();
         // Auth::loginUsingId(39);
         // return Claim::all();

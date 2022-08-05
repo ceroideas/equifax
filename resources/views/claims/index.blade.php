@@ -57,7 +57,7 @@
         </x-adminlte-alert>
     @endif
 
-    @if (!Auth::user()->isClient())
+    @if (!Auth::user()->isClient() && !Auth::user()->isGestor())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-warning">Exportar Reclamaciones</a>
 
         <form action="{{url('import-actuations')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">

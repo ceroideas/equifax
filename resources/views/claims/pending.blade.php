@@ -57,7 +57,7 @@
         </x-adminlte-alert>
     @endif
 
-    @if (!Auth::user()->isClient())
+    @if (!Auth::user()->isClient() && !Auth::user()->isGestor())
         <a href="{{url('export-finished')}}" class="btn btn-sm btn-warning">Exportar Reclamaciones Finalizadas</a>
     @endif
 

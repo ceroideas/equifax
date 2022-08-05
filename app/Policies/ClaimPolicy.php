@@ -105,5 +105,11 @@ class ClaimPolicy
 
         return $user->isAdmin();
  
-     }
+    }
+
+    public function checkGestor(User $user){
+
+        return $user->isGestor();
+ 
+    }
 }

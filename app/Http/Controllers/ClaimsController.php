@@ -44,6 +44,8 @@ class ClaimsController extends Controller
             $claims = Auth::user()->claims()->whereNotIn('status',[-1,0,1])->get();
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $claims = Claim::all();
+        }else{
+            $claims = Claim::where('gestor_id',Auth::id())->get();
         }
 
         return view('claims.index', [
@@ -58,6 +60,8 @@ class ClaimsController extends Controller
             $claims = Auth::user()->claims()->whereIn('status', [-1,0,1])->get();
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $claims = Claim::whereIn('status', [-1,0,1])->get();
+        }else{
+            $claims = Claim::whereIn('status', [-1,0,1])->where('gestor_id',Auth::id())->get();
         }
 
         return view('claims.pending', [
@@ -602,6 +606,17 @@ class ClaimsController extends Controller
 
     }
 
+    public function saveClient(Request $request){
+
+        $request->session()->put('other_user', 1);
+        $request->session()->put('claim_client', $request->client_id);
+
+        $this->flushOptionTwo();
+
+        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu respuesta correctamente');
+
+    }
+
     public function saveOptionTwo(Request $request){
 
         $request->session()->forget('claim_client');
@@ -769,6 +784,12 @@ class ClaimsController extends Controller
             $invoices = Auth::user()->invoices;
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $invoices = Invoice::all();
+        }else{
+            $invoices = Invoice::whereExists(function($q){
+                $q->from('claims')
+                  ->whereRaw('claims.id = invoices.claim_id')
+                  ->whereRaw('claims.gestor_id = '.Auth::id());
+            })->get();
         }
 
         return view('claims.invoices', compact('invoices'));
