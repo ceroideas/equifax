@@ -26,6 +26,7 @@
     if (Auth::user()->isClient()) {
         $heads = [
             'ID',
+            'Cliente',
             'Reclamación',
             'Concepto',
             'Importe',
@@ -83,7 +84,7 @@
             @foreach($invoices as $invoice)
                 <tr>
                     <td>{{ $invoice->id }}</td>
-                    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+                    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isGestor())
                         <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
                     @endif
                     <td>#{{ $invoice->claim->id }}</td>

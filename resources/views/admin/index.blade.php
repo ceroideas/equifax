@@ -235,7 +235,11 @@
                                                 </div>
                                                 <div class="col-2">
                                                     <span class="badge badge-info">
+                                                        @if (Auth::user()->isGestor())
+                                                        {{App\Models\Claim::where('gestor_id',Auth::id())->whereNotIn('status',[-1,0,1])->where('claim_type',2)->count()}}
+                                                        @else
                                                         {{Auth::user()->claims()->whereNotIn('status',[-1,0,1])->where('claim_type',2)->count()}}
+                                                        @endif
                                                     </span>
                                                 </div>
                                             </div>
@@ -269,7 +273,11 @@
                                                 </div>
                                                 <div class="col-2">
                                                     <span class="badge badge-info">
+                                                        @if (Auth::user()->isGestor())
+                                                        {{App\Models\Claim::where('gestor_id',Auth::id())->whereNotIn('status',[-1,0,1])->where('claim_type',1)->count()}}
+                                                        @else
                                                         {{Auth::user()->claims()->whereNotIn('status',[-1,0,1])->where('claim_type',1)->count()}}
+                                                        @endif
                                                     </span>
                                                 </div>
                                             </div>
@@ -303,7 +311,11 @@
                                                 </div>
                                                 <div class="col-2">
                                                     <span class="badge badge-info">
+                                                        @if (Auth::user()->isGestor())
+                                                        {{App\Models\Claim::where('gestor_id',Auth::id())->whereIn('status',[-1,0,1])->count()}}
+                                                        @else
                                                         {{Auth::user()->claims()->whereIn('status',[-1,0,1])->count()}}
+                                                        @endif
                                                     </span>
                                                 </div>
                                             </div>

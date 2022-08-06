@@ -354,6 +354,19 @@ class UsersController extends Controller
 
     public function migrar()
     {
+        // Schema::create('discounts', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('amount')->nullable();
+        //     $table->integer('claim_id')->nullable();
+        //     $table->integer('gestor_id')->nullable();
+        //     $table->timestamps();
+        //     //
+        // });
+        /*Invoice::where('claim_id',9)->delete();
+        Debt::where('claim_id',9)->delete();
+        Claim::find(9)->delete();
+
+        return 1;*/
         Schema::table('claims', function(Blueprint $table) {
             //
             $table->integer('gestor_id')->nullable();

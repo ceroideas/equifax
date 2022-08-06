@@ -189,4 +189,24 @@ class Claim extends Model
         return [2,'FASE EXTRAJUDICIAL'];
     }
 
+    public function saldo()
+    {
+        $total = 0;
+        foreach ($this->invoices as $key => $value) {
+            $total += $value->amount;
+        }
+
+        return number_format($total,2);
+    }
+
+    public function discounts()
+    {
+        $total = 0;
+        foreach (Discount::where('claim_id',$this->id)->get() as $key => $value) {
+            $total += str_replace(',', '.', $value->amount);
+        }
+
+        return number_format($total,2);
+    }
+
 }

@@ -75,7 +75,7 @@ Route::post('change-password', [UsersController::class, 'changePassword']);
 /* Reclamaciones */
 
 Route::group(['prefix' => 'claims'], function(){
-    Route::get('/', [ClaimsController::class, 'index'])->middleware('auth');
+    Route::get('/', [ClaimsController::class, 'index']);
     Route::get('/invalid-debtor', [ClaimsController::class, 'invalidDebtor']);
     Route::get('/create', [ClaimsController::class, 'create']);
     Route::get('/select-client', [ClaimsController::class, 'stepOne']);
@@ -98,7 +98,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/flush-options', [ClaimsController::class, 'flushAll']);
     Route::post('/', [ClaimsController::class, 'store']);
     Route::get('/pending', [ClaimsController::class, 'pending']);
-    Route::get('/{claim}', [ClaimsController::class, 'show'])->middleware('auth');
+    Route::get('/{claim}', [ClaimsController::class, 'show']);
     Route::get('payment/{claim}', [ClaimsController::class, 'payment']);
     Route::get('{claim}/viable/{id?}', [ClaimsController::class , 'viable']);
     Route::get('{claim}/non-viable/{id?}', [ClaimsController::class , 'nonViable']);
@@ -236,3 +236,4 @@ Route::get('addCountEmail/{id}', [ClaimsController::class, 'addCountEmail']);
 Route::get('testEmail/{email?}', [UsersController::class, 'testEmail']);
 
 Route::get('sendEmailsCron', [ClaimsController::class, 'sendEmailsCron'])->middleware('guest');
+Route::post('saveDiscount', [ClaimsController::class, 'saveDiscount']);

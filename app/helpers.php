@@ -224,10 +224,20 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        $invoice->amount = $amount;
 		        $invoice->description = $description;
 		        $invoice->type = implode('|',$type);
+		        if (Auth::user()->isGestor()) {
+		            $invoice->status = 1;
+		        }
 		        $invoice->save();
 
-				if ($claim->owner->apud_acta) {
-					return actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
+		        if (Auth::user()->isGestor()) {
+		        	actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
+
+		        	return actuationActions("302",$claim_id);
+		        }else{
+
+					if ($claim->owner->apud_acta) {
+						return actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
+			        }
 				}
 
 			}

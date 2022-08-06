@@ -416,7 +416,7 @@
                         </ul>
                     @endif
 
-                    @if((Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()) && $claim->isPending())
+                    @if(((Auth::user()->isAdmin() || Auth::user()->isGestor()) || Auth::user()->isSuperAdmin()) && $claim->isPending())
 
                         <div class="text-center mt-5 mb-3 float-bottom">
 
@@ -483,7 +483,7 @@
                         @endif
                     @endif
 
-                    @if (Auth::user()->isAdmin() && !$claim->isFinished() && !$claim->isPending())
+                    @if ((Auth::user()->isAdmin() || Auth::user()->isGestor()) && !$claim->isFinished() && !$claim->isPending())
                         <div class="text-center">
                             <x-adminlte-button label="Finalizar Reclamación" data-toggle="modal" data-target="#modalFinish" theme="primary"/>
 

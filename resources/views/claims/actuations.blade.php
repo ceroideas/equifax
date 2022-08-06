@@ -129,7 +129,7 @@
         		</div>
         	</div>
 
-            @if ((Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) && !$claim->isFinished())
+            @if ((Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isGestor()) && !$claim->isFinished())
             	<hr>
 
 

@@ -16,6 +16,7 @@ use App\Models\Invoice;
 use App\Models\Actuation;
 use App\Models\Configuration;
 use App\Models\ActuationDocument;
+use App\Models\Discount;
 use Illuminate\Http\Request;
 use Auth;
 use Storage;
@@ -85,6 +86,9 @@ class ClaimsController extends Controller
 
     public function stepOne()
     {
+        if (Auth::user()->isGestor() && !session('other_user')) {
+            return view('claims.create_step_pre1');
+        }
 
         if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
             return view('claims.create_step_1');
@@ -195,6 +199,10 @@ class ClaimsController extends Controller
 
         $claim = new Claim();
 
+        if (Auth::user()->isGestor()) {
+            $claim->gestor_id = Auth::id();
+        }
+
         if(session('claim_client')){
             $client = User::find(session('claim_client'));
             $claim->user_id = $client->id;
@@ -205,8 +213,11 @@ class ClaimsController extends Controller
             $claim->third_parties_id = $client->id;
         }
 
-
-        $claim->owner_id = Auth::user()->id;
+        if (Auth::user()->isGestor()) {
+            $claim->owner_id = session('other_user');
+        }else{
+            $claim->owner_id = Auth::user()->id;
+        }
         $debtor = Debtor::find(session('claim_debtor'));
         $claim->debtor_id = $debtor->id;
 
@@ -253,6 +264,10 @@ class ClaimsController extends Controller
             }
         }
 
+        if (Auth::user()->isGestor()) {
+            $claim->status = 8;
+        }
+
 /* Generamos factura en cualquier estado*/
         $c = Configuration::first();
 
@@ -262,6 +277,9 @@ class ClaimsController extends Controller
         $invoice->amount = $c ? $c->fixed_fees : '0';
         $invoice->type = 'fixed_fees';
         $invoice->description = "Pago de la tarifa procedimiento Extrajudicial";
+        if (Auth::user()->isGestor()) {
+            $invoice->status = 1;
+        }
         $invoice->save();
 
 /*Fin generacion de factura */
@@ -361,6 +379,7 @@ class ClaimsController extends Controller
 
         $debt->save();*/
 
+        $request->session()->forget('other_user');
         $request->session()->forget('claim_client');
         $request->session()->forget('claim_third_party');
         $request->session()->forget('claim_debtor');
@@ -371,6 +390,10 @@ class ClaimsController extends Controller
         $request->session()->forget('claim_agreement');
         $request->session()->forget('type_other');
         $request->session()->forget('documentos');
+
+        if (Auth::user()->isGestor()) {
+            return redirect('claims')->with('msj', 'Tu reclamación ha sido creada exitosamente.');
+        }
 
 
         //if ($claim->last_invoice){
@@ -390,9 +413,6 @@ class ClaimsController extends Controller
      */
     public function show(Claim $claim)
     {
-        $this->authorize('view', $claim);
-
-
         return view('claims.show', ['claim' => $claim]);
     }
 
@@ -461,7 +481,11 @@ class ClaimsController extends Controller
 
         if ($request['tipo_viabilidad'] == 1) {
             if ($claim->owner->apud_acta) {
-                $claim->status = 7;
+                if (Auth::user()->isGestor()) {
+                    $claim->status = 10;
+                }else{
+                    $claim->status = 7;
+                }
             }else{
                 $claim->status = 11;
             }
@@ -598,7 +622,11 @@ class ClaimsController extends Controller
 
     public function saveOptionOne(Request $request){
 
-        $request->session()->put('claim_client', Auth()->user()->id);
+        if (Auth::user()->isGestor()) {
+            $request->session()->put('claim_client', session('other_user'));
+        }else{
+            $request->session()->put('claim_client', Auth()->user()->id);
+        }
 
         $this->flushOptionTwo();
 
@@ -608,12 +636,11 @@ class ClaimsController extends Controller
 
     public function saveClient(Request $request){
 
-        $request->session()->put('other_user', 1);
-        $request->session()->put('claim_client', $request->client_id);
+        $request->session()->put('other_user', $request->client_id);
 
         $this->flushOptionTwo();
 
-        return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu respuesta correctamente');
+        return redirect('/claims/select-client')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
     }
 
@@ -1069,5 +1096,16 @@ class ClaimsController extends Controller
         }
 
         return "Ok";
+    }
+
+    public function saveDiscount(Request $r)
+    {
+        $d = new Discount;
+        $d->amount = $r->amount;
+        $d->claim_id = $r->claim_id;
+        $d->gestor_id = Auth::id();
+        $d->save();
+
+        return back()->with('msj','Se ha guardado el descuento del importe pagado');
     }
 }

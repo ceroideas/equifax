@@ -22,6 +22,8 @@ class ThirdPartiesController extends Controller
             $thirdParties = Auth::user()->thirdParties;
         }elseif(Auth::user()->isSuperAdmin() ){
             $thirdParties = thirdParty::all();
+        }else{
+            $thirdParties = thirdParty::where('user_id',session('other_user'))->get();
         }
 
         return view('third_parties.index', [
@@ -60,7 +62,11 @@ class ThirdPartiesController extends Controller
         $thirdParty->location = $data['location'];
         $thirdParty->cop = $data['cop'];
         $thirdParty->iban = array_key_exists('iban', $data) ? $data['iban'] : null;
-        $thirdParty->user_id = Auth::user()->id;
+        if (session('other_user')) {
+            $thirdParty->user_id = session('other_user');
+        }else{
+            $thirdParty->user_id = Auth::user()->id;
+        }
         $thirdParty->legal_representative = $data['tipo'] == 1 ? $data['legal_representative']: null;
         $thirdParty->representative_dni = $data['tipo'] == 1 ? $data['representative_dni']: null;
         $thirdParty->save();
