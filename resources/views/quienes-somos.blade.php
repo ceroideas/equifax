@@ -161,6 +161,7 @@
         <main>
             <div data-v-effc9f78="" data-v-c7d18d50="">
                 <div data-v-c7d18d50="" data-v-effc9f78="" class="block-About">
+                    {{--
                     <nav data-v-5fddf304="" data-v-c7d18d50="" class="navbar navbar-expand-lg navbar-dark"
                         data-v-effc9f78="">
                         <div data-v-5fddf304="" class="container"><a data-v-5fddf304="" href="{{ url('/') }}"
@@ -220,7 +221,10 @@
                                 <!---->
                             </div>
                         </div>
-                    </nav>
+                    </nav>--}}
+
+                    @include('front.navbar')
+
                     <div data-v-c7d18d50="" data-v-effc9f78="" class="container About">
                         <div data-v-c7d18d50="" data-v-effc9f78="" class="row">
                             <div data-v-c7d18d50="" data-v-effc9f78=""
@@ -241,10 +245,9 @@
                 </div>
                 <div class="container text-center bottom-text">
                     <br>
-                    <p><b>Dividae</b> es una plataforma 100% online que ofrece a empresarios y autónomos la solución
-                        para reclamar facturas que nunca les pagaron. Esta línea de negocio es parte de <b>
-                            <a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>,
-                        uno de los principales proveedores de servicios de recuperación de deuda de España. </p>
+                    <p><b>Dividae</b> es una plataforma 100% online, que ofrece a empresarios y autónomos la solución para reclamar facturas que nunca les pagaron. Esta línea de negocio es parte de
+                        <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>,
+                        uno de los principales proveedores de servicios de recuperación de deuda de España.</p>
                 </div>
 
                 <!--
@@ -265,31 +268,32 @@
                 <div data-v-c7d18d50="" data-v-effc9f78="" class="block-nosotros">
                     <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros container">
                         <div data-v-c7d18d50="" data-v-effc9f78="" class="row">
-                            <div data-v-c7d18d50="" data-v-effc9f78=""
-                                class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-title">Sobre nosotros</div>
                             </div>
                             <div data-v-c7d18d50="" data-v-effc9f78=""
                                 class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
 
-                                    <p>Desde sus inicios, <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b> ha identificado la forma de automatizar y
-                                        estandarizar los procesos en el ámbito de la recuperación de la deuda. Ante un sector tradicionalmente poco digitalizado,
-                                        <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b> se ha centrado en disponer de todos los recursos tecnológicos
-                                        necesarios para la representación procesal y gestión documental en carteras
-                                        masivas. </p>
+                                    <p><b>Dividae</b> forma parte de <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>,
+                                        líder en el sector de la recuperación de deuda en España, que, a través de la aplicación de una tecnología avanzada, permite ofrecer a sus clientes elevados niveles de <b>eficiencia</b> y <b>calidad</b> en todos sus servicios.
 
-                                    <p>Gracias al conocimiento del sector, su equipo de profesionales y a la firme
-                                        apuesta tecnológica, en el año 2021 nace <b>Dividae</b> con la firme
-                                        intención de convertirse en líderes en el mercado, mejorar las eficiencias y
-                                        ganar en tiempo con la recuperación de facturas impagadas de manera 100%
-                                        digital. </p>
-
+                                    <p>Gracias al conocimiento del sector, su equipo de profesionales y su firme apuesta tecnológica, en el año 2021 nace
+                                        <b>Dividae</b> para revolucionar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="container text-center bottom-text">
+                    <img data-v-494d1a60=""
+                    style="border-radius: 12px;"
+                    src="{{ url('landing') }}/images/HP/HP/Nuestra filosofía/equipo_dividae.jpg"
+                    class="img-amistosa img-fluid">
+                </div>
+
+
 
                 {{-- <div data-v-861c26ae="" data-v-c7d18d50="" class="block-SlidesAbout" data-v-effc9f78="">
     <div data-v-861c26ae="" class="SlidesAbout container">
@@ -332,9 +336,10 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Plataforma 100% Digital</b>
                                     </p>
+                                    {{--
                                     <p data-v-43503c2a="" class="Recovery-text">
                                         Podrás conocer el proceso de la reclamación en tiempo real.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
 
@@ -346,9 +351,10 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Máxima seguridad Jurídica</b>
                                     </p>
+                                    {{--
                                     <p data-v-43503c2a="" class="Recovery-text">
                                         <b>Dividae</b>, como línea de negocio de <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b>, es parte de ANGECO y cumple con todos los requisitos de calidad.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
 
@@ -360,10 +366,11 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Experiencia Contrastada</b>
                                     </p>
+                                    {{--
                                     <p data-v-43503c2a="" class="Recovery-text">
                                         <b><a href="https://www.atlantelt.com" target="_blank" style="color:#e65927">Atlante</a></b> cuenta con experiencia contrastada desde 2016, siendo uno de los
                                         principales proveedores de servicios de recuperación de deuda de España.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
 
@@ -376,10 +383,11 @@
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Transparente</b>
                                     </p>
+                                    {{--
                                     <p data-v-43503c2a="" class="Recovery-text">
                                         <b>Dividae</b> no te cobrará nada sin tu consentimiento. Además, la suscripción
                                         y análisis de la reclamación es totalmente gratuito.
-                                    </p>
+                                    </p>--}}
                                 </div>
                             </div>
                             {{-- </div> --}}
@@ -394,7 +402,7 @@
                 <div data-v-e047c7bc="" data-v-63cd6604="" class="blockEstadisticas" data-v-effc9f78="">
                     <div data-v-e047c7bc="" class="row estadisticas container">
                         <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                            <p data-v-e047c7bc="" class="estadisticas-title">2016</p>
+                            <p data-v-e047c7bc="" class="estadisticas-title">2021</p>
                             <p data-v-e047c7bc="" class="estadisticas-text">Año de creación</p>
                         </div>
                         <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
@@ -403,7 +411,7 @@
                         </div>
                         <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
                             <p data-v-e047c7bc="" class="estadisticas-title">+120.000</p>
-                            <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados desde 2016</p>
+                            <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados</p>
                         </div>
                         <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
                             <p data-v-e047c7bc="" class="estadisticas-title">+150.000</p>

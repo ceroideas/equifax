@@ -162,7 +162,8 @@ a:visited, span.MsoHyperlinkFollowed
             las condiciones generales de uso de la página web accesible a través de la URL <a class="dividae" href="{{url('/')}}">www.dividae.com</a> propiedad de RENTACARONE S.L.,
             así como regular las condiciones generales de contratación ofertadas por RENTACARONE S.L., en cumplimiento de lo establecido en la Ley 34/2002, de 11 de julio,
             de servicios de la sociedad de información y de comercio electrónico. El prestador de servicios es la sociedad de nacionalidad española, RENTACARONE S.L., con
-            CIF B06970677 que se encuentra inscrita en el Registro Mercantil de Madrid, Tomo 42310, Folio 172, Sección 8, Hoja M-748997. Ser USUARIO de <a class="dividae" href="{{url('/')}}">www.dividae.com</a>
+            CIF B06970677 que se encuentra inscrita en el Registro Mercantil de Madrid, Tomo 42310, Folio 172, Sección 8, Hoja M-748997, correo electronico <a href='mailto:info@dividae.com'>info@dividae.com</a>.
+            Ser USUARIO de <a class="dividae" href="{{url('/')}}">www.dividae.com</a>
             implica que usted reconoce haber leído y aceptado las presentes condiciones y la normativa legal aplicable en esta materia. Si no está de acuerdo con estas condiciones,
             le rogamos que no continúe utilizando <a class="dividae" href="{{url('/')}}">www.dividae.com</a> ni los recursos que le ofrece. RENTACARONE S.L. podrá variar y actualizar
             las presentes Condiciones en cualquier momento, no obstante, cabe resaltar que no es intención de que sea frecuente. El hecho de usar este portal web implica que el
@@ -171,17 +172,16 @@ a:visited, span.MsoHyperlinkFollowed
 
         <p class="subtitulo">2. CONDICIONES GENERALES</p>
         <p class="texto">Las presentes condiciones generales de contratación regulan la participación, a través del sitio web <a class="dividae" href="{{url('/')}}">www.dividae.com</a>,
-            por parte de sus usuarios en los distintos servicios ofrecidos para la recuperación de la deuda a través de la presente website. Las presentes Condiciones Generales
+            por parte de sus usuarios en los distintos servicios ofrecidos para la recuperación de la deuda a través de la presente página web. Las presentes Condiciones Generales
             han sido elaboradas de conformidad con lo establecido en la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico, Ley 59/2003,
             de 19 de diciembre, de firma electrónica, Real Decreto Legislativo 1/2007, de 16 de noviembre, por el que se aprueba el texto refundido de la Ley General para la
-            Defensa de los Consumidores y Usuarios y otras leyes complementarias, el Real Decreto 1906/1999 por el que se regula la contratación telefónica o electrónica con
-            condiciones generales en desarrollo del artículo 5.3 de la Ley 7/1998, la Ley 26/1984 General para la Defensa de los Consumidores y Usuarios, Ley 7/1996, de 15 de enero,
+            Defensa de los Consumidores y Usuarios y otras leyes complementarias, Ley 7/1996, de 15 de enero,
             de Ordenación del Comercio Minorista y cuantas disposiciones legales resulten de aplicación. Estos términos y condiciones, junto con cualquier otros términos y condiciones
             particulares para un determinado servicio prestado por el presente sitio web, constituyen un acuerdo completo entre RENTACARONE S.L. y el participante. La información
             que aporte el Usuario se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esa información en el sistema lo que en ella se vierta, afirme o
             manifieste. La entidad RENTACARONE S.L. informa de que los trámites para reclamar la deuda son aquellos que se describen en las presentes condiciones generales, así como
             aquellos otros específicos que se indiquen en la pantalla durante la navegación, de manera que el Usuario declara conocer y aceptar dichos trámites como necesarios para
-            acceder a los servicios ofrecidos en su website.
+            acceder a los servicios ofrecidos en su página web.
         </p>
 
         <p class="subtitulo">3. PARTICIPACIÓN Y ADMISIÓN</p>
@@ -221,7 +221,7 @@ a:visited, span.MsoHyperlinkFollowed
             nuestra web <a class="dividae" href="{{url('/')}}">www.dividae.com</a> se recogen datos de carácter personal, necesarios para la gestión y mantenimiento de nuestros
             servicios. Los datos serán tratados y protegidos conforme a lo regulado en la Ley Orgánica de 15/1999, de 13 de diciembre de protección de datos de carácter personal
             y su normativa de desarrollo, con las medidas de seguridad que sean de aplicación según el Real Decreto 1720/2007 de 21 de diciembre de Protección de Datos de la
-            Unión Europea (RGPD) de aplicación el 25 de mayo de 2018. La aceptación de las presentes condiciones de uso implica la aceptación de la política de privacidad
+            Unión Europea (RGPD) de aplicación el 25 de mayo de 2018. La aceptación de las presentes Términos y Condiciones implica la aceptación de la política de privacidad
             anteriormente detallada.
         </p>
 
@@ -271,51 +271,55 @@ a:visited, span.MsoHyperlinkFollowed
         <p class="subtitulo">8. FORMAS DE PAGO</p>
         <p class="texto">
             <span class="dividae">Dividae</span> establece las formas de pago en función de la situación en la que se encuentre el procedimiento. En todo momento los honorarios de <span class="dividae">Dividae</span>
-            serán una cantidad fija y un porcentaje de la cantidad final recuperada, todo ello con el correspondiente IVA. El Usuario estará obligado al pago de dichas cantidades en el momento
+            serán una cantidad fija y un porcentaje de la cantidad final recuperada, todo ello con el correspondiente IVA y/o impuesto asimilado que pudiera corresponder. El Usuario estará obligado al pago de dichas cantidades en el momento
             en que haya cumplido los requisitos que la plataforma le exija, solicite el inicio de la reclamación extrajudicial o la continuación de la reclamación judicial y <span class="dividae">Dividae</span>
             acepte el encargo. Dentro de los precios que se detallan en las condiciones generales de la contratación están incluidos los costes de los abogados y procuradores, así como los servicios de gestión
             de la deuda desde que el Usuario solicita el inicio de la reclamación o la continuación de la misma y hasta que culmina dicha fase del procedimiento.
         </p>
-        <p class="texto"><span class="dividae">Dividae</span> indicará al Usuario si la resolución que se haya notificado es susceptible de recurso, y los abogados que forman parte del equipo harán una
-            recomendación al respecto. Además, se le informará al Usuario que la decisión sobre la interposición u oposición al recurso está supeditada a un plazo determinado, así como de los
-            honorarios y <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>/<span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
-temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span> que se deba abonar. Si en dicho plazo que se le concede al Usuario para tomar la decisión éste no responde, se entenderá que no está interesado en la
-            interposición del recurso. El precio por la interposición o para la oposición de cualquier recurso, así como los <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
-temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span> constan en las condiciones generales de la contratación.
-        </p>
+
         <p class="texto">En la plataforma se indican las diferentes formas de pago por las que el Usuario puede abonar los honorarios, el porcentaje de las cantidades recobradas y las <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>/<span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
 temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span>.
-            Tanto para abonar el precio fijo pactado como para abonar el pago correspondiente a las cantidades recobradas, Dividae emitirá una factura por dicha cantidad fija y otra por la resultante
+            Tanto para abonar el precio fijo pactado como para abonar el pago correspondiente a las cantidades recobradas Dividae emitirá una factura por dicha cantidad fija y otra por la resultante
             de aplicar el porcentaje a la cantidad recuperada. La factura se remitirá por mail al Usuario y se anexará en la plataforma en el apartado de “ÁREA DE USUARIO”.
         </p>
-        <p class="texto">Si el importe de las <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>, impuestos o <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
-temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span> variara, tanto si son al alza o a la baja, serían repercutidas al Usuario. De resultar estimado el recurso presentado,
-            se le devolvería el <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
-temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósito</span> al usuario.
-        </p>
-        <p class="texto">La tasa tan solo deberá abonarse en el procedimiento
-            <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
-Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">monitorio</span>
-            si quien reclama la deuda es una persona jurídica y la cantidad a reclamar es superior a 2.000€.</p>
+
         <p class="texto">Los precios y porcentajes indicados en las condiciones generales de la contratación podrán variar, por lo que el Usuario debe revisar las mismas y el presente documento
             antes de solicitar la reclamación de una deuda.
         </p>
         <p class="texto">Los gastos que deriven de los procedimientos y que impliquen intervención de terceros, como por ejemplo de Notarios, Registradores, Peritos, comunicaciones postales,
-            burofaxes, certimails o cualquier otro tipo de gasto, se hará cargo el Usuario.
-        </p>
-        <p class="texto">Las Costas Procesales que se generen en el proceso a favor del Usuario, por cualquier razón, serán enteramente para la <span class="dividae">Dividae</span>.
-            Si el importe de las costas es superior a la cantidad abonada por el Usuario como honorarios a <span class="dividae">Dividae</span>, se le devolverá lo pagado y la cantidad restante
-            será para <span class="dividae">Dividae</span>. Las Costas Procesales que se generen en el proceso contra el Usuario, serán a cargo del Usuario salvo las que se causaren en el
-            proceso por negligencia o descuido de <span class="dividae">Dividae</span>.
+            burofaxes, emails o sms certificados o cualquier otro tipo de gasto, se hará cargo el Usuario.
         </p>
 
-        <p class="subtitulo">9. MODIFICACIONES</p>
+
+
+        <p class="subtitulo">9. DERECHO DE DESISTIMIENTO</p>
+        <p class="texto">
+            El Usuario dispone de un plazo de <span class="dividae">catorce(14)</span> días naturales, a contar desde la fecha de aceptación de las CONDICIONES GENERALES DE LA CONTRATACIÓN,
+            para desistir del contrato, sin necesidad de indicar las razones que motivan su decisión y sin penalización alguna. Sin perjuicio de lo anterior, el referido derecho no podrá
+            ejercerse si el servicio se ha prestado.
+        </p>
+        <p class="texto">Se entenderá que el servicio se ha prestado en los siguientes supuestos: </p>
+        <ol class="texto" type=a>
+            <li><span class="dividae">Reclamación Extrajudicial: </span>se hayan iniciado las operaciones de gestión de cobro, vía telefónica y/o terceras vías, independientemente del
+                resultado obtenido por las gestiones de recobro realizadas.</li>
+            <li><span class="dividae">Reclamación Judicial: </span>se haya presentado ante el órgano judicial oportuno el servicio procesal contratado según corresponda. </li>
+        </ol>
+
+        <p class="texto">El Usuario podrá reclamar prueba a <span class="dividae">Dividae</span> de los servicios efectivamente prestados. </p>
+        <p class="texto">El Usuario comunicará a <span class="dividae">Dividae</span> su voluntad de ejercer el derecho de desistimiento mediante el mismo procedimiento de Servicio a Distancia utilizado en la contratación,
+            a través del área de Usuario indicando “DESISTIMIENTO ACCIONES - CIERRE FASE RECLAMACIÓN”. </p>
+        <p class="texto">En caso de ejercer el derecho de desistimiento sin que el servicio se haya prestado, el Usuario tendrá derecho a la devolución de forma íntegra de las cantidades abonadas
+            para la prestación del servicio, debiendo designar número de cuenta al que deberán reintegrarse las cantidades previamente cobradas, en el plazo de catorce (14) días naturales desde
+            el desistimiento. En caso contrario, no podrá recuperar ni total ni parcialmente los pagos ya efectuados a <span class="dividae">Dividae</span>, debiendo estarse a lo indicado en las
+            CONDICIONES GENERALES DE LA CONTRATACIÓN, según la fase en la que se encuentre.</p>
+
+        <p class="subtitulo">10. MODIFICACIONES</p>
         <p class="texto">RENTACARONE S.L. se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su portal, pudiendo cambiar, suprimir o añadir tanto
             los contenidos y servicios que se presten a través de la misma como la forma en la que éstos aparezcan presentados en su portal. El hecho de usar este portal web implica que el
             usuario está de acuerdo con las Condiciones de Uso de RENTACARONE S.L. y se compromete a aceptar las modificaciones que puedan surgir así, cada vez que el USUARIO acceda deberá
             revisar atentamente las mismas. Para el caso de no aceptar estas condiciones, no puede reclamar ninguna deuda con <span class="dividae">Dividae</span>.
         </p>
-        <p class="subtitulo">10. RESPONSABILIDAD</p>
+        <p class="subtitulo">11. RESPONSABILIDAD</p>
         <p class="texto"><span class="dividae">Dividae</span> no garantiza la disponibilidad continua del funcionamiento del portal y no será responsable de la interrupción del servicio por
             la caída temporal del servidor ni de las posibles omisiones, pérdidas de información, datos, configuraciones, accesos indebidos o vulneración de la confidencialidad que tengan
             origen en problemas técnicos, de comunicaciones u omisiones humanas causadas por terceros o no imputables a <span class="dividae">Dividae</span> ni a los terceros que desarrollan
@@ -324,19 +328,29 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
             <span class="dividae">Dividae</span> sospeche que un usuario podría haber cometido un acto ilícito en relación a sus términos y condiciones del servicio, tiene el derecho de
             investigar el asunto y emprender acciones legales contra el autor, sin perjuicio de proceder a su baja inmediata.
         </p>
-        <p class="subtitulo">11. RECLAMACIONES</p>
+        <p class="subtitulo">12. PROPIEDAD INTELECTUAL E INDUSTRIAL</p>
+        <p class="texto">RENTACARONE S.L. es titular de todos los derechos de propiedad intelectual e industrial de su página web, así como los elementos contenidos en la misma (imágenes, marcas,
+            nombres comerciales, signos distintivos, servicios, contenidos, información…).</p>
+        <p class="texto">En virtud de lo dispuesto en la Ley de Propiedad Intelectual, quedan expresamente prohibidas la reproducción, distribución, la comunicación pública, transformación o
+            cualquier otra actividad similar o análoga, incluida su modalidad de puesta a disposición, de la totalidad o parte de los contenidos de esta página web, salvo que medie expresa
+            autorización de RENTACARONE S.L.</p>
+        <p class="texto">El Usuario se compromete a respetar los derechos de Propiedad Intelectual e Industrial titularidad de RENTACARONE S.L. y deberá abstenerse de suprimir, alterar, eludir o
+            manipular cualquier dispositivo de protección o sistema de seguridad que estuviera instalado en las páginas de RENTACARONE S.L. </p>
+        <p class="texto">Únicamente queda autorizada la visualización y carga para el uso personal y no comercial del usuario, sin que pueda hacerlo extensivo a terceras personas o entidades.
+            Queda terminantemente prohibida la alteración de esta web por parte del usuario y que pueda afectar a su contenido, tales como vínculos (o links) y similares.</p>
+
+        <p class="subtitulo">13. RECLAMACIONES</p>
         <p class="texto">Todas las reclamaciones o disputas deberán ser enviadas vía mail a <a class="dividae" href="mailto:info@dividae.com">info@dividae.com</a>, asunto: “RECLAMACIÓN” o
             “INCIDENCIA”.</p>
         <p class="texto">El usuario renuncia a todo tipo de reclamaciones contra RENTACARONE S.L. por los daños, pérdidas, gastos, lesiones sufridas, o sanciones que no sean consecuencia
             directa de los servicios ofertados por RENTACARONE S.L. a través de este sitio web.
         </p>
 
-        <p class="subtitulo">12. LEGISLACIÓN APLICABLE Y JURISDICCIÓN</p>
+        <p class="subtitulo">14. LEGISLACIÓN APLICABLE Y JURISDICCIÓN</p>
         <p class="texto">Para la resolución de cualquier controversia que pudiera suscitarse en cuanto a la utilización y uso de la plataforma web o interpretación de las presentes
             Condiciones de uso, resultará de aplicación la legislación española vigente. Asimismo, el Usuario se somete a la jurisdicción de los Juzgados y Tribunales de la ciudad de
             Madrid (España) con renuncia expresa a cualquier otro fuero que pudiera corresponderle. Si tiene alguna duda sobre la utilización de la información contenida en este portal
             web puede contactar con RENTACARONE S.L. mediante el correo electrónico habilitado al efecto <a class="dividae" href="mailto:info@dividae.com">info@dividae.com</a>.
-
         </p>
         <p>&nbsp;</p>
     </div>

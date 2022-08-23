@@ -13,7 +13,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="https://asemarrecovery.quentalstaging.com/css/app.css" rel="stylesheet">
+    <!--<link href="https://asemarrecovery.quentalstaging.com/css/app.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="{{ url('landing') }}/app_quental.css">
+
+    @include('styles2')
 <style>.modal-vue .fade-enter[data-v-e8aafb5e],
 .modal-vue .fade-leave-to[data-v-e8aafb5e] {
   transform: translateX(10px);
@@ -336,7 +339,7 @@
 }
 @media (max-width: 425px) {
 .blockAcceso[data-v-5fddf304] {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
     margin-top: 15px;
 }
 }
@@ -668,9 +671,9 @@
 #como-funciona .card-reclamacion[data-v-494d1a60] {
   padding: 24px 19px 37px 32px;
   border-radius: 16px;
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
-  background-color: #f8fafc;
+  /*-webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);*/
+  background-color: transparent;
 }
 #como-funciona .card-reclamacion .Reclamacion[data-v-494d1a60] {
   font-family: CynthoNext;
@@ -751,12 +754,12 @@
 }
 .blockTarifa .card-tarifa[data-v-9cc878a2] {
   border-radius: 16px;
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
-  background-color: #f8fafc;
+  /*-webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);*/
+  background-color: #ffffff;
 }
 .blockTarifa .card-tarifa .text-tarifa[data-v-9cc878a2] {
-  padding-bottom: 70px;
+  padding-bottom: 50px;
   font-family: Nordeco;
   font-size: 40px;
   font-weight: normal;
@@ -1408,7 +1411,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: normal;
+  line-height: 1.29;
   letter-spacing: normal;
   color: #fff;
 }
@@ -4812,7 +4815,9 @@ a.more-link[data-v-167ae8c1] {
     <div id="app">
         <main>
             <div data-v-effc9f78="" data-v-038cfd70="">
-                <div data-v-038cfd70="" data-v-effc9f78="" class="block-PFrecuentes">
+                {{--<div data-v-038cfd70="" data-v-effc9f78="" class="block-PFrecuentes">--}}
+                <div data-v-eb5d4bee="" data-v-effc9f78="" class="block-Testimonios">
+                    {{--
                     <nav data-v-5fddf304="" data-v-038cfd70="" class="navbar navbar-expand-lg navbar-light" data-v-effc9f78="">
                         <div data-v-5fddf304="" class="container">
                             <a data-v-5fddf304="" href="{{url('/')}}" class="navbar-brand router-link-active" style="display: none;">
@@ -4871,15 +4876,36 @@ a.more-link[data-v-167ae8c1] {
                                 <!---->
                             </div>
                         </div>
-                    </nav>
-                    <div data-v-038cfd70="" data-v-effc9f78="" class="container PFrecuentes">
+                    </nav>--}}
+                    @include('front.navbar')
+
+                    <!--<div data-v-038cfd70="" data-v-effc9f78="" class="container PFrecuentes">-->
                         <!--<div data-v-038cfd70="" data-v-effc9f78="" class="PFrecuentes-subtitle">
                             Preguntas frecuentes
                         </div>-->
-                        <div data-v-038cfd70="" data-v-effc9f78="" class="PFrecuentes-title">
+                        <!--<div data-v-038cfd70="" data-v-effc9f78="" class="PFrecuentes-title">
                             Preguntas frecuentes
                         </div>
+                    </div>-->
+
+
+                    <div data-v-eb5d4bee="" data-v-effc9f78="" class="container Testimonios">
+                        <div data-v-eb5d4bee="" data-v-effc9f78="" class="row">
+                            <div data-v-eb5d4bee="" data-v-effc9f78=""
+                                class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                <div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-title">Preguntas frecuentes</div>
+                            </div>
+                            <div data-v-eb5d4bee="" data-v-effc9f78=""
+                                class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                <div data-v-eb5d4bee="" data-v-effc9f78="" class="Testimonios-subtitle"></div>
+                            </div>
+                        </div>
                     </div>
+
+
+
+
+
                     @include('followus')
                 </div>
 
@@ -4917,7 +4943,7 @@ a.more-link[data-v-167ae8c1] {
 
 									    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 									      <div class="card-body">
-									        <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de facturas impagadas de forma sencilla, exitosa y transparente. Uno de nuestros objetivos es el de democratizar este sector de una manera transparente y aportando valor.
+									        <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de facturas impagadas de forma sencilla, exitosa y transparente. Uno de nuestros objetivos es el de revolucionar este sector de una manera transparente y aportando valor.
 									      </div>
 									    </div>
 									  </div>
@@ -4931,7 +4957,7 @@ a.more-link[data-v-167ae8c1] {
 									    </div>
 									    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 									      <div class="card-body">
-									        <b>Dividae</b> está formado por un equipo de profesionales de más de 90 personas, abogados y procuradores con una amplia experiencia en el sector de recuperación de deuda.
+									        <b>Dividae</b> está formado por un equipo de profesionales de más de 90 personas, entre las que se incluyen abogados y procuradores con una amplia experiencia en el sector de recuperación de deuda.
 									      </div>
 									    </div>
 									  </div>
@@ -5059,7 +5085,7 @@ a.more-link[data-v-167ae8c1] {
 
 									    <div id="ecollapseOne" class="collapse show" aria-labelled-by="eheadingOne" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        <b>Dividae</b> puede acumular las facturas impagadas de un mismo deudor en la misma demanda, por ello el cliente deberá aportar la información solicitada de cada una de las facturas que se quieren reclamar y anexarlas al mismo expediente sin necesidad de abrir uno nuevo.
+									        <b>Dividae</b> puede acumular las facturas impagadas de un mismo deudor en la misma demanda. Por ello, el cliente deberá aportar la información solicitada de cada una de las facturas que se quieren reclamar y anexarlas al mismo expediente sin necesidad de abrir uno nuevo.
 									      </div>
 									    </div>
 									  </div>
@@ -5144,13 +5170,13 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
 									    <div class="card-header" id="eheadingSeven">
 									      <h2 class="mb-0">
 									        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#ecollapseSeven" aria-expanded="false" aria-controls="ecollapseSeven">
-									          ¿Por qué necesita un poder para pleitos?
+									          ¿Por qué necesitas un poder para pleitos?
 									        </button>
 									      </h2>
 									    </div>
 									    <div id="ecollapseSeven" class="collapse" aria-labelledby="eheadingSeven" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Para poder presentar la demanda y actuar en su nombre, debemos acreditar en el Juzgado que somos su Abogado y Procurador. En la reclamación amistosa no es necesario el poder para pleitos, por ello solo se lo solicitaremos previamente a que iniciemos la reclamación judicial. Al otorgarnos el poder para pleitos, nos habilita para las posteriores reclamaciones que quiera hacer, es decir, tan sólo deberá hacerlo una vez.
+									        Para poder presentar la demanda y actuar en tu nombre, debemos acreditar en el Juzgado que somos tu Abogado y Procurador. En la reclamación amistosa no es necesario el poder para pleitos, por ello solo te lo solicitaremos previamente a que iniciemos la reclamación judicial. Al otorgarnos el poder para pleitos, nos habilitas para las posteriores reclamaciones que quieras hacer, es decir, tan sólo deberás hacerlo una vez.
 									      </div>
 									    </div>
 									  </div>
@@ -5180,7 +5206,7 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
 									    </div>
 									    <div id="ecollapseNine" class="collapse" aria-labelledby="eheadingNine" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        En estos casos, el equipo de <b>Dividae</b> procederá a informarle de lo ocurrido y le planteará las diferentes estrategias y los siguientes pasos a seguir.
+									        En estos casos, el equipo de <b>Dividae</b> procederá a informarte de lo ocurrido y te planteará las diferentes estrategias y los siguientes pasos a seguir.
 									      </div>
 									    </div>
 									  </div>

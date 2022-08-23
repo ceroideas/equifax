@@ -121,7 +121,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-6">
-                <x-adminlte-input name="abonos" label="Abonos Realizados por el Deudor" placeholder="Abonos Realizados por el Deudor (La suma de lo abonado)" type="number" min="0"
+                <x-adminlte-input name="abonos" label="Número de Pagos realizados por el Deudor" placeholder="Número de Pagos realizados por el Deudor (La suma de lo abonado)" type="number" min="0"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->partials_amount : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -133,7 +133,7 @@
             <div class="col-sm-6 total">
 
                 @if (old('amounts'))
-                    <label>Pagos Parciales (en €) y fecha en que se realizar&oacute;n</label>
+                    <label>Pagos Parciales (en €) y fecha en que se realizaron</label>
                     @foreach (old('amounts') as $key => $am)
                         <div class="form-group">
                             <div class="row">
@@ -353,6 +353,8 @@
     }
 
     $('[name="importe"],[name="iva"],.amounts').change(makeCalculation);
+
+    $('[name="importe"],[name="iva"],.amounts').click(makeCalculation);
 
     $('[name="abonos"]').on('change',function(){
 

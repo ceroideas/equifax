@@ -11,6 +11,7 @@ use App\Models\Configuration;
 use App\Models\User;
 use Carbon\Carbon;
 
+
 function isComplete()
 {
 	return (Auth::user()->dni && Auth::user()->phone && Auth::user()->cop);
@@ -55,14 +56,14 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
 		if ($h) {
 			if ($h['redirect_to'] != "20") {
-				
+
 				$a = new Actuation;
 		        $a->claim_id = $claim_id;
 		        $a->subject = "001";
 		        $a->amount = null;
 		        $a->description = null;
 		        $a->actuation_date = Carbon::now()->format('d-m-Y');
-		        
+
 		        $a->hito_padre = $h['id'];
 
 		        $a->type = null;
@@ -78,7 +79,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        $a->amount = null;
 		        $a->description = null;
 		        $a->actuation_date = Carbon::now()->format('d-m-Y');
-		        
+
 		        $a->hito_padre = $h['id'];
 
 		        $a->type = null;
@@ -123,7 +124,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        $a->amount = $amount;
 		        $a->description = $observations;
 		        $a->actuation_date = $date ? $date : Carbon::now()->format('d-m-Y');
-		        
+
 		        $a->hito_padre = $h['id'];
 
 		        $a->type = null;
@@ -153,7 +154,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		            $se->save();
 				}
 			}
-	        
+
 			// comprobar si la redirección es al inicio del proceso de cobros (carga apud acta)
 
 			if ($h['redirect_to'] === "301") {

@@ -102,10 +102,14 @@
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Población: </strong>
                                 <p class="text-muted text-uppercase">{{ $third_party->location }}</p>
                             </div>
+
+
                             <div class="col-sm-3">
-                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Código Postal: </strong>
-                                <p class="text-muted text-uppercase">{{ $third_party->cop }}</p>
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Provincia: </strong>
+                                <p class="text-muted text-uppercase">{{ $third_party->province }}</p>
                             </div>
+
+
                         </div>
                         <hr>
                         <div class="row">
@@ -135,6 +139,10 @@
                                 </p>
                             </div>
                             @endif
+                            <div class="col-sm-6">
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Código Postal: </strong>
+                                <p class="text-muted text-uppercase">{{ $third_party->cop }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -144,7 +152,7 @@
             <div class="col-sm-12">
                 <nobr>
                     @if($third_party->user->is(Auth::user()))
-                    <a href="{{ url('/third-parties/' . $third_party->id . '/edit') }}" class="btn btn-warning btn-block"><b>Editar Datos</b></a>
+                    <a href="{{ url('/third-parties/' . $third_party->id . '/edit') }}" class="btn btn-default btn-block"><b>Editar Datos</b></a>
                     @endif
                     <a href="{{ url('/third-parties') }}" class="btn btn-default btn-block  ($third_party->user->is(Auth::user()) ? '' : 'my-4'))"><b>Regresar al Listado</b></a>
                 </nobr>

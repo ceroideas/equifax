@@ -122,6 +122,7 @@
                         </div>
                     </x-slot>
                 </x-adminlte-input>
+
                 <x-adminlte-input name="location" label="Población *" placeholder="Población" type="text"
                     igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->location   :  ''}}">
                         <x-slot name="appendSlot">
@@ -130,10 +131,20 @@
                             </div>
                         </x-slot>
                 </x-adminlte-input>
+
             </div>
         </div>
         <div class="row">
-
+            <div class="col-sm-6">
+                <x-adminlte-input name="province" label="Provincia *" placeholder="Provincia" type="text"
+                    igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->province   :  ''}}">
+                        <x-slot name="appendSlot">
+                            <div class="input-group-text bg-dark">
+                                <i class="fas fa-map-marker"></i>
+                            </div>
+                        </x-slot>
+                </x-adminlte-input>
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
@@ -181,7 +192,7 @@
 
         $.get('{{url('getPopulation')}}/'+($(this).val()), function(data, textStatus) {
             if (data) {
-                $('#location').val(data.province);
+                $('#province').val(data.province);
             }
         });
     });
