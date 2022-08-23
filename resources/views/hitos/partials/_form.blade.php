@@ -62,7 +62,7 @@
                 <x-adminlte-select2 name="parent_id" igroup-size="sm" enable-old-support="true" label="Hito padre">
                     <option selected></option>
                     @foreach (App\Models\Hito::whereNull('parent_id')->get() as $h)
-                        <option {{isset($ht) ? ($ht->parent_id == $h->ref_id ? 'selected' : '') : ''}} value="{{$h->ref_id}}">{{$h->name}}</option>
+                        <option {{isset($ht) ? ($ht->parent_id == $h->ref_id ? 'selected' : '') : ''}} value="{{$h->ref_id}}">{{$h->ref_id}} - {{$h->name}}</option>
                     @endforeach
                 </x-adminlte-select2>
             </div>
