@@ -19,7 +19,7 @@ class ClaimPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->isAdmin();
+        return !$user->isClient();
     }
 
     /**
@@ -105,5 +105,11 @@ class ClaimPolicy
 
         return $user->isAdmin();
  
-     }
+    }
+
+    public function checkGestor(User $user){
+
+        return $user->isGestor();
+ 
+    }
 }

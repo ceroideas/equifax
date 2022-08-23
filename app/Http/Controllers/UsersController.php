@@ -126,8 +126,10 @@ class UsersController extends Controller
             'discount'=> $request->discount,
         ]);
 
-        $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
-        $user->update(['dni_img' => $path]);
+        if ($request->file('dni_img')) {
+            $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
+            $user->update(['dni_img' => $path]);
+        }
 
         if($request->file('representative_dni_img')){
             $path = $request->file('representative_dni_img')->store('uploads/users/' . $user->id . '/representative_dni_img', 'public');
@@ -199,6 +201,7 @@ class UsersController extends Controller
             'province' => $request->province,
             'cop' => $request->cop,
             'iban' => $request->iban,
+            'role' => $request->role,
             'password' => $password,
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
@@ -357,6 +360,25 @@ class UsersController extends Controller
 
     public function migrar()
     {
+        // Schema::create('discounts', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('amount')->nullable();
+        //     $table->integer('claim_id')->nullable();
+        //     $table->integer('gestor_id')->nullable();
+        //     $table->timestamps();
+        //     //
+        // });
+        /*Invoice::where('claim_id',9)->delete();
+        Debt::where('claim_id',9)->delete();
+        Claim::find(9)->delete();
+
+        return 1;*/
+        Schema::table('claims', function(Blueprint $table) {
+            //
+            $table->integer('gestor_id')->nullable();
+        });
+
+        return "";
         // return Hito::all();
         // Auth::loginUsingId(39);
         // return Claim::all();

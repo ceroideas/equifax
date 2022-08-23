@@ -297,13 +297,13 @@ return [
                 [
                     'text' => 'Añadir Nuevo',
                     'icon' => '',
-                    'can' => 'create-claims',
+                    'can' => ['create-claims'],
                     'url'  => '/debtors/create',
                 ],
                 [
                     'text' => 'Listado de Deudores',
                     'icon' => '',
-                    'can' => 'create-claims',
+                    'can' => ['create-claims'],
                     'url'  => '/debtors',
                 ],
             ],
@@ -355,30 +355,30 @@ return [
         [
             'text'    => 'Reclamaciones',
             'icon'    => 'fas fa-fw fa-book',
-            'can' =>  ['create-claims', 'admin-claims'],
+            'can' =>  ['create-claims', 'admin-claims', 'gestor-claims'],
             'submenu' => [
                 [
                     'text' => 'Listado de Reclamaciones',
                     'icon' => '',
-                    'can' => ['create-claims', 'admin-claims'],
+                    'can' => ['create-claims', 'admin-claims', 'gestor-claims'],
                     'url'  => '/claims',
                 ],
                 [
                     'text' => 'Nueva Reclamación',
                     'icon' => '',
-                    'can' => 'create-claims',
+                    'can' => ['create-claims','gestor-claims'],
                     'url'  => '/claims/select-client',
                 ],
                 [
                     'text' => 'Reclamaciones Finalizadas',
                     'icon' => '',
-                    'can' => ['create-claims', 'admin-claims'],
+                    'can' => ['create-claims', 'admin-claims', 'gestor-claims'],
                     'url'  => '/claims/pending',
                 ],
                 [
                     'text' => 'Facturas',
                     'icon' => '',
-                    'can' => ['create-claims', 'admin-claims'],
+                    'can' => ['create-claims', 'admin-claims', 'gestor-claims'],
                     'url'  => '/claims/invoices',
                 ],
             ],

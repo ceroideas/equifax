@@ -10,8 +10,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/panel">&Aacute;rea personal</a></li>
-                    <li class="breadcrumb-item"><a href="/panel/usuarios">Usuarios</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}/users">Usuarios</a></li>
                     <li class="breadcrumb-item active">Crear Nuevo Usuario</li>
                 </ol>
             </div>

@@ -2,6 +2,32 @@
 
 {{-- @section('title', 'Dashboard') --}}
 
+<style>
+    @font-face{
+        font-family: "Roobert";
+        src: url({{url('landing')}}/fonts/Roobert-Light.otf?d941cb2e666a7aa59bde258fee032353);
+        font-weight: normal;
+        font-style: normal;
+    }
+    .btn-light-descubre {
+        border-radius: 37.5px !important !important;
+        background-color: #e65927 !important;
+        font-family: Roobert !important;
+        font-size: 14px !important;
+        font-weight: normal !important;
+        font-stretch: normal !important;
+        font-style: normal !important;
+        line-height: normal !important;
+        letter-spacing: normal !important;
+        text-align: center !important;
+        color: #fff !important;
+        /*margin-top: 14px !important;*/
+        color: #fff !important !important;
+        margin-left: -10px !important;
+        border: 1px solid #e65927 !important;
+    }
+</style>
+
 @if (!Auth::user()->isClient())
     @section('content_header')
         <div class="container-fluid">
@@ -18,6 +44,7 @@
         </div>
     @stop
 @endif
+
 
 @if (Auth::user()->isClient())
     @section('extra_header')
@@ -208,7 +235,11 @@
                                                 </div>
                                                 <div class="col-2">
                                                     <span class="badge badge-info">
+                                                        @if (Auth::user()->isGestor())
+                                                        {{App\Models\Claim::where('gestor_id',Auth::id())->whereNotIn('status',[-1,0,1])->where('claim_type',2)->count()}}
+                                                        @else
                                                         {{Auth::user()->claims()->whereNotIn('status',[-1,0,1])->where('claim_type',2)->count()}}
+                                                        @endif
                                                     </span>
                                                 </div>
                                             </div>
@@ -242,7 +273,11 @@
                                                 </div>
                                                 <div class="col-2">
                                                     <span class="badge badge-info">
+                                                        @if (Auth::user()->isGestor())
+                                                        {{App\Models\Claim::where('gestor_id',Auth::id())->whereNotIn('status',[-1,0,1])->where('claim_type',1)->count()}}
+                                                        @else
                                                         {{Auth::user()->claims()->whereNotIn('status',[-1,0,1])->where('claim_type',1)->count()}}
+                                                        @endif
                                                     </span>
                                                 </div>
                                             </div>
@@ -276,7 +311,11 @@
                                                 </div>
                                                 <div class="col-2">
                                                     <span class="badge badge-info">
+                                                        @if (Auth::user()->isGestor())
+                                                        {{App\Models\Claim::where('gestor_id',Auth::id())->whereIn('status',[-1,0,1])->count()}}
+                                                        @else
                                                         {{Auth::user()->claims()->whereIn('status',[-1,0,1])->count()}}
+                                                        @endif
                                                     </span>
                                                 </div>
                                             </div>

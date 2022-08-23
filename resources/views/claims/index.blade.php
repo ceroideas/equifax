@@ -23,24 +23,46 @@
 @section('content')
 {{-- Configuración del componente para el datatable --}}
     @php
-    $heads = [
-        'ID',
-        'Usuario',
-        'Acreedor',
-        'Deudor',
-        'Importe reclamado',
-        'Cobros recibidos',
-        'Importe pendiente de pago',
-        ['label' => 'Tipo de Reclamación'],
-        ['label' => 'Status'],
-        ['label' => 'Acciones','width' => 5],
-    ];
+    if (Auth::user()->isGestor()) {
+        $heads = [
+            'ID',
+            'Usuario',
+            'Acreedor',
+            'Deudor',
+            'Importe reclamado',
+            'Cobros recibidos',
+            'Importe pendiente de pago',
+            ['label' => 'Tipo de Reclamación'],
+            ['label' => 'Status'],
+            ['label' => 'Saldo Generado'],
+            ['label' => 'Acciones','width' => 5],
+        ];
+        $config = [
 
-    $config = [
+            'columns' => [null, null, null, null, null, null, null, null, null, null, ['orderable' => false]],
+            'language' => ['url' => '/js/datatables/dataTables.spanish.json']
+        ];
+    }else{
 
-        'columns' => [null, null, null, null, null, null, null, null, null, ['orderable' => false]],
-        'language' => ['url' => '/js/datatables/dataTables.spanish.json']
-    ];
+        $heads = [
+            'ID',
+            'Usuario',
+            'Acreedor',
+            'Deudor',
+            'Importe reclamado',
+            'Cobros recibidos',
+            'Importe pendiente de pago',
+            ['label' => 'Tipo de Reclamación'],
+            ['label' => 'Status'],
+            ['label' => 'Acciones','width' => 5],
+        ];
+        $config = [
+
+            'columns' => [null, null, null, null, null, null, null, null, null, ['orderable' => false]],
+            'language' => ['url' => '/js/datatables/dataTables.spanish.json']
+        ];
+    }
+
     @endphp
 
     {{-- Datatable para los usuarios --}}
@@ -108,6 +130,61 @@
                     <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
                     <td>{{ $claim->getType() }}</td>
                     <td>{{ $claim->getHito() }}</td>
+                    @if (Auth::user()->isGestor())
+                        <td>
+                            {{$claim->saldo() - $claim->discounts()}}€ <a data-toggle="modal" href="#view-details-{{$claim->id}}"><i class="fa fa-eye"></i></a>
+
+                            <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#discount-{{$claim->id}}">Descontar Saldo</button>
+
+                            <div class="modal fade" id="view-details-{{$claim->id}}">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">Detalle de Saldo</div>
+                                        <div class="modal-body">
+                                            Saldo Principal: <b>{{$claim->saldo()}}€</b>
+
+                                            <hr>
+
+                                            Descuentos:
+
+                                            @forelse (App\Models\Discount::where('claim_id',$claim->id)->get() as $key => $value)
+                                                <li>{{str_replace(',', '.', $value->amount)}}€</li>
+                                            @empty
+                                                --
+                                            @endforelse
+
+                                            <hr>
+
+                                            Saldo Final: <b>{{$claim->saldo() - $claim->discounts()}}€</b>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button data-dismiss="modal" class="btn btn-sm btn-danger">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="discount-{{$claim->id}}">
+                                <div class="modal-dialog modal-sm">
+                                    <form class="modal-content" method="POST" action="{{url('saveDiscount')}}">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="claim_id" value="{{$claim->id}}">
+                                        <div class="modal-header">Descontar importe por pago recibido</div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Monto a descontar</label>
+                                                <input type="number" step="0.01" min="0" max="{{$claim->saldo() - $claim->discounts()}}" class="form-control" name="amount" required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-sm btn-success">Aceptar</button>
+                                            <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    @endif
                     {{-- <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td> --}}
                     {{-- <td>{{ $claim->getStatus() }}</td> --}}
                     <td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agreement;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Rules\Iban;
 use Auth;
@@ -44,8 +45,16 @@ class AgreementsController extends Controller
         $agreement->wait = $request['espera'];
         $agreement->observation = $request['observaciones'] ? $request['observaciones'] : '';
 
-        Auth::user()->iban = $request['iban'];
-        Auth::user()->save();
+        if (Auth::user()->isGestor()) {
+            $u = User::find(session('other_user'));
+            $u->iban = $request['iban'];
+            $u->save();
+
+            actuationActions("-1",$claim->id);
+        }else{
+            Auth::user()->iban = $request['iban'];
+            Auth::user()->save();
+        }
 
 
         session()->put('claim_agreement', $agreement);
