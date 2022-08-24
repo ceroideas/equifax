@@ -31,7 +31,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before( fn (User $user) => $user->isSuperAdmin());
+        // Gate::before( fn (User $user) => $user->isSuperAdmin());
+
+        Gate::define('superadmin', [UserPolicy::class, 'superadmin']);
 
         Gate::define('see-pendings', [UserPolicy::class, 'pending']);
 

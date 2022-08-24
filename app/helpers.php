@@ -15,7 +15,6 @@ function isComplete()
 {
 	return (Auth::user()->dni && Auth::user()->phone && Auth::user()->cop);
 }
-
 function getHito($id_hito)
 {
 	$h = null;
