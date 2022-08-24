@@ -60,6 +60,7 @@ class ThirdPartiesController extends Controller
         $thirdParty->dni = $data['dni'];
         $thirdParty->address = $data['address'];
         $thirdParty->location = $data['location'];
+        $thirdParty->province = $data['province'];
         $thirdParty->cop = $data['cop'];
         $thirdParty->iban = array_key_exists('iban', $data) ? $data['iban'] : null;
         if (session('other_user')) {
@@ -142,6 +143,7 @@ class ThirdPartiesController extends Controller
         $thirdParty->dni = $data['dni'];
         $thirdParty->address = $data['address'];
         $thirdParty->location = $data['location'];
+        $thirdParty->province = $data['province'];
         $thirdParty->cop = $data['cop'];
         $thirdParty->iban = array_key_exists('iban', $data) ? $data['iban'] : null;
         $thirdParty->legal_representative = $data['tipo'] == 1 ? $data['legal_representative']: null;
@@ -220,6 +222,7 @@ class ThirdPartiesController extends Controller
             'name' => 'required|min:8|max:255',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
+            'province' => 'required',
             'cop' => 'required',
             'dni' => 'required',
 

@@ -26,6 +26,7 @@ class User extends Authenticatable
         'phone',
         'address',
         'location',
+        'province',
         'cop',
         'iban',
         'role',
@@ -33,6 +34,8 @@ class User extends Authenticatable
         'password',
         'legal_representative',
         'representative_dni',
+        'taxcode',
+        'discount',
     ];
 
     /**
@@ -164,7 +167,7 @@ class User extends Authenticatable
 
         $this->status = 2;
         $this->save();
- 
+
         return true;
      }
 
@@ -172,7 +175,7 @@ class User extends Authenticatable
 
         $this->status = 1;
         $this->save();
- 
+
         return true;
      }
 
@@ -185,21 +188,21 @@ class User extends Authenticatable
      }
 
      public function thirdParties(){
-         
+
          return $this->hasMany(ThirdParty::class);
      }
 
      public function debtors(){
-         
+
         return $this->hasMany(Debtor::class);
     }
 
     public function claims(){
-         
+
         return $this->hasMany(Claim::class, 'owner_id');
     }
     public function invoices(){
-         
+
         return $this->hasMany(Invoice::class, 'user_id');
     }
 }

@@ -115,13 +115,15 @@ class UsersController extends Controller
             'phone' => $request->tlf,
             'address' => $request->address,
             'location' => $request->location,
+            'province' => $request->province,
             'cop' => $request->cop,
             'iban' => $request->iban,
             'role' => $request->role,
             'password' => bcrypt($request->password),
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
-
+            'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
+            'discount'=> $request->discount,
         ]);
 
         if ($request->file('dni_img')) {
@@ -196,12 +198,15 @@ class UsersController extends Controller
             'phone' => $request->tlf,
             'address' => $request->address,
             'location' => $request->location,
+            'province' => $request->province,
             'cop' => $request->cop,
             'iban' => $request->iban,
             'role' => $request->role,
             'password' => $password,
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
+            'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
+            'discount'=> $request->discount,
 
         ]);
         if($request->file('dni_img')){
@@ -273,6 +278,7 @@ class UsersController extends Controller
             'tlf' => 'required|min:9|max:14',
             'address' => 'required|min:10|max:255',
             'location' => 'required',
+            'province' => 'required',
             'cop' => 'required|numeric',
 
         ];

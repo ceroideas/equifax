@@ -325,7 +325,7 @@
 }
 @media (max-width: 425px) {
 .blockAcceso[data-v-5fddf304] {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
     margin-top: 15px;
 }
 }
@@ -680,9 +680,9 @@
 #como-funciona .card-reclamacion[data-v-494d1a60] {
   padding: 24px 19px 37px 32px;
   border-radius: 16px;
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
-  background-color: #f8fafc;
+  /*-webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);*/
+  background-color: transparent;
 }
 #como-funciona .card-reclamacion .Reclamacion[data-v-494d1a60] {
   font-family: CynthoNext;
@@ -763,12 +763,12 @@
 }
 .blockTarifa .card-tarifa[data-v-9cc878a2] {
   border-radius: 16px;
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
-  background-color: #f8fafc;
+  /*-webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);*/
+  background-color: #ffffff;
 }
 .blockTarifa .card-tarifa .text-tarifa[data-v-9cc878a2] {
-  padding-bottom: 70px;
+  padding-bottom: 20px;
   font-family: Nordeco;
   font-size: 40px;
   font-weight: normal;
@@ -778,6 +778,7 @@
   letter-spacing: normal;
   text-align: center;
   color: #285ba3;
+  padding-top:40px;
 }
 .blockTarifa .blockCard .card[data-v-9cc878a2] {
   border: 0px;
@@ -859,6 +860,7 @@
     color: #fff !important;
     margin-left: -10px;
     border: 1px solid #e65927;
+    padding: 12px 20px;
 }
 
 .blockTarifa .blockCard .op-frecuente[data-v-9cc878a2] {
@@ -905,7 +907,7 @@
   } */
 }
 .blockRecovery .RText[data-v-43503c2a] {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   font-family: Nordeco;
   font-size: 40px;
   font-weight: normal;
@@ -915,6 +917,7 @@
   letter-spacing: normal;
   text-align: center;
   color: #285ba3;
+  padding-top: 40px;
 }
 .blockRecovery .Recovery-img[data-v-43503c2a] {
   -moz-text-align-last: center;
@@ -1023,7 +1026,7 @@
   border-radius: 8px;
   border: solid 1px #254158;
   background-color: #fff;
-  width: 30%;
+  width: 35%;
   position: absolute;
   top: 22%;
   left: 80%;
@@ -1088,6 +1091,7 @@
   line-height: 1.5;
   letter-spacing: normal;
   color: #254158;
+  text-align: justify;
 }
 .blockOpiniones .content .Opinion-text .row[data-v-455dcd3f] {
   margin-top: 25px;
@@ -1330,6 +1334,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   text-align: center;
   color: #fff;
   margin-top: 10px;
+  padding: 12px 20px;
 }
 .blockQSomos .card .QSomos-btn[data-v-63cd6604]:hover {
   background-color: #fff;
@@ -1395,6 +1400,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   color: #fff;
   border-radius: 37.5px;
   background-color: #e65927;
+  padding: 12px 20px;
 }</style><style>.block-Testimonios[data-v-eb5d4bee] {
   -o-object-fit: contain;
      object-fit: contain;
@@ -1794,6 +1800,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   line-height: 1.5;
   letter-spacing: normal;
   color: #285ba3;
+  text-align: justify;
 }
 @media (min-width: 768px) {
 .block-nosotros .Nosotros-text[data-v-c7d18d50] {
@@ -4938,7 +4945,7 @@ text-align: left;
 
 .bottom-text {
   margin-top: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-family: Roobert;
   font-size: 16px;
   font-weight: bold;
