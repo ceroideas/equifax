@@ -230,6 +230,12 @@
                                 {{-- <span data-v-66372912="" class="Lorem-ipsum-dolor-si">
                                 Lorem ipsum dolor sit amet, consectetur
                               </span> --}}
+                            
+                            @if (session('msg'))
+                                <div class="alert alert-warning">
+                                    {{ session('msg') }}
+                                </div>
+                            @endif
                                 <div data-v-66372912="" style="padding-top: 60px;"><span data-v-66372912="" class="Te-ayudamos-a-recupe">
                                         Di adiós a las facturas <br> impagadas
                                     </span></div>
