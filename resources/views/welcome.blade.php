@@ -388,10 +388,12 @@
 
                         <div data-v-63cd6604="" data-v-effc9f78=""><a data-v-63cd6604="" href="{{ url('register') }}" class="btn QSomos-btn" data-v-effc9f78="">Regístrate</a></div>
 
-{{-- Video --}}         
-                        <video width="600px" controls autoplay muted >
-                            <source src="{{ url('landing/dividaemision.mp4') }}" type="video/mp4">
-                        </video>
+                    {{-- Video --}}         
+                        <div class="videoDividae">
+                            <video class="videoDividae" controls autoplay muted >
+                                <source src="{{ url('landing/dividaemision.mp4') }}" type="video/mp4">
+                            </video>
+                        </div>
 
                     </div>
                 </div>   {{-- Fin bloque nuestra mision --}}
