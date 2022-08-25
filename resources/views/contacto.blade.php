@@ -5897,7 +5897,7 @@
                                     src="{{ url('landing') }}/assets/icon-large-contacto-phone.png"
                                     class="img-fluid">
                                 <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
-                                    <a href="tel:+34680933286">+34 680 933 286</a>
+                                    <a href="tel:+34913258610">+34 913 258 610</a>
                                 </div>
                             </div>
                             <div data-v-cfd2b624="" data-v-effc9f78=""

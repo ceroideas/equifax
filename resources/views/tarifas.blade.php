@@ -483,8 +483,8 @@ del respeto al derecho a la tutela judicial efectiva cuando la parte contraria n
                             <p style="color:#285ba3; font-style: italic;">* Dividae cobrará un 15% sobre las cantidades
                                 recuperadas.</p>
 
-                            <p style="color:#285ba3; font-style: italic;">** Precio fijo que deberá abonarse por la
-                                cliente previa al inicio de cada procedimiento.</p>
+                            <p style="color:#285ba3; font-style: italic;">** Precio fijo que deberá abonarse por el
+                                cliente previo al inicio de cada procedimiento.</p>
 
                         </div>
 
