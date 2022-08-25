@@ -782,6 +782,11 @@
 }</style><style>.blockTarifa[data-v-9cc878a2] {
   margin-top: 50px;
 }
+
+.videoDividae {
+  padding: 25px;
+  width:100%;
+}
 .blockTarifa .card-tarifa[data-v-9cc878a2] {
   border-radius: 16px;
   /*-webkit-backdrop-filter: blur(2px);
