@@ -1265,27 +1265,64 @@ class ClaimsController extends Controller
 
     public function info($id)
     {
-        $infopago = config('app.infopago');
-        $titulo="";
-        $hito="";
-        $msg="";
-        $concepto="";
-        $importe="";
+        
+        //$infopago = config('app.infopago'); // Mensajes personalizados para mostrar al cliente
+        list($infopago, $titulo, $hito, $msg, $concepto, $importe) = array(config('app.infopago'), "","","","","");
+
+
+        /* Comprobar si existe la reclamacion */
+        $claim = Claim::where('id',$id)
+                                ->get();
+            
+        if($claim->isEmpty()){
+            return redirect('/')->with('msg', 'La reclamacion '.$id.' no existe');
+        }
+//var_dump($claim);
+        
+        /* Comprobar si la factura existente esta pendiente de pago */
+        /* Comprobar las actuaciones que generan la factura pendiente de pago */
 
         /* Recuperar si existe factura pendiente de pago, recuperaremos conceptos y enviamos enlace de pago */
         $invoice = Invoice::where('claim_id',$id)
                                     ->orderBy('id','desc')
                                     ->take(1)
                                     ->get();
-        /* $invoice[0]->status = 1 pagada, null pendiente de pago*/
-        if(isset($invoice)){
-            if($invoice[0]->status == null){
+        
+//var_dump($invoice);
 
+        if($invoice->isNotEmpty()){
+            /* $invoice[0]->status = 1 pagada, null pendiente de pago*/   
+            
+
+            if($invoice[0]->status == null){
 
                 /* Recuperar si el ultimo hito corresponde al 301 o 302 recuperar el que lo genero app.infopago */
                 $actuaciones = Actuation::where('claim_id',$id)
                                      ->orderBy('id', 'desc')
                                     ->get();
+                
+                /* Tiene actuaciones la factura, sino tiene es extrajudicial */
+                if($actuaciones->isEmpty()){
+//dd($actuaciones);
+                    /* Deberiamos recuperar las lineas de detalle ? */
+                    $linvoice = Linvoice::where('invoice_id',$id)
+                                        ->get();
+                    
+//dd($linvoice);                    
+                    /* Prevenimos error Linvoice */
+                    if($linvoice->isEmpty()){
+                        $titulo = 'Error al leer lineas de detalle';
+                        return view('info-public', compact('hito', 'titulo','msg','concepto','importe', 'id'));    
+                    }else{
+                        $titulo = 'Procedimiento extrajudicial';
+                        $concepto = $linvoice[0]->deslin;
+                        $importe = $linvoice[0]->prelin;
+
+                    }
+
+                    return view('info-public', compact('hito', 'titulo','msg','concepto','importe', 'id'));
+                }
+/*Testeado */
                 dump($actuaciones);
                 dump($actuaciones[0]->subject);
                 //die();
@@ -1314,10 +1351,11 @@ class ClaimsController extends Controller
                 }
 
             }else{
-                print_r('No existe factura pendiente de pago');
+                //print_r('No existe factura pendiente de pago');
+                return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
             }
         }else{
-            print_r('No existe factura');
+            return redirect('/')->with('msg', 'La reclamación no tiene actuaciones');
         }
 
 

@@ -93,7 +93,7 @@
                 <ul data-v-a242bae8="" class="nav flex-column">
                     <li data-v-a242bae8="" class="nav-item mb-2">
                         <a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">
-                            <img data-v-a242bae8="" src="http://127.0.0.1:8000/landing/assets/icons-phone-white.png" class="img-fluid"> +34 680 933 286
+                            <img data-v-a242bae8="" src="http://127.0.0.1:8000/landing/assets/icons-phone-white.png" class="img-fluid"> +34 913 258 610
                         </a>
                     </li>
                     <li data-v-a242bae8="" class="nav-item mb-2">

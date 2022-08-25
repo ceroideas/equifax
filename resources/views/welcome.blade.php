@@ -230,6 +230,12 @@
                                 {{-- <span data-v-66372912="" class="Lorem-ipsum-dolor-si">
                                 Lorem ipsum dolor sit amet, consectetur
                               </span> --}}
+                            
+                            @if (session('msg'))
+                                <div class="alert alert-warning">
+                                    {{ session('msg') }}
+                                </div>
+                            @endif
                                 <div data-v-66372912="" style="padding-top: 60px;"><span data-v-66372912="" class="Te-ayudamos-a-recupe">
                                         Di adiós a las facturas <br> impagadas
                                     </span></div>
@@ -288,23 +294,16 @@
                 </div>
 
 
-
+{{--
                 <div data-v-494d1a60="" data-v-63cd6604="" id="como-funciona" data-v-effc9f78="">
 
                     <div data-v-494d1a60="" class="card- text-center container">
-                        <div data-v-494d1a60="" class="blockBTN">
-                            <div data-v-494d1a60="" class="text-center">
-
-                                {{-- <a data-v-494d1a60="" class="changetype btn active"><span data-v-494d1a60="" class="text-btn">Reclamación amistosa</span></a>
-                        <a data-v-494d1a60="" class="changetype btn"><span data-v-494d1a60="" class="text-btn">Reclamación judicial</span></a> --}}
-                            </div>
-                        </div>
 
                         <div data-v-494d1a60="" href="#amistosa" class="card-body-">
-
+                        
                             <div data-v-494d1a60="" class="row">
-
-                                <div data-v-494d1a60="" class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12"
+                        --}}    
+                                {{--<div data-v-494d1a60="" class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12"
                                     style="position: relative;">
 
                                     <div
@@ -312,8 +311,8 @@
                                     </div>
 
                                     <div style="position: absolute; background-color: #e65927; height: 1px; width: 1px; border-radius: 12px;
-                            z-index: 0; margin: auto; left: 90px; right: 0; top: 30%;
-                            ">
+                                    z-index: 0; margin: auto; left: 90px; right: 0; top: 30%;
+                                    ">
 
                                     </div>
 
@@ -322,10 +321,11 @@
                                         other="{{ url('landing') }}/assets/judicial.jpg"
                                         src="{{ url('landing') }}/images/HP/HP/Nuestra filosofía/nuestra_mision.jpg"
                                         class="img-amistosa img-fluid">
-                                </div>
+                                </div>--}}
 
+                                {{--
                                 <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
-
+                                
                                     <div data-v-494d1a60="" class="card-reclamacion">
                                         <div class="row">
                                             <div class="col-sm-2"></div>
@@ -334,9 +334,7 @@
                                                 <div data-v-494d1a60="" id="block-reclamacion">
                                                     <div data-v-494d1a60="" class="text-reclamacion mb-4 mt-4">¿Cu&aacute;l es nuestra <b>misi&oacute;n</b>?</div>
                                                 </div>
-                                                {{-- <div class="row"> --}}
-                                                {{-- <div data-v-494d1a60="" class="col-xl-12 col-lg-12 col-sm-12 col-xs-12"><div data-v-494d1a60="" class="card-text Reclamacion">Reclamación amistosa</div></div> --}}
-                                                {{-- </div> --}}
+                                                
                                                 <div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
                                                     <p>
                                                         En <b>Dividae</b>, queremos revolucionar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital de una manera
@@ -368,11 +366,38 @@
                                                     </a></span></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>--}}
+{{--
                             </div>
                         </div>
                     </div>
-                </div>  <!-- Fin bloque nuestra filosofia -->
+                </div>  <!-- Fin bloque como funciona -->--}}
+
+
+
+                {{-- Inicio de Bloque nuestra mision --}}
+                <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
+                    <div data-v-9cc878a2="" class="text-center card-tarifa container">
+                        <div data-v-9cc878a2="" class="text-tarifa" style="padding:0">¿Cu&aacute;l es nuestra <b>misi&oacute;n</b>?</div>
+                        <div class="container text-center bottom-text" style="font-weight:normal !important">
+                            <p>En <b>Dividae</b>, queremos revolucionar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital de una manera
+                                <b>automatizada</b> y <b>transparente</b>.</p>
+                            <p>¿Nuestro principal objetivo? Que digas <b>adi&oacute;s a tus facturas impagadas</b>.</p>
+                            <p>Conoce m&aacute;s acerca de <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>.</p>
+                        </div>
+
+                        <div data-v-63cd6604="" data-v-effc9f78=""><a data-v-63cd6604="" href="{{ url('register') }}" class="btn QSomos-btn" data-v-effc9f78="">Regístrate</a></div>
+
+{{-- Video --}}         
+                        <video width="600px" controls autoplay muted >
+                            <source src="{{ url('landing/dividaemision.mp4') }}" type="video/mp4">
+                        </video>
+
+                    </div>
+                </div>   {{-- Fin bloque nuestra mision --}}
+
+
+
 
 
                 {{-- Bloque por que dividae --}}
@@ -431,6 +456,7 @@
                 </div>  {{-- Fin bloque porque dividae --}}
 
 
+                    {{-- Inicio de Bloque cuanto cuesta --}}
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
                         <div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div>
@@ -552,6 +578,7 @@
                         </div>
                     </div>
                 </div>   {{-- Fin bloque cuanto cuesta --}}
+
                 {{--
                 <div data-v-63cd6604="" data-v-effc9f78="" class="blockQSomos">
                     <div data-v-63cd6604="" data-v-effc9f78="" class="container card">
