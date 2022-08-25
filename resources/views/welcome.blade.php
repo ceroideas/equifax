@@ -381,7 +381,7 @@
                         <div data-v-9cc878a2="" class="text-tarifa" style="padding:0">¿Cu&aacute;l es nuestra <b>misi&oacute;n</b>?</div>
                         <div class="container text-center bottom-text" style="font-weight:normal !important">
                             <p>En <b>Dividae</b>, queremos revolucionar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital de una manera
-                                <b>automatizada</b> y <b>transparente</b>. ¿Nuestro principal objetivo? Que digas <b>adi&oacute;s a tus facturas impagadas</b>.Conoce m&aacute;s acerca de 
+                                <b>automatizada</b> y <b>transparente</b>. ¿Nuestro principal objetivo? Que digas <b>adi&oacute;s a tus facturas impagadas</b>. Conoce m&aacute;s acerca de 
                                 <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>.</p>
                         </div>
 
