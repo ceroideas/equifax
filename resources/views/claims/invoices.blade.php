@@ -26,7 +26,6 @@
     if (Auth::user()->isClient()) {
         $heads = [
             'ID',
-            'Cliente',
             'Reclamación',
             'Concepto',
             'Importe',
