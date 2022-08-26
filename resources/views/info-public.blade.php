@@ -281,12 +281,11 @@
 
                             <tbody>
                                 <tr>
-                                    <td style="color:#285ba3">{{$concepto}}</td>
+                                <td style="color:#285ba3">{{$concepto}}</td>
                                     <!--<td rowspan="5"
                                         style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>-->
-                                    <td style="text-align: right;color:#285ba3;">{{$importe}} €</td>
+                                <td style="text-align: right;color:#285ba3;">{{$importe}} €</td>
                                 </tr>
-
                             </tbody>
                         </table>
 
@@ -302,9 +301,10 @@
 
 
                         <p style="color:#285ba3; font-style: italic;">IVA no incluido</p>
+                        <p style="color:#285ba3; font-style: italic;">{{$id}}</p>
 
-                        <p style="color:#285ba3; font-style: italic;">** Precio fijo que deberá abonarse por la cliente
-                            previa al inicio de cada procedimiento.</p>
+                        <p style="color:#285ba3; font-style: italic;">** Precio fijo que deberá abonarse por el cliente
+                            previo al inicio de cada procedimiento.</p>
 
                     </div>
 

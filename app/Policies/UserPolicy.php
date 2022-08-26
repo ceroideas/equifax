@@ -100,4 +100,9 @@ class UserPolicy
     {
         return $user->isAdmin();
     }
+
+    public function superadmin(User $user)
+    {
+        return $user->isSuperAdmin();
+    }
 }

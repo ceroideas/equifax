@@ -1277,7 +1277,7 @@ class ClaimsController extends Controller
         if($claim->isEmpty()){
             return redirect('/')->with('msg', 'La reclamacion '.$id.' no existe');
         }
-    //var_dump($claim);
+//var_dump($claim);
         
         /* Comprobar si la factura existente esta pendiente de pago */
         /* Comprobar las actuaciones que generan la factura pendiente de pago */
