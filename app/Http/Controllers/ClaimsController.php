@@ -1393,4 +1393,7 @@ class ClaimsController extends Controller
         return view('info-public', compact('hito', 'titulo','msg','concepto','importe'));
 
     }
+
+
+
 }
