@@ -50,7 +50,7 @@ class AgreementsController extends Controller
             $u->iban = $request['iban'];
             $u->save();
 
-            actuationActions("-1",$claim->id);
+            // actuationActions("-1",$claim->id);
         }else{
             Auth::user()->iban = $request['iban'];
             Auth::user()->save();

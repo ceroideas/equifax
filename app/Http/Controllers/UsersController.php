@@ -360,6 +360,14 @@ class UsersController extends Controller
 
     public function migrar()
     {
+        $c = Claim::find(4);
+        // return $c->getIdHito();
+        $u = User::find(3);
+        $u->apud_acta = null;
+        $u->save();
+
+        return $u;
+
         // Schema::create('discounts', function (Blueprint $table) {
         //     $table->increments('id');
         //     $table->string('amount')->nullable();

@@ -245,7 +245,7 @@ return [
         // [
         //     'text' => 'blog',
         //     'url'  => 'admin/blog',
-        //     'can'  => 'manage-blog',
+        //     'can'  => 'superadmin','manage-blog',
         // ],
         // [
         //     'text'        => 'pages',
@@ -273,18 +273,18 @@ return [
         [
             'text'    => 'Acreditación De Terceros',
             'icon'    => 'fas fa-fw fa-users',
-            'can' =>  ['create-claims'],
+            'can' =>  ['superadmin','create-claims'],
             'submenu' => [
                 [
                     'text' => 'Añadir Nuevo',
                     'icon' => '',
-                    'can' => 'create-claims',
+                    'can' => ['create-claims'],
                     'url'  => '/third-parties/create',
                 ],
                 [
                     'text' => 'Listado de Acreditación De Terceros',
                     'icon' => '',
-                    'can' => 'create-claims',
+                    'can' => ['superadmin','create-claims'],
                     'url'  => '/third-parties',
                 ],
             ],
@@ -292,7 +292,7 @@ return [
         [
             'text'    => 'Deudores',
             'icon'    => 'fas fa-fw fa-address-book',
-            'can' =>  ['create-claims'],
+            'can' =>  ['superadmin','create-claims'],
             'submenu' => [
                 [
                     'text' => 'Añadir Nuevo',
@@ -303,7 +303,7 @@ return [
                 [
                     'text' => 'Listado de Deudores',
                     'icon' => '',
-                    'can' => ['create-claims'],
+                    'can' => ['superadmin','create-claims'],
                     'url'  => '/debtors',
                 ],
             ],
@@ -311,24 +311,24 @@ return [
         [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-fw fa-user',
-            'can' =>  ['create-users'],
+            'can' =>  ['superadmin','create-users'],
             'submenu' => [
                 [
                     'text' => 'Nuevo Usuario',
                     'icon' => '',
-                    'can' => 'create-users',
+                    'can' => ['superadmin','create-users'],
                     'url'  => '/users/create',
                 ],
                 [
                     'text' => 'Usuarios Pendientes',
                     'icon' => '',
-                    'can' => ['create-users'],
+                    'can' => ['superadmin','create-users'],
                     'url'  => '/users/pending',
                 ],
                 [
                     'text' => 'Listado de Usuarios',
                     'icon' => '',
-                    'can' => 'create-users',
+                    'can' => ['superadmin','create-users'],
                     'url'  => '/users',
                 ],
             ],
@@ -336,18 +336,18 @@ return [
         /*[
             'text'    => 'Clientes',
             'icon'    => 'fas fa-fw fa-user',
-            'can' =>  ['see-pendings'],
+            'can' =>  ['superadmin','see-pendings'],
             'submenu' => [
                 [
                     'text' => 'Clientes Pendientes',
                     'icon' => '',
-                    'can' => ['see-pendings'],
+                    'can' => ['superadmin','see-pendings'],
                     'url'  => '/users/pending',
                 ],
                 [
                     'text' => 'Listado de  Clientes',
                     'icon' => '',
-                    'can' => ['see-pendings'],
+                    'can' => ['superadmin','see-pendings'],
                     'url'  => '/users',
                 ],
             ],
@@ -355,12 +355,12 @@ return [
         [
             'text'    => 'Reclamaciones',
             'icon'    => 'fas fa-fw fa-book',
-            'can' =>  ['create-claims', 'admin-claims', 'gestor-claims'],
+            'can' =>  ['superadmin','create-claims', 'admin-claims', 'gestor-claims'],
             'submenu' => [
                 [
                     'text' => 'Listado de Reclamaciones',
                     'icon' => '',
-                    'can' => ['create-claims', 'admin-claims', 'gestor-claims'],
+                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims'],
                     'url'  => '/claims',
                 ],
                 [
@@ -372,13 +372,13 @@ return [
                 [
                     'text' => 'Reclamaciones Finalizadas',
                     'icon' => '',
-                    'can' => ['create-claims', 'admin-claims', 'gestor-claims'],
+                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims'],
                     'url'  => '/claims/pending',
                 ],
                 [
                     'text' => 'Facturas',
                     'icon' => '',
-                    'can' => ['create-claims', 'admin-claims', 'gestor-claims'],
+                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims'],
                     'url'  => '/claims/invoices',
                 ],
             ],
@@ -386,24 +386,24 @@ return [
         [
             'text'    => 'Configuraciones',
             'icon'    => 'fas fa-fw fa-cog',
-            'can' =>  ['see-fees', 'admin-claims'],
+            'can' =>  ['superadmin','see-fees', 'admin-claims'],
             'submenu' => [
                 [
                     'text' => 'Tasas Dividae',
                     'icon' => '',
-                    'can' => 'see-fees',
+                    'can' => ['superadmin','see-fees'],
                     'url'  => '/configurations/fees',
                 ],
                 [
                     'text' => 'Hitos',
                     'icon' => '',
-                    'can' => 'admin-claims',
+                    'can' => ['superadmin','admin-claims'],
                     'url'  => '/configurations/hitos',
                 ],
                 [
                     'text' => 'Plantillas de Emails',
                     'icon' => '',
-                    'can' => 'admin-claims',
+                    'can' => ['superadmin','admin-claims'],
                     'url'  => '/configurations/templates',
                 ],
 
