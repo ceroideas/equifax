@@ -281,28 +281,19 @@
 
                             <tbody>
                                 <tr>
-                                <td style="color:#285ba3"><span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
-Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">{{$concepto}}</span></td>
+                                    <td style="color:#285ba3">{{$concepto}}</td>
                                     <!--<td rowspan="5"
                                         style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>-->
                                     <td style="text-align: right;color:#285ba3;">{{$importe}} €</td>
                                 </tr>
-{{--                                <tr>
-                                    <td style="color:#285ba3"><span data-toggle="tooltip"
-                                            style="color:#e65927; data-placement="top"
-                                            title="Es la vía de reclamación civil de cantidades más rápida y ágil.
-Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles."
-                                            style="color:#e65927;">Tasas</span>
-                                    </td>
-                                    <td style="text-align: right; color:#285ba3">90,00 €</td>
-                                </tr>--}}
+
                             </tbody>
                         </table>
 
                         <div class="row">
                             <div class="col-sm-5"></div>
                             <div class="col-sm-3">
-                                <a data-v-9cc878a2="" href="https://dividae.com/payment/36" aria-current="page"
+                                <a data-v-9cc878a2="" href="https://dividae.com/payment/<?php echo $id?>" aria-current="page"
                                     class="btn btn-light-descubre" type="button">Proceder al pago</a>
                                     <br>
                             </div>
