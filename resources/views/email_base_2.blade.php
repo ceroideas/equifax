@@ -23,10 +23,11 @@
 			          			<br>
 
 			          			{!! $tmp->top_content !!}
-                                  <img src="{{url($tmp->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">
+                                  {{--<img src="{{url($tmp->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">--}}
 
 			          			<div style="width: auto; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
-			          				<div style="background-color: rgba(255, 255, 255, .9); color: #fd7e14; padding: 16px; width: fit-content;">
+			          				
+									<div style="background-color: transparent; color: #fd7e14; padding: 16px; width: fit-content;">
 			          					{!! $tmp->header_content !!}
 			          				</div>
 			          			</div>
