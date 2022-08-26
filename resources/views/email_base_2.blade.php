@@ -18,7 +18,7 @@
 			      	<tbody>
 			        	<tr>
 			          		<td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
-			          			<img src="{{ url($tmp->top_logo) }}" style="border:none;width: 150px;margin-left: 10px;">
+			          			<img src="{{ url($tmp->top_logo) }}" style="border:none;width: 100%">
 
 			          			<br>
 
