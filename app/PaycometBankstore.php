@@ -133,7 +133,7 @@ class PaycometBankstore
 	* @param string $merchant_data (optional) Datos del Comercio
 	* @param string $merchant_description (optional) Descriptor del Comercio
 	* @param string $sca_exception (optional) Opcional TIPO DE EXCEPCIÓN AL PAGO SEGURO.
-	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION. 
+	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION.
 	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW
 	* @param string $user_interaction (optional) Indicador de si es posible la interacción con el usuario por parte del comercio
 	* @return object Objeto de respuesta de la operación
@@ -141,7 +141,7 @@ class PaycometBankstore
 	* @version 2.0.3 2019-08-30 se añaden parametros PSD2
 	*/
 
-	public function ExecutePurchase($idpayuser, $tokenpayuser, $amount, $transreference, $currency, $productdescription = null, $owner = null, $scoring = null, $merchant_data = null, $merchant_description = null, $sca_exception = null, $trx_type = null, $scrow_targets = null, $user_interaction = null)
+	public function ExecutePurchase($idpayuser, $tokenpayuser, $amount, $transreference, $currency, $productdescription = null, $owner = null, $scoring = null, $merchant_data = null, $merchant_description = null, $sca_exception = 'MIT', $trx_type = null, $scrow_targets = null, $user_interaction = 0)
 	{
 		$signature = hash('sha512',$this->merchantCode.$idpayuser.$tokenpayuser.$this->terminal.$amount.$transreference.$this->password);
 		$ip = $this->GetClientIp();
@@ -249,9 +249,9 @@ class PaycometBankstore
 	* @param integer $scoring (optional) Valor de scoring de riesgo de la transacción
 	* @param string $merchant_data (optional) Datos del Comercio
 	* @param string $sca_exception (optional) Opcional TIPO DE EXCEPCIÓN AL PAGO SEGURO.
-	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION. 
+	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION.
 	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW
-	* @param string $user_interaction (optional) Indicador de si es posible la interacción con el usuario por parte del comercio	
+	* @param string $user_interaction (optional) Indicador de si es posible la interacción con el usuario por parte del comercio
 	* @return object Objeto de respuesta de la operación
 	* @version 2.0 2016-06-07
 	* @version 2.0.3 2019-08-30 se añaden parametros PSD2
@@ -339,7 +339,7 @@ class PaycometBankstore
 	* @param integer $scoring (optional) Valor de scoring de riesgo de la transacción
 	* @param string $merchant_data (optional) Datos del Comercio
 	* @param string $sca_exception (optional) Opcional TIPO DE EXCEPCIÓN AL PAGO SEGURO.
-	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION. 
+	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION.
 	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW
 	* @param string $user_interaction (optional) Indicador de si es posible la interacción con el usuario por parte del comercio
 	* @return object Objeto de respuesta de la operación
@@ -375,7 +375,7 @@ class PaycometBankstore
 	* @param string $merchant_data (optional) Datos del Comercio
 	* @param string $merchant_description (optional) Descriptor del Comercio
 	* @param string $sca_exception (optional) Opcional TIPO DE EXCEPCIÓN AL PAGO SEGURO.
-	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION. 
+	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION.
 	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW
 	* @param string $user_interaction (optional) Indicador de si es posible la interacción con el usuario por parte del comercio
 	* @return object Objeto de respuesta de la operación
@@ -594,7 +594,7 @@ class PaycometBankstore
 	* @param string $merchant_data (optional) Datos del Comercio
 	* @param string $merchant_description (optional) Descriptor del Comercio
 	* @param string $sca_exception (optional) Opcional TIPO DE EXCEPCIÓN AL PAGO SEGURO.
-	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION. 
+	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION.
 	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW
 	* @return object Objeto de respuesta de la operación
 	* @version 1.0 2016-06-06
@@ -645,7 +645,7 @@ class PaycometBankstore
 		if ($scrow_targets){
 			$operation->Scrow_targets = $scrow_targets;
 		}
-		
+
 
 		$operation->Hash = $this->GenerateHash($operation, $operation->Type);
 		$lastrequest = $this->ComposeURLParams($operation, $operation->Type);
@@ -672,8 +672,8 @@ class PaycometBankstore
 	* @param string $merchant_data (optional) Datos del Comercio
 	* @param string $merchant_description (optional) Descriptor del Comercio
 	* @param string $sca_exception (optional) Opcional TIPO DE EXCEPCIÓN AL PAGO SEGURO.
-	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION. 
-	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW	
+	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION.
+	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW
 	* @return object Objeto de respuesta de la operación
 	* @version 1.0 2016-06-06
 	* @version 1.1 2017-11-22 Añadimos parámetros urlOk y urlKo
@@ -725,7 +725,7 @@ class PaycometBankstore
 		if ($scrow_targets){
 			$operation->Scrow_targets = $scrow_targets;
 		}
-		
+
 
 		$operation->Hash = $this->GenerateHash($operation, $operation->Type);
 		$lastrequest = $this->ComposeURLParams($operation, $operation->Type);
@@ -827,7 +827,7 @@ class PaycometBankstore
 
 		if ($merchant_data){
 			$operation->Merchant_data = $merchant_data;
-		}		
+		}
 
 		$operation->Hash = $this->GenerateHash($operation, $operation->Type);
 		$lastrequest = $this->ComposeURLParams($operation, $operation->Type);
@@ -891,7 +891,7 @@ class PaycometBankstore
 
 		if ($merchant_data){
 			$operation->Merchant_data = $merchant_data;
-		}		
+		}
 
 		$operation->Hash = $this->GenerateHash($operation, $operation->Type);
 		$lastrequest = $this->ComposeURLParams($operation, $operation->Type);
@@ -916,7 +916,7 @@ class PaycometBankstore
 	* @param string $merchant_data (optional) Datos del Comercio
 	* @param string $merchant_description (optional) Descriptor del Comercio
 	* @param string $sca_exception (optional) Opcional TIPO DE EXCEPCIÓN AL PAGO SEGURO.
-	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION. 
+	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION.
 	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW
 	* @return object Objeto de respuesta de la operación
 	* @version 1.0 2016-06-06
@@ -967,7 +967,7 @@ class PaycometBankstore
 		if ($scrow_targets){
 			$operation->Scrow_targets = $scrow_targets;
 		}
-		
+
 
 		$operation->Hash = $this->GenerateHash($operation, $operation->Type);
 		$lastrequest = $this->ComposeURLParams($operation, $operation->Type);
@@ -1106,7 +1106,7 @@ class PaycometBankstore
 	* @param string $merchant_data (optional) Datos del Comercio
 	* @param string $merchant_description (optional) Descriptor del Comercio
 	* @param string $sca_exception (optional) Opcional TIPO DE EXCEPCIÓN AL PAGO SEGURO.
-	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION. 
+	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION.
 	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW
 	* @return object Objeto de respuesta de la operación
 	* @version 1.0 2016-06-06
@@ -1188,7 +1188,7 @@ class PaycometBankstore
 	* @param string $merchant_data (optional) Datos del Comercio
 	* @param string $merchant_description (optional) Descriptor del Comercio
 	* @param string $sca_exception (optional) Opcional TIPO DE EXCEPCIÓN AL PAGO SEGURO.
-	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION. 
+	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION.
 	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW
 	* @return object Objeto de respuesta de la operación
 	* @version 1.0 2016-06-06
@@ -1377,7 +1377,7 @@ class PaycometBankstore
 	* @param string $merchant_data (optional) Datos del Comercio
 	* @param string $merchant_description (optional) Descriptor del Comercio
 	* @param string $sca_exception (optional) Opcional TIPO DE EXCEPCIÓN AL PAGO SEGURO.
-	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION. 
+	* @param string $trx_type (condicional) Obligatorio sólo si se ha elegido una excepción MIT en el campo MERCHANT_SCA_EXCEPTION.
 	* @param string $scrow_targets (optional) Identificación de los destinatarios de ingresos en operaciones ESCROW
 	* @param string $user_interaction (optional) Indicador de si es posible la interacción con el usuario por parte del comercio
 	* @return object Objeto de respuesta de la operación
@@ -1416,7 +1416,7 @@ class PaycometBankstore
 
 		if ($merchant_data){
 			$operation->Merchant_data = $merchant_data;
-		}		
+		}
 
 		if ($sca_exception){
 			$operation->Sca_exception = $sca_exception;
@@ -1427,7 +1427,7 @@ class PaycometBankstore
 		if ($scrow_targets){
 			$operation->Scrow_targets = $scrow_targets;
 		}
-		
+
 
 		$operation->Hash = $this->GenerateHash($operation, $operation->Type);
 		$lastrequest = $this->ComposeURLParams($operation, $operation->Type);
@@ -1569,8 +1569,8 @@ class PaycometBankstore
 			}
 			if (isset($operationdata->Scrow_targets)) {
 				$data["ESCROW_TARGETS"] = $operationdata->Scrow_targets;
-			}			
-			
+			}
+
 		} elseif ((int)$operationtype == 3) { // Preauthorization
 			$data["MERCHANT_CURRENCY"] = $operationdata->Currency;
 			if (isset($operationdata->Scoring)) {
