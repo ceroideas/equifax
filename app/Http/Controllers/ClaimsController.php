@@ -1266,6 +1266,7 @@ class ClaimsController extends Controller
     public function info($id)
     {
         
+        
         //$infopago = config('app.infopago'); // Mensajes personalizados para mostrar al cliente
         list($infopago, $titulo, $hito, $msg, $concepto, $importe) = array(config('app.infopago'), "","","","","");
 
@@ -1288,11 +1289,12 @@ class ClaimsController extends Controller
                                     ->take(1)
                                     ->get();
         
-//var_dump($invoice);
+
 
         if($invoice->isNotEmpty()){
             /* $invoice[0]->status = 1 pagada, null pendiente de pago*/   
-            
+
+
 
             if($invoice[0]->status == null){
 
@@ -1300,10 +1302,10 @@ class ClaimsController extends Controller
                 $actuaciones = Actuation::where('claim_id',$id)
                                      ->orderBy('id', 'desc')
                                     ->get();
-                
+            
                 /* Tiene actuaciones la factura, sino tiene es extrajudicial */
                 if($actuaciones->isEmpty()){
-//dd($actuaciones);
+
                     /* Deberiamos recuperar las lineas de detalle ? */
                     $linvoice = Linvoice::where('invoice_id',$id)
                                         ->get();
@@ -1323,26 +1325,49 @@ class ClaimsController extends Controller
                     return view('info-public', compact('hito', 'titulo','msg','concepto','importe', 'id'));
                 }
 /*Testeado */
-                dump($actuaciones);
+//dump($actuaciones);
+dump($actuaciones);
+print_r($actuaciones[0]->subject);
+                dump($actuaciones[0]->id);
                 dump($actuaciones[0]->subject);
-                //die();
+                dump($actuaciones[1]->subject);
+                dump($actuaciones[2]->subject);
+                dump($actuaciones[3]->subject);
+                dump($actuaciones[0]->description);
+                
+                var_dump($actuaciones[0]->subject);
+                $vartemp = $actuaciones[0]->subject;
+
+
+                print_r($vartemp);
+
+                
+
+                dump($actuaciones[0]->subject=='001');  // en lugar de mostrarme el valor de la bd de la tabla el '001', me muestra su correspondencia a hitos.name relaciona con hitos.ref_id
+                dump($actuaciones[0]->subject=='DIVIDAE HA RECIBIDO TU EXPEDIENTE CORRECTAMENTE tbl'); // true
+
+die();
                 /* Recorrer array al reves*/
                 foreach($actuaciones as $key => $value ){
-                    dump($value->id);
-                    dump($value->claim_id); //33
-                    dump($value->subject);
+                    dump($value);
 
-                if($value->subject=='A LA ESPERA DE FIRMA APODERAMIENTO APUD ACTA'){
-                        print_r('Buscar');
-                    }else{
-                        print_r("No buscar");
+                    //dump($value->claim_id); //33
+                    //dump($value->subject);
+
+                        /*if($value->subject=='A LA ESPERA DE FIRMA APODERAMIENTO APUD ACTA'){
+                                print_r('Buscar');
+                            }else{
+                                print_r("No buscar");
+                            }
+                            if($value->subject=="301"){
+                                print_r('Buscar 301 ');
+                            }else{
+                                print_r("No buscar 301");
+                            }*/
+
                     }
-                    if($value->subject=="301"){
-                        print_r('Buscar 301 ');
-                    }else{
-                        print_r("No buscar 301");
-                    }
-                }
+die();
+
                 if(isset($hito)){
                     dump($hito);
                     //dump($hito[0]);
@@ -1353,6 +1378,7 @@ class ClaimsController extends Controller
             }else{
                 //print_r('No existe factura pendiente de pago');
                 return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
+                
             }
         }else{
             return redirect('/')->with('msg', 'La reclamación no tiene actuaciones');
