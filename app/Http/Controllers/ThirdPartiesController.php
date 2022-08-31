@@ -18,13 +18,13 @@ class ThirdPartiesController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->isClient()){
+        if(Auth::user()->isClient() || Auth::user()->isGestor()){
             $thirdParties = Auth::user()->thirdParties;
         }elseif(Auth::user()->isSuperAdmin() ){
             $thirdParties = thirdParty::all();
-        }else{
+        }/*else{
             $thirdParties = thirdParty::where('user_id',session('other_user'))->get();
-        }
+        }*/
 
         return view('third_parties.index', [
 
