@@ -141,7 +141,7 @@ class PaycometBankstore
 	* @version 2.0.3 2019-08-30 se añaden parametros PSD2
 	*/
 
-	public function ExecutePurchase($idpayuser, $tokenpayuser, $amount, $transreference, $currency, $productdescription = null, $owner = null, $scoring = null, $merchant_data = null, $merchant_description = null, $sca_exception = 'MIT', $trx_type = null, $scrow_targets = null, $user_interaction = 0)
+	public function ExecutePurchase($idpayuser, $tokenpayuser, $amount, $transreference, $currency, $productdescription = null, $owner = null, $scoring = null, $merchant_data = null, $merchant_description = null, $sca_exception = 'MIT', $trx_type = 'I', $scrow_targets = null, $user_interaction = 0)
 	{
 		$signature = hash('sha512',$this->merchantCode.$idpayuser.$tokenpayuser.$this->terminal.$amount.$transreference.$this->password);
 		$ip = $this->GetClientIp();
