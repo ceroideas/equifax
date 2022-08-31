@@ -272,11 +272,16 @@ class ClaimsController extends Controller
 
 
         /* Generamos factura en cualquier estado */
+        // Buscamos el maximo ID de invoice
+        $idInvoice = Invoice::all()->max('id');
+        $idInvoice = $idInvoice + 1;
+
         $c = Configuration::first();
+
 
         if(isset($c)){
             $invoice = new Invoice;
-            $invoice->id = $claim->id;
+            $invoice->id = $idInvoice;
             $invoice->claim_id = $claim->id;
             $invoice->user_id = $claim->user_id;
             //$invoice->amount = $c->fixed_fees;
@@ -303,7 +308,7 @@ class ClaimsController extends Controller
 
             /* Grabamos las lineas siguiendo el criterio del iva del cliente */
                 $linvoice = new Linvoice;
-                $linvoice->invoice_id = $claim->id;
+                $linvoice->invoice_id = $idInvoice;
                 $linvoice->poslin = 1;
                 $linvoice->artlin = $c->extra_code?$c->extra_code:'nulo';
                 $linvoice->deslin = $c->extra_concept;
@@ -327,7 +332,7 @@ class ClaimsController extends Controller
                     /* Totalizamos*/
                     $invoice->totfac = $invoice->bas4fac; // no lleva impuestos por lo que es igual que la base
                     $invoice->amount=$invoice->bas4fac;
-         
+
         if (Auth::user()->isGestor()) {
             $invoice->status = 1;
         }
@@ -353,7 +358,7 @@ class ClaimsController extends Controller
         if (Auth::user()->isGestor()) {
             $invoice->status = 1;
         }
-                
+
                         $invoice->save();
                     }else{
 
@@ -377,7 +382,7 @@ class ClaimsController extends Controller
         if (Auth::user()->isGestor()) {
             $invoice->status = 1;
         }
-                    
+
                         $invoice->save();
 
                     }
@@ -1265,56 +1270,48 @@ class ClaimsController extends Controller
 
     public function info($id)
     {
-        
-        
+
+
+
         //$infopago = config('app.infopago'); // Mensajes personalizados para mostrar al cliente
         list($infopago, $titulo, $hito, $msg, $concepto, $importe) = array(config('app.infopago'), "","","","","");
-
 
         /* Comprobar si existe la reclamacion */
         $claim = Claim::where('id',$id)
                                 ->get();
-            
         if($claim->isEmpty()){
             return redirect('/')->with('msg', 'La reclamacion '.$id.' no existe');
         }
-//var_dump($claim);
-        
+
         /* Comprobar si la factura existente esta pendiente de pago */
         /* Comprobar las actuaciones que generan la factura pendiente de pago */
-
         /* Recuperar si existe factura pendiente de pago, recuperaremos conceptos y enviamos enlace de pago */
         $invoice = Invoice::where('claim_id',$id)
                                     ->orderBy('id','desc')
                                     ->take(1)
                                     ->get();
-        
-
 
         if($invoice->isNotEmpty()){
-            /* $invoice[0]->status = 1 pagada, null pendiente de pago*/   
-
-
+            /* $invoice[0]->status = 1 pagada, null pendiente de pago*/
 
             if($invoice[0]->status == null){
-
                 /* Recuperar si el ultimo hito corresponde al 301 o 302 recuperar el que lo genero app.infopago */
                 $actuaciones = Actuation::where('claim_id',$id)
                                      ->orderBy('id', 'desc')
-                                    ->get();
-            
+                                     ->get();
+
                 /* Tiene actuaciones la factura, sino tiene es extrajudicial */
                 if($actuaciones->isEmpty()){
 
                     /* Deberiamos recuperar las lineas de detalle ? */
                     $linvoice = Linvoice::where('invoice_id',$id)
                                         ->get();
-                    
-//dd($linvoice);                    
+
+
                     /* Prevenimos error Linvoice */
                     if($linvoice->isEmpty()){
                         $titulo = 'Error al leer lineas de detalle';
-                        return view('info-public', compact('hito', 'titulo','msg','concepto','importe', 'id'));    
+                        return view('info-public', compact('hito', 'titulo','msg','concepto','importe', 'id'));
                     }else{
                         $titulo = 'Procedimiento extrajudicial';
                         $concepto = $linvoice[0]->deslin;
@@ -1324,102 +1321,71 @@ class ClaimsController extends Controller
 
                     return view('info-public', compact('hito', 'titulo','msg','concepto','importe', 'id'));
                 }
-/*Testeado */
-//dump($actuaciones);
-dump($actuaciones);
-print_r($actuaciones[0]->subject);
-                dump($actuaciones[0]->id);
-                dump($actuaciones[0]->subject);
-                dump($actuaciones[1]->subject);
-                dump($actuaciones[2]->subject);
-                dump($actuaciones[3]->subject);
-                dump($actuaciones[0]->description);
-                
-                var_dump($actuaciones[0]->subject);
-                $vartemp = $actuaciones[0]->subject;
 
 
-                print_r($vartemp);
-
-                
-
-                dump($actuaciones[0]->subject=='001');  // en lugar de mostrarme el valor de la bd de la tabla el '001', me muestra su correspondencia a hitos.name relaciona con hitos.ref_id
-                dump($actuaciones[0]->subject=='DIVIDAE HA RECIBIDO TU EXPEDIENTE CORRECTAMENTE tbl'); // true
-
-die();
-                /* Recorrer array al reves*/
+                /* El array viene en orden DESC */
                 foreach($actuaciones as $key => $value ){
-                    dump($value);
 
-                    //dump($value->claim_id); //33
-                    //dump($value->subject);
-
-                        /*if($value->subject=='A LA ESPERA DE FIRMA APODERAMIENTO APUD ACTA'){
-                                print_r('Buscar');
-                            }else{
-                                print_r("No buscar");
-                            }
-                            if($value->subject=="301"){
-                                print_r('Buscar 301 ');
-                            }else{
-                                print_r("No buscar 301");
-                            }*/
-
+                    // Comparamos si esta en estado 302
+                    if($value->getRawOriginal('subject')=='302' || $value->getRawOriginal('subject')=='301'){
+                        continue;
                     }
-die();
 
-                if(isset($hito)){
-                    dump($hito);
-                    //dump($hito[0]);
-                }else{
-                    print_r('No existen actuaciones');
-                }
+                    /*dump($key);
+                    dump($value->getRawOriginal('subject'));
+                    dump($value->subject);
+                    dump($infopago);*/
+                    $hito = $value->getRawOriginal('subject');
+                    $msg = "Concepto desde hito";
+
+                    break;
+
+                }  // Foreach
 
             }else{
-                //print_r('No existe factura pendiente de pago');
                 return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
-                
             }
         }else{
             return redirect('/')->with('msg', 'La reclamación no tiene actuaciones');
         }
 
 
-
+            /*Testeado*/
 
         foreach($infopago as $key => $value){
-            if($value["hito"]==$id){
+            if($value["hito"]==$hito){
                 $hito = $value["hito"];
                 $titulo = $value["titulo"];
                 $msg = $value["msg"];
+                $concepto = $value["concepto"];
+                $importe = $value["importe"];
             }
         }
-        dump($id); //33
-        dump($hito);
-        dump($titulo);
-        dump($msg);
-        //die();
-      /* Necesitamos enviar recuperar importes y conceptos
 
+        // Id de factura
+        //$id = $invoice[0]->id;
+        /*dump($id);
+        dump($hito);
+        dump($titulo); //
+        dump($msg);
+        dump($concepto);
+        dump($importe);*/
+
+        //die();
+      /* Necesitamos enviar recuperar importes y conceptos desde BD*/
+/*
         $c = Configuration::first();
         dump($c);
-        dump($c->judicial_amount);
+        dump($c->judicial_amount);*/
+
+        /*dump($c->judicial_amount);
         $importe = ($c->judicial_amount / (($c->tax/100)+1));
         dump($importe);
         $importe=number_format($importe, 2,',','.');
-        dump($importe);
-        die();*/
+        dump($importe);*/
 
-        /* Los importes y conceptos se traen desde app*/
-        /* Recuperamos la factura */
-
-
-
-        //return view('claims.hitos', compact('fase'));
-        return view('info-public', compact('hito', 'titulo','msg','concepto','importe'));
+        return view('info-public', compact('hito', 'titulo','msg','concepto','importe','id'));
 
     }
-
-
 
 }

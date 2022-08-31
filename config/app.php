@@ -747,77 +747,75 @@ return [
     ])->toArray(),
 
     'infopago' => [
-        ['hito'=>"2",
+        ['hito'=>"201",
          'titulo'=>'FIN EXTRAJUDICIAL -PENDIENTE MONITORIO',
          'msg'=>'¡Vaya! No hemos conseguido alcanzar un acuerdo con tu deudor, Dividae te recomienda que continues por la vía judicial, ya que según tu reclamación consideramos que puede prosperar.
                 Para continuar la vía judicial, tienes que abonar la tarifa correspondiente al procedimiento monitorio * ',
          'concepto'=>'Procedimiento monitorio',
-         'importe'=>'69,90 €'
+         'importe'=>'69,90'
         ],
         ['hito'=>"601",
          'titulo'=>'ARCHIVO MONITORIO - FIN VÍA JUDICIAL - PENDIENTE NUEVO MONITORIO',
          'msg'=>'¡Vaya! El juzgado no ha localizado al deudor con la información que nos has facilitado, pero aún nos queda camino juntos, ya que durante el procedimiento hemos identificado un nuevo domicilio donde localizarlo/a.
                 Para continuar por la vía judicial, Dividae te recomienda  que abones la tarifa correspondiente al procedimiento monitorio * ',
          'concepto'=>'Procedimiento monitorio',
-         'importe'=>'69,90 €'
+         'importe'=>'69,90'
        ],
        ['hito'=>"602",
         'titulo'=>'ARCHIVO MONITORIO - FIN VÍA JUDICIAL - PENDIENTE VERBAL',
         'msg'=>'¡Vaya! La información que has aportado no es suficiente para reclamar la deuda por el procedimiento monitorio. Pero aún nos queda camino juntos, ya que sí es posible seguir reclamándola por el procedimiento verbal*.
                Para seguir avanzando, necesitamos que abones la tarifa del procedimiento verbal * ',
          'concepto'=>'Procedimiento verbal',
-         'importe'=>'199,90 €'
+         'importe'=>'199,90'
         ],
         ['hito'=>"603",
          'titulo'=>'ARCHIVO MONITORIO - FIN VÍA JUDICIAL - PENDIENTE ORDINARIO',
          'msg'=>'¡Vaya! La información que has aportado no es suficiente para reclamar la deuda por el procedimiento monitorio. Pero aún nos queda camino juntos, ya que sí es posible seguir reclamándola por el procedimiento ordinario*.
                Para seguir avanzando, necesitamos que abones la tarifa del procedimiento ordinario * ',
          'concepto'=>'Procedimiento ordinario',
-         'importe'=>'399,90 €'
+         'importe'=>'399,90'
         ],
         ['hito'=>"701",
          'titulo'=>'ARCHIVO MONITORIO - OPOSICIÓN CONTRARIO - PENDIENTE VERBAL',
          'msg'=>'¡Vaya! El deudor se ha opuesto a tu demanda, parece que nos encontramos con una deuda discutida y tu procedimiento va a derivar en un verbal por decisión judicial.
                 Para seguir avanzando tendrás que abonar la tarifa del procedimiento verbal * ',
          'concepto'=>'Procedimiento verbal',
-         'importe'=>'199,99 €'
+         'importe'=>'199,99'
         ],
         ['hito'=>"702",
          'titulo'=>'ARCHIVO MONITORIO - OPOSICIÓN CONTRARIO - PENDIENTE ORDINARIO',
          'msg'=>'¡Vaya! El deudor se ha opuesto a tu demanda, parece que nos encontramos con una deuda discutida y tu procedimiento va a derivar en un verbal por decisión judicial.
                Para seguir avanzando tendrás que abonar la tarifa del procedimiento ordinario * ',
          'concepto'=>'Procedimiento ordinario',
-         'importe'=>'399,90 €'
+         'importe'=>'399,90'
         ],
         ['hito'=>"1101",
          'titulo'=>'RECURSO DE CONTRARIO - PROPUESTA OPOSICIÓN RECURSO CONTRARIO',
          'msg'=>'¡Vaya! La parte contraria no está de acuerdo con la resolución establecida por el Juzgado, para poder oponernos a su recurso necesitamos que tomes una decisión.
                 Para seguir con la reclamación tendrás que abonar la tarifa correspondiente para comenzar un recurso de contrario *',
          'concepto'=>'Tarifa recurso',
-         'importe'=>'149,90 €'
+         'importe'=>'149,90'
         ],
         ['hito'=>"1102",
          'titulo'=>'RECURSO A INSTANCIA DIVIDAE - PROPUESTA INTERPOSICIÓN RECURSO',
          'msg'=>'Como sabes, el Juzgado ha desestimado tu reclamación. Tras analizar la resolución, te recomendamos recurrirla.
                Para seguir avanzando tendrás que abonar la tarifa recurso* y el depósito recurrir apelación **.',
          'concepto'=>'Tarifa recurso',
-         'importe'=>'149,90 €'
+         'importe'=>'149,90'
         ],
-        ['hito'=>"12",
+        ['hito'=>"1201",
          'titulo'=>'SENTENCIA DICTADA - PROPUESTA EJECUCIÓN',
          'msg'=>'¡Buenas noticias! La resolución nos ha dado la razón. Para poder recuperar la deuda, Dividae te recomienda presentar una demanda de ejecución para embargar los bienes de tu deudor. Para ello necesitamos que tomes una decisión: Proceder con la ejecución.
                Para seguir, Dividae te recomienda abonar la tarifa ejecución*.',
          'concepto'=>'Tarifa ejecución',
-         'importe'=>'149,90 €'
+         'importe'=>'149,90'
         ],
         ['hito'=>"1703",
          'titulo'=>'ACUERDO INCUMPLIDO - RECOMENDACIÓN VÍA JUDICIAL - DEMANDA EJECUCIÓN',
          'msg'=>'¡Buenas noticias! La resolución nos ha dado la razón. Para poder recuperar la deuda, Dividae te recomienda presentar una demanda de ejecución para embargar los bienes de tu deudor. Para ello necesitamos que tomes una decisión: Proceder con la ejecución.
               Para seguir, Dividae te recomienda abonar la tarifa ejecución*.',
          'concepto'=>'tarifa ejecución',
-         'importe'=>'149,90 €'
+         'importe'=>'149,90'
         ]
     ]
-
-
 ];
