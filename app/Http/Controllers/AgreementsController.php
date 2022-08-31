@@ -45,16 +45,16 @@ class AgreementsController extends Controller
         $agreement->wait = $request['espera'];
         $agreement->observation = $request['observaciones'] ? $request['observaciones'] : '';
 
-        if (Auth::user()->isGestor()) {
+        /*if (Auth::user()->isGestor()) {
             $u = User::find(session('other_user'));
             $u->iban = $request['iban'];
             $u->save();
 
             // actuationActions("-1",$claim->id);
-        }else{
+        }else{*/
             Auth::user()->iban = $request['iban'];
             Auth::user()->save();
-        }
+        // }
 
 
         session()->put('claim_agreement', $agreement);

@@ -87,9 +87,9 @@ class ClaimsController extends Controller
 
     public function stepOne()
     {
-        if (Auth::user()->isGestor() && !session('other_user')) {
+        /*if (Auth::user()->isGestor() && !session('other_user')) {
             return view('claims.create_step_pre1');
-        }
+        }*/
 
         if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
             return view('claims.create_step_1');
@@ -214,11 +214,11 @@ class ClaimsController extends Controller
             $claim->third_parties_id = $client->id;
         }
 
-        if (Auth::user()->isGestor()) {
+        /*if (Auth::user()->isGestor()) {
             $claim->owner_id = session('other_user');
-        }else{
+        }else{*/
             $claim->owner_id = Auth::user()->id;
-        }
+        // }
         $debtor = Debtor::find(session('claim_debtor'));
         $claim->debtor_id = $debtor->id;
 
@@ -773,11 +773,11 @@ class ClaimsController extends Controller
 
     public function saveOptionOne(Request $request){
 
-        if (Auth::user()->isGestor()) {
+        /*if (Auth::user()->isGestor()) {
             $request->session()->put('claim_client', session('other_user'));
-        }else{
-            $request->session()->put('claim_client', Auth()->user()->id);
-        }
+        }else{*/
+            $request->session()->put('claim_client', Auth::id());
+        // }
 
         $this->flushOptionTwo();
 
@@ -785,7 +785,7 @@ class ClaimsController extends Controller
 
     }
 
-    public function saveClient(Request $request){
+    /*public function saveClient(Request $request){
 
         $request->session()->put('other_user', $request->client_id);
 
@@ -793,7 +793,7 @@ class ClaimsController extends Controller
 
         return redirect('/claims/select-client')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
-    }
+    }*/
 
     public function saveOptionTwo(Request $request){
 

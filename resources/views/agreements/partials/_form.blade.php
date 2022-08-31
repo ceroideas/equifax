@@ -102,7 +102,7 @@
 
             <div class="col-sm-12">
                 <x-adminlte-input name="iban" label="Identifica el Nº de Cuenta donde ingresaremos las cantidades recuperadas" placeholder="Número de cuenta corriente" type="text"
-                igroup-size="sm" value="{{ Auth::user()->isGestor() ? App\Models\User::find(session('other_user'))->iban : Auth::user()->iban }}">
+                igroup-size="sm" value="{{ Auth::user()->iban }}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-key"></i>

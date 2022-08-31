@@ -36,11 +36,11 @@
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
           <div class="row">
             <div class="col-sm-12 text-center">
-                @if (Auth::user()->isClient())
+                {{-- @if (Auth::user()->isClient()) --}}
                     <span> <h1>¿Reclama en nombre del usuario registrado?</h1></span>
-                @elseif(Auth::user()->isGestor())
+                {{-- @elseif(Auth::user()->isGestor())
                     <span> <h1>¿Reclama en nombre del usuario seleccionado?</h1></span>
-                @endif
+                @endif --}}
             </div>
           </div>
           <div class="row">

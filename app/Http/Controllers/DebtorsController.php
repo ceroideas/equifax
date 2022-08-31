@@ -16,13 +16,13 @@ class DebtorsController extends Controller
     public function index()
     {
 
-        if(Auth::user()->isClient()){
+        if(Auth::user()->isClient() || Auth::user()->isGestor()){
             $debtors = Auth::user()->debtors;
         }elseif(Auth::user()->isSuperAdmin() ){
             $debtors = Debtor::all();
-        }else{
+        }/*else{
             $debtors = Debtor::where('user_id',session('other_user'))->get();
-        }
+        }*/
 
         return view('debtors.index', [
 
@@ -50,8 +50,6 @@ class DebtorsController extends Controller
     {
         $data = $this->validateRequest();
 
-        // dd($data);
-
         $debtor = new Debtor();
 
         $debtor->name = $data['name'];
@@ -64,11 +62,11 @@ class DebtorsController extends Controller
         $debtor->cop = $data['cop'];
         $debtor->additional = $data['additional'];
         $debtor->type = $data['type'];
-        if (session('other_user')) {
+        /*if (session('other_user')) {
             $debtor->user_id = session('other_user');
-        }else{
+        }else{*/
             $debtor->user_id = Auth::user()->id;
-        }
+        // }
 
         $debtor->save();
 
@@ -166,10 +164,10 @@ class DebtorsController extends Controller
             'additional' => '',
         ];
 
-        if(request()->method() == 'PUT'){
+        // if(request()->method() == 'PUT'){
             //$rules['email'] = 'unique:debtors,email,'.request()->debtor->id;
             //$rules['dni'] = 'required|min:8|max:10|unique:debtors,dni,' . request()->debtor->id;
-        }
+        // }
 
         return request()->validate($rules);
 
