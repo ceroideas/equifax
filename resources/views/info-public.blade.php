@@ -252,7 +252,6 @@
 
                         <div class="container text-center bottom-text">
                                 <p>{{$msg}}</p>
-                                <p>{{$hito}}</p>
                         </div>
                     </div>
                 </div>
@@ -292,7 +291,7 @@
                         <div class="row">
                             <div class="col-sm-5"></div>
                             <div class="col-sm-3">
-                                <a data-v-9cc878a2="" href="https://dividae.com/payment/<?php echo $id?>" aria-current="page"
+                                <a data-v-9cc878a2="" href="/claims/payment/<?php echo $id?>" aria-current="page"
                                     class="btn btn-light-descubre" type="button">Proceder al pago</a>
                                     <br>
                             </div>
@@ -301,8 +300,6 @@
 
 
                         <p style="color:#285ba3; font-style: italic;">IVA no incluido</p>
-                        <p style="color:#285ba3; font-style: italic;">{{$id}}</p>
-
                         <p style="color:#285ba3; font-style: italic;">** Precio fijo que deberá abonarse por el cliente
                             previo al inicio de cada procedimiento.</p>
 
