@@ -21,6 +21,7 @@ function getHito($id_hito)
 	$f = null;
 	// foreach (config('app.actuations') as $key => $value) {
 	foreach (Hito::whereNull('parent_id')->get() as $key => $value) {
+        
         if (count($value->hitos)) {
             foreach ($value->hitos as $key1 => $value1) {
                 // if ($value1['id'] === $id_hito) {
@@ -40,6 +41,9 @@ function getHito($id_hito)
             }
         }
     }
+
+    $ht = Hito::where('ref_id',$id_hito)->first();
+    return [$ht,$ht];
 }
 
 function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $observations = null)
@@ -197,7 +201,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
 				$description = "Pago de la tarifa procedimiento ";
 
-				switch ($h['type']) {
+				switch ($h['type'][0]) {
                     case 'monitory':
 						$description .= "Monitorio";
 						break;

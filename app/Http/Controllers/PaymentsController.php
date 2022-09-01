@@ -78,6 +78,33 @@ class PaymentsController extends Controller
                 // return response()->json('El pago ha sido efectuado',200);
 
             } else {
+                $c = Claim::find($r->claim_id);
+
+                if ($c->status == 7) {
+                    if ($c->claim_type == 1) {
+                        if (!$c->last_invoice) {
+                            $c->status = 10;
+                        }
+                    }else{
+                        $c->status = 8;
+                    }
+                }
+
+                $c->save();
+
+                $c->last_invoice->payment_date = Carbon::now()->format('Y-m-d H:i:s');
+                $c->last_invoice->status = 1;
+                $c->last_invoice->save();
+
+                if ($c->claim_type == 1) {
+                    if ($c->owner->apud_acta) {
+                        actuationActions("302",$c->id);
+                    }
+                }else{
+                    actuationActions("-1",$c->id);
+                }
+
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
                 var_dump($purchaseResult->DS_ERROR_ID);
 
                 return response()->json('Error al procesar el pago Intente nuevamente',422);
@@ -159,6 +186,33 @@ class PaymentsController extends Controller
                 // return response()->json('El pago ha sido efectuado',200);
 
             } else {
+
+                $c = Claim::find($r->claim_id);
+
+                if ($c->status == 7) {
+                    if ($c->claim_type == 1) {
+                        $c->status = 10;
+                    }else{
+                        $c->status = 8;
+                    }
+                }
+
+                $c->save();
+
+                $c->last_invoice->payment_date = Carbon::now()->format('Y-m-d H:i:s');
+                $c->last_invoice->status = 1;
+                $c->last_invoice->save();
+
+                if ($c->claim_type == 1) {
+                    if ($c->owner->apud_acta) {
+                        actuationActions("302",$c->id);
+                    }   
+                }else{
+                    actuationActions("-1",$c->id);
+                }
+
+
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
                 var_dump($purchaseResult->DS_ERROR_ID);
 
                 return response()->json('Error al procesar el pago Intente nuevamente',422);
