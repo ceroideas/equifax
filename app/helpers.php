@@ -179,13 +179,13 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 				                    }
 				                }
 				            }else{
-				                /*if ($claim->client->type == 1) {    //client = user_id
+				                if ($claim->client->type == 1) {    //client = user_id
 				                    if ($claim->debt->pending_amount > 2000) {
 				                        $amount += $c[$value];
 				                        $amounts[] = $c[$value];
 				                        $type[] = $value;
 				                    }
-				                }*/
+				                }
 				            }
 						}else{
 							$amount += $c[$value];
