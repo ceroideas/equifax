@@ -198,6 +198,9 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 				$description = "Pago de la tarifa procedimiento ";
 
 				switch ($h['type']) {
+                    case 'monitory':
+						$description .= "Monitorio";
+						break;
 					case 'judicial_amount':
 						$description .= "Judicial";
 						break;
