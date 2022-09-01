@@ -1304,7 +1304,7 @@ class ClaimsController extends Controller
                 if($actuaciones->isEmpty()){
 
                     /* Deberiamos recuperar las lineas de detalle ? */
-                    $linvoice = Linvoice::where('invoice_id',$id)
+                    $linvoice = Linvoice::where('invoice_id',$invoice[0]->id)
                                         ->get();
 
 
