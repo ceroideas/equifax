@@ -57,7 +57,9 @@ class UserPolicy
      */
     public function update(User $user, User $user_model)
     {
-        return $user->is($user_model);
+        if($user->is($user_model) || $user->isAdmin() || $user->isSuperAdmin()){
+            return true;
+        }
     }
 
     /**

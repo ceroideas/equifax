@@ -113,7 +113,11 @@ class Claim extends Model
             return true;
         }
 
-        if ($this->getIdHito() && ($this->getIdHito() == 20 || $this->getIdHito() == 19)) {
+        if ($this->getIdHito() && (
+            $this->getIdHito() == 20 || $this->getIdHito() == 19 ||
+            $this->getParentHito() == 20 || $this->getParentHito() == 19
+        )
+        ) {
             return true;
         }
 
@@ -154,6 +158,17 @@ class Claim extends Model
     {
         if ($this->actuations->count()) {
             return $this->actuations->last()->getRawOriginal('subject');
+        }
+
+        return false;
+    }
+
+    public function getParentHito()
+    {
+        if ($this->actuations->count()) {
+            $id = $this->actuations->last()->getRawOriginal('subject');
+            $ht = Hito::where('ref_id',$id)->first();
+            if ($ht) {return $ht->parent_id;}
         }
 
         return false;

@@ -159,6 +159,7 @@ class PaymentsController extends Controller
                 // return response()->json('El pago ha sido efectuado',200);
 
             } else {
+
                 var_dump($purchaseResult->DS_ERROR_ID);
 
                 return response()->json('Error al procesar el pago Intente nuevamente',422);
