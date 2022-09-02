@@ -349,9 +349,9 @@ class UsersController extends Controller
         return PostalCode::where('code',$code)->first();
     }
 
-    public function testEmail($email = 'jorgesolano92@gmail.com')
+    public function testEmail($email = 'jorgesolano92@gmail.com', $template = 1)
     {
-        $tmp = Template::find(1);
+        $tmp = Template::find($template);
         Mail::send('email_base_2', ['tmp' => $tmp], function ($message) use($tmp,$email) {
             $message->to($email, 'PRUEBA CLIENTE');
             $message->subject($tmp->title);
