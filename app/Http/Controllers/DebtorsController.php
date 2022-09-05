@@ -20,9 +20,9 @@ class DebtorsController extends Controller
             $debtors = Auth::user()->debtors;
         }elseif(Auth::user()->isSuperAdmin() ){
             $debtors = Debtor::all();
-        }/*else{
+        }else{
             $debtors = Debtor::where('user_id',session('other_user'))->get();
-        }*/
+        }
 
         return view('debtors.index', [
 
