@@ -118,13 +118,15 @@ class UsersController extends Controller
             'province' => $request->province,
             'cop' => $request->cop,
             'iban' => $request->iban,
-            'role' => $request->role,
+            'role' => 2,
             'password' => bcrypt($request->password),
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
         ]);
+
+
 
         if ($request->file('dni_img')) {
             $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
@@ -195,13 +197,14 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'dni' => $request->dni,
+            'status'=>3,
             'phone' => $request->tlf,
             'address' => $request->address,
             'location' => $request->location,
             'province' => $request->province,
             'cop' => $request->cop,
             'iban' => $request->iban,
-            'role' => $request->role,
+            //'role' => $request->role,
             'password' => $password,
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
