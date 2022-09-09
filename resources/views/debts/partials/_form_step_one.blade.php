@@ -5,7 +5,7 @@
     <br>
     {{-- <span>¡Importante! Recuerde que es responable de toda la información adjuntada en éste apartado así como la veracidad de la misma y entiende de las consecuencias en caso de no resolverse de forma positiva el litigio.</span>
     <br> --}}
-    {{session('claim_debt')}}
+
 </x-adminlte-alert>
 
 @if(session()->has('msj'))
