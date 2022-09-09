@@ -36,6 +36,7 @@ class User extends Authenticatable
         'representative_dni',
         'taxcode',
         'discount',
+        'status',
     ];
 
     /**
@@ -107,7 +108,7 @@ class User extends Authenticatable
     public function getStatus(){
         switch ($this->status) {
             case NULL:
-                return 'A la espera de datos para revisión';
+                return 'Datos incompletos';
             case 1:
                 return 'Pendiente de Revisión';
                 break;
@@ -115,8 +116,8 @@ class User extends Authenticatable
                 return 'Revocado vuelva a enviar el DNI';
                 break;
             case 3:
-                    return 'Aprobado';
-                    break;
+                return 'Ficha completa';
+                break;
             default:
                 return 'Pendiente de Aprobación';
                 break;
