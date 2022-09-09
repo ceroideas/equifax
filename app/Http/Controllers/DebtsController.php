@@ -413,6 +413,7 @@ class DebtsController extends Controller
 
         session()->put('claim_debt', $debt);
         session()->put('debt_step_three', 'completed');
+
         // dd($debt);
 
         return redirect('/claims/check-agreement')->with('msj', 'Datos guardados exitosamente');
@@ -495,7 +496,7 @@ class DebtsController extends Controller
         ];
 
         if (request()->reclamacion_previa_indicar == 1) {
-            $rules['motivo_reclamacion_previa'] = 'required';
+            //$rules['motivo_reclamacion_previa'] = 'required';
             $rules['reclamacion_previa'] = 'required';
             $rules['fecha_reclamacion_previa'] = 'required';
             $rules['reclamacion_previa_indicar'] = 'required';
@@ -527,7 +528,7 @@ class DebtsController extends Controller
             'reconocimiento_deuda' =>  'file|mimes:pdf,jpg,png',
             'escritura_notarial' =>  'file|mimes:pdf,jpg,png',
             'reclamacion_previa' =>  'file|mimes:pdf,jpg,png',
-            'motivo_reclamacion_previa' =>  'required_with:reclamacion_previa',
+            //'motivo_reclamacion_previa' =>  'required_with:reclamacion_previa',
             'documentos_extras.*' =>  'mimes:pdf,jpg,png',
         ];
 

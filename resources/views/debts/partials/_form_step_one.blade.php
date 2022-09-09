@@ -5,6 +5,7 @@
     <br>
     {{-- <span>¡Importante! Recuerde que es responable de toda la información adjuntada en éste apartado así como la veracidad de la misma y entiende de las consecuencias en caso de no resolverse de forma positiva el litigio.</span>
     <br> --}}
+    {{session('claim_debt')}}
 </x-adminlte-alert>
 
 @if(session()->has('msj'))
@@ -29,7 +30,16 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <x-adminlte-input name="importe" label="Importe Principal *" placeholder="Importe Principal" type="text"
+                {{--<x-adminlte-input name="importe" label="Importe Principal *" placeholder="Importe Principal" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->total_amount : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>--}}
+
+                <x-adminlte-input name="importe" label="Importe Principal *" placeholder="Importe principal" type="number" step="0.01" min="0"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->total_amount : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -326,20 +336,24 @@
 
     function makeCalculation(event) {
         /* Act on the event */
-        let importe = parseFloat($('[name="importe"]').val());
-        let iva = parseFloat($('[name="iva"]').val());
+        //let importe = parseFloat($('[name="importe"]').val());
+        let importe = parseFloat($('[name="importe"]').val().replace(',', '.'));
+        let iva = parseFloat($('[name="iva"]').val().replace(',', '.'));
+
+        //console.log('importe: ',importe);
 
         let abonos = parseFloat(0);
 
         $.each($('[name="amounts[]"]'), function(index, val) {
             if ($(this).val() != "") {
-                abonos = parseFloat(abonos) + parseFloat($(this).val());
+                abonos = parseFloat(abonos) + parseFloat($(this).val().replace(',', '.'));
             }
         });
 
         console.log(importe,iva,abonos);
 
         let pendiente = parseFloat(importe);
+        //console.log('Pendiente: ',pendiente);
 
         if (importe != null && iva != null && abonos != null) {
             pendiente += parseFloat(((importe * iva)/100));
@@ -352,12 +366,15 @@
         }
     }
 
-    $('[name="importe"],[name="iva"],.amounts').change(makeCalculation);
+    $('[name="importe"],[name="iva"],[name="abonos"],.amounts').change(makeCalculation);
 
-    $('[name="importe"],[name="iva"],.amounts').click(makeCalculation);
+    $('[name="importe"],[name="iva"],[name="abonos"],.amounts').click(makeCalculation);
+
+
+
 
     $('[name="abonos"]').on('change',function(){
-
+        makeCalculation();
         let element = `
         <div class="form-group">
             <div class="row">
@@ -380,12 +397,13 @@
             }
         }
 
-    })
+    });
 
 </script>
 
 <script>
     $(document).ready(function(){
+        makeCalculation();
         $("#add-document").click();
         if($('#tipo_deuda').val() == -1){
             //console.log("Otros");
