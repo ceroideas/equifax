@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-sm-3">
 
-		<x-adminlte-input name="carta" required label="Carta Certificada *" type="file"
+		<x-adminlte-input name="carta[file][]" required label="Carta Certificada *" type="file"
         igroup-size="sm" enable-old-support="true">
             <x-slot name="appendSlot">
                 <div class="input-group-text bg-dark">
@@ -14,7 +14,7 @@
 
 	<div class="col-sm-3">
 
-		<x-adminlte-input name="fecha_carta" value="{{ isset($_i) ? $_i['fecha_carta'] : '' }}" required label="Fecha *" type="date"
+		<x-adminlte-input name="carta[fecha_carta][]" required label="Fecha *" type="date"
         igroup-size="sm" enable-old-support="true">
             <x-slot name="appendSlot">
                 <div class="input-group-text bg-dark">
