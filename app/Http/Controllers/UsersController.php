@@ -312,7 +312,7 @@ class UsersController extends Controller
                 // $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
             }
             if (request()->type == 1) {
-                $rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
+                //$rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
                 $rules['legal_representative'] = 'required';
                 $rules['representative_dni'] = 'required';
             }
