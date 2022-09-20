@@ -73,109 +73,207 @@ class DebtsController extends Controller
     {
         $documentos = [];
 
-        if ($request->document) {
-            foreach ($request->document as $key => $d) {
-                switch ($d) {
-                    case "factura":
+        function rrmdir($dir) {
+           if (is_dir($dir)) {
+             $objects = scandir($dir);
+             foreach ($objects as $object) {
+               if ($object != "." && $object != "..") {
+                 if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
+                   rrmdir($dir. DIRECTORY_SEPARATOR .$object);
+                 else
+                   unlink($dir. DIRECTORY_SEPARATOR .$object);
+               }
+             }
+             rmdir($dir);
+           }
+        }
 
-                        $documentos[] = [ "factura" => [
-                            // "factura" => $request->factura,
-                            "ndoc_factura" => $request->ndoc_factura,
-                            "fecha_factura" => $request->fecha_factura,
-                            "vencimiento_factura" => $request->vencimiento_factura,
-                            "importe_factura" => $request->importe_factura,
-                            "iva_factura" => $request->iva_factura
-                        ]];
+        if (is_dir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'))) {
+            rrmdir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'));
+        }
 
-                        break;
-                    case "albaran":
-                        $documentos[] = ["albaran" => [
-                            // "albaran" => $request->albaran,
-                            "ndoc_albaran" => $request->ndoc_albaran,
-                            "fecha_albaran" => $request->fecha_albaran,
-                        ]];
-                        break;
-                    case "recibo":
-                        $documentos[] = ["recibo" => [
-                            // "recibo" => $request->recibo,
-                            "fecha_recibo" => $request->fecha_recibo,
-                        ]];
-                        break;
-                    case "contrato":
-                        $documentos[] = ["contrato" => [
-                            // "contrato" => $request->contrato,
-                            "fecha_contrato" => $request->fecha_contrato,
-                        ]];
-                        break;
-                    case "hoja_encargo":
-                        $documentos[] = ["hoja_encargo" => [
-                            // "hoja_encargo" => $request->hoja_encargo,
-                            "fecha_hoja_encargo" => $request->fecha_hoja_encargo,
-                        ]];
-                        break;
-                    case "hoja_pedido":
-                        $documentos[] = ["hoja_pedido" => [
-                            // "hoja_pedido" => $request->hoja_pedido,
-                            "fecha_hoja_pedido" => $request->fecha_hoja_pedido,
-                        ]];
-                        break;
-                    case "reconocimiento":
-                        $documentos[] = ["reconocimiento" => [
-                            // "reconocimiento" => $request->reconocimiento,
-                            "fecha_reconocimiento" => $request->fecha_reconocimiento,
-                            "importe_reconocimiento" => $request->importe_reconocimiento,
-                            "iva_reconocimiento" => $request->iva_reconocimiento,
-                        ]];
-                        break;
-                    case "extracto":
-                        $documentos[] = ["extracto" => [
-                            // "extracto" => $request->extracto,
-                            "fecha_extracto" => $request->fecha_extracto,
-                        ]];
-                        break;
-                    case "escritura":
-                        $documentos[] = ["escritura" => [
-                            // "escritura" => $request->escritura,
-                            "nprot_escritura" => $request->nprot_escritura,
-                            "fecha_escritura" => $request->fecha_escritura,
-                            "nombre_escritura" => $request->nombre_escritura,
-                        ]];
-                        break;
-                    case "burofax":
-                        $documentos[] = ["burofax" => [
-                            // "burofax" => $request->burofax,
-                            "fecha_burofax" => $request->fecha_burofax,
-                        ]];
-                        break;
-                    case "carta_certificada":
-                        $documentos[] = ["carta_certificada" => [
-                            // "carta"=> $request->carta,
-                            "fecha_carta"=> $request->fecha_carta,
-                        ]];
-                        break;
-                    case "email":
-                        $documentos[] = ["email" => [
-                            // "email" => $request->email,
-                            "fecha_email" => $request->fecha_email,
-                        ]];
-                        break;
-                    case "otros":
-                        $documentos[] = ["otros" => [
-                            // "otros" => $request->otros,
-                            "fecha_otros" => $request->fecha_otros,
-                        ]];
-                        break;
-                }
+        if ($request->factura) {
+            foreach ($request->factura['file'] as $key => $value) {
+
+                $file = $request->file('factura')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = [ "factura" => [
+                    "file" => $file,
+                    "ndoc_factura" => $request->factura['ndoc_factura'][$key],
+                    "fecha_factura" => $request->factura['fecha_factura'][$key],
+                    "vencimiento_factura" => $request->factura['vencimiento_factura'][$key],
+                    "importe_factura" => $request->factura['importe_factura'][$key],
+                    "iva_factura" => $request->factura['iva_factura'][$key]
+                ]];
+            }
+        }
+
+        if ($request->albaran) {
+            foreach ($request->albaran['file'] as $key => $value) {
+
+                $file = $request->file('albaran')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["albaran" => [
+                    "file" => $file,
+                    "ndoc_albaran" => $request->albaran['ndoc_albaran'][$key],
+                    "fecha_albaran" => $request->albaran['fecha_albaran'][$key],
+                ]];
+            }
+        }
+
+        if ($request->recibo) {
+            foreach ($request->recibo['file'] as $key => $value) {
+
+                $file = $request->file('recibo')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["recibo" => [
+                    "file" => $file,
+                    "fecha_recibo" => $request->recibo['fecha_recibo'][$key],
+                ]];
+            }
+        }
+
+        if ($request->contrato) {
+            foreach ($request->contrato['file'] as $key => $value) {
+
+                $file = $request->file('contrato')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["contrato" => [
+                    "file" => $file,
+                    "fecha_contrato" => $request->contrato['fecha_contrato'][$key],
+                ]];
+            }
+        }
+
+        if ($request->hoja_encargo) {
+            foreach ($request->hoja_encargo['file'] as $key => $value) {
+
+                $file = $request->file('hoja_encargo')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["hoja_encargo" => [
+                    "file" => $file,
+                    "fecha_hoja_encargo" => $request->hoja_encargo['fecha_hoja_encargo'][$key],
+                ]];
+            }
+        }
+
+        if ($request->hoja_pedido) {
+            foreach ($request->hoja_pedido['file'] as $key => $value) {
+
+                $file = $request->file('hoja_pedido')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["hoja_pedido" => [
+                    "file" => $file,
+                    "fecha_hoja_pedido" => $request->hoja_pedido['fecha_hoja_pedido'][$key],
+                ]];
+            }
+        }
+
+        if ($request->reconocimiento) {
+            foreach ($request->reconocimiento['file'] as $key => $value) {
+
+                $file = $request->file('reconocimiento')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["reconocimiento" => [
+                    "file" => $file,
+                    "fecha_reconocimiento" => $request->reconocimiento['fecha_reconocimiento'][$key],
+                    "importe_reconocimiento" => $request->reconocimiento['importe_reconocimiento'][$key],
+                    "iva_reconocimiento" => $request->reconocimiento['iva_reconocimiento'][$key],
+                ]];
+            }
+        }
+
+        if ($request->extracto) {
+            foreach ($request->extracto['file'] as $key => $value) {
+
+                $file = $request->file('extracto')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["extracto" => [
+                    "file" => $file,
+                    "fecha_extracto" => $request->extracto['fecha_extracto'][$key],
+                ]];
+            }
+        }
+
+        if ($request->escritura) {
+            foreach ($request->escritura['file'] as $key => $value) {
+
+                $file = $request->file('escritura')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["escritura" => [
+                    "file" => $file,
+                    "nprot_escritura" => $request->escritura['nprot_escritura'][$key],
+                    "fecha_escritura" => $request->escritura['fecha_escritura'][$key],
+                    "nombre_escritura" => $request->escritura['nombre_escritura'][$key],
+                ]];
+            }
+        }
+
+        if ($request->burofax) {
+            foreach ($request->burofax['file'] as $key => $value) {
+
+                $file = $request->file('burofax')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["burofax" => [
+                    "file" => $file,
+                    "fecha_burofax" => $request->burofax['fecha_burofax'][$key],
+                ]];
+            }
+        }
+
+        if ($request->carta_certificada) {
+            foreach ($request->carta_certificada['file'] as $key => $value) {
+
+                $file = $request->file('carta_certificada')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["carta_certificada" => [
+                    "file" => $file,
+                    "fecha_carta"=> $request->carta_certificada['fecha_carta'][$key],
+                ]];
+            }
+        }
+
+        if ($request->email) {
+            foreach ($request->email['file'] as $key => $value) {
+
+                $file = $request->file('email')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["email" => [
+                    "file" => $file,
+                    "fecha_email" => $request->email['fecha_email'][$key],
+                ]];
+            }
+        }
+
+        if ($request->otros) {
+            foreach ($request->otros['file'] as $key => $value) {
+
+                $file = $request->file('otros')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = ["otros" => [
+                    "file" => $file,
+                    "fecha_otros" => $request->otros['fecha_otros'][$key],
+                ]];
             }
         }
 
         session()->put('documentos',$documentos);
 
+        // $path = '/uploads/claims/test/documents/';
+
+        // foreach (session('documentos') as $key => $d) {
+        //     $bn = basename($d[key($d)]['file']);
+        //     Storage::disk('public')->move($d[key($d)]['file'], $path . $bn);
+        // }
+
+        // return 'OK';
+
         /*foreach ($documentos as $key => $d) {
-            $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-            $documentos[$key][key($d)]['file'] = $file;
+            $file = $request->file('factura')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+            $documentos[$key][key($d)]['documentos'] = $file;
         }
 
+"file" => $documentos,
         return "";
 
         return $documentos;*/
@@ -259,34 +357,14 @@ class DebtsController extends Controller
 
         // documentacion
 
-        function rrmdir($dir) {
-           if (is_dir($dir)) {
-             $objects = scandir($dir);
-             foreach ($objects as $object) {
-               if ($object != "." && $object != "..") {
-                 if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
-                   rrmdir($dir. DIRECTORY_SEPARATOR .$object);
-                 else
-                   unlink($dir. DIRECTORY_SEPARATOR .$object);
-               }
-             }
-             rmdir($dir);
-           }
-         }
+        // foreach ($documentos as $key => $d) {
 
-        if (is_dir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'))) {
-            // return "Hola";
-            rrmdir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'));
-        }
+        //     $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+        //     $documentos[$key][key($d)]['file'] = $file;
 
-        foreach ($documentos as $key => $d) {
+        // }
 
-            $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-            $documentos[$key][key($d)]['file'] = $file;
-
-        }
-
-        session()->put('documentos',$documentos);
+        // session()->put('documentos',$documentos);
 
         // return redirect('/debts/create/step-two')->with('msj', 'Datos guardados exitosamente');
         // return redirect('/debts/create/step-three')->with('msj', 'Datos guardados exitosamente');
