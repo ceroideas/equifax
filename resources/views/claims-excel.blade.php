@@ -36,7 +36,8 @@
 			@if ($type == 0 &&
 				($claim->actuations()->count() ? 
 
-					($claim->actuations()->get()->last()->getRawOriginal('subject') == 21)
+					($claim->actuations()->get()->last()->getRawOriginal('subject') == 21 ||
+					 $claim->actuations()->get()->last()->getRawOriginal('subject') == 2101)
 
 				 : false)
 
