@@ -23,7 +23,7 @@
 @section('content')
 {{-- Configuración del componente para el datatable --}}
     @php
-    if (Auth::user()->isGestor()) {
+    if (Auth::user()->isGestor() || Auth::user()->isSuperAdmin()) {
         $heads = [
             'ID',
             'Usuario',
@@ -79,7 +79,10 @@
         </x-adminlte-alert>
     @endif
 
-    @if (!Auth::user()->isClient())
+
+    {{-- TODO: Esto mostraba el saldo al cliente gestoria, revisar porque lo puso Cero Ideas
+    @if (!Auth::user()->isClient())--}}
+    @if (Auth::user()->isSuperAdmin())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-warning">Exportar Reclamaciones</a>
 
         <form action="{{url('import-actuations')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
@@ -130,7 +133,8 @@
                     <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
                     <td>{{ $claim->getType() }}</td>
                     <td>{{ $claim->getHito() }}</td>
-                    @if (Auth::user()->isGestor())
+                    {{--  TODO: Esto mostraba el descontar saldo en el listado de reclamaciones al cliente gestoria, revisar porque lo puso cero ideas--}}
+                    @if (Auth::user()->isSuperAdmin())
                         <td>
                             {{$claim->saldo() - $claim->discounts()}}€ <a data-toggle="modal" href="#view-details-{{$claim->id}}"><i class="fa fa-eye"></i></a>
 
@@ -185,7 +189,10 @@
                             </div>
                         </td>
                     @endif
-                    {{-- <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td> --}}
+
+                    @if (Auth::user()->isGestor()) <td>{{$claim->saldo() - $claim->discounts()}}€</td>@endif
+
+                    {{--<td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td>--}}
                     {{-- <td>{{ $claim->getStatus() }}</td> --}}
                     <td>
                      <nobr>
