@@ -11,6 +11,7 @@ use App\Http\Controllers\ConfigurationsController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\WordController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ActuationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +124,7 @@ Route::get('export-all', [ClaimsController::class, 'exportAll']);
 Route::get('export-finished', [ClaimsController::class, 'exportFinished']);
 Route::get('export-users', [UsersController::class, 'exportUsers']);
 
+Route::get('export-actuations-all', [ActuationsController::class, 'exportActuationsAll']);
 
 /* Terceros */
 Route::group(['prefix' => 'third-parties'], function(){

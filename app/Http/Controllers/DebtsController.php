@@ -73,6 +73,7 @@ class DebtsController extends Controller
     {
         $documentos = [];
 
+
         function rrmdir($dir) {
            if (is_dir($dir)) {
              $objects = scandir($dir);
@@ -311,7 +312,6 @@ class DebtsController extends Controller
         $debt->motivo_reclamacion_previa = array_key_exists('motivo_reclamacion_previa', $data) ? $data['motivo_reclamacion_previa'] : null;
         $debt->fecha_reclamacion_previa = array_key_exists('fecha_reclamacion_previa', $data) ? $data['fecha_reclamacion_previa'] : null;
 
-        // $debt->reclamacion_previa = $data['reclamacion_previa'];
 
         if($debt->reclamacion_previa){
             Storage::disk('public')->delete($debt->reclamacion_previa);
@@ -574,7 +574,7 @@ class DebtsController extends Controller
         ];
 
         if (request()->reclamacion_previa_indicar == 1) {
-            //$rules['motivo_reclamacion_previa'] = 'required';
+            $rules['motivo_reclamacion_previa'] = '';
             $rules['reclamacion_previa'] = 'required';
             $rules['fecha_reclamacion_previa'] = 'required';
             $rules['reclamacion_previa_indicar'] = 'required';
