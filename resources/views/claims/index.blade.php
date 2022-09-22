@@ -85,7 +85,7 @@
     @if (Auth::user()->isSuperAdmin())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
         <a href="{{url('export-all')}}" class="btn btn-sm btn-success">Exportar Nuevas Ramaciones</a>
-        <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Actuaciones</a>
+        <a href="{{url('export-actuations-all')}}" class="btn btn-sm btn-primary">Exportar Actuaciones</a>
         <a href="{{url('export-all')}}" class="btn btn-sm btn-success">Exportar Nuevas actuaciones</a>
 
         <form action="{{url('import-actuations')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
