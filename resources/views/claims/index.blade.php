@@ -83,12 +83,15 @@
     {{-- TODO: Esto mostraba el saldo al cliente gestoria, revisar porque lo puso Cero Ideas
     @if (!Auth::user()->isClient())--}}
     @if (Auth::user()->isSuperAdmin())
-        <a href="{{url('export-all')}}" class="btn btn-sm btn-warning">Exportar Reclamaciones</a>
+        <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
+        <a href="{{url('export-all')}}" class="btn btn-sm btn-success">Exportar Nuevas Ramaciones</a>
+        <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Actuaciones</a>
+        <a href="{{url('export-all')}}" class="btn btn-sm btn-success">Exportar Nuevas actuaciones</a>
 
         <form action="{{url('import-actuations')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <label style="margin: 0;" for="actuations" class="btn btn-info btn-sm">Importar Actuaciones</label>
+            <label style="margin: 0;" for="actuations" class="btn btn-danger btn-sm">Importar Actuaciones</label>
 
             <input name="file" type="file" id="actuations" style="display: none;">
 
