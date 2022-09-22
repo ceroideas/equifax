@@ -31,7 +31,17 @@
             <th>Acreedor Población</th>
             <th>Acreedor Provincia</th>
 
+            {{-- Reclamacion previa--}}
+            <th>Reclamación Previa</th>
+            <th>Fecha Reclamación Previa</th>
+            <th>Pagos parciales</th>
+            <th>Detalle de pagos parciales</th>
+            <th>Motivo alegación</th>
+            <th>Fichero reclamación previa</th>
+
+            {{-- Datos deuda --}}
             <th>Concepto deuda</th>
+            <th>Total deuda</th>
             <th>Importe reclamado</th>
 			<th>Cobros recibidos</th>
 			<th>Importe pendiente de pago</th>
@@ -114,8 +124,19 @@
                     <td>{{ $claim->user_id ? $claim->client->location : $claim->representant->location}}</td>
                     <td>{{ $claim->user_id ? $claim->client->province : $claim->representant->province}}</td>
 
+
+                            {{-- Reclamacion previa --}}
+                    <td>{{ $claim->debt->reclamacion_previa_indicar == 1? 'Si': 'No' }}</td>
+                    <td>{{ $claim->debt->fecha_reclamacion_previa }}</td>
+                    <td>{{ $claim->debt->partials_amount }}</td>
+                    <td>{{ $claim->debt->partials_amount_details }}</td>
+                    <td>{{ $claim->debt->motivo_reclamacion_previa }}</td>
+                    <td>{{ $claim->debt->reclamacion_previa }}</td>
+
+
                     {{-- Datos de deuda --}}
                     <td>{{ $claim->debt->concept }}</td>
+                    <td>{{ $claim->debt->total_amount }}€</td>
 		            <td>{{ $claim->debt->pending_amount }}€</td>
 	                <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
 	                <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
