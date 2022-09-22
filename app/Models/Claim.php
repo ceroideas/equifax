@@ -123,9 +123,13 @@ class Claim extends Model
 
         return false;
     }
-    
+
     public function owner(){
         return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function agreement(){
+        return $this->belongsTo(Agreement::class, 'agreement_id');
     }
 
     public function client(){
