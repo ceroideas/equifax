@@ -46,8 +46,8 @@
             'Reclamación',
             'Concepto',
             'Importe',
-            'Fecha del pago',
-            'Tipo de cobro',
+            'Fecha',
+            'Exportada',
             'Status',
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
@@ -90,7 +90,11 @@
                     <td>{{ $invoice->description }}</td>
                     <td>{{ number_format(($invoice->amount) ,2,',','.')}} €</td>
                     <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d/m/Y') }}</td>
-                    <td>{{ $invoice->type }}</td>
+                    @if (Auth::user()->isSuperAdmin())
+                        <td>{{ $invoice->trafac }}</td>
+                    @else
+                        <td>{{ $invoice->type }}</td>
+                    @endif
                     <td>{{ $invoice->status == 1 ? 'Pagado' : 'Pendiente' }}</td>
                     <td>
                      <nobr>
