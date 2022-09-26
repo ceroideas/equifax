@@ -977,6 +977,7 @@ class ClaimsController extends Controller
 
         return view('claims.invoices', compact('invoices'));
     }
+
     public function myInvoice($id)
     {
 
@@ -991,6 +992,12 @@ class ClaimsController extends Controller
         $actuations = Actuation::where('claim_id',$id)->get();
         $claim = Claim::find($id);
         return view('claims.actuations', compact('actuations','claim'));
+    }
+
+    public function orders()
+    {
+        $orders = Claim::whereNotNull('gestor_id')->get();
+        return view('claims.orders', compact('orders'));
     }
 
     public function saveActuation(Request $r,$id)

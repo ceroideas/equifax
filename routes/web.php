@@ -94,6 +94,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
     Route::get('/invoices', [ClaimsController::class , 'myInvoices']);
     Route::get('/invoices/{id}', [ClaimsController::class , 'myInvoice']);
+    Route::get('/orders', [ClaimsController::class , 'orders']);
     Route::get('/actuations/{id}', [ClaimsController::class , 'actuations']);
     Route::post('/actuations/{id}', [ClaimsController::class , 'saveActuation']);
     Route::get('/flush-options', [ClaimsController::class, 'flushAll']);

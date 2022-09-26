@@ -136,6 +136,10 @@ class Claim extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function gestor(){
+        return $this->belongsTo(User::class, 'gestor_id');
+    }
+
     public function representant(){
         return $this->belongsTo(ThirdParty::class, 'third_parties_id');
     }
