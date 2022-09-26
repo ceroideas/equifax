@@ -410,12 +410,12 @@
                             <p data-v-e047c7bc="" class="estadisticas-text">notificaciones diarias</p>
                         </div>
                         <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                            <p data-v-e047c7bc="" class="estadisticas-title">+120.000</p>
+                            <p data-v-e047c7bc="" class="estadisticas-title">+190.000</p>
                             <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados</p>
                         </div>
                         <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                            <p data-v-e047c7bc="" class="estadisticas-title">+150.000</p>
-                            <p data-v-e047c7bc="" class="estadisticas-text">Demandas</p>
+                            <p data-v-e047c7bc="" class="estadisticas-title">+240.000</p>
+                            <p data-v-e047c7bc="" class="estadisticas-text">Procedmiientos en gestión</p>
                         </div>
                     </div>
                 </div>

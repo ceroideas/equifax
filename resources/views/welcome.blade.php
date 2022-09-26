@@ -230,7 +230,7 @@
                                 {{-- <span data-v-66372912="" class="Lorem-ipsum-dolor-si">
                                 Lorem ipsum dolor sit amet, consectetur
                               </span> --}}
-                            
+
                             @if (session('msg'))
                                 <div class="alert alert-warning">
                                     {{ session('msg') }}
@@ -300,9 +300,9 @@
                     <div data-v-494d1a60="" class="card- text-center container">
 
                         <div data-v-494d1a60="" href="#amistosa" class="card-body-">
-                        
+
                             <div data-v-494d1a60="" class="row">
-                        --}}    
+                        --}}
                                 {{--<div data-v-494d1a60="" class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12"
                                     style="position: relative;">
 
@@ -325,7 +325,7 @@
 
                                 {{--
                                 <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
-                                
+
                                     <div data-v-494d1a60="" class="card-reclamacion">
                                         <div class="row">
                                             <div class="col-sm-2"></div>
@@ -334,7 +334,7 @@
                                                 <div data-v-494d1a60="" id="block-reclamacion">
                                                     <div data-v-494d1a60="" class="text-reclamacion mb-4 mt-4">¿Cu&aacute;l es nuestra <b>misi&oacute;n</b>?</div>
                                                 </div>
-                                                
+
                                                 <div data-v-494d1a60="" class="card-text Lorem-ipsum-dolor-si">
                                                     <p>
                                                         En <b>Dividae</b>, queremos revolucionar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital de una manera
@@ -381,13 +381,13 @@
                         <div data-v-9cc878a2="" class="text-tarifa" style="padding:0">¿Cu&aacute;l es nuestra <b>misi&oacute;n</b>?</div>
                         <div class="container text-center bottom-text" style="font-weight:normal !important">
                             <p>En <b>Dividae</b>, queremos revolucionar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital de una manera
-                                <b>automatizada</b> y <b>transparente</b>. ¿Nuestro principal objetivo? Que digas <b>adi&oacute;s a tus facturas impagadas</b>. Conoce m&aacute;s acerca de 
+                                <b>automatizada</b> y <b>transparente</b>. ¿Nuestro principal objetivo? Que digas <b>adi&oacute;s a tus facturas impagadas</b>. Conoce m&aacute;s acerca de
                                 <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>.</p>
                         </div>
 
                         <div data-v-63cd6604="" data-v-effc9f78=""><a data-v-63cd6604="" href="{{ url('register') }}" class="btn QSomos-btn" data-v-effc9f78="">Regístrate</a></div>
 
-                    {{-- Video --}}         
+                    {{-- Video --}}
                         <div class="videoDividae">
                             <video class="videoDividae" controls autoplay muted >
                                 <source src="{{ url('landing/dividaemision.mp4') }}" type="video/mp4">
@@ -641,13 +641,12 @@
                                 <p data-v-e047c7bc="" class="estadisticas-text">Notificaciones diarias</p>
                             </div>
                             <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                                <p data-v-e047c7bc="" class="estadisticas-title">+120.000</p>
-                                <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados
-                                </p>
+                                <p data-v-e047c7bc="" class="estadisticas-title">+190.000</p>
+                                <p data-v-e047c7bc="" class="estadisticas-text"> Procedimientos iniciados</p>
                             </div>
                             <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                                <p data-v-e047c7bc="" class="estadisticas-title">+150.000</p>
-                                <p data-v-e047c7bc="" class="estadisticas-text">Demandas</p>
+                                <p data-v-e047c7bc="" class="estadisticas-title">+240.000</p>
+                                <p data-v-e047c7bc="" class="estadisticas-text">Procedmiientos en gestión</p>
                             </div>
                         </div>
                     </div>
