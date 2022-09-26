@@ -409,10 +409,16 @@ return [
             'can' =>  ['superadmin','see-fees', 'admin-claims'],
             'submenu' => [
                 [
+                    'text' => 'Pedidos gestoria',
+                    'icon' => '',
+                    'can' => ['superadmin'],
+                    'url'  => '/claims/orders',
+                ],
+                [
                     'text' => 'Saldo gestorias',
                     'icon' => '',
                     'can' => ['superadmin'],
-                    'url'  => '/configurations/fees2',
+                    'url'  => '/claims/gestoria',
                 ],
                 [
                     'text' => 'Facturas',
