@@ -80,6 +80,11 @@ class ConfigurationsController extends Controller
         //$configuration->resource_code = array_key_exists('resource_code', $data) ? $data['resource_code'] : null;
         $configuration->resource_concept = array_key_exists('resource_concept', $data) ? $data['resource_concept'] : null;
 
+        //$configuration->deposit_code = array_key_exists('deposit_code', $data) ? $data['deposit_code'] : null;
+        $configuration->deposit_concept= array_key_exists('deposit_concept', $data) ? $data['deposit_concept'] : null;
+        $configuration->deposit_amount = array_key_exists('deposit_amount', $data) ? $data['deposit_amount'] : null;
+        $configuration->deposit_tax = array_key_exists('deposit_tax', $data) ? $data['deposit_tax'] : null;
+
         $configuration->save();
 
         return redirect('configurations/fees')->with('msj' , 'Tasas guardadas correctamente');
@@ -142,6 +147,11 @@ class ConfigurationsController extends Controller
         //$configuration->resource_code = array_key_exists('resource_code', $data) ? $data['resource_code'] : null;
         $configuration->resource_concept = array_key_exists('resource_concept', $data) ? $data['resource_concept'] : null;
 
+        //$configuration->deposit_code = array_key_exists('deposit_code', $data) ? $data['deposit_code'] : null;
+        $configuration->deposit_concept= array_key_exists('deposit_concept', $data) ? $data['deposit_concept'] : null;
+        $configuration->deposit_amount = array_key_exists('deposit_amount', $data) ? $data['deposit_amount'] : null;
+        $configuration->deposit_tax = array_key_exists('deposit_tax', $data) ? $data['deposit_tax'] : null;
+
         $configuration->update();
 
         return redirect('configurations/fees')->with('msj' , 'Tasas actualizadas correctamente');
@@ -200,6 +210,11 @@ class ConfigurationsController extends Controller
         if(request('excecution_concept')){$rules['excecution_concept'] = 'required';}
         //if(request('resource_code')){$rules['resource_code'] = 'required';}
         if(request('resource_concept')){$rules['resource_concept'] = 'required';}
+
+        //if(request('deposit_code')){$rules['deposit_code'] = 'required';}
+        if(request('deposit_concept')){$rules['deposit_concept'] = 'required';}
+        if(request('deposit_tax')){$rules['deposit_tax'] = 'required';}
+        if(request('deposit_amount')){$rules['deposit_amount'] = 'required';}
 
         return request()->validate($rules);
 
