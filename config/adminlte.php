@@ -375,12 +375,6 @@ return [
                     'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims'],
                     'url'  => '/claims/pending',
                 ],
-                [
-                    'text' => 'Facturas',
-                    'icon' => '',
-                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims'],
-                    'url'  => '/claims/invoices',
-                ],
             ],
         ],
         [
@@ -405,6 +399,32 @@ return [
                     'icon' => '',
                     'can' => ['superadmin','admin-claims'],
                     'url'  => '/configurations/templates',
+                ],
+
+            ],
+        ],
+        [
+            'text'    => 'Contabilidad',
+            'icon'    => 'fas fa-fw fa-file-invoice',
+            'can' =>  ['superadmin','see-fees', 'admin-claims'],
+            'submenu' => [
+                [
+                    'text' => 'Saldo gestorias',
+                    'icon' => '',
+                    'can' => ['superadmin'],
+                    'url'  => '/configurations/fees2',
+                ],
+                [
+                    'text' => 'Facturas',
+                    'icon' => '',
+                    'can' => ['superadmin'],
+                    'url'  => '/claims/invoices',
+                ],
+                [
+                    'text' => 'Cobros',
+                    'icon' => '',
+                    'can' => ['superadmin'],
+                    'url'  => '/claims/collect',
                 ],
 
             ],

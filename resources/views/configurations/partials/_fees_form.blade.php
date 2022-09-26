@@ -331,6 +331,7 @@
                 </x-adminlte-select2>
             </div>
         </div>
+
         <hr>
         <div class="row">
             <h4>Ejecución</h4>
@@ -416,8 +417,60 @@
                     <option value="IVA0" {{ isset($configuration) ? ($configuration->resource_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
                 </x-adminlte-select2>
             </div>
+        </div>
+
+        {{-- Deposito --}}
+
+        <hr>
+        <div class="row">
+            <h4>Deposito</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <x-adminlte-input name="deposit_code" label="Código Deposito" placeholder="Código Deposito" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->deposit_code : ''}}" disabled>
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input name="deposit_concept" label="Concepto Deposito" placeholder="Concepto Deposito" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->deposit_concept : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <x-adminlte-input name="deposit_amount" label="Importe Deposito" placeholder="Importe Deposito" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->deposit_amount : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-3">
+                <x-adminlte-select2 id="deposit_tax" name="deposit_tax" label="% IVA Deposit" placeholder="% de IVA" class="form-control-sm" enable-old-support="true">
+                    <option value="IVA21" {{ isset($configuration) ? ($configuration->deposit_tax == "IVA21"?'selected': '') : ''}}>21%</option>
+                    <option value="IVA10" {{ isset($configuration) ? ($configuration->deposit_tax == "IVA10"?'selected': '') : ''}}>10%</option>
+                    <option value="IVA4" {{ isset($configuration) ? ($configuration->deposit_tax == "IVA4"?'selected': '') : ''}}>4%</option>
+                    <option value="IVA0" {{ isset($configuration) ? ($configuration->deposit_tax == "IVA0"?'selected': '') : ''}}>Excento</option>
+                </x-adminlte-select2>
+            </div>
 
         </div>
+
+
         <hr>
         <div class="row">
             <h4>Configuración facturas</h4>
