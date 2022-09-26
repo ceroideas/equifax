@@ -1000,6 +1000,12 @@ class ClaimsController extends Controller
         return view('claims.orders', compact('orders'));
     }
 
+    public function byGestoria()
+    {
+        $invoices = Invoice::all();
+        return view('claims.gestoria', compact('invoices'));
+    }
+
     public function saveActuation(Request $r,$id)
     {
         // $h = getHito($r->subject)[0];
