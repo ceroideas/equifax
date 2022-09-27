@@ -178,7 +178,7 @@
                             @if (!Auth::user()->isClient())
                                 <div class="post">
 
-                                    <h6>Deudor con código postal: {{$claim->debtor->cop}}</h6>
+                                    <b>DEUDOR CON CÓDIGO POSTAL:</b> {{$claim->debtor->cop}}
 
                                     <select name="postal_code_id" class="js-data-example-ajax form-control">
                                         @if ($claim->debtor->cop)

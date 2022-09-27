@@ -16,7 +16,7 @@
                             <div data-v-18ec2fe4="" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><img
                                     data-v-18ec2fe4="" src="{{ url('landing') }}/assets/icons-phone.png"
                                     class="img-fluid mr-1">
-                                <a href="tel:+34680933286">+34 680933286</a>
+                                <a href="tel:+34913258610">+34 913 258 610</a>
                             </div>
                             <div data-v-18ec2fe4="" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"><img
                                     data-v-18ec2fe4="" src="{{ url('landing') }}/assets/icons-email.png"
@@ -141,10 +141,9 @@
             <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
                 <h5 data-v-a242bae8="" class="footer-title ">Contacto</h5>
                 <ul data-v-a242bae8="" class="nav flex-column">
-                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
+                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="tel:+34913258610"
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
-                                src="{{ url('landing') }}/assets/icons-phone-white.png" class="img-fluid"> +34 680
-                            933 286
+                                src="{{ url('landing') }}/assets/icons-phone-white.png" class="img-fluid"> +34 913 258 610
                         </a></li>
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
