@@ -454,7 +454,7 @@
                                     </div>
                                 </div>
                             @endif
-                            <a href="actuations/{{$claim->id}}">Todas las actuaciones</a>
+                            <a href="actuations/{{$claim->id}}" class="btn btn-info">Ver todas las actuaciones</a>
                         @endif
 
                         @if ($claim->viable_observation)
