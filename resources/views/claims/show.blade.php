@@ -178,7 +178,7 @@
                             @if (!Auth::user()->isClient())
                                 <div class="post">
 
-                                    <h6>Deudor con código postal: {{$claim->debtor->cop}}</h6>
+                                    <b>DEUDOR CON CÓDIGO POSTAL:</b> {{$claim->debtor->cop}}
 
                                     <select name="postal_code_id" class="js-data-example-ajax form-control">
                                         @if ($claim->debtor->cop)
@@ -443,7 +443,7 @@
                             </div>
 
                         @else
-
+                        <h5 class="mt-5 text-muted">Última actuación</h5>
                             @if ($claim->getHito())
                                 <div class="row text-center">
                                     <div class="col-sm-12">
@@ -454,6 +454,7 @@
                                     </div>
                                 </div>
                             @endif
+                            <a href="actuations/{{$claim->id}}" class="btn btn-info">Ver todas las actuaciones</a>
                         @endif
 
                         @if ($claim->viable_observation)

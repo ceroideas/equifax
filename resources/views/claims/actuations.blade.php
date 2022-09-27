@@ -201,7 +201,7 @@
 	            				<label for="description">Descripción</label>
 
 
-	            				<x-adminlte-textarea name="description" id="description" required placeholder="Inserte descripción..."/>
+	            				<x-adminlte-textarea name="description" id="description" placeholder="Inserte descripción..."/>
 
 
 	            			</div>
