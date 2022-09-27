@@ -443,7 +443,7 @@
                             </div>
 
                         @else
-
+                        <h5 class="mt-5 text-muted">Última actuación</h5>
                             @if ($claim->getHito())
                                 <div class="row text-center">
                                     <div class="col-sm-12">
@@ -454,6 +454,7 @@
                                     </div>
                                 </div>
                             @endif
+                            <a href="actuations/{{$claim->id}}">Todas las actuaciones</a>
                         @endif
 
                         @if ($claim->viable_observation)
