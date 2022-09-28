@@ -39,7 +39,7 @@
                     </x-slot>
                 </x-adminlte-input>--}}
 
-                <x-adminlte-input name="importe" label="Importe Principal *" placeholder="Importe principal" type="number" step="0.01" min="0"
+                <x-adminlte-input name="importe" label="Importe a reclamar *" placeholder="Incluye el total que quieres que reclamemos" type="number" step="0.01" min="0"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->total_amount : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -49,7 +49,7 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="iva" label="Porcentaje de IVA *" placeholder="Porcentaje de IVA" type="number" step="0.01" min="0"
+                <x-adminlte-input name="iva" label="Porcentaje de IVA *" placeholder="Introduce el porcentaje de IVA (en caso de no tener IVA pon cero)" type="number" step="0.01" min="0"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->tax : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -62,7 +62,7 @@
 
         <div class="row mt-2">
             <div class="col-sm-6">
-                <x-adminlte-input name="concepto" label="Concepto o Justificación *" placeholder="Concepto o Justificación" type="text"
+                <x-adminlte-input name="concepto" label="Concepto o Justificación *" placeholder="Introduce el concepto de tu deuda" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->concept : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -186,7 +186,7 @@
         </div>
         <div class="row ">
             <div class="col-sm-12">
-                <x-adminlte-textarea name="observaciones" label="Observaciones / Explicaciones **" rows=4 enable-old-support="true" placeholder="Observaciones / Explicaciones">
+                <x-adminlte-textarea name="observaciones" label="Observaciones / Explicaciones *" rows=4 enable-old-support="true" placeholder="Introduce datos adicionales que puedan ser de inter&eacute;s para la localizaci&oacute;n del deudor, esto nos ayudar&aacute; a acelerar el proceso.">
                     {{ session('claim_debt') ? session('claim_debt')->additionals : ''}}
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -236,7 +236,7 @@
                 </div>
 
                 <div class="col-sm-12">
-                    <x-adminlte-textarea name="motivo_reclamacion_previa" label="Motivo de oposición alegada por el deudor **" rows=4 enable-old-support="true">
+                    <x-adminlte-textarea name="motivo_reclamacion_previa" label="Motivo de oposición alegada por el deudor" placeholder="Explica los motivos por los que justifica el impago" rows=4 enable-old-support="true">
                         {{ session('claim_debt') ? session('claim_debt')->motivo_reclamacion_previa : ''}}
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
@@ -318,9 +318,9 @@
             <div class="row">
                 <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
-            <div class="row">
+            {{--<div class="row">
                 <span class="float-left">(**) Por favor ingresa toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
-            </div>
+            </div>--}}
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save"/>
             <a href="{{ url('/claims/create-debt/') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
