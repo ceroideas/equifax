@@ -32,6 +32,9 @@ use App\Exports\InvoicesExport;
 
 use App\Imports\HitosImport;
 use App\Models\Linvoice;
+use App\Models\Order;
+use App\Models\Lorder;
+
 
 class ClaimsController extends Controller
 {
@@ -273,170 +276,183 @@ class ClaimsController extends Controller
 
         /* Generamos factura en cualquier estado */
         // Buscamos el maximo ID de invoice
-        $idInvoice = Invoice::all()->max('id');
-        $idInvoice = $idInvoice + 1;
+        if(Auth::user()->isGestor()){
+            $idDocument = Order::all()->max('id');
+            $idDocument = $idDocument + 1;
+        }else{
+            $idDocument = Invoice::all()->max('id');
+            $idDocument = $idDocument + 1;
+        }
 
         $c = Configuration::first();
 
-
         if(isset($c)){
-            $invoice = new Invoice;
-            $invoice->id = $idInvoice;
-            $invoice->claim_id = $claim->id;
-            $invoice->user_id = $claim->user_id;
-            //$invoice->amount = $c->fixed_fees;
-            $invoice->type = 'fixed_fees';
-            $invoice->description = $c->extra_concept;
-            /* Traemos los datos del cliente */
-            $invoice->cnofac = Auth::user()->name;
-            $invoice->cdofac = Auth::user()->address;
-            $invoice->cpofac = Auth::user()->location;
-            $invoice->ccpfac = Auth::user()->cop;
-            $invoice->cprfac = Auth::user()->province;
-            $invoice->cnifac = Auth::user()->dni;
 
+            //$invoice = new Invoice;
+            Auth::user()->isGestor() ? $document = new Order : $document = new Invoice;
+            //$invoice->id = $idInvoice;
+            $document->id = $idDocument;
+            //$invoice->claim_id = $claim->id;
+            $document->claim_id =  $claim->id;
+            //$invoice->user_id = $claim->user_id;
+            $document->user_id = $claim->user_id;
+
+            //$invoice->amount = $c->fixed_fees;   no se usa
+            //$invoice->type = 'fixed_fees';
+            $document->type = 'fixed_fees';
+            //$invoice->description = $c->extra_concept;
+            $document->description = $c->extra_concept;
+
+            /* Almacenamos los datos del cliente en el momento de facturar */
+            if(!Auth::user()->isGestor()){
+                $document->cnofac = Auth::user()->name;
+                $document->cdofac = Auth::user()->address;
+                $document->cpofac = Auth::user()->location;
+                $document->ccpfac = Auth::user()->cop;
+                $document->cprfac = Auth::user()->province;
+                $document->cnifac = Auth::user()->dni;
+                }
             /* Campos importes */
             /* Debemos comprobar si tiene un iva el cliente */
-
-
-
-            /* nuestro concepto de facturacion inicial es:
-            fixed_fees_tax: impuestos
-            fixed_fees = importe */
-
             /* Iva cliente si es excento Prioriza el iva del cliente*/
-
             /* Grabamos las lineas siguiendo el criterio del iva del cliente */
-                $linvoice = new Linvoice;
-                $linvoice->invoice_id = $idInvoice;
-                $linvoice->poslin = 1;
-                $linvoice->artlin = $c->extra_code?$c->extra_code:'nulo';
-                $linvoice->deslin = $c->extra_concept;
-                $linvoice->canlin = 1;
 
-                $linvoice->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
+                if(Auth::user()->isGestor()){
+                    $ldocument = new Lorder;
+                    $ldocument->order_id = $idDocument;
+                    $ldocument->poslor = 1;
+                    $ldocument->artlor = $c->extra_code;
+                    $ldocument->deslor = $c->extra_concept;
+                    $ldocument->canlor = 1;
+                    $ldocument->prelor = $c->fixed_fees;
+                    $ldocument->totlor =  $ldocument->canlor * $ldocument->prelor;
+                    $ldocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
+                }else{
+                    $ldocument = new Linvoice;
+                    $ldocument->invoice_id = $idDocument;
+                    $ldocument->poslin = 1;
+                    $ldocument->artlin = $c->extra_code;
+                    $ldocument->deslin = $c->extra_concept;
+                    $ldocument->canlin = 1;
+                    $ldocument->prelin = $c->fixed_fees;
+                    $ldocument->totlin =  $ldocument->canlin * $ldocument->prelin;
+                    $ldocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
+                }
 
-                $linvoice->prelin = $c->fixed_fees;
-                $linvoice->totlin = $linvoice->canlin * $linvoice->prelin;// CALCULADO cantidad, precio
-                $linvoice->save();
+                $ldocument->save();
 
                 /* Acumulamos en cabeceras */
                 /* todos los importes van en neto4 al ser cliente sin IVA */
                 if(Auth::user()->taxcode =='IVA0'){
 
-                    $invoice->net4fac = $linvoice->totlin;
-                    $invoice->pdto4fac = Auth::user()->discount;
-                    $invoice->idto4fac = round(($invoice->pdto4fac*100),2);// Calcular descuento
-                    $invoice->bas4fac = round(($invoice->net4fac - $invoice->idto4fac),2);
+                    if(Auth::user()->isGestor()){
 
-                    /* Totalizamos*/
-                    $invoice->totfac = $invoice->bas4fac; // no lleva impuestos por lo que es igual que la base
-                    $invoice->amount=$invoice->bas4fac;
-
-        if (Auth::user()->isGestor()) {
-            $invoice->status = 1;
-        }
-                    $invoice->save();
-                }else{
-                    /* Cliente al 21*/
-                    /*Comprobamos iva del concepto*/
-                    if($c->fixed_fees_tax =='IVA0'){
-                        $invoice->net4fac = $linvoice->totlin;
-                        $invoice->pdto4fac = Auth::user()->discount;
-                        $invoice->idto4fac = round(($invoice->pdto4fac*100),2);// Calcular descuento
-                        $invoice->bas4fac = round(($invoice->net4fac - $invoice->idto4fac),2);
-
-                        /* porcentajes de iva  Cliente iva*/
-                        $invoice->piva1fac = '21';
-                        $invoice->piva2fac = '10';
-                        $invoice->piva3fac = '4';
-
+                        $document->net4ord = $ldocument->totlor;
+                        $document->pdto4ord = Auth::user()->discount;
+                        $document->idto4ord = round(($document->pdto4ord*100),2);// Calcular descuento
+                        $document->bas4ord = round(($document->net4ord - $document->idto4ord),2);
                         /* Totalizamos*/
-                        $invoice->totfac = $invoice->bas4fac; // no lleva impuestos por lo que es igual que la base
-                        $invoice->amount=$invoice->bas4fac;
+                        $document->totord = $document->bas4ord; // no lleva impuestos por lo que es igual que la base
+                        $document->amount=$document->bas4ord;
 
-        if (Auth::user()->isGestor()) {
-            $invoice->status = 1;
-        }
-
-                        $invoice->save();
                     }else{
-
-                        $invoice->net1fac = $linvoice->totlin;
-                        $invoice->pdto1fac = Auth::user()->discount;
-                        $invoice->idto1fac = round(($invoice->pdto1fac*100),2);// Calcular descuento
-                        $invoice->bas1fac = round(($invoice->net1fac - $invoice->idto1fac),2);
-
-                        /* porcentajes de iva  Cliente iva*/
-                        $invoice->piva1fac = '21';
-                        $invoice->piva2fac = '10';
-                        $invoice->piva3fac = '4';
-
-                        /* Calcular importe iva*/
-                        $invoice->iiva1fac = round($invoice->bas1fac*($invoice->piva1fac / 100 ),2);
-
+                        $document->net4fac = $ldocument->totlin;
+                        $document->pdto4fac = Auth::user()->discount;
+                        $document->idto4fac = round(($document->pdto4fac*100),2);// Calcular descuento
+                        $document->bas4fac = round(($document->net4fac - $document->idto4fac),2);
                         /* Totalizamos*/
-                        $invoice->totfac =  round($invoice->bas1fac+$invoice->iiva1fac,2);
-                        $invoice->amount=$invoice->totfac;
-
-        if (Auth::user()->isGestor()) {
-            $invoice->status = 1;
-        }
-
-                        $invoice->save();
-
+                        $document->totfac = $document->bas4fac; // no lleva impuestos por lo que es igual que la base
+                        $document->amount=$document->bas4fac;
                     }
+                 /* Solo valido para factura gestor
+                    if (Auth::user()->isGestor()) {
+                        $invoice->status = 1;
+                    }
+                */
+                    $document->save();
 
-                }
-                      /*$invoice->net1fac = $c->fixed_fees;
-                        $invoice->net2fac = 0;
-                        $invoice->net3fac = 0;
-                        $invoice->net4fac = 0;*/
+                }else{
+                        /* Cliente al 21*/
+                        /*Comprobamos iva del concepto*/
+                        if($c->fixed_fees_tax =='IVA0'){
+                            if(Auth::user()->isGestor()){
+                                $document->net4ord = $ldocument->totlor;
+                                $document->pdto4ord = Auth::user()->discount;
+                                $document->idto4ord = round(($document->pdto4ord*100),2);// Calcular descuento
+                                $document->bas4ord = round(($document->net4ord - $document->idto4ord),2);
+                                /* porcentajes de iva  Cliente iva*/
+                                $document->piva1ord = '21';
+                                $document->piva2ord = '10';
+                                $document->piva3ord = '4';
+                                /* Totalizamos*/
+                                $document->totord = $document->bas4ord; // no lleva impuestos por lo que es igual que la base
+                                $document->amount=$document->bas4ord;
 
-                        /*$invoice->pdto1fac =
-                        $invoice->pdto2fac =
-                        $invoice->pdto3fac
-                        $invoice->pdto4fac
+                            }else{
+                                $document->net4fac = $ldocument->totlin;
+                                $document->pdto4fac = Auth::user()->discount;
+                                $document->idto4fac = round(($document->pdto4fac*100),2);// Calcular descuento
+                                $document->bas4fac = round(($document->net4fac - $document->idto4fac),2);
+                                /* porcentajes de iva  Cliente iva*/
+                                $document->piva1fac = '21';
+                                $document->piva2fac = '10';
+                                $document->piva3fac = '4';
+                                /* Totalizamos*/
+                                $document->totfac = $document->bas4fac; // no lleva impuestos por lo que es igual que la base
+                                $document->amount=$document->bas4fac;
+                            }
+                            /* Solo valido para gestor
+                                if (Auth::user()->isGestor()) {
+                                    $invoice->status = 1;
+                                }*/
 
-                        $invoice->idto1fac
-                        $invoice->idto2fac
-                        $invoice->idto3fac
-                        $invoice->idto4fac
+                            $document->save();
+                        }else{
 
-                        $invoice->piva1fac
-                        $invoice->piva2fac
-                        $invoice->piva3fac
+                            if(Auth::user()->isGestor()){
+                                $document->net1ord = $ldocument->totlor;
+                                $document->pdto1ord = Auth::user()->discount;
+                                $document->idto1ord = round(($document->pdto1ord*100),2);// Calcular descuento
+                                $document->bas1ord = round(($document->net1ord - $document->idto1ord),2);
+                                /* Porcentajes de iva  Cliente iva*/
+                                $document->piva1ord = '21';
+                                $document->piva2ord = '10';
+                                $document->piva3ord = '4';
+                                /* Calcular importe iva*/
+                                $document->iiva1ord = round($document->bas1ord*($document->piva1ord / 100 ),2);
+                                /* Totalizamos*/
+                                $document->totord = round($document->bas1ord + $document->iiva1ord,2);
+                                $document->amount = $document->totord;
 
-                        $invoice->bas1fac
-                        $invoice->bas2fac
-                        $invoice->bas3fac
-                        $invoice->bas4fac
+                            }else{
+                                $document->net1fac = $ldocument->totlin;
+                                $document->pdto1fac = Auth::user()->discount;
+                                $document->idto1fac = round(($document->pdto1fac*100),2);// Calcular descuento
+                                $document->bas1fac = round(($document->net1fac - $document->idto1fac),2);
+                                /* Porcentajes de iva  Cliente iva*/
+                                $document->piva1fac = '21';
+                                $document->piva2fac = '10';
+                                $document->piva3fac = '4';
+                                /* Calcular importe iva*/
+                                $document->iiva1fac = round($document->bas1fac*($document->piva1fac / 100 ),2);
+                                /* Totalizamos*/
+                                $document->totfac = round($document->bas1fac + $document->iiva1fac,2);
+                                $document->amount = $document->totfac;
+                            }
 
-                        $invoice->iiva1fac
-                        $invoice->iiva2fac
-                        $invoice->iiva3fac
+                            /* Solo valido para gestor
+                                if (Auth::user()->isGestor()) {
+                                    $invoice->status = 1;
+                                }*/
+                            $document->save();
+                        } // fin iva excento
 
-                        $invoice->totfac
-
-                        $invoice->save();*/
-
-                        /* Generar lineas de factura  old version
-                        $linvoice = new Linvoice;
-                        $linvoice->invoice_id = $claim->id;
-                        $linvoice->poslin = 1;
-                        $linvoice->artlin = "EXT-001";
-                        $linvoice->deslin = "Pago de la tarifa procedimiento Extrajudicial";
-                        $linvoice->canlin = 1;
-                        $linvoice->ivalin = 0;
-                        $linvoice->prelin = $c ? $c->fixed_fees : '0';
-                        $linvoice->totlin = $c ? ($c->fixed_fees * 1) : '0';
-                        $linvoice->save();
-
+                } // fin iva excento
                     /*Fin generacion de factura */
 
         }else{
             /* Mostrar mensaje de error falta configuracion id=1*/
-        }
+        } // fin comprobacion de configuracion
 
 
 
