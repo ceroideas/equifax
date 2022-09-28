@@ -174,7 +174,7 @@
 
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input readonly name="importe_pendiente" label="Importe Pendientes de Pago *" placeholder="Importe Pendientes de Pago" type="text"
+                <x-adminlte-input readonly name="importe_pendiente" label="Deuda original *" placeholder="Deuda original" type="text"
                 igroup-size="sm" enable-old-support="true" value="">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
