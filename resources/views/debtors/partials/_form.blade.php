@@ -149,7 +149,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="col-sm-12">
-                    <x-adminlte-textarea name="additional" label="Datos adicionales del deudor / Observaciones ** " rows=4 enable-old-support="true" placeholder="Ingresa el motivo por el cual no ha conseguido su deuda, además de cualquier otra información importante al caso.">{{  isset($debtor) ?  $debtor->address   :  ''}}
+                    <x-adminlte-textarea name="additional" label="Datos adicionales del deudor / Observaciones " rows=4 enable-old-support="true" placeholder="Introduce datos adicionales que puedan ser de inter&eacute;s para la localizaci&oacute;n del deudor, esto nos ayudar&aacute; a acelerar el proceso.">{{  isset($debtor) ?  $debtor->address   :  ''}}
                         <x-slot name="appendSlot" >
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-address-card"></i>
@@ -163,9 +163,9 @@
             <div class="row">
                 <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
-            <div class="row">
+            {{--<div class="row">
                 <span class="float-left">(**) Por favor ingresa toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
-            </div>
+            </div>--}}
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
             <a href="{{ url('/debtors/') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>

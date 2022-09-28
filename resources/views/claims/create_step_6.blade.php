@@ -63,16 +63,27 @@
 
         <br>
             <span><h3>
-                ¿Acepta los Términos y Condiciones de uso Generales y Protección de Datos?
+                ¿Acepta las Condiciones Generales de Contratación?
             {{-- ¿Acepta tanto las Políticas de Uso como las Condiciones de Contratación? --}}
         </h3></span>
         </div>
       </div>
-
+{{--
 <div class="custom-control custom-checkbox mb-3">
     <a data-toggle="modal" href="#terminos" style="color: #666">
     <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
     <label for="customCheckbox1" class="custom-control-label">Aceptar los Términos y Condiciones de uso General *</label></a>
+    @error('tos')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
+--}}
+<div class="custom-control custom-checkbox mb-3">
+    <a data-toggle="modal" href="#condiciones" style="color: #666">
+    <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
+    <label for="customCheckbox1" class="custom-control-label">Aceptar las Condiciones Generales de Contratación *</label></a>
     @error('tos')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -123,6 +134,30 @@
 
                                     {{-- <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button> --}}
                                     <button data-dismiss="modal" id="accept-terms" class="btn btn-flat btn-success create-claim">Aceptar los términos</button>
+                                    <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+                                </div>
+                            </div>
+                            {{-- <div class="modal-footer"></div> --}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="condiciones" style="max-width: 100%;">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <div class="modal-header" style="color: #111"></div>
+                            <div class="modal-body">
+
+                                <div style="height: 600px; overflow: auto;">
+                                    @include('terminos-contratacion')
+
+                                    {{-- <br>
+
+                                    @include('terminos-contratacion') --}}
+
+                                    {{-- <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button> --}}
+                                    <button data-dismiss="modal" id="accept-terms" class="btn btn-flat btn-success create-claim">Aceptar las condiciones</button>
                                     <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
                                 </div>
                             </div>

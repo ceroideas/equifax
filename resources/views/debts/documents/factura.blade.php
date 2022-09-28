@@ -15,7 +15,7 @@
 
 	<div class="col-sm-3">
 
-		<x-adminlte-input name="factura[ndoc_factura][]" required label="Nº Documento *"
+		<x-adminlte-input name="factura[ndoc_factura][]" required label="Nº de factura *"
         type="text"
         igroup-size="sm" enable-old-support="true">
             <x-slot name="appendSlot">

@@ -575,7 +575,7 @@ class DebtsController extends Controller
 
         if (request()->reclamacion_previa_indicar == 1) {
             $rules['motivo_reclamacion_previa'] = '';
-            $rules['reclamacion_previa'] = 'required';
+            $rules['reclamacion_previa'] = '';
             $rules['fecha_reclamacion_previa'] = 'required';
             $rules['reclamacion_previa_indicar'] = 'required';
         }

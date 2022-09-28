@@ -56,6 +56,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collect_and_export_fields');
+        Schema::dropIfExists('collect');
     }
 };
