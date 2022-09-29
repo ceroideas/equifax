@@ -48,6 +48,57 @@
         	</div>
         </div>
         @break
+
+        @case('factura_rectificativa')
+        <div>
+        	<a href="#modal-factura_rectificativa-{{$idx}}" data-toggle="modal">FACTURA RECTIFICATIVA</a>
+
+        	<hr>
+        	<div class="modal fade" id="modal-factura_rectificativa-{{$idx}}">
+        		<div class="modal-dialog">
+        			<div class="modal-content">
+        				<div class="modal-header">DETALLES DE FACTURA RECTIFICATIVA</div>
+        				<div class="modal-body">
+        					<div class="row text-left">
+        						<div class="col-sm-12">
+        							<div class="form-group">
+        								@php
+        									$ext = array_reverse(explode('.', $doc->document))[0];
+        								@endphp
+        								<i class="fas fa-file"></i> <a download="Descarga - FACTURA.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
+        							</div>
+        						</div>
+        						<div class="col-sm-6">
+        							<div class="form-group"><b>Nº Documento:</b> <br>
+        							{{$h[key($h)]['ndoc_factura']}} </div>
+        						</div>
+        						<div class="col-sm-6">
+        							<div class="form-group"><b>Fecha:</b> <br>
+        							{{$h[key($h)]['fecha_factura']}} </div>
+        						</div>
+        						<div class="col-sm-6">
+        							<div class="form-group"><b>Fecha de Vencimiento:</b> <br>
+        							{{$h[key($h)]['vencimiento_factura']}} </div>
+        						</div>
+        						<div class="col-sm-6">
+        							<div class="form-group"><b>Importe Principal:</b> <br>
+        							{{$h[key($h)]['importe_factura']}} </div>
+        						</div>
+        						<div class="col-sm-6">
+        							<div class="form-group"><b>Porcentaje de IVA:</b> <br>
+        							{{$h[key($h)]['iva_factura']}} </div>
+        						</div>
+        					</div>
+        				</div>
+        				<div class="modal-footer">
+        					<button class="btn btn-info btn-sm" data-dismiss="modal">Cerrar</button>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+        @break
+
     @case('albaran')
         <div>
         	<a href="#modal-albaran-{{$idx}}" data-toggle="modal">ALBARÁN</a>

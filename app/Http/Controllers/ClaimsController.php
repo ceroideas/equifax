@@ -901,6 +901,9 @@ class ClaimsController extends Controller
             if($debt->factura){
                 Storage::disk('public')->delete($debt->factura);
             }
+            if($debt->factura_recificativa){
+                Storage::disk('public')->delete($debt->factura_rectificativa);
+            }
             if($debt->albaran){
                 Storage::disk('public')->delete($debt->albaran);
             }
