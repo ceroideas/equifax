@@ -341,14 +341,16 @@ temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se t
             <p class="texto">El contrato celebrado entre las partes tan sólo tiene vigencia en el territorio español.</p>
 
             <h3 class ="subtitulo">7. PRECIOS Y FORMA DE PAGO</h3>
-            <p class="texto"><span class="dividae">Dividae</span> establece los siguientes criterios de pago en función de la situación en la que se encuentre el procedimiento. En todo momento los
-                honorarios de <span class="dividae">Dividae</span> serán una cantidad fija y un porcentaje de la cantidad final recuperada, todo ello con el correspondiente IVA, IGIC o IPSI. El porcentaje de la
-                cantidad final recuperada se cobrará por <span class="dividae">Dividae</span> indistintamente si el deudor ha abonado dichos importes en la cuenta de consignaciones del Juzgado,
-                en la cuenta del cliente o en la cuenta de <span class="dividae">Dividae</span> o efectivo. Si las cantidades se encuentran en la cuenta de consignaciones del Juzgado o en la cuenta de
-                <span class="dividae">Dividae</span>, se transferirá a la cuenta del cliente la cantidad resultante de detraer el porcentaje establecido y se emitirá la correspondiente factura.
-                Sin embargo, si las cantidades se encuentran en la cuenta del cliente o el pago lo ha hecho en efectivo <span class="dividae">Dividae</span> remitirá al cliente una factura por el porcentaje de las cantidades
-                recuperadas en concepto de honorarios y el cliente deberá abonarla. <span class="dividae">Dividae</span> se reserva las acciones legales que estime pertinentes para el cobro de la
-                factura en el supuesto caso de que la misma no sea atendida.
+            <p class="texto"><span class="dividae">Dividae</span> establece los siguientes criterios de pago en función de la situación en la que se encuentre el procedimiento. En todo momento
+                los honorarios de <span class="dividae">Dividae</span> serán una cantidad fija y un porcentaje de la cantidad final recuperada, todo ello con el correspondiente IVA, IGIC o IPSI.
+                El porcentaje de la cantidad final recuperada se cobrará por <span class="dividae">Dividae</span> indistintamente si el deudor ha abonado dichos importes en la cuenta de
+                consignaciones del Juzgado, en la cuenta del cliente o en la cuenta de <span class="dividae">Dividae</span>. Si las cantidades se encuentran en la cuenta de consignaciones del
+                Juzgado o en la cuenta de <span class="dividae">Dividae</span>, se transferirá a la cuenta del cliente la cantidad resultante de detraer el porcentaje establecido y se emitirá
+                la correspondiente factura.
+            </p>
+            <p class="texto">Sin embargo, si las cantidades que se encuentran en la cuenta del cliente son recibidas directamente por el cliente, <span class="dividae">Dividae</span> remitirá al cliente una
+                factura por el porcentaje de las cantidades recuperadas en concepto de honorarios y el cliente deberá abonarla. <span class="dividae">Dividae</span> se reserva las acciones legales
+                que estime pertinentes para el cobro de la factura en el supuesto caso de que la misma no sea atendida.
             </p>
             <p class="texto">El cliente estará obligado al pago de dichas cantidades en el momento en que haya cumplido los requisitos que la plataforma le exija, solicite el inicio de la
                 reclamación extrajudicial y/o judicial. Dentro de los precios que a continuación se van a detallar están incluidos costes de los abogados y procuradores, así como los servicios de
@@ -493,7 +495,11 @@ temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se t
                 <p class="texto"><span class="dividae">Dividae</span> se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su página web, pudiendo cambiar,
                     suprimir o añadir tanto los contenidos y servicios que se presten a través de la misma como la forma en la que éstos aparezcan presentados. El hecho de usar esta página web
                     implica que el usuario está de acuerdo con las Condiciones de Uso de <span class="dividae">Dividae</span> y se compromete a aceptar las modificaciones que puedan surgir así,
-                    cada vez que el USUARIO acceda deberá revisar atentamente las mismas. Para el caso de no aceptar estas condiciones, no puede reclamar ninguna deuda con <span class="dividae">Dividae</span>.</p>
+                    cada vez que el USUARIO acceda deberá revisar atentamente las mismas. Para el caso de no aceptar estas condiciones, no puede reclamar ninguna deuda con <span class="dividae">Dividae</span>.
+                    Además, <span class="dividae">Dividae</span> no se responsabiliza del envío de correos electrónicos ni del contenido de éstos. Las comunicaciones que la web envía de forma automática
+                    al correo electrónico facilitado por el usuario son a mero título informativo, sin que <span class="dividae">Dividae</span> tenga que responsabilizarse de su envío, recepción ni
+                    contenido. <span class="dividae">Dividae</span> no es responsable de los perjuicios causados por la recepción o no recepción de los e-mails informativos remitidos a los usuarios.
+                </p>
 
                 <h3 class ="subtitulo">12. PROTECCIÓN DE DATOS</h3>
                 <p class="texto">El objetivo de la Política de Privacidad de <span class="dividae">Dividae</span> es cumplir la legislación vigente sobre protección de datos personales. A través de
