@@ -564,6 +564,9 @@ class ClaimsController extends Controller
         $request->session()->forget('documentos');
 
         if (Auth::user()->isGestor()) {
+
+            actuationActions("-1",$claim->id);
+
             return redirect('claims')->with('msj', 'Tu reclamación ha sido creada exitosamente.');
         }
 
