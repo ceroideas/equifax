@@ -326,7 +326,10 @@ temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se t
             el trabajo. Asimismo, no se controla con carácter previo, la ausencia de virus o elementos en los contenidos, que puedan producir alteraciones en el software o hardware de los
             usuarios o personas que visiten la página, por lo que no responderá de los daños y perjuicios de cualquier naturaleza que pudieran derivarse de los mismos. En caso de que
             <span class="dividae">Dividae</span> sospeche que un usuario podría haber cometido un acto ilícito en relación a sus términos y condiciones del servicio, tiene el derecho de
-            investigar el asunto y emprender acciones legales contra el autor, sin perjuicio de proceder a su baja inmediata.
+            investigar el asunto y emprender acciones legales contra el autor, sin perjuicio de proceder a su baja inmediata. Además, <span class="dividae">Dividae</span> no se responsabiliza
+            del envío de correos electrónicos ni del contenido de éstos. Las comunicaciones que la web envía de forma automática al correo electrónico facilitado por el usuario son a mero
+            título informativo, sin que <span class="dividae">Dividae</span> tenga que responsabilizarse de su envío, recepción ni contenido. <span class="dividae">Dividae</span> no es
+            responsable de los perjuicios causados por la recepción o no recepción de los e-mails informativos remitidos a los usuarios.
         </p>
         <p class="subtitulo">12. PROPIEDAD INTELECTUAL E INDUSTRIAL</p>
         <p class="texto">RENTACARONE S.L. es titular de todos los derechos de propiedad intelectual e industrial de su página web, así como los elementos contenidos en la misma (imágenes, marcas,

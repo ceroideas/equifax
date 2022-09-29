@@ -94,7 +94,7 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-3">
-                <x-adminlte-input name="fecha_vencimiento_deuda" label="Fecha de Venc. de la Deuda *" placeholder="Fecha de Vencimiento de la Deuda" type="date"
+                <x-adminlte-input name="fecha_vencimiento_deuda" label="Fecha de Venc. de la Deuda" placeholder="Fecha de Vencimiento de la Deuda" type="date"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->debt_expiration_date : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">

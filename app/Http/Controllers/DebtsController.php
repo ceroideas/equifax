@@ -319,7 +319,8 @@ class DebtsController extends Controller
         $debt->concept = $data['concepto'];
         $debt->document_number = "";
         $debt->debt_date = $data['fecha_deuda'];
-        $debt->debt_expiration_date = $data['fecha_vencimiento_deuda'];
+        // Sino hay fecha de vencimiento usamos la fecha de la deuda
+        $data['fecha_vencimiento_deuda'] == NULL ? $debt->debt_expiration_date = $data['fecha_deuda'] : $debt->debt_expiration_date = $data['fecha_vencimiento_deuda'];
         $debt->pending_amount = $data['importe_pendiente'];
         $debt->partials_amount = $data['abonos'];
         $debt->additionals = $data['observaciones'];
@@ -578,7 +579,7 @@ class DebtsController extends Controller
             'concepto' =>  'required',
             // 'numero_documento' =>  'required',
             'fecha_deuda' =>  'required|date',
-            'fecha_vencimiento_deuda' =>  'date',
+            'fecha_vencimiento_deuda' =>  '',
             'importe_pendiente' =>  'required|numeric',
             'abonos' =>  '',
             'observaciones' =>  '',
