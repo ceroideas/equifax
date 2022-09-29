@@ -168,6 +168,10 @@
 	                        	<td>FACTURA: {{url($doc->document)}}</td>
                                 <td>HITOS: {{ $doc->hitos }}</td>
 	                        @break
+                            @case('factura_rectificativa')
+                                <td>FACTURA RECTIFICATIVA: {{url($doc->document)}}</td>
+                                <td>HITOS: {{ $doc->hitos }}</td>
+                            @break
 							@case('albaran')
 								<td>ALBARÁN: {{url($doc->document)}}</td>
 							@break

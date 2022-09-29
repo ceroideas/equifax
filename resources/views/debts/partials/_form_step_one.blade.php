@@ -273,6 +273,7 @@
                                 <select name="document[]" required class="form-control form-control-sm" onchange="placeHito(this)">
                                     <option value=""></option>
                                     <option {{key($d) == "factura" ? "selected" : ""}} value="factura">FACTURA</option>
+                                    <option {{key($d) == "factura_rectificativa" ? "selected" : ""}} value="factura_rectificativa">FACTURA RECTIFICATIVA</option>
                                     <option {{key($d) == "albaran" ? "selected" : ""}} value="albaran">ALBARÁN</option>
                                     <option {{key($d) == "recibo" ? "selected" : ""}} value="recibo">RECIBO DE ENTREGA</option>
                                     <option {{key($d) == "contrato" ? "selected" : ""}} value="contrato">CONTRATO</option>
@@ -460,6 +461,7 @@
                     <select name="document[]" required class="form-control form-control-sm" onchange="placeHito(this)">
                         <option value="">TIPO DE DOCUMENTO * </option>
                         <option value="factura">FACTURA</option>
+                        <option value="factura_rectificativa">FACTURA RECTIFICATIVA</option>
                         <option value="albaran">ALBARÁN</option>
                         <option value="recibo">RECIBO DE ENTREGA</option>
                         <option value="contrato">CONTRATO</option>

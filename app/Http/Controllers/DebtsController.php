@@ -109,6 +109,22 @@ class DebtsController extends Controller
             }
         }
 
+        if ($request->factura_rectificativa) {
+            foreach ($request->factura_rectificativa['file'] as $key => $value) {
+
+                $file = $request->file('factura_rectificativa')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+
+                $documentos[] = [ "factura_rectificativa" => [
+                    "file" => $file,
+                    "ndoc_factura" => $request->factura_rectificativa['ndoc_factura'][$key],
+                    "fecha_factura" => $request->factura_rectificativa['fecha_factura'][$key],
+                    "vencimiento_factura" => $request->factura_rectificativa['vencimiento_factura'][$key],
+                    "importe_factura" => $request->factura_rectificativa['importe_factura'][$key],
+                    "iva_factura" => $request->factura_rectificativa['iva_factura'][$key]
+                ]];
+            }
+        }
+
         if ($request->albaran) {
             foreach ($request->albaran['file'] as $key => $value) {
 
@@ -599,6 +615,7 @@ class DebtsController extends Controller
 
         $rules = [
             'factura' =>  'required|file|mimes:pdf,jpg,png',
+            'factura_rectificativa' =>  'required|file|mimes:pdf,jpg,png',
             'albaran' =>  'file|mimes:pdf,jpg,png',
             'contrato' =>  'file|mimes:pdf,jpg,png',
             'documentacion_pedido' =>  'file|mimes:pdf,jpg,png',

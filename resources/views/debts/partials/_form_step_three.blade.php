@@ -40,6 +40,16 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-4">
+                <x-adminlte-input name="factura_rectificativa" label="Factura rectificativa*" placeholder="Factura rectificativa*" type="file"
+                igroup-size="sm" >
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-file"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-4">
                 <x-adminlte-input name="albaran" label="Albarán" placeholder="Albarán" type="file"
                 igroup-size="sm">
                     <x-slot name="appendSlot">
