@@ -82,6 +82,9 @@
 
     {{-- TODO: Esto mostraba el saldo al cliente gestoria, revisar porque lo puso Cero Ideas
     @if (!Auth::user()->isClient())--}}
+    @if (Auth::user()->isGestor())
+    <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
+    @endif
     @if (Auth::user()->isSuperAdmin())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
         <a href="{{url('export-all')}}" class="btn btn-sm btn-success">Exportar Nuevas Ramaciones</a>
