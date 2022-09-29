@@ -95,6 +95,29 @@ class ClaimsController extends Controller
         }*/
 
         if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
+
+            /* Borrar archivos temporales del usuario */
+            $rutatemp = 'public/temporal/debts/'.Auth::user()->id;
+            $ficheros = Storage::AllFiles($rutatemp);
+
+            if($ficheros){
+                Storage::deleteDirectory($rutatemp);
+            }
+
+            // borrar datos session
+            session()->forget('other_user');
+            session()->forget('claim_client');
+            session()->forget('claim_third_party');
+            session()->forget('claim_debtor');
+            session()->forget('claim_debt');
+            session()->forget('debt_step_one');
+            session()->forget('debt_step_two');
+            session()->forget('debt_step_three');
+            session()->forget('claim_agreement');
+            session()->forget('type_other');
+            session()->forget('documentos');
+
+
             return view('claims.create_step_1');
         }
         return redirect('users/'.Auth::id())->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');
