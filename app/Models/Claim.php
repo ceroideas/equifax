@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Claim extends Model
 {
@@ -158,6 +159,11 @@ class Claim extends Model
     public function invoices(){
         return $this->hasMany(Invoice::class);
     }
+
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+
     public function actuations(){
         return $this->hasMany(Actuation::class);
     }
@@ -215,9 +221,26 @@ class Claim extends Model
     public function saldo()
     {
         $total = 0;
-        foreach ($this->invoices as $key => $value) {
-            $total += $value->amount;
+        // verificar si la claim tiene un gestor verifica ordenes sino facturas
+        /*if (Auth::user()->isGestor()) {
+            foreach ($this->orders as $key => $value) {
+                $total += $value->amount;
+            }
+        }else{
+            foreach ($this->invoices as $key => $value) {
+                $total += $value->amount;
+            }
+        }*/
+        if($this->gestor_id <> Null){
+            foreach ($this->orders as $key => $value) {
+                $total += $value->amount;
+            }
+        }else{
+            foreach ($this->invoices as $key => $value) {
+                $total += $value->amount;
+            }
         }
+
 
         return number_format($total,2);
     }

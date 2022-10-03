@@ -142,30 +142,34 @@
                     {{--  TODO: Esto mostraba el descontar saldo en el listado de reclamaciones al cliente gestoria, revisar porque lo puso cero ideas--}}
                     @if (Auth::user()->isSuperAdmin())
                         <td>
-                            {{$claim->saldo() - $claim->discounts()}}€ <a data-toggle="modal" href="#view-details-{{$claim->id}}"><i class="fa fa-eye"></i></a>
+                            {{number_format(($claim->saldo() - $claim->discounts()), 2,',','.')}}€
+                            <a data-toggle="modal" href="#view-details-{{$claim->id}}"><i class="fa fa-eye"></i></a>
 
-                            <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#discount-{{$claim->id}}">Descontar Saldo</button>
+                            @if($claim->gestor_id)
+                                <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#discount-{{$claim->id}}">Descontar Saldo</button>
+                            @endif
+
 
                             <div class="modal fade" id="view-details-{{$claim->id}}">
                                 <div class="modal-dialog modal-sm">
                                     <div class="modal-content">
                                         <div class="modal-header">Detalle de Saldo</div>
                                         <div class="modal-body">
-                                            Saldo Principal: <b>{{$claim->saldo()}}€</b>
+                                            Saldo Principal: <b>{{number_format( $claim->saldo(), 2,',','.')}}€</b>
 
                                             <hr>
 
                                             Descuentos:
 
                                             @forelse (App\Models\Discount::where('claim_id',$claim->id)->get() as $key => $value)
-                                                <li>{{str_replace(',', '.', $value->amount)}}€</li>
+                                                <li>{{number_format( $value->amount, 2,',','.' )}}€</li>
                                             @empty
                                                 --
                                             @endforelse
 
                                             <hr>
 
-                                            Saldo Final: <b>{{$claim->saldo() - $claim->discounts()}}€</b>
+                                            Saldo Final: <b>{{number_format(($claim->saldo() - $claim->discounts()), 2,',','.')}}€</b>
 
                                         </div>
                                         <div class="modal-footer">
@@ -196,7 +200,7 @@
                         </td>
                     @endif
 
-                    @if (Auth::user()->isGestor()) <td>{{$claim->saldo() - $claim->discounts()}}€</td>@endif
+                    @if (Auth::user()->isGestor()) <td>{{ number_format(($claim->saldo() - $claim->discounts()), 2,',','.')  }} € </td>@endif
 
                     {{--<td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td>--}}
                     {{-- <td>{{ $claim->getStatus() }}</td> --}}
