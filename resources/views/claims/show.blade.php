@@ -59,7 +59,17 @@
                 <div class="col-12 col-md-12 col-sm-12 col-lg-8 order-2 order-md-1">
 
                     <div class="row">
-                        <div class="col-12 col-sm-4">
+
+                        <div class="col-12 col-sm-3">
+                            <div class="info-box bg-light">
+                                <div class="info-box-content">
+                                    <span class="info-box-text text-center text-muted">Importe  original</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{number_format( ($claim->debt->total_amount + (($claim->debt->total_amount * $claim->debt->tax)/100) ) , 2,',','.') }} €</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-3">
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe  reclamado</span>
@@ -68,7 +78,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-sm-4">
+                        <div class="col-12 col-sm-3">
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Cobros recibidos</span>
@@ -77,7 +87,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-sm-4">
+                        <div class="col-12 col-sm-3">
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe pendiente de pago</span>

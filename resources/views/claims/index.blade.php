@@ -29,6 +29,7 @@
             'Usuario',
             'Acreedor',
             'Deudor',
+            'Importe original',
             'Importe reclamado',
             'Cobros recibidos',
             'Importe pendiente de pago',
@@ -39,7 +40,7 @@
         ];
         $config = [
 
-            'columns' => [null, null, null, null, null, null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null,null, null, null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
     }else{
@@ -49,6 +50,7 @@
             'Usuario',
             'Acreedor',
             'Deudor',
+            'Importe original',
             'Importe reclamado',
             'Cobros recibidos',
             'Importe pendiente de pago',
@@ -58,7 +60,7 @@
         ];
         $config = [
 
-            'columns' => [null, null, null, null, null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
     }
@@ -134,10 +136,16 @@
                         {{ ($claim->owner) ? $claim->owner->name:'No existe'}}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ ($claim->debtor)? $claim->debtor->name :'No existe'}}</td>
+                    <td>{{ number_format( ($claim->debt->total_amount + (($claim->debt->total_amount * $claim->debt->tax)/100) ) , 2,',','.') }} € </td>
                     <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} €</td>
                     <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} €</td>
                     <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
-                    <td>{{ $claim->getType() }}</td>
+                    @if($claim->gestor_id)
+                        <td><b>Gestoría:</b> {{ $claim->getType() }}</td>
+                    @else
+                        <td>{{ $claim->getType() }}</td>
+                    @endif
+
                     <td>{{ $claim->getHito() }}</td>
                     {{--  TODO: Esto mostraba el descontar saldo en el listado de reclamaciones al cliente gestoria, revisar porque lo puso cero ideas--}}
                     @if (Auth::user()->isSuperAdmin())

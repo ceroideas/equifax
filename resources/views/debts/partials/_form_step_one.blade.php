@@ -174,7 +174,17 @@
 
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input readonly name="importe_pendiente" label="Deuda original *" placeholder="Deuda original" type="text"
+                <x-adminlte-input readonly name="deuda_original" label="Deuda original *" placeholder="Deuda original" type="text"
+                igroup-size="sm" enable-old-support="true" value="">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-6">
+                <x-adminlte-input readonly name="importe_pendiente" label="Importe pendiente de pago *" placeholder="Importe pendiente de pago" type="text"
                 igroup-size="sm" enable-old-support="true" value="">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
@@ -350,10 +360,14 @@
                 abonos = parseFloat(abonos) + parseFloat($(this).val().replace(',', '.'));
             }
         });
+        console.log('calc:',importe,iva,abonos)
+        //console.log(importe,iva,abonos);
+        console.log('importe original',importe, iva);
 
-        console.log(importe,iva,abonos);
+
 
         let pendiente = parseFloat(importe);
+        let original = parseFloat(importe);
         //console.log('Pendiente: ',pendiente);
 
         if (importe != null && iva != null && abonos != null) {
@@ -362,8 +376,17 @@
             pendiente -= parseFloat(abonos);
         }
 
+        if (importe != null && iva != null){
+            original += parseFloat(((importe * iva)/100));
+        }
+
+        if(original > 0){
+            $('[name="deuda_original"]').val(original);
+        }
+
+
         if (pendiente > 0) {
-            $('[name="importe_pendiente"]').val(pendiente);
+           $('[name="importe_pendiente"]').val(pendiente);
         }
     }
 
