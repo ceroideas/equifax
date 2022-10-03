@@ -222,7 +222,7 @@
                                             max="6" value="0" step="1" id="rangeDeuda"
                                             class="rangeDeuda1">
                                         <div data-v-e8aafb5e=""><small data-v-e8aafb5e="" class="small-text">1 - 30
-                                                días</small> <small data-v-e8aafb5e="" class="small-text d-right">+ 10
+                                                días</small> <small data-v-e8aafb5e="" class="small-text d-right">+ 6
                                                 años</small></div>
                                     </div>
                                 </div>
