@@ -201,11 +201,11 @@
                                             for="customRange1" class="form-label range-label">
                                             El importe de tu deuda asciende a…
                                         </label> <span data-v-e8aafb5e="" class="importe-range1">
-                                            0 €
-                                        </span> <input data-v-e8aafb5e="" required type="range" min="0"
-                                            max="100000" value="0" id="rangeDeuda">
+                                            50 €
+                                        </span> <input data-v-e8aafb5e="" required type="range" min="50"
+                                            max="100000" value="50" id="rangeDeuda">
                                         <div data-v-e8aafb5e=""><small data-v-e8aafb5e=""
-                                                class="small-text">0€</small> <small data-v-e8aafb5e=""
+                                                class="small-text">50€</small> <small data-v-e8aafb5e=""
                                                 class="small-text d-right">100.000€</small></div>
                                         <!---->
                                     </div>
@@ -217,11 +217,11 @@
                                             for="customRange2" class="form-label range-label">
                                             La antig&uuml;edad de tu deuda es…
                                         </label> <span data-v-e8aafb5e="" class="importe-range1">
-                                            0-30 días
+                                            1-30 días
                                         </span> <input data-v-e8aafb5e="" type="range" min="0"
-                                            max="4" value="0" step="1" id="rangeDeuda"
+                                            max="6" value="0" step="1" id="rangeDeuda"
                                             class="rangeDeuda1">
-                                        <div data-v-e8aafb5e=""><small data-v-e8aafb5e="" class="small-text">0 - 30
+                                        <div data-v-e8aafb5e=""><small data-v-e8aafb5e="" class="small-text">1 - 30
                                                 días</small> <small data-v-e8aafb5e="" class="small-text d-right">+ 10
                                                 años</small></div>
                                     </div>
@@ -297,12 +297,13 @@
                             </div>
                         </div>
                         <hr data-v-e8aafb5e="" class="Line-Copy">
-                        <div data-v-e8aafb5e="" class="text-center"><button data-v-e8aafb5e=""
-                                class="btn btn-form-deuda">COMPROBAR DEUDA</button></div>
+                        <div data-v-e8aafb5e="" class="text-center"><button data-v-e8aafb5e="" onclick="comprobarDeuda()"
+                                class="btn btn-form-deuda">COMPROBAR VIABILIDAD</button></div>
                     </form>
+
                     <div data-v-e8aafb5e="" class="modal-vue">
-                        <!---->
-                        <!---->
+
+
                     </div>
                 </div>
             </div>
@@ -310,9 +311,8 @@
 
     </div>
 </div>
-
+{{-- Popup reclamacion viable --}}
 <div data-v-e8aafb5e="" class="modal-vue modal fade" id="reclamacion-viable">
-
     <div data-v-e8aafb5e="" role="document" class="modal-dialog">
         <div data-v-e8aafb5e="" class="modal-content">
             <div data-v-e8aafb5e="" class="modal-header"><button data-v-e8aafb5e="" type="button"
@@ -329,6 +329,9 @@
                 <div data-v-e8aafb5e="" class="modal-text text-center">
                     ¡Registra tu reclamación para que nuestros abogados comiencen a trabajar!
                 </div>
+                <div data-v-e8aafb5e="" class="modal-text text-center-small">
+                    Este simulador no es vinculante; una vez revisada la documentación, te informaremos de su viabilidad real
+                </div>
             </div>
 
             @if (!Auth::check())
@@ -340,17 +343,54 @@
                         href="{{ url('claims/select-client') }}" class="btn btn-modal"><span data-v-e8aafb5e=""
                             class="footer-text">NUEVA RECLAMACIÓN</span></a></div>
             @endif
-
         </div>
     </div>
 </div>
+
+{{-- Popup reclamacion no viable --}}
+<div data-v-e8aafb5e="" class="modal-vue modal fade" id="reclamacion-no-viable">
+    <div data-v-e8aafb5e="" role="document" class="modal-dialog">
+        <div data-v-e8aafb5e="" class="modal-content">
+            <div data-v-e8aafb5e="" class="modal-header"><button data-v-e8aafb5e="" type="button"
+                    data-dismiss="modal" aria-label="Close" class="close"><span data-v-e8aafb5e=""
+                        aria-hidden="true">×</span></button></div>
+            <div data-v-e8aafb5e="" class="modal-body">
+                <div data-v-e8aafb5e="" class="modal-img text-center"><img data-v-e8aafb5e=""
+                        src="{{ url('landing/assets/grafico-ilustraciones-simulador-exito.png') }}"
+                        class="img-fluid"></div>
+                <!---->
+                <div data-v-e8aafb5e="" class="modal-text-info text-center">
+                    ¡Ups! Aunque es complicado, aún hay <b>posibilidades</b> de que <b>Dividae</b> reclame tu deuda. ¿Lo intentamos? <a data-v-e8aafb5e=""><img data-v-e8aafb5e=""
+                            src="{{ url('landing/assets/icons-info-line.png') }}" class="img-fluid"></a></div>
+                <div data-v-e8aafb5e="" class="modal-text text-center">
+                    ¡Registra tu reclamación para que nuestros abogados comiencen a trabajar!
+                </div>
+                <div data-v-e8aafb5e="" class="modal-text text-center-small">
+                    Este simulador no es vinculante; una vez revisada la documentación, te informaremos de su viabilidad real
+                </div>
+            </div>
+
+            @if (!Auth::check())
+                <div data-v-e8aafb5e="" class="modal-footer"><a data-v-e8aafb5e="" href="{{ url('register') }}"
+                        class="btn btn-modal"><span data-v-e8aafb5e="" class="footer-text">¡Regístrate y recupera tu
+                            deuda!</span></a></div>
+            @else
+                <div data-v-e8aafb5e="" class="modal-footer"><a data-v-e8aafb5e=""
+                        href="{{ url('claims/select-client') }}" class="btn btn-modal"><span data-v-e8aafb5e=""
+                            class="footer-text">NUEVA RECLAMACIÓN</span></a></div>
+            @endif
+        </div>
+    </div>
+</div>
+
+
 
 @section('extrajs')
 
     <script>
         $('#rangeDeuda').on('input', function(event) {
             /* Act on the event */
-            console.log($(this).val())
+            //console.log('Rango deuda: ',$(this).val())
             $('.importe-range1:first').text($(this).val() + ' €')
         });
 
@@ -359,33 +399,63 @@
             let val = $(this).val();
             switch (val) {
                 case "1":
-                    text = '1-3 años';
+                    text = 'menos de 1 año';
                     break;
                 case "2":
-                    text = '4-6 años';
+                    text = '2 años';
                     break;
                 case "3":
-                    text = '7-9 años';
+                    text = '3 años';
                     break;
                 case "4":
-                    text = '+10 años';
+                    text = '4 años';
+                    break;
+                case "5":
+                    text = '5 años';
+                    break;
+                case "6":
+                    text = '+6 años';
                     break;
                 default:
-                    text = '0-30 días'
+                    text = '1-30 días'
             }
-            console.log(val, typeof val, text)
-            $('.importe-range1:last').text(text)
+            // console.log(val, typeof val, text)
+
+
         });
 
         $('.formulario-reclamacion').on('submit', function(e) {
             e.preventDefault();
 
+            /*console.log('e: ',e);
+            console.log('Consulta viabilidad last');
+            console.log($('.importe-range1:last'));
+
+            console.log('Consulta viabilidad');
+            console.log($('.importe-range1'));
+
             $('#consulta-viabilidad').modal('hide')
 
             setTimeout(() => {
                 $('#reclamacion-viable').modal('show')
-            }, 200)
+            }, 200)*/
         })
+
+        function comprobarDeuda(){
+            //console.log("Comprobando deuda");
+            //console.log($('.rangeDeuda1').val());
+
+            $('#consulta-viabilidad').modal('hide')
+            if($('.rangeDeuda1').val()>=5){
+                setTimeout(() => {
+                    $('#reclamacion-no-viable').modal('show')
+                    }, 200);
+            }else{
+                setTimeout(() => {
+                    $('#reclamacion-viable').modal('show')
+                    }, 200);
+            }
+        }
     </script>
 
 @stop
