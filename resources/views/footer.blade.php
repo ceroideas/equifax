@@ -238,7 +238,7 @@
                                                 <div data-v-e8aafb5e="" class="form-check radio-item">
                                                     <input data-v-e8aafb5e="" type="radio" name="type"
                                                         id="Persona física" class="form-check-input"
-                                                        value="Persona física">
+                                                        value="Persona física"checked>
                                                     <label data-v-e8aafb5e="" for="Persona física"
                                                         class="form-check-label">Persona física</label>
                                                 </div>
@@ -276,8 +276,8 @@
                                                     class="form-check form-check-inline radio-item"><input
                                                         data-v-e8aafb5e="" type="radio" id="Si"
                                                         class="form-check-input" required name="document"
-                                                        value="Si"> <label data-v-e8aafb5e="" for="Si"
-                                                        class="form-check-label">Si</label></div>
+                                                        value="Si" checked> <label data-v-e8aafb5e="" for="Si"
+                                                        class="form-check-label" >Si</label></div>
                                                 <div data-v-e8aafb5e=""
                                                     class="form-check form-check-inline radio-item"><input
                                                         data-v-e8aafb5e="" type="radio" id="No"
@@ -390,7 +390,7 @@
     <script>
         $('#rangeDeuda').on('input', function(event) {
             /* Act on the event */
-            //console.log('Rango deuda: ',$(this).val())
+            console.log('Rango deuda: ',$(this).val())
             $('.importe-range1:first').text($(this).val() + ' €')
         });
 
@@ -419,8 +419,8 @@
                 default:
                     text = '1-30 días'
             }
-            // console.log(val, typeof val, text)
-
+            console.log(val, typeof val, text)
+            $('.importe-range1:last').text(text)
 
         });
 
