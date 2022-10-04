@@ -94,7 +94,8 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
     Route::get('/invoices', [ClaimsController::class , 'myInvoices']);
     Route::get('/invoices/{id}', [ClaimsController::class , 'myInvoice']);
-    Route::get('/orders', [ClaimsController::class , 'orders']);
+    Route::get('/orders', [ClaimsController::class , 'myOrders']);
+    Route::get('/orders/{id}', [ClaimsController::class , 'myOrder']);
     Route::get('/gestoria', [ClaimsController::class , 'byGestoria']);
     Route::get('/actuations/{id}', [ClaimsController::class , 'actuations']);
     Route::post('/actuations/{id}', [ClaimsController::class , 'saveActuation']);
@@ -216,6 +217,7 @@ Route::delete('/hitos/{id}', [ConfigurationsController::class, 'deleteHitos']);
 /**/
 Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
 Route::get('invoices-export', [ClaimsController::class, 'invoicesExport']);
+Route::get('orders-export', [ClaimsController::class, 'ordersExport']);
 
 Route::get('migrar', [UsersController::class, 'migrar']);
 

@@ -29,6 +29,8 @@ use Mail;
 use App\Exports\ClaimsExport;
 use App\Exports\InvoiceExport;
 use App\Exports\InvoicesExport;
+use App\Exports\OrdersExport;
+
 
 use App\Imports\HitosImport;
 use App\Models\Linvoice;
@@ -1039,10 +1041,31 @@ class ClaimsController extends Controller
         return view('claims.actuations', compact('actuations','claim'));
     }
 
-    public function orders()
+    public function myOrders()
     {
-        $orders = Claim::whereNotNull('gestor_id')->get();
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $orders = Order::all();
+
+        }/*else{
+            $orders = Order::whereExists(function($q){
+                $q->from('claims')
+                  ->whereRaw('claims.id = orders.claim_id')
+                  ->whereRaw('claims.gestor_id = '.Auth::id());
+            })->get();
+        }*/
+
+
+        //$orders = Claim::whereNotNull('gestor_id')->get();
         return view('claims.orders', compact('orders'));
+    }
+
+    public function myOrder($id)
+    {
+
+        $i = Order::find($id);
+        $c = Configuration::first();
+        $lines = Lorder::where('order_id',$id)->get();
+        return view('order', compact('c','i','lines'));
     }
 
     public function byGestoria()
@@ -1205,6 +1228,11 @@ class ClaimsController extends Controller
     public function invoicesExport()
     {
         return Excel::download(new InvoicesExport, 'invoices-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
+    public function ordersExport()
+    {
+        return Excel::download(new OrdersExport, 'orders-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
     public function checkDebtor(Request $r)
