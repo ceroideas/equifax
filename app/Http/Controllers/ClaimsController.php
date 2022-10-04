@@ -320,7 +320,7 @@ class ClaimsController extends Controller
             //$invoice->claim_id = $claim->id;
             $document->claim_id =  $claim->id;
             //$invoice->user_id = $claim->user_id;
-            $document->user_id = $claim->user_id;
+            $document->user_id = Auth::user()->id;
 
             //$invoice->amount = $c->fixed_fees;   no se usa
             //$invoice->type = 'fixed_fees';
