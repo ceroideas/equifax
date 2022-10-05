@@ -1047,15 +1047,7 @@ class ClaimsController extends Controller
     {
         if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $orders = Order::all();
-
-        }/*else{
-            $orders = Order::whereExists(function($q){
-                $q->from('claims')
-                  ->whereRaw('claims.id = orders.claim_id')
-                  ->whereRaw('claims.gestor_id = '.Auth::id());
-            })->get();
-        }*/
-
+        }
 
         //$orders = Claim::whereNotNull('gestor_id')->get();
         return view('claims.orders', compact('orders'));
@@ -1081,6 +1073,26 @@ class ClaimsController extends Controller
                 ->get();
 
         return view('claims.gestoria', compact('orders'));
+    }
+
+
+    public function byGestoriaDetail($id)
+    {
+        //Detalle de pedidos por gestoria
+        // usamos la misma vista de orders de funcion myOrder()
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $orders = Order::where('user_id',$id)
+                            ->where('facord',0)
+                            ->get();
+        }
+        $usuario = DB::table('users')
+                    ->select('users.name')
+                    ->where('users.id', $id)
+                    ->get();
+
+        $gestoria = $usuario[0]->name;
+
+        return view('claims.orders', compact('orders','gestoria'));
     }
 
     public function saveActuation(Request $r,$id)

@@ -74,7 +74,7 @@
                     <td>{{ number_format($order->total,2,',','.') }}</td>
                     <td>
                      <nobr>
-                        <a target="_blank" href="{{ url('/claims/gestoria/' . $order->user_id ) }}">
+                        <a href="{{ url('/claims/gestoria/' . $order->user_id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalles">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>

@@ -97,6 +97,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/orders', [ClaimsController::class , 'myOrders']);
     Route::get('/orders/{id}', [ClaimsController::class , 'myOrder']);
     Route::get('/gestoria', [ClaimsController::class , 'byGestoria']);
+    Route::get('/gestoria/{id}', [ClaimsController::class , 'byGestoriaDetail']);
     Route::get('/actuations/{id}', [ClaimsController::class , 'actuations']);
     Route::post('/actuations/{id}', [ClaimsController::class , 'saveActuation']);
     Route::get('/flush-options', [ClaimsController::class, 'flushAll']);
