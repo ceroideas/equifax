@@ -54,7 +54,7 @@
         ];
         $config = [
 
-            'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
     //}
@@ -79,7 +79,6 @@
         <a href="{{url('orders-export')}}" class="btn btn-sm btn-warning">Exportar pedidos</a>
     @endif
 
-
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" class="table-responsive" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($orders as $order)
@@ -98,6 +97,7 @@
                     {{--<td>{{ $order->id }}</td>--}}
                     <td>{{ $order->facord == 1 ? 'Facturado' : 'Pendiente' }}</td>
                     <td>
+
                      <nobr>
                         <a href="{{ url('/claims/' . $order->claim_id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver reclamación">

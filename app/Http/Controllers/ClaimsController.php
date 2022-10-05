@@ -37,6 +37,8 @@ use App\Models\Linvoice;
 use App\Models\Order;
 use App\Models\Lorder;
 
+use Illuminate\Support\Facades\DB;
+
 
 class ClaimsController extends Controller
 {
@@ -1070,8 +1072,19 @@ class ClaimsController extends Controller
 
     public function byGestoria()
     {
-        $invoices = Invoice::all();
-        return view('claims.gestoria', compact('invoices'));
+        $orders = DB::table('orders')
+                ->join('users', 'orders.user_id','=','users.id')
+                ->select('orders.user_id', 'users.name', 'users.email','users.phone','users.location',
+                          DB::raw('count(orders.id) as pedidos, sum(orders.amount) as total') )
+                ->where('orders.facord',0)
+                ->groupBy('orders.user_id')
+                ->get();
+
+        $detail = DB::table('orders')
+                  ->where('orders.facord',0)
+                  ->get();
+
+        return view('claims.gestoria', compact('orders','detail'));
     }
 
     public function saveActuation(Request $r,$id)
