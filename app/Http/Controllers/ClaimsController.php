@@ -1080,11 +1080,7 @@ class ClaimsController extends Controller
                 ->groupBy('orders.user_id')
                 ->get();
 
-        $detail = DB::table('orders')
-                  ->where('orders.facord',0)
-                  ->get();
-
-        return view('claims.gestoria', compact('orders','detail'));
+        return view('claims.gestoria', compact('orders'));
     }
 
     public function saveActuation(Request $r,$id)
