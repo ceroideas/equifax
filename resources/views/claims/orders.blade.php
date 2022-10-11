@@ -85,7 +85,7 @@
                 <tr>
                     <td>{{ $order->id }}
                     @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isGestor())
-                    <td>{{ $order->claim->gestor->name }}</td>
+                        <td>{{ $order->claim->gestor->name }}</td>
                     @endif
                     <td><a href="{{ url('/claims/' . $order->claim_id ) }}">#{{$order->claim_id}}</a></td>
                     <td>{{ $order->description }}</td>

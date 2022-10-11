@@ -1048,8 +1048,10 @@ class ClaimsController extends Controller
         if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $orders = Order::all();
         }
+        if(Auth::user()->isGestor()){
+            $orders = Order::where('user_id',Auth::user()->id)->get();
+        }
 
-        //$orders = Claim::whereNotNull('gestor_id')->get();
         return view('claims.orders', compact('orders'));
     }
 
