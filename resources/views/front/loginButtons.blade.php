@@ -70,7 +70,7 @@
                     <a class="dropdown-item menu-profile-item" href="{{url('claims/pending')}}">Reclamaciones no viables</a>
                     <a class="dropdown-item menu-profile-item" href="{{url('claims/select-client')}}">Nueva Reclamación</a>
                     @if(Auth::user()->isGestor())
-                        <a class="dropdown-item menu-profile-item" href="{{url('claims/orders')}}">Ordenes</a>
+                        <a class="dropdown-item menu-profile-item" href="{{url('claims/orders')}}">Pedidos</a>
                     @endif
                     <a class="dropdown-item menu-profile-item" href="{{url('claims/invoices')}}">Facturas</a>
                     <div class="dropdown-divider"></div>
