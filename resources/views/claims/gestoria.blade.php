@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Facturas')
+@section('title', 'Gestorías')
 
 @section('content_header')
     <div class="container-fluid">
@@ -24,19 +24,18 @@
 {{-- Configuración del componente para el datatable --}}
     @php
         $heads = [
-            'Gestoría',
             'ID',
-            'Reclamación',
-            'Concepto',
-            'Importe',
-            'Fecha',
-            'Facturada',
-            'Status',
+            'Gestoría',
+            'Email',
+            'Teléfono',
+            'Población',
+            'Pedidos pendientes',
+            'Saldo',
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
         $config = [
 
-            'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
 
@@ -58,39 +57,71 @@
     @endif
 
     @if (!Auth::user()->isClient())
-        <a href="{{url('invoices-export')}}" class="btn btn-sm btn-warning">Generar facturas pendientes</a>
+        <a href="{{url('/claims/facturar')}}" class="btn btn-sm btn-warning">Generar facturas pendientes</a>
     @endif
 
+    {{--$detail --}}
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" class="table-responsive" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
-            @foreach($invoices as $invoice)
+            @foreach($orders as $order)
                 <tr>
-                    <td>{{ $invoice->id }}</td>
-                    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isGestor())
-                        <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
-                    @endif
-                    <td>#{{ $invoice->claim->id }}</td>
-                    <td>{{ $invoice->description }}</td>
-                    <td>{{ number_format(($invoice->amount) ,2,',','.')}} €</td>
-                    <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d/m/Y') }}</td>
-                    @if (Auth::user()->isSuperAdmin())
-                        <td>{{ $invoice->trafac }}</td>
-                    @else
-                        <td>{{ $invoice->type }}</td>
-                    @endif
-                    <td>{{ $invoice->status == 1 ? 'Pagado' : 'Pendiente' }}</td>
+                    <td>{{ $order->user_id }}</td>
+                    <td>{{ $order->name }}</td>
+                    <td>{{ $order->email }}</td>
+                    <td>{{ $order->phone }}</td>
+                    <td>{{ $order->location }}</td>
+                    <td>{{ $order->pedidos }}</td>
+                    <td>{{ number_format($order->total,2,',','.') }}</td>
                     <td>
                      <nobr>
-                        <a target="_blank" href="{{ url('/claims/invoices/' . $invoice->id ) }}">
-                            <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
+                        <a href="{{ url('/claims/gestoria/' . $order->user_id ) }}">
+                            <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalles">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>
                         </a>
                     </nobr>
                     </td>
+
                 </tr>
             @endforeach
         </x-adminlte-datatable>
     </x-adminlte-card>
+
+    {{-- Ejemplo de tabla expandible
+        Contras: Perdemos el filtrado
+        <table class="table table-bordered table-hover">
+        <tbody>
+          <tr data-widget="expandable-table" aria-expanded="false">
+            <td>183</td>
+          </tr>
+          <tr class="expandable-body">
+            <td>
+              <p>
+                Expandable body
+              </p>
+            </td>
+          </tr>
+          <tr data-widget="expandable-table" aria-expanded="true">
+            <td>219</td>
+          </tr>
+          <tr class="expandable-body">
+            <td>
+              <p>
+                <!-- YOUR EXPANDABLE TABLE BODY HERE -->
+              </p>
+            </td>
+          </tr>
+          <tr data-widget="expandable-table" aria-expanded="true">
+            <td>657</td>
+          </tr>
+          <tr class="expandable-body">
+            <td>
+              <p>
+                <!-- YOUR EXPANDABLE TABLE BODY HERE -->
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>--}}
 
 @stop

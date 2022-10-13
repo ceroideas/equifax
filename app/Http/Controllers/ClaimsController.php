@@ -29,11 +29,15 @@ use Mail;
 use App\Exports\ClaimsExport;
 use App\Exports\InvoiceExport;
 use App\Exports\InvoicesExport;
+use App\Exports\OrdersExport;
+
 
 use App\Imports\HitosImport;
 use App\Models\Linvoice;
 use App\Models\Order;
 use App\Models\Lorder;
+
+use Illuminate\Support\Facades\DB;
 
 
 class ClaimsController extends Controller
@@ -297,207 +301,20 @@ class ClaimsController extends Controller
         }
 
 
-        /* Generamos factura en cualquier estado */
-        // Buscamos el maximo ID de invoice
+        /************* Inicio creacion de documento (Order / Invoice ) ***************/
         if(Auth::user()->isGestor()){
-            $idDocument = Order::all()->max('id');
-            $idDocument = $idDocument + 1;
+            addDocument('order', $claim->id);
         }else{
-            $idDocument = Invoice::all()->max('id');
-            $idDocument = $idDocument + 1;
+            addDocument('invoice',$claim->id);
         }
-
-        $c = Configuration::first();
-
-        if(isset($c)){
-
-            //$invoice = new Invoice;
-            Auth::user()->isGestor() ? $document = new Order : $document = new Invoice;
-            //$invoice->id = $idInvoice;
-            $document->id = $idDocument;
-            //$invoice->claim_id = $claim->id;
-            $document->claim_id =  $claim->id;
-            //$invoice->user_id = $claim->user_id;
-            $document->user_id = $claim->user_id;
-
-            //$invoice->amount = $c->fixed_fees;   no se usa
-            //$invoice->type = 'fixed_fees';
-            $document->type = 'fixed_fees';
-            //$invoice->description = $c->extra_concept;
-            $document->description = $c->extra_concept;
-
-            /* Almacenamos los datos del cliente en el momento de facturar */
-            if(!Auth::user()->isGestor()){
-                $document->cnofac = Auth::user()->name;
-                $document->cdofac = Auth::user()->address;
-                $document->cpofac = Auth::user()->location;
-                $document->ccpfac = Auth::user()->cop;
-                $document->cprfac = Auth::user()->province;
-                $document->cnifac = Auth::user()->dni;
-                }
-            /* Campos importes */
-            /* Debemos comprobar si tiene un iva el cliente */
-            /* Iva cliente si es excento Prioriza el iva del cliente*/
-            /* Grabamos las lineas siguiendo el criterio del iva del cliente */
-
-                if(Auth::user()->isGestor()){
-                    $ldocument = new Lorder;
-                    $ldocument->order_id = $idDocument;
-                    $ldocument->poslor = 1;
-                    $ldocument->artlor = $c->extra_code;
-                    $ldocument->deslor = $c->extra_concept;
-                    $ldocument->canlor = 1;
-                    $ldocument->prelor = $c->fixed_fees;
-                    $ldocument->totlor =  $ldocument->canlor * $ldocument->prelor;
-                    $ldocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
-                }else{
-                    $ldocument = new Linvoice;
-                    $ldocument->invoice_id = $idDocument;
-                    $ldocument->poslin = 1;
-                    $ldocument->artlin = $c->extra_code;
-                    $ldocument->deslin = $c->extra_concept;
-                    $ldocument->canlin = 1;
-                    $ldocument->prelin = $c->fixed_fees;
-                    $ldocument->totlin =  $ldocument->canlin * $ldocument->prelin;
-                    $ldocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
-                }
-
-                $ldocument->save();
-
-                /* Acumulamos en cabeceras */
-                /* todos los importes van en neto4 al ser cliente sin IVA */
-                if(Auth::user()->taxcode =='IVA0'){
-
-                    if(Auth::user()->isGestor()){
-
-                        $document->net4ord = $ldocument->totlor;
-                        $document->pdto4ord = Auth::user()->discount;
-                        $document->idto4ord = round(($document->pdto4ord*100),2);// Calcular descuento
-                        $document->bas4ord = round(($document->net4ord - $document->idto4ord),2);
-                        /* Totalizamos*/
-                        $document->totord = $document->bas4ord; // no lleva impuestos por lo que es igual que la base
-                        $document->amount=$document->bas4ord;
-
-                    }else{
-                        $document->net4fac = $ldocument->totlin;
-                        $document->pdto4fac = Auth::user()->discount;
-                        $document->idto4fac = round(($document->pdto4fac*100),2);// Calcular descuento
-                        $document->bas4fac = round(($document->net4fac - $document->idto4fac),2);
-                        /* Totalizamos*/
-                        $document->totfac = $document->bas4fac; // no lleva impuestos por lo que es igual que la base
-                        $document->amount=$document->bas4fac;
-                    }
-                 /* Solo valido para factura gestor
-                    if (Auth::user()->isGestor()) {
-                        $invoice->status = 1;
-                    }
-                */
-                    $document->save();
-
-                }else{
-                        /* Cliente al 21*/
-                        /*Comprobamos iva del concepto*/
-                        if($c->fixed_fees_tax =='IVA0'){
-                            if(Auth::user()->isGestor()){
-                                $document->net4ord = $ldocument->totlor;
-                                $document->pdto4ord = Auth::user()->discount;
-                                $document->idto4ord = round(($document->pdto4ord*100),2);// Calcular descuento
-                                $document->bas4ord = round(($document->net4ord - $document->idto4ord),2);
-                                /* porcentajes de iva  Cliente iva*/
-                                $document->piva1ord = '21';
-                                $document->piva2ord = '10';
-                                $document->piva3ord = '4';
-                                /* Totalizamos*/
-                                $document->totord = $document->bas4ord; // no lleva impuestos por lo que es igual que la base
-                                $document->amount=$document->bas4ord;
-
-                            }else{
-                                $document->net4fac = $ldocument->totlin;
-                                $document->pdto4fac = Auth::user()->discount;
-                                $document->idto4fac = round(($document->pdto4fac*100),2);// Calcular descuento
-                                $document->bas4fac = round(($document->net4fac - $document->idto4fac),2);
-                                /* porcentajes de iva  Cliente iva*/
-                                $document->piva1fac = '21';
-                                $document->piva2fac = '10';
-                                $document->piva3fac = '4';
-                                /* Totalizamos*/
-                                $document->totfac = $document->bas4fac; // no lleva impuestos por lo que es igual que la base
-                                $document->amount=$document->bas4fac;
-                            }
-                            /* Solo valido para gestor
-                                if (Auth::user()->isGestor()) {
-                                    $invoice->status = 1;
-                                }*/
-
-                            $document->save();
-                        }else{
-
-                            if(Auth::user()->isGestor()){
-                                $document->net1ord = $ldocument->totlor;
-                                $document->pdto1ord = Auth::user()->discount;
-                                $document->idto1ord = round(($document->pdto1ord*100),2);// Calcular descuento
-                                $document->bas1ord = round(($document->net1ord - $document->idto1ord),2);
-                                /* Porcentajes de iva  Cliente iva*/
-                                $document->piva1ord = '21';
-                                $document->piva2ord = '10';
-                                $document->piva3ord = '4';
-                                /* Calcular importe iva*/
-                                $document->iiva1ord = round($document->bas1ord*($document->piva1ord / 100 ),2);
-                                /* Totalizamos*/
-                                $document->totord = round($document->bas1ord + $document->iiva1ord,2);
-                                $document->amount = $document->totord;
-
-                            }else{
-                                $document->net1fac = $ldocument->totlin;
-                                $document->pdto1fac = Auth::user()->discount;
-                                $document->idto1fac = round(($document->pdto1fac*100),2);// Calcular descuento
-                                $document->bas1fac = round(($document->net1fac - $document->idto1fac),2);
-                                /* Porcentajes de iva  Cliente iva*/
-                                $document->piva1fac = '21';
-                                $document->piva2fac = '10';
-                                $document->piva3fac = '4';
-                                /* Calcular importe iva*/
-                                $document->iiva1fac = round($document->bas1fac*($document->piva1fac / 100 ),2);
-                                /* Totalizamos*/
-                                $document->totfac = round($document->bas1fac + $document->iiva1fac,2);
-                                $document->amount = $document->totfac;
-                            }
-
-                            /* Solo valido para gestor
-                                if (Auth::user()->isGestor()) {
-                                    $invoice->status = 1;
-                                }*/
-                            $document->save();
-                        } // fin iva excento
-
-                } // fin iva excento
-                    /*Fin generacion de factura */
-
-        }else{
-            /* Mostrar mensaje de error falta configuracion id=1*/
-        } // fin comprobacion de configuracion
-
-
+        /*********** Fin generacion de factura *****************/
 
         $debt->save();
         $claim->save();
 
-        /*$a = new Actuation;
-        $a->claim_id = $claim->id;
-        $a->subject = "001";
-        $a->amount = null;
-        $a->description = "Inicio del proceso extrajudicial";
-        $a->actuation_date = Carbon::now()->format('d-m-Y');
-        $a->type = null;
-        $a->mailable = null;
-        $a->save();*/
-
         $path = '/uploads/claims/' . $claim->id . '/documents/';
 
         foreach (session('documentos') as $key => $d) {
-
-            // $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-            // $documentos[$key][key($d)]['file'] = $file;
 
             $bn = basename($d[key($d)]['file']);
             Storage::disk('public')->move($d[key($d)]['file'], $path . $bn);
@@ -513,66 +330,6 @@ class ClaimsController extends Controller
             $debtd->save();
 
         }
-        /*if($debt->factura){
-            $factura = basename($debt->factura);
-            Storage::disk('public')->move($debt->factura, $path . $factura);
-            $debt->factura = $path . $factura;
-        }
-        if($debt->albaran){
-            $albaran = basename($debt->albaran);
-            Storage::disk('public')->move($debt->albaran, $path . $albaran);
-            $debt->albaran = $path . $albaran;
-        }
-        if($debt->contrato){
-            $contrato = basename($debt->contrato);
-            Storage::disk('public')->move($debt->contrato, $path . $contrato);
-            $debt->contrato = $path . $contrato;
-        }
-        if($debt->documentacion_pedido){
-            $documentacion_pedido = basename($debt->documentacion_pedido);
-            Storage::disk('public')->move($debt->documentacion_pedido, $path . $documentacion_pedido);
-            $debt->documentacion_pedido = $path . $documentacion_pedido;
-        }
-        if($debt->extracto){
-            $extracto = basename($debt->extracto);
-            Storage::disk('public')->move($debt->extracto, $path . $extracto);
-            $debt->extracto = $path . $extracto;
-        }
-        if($debt->reconocimiento_deuda){
-            $reconocimiento_deuda = basename($debt->reconocimiento_deuda);
-            Storage::disk('public')->move($debt->reconocimiento_deuda, $path . $reconocimiento_deuda);
-            $debt->reconocimiento_deuda = $path . $reconocimiento_deuda;
-        }
-        if($debt->escritura_notarial){
-            $escritura_notarial = basename($debt->escritura_notarial);
-            Storage::disk('public')->move($debt->escritura_notarial, $path . $escritura_notarial);
-            $debt->escritura_notarial = $path . $escritura_notarial;
-        }
-
-        if($debt->reclamacion_previa){
-
-            $reclamacion_previa = basename($debt->reclamacion_previa);
-            Storage::disk('public')->move($debt->reclamacion_previa, $path . $reclamacion_previa);
-            $debt->reclamacion_previa = $path . $reclamacion_previa;
-
-        }
-
-        if($debt->others){
-
-            $session_docs = explode(',' , $debt->others);
-
-            $docs = [];
-
-            foreach ($session_docs as $d) {
-
-                $docs[] = $path . basename($d);
-                Storage::disk('public')->move($d, $path . basename($d));
-
-            }
-            $debt->others = implode(',', $docs);
-        }
-
-        $debt->save();*/
 
         $request->session()->forget('other_user');
         $request->session()->forget('claim_client');
@@ -1039,16 +796,126 @@ class ClaimsController extends Controller
         return view('claims.actuations', compact('actuations','claim'));
     }
 
-    public function orders()
+    public function myOrders()
     {
-        $orders = Claim::whereNotNull('gestor_id')->get();
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $orders = Order::all();
+        }
+        if(Auth::user()->isGestor()){
+            $orders = Order::where('user_id',Auth::user()->id)->get();
+        }
+
         return view('claims.orders', compact('orders'));
+    }
+
+    public function myOrder($id)
+    {
+
+        $i = Order::find($id);
+        $c = Configuration::first();
+        $lines = Lorder::where('order_id',$id)->get();
+        return view('order', compact('c','i','lines'));
+    }
+
+    public function facturar()
+    {
+        /*$i = Order::find($id);
+        $c = Configuration::first();
+        $lines = Lorder::where('order_id',$id)->get();
+        return view('order', compact('c','i','lines'));*/
+
+        //  Seleccionamos las gestorias que tienen pedidos por facturar
+        $gestorias = DB::table('orders')
+            ->select(DB::raw('user_id, count(id) as pedidos'))
+            ->where('facord',0)
+            ->groupBy('user_id')
+            ->get();
+
+        if($gestorias->count()){
+
+            foreach ($gestorias as $gestoria){
+                print_r($gestoria->user_id);echo '<br>';
+                print_r($gestoria);echo '<br>';
+
+                // Buscamos los pedidos de la gestoria en especifico por lineas de detalle
+                $orders = DB::table('orders')
+                        ->join('lorders', 'orders.id','=','lorders.order_id')
+                            ->where('orders.facord',0)
+                            ->where('orders.user_id',$gestoria->user_id)
+                            ->get();
+
+                dump($orders);
+                // Creamos la cabecera de la factura
+
+                // Creamos lineas
+                // recorremos las lineas y acumulamos el saldo
+                foreach($orders as $lorders){
+
+
+                }
+
+                // totalizamos las lineas y facturamos
+
+            }
+
+
+        }else{
+            print_r("No hay pedidos para facturar");
+        }
+
+
+        die();
+        // Seleccionamos todos los pedidos pendiente de facturar agrupados por gestoria.
+        $orders = DB::table('orders')
+        ->join('users', 'orders.user_id','=','users.id')
+        ->select('orders.user_id', 'users.name', 'users.email','users.phone','users.location',
+                  DB::raw('count(orders.id) as pedidos, sum(orders.amount) as total') )
+        ->where('orders.facord',0)
+        ->groupBy('orders.user_id')
+        ->get();
+
+
+        // se hace la factura con los datos que tiene en el momento de hacerse
+        //dcolfa es donde almacenamos el id order que creo la linea.
+
+
+        // seleccionar lineas de detalle
+        // Generar cabecera de factura
+        // Generar lineas de detalle, almacenando el documento o la linea que las genero
+        // Redirigir a saldo gestorias
     }
 
     public function byGestoria()
     {
-        $invoices = Invoice::all();
-        return view('claims.gestoria', compact('invoices'));
+        $orders = DB::table('orders')
+                ->join('users', 'orders.user_id','=','users.id')
+                ->select('orders.user_id', 'users.name', 'users.email','users.phone','users.location',
+                          DB::raw('count(orders.id) as pedidos, sum(orders.amount) as total') )
+                ->where('orders.facord',0)
+                ->groupBy('orders.user_id')
+                ->get();
+
+        return view('claims.gestoria', compact('orders'));
+    }
+
+
+    public function byGestoriaDetail($id)
+    {
+        //Detalle de pedidos por gestoria
+        // usamos la misma vista de orders de funcion myOrder()
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $orders = Order::where('user_id',$id)
+                            ->where('facord',0)
+                            ->get();
+        }
+        $usuario = DB::table('users')
+                    ->select('users.name')
+                    ->where('users.id', $id)
+                    ->get();
+
+        $gestoria = $usuario[0]->name;
+
+        return view('claims.orders', compact('orders','gestoria'));
     }
 
     public function saveActuation(Request $r,$id)
@@ -1094,47 +961,6 @@ class ClaimsController extends Controller
 
         actuationActions($r->subject,$id,$r->amount,$r->actuation_date,$r->description);
 
-        /*
-        if ($a->mailable) {
-            Mail::send('email_to_client', ['a' => $a], function ($message) {
-                $message->to($claim->owner->email, $claim->owner->name);
-                $message->subject('Actualización de su reclamación #'.$a->id);
-            });
-        }
-
-        if ($r->invoice && $r->amount && !$r->invoice_2) {
-            $claim = Claim::find($id);
-            $c = Configuration::first();
-
-            $amount = ($r->amount*$c->percentage_fees)/100;
-
-            $invoice = new Invoice;
-            $invoice->claim_id = $id;
-            $invoice->user_id = $claim->user_id;
-            $invoice->amount = $amount;
-            $invoice->type = 'percentage_fees';
-            $invoice->description = "Pago de comisión por importe recuperado en reclamación extrajudicial";
-            $invoice->save();
-
-            $a->invoice_id = $invoice->id;
-            $a->save();
-        }else if ($r->invoice_2 && $r->honorarios) {
-            $claim = Claim::find($id);
-            $c = Configuration::first();
-
-            $amount = $r->honorarios;
-
-            $invoice = new Invoice;
-            $invoice->claim_id = $id;
-            $invoice->user_id = $claim->user_id;
-            $invoice->amount = $amount;
-            $invoice->type = 'fixed_fees';
-            $invoice->description = $r->concepto ? $r->concepto : "Pago de honorarios en reclamación";
-            $invoice->save();
-
-            $a->invoice_id = $invoice->id;
-            $a->save();
-        }*/
     }
 
     public function close($id)
@@ -1205,6 +1031,11 @@ class ClaimsController extends Controller
     public function invoicesExport()
     {
         return Excel::download(new InvoicesExport, 'invoices-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
+    public function ordersExport()
+    {
+        return Excel::download(new OrdersExport, 'orders-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
     public function checkDebtor(Request $r)

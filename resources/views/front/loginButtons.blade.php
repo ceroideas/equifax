@@ -69,6 +69,9 @@
                     <a class="dropdown-item menu-profile-item" href="{{url('claims')}}">Listado de Reclamaciones</a>
                     <a class="dropdown-item menu-profile-item" href="{{url('claims/pending')}}">Reclamaciones no viables</a>
                     <a class="dropdown-item menu-profile-item" href="{{url('claims/select-client')}}">Nueva Reclamación</a>
+                    @if(Auth::user()->isGestor())
+                        <a class="dropdown-item menu-profile-item" href="{{url('claims/orders')}}">Pedidos</a>
+                    @endif
                     <a class="dropdown-item menu-profile-item" href="{{url('claims/invoices')}}">Facturas</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item menu-profile-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-fw fa-power-off text-red"></i>Salir</a>
