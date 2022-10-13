@@ -7,6 +7,9 @@ use App\Models\Hito;
 use App\Models\SendEmail;
 use App\Models\Template;
 use App\Models\Invoice;
+use App\Models\Linvoice;
+use App\Models\Order;
+use App\Models\Lorder;
 use App\Models\Configuration;
 use App\Models\User;
 use Carbon\Carbon;
@@ -21,7 +24,7 @@ function getHito($id_hito)
 	$f = null;
 	// foreach (config('app.actuations') as $key => $value) {
 	foreach (Hito::whereNull('parent_id')->get() as $key => $value) {
-        
+
         if (count($value->hitos)) {
             foreach ($value->hitos as $key1 => $value1) {
                 // if ($value1['id'] === $id_hito) {
@@ -288,4 +291,173 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		echo '<br>';*/
 
 	}
+}
+
+function addDocument($typeDocument, $claim_id){
+    // Necesitamos el tipo de documento
+    if($typeDocument == 'order'){
+        $idDocument = Order::all()->max('id');
+        $idDocument = $idDocument + 1;
+    }else{
+        $idDocument = Invoice::all()->max('id');
+        $idDocument = $idDocument + 1;
+    }
+
+    $c = Configuration::first();
+
+    if(isset($c)){
+        $typeDocument == 'order' ? $document = new Order : $document = new Invoice;
+        $document->id = $idDocument;
+        $document->claim_id =  $claim_id;
+        $document->user_id = Auth::user()->id;
+        $document->type = 'fixed_fees';
+        $document->description = $c->extra_concept;
+
+        /* Solo en invoice almacenamos los datos del cliente en el momento de su creación */
+        if($typeDocument == 'invoice'){
+            $document->cnofac = Auth::user()->name;
+            $document->cdofac = Auth::user()->address;
+            $document->cpofac = Auth::user()->location;
+            $document->ccpfac = Auth::user()->cop;
+            $document->cprfac = Auth::user()->province;
+            $document->cnifac = Auth::user()->dni;
+        }
+
+        if($typeDocument == 'order'){
+            $ldocument = new Lorder;
+            $ldocument->order_id = $idDocument;
+            $ldocument->poslor = 1;
+            $ldocument->artlor = $c->extra_code;
+            $ldocument->deslor = $c->extra_concept;
+            $ldocument->canlor = 1;
+            $ldocument->prelor = $c->fixed_fees;
+            $ldocument->totlor =  $ldocument->canlor * $ldocument->prelor;
+            $ldocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
+        }else{
+            $ldocument = new Linvoice;
+            $ldocument->invoice_id = $idDocument;
+            $ldocument->poslin = 1;
+            $ldocument->artlin = $c->extra_code;
+            $ldocument->deslin = $c->extra_concept;
+            $ldocument->canlin = 1;
+            $ldocument->prelin = $c->fixed_fees;
+            $ldocument->totlin =  $ldocument->canlin * $ldocument->prelin;
+            $ldocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
+        }
+
+        $ldocument->save();
+
+                /* Acumulamos en cabeceras */
+                /* todos los importes van en neto4 al ser cliente sin IVA */
+
+        if(Auth::user()->taxcode =='IVA0'){
+
+            if($typeDocument=='order'){
+                $document->net4ord = $ldocument->totlor;
+                $document->pdto4ord = Auth::user()->discount;
+                $document->idto4ord = round(($document->pdto4ord*100),2);// Calcular descuento
+                $document->bas4ord = round(($document->net4ord - $document->idto4ord),2);
+                /* Totalizamos*/
+                $document->totord = $document->bas4ord; // no lleva impuestos por lo que es igual que la base
+                $document->amount=$document->bas4ord;
+            }else{
+                $document->net4fac = $ldocument->totlin;
+                $document->pdto4fac = Auth::user()->discount;
+                $document->idto4fac = round(($document->pdto4fac*100),2);// Calcular descuento
+                $document->bas4fac = round(($document->net4fac - $document->idto4fac),2);
+                /* Totalizamos*/
+                $document->totfac = $document->bas4fac; // no lleva impuestos por lo que es igual que la base
+                $document->amount=$document->bas4fac;
+            }
+
+            $document->save();
+
+        }else{
+            /* Cliente al 21*/
+            /*Comprobamos iva del concepto*/
+            if($c->fixed_fees_tax =='IVA0'){
+                if($typeDocument=='order'){
+                    $document->net4ord = $ldocument->totlor;
+                    $document->pdto4ord = Auth::user()->discount;
+                    $document->idto4ord = round(($document->pdto4ord*100),2);// Calcular descuento
+                    $document->bas4ord = round(($document->net4ord - $document->idto4ord),2);
+                    /* porcentajes de iva  Cliente iva*/
+                    $document->piva1ord = '21';
+                    $document->piva2ord = '10';
+                    $document->piva3ord = '4';
+                    /* Totalizamos*/
+                    $document->totord = $document->bas4ord; // no lleva impuestos por lo que es igual que la base
+                    $document->amount=$document->bas4ord;
+
+                }else{
+                    $document->net4fac = $ldocument->totlin;
+                    $document->pdto4fac = Auth::user()->discount;
+                    $document->idto4fac = round(($document->pdto4fac*100),2);// Calcular descuento
+                    $document->bas4fac = round(($document->net4fac - $document->idto4fac),2);
+                    /* porcentajes de iva  Cliente iva*/
+                    $document->piva1fac = '21';
+                    $document->piva2fac = '10';
+                    $document->piva3fac = '4';
+                    /* Totalizamos*/
+                    $document->totfac = $document->bas4fac; // no lleva impuestos por lo que es igual que la base
+                    $document->amount=$document->bas4fac;
+                }
+
+                $document->save();
+
+            }else{
+
+                if($typeDocument=='order'){
+                    $document->net1ord = $ldocument->totlor;
+                    $document->pdto1ord = Auth::user()->discount;
+                    $document->idto1ord = round(($document->pdto1ord*100),2);// Calcular descuento
+                    $document->bas1ord = round(($document->net1ord - $document->idto1ord),2);
+                    /* Porcentajes de iva  Cliente iva*/
+                    $document->piva1ord = '21';
+                    $document->piva2ord = '10';
+                    $document->piva3ord = '4';
+                    /* Calcular importe iva*/
+                    $document->iiva1ord = round($document->bas1ord*($document->piva1ord / 100 ),2);
+                    /* Totalizamos*/
+                    $document->totord = round($document->bas1ord + $document->iiva1ord,2);
+                    $document->amount = $document->totord;
+
+                }else{
+                    $document->net1fac = $ldocument->totlin;
+                    $document->pdto1fac = Auth::user()->discount;
+                    $document->idto1fac = round(($document->pdto1fac*100),2);// Calcular descuento
+                    $document->bas1fac = round(($document->net1fac - $document->idto1fac),2);
+                    /* Porcentajes de iva  Cliente iva*/
+                    $document->piva1fac = '21';
+                    $document->piva2fac = '10';
+                    $document->piva3fac = '4';
+                    /* Calcular importe iva*/
+                    $document->iiva1fac = round($document->bas1fac*($document->piva1fac / 100 ),2);
+                    /* Totalizamos*/
+                    $document->totfac = round($document->bas1fac + $document->iiva1fac,2);
+                    $document->amount = $document->totfac;
+                }
+
+                $document->save();
+            } // fin iva excento
+
+        } // fin iva excento
+        /*Fin generacion de factura */
+
+    }else{
+        /* Mostrar mensaje de error falta configuracion id=1*/
+    } // fin comprobacion de configuracion
+    /*********** Fin generacion de factura *****************/
+    return '200';
+}
+
+function addLineDocument(){
+    //
+}
+
+/* Esta funcion totaliza los documentos, resultado de la suma de las lineas de detalle */
+function totalDocument($idDocument){
+    // Buscamos lineas de detalle
+    // Totalizamos parcialmente
+    // update en documento
 }

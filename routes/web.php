@@ -96,6 +96,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/invoices/{id}', [ClaimsController::class , 'myInvoice']);
     Route::get('/orders', [ClaimsController::class , 'myOrders']);
     Route::get('/orders/{id}', [ClaimsController::class , 'myOrder']);
+    Route::get('/facturar', [ClaimsController::class , 'facturar']);
     Route::get('/gestoria', [ClaimsController::class , 'byGestoria']);
     Route::get('/gestoria/{id}', [ClaimsController::class , 'byGestoriaDetail']);
     Route::get('/actuations/{id}', [ClaimsController::class , 'actuations']);

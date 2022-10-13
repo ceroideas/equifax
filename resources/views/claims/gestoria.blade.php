@@ -57,7 +57,7 @@
     @endif
 
     @if (!Auth::user()->isClient())
-        <a href="{{url('#')}}" class="btn btn-sm btn-warning">Generar facturas pendientes</a>
+        <a href="{{url('/claims/facturar')}}" class="btn btn-sm btn-warning">Generar facturas pendientes</a>
     @endif
 
     {{--$detail --}}
