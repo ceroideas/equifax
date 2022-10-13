@@ -892,7 +892,7 @@ class ClaimsController extends Controller
                 ->select('orders.user_id', 'users.name', 'users.email','users.phone','users.location',
                           DB::raw('count(orders.id) as pedidos, sum(orders.amount) as total') )
                 ->where('orders.facord',0)
-                ->groupBy('orders.user_id')
+                ->groupBy('orders.user_id','users.name', 'users.email','users.phone','users.location')
                 ->get();
 
         return view('claims.gestoria', compact('orders'));
