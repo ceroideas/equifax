@@ -303,9 +303,9 @@ class ClaimsController extends Controller
 
         /************* Inicio creacion de documento (Order / Invoice ) ***************/
         if(Auth::user()->isGestor()){
-            addDocument('order', $claim->id);
+            addDocument('order', $claim->id, 'EXT-001',0);
         }else{
-            addDocument('invoice',$claim->id);
+            addDocument('invoice',$claim->id, 'EXT-001',0);
         }
         /*********** Fin generacion de factura *****************/
 
