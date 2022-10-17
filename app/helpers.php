@@ -325,13 +325,37 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa){
         }
 
         // Lineas de detalle, probamos enviar mas de una
-        // TODO: falta añadir como se comporta con una tasa
-        addLineDocument($typeDocument, $idDocument, 1, $articulo);
-        addLineDocument($typeDocument, $idDocument, 2, $articulo);
-        if($tasa==1){
-            addLineDocument($typeDocument, $idDocument, 3, 'RES-001');
-            addLineDocument($typeDocument, $idDocument, 4, 'RES-001');
-        }
+        switch($articulo){
+            case 'EXT-001':
+                addLineDocument($typeDocument, $idDocument, 1, $articulo);
+                break;
+
+            case 'JUD-001':
+                addLineDocument($typeDocument, $idDocument, 1, $articulo);
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, 2,$articulo);}
+                break;
+
+            case 'VER-001':
+                addLineDocument($typeDocument, $idDocument, 1, $articulo);
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, 2,$articulo);}
+                break;
+
+            case 'ORD-001':
+                addLineDocument($typeDocument, $idDocument, 1, $articulo);
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, 2,$articulo);}
+                break;
+
+            case 'EJE-001':
+                addLineDocument($typeDocument, $idDocument, 1, $articulo);
+                // Ejecucion no lleva tasa
+                break;
+
+            case 'RES-001':
+                addLineDocument($typeDocument, $idDocument, 1, $articulo);
+                // Recurso no lleva tasa pero si deposito usamos variable tasa
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, 2,$articulo);}
+                break;
+            }
 
         $document->save();
         // totalizamos documento
@@ -356,18 +380,79 @@ function addLineDocument($typeDocument, $idDocument, $position, $articulo, $tasa
         $lDocument->poslor = $position;
         $lDocument->canlor = 1;
         //$lDocument->dtolor = Auth::user()->discount;
-        switch($articulo){ //TODO:completar con los otros articulos de configuracion
+        switch($articulo){ // Comprobamos siempre si hay tasa
             case 'EXT-001':
                 $lDocument->artlor = $c->extra_code;
                 $lDocument->deslor = $c->extra_concept;
                 $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0': $c->fixed_fees_tax;
                 $lDocument->prelor = floatval($c->fixed_fees);
                 break;
+
+            case 'JUD-001':
+                if($tasa == 1){
+                    $lDocument->artlor = $c->judicial_fees_code;
+                    $lDocument->deslor = $c->judicial_fees_concept;
+                    $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_fees_tax;
+                    $lDocument->prelor = floatval($c->judicial_fees);
+
+                }else{
+                    $lDocument->artlor = $c->judicial_amount_code;
+                    $lDocument->deslor = $c->judicial_amount_concept;
+                    $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_amount_tax;
+                    $lDocument->prelor = floatval($c->judicial_amount);
+                }
+                break;
+
+            case 'VER-001':
+                if($tasa == 1){
+                    $lDocument->artlor = $c->verbal_fees_code;
+                    $lDocument->deslor = $c->verbal_fees_concept;
+                    $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_fees_tax;
+                    $lDocument->prelor = floatval($c->verbal_fees);
+
+                }else{
+                    $lDocument->artlor = $c->verbal_amount_code;
+                    $lDocument->deslor = $c->verbal_amount_concept;
+                    $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_amount_tax;
+                    $lDocument->prelor = floatval($c->verbal_amount);
+                }
+                break;
+
+            case 'ORD-001':
+                if($tasa == 1){
+                    $lDocument->artlor = $c->ordinary_fees_code;
+                    $lDocument->deslor = $c->ordinary_fees_concept;
+                    $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_fees_tax;
+                    $lDocument->prelor = floatval($c->ordinary_fees);
+
+                }else{
+                    $lDocument->artlor = $c->ordinary_amount_code;
+                    $lDocument->deslor = $c->ordinary_amount_concept;
+                    $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_amount_tax;
+                    $lDocument->prelor = floatval($c->ordinary_amount);
+                }
+                break;
+
+            case 'EJE-001':
+                $lDocument->artlor = $c->execution_code;
+                $lDocument->deslor = $c->execution_concept;
+                $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0':$c->execution_tax;
+                $lDocument->prelor = floatval($c->execution);
+                break;
+
             case 'RES-001':
-                $lDocument->artlor = $c->resource_code;
-                $lDocument->deslor = $c->resource_concept;
-                $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0':$c->resource_tax;
-                $lDocument->prelor = floatval($c->resource);
+                if($tasa == 1){
+                    $lDocument->artlor = $c->deposit_code;
+                    $lDocument->deslor = $c->deposit_concept;
+                    $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0': $c->deposit_tax;
+                    $lDocument->prelor = floatval($c->deposit_amount);
+
+                }else{
+                    $lDocument->artlor = $c->resource_code;
+                    $lDocument->deslor = $c->resource_concept;
+                    $lDocument->ivalor = Auth::user()->taxcode =='IVA0'?'IVA0': $c->resource_tax;
+                    $lDocument->prelor = floatval($c->resource);
+                }
                 break;
         }
         // total linea
@@ -382,18 +467,79 @@ function addLineDocument($typeDocument, $idDocument, $position, $articulo, $tasa
         $lDocument->canlin = 1;
         $lDocument->dtolin = Auth::user()->discount;
         //buscar articulo esto es de extrajudicial switch case
-        switch($articulo){
+        switch($articulo){ // Comprobamos siempre si hay tasa
             case 'EXT-001':
                 $lDocument->artlin = $c->extra_code;
                 $lDocument->deslin = $c->extra_concept;
                 $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->fixed_fees_tax;
                 $lDocument->prelin = floatval($c->fixed_fees);
                 break;
+
+            case 'JUD-001':
+                if($tasa == 1){
+                    $lDocument->artlin = $c->judicial_fees_code;
+                    $lDocument->deslin = $c->judicial_fees_concept;
+                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_fees_tax;
+                    $lDocument->prelin = floatval($c->judicial_fees);
+
+                }else{
+                    $lDocument->artlin = $c->judicial_amount_code;
+                    $lDocument->deslin = $c->judicial_amount_concept;
+                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_amount_tax;
+                    $lDocument->prelin = floatval($c->judicial_amount);
+                }
+                break;
+
+            case 'VER-001':
+                if($tasa == 1){
+                    $lDocument->artlin = $c->verbal_fees_code;
+                    $lDocument->deslin = $c->verbal_fees_concept;
+                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_fees_tax;
+                    $lDocument->prelin = floatval($c->verbal_fees);
+
+                }else{
+                    $lDocument->artlin = $c->verbal_amount_code;
+                    $lDocument->deslin = $c->verbal_amount_concept;
+                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_amount_tax;
+                    $lDocument->prelin = floatval($c->verbal_amount);
+                }
+                break;
+
+            case 'ORD-001':
+                if($tasa == 1){
+                    $lDocument->artlin = $c->ordinary_fees_code;
+                    $lDocument->deslin = $c->ordinary_fees_concept;
+                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_fees_tax;
+                    $lDocument->prelin = floatval($c->ordinary_fees);
+
+                }else{
+                    $lDocument->artlin = $c->ordinary_amount_code;
+                    $lDocument->deslin = $c->ordinary_amount_concept;
+                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_amount_tax;
+                    $lDocument->prelin = floatval($c->ordinary_amount);
+                }
+                break;
+
+            case 'EJE-001':
+                $lDocument->artlin = $c->execution_code;
+                $lDocument->deslin = $c->execution_concept;
+                $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':$c->execution_tax;
+                $lDocument->prelin = floatval($c->execution);
+                break;
+
             case 'RES-001':
-                $lDocument->artlin = $c->resource_code;
-                $lDocument->deslin = $c->resource_concept;
-                $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':$c->resource_tax;
-                $lDocument->prelin = floatval($c->resource);
+                if($tasa == 1){
+                    $lDocument->artlin = $c->deposit_code;
+                    $lDocument->deslin = $c->deposit_concept;
+                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->deposit_tax;
+                    $lDocument->prelin = floatval($c->deposit_amount);
+
+                }else{
+                    $lDocument->artlin = $c->resource_code;
+                    $lDocument->deslin = $c->resource_concept;
+                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->resource_tax;
+                    $lDocument->prelin = floatval($c->resource);
+                }
                 break;
         }
         $lDocument->totlin =  round(($lDocument->canlin * $lDocument->prelin),2);
