@@ -84,9 +84,17 @@
                 <tr>
                     <td>{{ $invoice->id }}</td>
                     @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isGestor())
-                        <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
+                        @if( $invoice->claim_id <> 0 )
+                            <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
+                        @else
+                            <td>{{ $invoice->cnofac }}</td>
+                        @endif
                     @endif
-                    <td>#{{ $invoice->claim->id }}</td>
+                    @if( $invoice->claim_id <> 0 )
+                        <td><a href="{{ url('/claims/' . $invoice->claim_id ) }}">#{{$invoice->claim_id}}</a></td>
+                    @else
+                        <td>Varias</td>
+                    @endif
                     <td>{{ $invoice->description }}</td>
                     <td>{{ number_format(($invoice->amount) ,2,',','.')}} €</td>
                     <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d/m/Y') }}</td>

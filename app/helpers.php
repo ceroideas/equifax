@@ -294,14 +294,12 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 	}
 }
 
-function addDocument($typeDocument, $claim_id, $articulo, $tasa){
+function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0){
     // Necesitamos el tipo de documento
     if($typeDocument == 'order'){
-        $idDocument = Order::all()->max('id');
-        $idDocument = $idDocument + 1;
+        $idDocument = maxId('Orders','id');
     }else{
-        $idDocument = Invoice::all()->max('id');
-        $idDocument = $idDocument + 1;
+        $idDocument = maxId('Invoices','id');
     }
 
     $c = Configuration::first();
@@ -310,50 +308,73 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa){
         $typeDocument == 'order' ? $document = new Order : $document = new Invoice;
         $document->id = $idDocument;
         $document->claim_id =  $claim_id;
-        $document->user_id = Auth::user()->id;
+
+        if(!$gestoria_id == 0){
+            $user = User::find($gestoria_id);
+            $document->user_id = $user->id;
+        }else{
+            $document->user_id =  Auth::user()->id;
+        }
         $document->type = 'fixed_fees';
         $document->description = $c->extra_concept;
 
         // Solo en invoice almacenamos los datos del cliente en el momento de su creación
         if($typeDocument == 'invoice'){
-            $document->cnofac = Auth::user()->name;
-            $document->cdofac = Auth::user()->address;
-            $document->cpofac = Auth::user()->location;
-            $document->ccpfac = Auth::user()->cop;
-            $document->cprfac = Auth::user()->province;
-            $document->cnifac = Auth::user()->dni;
+            if(!$gestoria_id == 0){
+                $document->cnofac = $user->name;
+                $document->cdofac = $user->address;
+                $document->cpofac = $user->location;
+                $document->ccpfac = $user->cop;
+                $document->cprfac = $user->province;
+                $document->cnifac = $user->dni;
+            }else{
+                $document->cnofac = Auth::user()->name;
+                $document->cdofac = Auth::user()->address;
+                $document->cpofac = Auth::user()->location;
+                $document->ccpfac = Auth::user()->cop;
+                $document->cprfac = Auth::user()->province;
+                $document->cnifac = Auth::user()->dni;
+            }
         }
 
         // Lineas de detalle, probamos enviar mas de una
         switch($articulo){
             case 'EXT-001':
-                addLineDocument($typeDocument, $idDocument, 1, $articulo);
+                addLineDocument($typeDocument, $idDocument, $articulo);
                 break;
 
             case 'JUD-001':
-                addLineDocument($typeDocument, $idDocument, 1, $articulo);
-                if($tasa==1){ addLineDocument($typeDocument, $idDocument, 2,$articulo);}
+                addLineDocument($typeDocument, $idDocument, $articulo);
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo);}
                 break;
 
             case 'VER-001':
-                addLineDocument($typeDocument, $idDocument, 1, $articulo);
-                if($tasa==1){ addLineDocument($typeDocument, $idDocument, 2,$articulo);}
+                addLineDocument($typeDocument, $idDocument, $articulo);
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo);}
                 break;
 
             case 'ORD-001':
-                addLineDocument($typeDocument, $idDocument, 1, $articulo);
-                if($tasa==1){ addLineDocument($typeDocument, $idDocument, 2,$articulo);}
+                addLineDocument($typeDocument, $idDocument, $articulo);
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo);}
                 break;
 
             case 'EJE-001':
-                addLineDocument($typeDocument, $idDocument, 1, $articulo);
+                addLineDocument($typeDocument, $idDocument, $articulo);
                 // Ejecucion no lleva tasa
                 break;
 
             case 'RES-001':
-                addLineDocument($typeDocument, $idDocument, 1, $articulo);
+                addLineDocument($typeDocument, $idDocument, $articulo);
                 // Recurso no lleva tasa pero si deposito usamos variable tasa
-                if($tasa==1){ addLineDocument($typeDocument, $idDocument, 2,$articulo);}
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo);}
+                break;
+
+            case 'mensual':
+                // TODO: Se podria optimizar que coja el importe e iva del momento de creacion del pedido.
+
+                //obsoletas, comprobar como se deben asignar
+                //addLineDocument($typeDocument, $idDocument, $articulo, 0);
+
                 break;
             }
 
@@ -369,16 +390,16 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa){
     return '200';
 }
 
-function addLineDocument($typeDocument, $idDocument, $position, $articulo, $tasa=0){
+function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantidad = 1){
 
-    // Necesitamos typeDocument, idDocument
+    // Cogemos los datos del momento de creacion de la linea
     $c = Configuration::first();
 
     if($typeDocument == 'order'){
         $lDocument = new Lorder;
         $lDocument->order_id = $idDocument;
-        $lDocument->poslor = $position;
-        $lDocument->canlor = 1;
+        $lDocument->poslor = maxId('Lorders', 'poslor',$idDocument);
+        $lDocument->canlor = $cantidad;
         //$lDocument->dtolor = Auth::user()->discount;
         switch($articulo){ // Comprobamos siempre si hay tasa
             case 'EXT-001':
@@ -463,7 +484,7 @@ function addLineDocument($typeDocument, $idDocument, $position, $articulo, $tasa
     }else{
         $lDocument = new Linvoice;
         $lDocument->invoice_id = $idDocument;
-        $lDocument->poslin = $position;
+        $lDocument->poslin = maxId('linvoice','invoice_id','poslin');
         $lDocument->canlin = 1;
         $lDocument->dtolin = Auth::user()->discount;
         //buscar articulo esto es de extrajudicial switch case
@@ -541,6 +562,13 @@ function addLineDocument($typeDocument, $idDocument, $position, $articulo, $tasa
                     $lDocument->prelin = floatval($c->resource);
                 }
                 break;
+
+            case 'mensual':
+                // comprobar si de una podemos pasar totas las lineas consultadas.
+
+                break;
+
+
         }
         $lDocument->totlin =  round(($lDocument->canlin * $lDocument->prelin),2);
         //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
@@ -666,4 +694,24 @@ function totalDocument($typeDocument, $idDocument){
     }
     $document->save();
 
+}
+
+function maxId($table, $field, $idDocument=0){
+    if($table == 'Linvoices'){
+        $idMax = DB::table($table)
+        ->select(DB::raw('max('.$field.') as last'))
+        ->where('invoice_id',$idDocument)
+        ->get();
+    }elseif($table == 'Lorders'){
+        $idMax = DB::table($table)
+        ->select(DB::raw('max('.$field.') as last'))
+        ->where('order_id',$idDocument)
+        ->get();
+    }else{
+        $idMax = DB::table($table)
+        ->select(DB::raw('max('.$field.') as last'))
+        ->get();
+        }
+    $idMax = intval($idMax[0]->last + 1);
+    return $idMax;
 }

@@ -819,10 +819,6 @@ class ClaimsController extends Controller
 
     public function facturar()
     {
-        /*$i = Order::find($id);
-        $c = Configuration::first();
-        $lines = Lorder::where('order_id',$id)->get();
-        return view('order', compact('c','i','lines'));*/
 
         //  Seleccionamos las gestorias que tienen pedidos por facturar
         $gestorias = DB::table('orders')
@@ -832,57 +828,70 @@ class ClaimsController extends Controller
             ->get();
 
         if($gestorias->count()){
+            // 3 gestorias para facturar
+            //Aqui crea factura
+            /* Ejemplo crea 3 facturas mensuales y todo va a helper
 
             foreach ($gestorias as $gestoria){
-                print_r($gestoria->user_id);echo '<br>';
-                print_r($gestoria);echo '<br>';
+                    addDocument('invoice',0, 'mensual',0);
+            }*/
 
-                // Buscamos los pedidos de la gestoria en especifico por lineas de detalle
+
+            foreach ($gestorias as $gestoria){
+                // Buscamos los pedidos de la gestoria en especifico por lineas de detalle  esto ira en el helper, lo tenemos aqui para probar.
                 $orders = DB::table('orders')
                         ->join('lorders', 'orders.id','=','lorders.order_id')
                             ->where('orders.facord',0)
                             ->where('orders.user_id',$gestoria->user_id)
+                            ->orderBy('lorders.artlor','asc')
                             ->get();
 
-                dump($orders);
-                // Creamos la cabecera de la factura
+                if($orders->count()){
+                    $cantidad = 0;
+                    $buscado = '';
 
-                // Creamos lineas
-                // recorremos las lineas y acumulamos el saldo
-                foreach($orders as $lorders){
+                    foreach($orders as $key => $linea){
+                        print_r("_________ foreach linea numero: ");
+                        print_r($key);echo "<br>";
+                        dump($linea->artlor);
 
+                        // si articulo es igual acumula, sino crea linea
+                        if($cantidad == 0){
+                            $buscado = $linea->artlor;
+                            print_r("Asigna valores iniciales a contador cantidad/articulo/buscado: ");print_r($cantidad);print_r($linea->artlor);print_r($buscado);
+                        }
 
+                        if($buscado == $linea->artlor){
+                            $cantidad = $cantidad + 1;
+                            print_r("Acumula new cantidad: ");print_r($cantidad);echo "<br>";
+
+                        }else{
+                            print_r("Graba linea Articulo con cantidad de ese momento");echo "<br>"; // Aqui iria el addLineDocument
+                            print_r($buscado);print_r(" X ");print_r($cantidad);echo "<br>";
+                            // problema, no guarda en el ultimo ciclo
+                            $cantidad = 1;
+                            $buscado = $linea->artlor;
+                        }
+                        if($orders->count()-1 == $key){
+                            print_r("Ultima iteracion");
+                            print_r("Graba linea Articulo con cantidad de ese momento");echo "<br>"; // aqui iria el addLineDocument
+                            print_r($buscado);print_r(" X ");print_r($cantidad);echo "<br>";
+                        }
+                    }
+                }else{
+                    print_r("No hay lineas de detalle en pedidos");
                 }
-
-                // totalizamos las lineas y facturamos
-
             }
-
 
         }else{
             print_r("No hay pedidos para facturar");
         }
 
-
-        die();
-        // Seleccionamos todos los pedidos pendiente de facturar agrupados por gestoria.
-        $orders = DB::table('orders')
-        ->join('users', 'orders.user_id','=','users.id')
-        ->select('orders.user_id', 'users.name', 'users.email','users.phone','users.location',
-                  DB::raw('count(orders.id) as pedidos, sum(orders.amount) as total') )
-        ->where('orders.facord',0)
-        ->groupBy('orders.user_id')
-        ->get();
+            // Al crear las lineas de detalle no podemos grabar el documento que los origino.
+            // Hacer update en las lineas de los pedidos facturados
+            //
 
 
-        // se hace la factura con los datos que tiene en el momento de hacerse
-        //dcolfa es donde almacenamos el id order que creo la linea.
-
-
-        // seleccionar lineas de detalle
-        // Generar cabecera de factura
-        // Generar lineas de detalle, almacenando el documento o la linea que las genero
-        // Redirigir a saldo gestorias
     }
 
     public function byGestoria()
@@ -1040,20 +1049,6 @@ class ClaimsController extends Controller
 
     public function checkDebtor(Request $r)
     {
-        /*
-        print_r("checkDebtor ");
-        var_dump($r->options); //Deuda no reclamable //null
-        print_r("concurso ");
-        var_dump($r->concurso); //Concurso de acreedores //string(1)
-        print_r("Selector ");
-        var_dump($r->tipo_deuda); //Selector  string(11)
-        var_dump(session('tipo_deuda'));  //string(11)
-        print_r("checkDebtor ");echo "<br>";
-        dump($r->tipo_deuda);
-        print_r("No viable ");echo "<br>";
-        dump($r->no_viable);
-        die();*/
-
         if ($r->concurso == 1 || $r->tipo_deuda >= 12) {
 
             $r->session()->forget('claim_client');
