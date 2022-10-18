@@ -371,9 +371,48 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
 
             case 'mensual':
                 // TODO: Se podria optimizar que coja el importe e iva del momento de creacion del pedido.
+                //tambien coger los importes de las lineas de detalle con descuento
+                    $orders = DB::table('orders')
+                    ->join('lorders', 'orders.id','=','lorders.order_id')
+                        ->where('orders.facord',0)
+                        ->where('orders.user_id',$gestoria_id)
+                        ->orderBy('lorders.artlor','asc')
+                        ->get();
 
-                //obsoletas, comprobar como se deben asignar
-                //addLineDocument($typeDocument, $idDocument, $articulo, 0);
+                    if($orders->count()){
+                        $cantidad = 0;
+                        $buscado = '';
+
+                        foreach($orders as $key => $linea){
+                            // si articulo es igual acumula, sino crea linea
+                            if($cantidad == 0){
+                                $buscado = $linea->artlor;
+                            }
+
+                            if($buscado == $linea->artlor){
+                                $cantidad = $cantidad + 1;
+                            }else{
+                                addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode);
+
+                                $cantidad = 1;
+                                $buscado = $linea->artlor;
+                            }
+                            if($orders->count()-1 == $key){
+                                addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode);
+                            }
+
+                        //update de lineas procesadas
+                        $facturadas = DB::table('orders')
+                                ->join('lorders', 'orders.id','=','lorders.order_id')
+                                ->where('orders.facord',0)
+                                ->where('orders.user_id',$gestoria_id)
+                                ->update(['lorders.dcolor' => $idDocument]);
+                        }
+
+
+                    }else{
+                        print_r("No hay lineas de detalle en pedidos");
+                    }
 
                 break;
             }
@@ -390,7 +429,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
     return '200';
 }
 
-function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantidad = 1){
+function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantidad = 1,$taxcode = 'IVA21'){
 
     // Cogemos los datos del momento de creacion de la linea
     $c = Configuration::first();
@@ -484,15 +523,17 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
     }else{
         $lDocument = new Linvoice;
         $lDocument->invoice_id = $idDocument;
-        $lDocument->poslin = maxId('linvoice','invoice_id','poslin');
-        $lDocument->canlin = 1;
+        $lDocument->poslin = maxId('Linvoices','poslin',$idDocument);
+        $lDocument->canlin = $cantidad;
         $lDocument->dtolin = Auth::user()->discount;
+
         //buscar articulo esto es de extrajudicial switch case
         switch($articulo){ // Comprobamos siempre si hay tasa
             case 'EXT-001':
                 $lDocument->artlin = $c->extra_code;
                 $lDocument->deslin = $c->extra_concept;
-                $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->fixed_fees_tax;
+                //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->fixed_fees_tax;
+                $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0': $c->fixed_fees_tax);
                 $lDocument->prelin = floatval($c->fixed_fees);
                 break;
 
@@ -500,13 +541,15 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 if($tasa == 1){
                     $lDocument->artlin = $c->judicial_fees_code;
                     $lDocument->deslin = $c->judicial_fees_concept;
-                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_fees_tax;
+                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_fees_tax;
+                    $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0':$c->judicial_fees_tax);
                     $lDocument->prelin = floatval($c->judicial_fees);
 
                 }else{
                     $lDocument->artlin = $c->judicial_amount_code;
                     $lDocument->deslin = $c->judicial_amount_concept;
-                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_amount_tax;
+                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_amount_tax;
+                    $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0':$c->judicial_amount_tax);
                     $lDocument->prelin = floatval($c->judicial_amount);
                 }
                 break;
@@ -515,13 +558,15 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 if($tasa == 1){
                     $lDocument->artlin = $c->verbal_fees_code;
                     $lDocument->deslin = $c->verbal_fees_concept;
-                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_fees_tax;
+                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_fees_tax;
+                    $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_fees_tax);
                     $lDocument->prelin = floatval($c->verbal_fees);
 
                 }else{
                     $lDocument->artlin = $c->verbal_amount_code;
                     $lDocument->deslin = $c->verbal_amount_concept;
-                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_amount_tax;
+                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_amount_tax;
+                    $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_amount_tax);
                     $lDocument->prelin = floatval($c->verbal_amount);
                 }
                 break;
@@ -530,13 +575,15 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 if($tasa == 1){
                     $lDocument->artlin = $c->ordinary_fees_code;
                     $lDocument->deslin = $c->ordinary_fees_concept;
-                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_fees_tax;
+                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_fees_tax;
+                    $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_fees_tax);
                     $lDocument->prelin = floatval($c->ordinary_fees);
 
                 }else{
                     $lDocument->artlin = $c->ordinary_amount_code;
                     $lDocument->deslin = $c->ordinary_amount_concept;
-                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_amount_tax;
+                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_amount_tax;
+                    $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_amount_tax);
                     $lDocument->prelin = floatval($c->ordinary_amount);
                 }
                 break;
@@ -544,7 +591,8 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
             case 'EJE-001':
                 $lDocument->artlin = $c->execution_code;
                 $lDocument->deslin = $c->execution_concept;
-                $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':$c->execution_tax;
+                //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->execution_tax;
+                $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0': $c->execution_tax);
                 $lDocument->prelin = floatval($c->execution);
                 break;
 
@@ -552,23 +600,18 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 if($tasa == 1){
                     $lDocument->artlin = $c->deposit_code;
                     $lDocument->deslin = $c->deposit_concept;
-                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->deposit_tax;
+                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->deposit_tax;
+                    $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0': $c->deposit_tax);
                     $lDocument->prelin = floatval($c->deposit_amount);
 
                 }else{
                     $lDocument->artlin = $c->resource_code;
                     $lDocument->deslin = $c->resource_concept;
-                    $lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->resource_tax;
+                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->resource_tax;
+                    $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0': $c->resource_tax);
                     $lDocument->prelin = floatval($c->resource);
                 }
                 break;
-
-            case 'mensual':
-                // comprobar si de una podemos pasar totas las lineas consultadas.
-
-                break;
-
-
         }
         $lDocument->totlin =  round(($lDocument->canlin * $lDocument->prelin),2);
         //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
