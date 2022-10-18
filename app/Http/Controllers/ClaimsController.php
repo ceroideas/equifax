@@ -819,8 +819,8 @@ class ClaimsController extends Controller
 
     public function facturar()
     {
-
-        //  Seleccionamos las gestorias que tienen pedidos por facturar
+        /*Version 1 facturamos todo lo pendiente de las gestorias, en etapa 2 podriamos añadir filtros para facturar por gestoria especifica
+        Añadiendo una accion por cada gestoria o con un select para seleccionar todo lo que debemos facturar */
         $gestorias = DB::table('orders')
             ->select(DB::raw('user_id, count(id) as pedidos'))
             ->where('facord',0)
@@ -828,70 +828,16 @@ class ClaimsController extends Controller
             ->get();
 
         if($gestorias->count()){
-            // 3 gestorias para facturar
-            //Aqui crea factura
-            /* Ejemplo crea 3 facturas mensuales y todo va a helper
 
             foreach ($gestorias as $gestoria){
-                    addDocument('invoice',0, 'mensual',0);
-            }*/
 
-
-            foreach ($gestorias as $gestoria){
-                // Buscamos los pedidos de la gestoria en especifico por lineas de detalle  esto ira en el helper, lo tenemos aqui para probar.
-                $orders = DB::table('orders')
-                        ->join('lorders', 'orders.id','=','lorders.order_id')
-                            ->where('orders.facord',0)
-                            ->where('orders.user_id',$gestoria->user_id)
-                            ->orderBy('lorders.artlor','asc')
-                            ->get();
-
-                if($orders->count()){
-                    $cantidad = 0;
-                    $buscado = '';
-
-                    foreach($orders as $key => $linea){
-                        print_r("_________ foreach linea numero: ");
-                        print_r($key);echo "<br>";
-                        dump($linea->artlor);
-
-                        // si articulo es igual acumula, sino crea linea
-                        if($cantidad == 0){
-                            $buscado = $linea->artlor;
-                            print_r("Asigna valores iniciales a contador cantidad/articulo/buscado: ");print_r($cantidad);print_r($linea->artlor);print_r($buscado);
-                        }
-
-                        if($buscado == $linea->artlor){
-                            $cantidad = $cantidad + 1;
-                            print_r("Acumula new cantidad: ");print_r($cantidad);echo "<br>";
-
-                        }else{
-                            print_r("Graba linea Articulo con cantidad de ese momento");echo "<br>"; // Aqui iria el addLineDocument
-                            print_r($buscado);print_r(" X ");print_r($cantidad);echo "<br>";
-                            // problema, no guarda en el ultimo ciclo
-                            $cantidad = 1;
-                            $buscado = $linea->artlor;
-                        }
-                        if($orders->count()-1 == $key){
-                            print_r("Ultima iteracion");
-                            print_r("Graba linea Articulo con cantidad de ese momento");echo "<br>"; // aqui iria el addLineDocument
-                            print_r($buscado);print_r(" X ");print_r($cantidad);echo "<br>";
-                        }
-                    }
-                }else{
-                    print_r("No hay lineas de detalle en pedidos");
-                }
+                addDocument('invoice',0, 'mensual',0, $gestoria->user_id);
             }
 
         }else{
             print_r("No hay pedidos para facturar");
         }
-
-            // Al crear las lineas de detalle no podemos grabar el documento que los origino.
-            // Hacer update en las lineas de los pedidos facturados
-            //
-
-
+        return $this->myInvoices();
     }
 
     public function byGestoria()
