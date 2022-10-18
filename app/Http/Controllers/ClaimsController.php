@@ -826,6 +826,9 @@ class ClaimsController extends Controller
             ->where('facord',0)
             ->groupBy('user_id')
             ->get();
+        $pedidos = DB::table('orders')
+                ->where('facord',0)
+                ->get();
 
         if($gestorias->count()){
 
@@ -833,10 +836,17 @@ class ClaimsController extends Controller
 
                 addDocument('invoice',0, 'mensual',0, $gestoria->user_id);
             }
+            // Actualizamos estado para que no este como pendiente de facturar
+            foreach ($pedidos as $pedido){
+                $order = Order::find($pedido->id);
+                $order->facord = 1;
+                $order->save();
+            }
 
         }else{
             print_r("No hay pedidos para facturar");
         }
+
         return $this->myInvoices();
     }
 

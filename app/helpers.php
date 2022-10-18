@@ -400,7 +400,16 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
                             if($orders->count()-1 == $key){
                                 addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode);
                             }
+
+                        //update de lineas procesadas
+                        $facturadas = DB::table('orders')
+                                ->join('lorders', 'orders.id','=','lorders.order_id')
+                                ->where('orders.facord',0)
+                                ->where('orders.user_id',$gestoria_id)
+                                ->update(['lorders.dcolor' => $idDocument]);
                         }
+
+
                     }else{
                         print_r("No hay lineas de detalle en pedidos");
                     }
