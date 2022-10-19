@@ -16,11 +16,9 @@ class ClaimsExport implements FromView
     }
     public function view(): View{
 
-
-
         if ($this->type == 0) {
 
-            $claims = \App\Models\Claim::whereNotIn('status', [-1,0,1])->where(function($q){
+            $claims = Claim::whereNotIn('status', [-1,0,1])->where(function($q){
                 if (Auth::user()->isGestor()) {
                     $q->where('gestor_id',Auth::id());
                 }
@@ -30,16 +28,15 @@ class ClaimsExport implements FromView
             $this->setExport($claims);
 
         }elseif($this->type == 1){
-            $claims = \App\Models\Claim::whereIn('status', [-1,0,1])->where(function($q){
+            $claims = Claim::whereIn('status', [-1,0,1])->where(function($q){
                 if (Auth::user()->isGestor()) {
                     $q->where('gestor_id',Auth::id());
                 }
             })->get();
             $type = 1;
         }else{
-            print_r("Claims export type"); print_r($this->type);
 
-            $claims = \App\Models\Claim::where('tracla',0)->where(function($q){
+            $claims = Claim::where('tracla',0)->where(function($q){
                 if (Auth::user()->isGestor()) {
                     $q->where('gestor_id',Auth::id());
                 }

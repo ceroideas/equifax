@@ -7,6 +7,8 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Auth;
 
+use App\Models\Actuation;
+
 class ActuationsExport implements FromView
 {
     public function __construct($type)
@@ -17,24 +19,29 @@ class ActuationsExport implements FromView
 
         if ($this->type == 0) {
 
-            $actuations = \App\Models\Actuation::all()
-                    ->sortByDesc(['claim_id','id']);
+            $actuations = Actuation::all()
+                        ->sortByDesc(['claim_id','id']);
+            $type = 0;
 
-            /* TODO: Delete, only debug prop.
-            foreach($actuations as $value){
-                print_r($value['id']);print_r(" - ");
-                print_r($value['claim_id']);print_r(" - ");
-                print_r($value['subject']);echo "<br>";
-
-            }
-            dd($actuations);
-            */
-           $type = 0;
+            $this->setExport($actuations);
 
         }else{
-            /*   Pendiente actuaciones no exportadas previamente
-            $type = 1;*/
+
+            $actuations = Actuation::where('traact',0)
+                        ->get();
+            $type = 1;
+
+            $this->setExport($actuations);
+
         }
         return view('actuations-excel', compact('actuations','type'));
+    }
+
+    public function setExport($actuations){
+        foreach($actuations as $actuation){
+            $actuation = Actuation::find($actuation->id);
+            $actuation->traact = 1;
+            $actuation->save();
+        }
     }
 }

@@ -985,7 +985,6 @@ class ClaimsController extends Controller
 
     public function exportNewClaims()
     {
-        // hasta aqui ok
         return Excel::download(new ClaimsExport(2), 'new_claims-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
     }
 
