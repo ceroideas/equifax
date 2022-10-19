@@ -18,4 +18,11 @@ class ActuationsController extends Controller
         return Excel::download(new ActuationsExport(0), 'all_actuations-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
     }
 
+    public function exportNewActuations()
+    {
+        return Excel::download(new ActuationsExport(1), 'new_actuations-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
+    }
+
+
+
 }
