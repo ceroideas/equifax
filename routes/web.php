@@ -126,10 +126,12 @@ Route::get('viability', [ClaimsController::class, 'viability']);
 Route::post('uploadApudActa', [ClaimsController::class, 'uploadApudActa']);
 
 Route::get('export-all', [ClaimsController::class, 'exportAll']);
+Route::get('export-new-claims', [ClaimsController::class, 'exportNewClaims']);
 Route::get('export-finished', [ClaimsController::class, 'exportFinished']);
 Route::get('export-users', [UsersController::class, 'exportUsers']);
 
 Route::get('export-actuations-all', [ActuationsController::class, 'exportActuationsAll']);
+Route::get('export-new-actuations', [ActuationsController::class, 'exportNewActuations']);
 
 /* Terceros */
 Route::group(['prefix' => 'third-parties'], function(){

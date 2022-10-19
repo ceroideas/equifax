@@ -7,7 +7,6 @@
             <th>ACTUACIONES</th>
             <th>LAST ACTUATION</th>--}}
 
-
 			<th>Número de reclamación</th>
 			<th>Reclamación propia</th>
             <th>Cliente ID</th>
@@ -34,8 +33,6 @@
             {{-- Reclamacion previa--}}
             <th>Reclamación Previa</th>
             <th>Fecha Reclamación Previa</th>
-            <th>Pagos parciales</th>
-            <th>Detalle de pagos parciales</th>
             <th>Motivo alegación</th>
             <th>Fichero reclamación previa</th>
 
@@ -66,157 +63,105 @@
 			<th>Deudor Población</th>
             <th>Deudor Provincia</th>
 
-			<th>Documentación</th>
-
+            <th>Numero Pagos parciales</th>
+            <th>Numero documentos adjuntos</th>
 		</tr>
 	</thead>
 
 	<tbody>
 
 		@foreach ($claims as $claim)
-        {{--  Desenredamos lo anidado --}}
+            <tr>
+                {{-- Solo para debug
+                <td>{{$type}}</td>
+                <td>{{$claim->actuations()->count() ? $claim->actuations()->count() : "Sin actuaciones"}} </td>
+                <td>{{$claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : "Sin subject"}} </td>
+                --}}
 
-        {{--
-            IF(tiene actuaciones)  {
-                de la reclamacion, obten el ultim subject que sea igual a 21 o 2101
-            }ELSE{
-                false
-            }
-            --}}
+                <td>{{ $claim->debt->document_number }}</td>
+                <td>{{ $claim->user_id == NULL ? 'Tercero':'Propia' }}</td>
+                <td>{{ $claim->owner == NULL ? 'No existe': $claim->owner->id }}</td>
+                {{-- Datos del cliente que hizo la reclamacion --}}
+                <td>{{ $claim->owner->name }}</td>
+                <td>{{ $claim->owner->email }}</td>
+                <td>{{ $claim->owner->phone }}</td>
+                <td>{{ $claim->owner->dni }}</td>
+                <td>{{ $claim->owner->address }}</td>
+                <td>{{ $claim->owner->cop }}</td>
+                <td>{{ $claim->owner->location }}</td>
+                <td>{{ $claim->owner->province }}</td>
+                <td>{{ $claim->owner->iban }}</td>
 
-{{--			@if ($type == 0 &&
-				($claim->actuations()->count() ?
-
-					($claim->actuations()->get()->last()->getRawOriginal('subject') == 21 ||
-					 $claim->actuations()->get()->last()->getRawOriginal('subject') == 2101)
-
-				 : false)
-
-				|| $type == 1)--}}
-				<tr>
-                    {{-- Solo para debug
-                    <td>{{$type}}</td>
-                    <td>{{$claim->actuations()->count() ? $claim->actuations()->count() : "Sin actuaciones"}} </td>
-                    <td>{{$claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : "Sin subject"}} </td>
-                    --}}
-
-		            <td>{{ $claim->debt->document_number }}</td>
-		            <td>{{ $claim->user_id == NULL ? 'Tercero':'Propia' }}</td>
-                    <td>{{ $claim->owner == NULL ? 'No existe': $claim->owner->id }}</td>
-                    {{-- Datos del cliente que hizo la reclamacion --}}
-                    <td>{{ $claim->owner->name }}</td>
-                    <td>{{ $claim->owner->email }}</td>
-                    <td>{{ $claim->owner->phone }}</td>
-                    <td>{{ $claim->owner->dni }}</td>
-                    <td>{{ $claim->owner->address }}</td>
-                    <td>{{ $claim->owner->cop }}</td>
-                    <td>{{ $claim->owner->location }}</td>
-                    <td>{{ $claim->owner->province }}</td>
-                    <td>{{ $claim->owner->iban }}</td>
-
-                    {{-- Datos Acreedor Owner = user si es en nombre propio --}}
-		            <td>{{ $claim->user_id ? $claim->client->name : $claim->representant->name}}</td>
-                    <td>{{ $claim->user_id ? $claim->client->email : $claim->representant->email}}</td>
-                    <td>{{ $claim->user_id ? $claim->client->phone : $claim->representant->phone}}</td>
-		            <td>{{ $claim->user_id ? $claim->client->dni : $claim->representant->dni}}</td>
-                    <td>{{ $claim->user_id ? $claim->client->address : $claim->representant->address}}</td>
-                    <td>{{ $claim->user_id ? $claim->client->cop : $claim->representant->cop}}</td>
-                    <td>{{ $claim->user_id ? $claim->client->location : $claim->representant->location}}</td>
-                    <td>{{ $claim->user_id ? $claim->client->province : $claim->representant->province}}</td>
+                {{-- Datos Acreedor Owner = user si es en nombre propio --}}
+                <td>{{ $claim->user_id ? $claim->client->name : $claim->representant->name}}</td>
+                <td>{{ $claim->user_id ? $claim->client->email : $claim->representant->email}}</td>
+                <td>{{ $claim->user_id ? $claim->client->phone : $claim->representant->phone}}</td>
+                <td>{{ $claim->user_id ? $claim->client->dni : $claim->representant->dni}}</td>
+                <td>{{ $claim->user_id ? $claim->client->address : $claim->representant->address}}</td>
+                <td>{{ $claim->user_id ? $claim->client->cop : $claim->representant->cop}}</td>
+                <td>{{ $claim->user_id ? $claim->client->location : $claim->representant->location}}</td>
+                <td>{{ $claim->user_id ? $claim->client->province : $claim->representant->province}}</td>
 
 
-                            {{-- Reclamacion previa --}}
-                    <td>{{ $claim->debt->reclamacion_previa_indicar == 1? 'Si': 'No' }}</td>
-                    <td>{{ $claim->debt->fecha_reclamacion_previa }}</td>
-                    <td>{{ $claim->debt->partials_amount }}</td>
-                    <td>{{ $claim->debt->partials_amount_details }}</td>
-                    <td>{{ $claim->debt->motivo_reclamacion_previa }}</td>
-                    <td>{{ $claim->debt->reclamacion_previa }}</td>
+                {{-- Reclamacion previa --}}
+                <td>{{ $claim->debt->reclamacion_previa_indicar == 1? 'Si': 'No' }}</td>
+                <td>{{ $claim->debt->fecha_reclamacion_previa }}</td>
+                <td>{{ $claim->debt->motivo_reclamacion_previa }}</td>
+                <td>{{ $claim->debt->reclamacion_previa }}</td>
 
+                {{-- Datos de deuda --}}
+                <td>{{ $claim->debt->concept }}</td>
+                <td>{{ $claim->debt->total_amount }}€</td>
+                <td>{{ $claim->debt->pending_amount }}€</td>
+                <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
+                <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
+                <td>{{ $claim->getType() }}</td>
+                <td>{{ $claim->getStatus() }}</td>
+                <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td>
+                <td>{{ $claim->getHito() }}</td>
 
-                    {{-- Datos de deuda --}}
-                    <td>{{ $claim->debt->concept }}</td>
-                    <td>{{ $claim->debt->total_amount }}€</td>
-		            <td>{{ $claim->debt->pending_amount }}€</td>
-	                <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
-	                <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
-		            <td>{{ $claim->getType() }}</td>
-		            <td>{{ $claim->getStatus() }}</td>
+                {{-- Datos agreement --}}
+                <td>{{$claim->agreement == Null ? 'No acepta quitas y espera':'Acepta quitas y espera'}}</td>
+                <td>{{$claim->agreement == Null ? '':$claim->agreement->take}}</td>
+                <td>{{$claim->agreement == Null ? '':$claim->agreement->wait}}</td>
+                <td>{{$claim->agreement == Null ? '':$claim->agreement->observation}}</td>
 
-		            <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td>
-		            <td>{{ $claim->getHito() }}</td>
+                {{-- Datos Deudor --}}
+                <td>{{ $claim->debtor->name }}</td>
+                <td>{{ $claim->debtor->email }}</td>
+                <td>{{ $claim->debtor->phone }}</td>
+                <td>{{ $claim->debtor->dni }}</td>
+                <td>{{ $claim->debtor->address }}</td>
+                <td>{{ $claim->debtor->cop }}</td>
+                <td>{{ $claim->debtor->location }}</td>
+                <td>{{ $claim->debtor->province }}</td>
 
-                    {{-- Datos agreement --}}
-                    <td>{{$claim->agreement == Null ? 'No acepta quitas y espera':'Acepta quitas y espera'}}</td>
-                    <td>{{$claim->agreement == Null ? '':$claim->agreement->take}}</td>
-                    <td>{{$claim->agreement == Null ? '':$claim->agreement->wait}}</td>
-                    <td>{{$claim->agreement == Null ? '':$claim->agreement->observation}}</td>
+                <td>{{ $claim->debt->partials_amount }}</td>
 
-                    {{-- Datos Deudor --}}
-		            <td>{{ $claim->debtor->name }}</td>
-		            <td>{{ $claim->debtor->email }}</td>
-		            <td>{{ $claim->debtor->phone }}</td>
-		            <td>{{ $claim->debtor->dni }}</td>
-		            <td>{{ $claim->debtor->address }}</td>
-		            <td>{{ $claim->debtor->cop }}</td>
-		            <td>{{ $claim->debtor->location }}</td>
-                    <td>{{ $claim->debtor->province }}</td>
+                    @php $documents = App\Models\DebtDocument::where('debt_id',$claim->debt->id)->get() @endphp
 
-	            	@foreach (App\Models\DebtDocument::where('debt_id',$claim->debt->id)->get() as $key => $doc)
-	                    @switch($doc->type)
-	                        @case('factura')
-	                        	<td>FACTURA: {{url($doc->document)}}</td>
-                                <td>HITOS: {{ $doc->hitos }}</td>
-	                        @break
-                            @case('factura_rectificativa')
-                                <td>FACTURA RECTIFICATIVA: {{url($doc->document)}}</td>
-                                <td>HITOS: {{ $doc->hitos }}</td>
-                            @break
-							@case('albaran')
-								<td>ALBARÁN: {{url($doc->document)}}</td>
-							@break
-							@case('recibo')
-								<td>RECIBO DE ENTREGA: {{url($doc->document)}}</td>
-							@break
-							@case('contrato')
-								<td>CONTRATO: {{url($doc->document)}}</td>
-							@break
-							@case('hoja_encargo')
-								<td>HOJA DE ENCARGO: {{url($doc->document)}}</td>
-							@break
-							@case('hoja_pedido')
-								<td>HOJA DE PEDIDO: {{url($doc->document)}}</td>
-							@break
-							@case('reconocimiento')
-								<td>RECONOCIMIENTO DE DEUDA: {{url($doc->document)}}</td>
-							@break
-							@case('extracto')
-								<td>EXTRACTO BANCARIO: {{url($doc->document)}}</td>
-							@break
-							@case('escritura')
-								<td>ESCRITURA NOTARIAL: {{url($doc->document)}}</td>
-							@break
-							@case('burofax')
-								<td>BUROFAX: {{url($doc->document)}}</td>
-							@break
-							@case('carta_certificada')
-								<td>CARTA CERTIFICADA: {{url($doc->document)}}</td>
-							@break
-							@case('email')
-								<td>E-MAILS: {{url($doc->document)}}</td>
-                                <td>HITOS: {{ $doc->hitos }}</td>
+                <td> {{ $documents->count('id')}} </td>
 
-							@break
-							@case('otros')
-								<td>OTROS: {{url($doc->document)}}</td>
-							@break
-	                    @endswitch
+                @if( $claim->debt->partials_amount >= 1)
 
-	                @endforeach
-		        </tr>
-			{{--@endif--}}
+                    @php $partials = json_decode($claim->debt->partials_amount_details); @endphp
+
+                    @if(count($partials))
+                        @foreach($partials as $partial)
+                            <td> {{ $partial->amount}} € </td>
+                            <td> {{ date("d/m/Y",strtotime($partial->date))}} </td>
+                        @endforeach
+                    @endif
+                @else
+                    <td></td>
+                @endif
+
+                @foreach($documents as $doc)
+                    <td>{{ url($doc->document) }}</td>
+                    {{-- Se necesitan poner todos los campos de los documentos --}}
+                    {{-- <td>{{ $doc }} </td> --}}
+                @endforeach
+            </tr>
 		@endforeach
-
 	</tbody>
-
 </table>
