@@ -285,14 +285,14 @@
                         </div>
                     </div>
                 </div>
-
+                {{--
                 <div class="container text-center bottom-text">
                     <img data-v-494d1a60=""
                     style="border-radius: 12px;"
                     src="{{ url('landing') }}/images/HP/HP/Nuestra filosofía/equipo_dividae.jpg"
                     class="img-amistosa img-fluid">
                 </div>
-
+                --}}
 
 
                 {{-- <div data-v-861c26ae="" data-v-c7d18d50="" class="block-SlidesAbout" data-v-effc9f78="">
