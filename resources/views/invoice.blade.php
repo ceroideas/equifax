@@ -73,7 +73,9 @@
                             </td>
                             <td class="col-1 w-auto text-center border-0">{{$value['canlin']}}</td>
                             <td class="col-2 w-auto text-center border-0">{{number_format($value['prelin'],2,',','.')}} €</td>
-                            <td class="col-2 w-auto text-center border-0">{{ $value['dtolin']}} %</td>
+                            <td class="col-2 w-auto text-center border-0">
+                                {{ $value['dtolin']==0 ? '' : $value['dtolin'].' %' }}
+                            </td>
                             @if ($value['ivalin']=='IVA0')
                                 <td class="col-2 w-auto text-center border-0">0 %</td>
                             @elseif($value['ivalin']=='IVA10')

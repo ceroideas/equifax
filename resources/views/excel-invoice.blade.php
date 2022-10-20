@@ -71,7 +71,8 @@
               </td>
               <td style="text-align: right;">{{$value['canlin']}}</td>
               <td style="text-align: right;">{{number_format($value['prelin'],2,',','.')}}</td>
-              <td>{{ $value['dtolin']}}%</td>
+              <td>{{ $value['dtolin']==0 ? '' : $value['dtolin'].' %' }}</td>
+
               {{--  IVA --}}
               @if ($value['ivalin']=='IVA0')
                 <td style="text-align: right;">0%</td>
