@@ -25,7 +25,7 @@
 	    <div class="col-sm-3"><strong>Fecha: <br></strong> {{ $i->created_at->format('d/m/Y') }}</div>
 	    <div class="col-sm-3"> <strong>Reclamación Nº: <br></strong> {{$i->claim->id}}</div>
 	    <div class="col-sm-3"> </div>
-	    <div class="col-sm-3 text-sm-right"> <strong>Factura Nº: <br></strong> DVD-{{$i->id}}</div>
+	    <div class="col-sm-3 text-sm-right"> <strong>Factura Nº: <br></strong> {{$i->id}}</div>
 
 	  </div>
 	  <hr>
@@ -56,9 +56,10 @@
 			<thead class="card-header">
 	          <tr>
 	            {{-- <td class="col-3 w-auto border-0" style="width: 100px !important"><strong>Servicio</strong></td> --}}
-				<td colspan="2" class="col-5 w-auto border-0"><strong>Descripción</strong></td>
+				<td colspan="2" class="col-3 w-auto border-0"><strong>Descripción</strong></td>
 				<td class="col-1 w-auto text-center border-0" style="width: 100px !important"><strong>Cantidad</strong></td>
                 <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Precio</strong></td>
+                <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Descuento</strong></td>
                 <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>IVA</strong></td>
                 <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Total</strong></td>
 	          </tr>
@@ -71,47 +72,52 @@
                             {{$value['deslin']}}
                             </td>
                             <td class="col-1 w-auto text-center border-0">{{$value['canlin']}}</td>
-                            <td class="col-2 w-auto text-center border-0">{{number_format($value['prelin'],2,',','.')}}</td>
+                            <td class="col-2 w-auto text-center border-0">{{number_format($value['prelin'],2,',','.')}} €</td>
+                            <td class="col-2 w-auto text-center border-0">{{ $value['dtolin']}} %</td>
                             @if ($value['ivalin']=='IVA0')
-                            <td class="col-2 w-auto text-center border-0">0%</td>
+                                <td class="col-2 w-auto text-center border-0">0 %</td>
                             @elseif($value['ivalin']=='IVA10')
-                            <td class="col-2 w-auto text-center border-0">10%</td>
+                                <td class="col-2 w-auto text-center border-0">10 %</td>
                             @elseif($value['ivalin']=='IVA4')
-                            <td class="col-2 w-auto text-center border-0">4%</td>
+                                <td class="col-2 w-auto text-center border-0">4 %</td>
                             @else
-                            <td class="col-2 w-auto text-center border-0">21%</td>
+                                <td class="col-2 w-auto text-center border-0">21 %</td>
                             @endif
-                            <td class="col-2 w-auto text-center border-0">{{number_format($value['totlin'],2,',','.')}}</td>
+                            <td class="col-2 w-auto text-center border-0">{{number_format($value['totlin'],2,',','.')}}  €</td>
                         </tr>
                     @endforeach
 	            </tbody>
 
                 <tfoot class="card-footer">
+
                     <tr>
                         <td colspan="2" class="col-5 w-auto border-0"><strong></strong></td>
                         <td class="col-1 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Subtotal:</strong></td>
                         {{-- Sumatorio de Bases --}}
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>
-                            {{number_format($i->bas1fac+$i->bas2fac+$i->bas3fac+$i->bas4fac,2,',','.')}}
+                            {{number_format($i->bas1fac+$i->bas2fac+$i->bas3fac+$i->bas4fac,2,',','.')}} €
                         </strong></td>
                     </tr>
                     <tr>
                         <td colspan="2" class="col-5 w-auto border-0"><strong></strong></td>
                         <td class="col-1 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>IVA:</strong></td>{{-- Sumatoria de ivas --}}
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>
-                            {{number_format($i->iiva1fac+$i->iiva2fac+$i->iiva3fac,2,',','.')}}
+                            {{number_format($i->iiva1fac+$i->iiva2fac+$i->iiva3fac,2,',','.')}} €
                         </strong></td>
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td colspan="2" class="col-5 w-auto border-0"><strong></strong></td>
                         <td class="col-1 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Total:</strong></td>
-                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>{{number_format($i->totfac,2,',','.')}}</strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>{{number_format($i->totfac,2,',','.')}} €</strong></td>
                       </tr>
                   </tfoot>
 
