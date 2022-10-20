@@ -38,7 +38,7 @@
 
             {{-- Datos deuda --}}
             <th>Concepto deuda</th>
-            <th>Total deuda</th>
+            <th>Deuda original</th>
             <th>Importe reclamado</th>
 			<th>Cobros recibidos</th>
 			<th>Importe pendiente de pago</th>
@@ -111,7 +111,8 @@
 
                 {{-- Datos de deuda --}}
                 <td>{{ $claim->debt->concept }}</td>
-                <td>{{ $claim->debt->total_amount }}€</td>
+                {{--  --}}
+                <td>{{ ($claim->debt->total_amount + ($claim->debt->total_amount * ($claim->debt->tax/100)))}}€</td>
                 <td>{{ $claim->debt->pending_amount }}€</td>
                 <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
                 <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
