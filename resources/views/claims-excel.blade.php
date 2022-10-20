@@ -157,9 +157,218 @@
                 @endif
 
                 @foreach($documents as $doc)
-                    <td>{{ url($doc->document) }}</td>
-                    {{-- Se necesitan poner todos los campos de los documentos --}}
-                    {{-- <td>{{ $doc }} </td> --}}
+                    @switch($doc->type)
+                        @case('factura')
+                            <td>FACTURA: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->factura as $key => $value)
+                                    @if($key == 'fecha_factura' || $key =='vencimiento_factura')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('factura_rectificativa')
+                            <td>FACTURA RECTIFICATIVA: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->factura_rectificativa as $key => $value)
+                                    @if($key == 'fecha_factura' || $key =='vencimiento_factura')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('albaran')
+                            <td>ALBARÁN: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->albaran as $key => $value)
+                                    @if($key == 'fecha_albaran')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('recibo')
+                            <td>RECIBO DE ENTREGA: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->recibo as $key => $value)
+                                    @if($key == 'fecha_recibo')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('contrato')
+                            <td>CONTRATO: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->contrato as $key => $value)
+                                    @if($key == 'fecha_contrato')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('hoja_encargo')
+                            <td>HOJA DE ENCARGO: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->hoja_encargo as $key => $value)
+                                    @if($key == 'fecha_hoja_encargo')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('hoja_pedido')
+                            <td>HOJA DE PEDIDO: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->hoja_pedido as $key => $value)
+                                    @if($key == 'fecha_hoja_pedido')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('reconocimiento')
+                            <td>RECONOCIMIENTO DE DEUDA: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->reconocimiento as $key => $value)
+                                    @if($key == 'fecha_reconocimiento')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('extracto')
+                            <td>EXTRACTO BANCARIO: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->extracto as $key => $value)
+                                    @if($key == 'fecha_extracto')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('escritura')
+                            <td>ESCRITURA NOTARIAL: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->escritura as $key => $value)
+                                    @if($key == 'fecha_escritura')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('burofax')
+                            <td>BUROFAX: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->burofax as $key => $value)
+                                    @if($key == 'fecha_burofax')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('carta_certificada')
+                            <td>CARTA CERTIFICADA: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->carta_certificada as $key => $value)
+                                    @if($key == 'fecha_carta')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                        @case('email')
+                            <td>E-MAILS: {{url($doc->document)}}</td>
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->email as $key => $value)
+                                    @if($key == 'fecha_email')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @break
+                        @case('otros')
+                            <td>OTROS: {{url($doc->document)}}</td>
+
+                            @php $hitoDecode = json_decode($doc->hitos); @endphp
+                            @if(is_object($hitoDecode))
+                                @foreach($hitoDecode->otros as $key => $value)
+                                    @if($key == 'fecha_otros')
+                                        <td> {{$key}} :: {{date("d/m/Y",strtotime($value)) }} </td>
+                                    @else
+                                        <td> {{$key}} :: {{$value}} </td>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        @break
+                    @endswitch
+
+
                 @endforeach
             </tr>
 		@endforeach
