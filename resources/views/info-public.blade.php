@@ -271,7 +271,8 @@
                                 <tr>
                                     <th style="background-color: #e65927; text-align: center; color: #fff">Tipo de
                                         procedimiento</th>
-<!--                                    <th style="background-color: #e65927; text-align: center; color: #fff">Tarifa de
+                                        <!--
+                                        <th style="background-color: #e65927; text-align: center; color: #fff">Tarifa de
                                         éxito*</th>-->
                                     <th style="background-color: #e65927; text-align: center; color: #fff">Precio
                                         fijo **</th>
@@ -279,12 +280,14 @@
                             </thead>
 
                             <tbody>
-                                <tr>
-                                <td style="color:#285ba3">{{$concepto}}</td>
-                                    <!--<td rowspan="5"
-                                        style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>-->
-                                <td style="text-align: right;color:#285ba3;">{{$importe}} €</td>
-                                </tr>
+                                @foreach($conceptos as $key => $concepto)
+                                    <tr>
+                                        <td style="color:#285ba3">{{$concepto}}</td>
+                                        <!--<td rowspan="5"
+                                            style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>-->
+                                        <td style="text-align: right;color:#285ba3;">{{number_format($importes[$key],2,',','.')}} €</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
 

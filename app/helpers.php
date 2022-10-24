@@ -50,13 +50,22 @@ function getHito($id_hito)
     return [$ht,$ht];
 }
 
-function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $observations = null)
+function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $observations = null, $actuation_id = null)
 {
 	$h = getHito($id_hito)[0];
 	$amount = null;
 	$amounts = [];
 	$type = [];
 	$claim = Claim::find($claim_id);
+
+    if(file_exists('testing/testing_claims_actuations.txt')){
+        $file = fopen('testing/testing_claims_actuations.log', 'a');
+        fwrite($file, date("d/m/Y H:i:s").'-'.'ActuationActions en Helper inicia con: ' . PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.'$id_hito: ' . $id_hito . ' $claim_id: '. $claim_id. ' $observations: '. $observations .' id_actuation: '. $actuation_id.PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.'Busca hito: ' . $h . PHP_EOL);
+        fclose($file);
+    }
+
 
 	/*if ($claim->claim_type == 2) {
 
@@ -281,7 +290,54 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 			if ($h['redirect_to'] === "21") {
 				// la reclamación queda aqui porque es el inicio del proceso e id del hito para exportar las reclamaciones
 			}
-		}
+		}else{
+                // comprobar si el hito debe enviar un email
+            if(file_exists('testing/testing_claims_actuations.txt')){
+                $file = fopen('testing/testing_claims_actuations.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'No hay redireccion en el hito: ' . PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Comprobamos si envia email si existe template: ' . $h['template_id']. PHP_EOL);
+                fclose($file);
+            }
+            if ($h['template_id']) {
+
+                if(file_exists('testing/testing_claims_actuations.txt')){
+                    $file = fopen('testing/testing_claims_actuations.log', 'a');
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'Preparando email  ' . PHP_EOL);
+                    fclose($file);
+                }
+
+                // code...
+                $se = new SendEmail;
+                $se->addresse = $claim ? $claim->owner->email : '';
+                $se->template_id = $h['template_id'];
+                $se->actuation_id = $actuation_id;// viene desde claimsController
+                $se->save();
+
+                if(file_exists('testing/testing_claims_actuations.txt')){
+                    $file = fopen('testing/testing_claims_actuations.log', 'a');
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'SendEmail grabado  ' . PHP_EOL);
+                    fclose($file);
+                }
+
+                $o = User::where('email',$se->addresse)->first();
+
+                $tmp = $se->template;
+                Mail::send('email_base', ['se' => $se], function ($message) use($tmp, $o) {
+                    $message->to($o->email, $o->name);
+                    $message->subject($tmp->title);
+                });
+
+                $se->send_count += 1;
+                $se->save();
+
+                if(file_exists('testing/testing_claims_actuations.txt')){
+                    $file = fopen('testing/testing_claims_actuations.log', 'a');
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'Enviando email a: ' .$o->email .' '. $o->name . PHP_EOL);
+                    fclose($file);
+                }
+            }
+
+        }
 
 		/*echo 'Email: '.($h['email'] ? 'Si' : 'No');
 		echo '<br>';

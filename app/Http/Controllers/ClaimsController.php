@@ -902,13 +902,29 @@ class ClaimsController extends Controller
 
         $h = getHito($r->subject)[0];
 
+        if(file_exists('testing/testing_claims_actuations.txt')){
+            $file = fopen('testing/testing_claims_actuations.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'saveActuation claim_id: ' . $id . PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'saveActuation id actuation: ' . $a->id . PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.$r->subject[0]. PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.$h. PHP_EOL);
+            fclose($file);
+        }
+
         if ($h && $h['template_id']) {
+            if(file_exists('testing/testing_claims_actuations.txt')){
+                $file = fopen('testing/testing_claims_actuations.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Solo registra envio email template: ' . $h['template_id']. PHP_EOL);
+                fclose($file);
+            }
+            /* Se almacena en helper
             $se = new SendEmail;
             $se->addresse = $a->claim ? $a->claim->owner->email : '';
             $se->template_id = $h['template_id'];
             $se->actuation_id = $a->id;
-            $se->save();
+            $se->save();*/
         }
+
 
         $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
 
@@ -924,7 +940,15 @@ class ClaimsController extends Controller
             }
         }
 
-        actuationActions($r->subject,$id,$r->amount,$r->actuation_date,$r->description);
+        if(file_exists('testing/testing_claims_actuations.txt')){
+            $file = fopen('testing/testing_claims_actuations.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Proceso files y vamos a actuations con parametros: ' . PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'r->subject: ' . $r->subject. ' ID: '. $id. ' r->description: '. $r->description . PHP_EOL);
+            fclose($file);
+        }
+
+
+        actuationActions($r->subject,$id,$r->amount,$r->actuation_date,$r->description, $a->id);
 
     }
 
@@ -1119,22 +1143,83 @@ class ClaimsController extends Controller
 
 
         //$infopago = config('app.infopago'); // Mensajes personalizados para mostrar al cliente
-        list($infopago, $titulo, $hito, $msg, $concepto, $importe) = array(config('app.infopago'), "","","","","");
+        list($infopago, $titulo, $hito, $msg, $conceptos, $importes) = array(config('app.infopago'), "","","",array(),array());
 
-        /* Comprobar si existe la reclamacion */
+        /* Comprobar si existe la reclamacion
         $claim = Claim::where('id',$id)
                                 ->get();
         if($claim->isEmpty()){
             return redirect('/')->with('msg', 'La reclamacion '.$id.' no existe');
-        }
+        }*/
 
         /* Comprobar si la factura existente esta pendiente de pago */
         /* Comprobar las actuaciones que generan la factura pendiente de pago */
         /* Recuperar si existe factura pendiente de pago, recuperaremos conceptos y enviamos enlace de pago */
         $invoice = Invoice::where('claim_id',$id)
-                                    ->orderBy('id','desc')
-                                    ->take(1)
-                                    ->get();
+                            ->where('status','=',NULL)
+                            ->orderBy('id','desc')
+                            ->get();
+            // recuperar la factura de la reclamacion con estatus 0
+
+            //dump($invoice);
+            //dump(count($invoice));
+        if(count($invoice)){
+
+
+                // Recuperamos detalles
+                // V1: Recuperar si el ultimo hito corresponde al 301 o 302 recuperar el que lo genero app.infopago
+                /*
+                $actuaciones = Actuation::where('claim_id',$id)
+                ->orderBy('id', 'desc')
+                ->get();
+
+                if(count($actuaciones)){
+                    dump($actuaciones);
+                }else{
+                    print_r("No hay actuaciones");
+                }*/
+                // V2: Recuperamos directamente las lineas de detalle de la factura pendiente de pago
+                // En base al codigo del articulo debemos buscar las actuaciones o no
+            $Linvoices = Linvoice::where('invoice_id',$invoice[0]->id)
+                            ->get();
+                // Prevenimos error en lineas de detalle
+            if(count($Linvoices)){
+                // Determinamos si existe el concepto extrajudicial, si existe tenemos que enviar
+                // Si existe, tenemos que enviar a vista las lineas de detalle con su
+                foreach($Linvoices as $key => $LInvoice){
+                    if($LInvoice->artlin=='EXT-001'){
+                        $extrajudicial = true;
+                    }
+                    $titulo = 'Procedimiento extrajudicial';
+                    $conceptos[$key] = $Linvoices[$key]->deslin;
+                    $importes[$key] = $Linvoices[$key]->prelin;
+
+                }
+                if($extrajudicial == true){
+                    return view('info-public', compact('hito', 'titulo','msg','conceptos','importes', 'id'));
+                }else{
+                    //Leemos actuaciones y procesamos lo demas
+
+                }
+
+                // Enviamos a la info con las lineas de detalle
+
+
+            }else{
+                $titulo = 'Error al leer lineas de detalle';
+
+                return view('info-public', compact('hito', 'titulo','msg','conceptos','importes', 'id'));
+            }
+
+
+        }else{
+            return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
+        }
+
+    die(); // Hasta aqui todo ok, lee lineas, facturas pendientes
+    // Ahora que pasa si es gestoria
+
+/************************************************* Version previa **********************************************/
 
         if($invoice->isNotEmpty()){
             /* $invoice[0]->status = 1 pagada, null pendiente de pago*/
