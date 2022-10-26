@@ -348,8 +348,8 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="excecution_concept" label="Concepto Ejecución" placeholder="Concepto Ejecución" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->excecution_concept : ''}}">
+                <x-adminlte-input name="execution_concept" label="Concepto Ejecución" placeholder="Concepto Ejecución" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->execution_concept : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>

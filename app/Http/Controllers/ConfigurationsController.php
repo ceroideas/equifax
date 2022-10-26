@@ -76,7 +76,7 @@ class ConfigurationsController extends Controller
         //$configuration->ordinay_fees_code = array_key_exists('ordinay_fees_code', $data) ? $data['ordinay_fees_code'] : null;
         $configuration->ordinary_fees_concept = array_key_exists('ordinary_fees_concept', $data) ? $data['ordinary_fees_concept'] : null;
         //$configuration->execution_code = array_key_exists('execution_code', $data) ? $data['execution_code'] : null;
-        $configuration->excecution_concept = array_key_exists('excecution_concept', $data) ? $data['excecution_concept'] : null;
+        $configuration->execution_concept = array_key_exists('execution_concept', $data) ? $data['execution_concept'] : null;
         //$configuration->resource_code = array_key_exists('resource_code', $data) ? $data['resource_code'] : null;
         $configuration->resource_concept = array_key_exists('resource_concept', $data) ? $data['resource_concept'] : null;
 
@@ -143,7 +143,7 @@ class ConfigurationsController extends Controller
         //$configuration->ordinay_fees_code = array_key_exists('ordinay_fees_code', $data) ? $data['ordinay_fees_code'] : null;
         $configuration->ordinary_fees_concept = array_key_exists('ordinary_fees_concept', $data) ? $data['ordinary_fees_concept'] : null;
         //$configuration->execution_code = array_key_exists('execution_code', $data) ? $data['execution_code'] : null;
-        $configuration->excecution_concept = array_key_exists('excecution_concept', $data) ? $data['excecution_concept'] : null;
+        $configuration->execution_concept = array_key_exists('execution_concept', $data) ? $data['execution_concept'] : null;
         //$configuration->resource_code = array_key_exists('resource_code', $data) ? $data['resource_code'] : null;
         $configuration->resource_concept = array_key_exists('resource_concept', $data) ? $data['resource_concept'] : null;
 
@@ -207,7 +207,7 @@ class ConfigurationsController extends Controller
         //if(request('ordinay_fees_code')){$rules['ordinay_fees_code'] = 'required';}
         if(request('ordinary_fees_concept')){$rules['ordinary_fees_concept'] = 'required';}
         //if(request('execution_code')){$rules['execution_code'] = 'required';}
-        if(request('excecution_concept')){$rules['excecution_concept'] = 'required';}
+        if(request('execution_concept')){$rules['execution_concept'] = 'required';}
         //if(request('resource_code')){$rules['resource_code'] = 'required';}
         if(request('resource_concept')){$rules['resource_concept'] = 'required';}
 
