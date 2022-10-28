@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('ordinay_fees_code')->nullable();
             $table->string('ordinary_fees_concept')->nullable();
             $table->string('execution_code')->nullable();
-            $table->string('excecution_concept')->nullable();
+            $table->string('execution_concept')->nullable();
             $table->string('resource_code')->nullable();
             $table->string('resource_concept')->nullable();
         });

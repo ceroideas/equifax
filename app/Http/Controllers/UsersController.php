@@ -352,13 +352,17 @@ class UsersController extends Controller
         return PostalCode::where('code',$code)->first();
     }
 
-    public function testEmail($email = 'jorgesolano92@gmail.com')
+    public function testEmail($email = 'luiscampos@asemargc.com', $template_id = 1)
     {
-        $tmp = Template::find(1);
-        Mail::send('email_base_2', ['tmp' => $tmp], function ($message) use($tmp,$email) {
+        $email_base = $template_id == 1 ? 'email_base_2':'email_base';
+
+        $tmp = Template::find($template_id);
+        Mail::send($email_base, ['tmp' => $tmp, 'test'=> 1], function ($message) use($tmp,$email) {
             $message->to($email, 'PRUEBA CLIENTE');
             $message->subject($tmp->title);
         });
+        print_r("Enviado template: "); print_r($tmp->id); print_r(" - ");print_r($tmp->title);
+
     }
 
     public function migrar()
