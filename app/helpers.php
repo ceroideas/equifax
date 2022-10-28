@@ -168,7 +168,23 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 					$o = User::where('email',$se->addresse)->first();
 
 					$tmp = $se->template;
-		            Mail::send('email_base', ['se' => $se], function ($message) use($tmp, $o) {
+                    switch($tmp->id){
+                        case 3:
+                        case 7:
+                        case 9:
+                            $target = url('/info'.$tmp->id);
+                            break;
+                        case 2:
+                        case 6:
+                        case 11:
+                            $target = url('/panel');
+                            break;
+                        default:
+                            $target = url('/claims'.$tmp->id);
+                            break;
+                    }
+
+		            Mail::send('email_base', ['tmp' => $tmp, 'target'=>$target], function ($message) use($tmp, $o) {
 		                $message->to($o->email, $o->name);
 		                $message->subject($tmp->title);
 		            });

@@ -11,6 +11,10 @@
 	}
 </style>
 <body style="margin:0px; background: #fff;">
+    {{--  Solo para entorno test --}}
+    @if($test==1)
+        <p>Envio de pruebas Bienvenida: {{$tmp->id}} - {{ $tmp->title }}</p>
+    @endif
 	<div width="50%" style="background: #fff; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
 	  	<div style="max-width: 650px; padding:50px 0;  margin: 0px auto; font-size: 14px;">
 	  		<div style="">
@@ -26,7 +30,7 @@
                                   {{--<img src="{{url($tmp->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">--}}
 
 			          			<div style="width: auto; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
-			          				
+
 									<div style="background-color: transparent; color: #fd7e14; padding: 16px; width: fit-content;">
 			          					{!! $tmp->header_content !!}
 			          				</div>
@@ -47,19 +51,37 @@
 			        	<tr>
 			          		<td style="text-align: center;">
 			          			<br>
-			          			@if ($tmp->cta_button)
+                                @if ($test=1)
+                                    <h3>Entorno de pruebas, en entorno real iria a: {{$tmp->cta_button}}</h3><br>
+                                    <a href="https://dividae.com" target="_blank">
+                                        <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
+                                    </a>
+                                @else
+                                    <a href="{{$target}}" target="_blank">
+                                        <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
+                                    </a>
+                                @endif
+
+			          			{{--
+                                @if ($tmp->cta_button)
 			          				<a href="{{$tmp->cta_button_link}}">
 			          				<button style="width: 80%; background-color: #e65927; color: #fff !important; padding: 8px; border-radius: 4px;">
 			          					{{$tmp->cta_button}}
 			          				</button>
 			          				</a>
 			          			@endif
+                                --}}
 			          		</td>
 			        	</tr>
 			          	<tr>
 			          		<td>
 			          			{!! $tmp->signature !!}
 			          		</td>
+                            {{--
+                            <td>
+                                <div style="text-align: center; "><img style="width: 152px;" src="https://dividae.com/landing/assets/dividae_isotipo_color_90x111.png"></div>
+                            </td>
+                            --}}
 			        	</tr>
 			      	</tbody>
 			    </table>

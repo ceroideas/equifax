@@ -368,7 +368,16 @@ class ClaimsController extends Controller
      */
     public function show(Claim $claim)
     {
-        return view('claims.show', ['claim' => $claim]);
+        // Control de autenticacion y pertenencia a reclamación
+        if(Auth::user() <> null){
+            if($claim->owner_id == Auth::user()->id || Auth::user()->isSuperAdmin()){
+                return view('claims.show', ['claim' => $claim]);
+            }else{
+                return redirect('panel');
+            }
+        }else{
+            return redirect('login');
+        }
     }
 
     /**
