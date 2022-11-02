@@ -1195,6 +1195,7 @@ class ClaimsController extends Controller
             if(count($Linvoices)){
                 // Determinamos si existe el concepto extrajudicial, si existe tenemos que enviar
                 // Si existe, tenemos que enviar a vista las lineas de detalle con su
+                $extrajudicial = false;
                 foreach($Linvoices as $key => $LInvoice){
                     if($LInvoice->artlin=='EXT-001'){
                         $extrajudicial = true;
@@ -1202,12 +1203,15 @@ class ClaimsController extends Controller
                     $titulo = 'Procedimiento extrajudicial';
                     $conceptos[$key] = $Linvoices[$key]->deslin;
                     $importes[$key] = $Linvoices[$key]->prelin;
-
+                    $descuentos[$key] = $Linvoices[$key]->dtolin;
+                    $ivas[$key] = $Linvoices[$key]->ivalin;
+                    $totales[$key] = $Linvoices[$key]->totlin;
                 }
-                if($extrajudicial == true){
-                    return view('info-public', compact('hito', 'titulo','msg','conceptos','importes', 'id'));
+                if($extrajudicial==true){
+                    return view('info-public', compact('hito', 'titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice'));
                 }else{
-                    //Leemos actuaciones y procesamos lo demas
+                    //Leemos actuaciones y procesamos lo demas y mostramos las lineas de detalle
+
 
                 }
 

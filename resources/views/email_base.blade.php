@@ -78,9 +78,17 @@
                 <th>
                     @if ($test=1)
                         <h3>Entorno de pruebas, en entorno real iria a: {{$tmp->cta_button}}</h3><br>
-                        <a href="https://dividae.com" target="_blank">
-                            <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
-                        </a>
+                        @if($tmp->id == 2 || $tmp->id == 6 || $tmp->id == 11)
+                            <a href="https://dividae.com" target="_blank">
+                                <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
+                            </a>
+                        @else
+                            <a href="https://dividae.com" target="_blank">
+                                <img src="https://dividae.com/templates/btn_acceso_reclamacion.jpg">
+                            </a>
+
+                        @endif
+
                     @else
 
                         @if($tmp->id == 2 || $tmp->id == 6 || $tmp->id == 11)
