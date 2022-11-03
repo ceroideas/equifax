@@ -27,9 +27,11 @@
 
 <body width="100%" style="margin:0px; background: #fff;">
     {{--  Solo para entorno test --}}
-    @if($test==1)
-        <p>Envio de pruebas template id: {{$tmp->id}} - {{ $tmp->title }}</p>
-    @endif
+    @isset($test)
+        @if($test==1)
+            <p>Envio de pruebas template id: {{$tmp->id}} - {{ $tmp->title }}</p>
+        @endif
+    @endisset
     <table style="width:33%">
           <tr>
               <th><img src="{{ url($tmp->top_logo) }}" style="border:none;width: 150px;margin-left: 10px;"></th>

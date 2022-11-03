@@ -222,6 +222,7 @@
               Iniciar sesión con facebook
             </button>
         </div> --}}
+        <input type="text" name="referenced" id="referencedid" hidden>
 
     </form>
 
@@ -262,111 +263,115 @@
 @section('js')
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v13.0&appId=3075857299334927&autoLogAppEvents=1" nonce="mCZWGoDY"></script>
     <script>
-        $('.change-type').click(function(event) {
-            if ($('[name="password"]').attr('type') == 'password') {
-                $('[name="password"]').attr('type', 'text');
-                $('[name="password_confirmation"]').attr('type', 'text');
-            }else{
-                $('[name="password"]').attr('type', 'password');
-                $('[name="password_confirmation"]').attr('type', 'password');
+            $('.change-type').click(function(event) {
+                if ($('[name="password"]').attr('type') == 'password') {
+                    $('[name="password"]').attr('type', 'text');
+                    $('[name="password_confirmation"]').attr('type', 'text');
+                }else{
+                    $('[name="password"]').attr('type', 'password');
+                    $('[name="password_confirmation"]').attr('type', 'password');
+                }
+            });
+
+            $('#accept-terms').click(function(event) {
+                /* Act on the event */
+                $('#customCheckbox1').prop('checked', true)
+            });
+
+            window.fbAsyncInit = function() {
+                FB.init({
+                appId      : '3075857299334927',
+                cookie     : true,                     // Enable cookies to allow the server to access the session.
+                xfbml      : true,                     // Parse social plugins on this webpage.
+                version    : 'v13.0'           // Use this Graph API version for this call.
+                });
             }
-        });
 
-        $('#accept-terms').click(function(event) {
-            /* Act on the event */
-            $('#customCheckbox1').prop('checked', true)
-        });
-
-        window.fbAsyncInit = function() {
-            FB.init({
-              appId      : '3075857299334927',
-              cookie     : true,                     // Enable cookies to allow the server to access the session.
-              xfbml      : true,                     // Parse social plugins on this webpage.
-              version    : 'v13.0'           // Use this Graph API version for this call.
-            });
-        }
-
-        function initLogin()
-        {
-            FB.login(function(response) {
-              checkLoginState(response);
-            },{scope: 'public_profile,email'});
-        }
-
-
-
-        function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
-            console.log('statusChangeCallback');
-            console.log(response);                   // The current login status of the person.
-            if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-              testAPI();
-            } else {                                 // Not logged into your webpage or we are unable to tell.
-              document.getElementById('status').innerHTML = 'Please log ' +
-                'into this webpage.';
+            function initLogin()
+            {
+                FB.login(function(response) {
+                checkLoginState(response);
+                },{scope: 'public_profile,email'});
             }
-        }
 
 
-        function checkLoginState() {               // Called when a person is finished with the Login Button.
-            FB.getLoginStatus(function(response) {   // See the onlogin handler
-              statusChangeCallback(response);
+
+            function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+                console.log('statusChangeCallback');
+                console.log(response);                   // The current login status of the person.
+                if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+                testAPI();
+                } else {                                 // Not logged into your webpage or we are unable to tell.
+                document.getElementById('status').innerHTML = 'Please log ' +
+                    'into this webpage.';
+                }
+            }
+
+
+            function checkLoginState() {               // Called when a person is finished with the Login Button.
+                FB.getLoginStatus(function(response) {   // See the onlogin handler
+                statusChangeCallback(response);
+                });
+            }
+
+            function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+                console.log('Welcome!  Fetching your information.... ');
+                FB.api('/me?fields=id,name,email', function(response) {
+                console.log(response);
+
+                $.post('{{url('registerSocial')}}', {_token: '{{csrf_token()}}', name: response.name, email: response.email}, function(data, textStatus, xhr) {
+                    window.open('{{url('panel')}}','_self');
+                });
+                console.log('Successful login for: ' + response.name);
+                /*document.getElementById('status').innerHTML =
+                    'Thanks for logging in, ' + response.name + '!';*/
+                });
+            }
+
+            function ValidatePassword() {
+                /*Array of rules and the information target*/
+                var rules = [{
+                    Pattern: "[A-Z]",
+                    Target: "UpperCase"
+                    },
+                    {
+                    Pattern: "[a-z]",
+                    Target: "LowerCase"
+                    },
+                    {
+                    Pattern: "[0-9]",
+                    Target: "Numbers"
+                    },
+                    {
+                    Pattern: "[!@@#$%^&*_-]",
+                    Target: "Symbols"
+                    }
+                ];
+
+                //Just grab the password once
+                var password = $(this).val();
+
+                /*Length Check, add and remove class could be chained*/
+                /*I've left them seperate here so you can see what is going on */
+                /*Note the Ternary operators ? : to select the classes*/
+                $("#Length").removeClass(password.length > 7 ? "fa-times" : "fa-check");
+                $("#Length").addClass(password.length > 7 ? "fa-check" : "fa-times");
+
+                /*Iterate our remaining rules. The logic is the same as for Length*/
+                for (var i = 0; i < rules.length; i++) {
+
+                    $("#" + rules[i].Target).removeClass(new RegExp(rules[i].Pattern).test(password) ? "fa-times" : "fa-check");
+                    $("#" + rules[i].Target).addClass(new RegExp(rules[i].Pattern).test(password) ? "fa-check" : "fa-times");
+                }
+            }
+
+            /*Bind our event to key up for the field. It doesn't matter if it's delete or not*/
+            $(document).ready(function() {
+            $("#NewPassword").on('keyup', ValidatePassword)
+
+                let cadena = window.location.href;
+                $('[name="referenced"]').val(cadena.slice(cadena.indexOf('?')+1));
             });
-        }
 
-        function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
-            console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me?fields=id,name,email', function(response) {
-              console.log(response);
-
-              $.post('{{url('registerSocial')}}', {_token: '{{csrf_token()}}', name: response.name, email: response.email}, function(data, textStatus, xhr) {
-                  window.open('{{url('panel')}}','_self');
-              });
-              console.log('Successful login for: ' + response.name);
-              /*document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';*/
-            });
-          }
-
-function ValidatePassword() {
-  /*Array of rules and the information target*/
-  var rules = [{
-      Pattern: "[A-Z]",
-      Target: "UpperCase"
-    },
-    {
-      Pattern: "[a-z]",
-      Target: "LowerCase"
-    },
-    {
-      Pattern: "[0-9]",
-      Target: "Numbers"
-    },
-    {
-      Pattern: "[!@@#$%^&*_-]",
-      Target: "Symbols"
-    }
-  ];
-
-  //Just grab the password once
-  var password = $(this).val();
-
-  /*Length Check, add and remove class could be chained*/
-  /*I've left them seperate here so you can see what is going on */
-  /*Note the Ternary operators ? : to select the classes*/
-  $("#Length").removeClass(password.length > 7 ? "fa-times" : "fa-check");
-  $("#Length").addClass(password.length > 7 ? "fa-check" : "fa-times");
-
-  /*Iterate our remaining rules. The logic is the same as for Length*/
-  for (var i = 0; i < rules.length; i++) {
-
-    $("#" + rules[i].Target).removeClass(new RegExp(rules[i].Pattern).test(password) ? "fa-times" : "fa-check");
-    $("#" + rules[i].Target).addClass(new RegExp(rules[i].Pattern).test(password) ? "fa-check" : "fa-times");
-  }
-}
-
-    /*Bind our event to key up for the field. It doesn't matter if it's delete or not*/
-    $(document).ready(function() {
-      $("#NewPassword").on('keyup', ValidatePassword)
-    });
     </script>
 @stop
