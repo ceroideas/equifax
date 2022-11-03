@@ -12,9 +12,11 @@
 </style>
 <body style="margin:0px; background: #fff;">
     {{--  Solo para entorno test --}}
-    @if($test==1)
-        <p>Envio de pruebas Bienvenida: {{$tmp->id}} - {{ $tmp->title }}</p>
-    @endif
+    @isset($test)
+        @if($test==1)
+            <p>Envio de pruebas Bienvenida: {{$tmp->id}} - {{ $tmp->title }}</p>
+        @endif
+    @endisset
 	<div width="50%" style="background: #fff; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
 	  	<div style="max-width: 650px; padding:50px 0;  margin: 0px auto; font-size: 14px;">
 	  		<div style="">

@@ -79,6 +79,7 @@ class RegisterController extends Controller
 
        $user->newsletter = isset($data['newsletter']) ? 1 : 0;
        $user->role = 2;
+       if(!$data['referenced'] == null) {$user->referenced = $data['referenced'];}
        $user->save();
 
 
