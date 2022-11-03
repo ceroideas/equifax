@@ -157,6 +157,11 @@
             justify-content: center;
             }
 
+        .blockTotales{
+            text-align: right;
+
+            }
+
     </style>
 
 </head>
@@ -259,9 +264,9 @@
 
             <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="" style="width: 100%;">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
                         <div class="content">
                             <!--<div class="center"><img src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologopositivo"></div>-->
                           </div>
@@ -269,13 +274,11 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th style="background-color: #e65927; text-align: center; color: #fff">Tipo de
-                                        procedimiento</th>
-                                        <!--
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Tarifa de
-                                        éxito*</th>-->
-                                    <th style="background-color: #e65927; text-align: center; color: #fff">Precio
-                                        fijo **</th>
+                                    <th style="background-color: #e65927; text-align: center; color: #fff">Tipo de procedimiento</th>
+                                    <th style="background-color: #e65927; text-align: center; color: #fff">Importe</th>
+                                    <th style="background-color: #e65927; text-align: center; color: #fff">Descuento</th>
+                                    <th style="background-color: #e65927; text-align: center; color: #fff">IVA</th>
+                                    <th style="background-color: #e65927; text-align: center; color: #fff">Total linea</th>
                                 </tr>
                             </thead>
 
@@ -286,8 +289,27 @@
                                         <!--<td rowspan="5"
                                             style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>-->
                                         <td style="text-align: right;color:#285ba3;">{{number_format($importes[$key],2,',','.')}} €</td>
+                                        <td style="text-align: right;color:#285ba3;">{{number_format($descuentos[$key],0)}} %</td>
+                                        <td style="text-align: right;color:#285ba3;">{{ $ivas[$key]=='IVA0'?0:21 }} %</td>
+                                        <td style="text-align: right;color:#285ba3;">{{number_format($totales[$key],2,',','.')}} €</td>
                                     </tr>
                                 @endforeach
+
+                                <tr>
+                                    <th colspan="3"></th>
+                                    <th style="text-align: right;color:#285ba3;">Subtotal</th>
+                                    <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->bas1fac+ $invoice[0]->bas2fac+$invoice[0]->bas3fac+$invoice[0]->bas4fac),2,',','.') }} €</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3"></th>
+                                    <th style="text-align: right;color:#285ba3;">Iva</th>
+                                    <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->iiva1fac+ $invoice[0]->iiva2fac+$invoice[0]->iiva3fac),2,',','.') }} €</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3"></th>
+                                    <th style="text-align: right;color:#285ba3;">Total</th>
+                                    <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->totfac),2,',','.') }} €</th>
+                                </tr>
                             </tbody>
                         </table>
 
@@ -295,17 +317,17 @@
                             <div class="col-sm-5"></div>
                             <div class="col-sm-3">
                                 <a data-v-9cc878a2="" href="/claims/payment/<?php echo $id?>" aria-current="page"
-                                    class="btn btn-light-descubre" type="button">Proceder al pago</a>
+                                    class="btn btn-light-descubre" type="button">Proceder al pago de {{ number_format(($invoice[0]->totfac),2,',','.') }} €</a>
                                     <br>
                             </div>
                             <div class="col-sm-3"></div>
                         </div>
 
 
-                        <p style="color:#285ba3; font-style: italic;">IVA no incluido</p>
+                        {{--<p style="color:#285ba3; font-style: italic;">IVA no incluido</p>
                         <p style="color:#285ba3; font-style: italic;">** Precio fijo que deberá abonarse por el cliente
-                            previo al inicio de cada procedimiento.</p>
-
+                            previo al inicio de cada procedimiento.</p>--}}
+                            <p></p>
                     </div>
 
                 </div>

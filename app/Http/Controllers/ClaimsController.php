@@ -1148,182 +1148,55 @@ class ClaimsController extends Controller
 
     public function info($id)
     {
+        list($infopago, $titulo, $msg, $conceptos, $importes) = array(config('app.infopago'), "","",array(),array());
 
-
-
-        //$infopago = config('app.infopago'); // Mensajes personalizados para mostrar al cliente
-        list($infopago, $titulo, $hito, $msg, $conceptos, $importes) = array(config('app.infopago'), "","","",array(),array());
-
-        /* Comprobar si existe la reclamacion
-        $claim = Claim::where('id',$id)
-                                ->get();
-        if($claim->isEmpty()){
-            return redirect('/')->with('msg', 'La reclamacion '.$id.' no existe');
-        }*/
-
-        /* Comprobar si la factura existente esta pendiente de pago */
-        /* Comprobar las actuaciones que generan la factura pendiente de pago */
-        /* Recuperar si existe factura pendiente de pago, recuperaremos conceptos y enviamos enlace de pago */
         $invoice = Invoice::where('claim_id',$id)
                             ->where('status','=',NULL)
                             ->orderBy('id','desc')
                             ->get();
-            // recuperar la factura de la reclamacion con estatus 0
 
-            //dump($invoice);
-            //dump(count($invoice));
         if(count($invoice)){
 
-
-                // Recuperamos detalles
-                // V1: Recuperar si el ultimo hito corresponde al 301 o 302 recuperar el que lo genero app.infopago
-                /*
-                $actuaciones = Actuation::where('claim_id',$id)
-                ->orderBy('id', 'desc')
-                ->get();
-
-                if(count($actuaciones)){
-                    dump($actuaciones);
-                }else{
-                    print_r("No hay actuaciones");
-                }*/
-                // V2: Recuperamos directamente las lineas de detalle de la factura pendiente de pago
-                // En base al codigo del articulo debemos buscar las actuaciones o no
             $Linvoices = Linvoice::where('invoice_id',$invoice[0]->id)
                             ->get();
-                // Prevenimos error en lineas de detalle
+
             if(count($Linvoices)){
-                // Determinamos si existe el concepto extrajudicial, si existe tenemos que enviar
-                // Si existe, tenemos que enviar a vista las lineas de detalle con su
+                $extrajudicial = false;
                 foreach($Linvoices as $key => $LInvoice){
                     if($LInvoice->artlin=='EXT-001'){
                         $extrajudicial = true;
+                        $titulo = 'Procedimiento extrajudicial';
                     }
-                    $titulo = 'Procedimiento extrajudicial';
                     $conceptos[$key] = $Linvoices[$key]->deslin;
                     $importes[$key] = $Linvoices[$key]->prelin;
-
+                    $descuentos[$key] = $Linvoices[$key]->dtolin;
+                    $ivas[$key] = $Linvoices[$key]->ivalin;
+                    $totales[$key] = $Linvoices[$key]->totlin;
                 }
-                if($extrajudicial == true){
-                    return view('info-public', compact('hito', 'titulo','msg','conceptos','importes', 'id'));
+
+                if($extrajudicial==true){
+                    return view('info-public', compact('titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice'));
                 }else{
-                    //Leemos actuaciones y procesamos lo demas
 
+                    // Se requiere encontrar la actuacion que genero la factura para poder buscar por ese hito el
+                    foreach($infopago as $key => $value){
+                        if($value['articulo']==$LInvoice->artlin){
+                            $titulo = $value['titulo'];
+                            $msg = $value['msg'];
+                        }
+                    }
+                    return view('info-public', compact('titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice'));
                 }
-
-                // Enviamos a la info con las lineas de detalle
-
 
             }else{
                 $titulo = 'Error al leer lineas de detalle';
 
-                return view('info-public', compact('hito', 'titulo','msg','conceptos','importes', 'id'));
+                return view('info-public', compact('titulo','msg','conceptos','importes', 'id'));
             }
-
 
         }else{
             return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
         }
-
-    die(); // Hasta aqui todo ok, lee lineas, facturas pendientes
-    // Ahora que pasa si es gestoria
-
-/************************************************* Version previa **********************************************/
-
-        if($invoice->isNotEmpty()){
-            /* $invoice[0]->status = 1 pagada, null pendiente de pago*/
-
-            if($invoice[0]->status == null){
-                /* Recuperar si el ultimo hito corresponde al 301 o 302 recuperar el que lo genero app.infopago */
-                $actuaciones = Actuation::where('claim_id',$id)
-                                     ->orderBy('id', 'desc')
-                                     ->get();
-
-                /* Tiene actuaciones la factura, sino tiene es extrajudicial */
-                if($actuaciones->isEmpty()){
-
-                    /* Deberiamos recuperar las lineas de detalle ? */
-                    $linvoice = Linvoice::where('invoice_id',$invoice[0]->id)
-                                        ->get();
-
-
-                    /* Prevenimos error Linvoice */
-                    if($linvoice->isEmpty()){
-                        $titulo = 'Error al leer lineas de detalle';
-                        return view('info-public', compact('hito', 'titulo','msg','concepto','importe', 'id'));
-                    }else{
-                        $titulo = 'Procedimiento extrajudicial';
-                        $concepto = $linvoice[0]->deslin;
-                        $importe = $linvoice[0]->prelin;
-
-                    }
-
-                    return view('info-public', compact('hito', 'titulo','msg','concepto','importe', 'id'));
-                }
-
-
-                /* El array viene en orden DESC */
-                foreach($actuaciones as $key => $value ){
-
-                    // Comparamos si esta en estado 302
-                    if($value->getRawOriginal('subject')=='302' || $value->getRawOriginal('subject')=='301'){
-                        continue;
-                    }
-
-                    /*dump($key);
-                    dump($value->getRawOriginal('subject'));
-                    dump($value->subject);
-                    dump($infopago);*/
-                    $hito = $value->getRawOriginal('subject');
-                    $msg = "Concepto desde hito";
-
-                    break;
-
-                }  // Foreach
-
-            }else{
-                return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
-            }
-        }else{
-            return redirect('/')->with('msg', 'La reclamación no tiene actuaciones');
-        }
-
-
-            /*Testeado*/
-
-        foreach($infopago as $key => $value){
-            if($value["hito"]==$hito){
-                $hito = $value["hito"];
-                $titulo = $value["titulo"];
-                $msg = $value["msg"];
-                $concepto = $value["concepto"];
-                $importe = $value["importe"];
-            }
-        }
-
-        // Id de factura
-        //$id = $invoice[0]->id;
-        /*dump($id);
-        dump($hito);
-        dump($titulo); //
-        dump($msg);
-        dump($concepto);
-        dump($importe);*/
-
-        //die();
-      /* Necesitamos enviar recuperar importes y conceptos desde BD*/
-/*
-        $c = Configuration::first();
-        dump($c);
-        dump($c->judicial_amount);*/
-
-        /*dump($c->judicial_amount);
-        $importe = ($c->judicial_amount / (($c->tax/100)+1));
-        dump($importe);
-        $importe=number_format($importe, 2,',','.');
-        dump($importe);*/
-
-        return view('info-public', compact('hito', 'titulo','msg','concepto','importe','id'));
 
     }
 
