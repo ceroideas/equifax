@@ -65,6 +65,12 @@
 
             <th>Numero Pagos parciales</th>
             <th>Numero documentos adjuntos</th>
+            @for($i=1; $i<=5; $i++)
+                <th>Pago {{$i}}</th>
+                <th>Fecha {{$i}}</th>
+            @endfor
+            <th>Documentos</th>
+
 		</tr>
 	</thead>
 
@@ -143,6 +149,7 @@
 
                 <td> {{ $documents->count('id')}} </td>
 
+                {{-- Listado de pagos --}}
                 @if( $claim->debt->partials_amount >= 1)
 
                     @php $partials = json_decode($claim->debt->partials_amount_details); @endphp
@@ -152,11 +159,21 @@
                             <td> {{ $partial->amount}} € </td>
                             <td> {{ date("d/m/Y",strtotime($partial->date))}} </td>
                         @endforeach
+                        @for ($i = count($partials); $i < 5; $i++)
+                            <td></td>
+                            <td></td>
+                        @endfor
+
                     @endif
                 @else
-                    <td></td>
+                    @for ($i = 0; $i < 10; $i++)
+                        <td></td>
+                    @endfor
+
+
                 @endif
 
+                {{-- Listado de documentos --}}
                 @foreach($documents as $doc)
                     @switch($doc->type)
                         @case('factura')
@@ -368,9 +385,8 @@
 
                         @break
                     @endswitch
-
-
                 @endforeach
+
             </tr>
 		@endforeach
 	</tbody>
