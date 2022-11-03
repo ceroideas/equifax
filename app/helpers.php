@@ -302,7 +302,10 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     }
 
                 }else{
-                    addDocument('invoice',$claim->id, $articulo,$tasa);
+                    $idFactura = addDocument('invoice',$claim->id, $articulo,$tasa);
+
+                    $a->invoice_id = $idFactura;
+                    $a->save();
 
                     if(file_exists('testing/testing_claims_actuations.txt')){
                         $file = fopen('testing/testing_claims_actuations.log', 'a');
@@ -617,7 +620,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
         // Mostrar mensaje de error falta configuracion id=1
     } // fin comprobacion de configuracion
     /*********** Fin generacion de factura *****************/
-    return '200';
+    return $idDocument;
 }
 
 function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantidad = 1, $taxcode = 'IVA21', $discount = 0){

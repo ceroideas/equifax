@@ -1178,6 +1178,7 @@ class ClaimsController extends Controller
                     return view('info-public', compact('titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice'));
                 }else{
 
+                    // Se requiere encontrar la actuacion que genero la factura para poder buscar por ese hito el
                     foreach($infopago as $key => $value){
                         if($value['articulo']==$LInvoice->artlin){
                             $titulo = $value['titulo'];
