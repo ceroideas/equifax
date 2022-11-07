@@ -40,6 +40,12 @@
 			          		</td>
 			          	</tr>
                         <tr>
+                            <td>imagen 2
+                                <img src="{{ url($tmp->top_logo) }}">
+
+                            </td>
+                        </tr>
+                        <tr>
                             <td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
                                 <div style="text-align: right;">
                                     <a href="https://www.linkedin.com/company/asemar-concursal" target="_blank">
