@@ -26,21 +26,36 @@
 			          		<td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
 			          			<img src="{{ url($tmp->top_logo) }}" style="border:none;width: 100%">
 
-			          			<br>
-
-			          			{!! $tmp->top_content !!}
+			          			{{--{!! $tmp->top_content !!}--}}
                                   {{--<img src="{{url($tmp->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">--}}
 
-			          			<div style="width: auto; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
+			          			{{--<div style="width: auto; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
 
 									<div style="background-color: transparent; color: #fd7e14; padding: 16px; width: fit-content;">
 			          					{!! $tmp->header_content !!}
 			          				</div>
 			          			</div>
-
+                                --}}
 
 			          		</td>
 			          	</tr>
+                        <tr>
+                            <td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
+                                <div style="text-align: right;">
+                                    <a href="https://www.linkedin.com/company/asemar-concursal" target="_blank">
+                                        <img src="https://dividae.com/landing/assets/icono_mail_linkedin.png">
+                                    </a>
+
+                                    <a href="https://www.dividae.com" target="_blank">
+                                        <img src="https://dividae.com/landing/assets/icono_mail_link.png">
+                                    </a>
+
+                                    <a href="mailto:info@dividae.com" target="_blank">
+                                        <img src="https://dividae.com/landing/assets/icono_mail_email.png">
+                                    </a>
+                                </div>
+                            <td>
+                        </tr>
 			        	<tr>
 			          		<td style="background:#e65927; padding:5px; color:#fff; text-align:left;">
 			          			<div style="padding: 10px; background-color: #e65927; color: #fff !important;">
