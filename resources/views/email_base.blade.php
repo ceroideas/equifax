@@ -33,14 +33,17 @@
         @endif
     @endisset
 
-    <div width="50%" style="background: #fff; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
-        <div style="max-width: 650px; padding:50px 0;  margin: 0px auto; font-size: 14px;">
+    <div width="75%" style="background: #fff; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
+        <div style="max-width: 75%; padding:50px 0;  margin: 0px auto; font-size: 14px;">
             <div style="">
-                <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+                <table border="0" cellpadding="0" cellspacing="0" style="width: 75%;">
                     <tbody>
-                        {{--
+
+                        {{-- Logo sin estilos a tamaño real --}}
                         <tr>
-                            <th><img src="{{ url($tmp->top_logo) }}" style="border:none;width: 100%"></th>
+                            <td>
+                                <img src="{{ url($tmp->top_logo) }}">
+                            </td>
                         </tr>
                         <tr>
                             <td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
@@ -59,39 +62,13 @@
                                 </div>
                             <td>
                         </tr>
+                        {{-- Imagen principal --}}
                         <tr>
-                            <img src="{{url($tmp->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">
-                        </tr>
-                        --}}
-                        <tr>
-                            <td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
-                                <img src="{{ url($tmp->top_logo) }}" style="border:none;width: 100%">
-
-                                <br>
-
-                                {!! $tmp->top_content !!}
-                                {{--<img src="{{url($tmp->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">--}}
-
-                                <div style="width: auto; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
-
-                                  <div style="background-color: transparent; color: #fd7e14; padding: 16px; width: fit-content;">
-                                        {!! $tmp->header_content !!}
-                                    </div>
-                                </div>
-
-
+                            <td>
+                                <img src="{{url($tmp->header_image)}}">
                             </td>
                         </tr>
-                        {{--  old
-                        <tr>
-                            <th>
-                                <div style="background-color: rgba(255, 255, 255, 0.9); color: #fd7e14; padding: 16px; width: fit-content;">
-                                    <p>{!! $tmp->header_content !!}</p>
-                                </div>
-                            </th>
-                        </tr>
-                        --}}
-                        {{-- Cuerpo L:44 email_base_2--}}
+
                         <tr>
                             <th>
                                 <div style="padding: 10px; background-color: #e65927; color: #fff !important;">
@@ -142,8 +119,6 @@
             </div>
         </div>
     </div>
-
-
 
 </body>
 </html>

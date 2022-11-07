@@ -17,30 +17,11 @@
             <p>Envio de pruebas Bienvenida: {{$tmp->id}} - {{ $tmp->title }}</p>
         @endif
     @endisset
-	<div width="750%" style="background: #fff; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
+	<div width="75%" style="background: #fff; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
 	  	<div style="max-width: 75%; padding:50px 0;  margin: 0px auto; font-size: 14px;">
 	  		<div style="">
 			    <table border="0" cellpadding="0" cellspacing="0" style="width: 75%;">
 			      	<tbody>
-			        	{{--
-                        <tr>
-			          		<td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
-			          			<img src="{{ url($tmp->top_logo) }}" style="border:none;width: 100%">
-
-			          			{{--{!! $tmp->top_content !!}--}}
-                                  {{--<img src="{{url($tmp->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">--}}
-
-			          			{{--<div style="width: auto; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
-
-									<div style="background-color: transparent; color: #fd7e14; padding: 16px; width: fit-content;">
-			          					{!! $tmp->header_content !!}
-			          				</div>
-			          			</div>
-
-
-			          		</td>
-			          	</tr>
-                        --}}
                         {{-- Logo sin estilos a tamaño real --}}
                         <tr>
                             <td>
@@ -94,15 +75,6 @@
                                     </a>
                                 @endif
 
-			          			{{--
-                                @if ($tmp->cta_button)
-			          				<a href="{{$tmp->cta_button_link}}">
-			          				<button style="width: 80%; background-color: #e65927; color: #fff !important; padding: 8px; border-radius: 4px;">
-			          					{{$tmp->cta_button}}
-			          				</button>
-			          				</a>
-			          			@endif
-                                --}}
 			          		</td>
 			        	</tr>
 			          	<tr>
