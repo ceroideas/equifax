@@ -17,10 +17,10 @@
             <p>Envio de pruebas Bienvenida: {{$tmp->id}} - {{ $tmp->title }}</p>
         @endif
     @endisset
-	<div width="80%" style="background: #fff; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
-	  	<div style="max-width: 80%; padding:50px 0;  margin: 0px auto; font-size: 14px;">
+	<div width="750%" style="background: #fff; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
+	  	<div style="max-width: 75%; padding:50px 0;  margin: 0px auto; font-size: 14px;">
 	  		<div style="">
-			    <table border="0" cellpadding="0" cellspacing="0" style="width: 80%;">
+			    <table border="0" cellpadding="0" cellspacing="0" style="width: 75%;">
 			      	<tbody>
 			        	{{--
                         <tr>
@@ -43,7 +43,7 @@
                         --}}
                         {{-- Logo sin estilos a tamaño real --}}
                         <tr>
-                            <td>{{$tmp->top_logo}}
+                            <td>
                                 <img src="{{ url($tmp->top_logo) }}">
                             </td>
                         </tr>
@@ -66,7 +66,7 @@
                         </tr>
                         {{-- Imagen principal --}}
                         <tr>
-                            <td>{{$tmp->header_image}}
+                            <td>
                                 <img src="{{url($tmp->header_image)}}">
                             </td>
                         </tr>
