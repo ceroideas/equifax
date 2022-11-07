@@ -35,87 +35,111 @@
 
     <div width="50%" style="background: #fff; padding: 0px 0px; font-family:arial; line-height:28px; height:100%;  width: 50%; color: #514d6a;">
         <div style="max-width: 650px; padding:50px 0;  margin: 0px auto; font-size: 14px;">
-
-            <table style="width:100%">
-                <tr>
-                    <th><img src="{{ url($tmp->top_logo) }}" style="border:none;width: 100%"></th>
-                </tr>
-                <tr>
-                    <td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
-                        <div style="text-align: right;">
-                            <a href="https://www.linkedin.com/company/asemar-concursal" target="_blank">
-                                <img src="https://dividae.com/landing/assets/icono_mail_linkedin.png">
-                            </a>
-
-                            <a href="https://www.dividae.com" target="_blank">
-                                <img src="https://dividae.com/landing/assets/icono_mail_link.png">
-                            </a>
-
-                            <a href="mailto:info@dividae.com" target="_blank">
-                                <img src="https://dividae.com/landing/assets/icono_mail_email.png">
-                            </a>
-                        </div>
-                    <td>
-                </tr>
-                <tr>
-                    <img src="{{url($tmp->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">
-                </tr>
-                {{--
-                <tr>
-                    <th>
-                        <div style="background-color: rgba(255, 255, 255, 0.9); color: #fd7e14; padding: 16px; width: fit-content;">
-                            <p>{!! $tmp->header_content !!}</p>
-                        </div>
-                    </th>
-                </tr>
-                --}}
-
-                <tr>
-                    <th>
-                        <div style="padding: 10px; background-color: #e65927; color: #fff !important;">
-                            <h3>{!! $tmp->body_content !!}</h3>
-                            <br>
-                            <h4>{!! $tmp->footer_content !!}</h4>
-                            <br>
-                        </div>
-                    </th>
-                </tr>
-                <tr>
-                        <th>
-                            @if ($test=1)
-                                <h3>Entorno de pruebas, en entorno real iria a: {{$tmp->cta_button}}</h3><br>
-                                @if($tmp->id == 2 || $tmp->id == 6 || $tmp->id == 11)
-                                    <a href="https://dividae.com" target="_blank">
-                                        <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
-                                    </a>
-                                @else
-                                    <a href="https://dividae.com" target="_blank">
-                                        <img src="https://dividae.com/templates/btn_acceso_reclamacion.jpg">
+            <div style="">
+                <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+                    <tbody>
+                        {{--
+                        <tr>
+                            <th><img src="{{ url($tmp->top_logo) }}" style="border:none;width: 100%"></th>
+                        </tr>
+                        <tr>
+                            <td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
+                                <div style="text-align: right;">
+                                    <a href="https://www.linkedin.com/company/asemar-concursal" target="_blank">
+                                        <img src="https://dividae.com/landing/assets/icono_mail_linkedin.png">
                                     </a>
 
-                                @endif
-
-                            @else
-
-                                @if($tmp->id == 2 || $tmp->id == 6 || $tmp->id == 11)
-                                    <a href="{{$target}}" target="_blank">
-                                        <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
+                                    <a href="https://www.dividae.com" target="_blank">
+                                        <img src="https://dividae.com/landing/assets/icono_mail_link.png">
                                     </a>
-                                @else
-                                    <a href="{{$target}}" target="_blank">
-                                        <img src="https://dividae.com/templates/btn_acceso_reclamacion.jpg">
+
+                                    <a href="mailto:info@dividae.com" target="_blank">
+                                        <img src="https://dividae.com/landing/assets/icono_mail_email.png">
                                     </a>
-                                @endif
-                            @endif
-                            <br>
-                        </th>
-                </tr>
-                <tr>
-                    <th>
-                        {!! $tmp->signature !!}
-                    </th>
-                </tr>
-            </table>
+                                </div>
+                            <td>
+                        </tr>
+                        <tr>
+                            <img src="{{url($tmp->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">
+                        </tr>
+                        --}}
+                        <tr>
+                            <td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
+                                <img src="{{ url($tmp->top_logo) }}" style="border:none;width: 100%">
+
+                                <br>
+
+                                {!! $tmp->top_content !!}
+                                {{--<img src="{{url($tmp->header_image)}}" style="border:none;width: 150px;margin-left: 10px;">--}}
+
+                                <div style="width: auto; height: 250px; background-size: cover; background-position: center; background-image: url(' {{url($tmp->header_image)}} '); padding: 16px;">
+
+                                  <div style="background-color: transparent; color: #fd7e14; padding: 16px; width: fit-content;">
+                                        {!! $tmp->header_content !!}
+                                    </div>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                        {{--  old
+                        <tr>
+                            <th>
+                                <div style="background-color: rgba(255, 255, 255, 0.9); color: #fd7e14; padding: 16px; width: fit-content;">
+                                    <p>{!! $tmp->header_content !!}</p>
+                                </div>
+                            </th>
+                        </tr>
+                        --}}
+                        {{-- Cuerpo L:44 email_base_2--}}
+                        <tr>
+                            <th>
+                                <div style="padding: 10px; background-color: #e65927; color: #fff !important;">
+                                    <h3>{!! $tmp->body_content !!}</h3>
+                                    <br>
+                                    <h4>{!! $tmp->footer_content !!}</h4>
+                                    <br>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                                <th>
+                                    @if ($test=1)
+                                        <h3>Entorno de pruebas, en entorno real iria a: {{$tmp->cta_button}}</h3><br>
+                                        @if($tmp->id == 2 || $tmp->id == 6 || $tmp->id == 11)
+                                            <a href="https://dividae.com" target="_blank">
+                                                <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
+                                            </a>
+                                        @else
+                                            <a href="https://dividae.com" target="_blank">
+                                                <img src="https://dividae.com/templates/btn_acceso_reclamacion.jpg">
+                                            </a>
+
+                                        @endif
+
+                                    @else
+
+                                        @if($tmp->id == 2 || $tmp->id == 6 || $tmp->id == 11)
+                                            <a href="{{$target}}" target="_blank">
+                                                <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
+                                            </a>
+                                        @else
+                                            <a href="{{$target}}" target="_blank">
+                                                <img src="https://dividae.com/templates/btn_acceso_reclamacion.jpg">
+                                            </a>
+                                        @endif
+                                    @endif
+                                    <br>
+                                </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                {!! $tmp->signature !!}
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
