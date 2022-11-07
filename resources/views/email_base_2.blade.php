@@ -22,7 +22,8 @@
 	  		<div style="">
 			    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
 			      	<tbody>
-			        	<tr>
+			        	{{--
+                        <tr>
 			          		<td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
 			          			<img src="{{ url($tmp->top_logo) }}" style="border:none;width: 100%">
 
@@ -35,14 +36,15 @@
 			          					{!! $tmp->header_content !!}
 			          				</div>
 			          			</div>
-                                --}}
+
 
 			          		</td>
 			          	</tr>
+                        --}}
+                        {{-- Logo sin estilos a tamaño real --}}
                         <tr>
-                            <td>imagen 2
+                            <td>
                                 <img src="{{ url($tmp->top_logo) }}">
-
                             </td>
                         </tr>
                         <tr>
@@ -62,6 +64,13 @@
                                 </div>
                             <td>
                         </tr>
+                        {{-- Imagen principal --}}
+                        <tr>
+                            <td>
+                                <img src="{{url($tmp->header_image)}}">
+                            </td>
+                        </tr>
+
 			        	<tr>
 			          		<td style="background:#e65927; padding:5px; color:#fff; text-align:left;">
 			          			<div style="padding: 10px; background-color: #e65927; color: #fff !important;">
