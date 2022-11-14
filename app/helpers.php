@@ -468,9 +468,9 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0){
     // Necesitamos el tipo de documento
     if($typeDocument == 'order'){
-        $idDocument = maxId('Orders','id');
+        $idDocument = maxId('orders','id');
     }else{
-        $idDocument = maxId('Invoices','id');
+        $idDocument = maxId('invoices','id');
     }
 
     $c = Configuration::first();
@@ -631,7 +631,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
     if($typeDocument == 'order'){
         $lDocument = new Lorder;
         $lDocument->order_id = $idDocument;
-        $lDocument->poslor = maxId('Lorders', 'poslor',$idDocument);
+        $lDocument->poslor = maxId('lorders', 'poslor',$idDocument);
         $lDocument->canlor = $cantidad;
         $lDocument->dtolor = $discount;
         switch($articulo){ // Comprobamos siempre si hay tasa
@@ -717,7 +717,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
     }else{
         $lDocument = new Linvoice;
         $lDocument->invoice_id = $idDocument;
-        $lDocument->poslin = maxId('Linvoices','poslin',$idDocument);
+        $lDocument->poslin = maxId('linvoices','poslin',$idDocument);
         $lDocument->canlin = $cantidad;
         $lDocument->dtolin = $discount;
 
@@ -947,12 +947,12 @@ function totalDocument($typeDocument, $idDocument){
 }
 
 function maxId($table, $field, $idDocument=0){
-    if($table == 'Linvoices'){
+    if($table == 'linvoices'){
         $idMax = DB::table($table)
         ->select(DB::raw('max('.$field.') as last'))
         ->where('invoice_id',$idDocument)
         ->get();
-    }elseif($table == 'Lorders'){
+    }elseif($table == 'lorders'){
         $idMax = DB::table($table)
         ->select(DB::raw('max('.$field.') as last'))
         ->where('order_id',$idDocument)
