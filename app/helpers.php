@@ -202,7 +202,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 			}
 
 			// comprobar si la redirección es al inicio del proceso de cobros (carga apud acta)
-            if ($h['redirect_to'] === "301") {
+            if ($h['redirect_to'] === "30016") {
 
 				$c = Configuration::first();
 
@@ -364,7 +364,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        if (Auth::user()->isGestor()) {
 		        	actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
 
-		        	return actuationActions("302",$claim_id);
+		        	return actuationActions("30017",$claim_id);
 		        }else{
 
 					if ($claim->owner->apud_acta) {
@@ -376,32 +376,32 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
 			// comprobar si la redirección es al inicio del proceso de cobros (generacion de cobro)
 
-			if ($h['redirect_to'] === "302") {
+			if ($h['redirect_to'] === "30017") {
 		        // al generar el cobro, se detiene el proceso hasta que el cliente realice el pago
 		        // por lo que habria que comprobar las acciones del 302 cuando el cliente pague
 			}
 
 			// comprobar si la redirección es al inicio del proceso de cobros (generacion de cobro)
 
-			if ($h['redirect_to'] === "303") {
+			if ($h['redirect_to'] === "30018") {
 				return actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
 			}
 
 			// comprobar si el cliente acepta el acuerdo
 
-			if ($h['redirect_to'] === "1703") {
+			if ($h['redirect_to'] === "30030") {
 				// se debe generar un boton de aceptación para que el cliente acepte el acuerdo alcanzado, acto seguido se pasa al siguiente paso
 			}
 
 			// comprobar si finaliza la reclamación
 
-			if ($h['redirect_to'] === "20") {
+			if ($h['redirect_to'] === "30034") {
 				// la reclamación queda aqui y se considera finalizada
 			}
 
 			// comprobar si continua con la reclamación
 
-			if ($h['redirect_to'] === "21") {
+			if ($h['redirect_to'] === "30035") {
 				// la reclamación queda aqui porque es el inicio del proceso e id del hito para exportar las reclamaciones
 			}
 		}else{
