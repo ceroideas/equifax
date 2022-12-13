@@ -23,8 +23,15 @@
 	  <main>
 	  <div class="row">
 	    <div class="col-sm-3"><strong>Fecha: <br></strong> {{ $i->created_at->format('d/m/Y') }}</div>
-	    <div class="col-sm-3"> <strong>Reclamación Nº: <br></strong> {{$i->claim->id}}</div>
-	    <div class="col-sm-3"> </div>
+	    <div class="col-sm-3"> <strong>Reclamación Nº: <br></strong>
+            @if(isset($i->claim->id))
+                {{$i->claim->id}}
+            @else
+                Varias
+            @endif
+        </div>
+
+        <div class="col-sm-3"> </div>
 	    <div class="col-sm-3 text-sm-right"> <strong>Factura Nº: <br></strong> {{$i->id}}</div>
 
 	  </div>
@@ -43,7 +50,9 @@
 		  {{$i->cnofac}} <br>
 		  {{$i->cdofac}}, {{$i->cpofac}}, {{$i->cprfac}} <br>
 		  {{$i->cnifac}} <br>
-		  {{$i->claim->owner->email}} <br>
+		  @if(isset($i->claim->owner->email))
+            {{$i->claim->owner->email}} <br>
+          @endif
 
 	      </address>
 	    </div>
