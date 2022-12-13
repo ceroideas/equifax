@@ -1033,7 +1033,12 @@ class ClaimsController extends Controller
 
     public function invoicesExport()
     {
-        return Excel::download(new InvoicesExport, 'invoices-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        return Excel::download(new InvoicesExport(0), 'invoices-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
+    public function invoicesExportAll()
+    {
+        return Excel::download(new InvoicesExport(1), 'all-invoices-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
     public function ordersExport()

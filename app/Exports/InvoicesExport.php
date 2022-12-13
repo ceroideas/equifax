@@ -10,11 +10,27 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class InvoicesExport implements FromView, WithTitle
 {
-    public function view(): View{
-        return view('invoices-export');
+
+    public function __construct($type)
+    {
+        $this->type = $type;
     }
-    
+
+    public function view(): View{
+        if ($this->type == 0) {
+            $invoices = Invoice::where('status', 1)->get();
+        }else{
+            $invoices = Invoice::all();
+        }
+
+        return view('invoices-export', compact('invoices'));
+    }
+
     public function title():string {
-        return 'Facturas Pagadas';
+        if ($this->type == 0) {
+            return 'Facturas Pagadas';
+        }else{
+            return 'Facturas';
+        }
     }
 }

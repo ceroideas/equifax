@@ -11,27 +11,41 @@
             <th>Fecha del pago</th>
             <th>Tipo de cobro</th>
             <th>Status</th>
+            <th>Owner</th>
         </tr>
     </thead>
 
     <tbody>
+@foreach($invoices as $invoice)
+    <tr>
+        <td>{{ $invoice->id }}</td>
+        @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+            @if(isset($invoice->claim->client))
+                <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
+            @else
+                <td>{{$invoice->cnofac}}</td>
+            @endif
+        @endif
 
-    	@foreach(App\Models\Invoice::where('status',1)->get() as $invoice)
-            <tr>
-                <td>{{ $invoice->id }}</td>
-                @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
-                    <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
-                @endif
-                <td>{{ $invoice->claim->id }}</td>
-                <td>{{ $invoice->description }}</td>
-                <td>{{ $invoice->amount }}€</td>
-                <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d-m-Y H:i') }}</td>
-                <td>{{ $invoice->type }}</td>
-                <td>{{ $invoice->status == 1 ? 'Pagado' : 'Pendiente' }}</td>
+        <td>@if(isset($invoice->claim->id))
+                {{ $invoice->claim->id }}
+            @else
+                Varias
+            @endif
+        </td>
+        <td>{{ $invoice->description }}</td>
+        <td>{{ $invoice->amount }}€</td>
+        <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d-m-Y H:i') }}</td>
+        <td>{{ $invoice->type }}</td>
+        <td>{{ $invoice->status == 1 ? 'Pagado' : 'Pendiente' }}</td>
 
-                <td>{{ $invoice->claim->owner }}</td>
-            </tr>
-        @endforeach
+        <td>
+            @if(isset($invoice->claim->id))
+                {{ $invoice->claim->owner }}
+            @endif
+        </td>
+    </tr>
+@endforeach
 
     </tbody>
 
