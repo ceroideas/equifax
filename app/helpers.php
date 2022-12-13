@@ -494,7 +494,14 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
         }*/
 
         // Asignamos el documento siempre a nombre del
-        $user = User::find($claim->owner_id);
+        if($articulo == 'mensual'){
+            $user = User::find($gestoria_id);
+        }else{
+            $user = User::find($claim->owner_id);
+        }
+
+        //dump($user->id);
+
         $document->user_id =  $user->id;
         // Solo en invoice almacenamos los datos del cliente en el momento de su creación
         if($typeDocument == 'invoice'){
@@ -573,34 +580,65 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
                         ->orderBy('lorders.artlor','asc')
                         ->get();
 
+                        if(file_exists('testing/testing_automatic_invoices.txt')){
+                            $file = fopen('testing/testing_automatic_invoices.log', 'a');
+                            fwrite($file, date("d/m/Y H:i:s").'-'.'Facturacion mensual: ' . $orders->count(). ' lineas'.PHP_EOL);
+                            fclose($file);
+                        }
+
                     if($orders->count()){
                         $cantidad = 0;
                         $buscado = '';
 
                         foreach($orders as $key => $linea){
-                            // si articulo es igual acumula, sino crea linea
+
+                            if(file_exists('testing/testing_automatic_invoices.txt')){
+                                $file = fopen('testing/testing_automatic_invoices.log', 'a');
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Linea: ' . $key. ' - '. ' id: '. $linea->id .' - ' .$linea->artlor .PHP_EOL);
+                                fclose($file);
+                            }
+
                             if($cantidad == 0){
                                 $buscado = $linea->artlor;
                             }
 
                             if($buscado == $linea->artlor){
                                 $cantidad = $cantidad + 1;
+
+                                if(file_exists('testing/testing_automatic_invoices.txt')){
+                                    $file = fopen('testing/testing_automatic_invoices.log', 'a');
+                                    fwrite($file, date("d/m/Y H:i:s").'-'.'Linea: ' . $key.'Buscado = artlor, aumenta cantidad' . $buscado. ' - '. $linea->artlor .' - ' .$cantidad . PHP_EOL);
+                                    fclose($file);
+                                }
                             }else{
                                 addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode);
+                                if(file_exists('testing/testing_automatic_invoices.txt')){
+                                    $file = fopen('testing/testing_automatic_invoices.log', 'a');
+                                    fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea cantidad: ' . $cantidad. ' articulo: '. $buscado .'reinicia cantidad'.PHP_EOL);
+                                    fclose($file);
+                                }
 
                                 $cantidad = 1;
                                 $buscado = $linea->artlor;
-                            }
-                            if($orders->count()-1 == $key){
-                                addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode);
+
                             }
 
-                        //update de lineas procesadas
-                        $facturadas = DB::table('orders')
-                                ->join('lorders', 'orders.id','=','lorders.order_id')
-                                ->where('orders.facord',0)
-                                ->where('orders.user_id',$gestoria_id)
-                                ->update(['lorders.dcolor' => $idDocument]);
+                            if($orders->count()-1 == $key){
+                                addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode);
+
+                                if(file_exists('testing/testing_automatic_invoices.txt')){
+                                    $file = fopen('testing/testing_automatic_invoices.log', 'a');
+                                    fwrite($file, date("d/m/Y H:i:s").'-'.'Añade Ultima linea cantidad: ' . $cantidad. ' articulo: '. $buscado .' idDocument: '.$idDocument.' taxcode: '. $user->taxcode .PHP_EOL);
+                                    fclose($file);
+                                }
+                            }
+
+                            //update de linea procesadas
+                            $facturadas = DB::table('orders')
+                                    ->join('lorders', 'orders.id','=','lorders.order_id')
+                                    ->where('orders.facord',0)
+                                    ->where('orders.user_id',$gestoria_id)
+                                    ->update(['lorders.dcolor' => $idDocument]);
                         }
 
 
@@ -807,21 +845,45 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->prelin = floatval($c->resource);
                 }
                 break;
+
+            case 'JUD-101':
+                $lDocument->artlin = $c->judicial_fees_code;
+                $lDocument->deslin = $c->judicial_fees_concept;
+                //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_fees_tax;
+                $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->judicial_fees_tax;
+                $lDocument->prelin = floatval($c->judicial_fees);
+                break;
+
+            case 'ORD-101':
+                $lDocument->artlin = $c->ordinary_fees_code;
+                $lDocument->deslin = $c->ordinary_fees_concept;
+                //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_fees_tax;
+                $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->ordinary_fees_tax;
+                $lDocument->prelin = floatval($c->ordinary_fees);
+                break;
+
+            case 'VER-101':
+                $lDocument->artlin = $c->verbal_fees_code;
+                $lDocument->deslin = $c->verbal_fees_concept;
+                //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_fees_tax;
+                $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->verbal_fees_tax;
+                $lDocument->prelin = floatval($c->verbal_fees);
+                break;
         }
 
         // total linea
         $idto = round(($lDocument->prelin*($lDocument->dtolin/100)),2);
         $lDocument->totlin =  round(($lDocument->canlin * ($lDocument->prelin-$idto)),2);
 
-        //$lDocument->totlin =  round(($lDocument->canlin * $lDocument->prelin),2);
-        //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0':($c->fixed_fees_tax =='IVA0'?'IVA0':'IVA21'); // Comprobamos el iva del cliente
+
+
     }
     $lDocument->save();
 }
 
 /* Esta funcion totaliza los documentos, resultado de la suma de las lineas de detalle */
 function totalDocument($typeDocument, $idDocument){
-    // Buscamos lineas de detalle
+
     if($typeDocument == 'order'){
 
         $lDocuments = Lorder::where('order_id', $idDocument)->get();
