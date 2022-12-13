@@ -183,8 +183,10 @@
             <div class="card">
 
                 <div class="card-body text-left">
-                    <h3 style="margin-top: 0;">¡Bienvenido, {{Auth::user()->name}}!</h3>
-
+                    <h3 style="margin-top: 0;">¡Bienvenido, {{Auth::user()->name}}! </h3>
+                    @if(isset($message))
+                        {{$message}}
+                    @endif
                     {{--  Advertencia datos incompletos profile cliente
                     @if (Auth::user()->isClient() && (!Auth::user()->dni || !Auth::user()->phone || !Auth::user()->cop))
                     <x-adminlte-alert theme="warning" dismissable>
