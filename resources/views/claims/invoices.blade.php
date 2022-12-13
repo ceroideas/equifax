@@ -75,7 +75,8 @@
     @endif
 
     @if (!Auth::user()->isClient())
-        <a href="{{url('invoices-export')}}" class="btn btn-sm btn-warning">Exportar Facturas Pagadas</a>
+        <a href="{{url('invoices-export')}}" class="btn btn-sm btn-success">Exportar Facturas Pagadas</a>
+        <a href="{{url('invoices-export-all')}}" class="btn btn-sm btn-primary">Exportar Todas las Facturas</a>
     @endif
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">

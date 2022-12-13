@@ -13,6 +13,8 @@ use App\Http\Controllers\WordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ActuationsController;
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,7 +81,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/', [ClaimsController::class, 'index']);
     Route::get('/invalid-debtor', [ClaimsController::class, 'invalidDebtor']);
     Route::get('/create', [ClaimsController::class, 'create']);
-    Route::get('/select-client', [ClaimsController::class, 'stepOne']);
+    Route::get('/select-client', [ClaimsController::class, 'stepOne'])->middleware(['auth', 'verified']);
     Route::get('/select-debtor', [ClaimsController::class, 'stepTwo']);
     Route::get('/create-debt', [ClaimsController::class, 'stepThree']);
     Route::get('/check-debtor', [ClaimsController::class, 'stepFour']);
@@ -92,7 +94,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/clear-option-one', [ClaimsController::class, 'flushOptionOne']);
     Route::get('/clear-option-two', [ClaimsController::class, 'flushOptionTwo']);
     Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
-    Route::get('/invoices', [ClaimsController::class , 'myInvoices']);
+    Route::get('/invoices', [ClaimsController::class , 'myInvoices'])->middleware(['auth', 'verified']);
     Route::get('/invoices/{id}', [ClaimsController::class , 'myInvoice']);
     Route::get('/orders', [ClaimsController::class , 'myOrders']);
     Route::get('/orders/{id}', [ClaimsController::class , 'myOrder']);
@@ -117,7 +119,6 @@ Route::group(['prefix' => 'claims'], function(){
     /**/
     Route::post('check_debtor', [ClaimsController::class, 'checkDebtor']);
     /**/
-
 
 });
 
@@ -221,6 +222,7 @@ Route::delete('/hitos/{id}', [ConfigurationsController::class, 'deleteHitos']);
 /**/
 Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
 Route::get('invoices-export', [ClaimsController::class, 'invoicesExport']);
+Route::get('invoices-export-all', [ClaimsController::class, 'invoicesExportAll']);
 Route::get('orders-export', [ClaimsController::class, 'ordersExport']);
 
 Route::get('migrar', [UsersController::class, 'migrar']);
@@ -254,3 +256,28 @@ Route::get('sendEmailsCron', [ClaimsController::class, 'sendEmailsCron'])->middl
 Route::get('info/{id}', [ClaimsController::class, 'info']);
 
 Route::post('saveDiscount', [ClaimsController::class, 'saveDiscount']);
+
+
+/* Ruta verificacion token */
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+//Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+
+/* Ruta que recibe el token */
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/panel')->with('Email verificado');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+Route::get('/email/resend', function () {
+    return 'El token de verificacion ha caducado, te hemos vuelto a enviar otro token, por favor verifica la ruta';
+})->middleware('auth')->name('verification.resend');
