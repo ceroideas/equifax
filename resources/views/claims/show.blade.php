@@ -185,7 +185,7 @@
                             @endif
 
 
-                            @if (!Auth::user()->isClient())
+                            @if (Auth::user()->isSuperAdmin())
                                 <div class="post">
 
                                     <b>DEUDOR CON CÓDIGO POSTAL:</b> {{$claim->debtor->cop}}
@@ -241,6 +241,9 @@
 
                                 </div>
                             @endif
+
+
+
                         </div>
                     </div>
                 </div>
