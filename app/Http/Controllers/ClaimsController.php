@@ -991,7 +991,7 @@ class ClaimsController extends Controller
 
                 $a = new Actuation;
                 $a->claim_id = $c->id;
-                $a->subject = "302";
+                $a->subject = "30017";
                 $a->amount = null;
                 $a->description = null;
                 $a->actuation_date = Carbon::now()->format('d-m-Y');
@@ -1002,7 +1002,7 @@ class ClaimsController extends Controller
             }else{
                 $c->status = 10;
 
-                actuationActions("302",$c->id);
+                actuationActions("30017",$c->id);
             }
             $c->save();
             $c->owner->save();
@@ -1039,6 +1039,16 @@ class ClaimsController extends Controller
     public function invoicesExportAll()
     {
         return Excel::download(new InvoicesExport(1), 'all-invoices-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
+    public function invoicesExportConta()
+    {
+        return Excel::download(new InvoicesExport(3), 'invoices-conta-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
+    public function invoicesExportAllConta()
+    {
+        return Excel::download(new InvoicesExport(4), 'all-invoices-conta-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
     public function ordersExport()
@@ -1203,6 +1213,10 @@ class ClaimsController extends Controller
             return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
         }
 
+    }
+
+    public function cobros(){
+        dd("Gestion de cobros");
     }
 
 }
