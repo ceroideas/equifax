@@ -78,6 +78,10 @@
         <a href="{{url('invoices-export')}}" class="btn btn-sm btn-success">Exportar Facturas Pagadas</a>
         <a href="{{url('invoices-export-all')}}" class="btn btn-sm btn-primary">Exportar Todas las Facturas</a>
     @endif
+    @if (Auth::user()->isAdmin() || Auth::user()->isSuperAdmin())
+    <a href="{{url('invoices-export-conta')}}" class="btn btn-sm btn-info">Exportar Facturas Pagadas (Altai)</a>
+    <a href="{{url('invoices-export-all-conta')}}" class="btn btn-sm btn-info">Exportar Todas las Facturas (Altai)</a>
+@endif
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" class="table-responsive" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">

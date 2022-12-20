@@ -100,6 +100,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/orders/{id}', [ClaimsController::class , 'myOrder']);
     Route::get('/facturar', [ClaimsController::class , 'facturar']);
     Route::get('/gestoria', [ClaimsController::class , 'byGestoria']);
+    Route::get('/collects', [ClaimsController::class , 'collects']);
     Route::get('/gestoria/{id}', [ClaimsController::class , 'byGestoriaDetail']);
     Route::get('/actuations/{id}', [ClaimsController::class , 'actuations']);
     Route::post('/actuations/{id}', [ClaimsController::class , 'saveActuation']);
@@ -118,7 +119,6 @@ Route::group(['prefix' => 'claims'], function(){
     Route::post('payToken', [PaymentsController::class, 'payToken']);
     /**/
     Route::post('check_debtor', [ClaimsController::class, 'checkDebtor']);
-    /**/
 
 });
 
@@ -223,6 +223,8 @@ Route::delete('/hitos/{id}', [ConfigurationsController::class, 'deleteHitos']);
 Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
 Route::get('invoices-export', [ClaimsController::class, 'invoicesExport']);
 Route::get('invoices-export-all', [ClaimsController::class, 'invoicesExportAll']);
+Route::get('invoices-export-conta', [ClaimsController::class, 'invoicesExportConta']);
+Route::get('invoices-export-all-conta', [ClaimsController::class, 'invoicesExportAllConta']);
 Route::get('orders-export', [ClaimsController::class, 'ordersExport']);
 
 Route::get('migrar', [UsersController::class, 'migrar']);
@@ -281,3 +283,8 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::get('/email/resend', function () {
     return 'El token de verificacion ha caducado, te hemos vuelto a enviar otro token, por favor verifica la ruta';
 })->middleware('auth')->name('verification.resend');
+
+
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
