@@ -7,6 +7,7 @@ use App\PaycometBankstore;
 use App\Models\User;
 use App\Models\Claim;
 use App\Models\Invoice;
+use App\Models\Collect;
 use Auth;
 use Carbon\Carbon;
 
@@ -65,6 +66,15 @@ class PaymentsController extends Controller
                 $c->last_invoice->status = 1;
                 $c->last_invoice->save();
 
+    			$collect = new Collect;
+	            $collect->feccob = Carbon::now()->format('Y-m-d H:i:s');
+	            $collect->impcob = number_format(($r->amount/100) ,2);
+                $collect->cptcob = 'Cobro de factura '.$c->last_invoice->id;
+	            $collect->invoice_id = $c->last_invoice->id;
+                $collect->user_id = '1';
+                $collect->fpacob = 'Tarjeta';
+                $collect->save();
+
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
                         actuationActions("30017",$c->id);
@@ -95,6 +105,15 @@ class PaymentsController extends Controller
                 $c->last_invoice->payment_date = Carbon::now()->format('Y-m-d H:i:s');
                 $c->last_invoice->status = 1;
                 $c->last_invoice->save();
+
+                $collect = new Collect;
+	            $collect->feccob = Carbon::now()->format('Y-m-d H:i:s');
+	            $collect->impcob = number_format(($r->amount/100) ,2);
+                $collect->cptcob = 'Cobro de factura '.$c->last_invoice->id;
+	            $collect->invoice_id = $c->last_invoice->id;
+                $collect->user_id = '1';
+                $collect->fpacob = 'Tarjeta';
+                $collect->save();
 
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
@@ -172,6 +191,15 @@ class PaymentsController extends Controller
                 $c->last_invoice->status = 1;
                 $c->last_invoice->save();
 
+                $collect = new Collect;
+	            $collect->feccob = Carbon::now()->format('Y-m-d H:i:s');
+	            $collect->impcob = number_format(($r->amount/100) ,2);
+                $collect->cptcob = 'Cobro de factura '.$c->last_invoice->id;
+	            $collect->invoice_id = $c->last_invoice->id;
+                $collect->user_id = '1';
+                $collect->fpacob = 'Tarjeta';
+                $collect->save();
+
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
                         actuationActions("30017",$c->id);
@@ -202,6 +230,15 @@ class PaymentsController extends Controller
                 $c->last_invoice->payment_date = Carbon::now()->format('Y-m-d H:i:s');
                 $c->last_invoice->status = 1;
                 $c->last_invoice->save();
+
+                $collect = new Collect;
+	            $collect->feccob = Carbon::now()->format('Y-m-d H:i:s');
+	            $collect->impcob = number_format(($r->amount/100) ,2);
+                $collect->cptcob = 'Cobro de factura '.$c->last_invoice->id;
+	            $collect->invoice_id = $c->last_invoice->id;
+                $collect->user_id = '1';
+                $collect->fpacob = 'Tarjeta';
+                $collect->save();
 
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
