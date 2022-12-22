@@ -67,7 +67,7 @@ class PaymentsController extends Controller
 
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
-                        actuationActions("302",$c->id);
+                        actuationActions("30017",$c->id);
                     }
                 }else{
                     actuationActions("-1",$c->id);
@@ -98,7 +98,7 @@ class PaymentsController extends Controller
 
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
-                        actuationActions("302",$c->id);
+                        actuationActions("30017",$c->id);
                     }
                 }else{
                     actuationActions("-1",$c->id);
@@ -174,7 +174,7 @@ class PaymentsController extends Controller
 
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
-                        actuationActions("302",$c->id);
+                        actuationActions("30017",$c->id);
                     }
                 }else{
                     actuationActions("-1",$c->id);
@@ -205,7 +205,7 @@ class PaymentsController extends Controller
 
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
-                        actuationActions("302",$c->id);
+                        actuationActions("30017",$c->id);
                     }
                 }else{
                     actuationActions("-1",$c->id);

@@ -430,7 +430,7 @@ return [
                     'text' => 'Cobros',
                     'icon' => '',
                     'can' => ['superadmin'],
-                    'url'  => '/claims/collect',
+                    'url'  => '/claims/collects',
                 ],
 
             ],

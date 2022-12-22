@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('collect', function (Blueprint $table) {
+        Schema::create('collects', function (Blueprint $table) {
             $table->id();
             $table->timestamp('feccob')->nullable();
             $table->string('impcob');
             $table->string('cptcob');
-            $table->string('cpacob');
+            $table->string('invoice_id');
+            $table->string('fpacob');
             $table->string('obscob')->nullable();
             $table->string('tracob')->nullable();
+            $table->string('user_id');
             $table->timestamps();
         });
 

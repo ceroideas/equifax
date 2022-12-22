@@ -226,6 +226,7 @@ Route::get('invoices-export-all', [ClaimsController::class, 'invoicesExportAll']
 Route::get('invoices-export-conta', [ClaimsController::class, 'invoicesExportConta']);
 Route::get('invoices-export-all-conta', [ClaimsController::class, 'invoicesExportAllConta']);
 Route::get('orders-export', [ClaimsController::class, 'ordersExport']);
+Route::get('collects-export', [ClaimsController::class, 'collectsExport']);
 
 Route::get('migrar', [UsersController::class, 'migrar']);
 
