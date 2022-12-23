@@ -13,6 +13,7 @@ use App\Models\Hito;
 use App\Models\DebtDocument;
 use App\Models\Agreement;
 use App\Models\Invoice;
+
 use App\Models\Actuation;
 use App\Models\Configuration;
 use App\Models\ActuationDocument;
@@ -30,12 +31,13 @@ use App\Exports\ClaimsExport;
 use App\Exports\InvoiceExport;
 use App\Exports\InvoicesExport;
 use App\Exports\OrdersExport;
-
+use App\Exports\CollectsExport;
 
 use App\Imports\HitosImport;
 use App\Models\Linvoice;
 use App\Models\Order;
 use App\Models\Lorder;
+use App\Models\Collect;
 
 use Illuminate\Support\Facades\DB;
 
@@ -1056,6 +1058,11 @@ class ClaimsController extends Controller
         return Excel::download(new OrdersExport, 'orders-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
+    public function collectsExport()
+    {
+        return Excel::download(new CollectsExport, 'collects-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
     public function checkDebtor(Request $r)
     {
         if ($r->concurso == 1 || $r->tipo_deuda >= 12) {
@@ -1213,10 +1220,6 @@ class ClaimsController extends Controller
             return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
         }
 
-    }
-
-    public function cobros(){
-        dd("Gestion de cobros");
     }
 
 }
