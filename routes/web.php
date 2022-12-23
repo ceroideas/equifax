@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\WordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ActuationsController;
+use App\Http\Controllers\CollectsController;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -100,7 +101,6 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/orders/{id}', [ClaimsController::class , 'myOrder']);
     Route::get('/facturar', [ClaimsController::class , 'facturar']);
     Route::get('/gestoria', [ClaimsController::class , 'byGestoria']);
-    Route::get('/collects', [ClaimsController::class , 'collects']);
     Route::get('/gestoria/{id}', [ClaimsController::class , 'byGestoriaDetail']);
     Route::get('/actuations/{id}', [ClaimsController::class , 'actuations']);
     Route::post('/actuations/{id}', [ClaimsController::class , 'saveActuation']);
@@ -122,6 +122,11 @@ Route::group(['prefix' => 'claims'], function(){
 
 });
 
+Route::group(['prefix' => 'collects'], function(){
+    Route::get('/', [CollectsController::class , 'index']);
+    Route::get('/create', [CollectsController::class , 'create']);
+    Route::post('/', [CollectsController::class, 'store']);
+});
 Route::get('viability', [ClaimsController::class, 'viability']);
 
 Route::post('uploadApudActa', [ClaimsController::class, 'uploadApudActa']);

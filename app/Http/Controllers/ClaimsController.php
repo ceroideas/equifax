@@ -1222,27 +1222,4 @@ class ClaimsController extends Controller
 
     }
 
-    public function collects()
-    {
-        $collects = Collect::all();
-        $user = 'PayComet';
-
-
-        return view('claims.collects', compact('collects', 'user'));
-
-        /*if(Auth::user()->isClient()){
-            $invoices = Auth::user()->invoices;
-        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
-            $invoices = Invoice::all();
-        }else{
-            $invoices = Invoice::whereExists(function($q){
-                $q->from('claims')
-                  ->whereRaw('claims.id = invoices.claim_id')
-                  ->whereRaw('claims.gestor_id = '.Auth::id());
-            })->get();
-        }
-
-        return view('claims.invoices', compact('invoices'));*/
-    }
-
 }
