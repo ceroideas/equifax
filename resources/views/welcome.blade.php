@@ -137,7 +137,7 @@
 
     </style>
 </head>
-
+<?php include once("analyticstracking.php") ?>
 
 <body>
 
