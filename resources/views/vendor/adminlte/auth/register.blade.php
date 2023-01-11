@@ -370,7 +370,10 @@
             $("#NewPassword").on('keyup', ValidatePassword)
 
                 let cadena = window.location.href;
-                $('[name="referenced"]').val(cadena.slice(cadena.indexOf('?')+1));
+                if(cadena.indexOf('?')>0){
+                    $('[name="referenced"]').val(cadena.slice(cadena.indexOf('?')+1));
+                }
+
             });
 
     </script>
