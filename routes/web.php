@@ -13,6 +13,7 @@ use App\Http\Controllers\WordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ActuationsController;
 use App\Http\Controllers\CollectsController;
+use App\Http\Controllers\BlogController;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -258,9 +259,6 @@ Route::get('testEmail/{email?}/{template?}', [UsersController::class, 'testEmail
 Route::get('sendEmailsCron', [ClaimsController::class, 'sendEmailsCron'])->middleware('guest');
 
 /* Ruta publica para mensajes y notificaciones generales */
-/*Route::get('info', function(){
-    return view('info-public')->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');
-});*/
 Route::get('info/{id}', [ClaimsController::class, 'info']);
 
 Route::post('saveDiscount', [ClaimsController::class, 'saveDiscount']);
@@ -270,8 +268,6 @@ Route::post('saveDiscount', [ClaimsController::class, 'saveDiscount']);
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
-
-//Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
 
 /* Ruta que recibe el token */
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
@@ -291,6 +287,19 @@ Route::get('/email/resend', function () {
 })->middleware('auth')->name('verification.resend');
 
 
-Route::get('/greeting', function () {
-    return 'Hello World';
+Route::group(['prefix' => 'blogs'], function(){
+    Route::get('/', [BlogController::class, 'index']);
+    Route::get('/create', [BlogController::class, 'createPosts']);
+
+
+    Route::post('/{id}/update', [BlogController::class, 'updatePosts']);
+    Route::post('/save', [BlogController::class, 'savePosts']);
+
+    //Route::post('/', [BlogController::class, 'store']);
+
+    //Route::get('/{slug}', [BlogController::class, 'show']);  // Me esta dando problemas replantear ruta
+
+    //Route::get('/posts', [BlogController::class, 'posts']);  Esta ruta es la que debe mostrar las entradas publicas
+    Route::get('/{id}/edit', [BlogController::class, 'createPosts']);
+
 });
