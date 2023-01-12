@@ -66,17 +66,11 @@
                         @php
                             $ext = array_reverse(explode('.', $blog->image_post))[0];
                         @endphp
-                        <a href="{{url('uploads/users/' . $blog->id . '/poa',$blog->image_post)}}" download="Image_post.{{$ext}}">
+                        <a href="{{url('storage/'. $blog->image_post)}}" download="Image_post.{{$ext}}">
                             Descargar Imagen
                         </a>
                     @endif
                 @endisset
-
-
-
-
-
-
             </div>
             {{--
             <div class="col-sm-12">

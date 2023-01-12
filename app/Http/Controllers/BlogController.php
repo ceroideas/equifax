@@ -82,20 +82,13 @@ class BlogController extends Controller
 
 
 
-    public function show($slug)
+    public function showPost($slug)
     {
-        print_r($slug);echo '<br>';
-        $blog = Blog::where('slug',$slug)->first();
-        dump($blog);
+        $blog = Blog::where('slug',$slug)
+                    ->where('status',1)
+                    ->first();
 
-
-        if($blog){
-            print_r('Existe blog');
-        }else{
-            print_r('No existe blog');
-        }
-
-        return 'Return desde blog slug';
+        return view('blogs.show',compact('blog'));
 
     }
 

@@ -161,7 +161,7 @@
         </div>
         <div data-v-a242bae8="" class="row row-cols-2 justify-content-start border-top pt-4">
             <div data-v-a242bae8="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 copyright-text">
-                © Dividae 2022 . All Rights Reserved. RENTACARONE S.L. B06970677
+                © Dividae 2022 . All Rights Reserved. DIVIDAE RECOVERY S.L. B06970677
             </div>
 
             <div data-v-a242bae8=""
