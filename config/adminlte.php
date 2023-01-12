@@ -435,6 +435,19 @@ return [
 
             ],
         ],
+        [
+            'text'    => 'Blog',
+            'icon'    => 'fas fa-fw fa-rss',
+            'can' =>  ['superadmin','see-fees', 'admin-claims'],
+            'submenu' => [
+                [
+                    'text' => 'Listado de entradas',
+                    'icon' => '',
+                    'can' => ['superadmin'],
+                    'url'  => '/blogs',
+                ],
+            ],
+        ],
         // ['header' => 'labels'],
         // [
         //     'text'       => 'important',

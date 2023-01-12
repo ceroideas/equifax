@@ -236,7 +236,7 @@
                 </div>
             </div>
         @endif
-        @if (Auth::user()->email == 'luiscampos@asemargc.com' || Auth::user()->email == 'danielmachuca@dividae.com')
+        @if (Auth::user()->email == 'luiscampos@atlantelt.com' || Auth::user()->email == 'danielmachuca@dividae.com' || Auth::user()->email == 'barbaraderon@atlantelt.com')
             <div class="row">
                 <div class="col-sm-6">
                     <x-adminlte-select name="role" label="Rol" placeholder="Selecciona El Rol">

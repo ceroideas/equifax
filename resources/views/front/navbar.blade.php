@@ -61,6 +61,14 @@
                         </span></a>
                     <div data-v-5fddf304="" class=""></div>
                 </li>
+
+                <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
+                    href="{{ url('blog') }}" class="nav-link"><span data-v-5fddf304=""
+                        class="Type-something">
+                        Blog
+                    </span></a>
+                    <div data-v-5fddf304="" class=""></div>
+                </li>
                 <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                         href="{{ url('contacto') }}" class="nav-link"><span data-v-5fddf304=""
                             class="Type-something">

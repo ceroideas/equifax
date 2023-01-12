@@ -159,13 +159,13 @@ a:visited, span.MsoHyperlinkFollowed
         <h1 class="titulo">TÉRMINOS Y CONDICIONES</h1>
         <p class="subtitulo">1. INTRODUCCIÓN</p>
         <p class="texto">Te damos la bienvenida al portal de reclamación de deuda <span class="dividae">Dividae</span>. El presente documento tiene como objeto establecer
-            las condiciones generales de uso de la página web accesible a través de la URL <a class="dividae" href="{{url('/')}}">www.dividae.com</a> propiedad de RENTACARONE S.L.,
-            así como regular las condiciones generales de contratación ofertadas por RENTACARONE S.L., en cumplimiento de lo establecido en la Ley 34/2002, de 11 de julio,
-            de servicios de la sociedad de información y de comercio electrónico. El prestador de servicios es la sociedad de nacionalidad española, RENTACARONE S.L., con
+            las condiciones generales de uso de la página web accesible a través de la URL <a class="dividae" href="{{url('/')}}">www.dividae.com</a> propiedad de DIVIDAE RECOVERY S.L.,
+            así como regular las condiciones generales de contratación ofertadas por DIVIDAE RECOVERY S.L., en cumplimiento de lo establecido en la Ley 34/2002, de 11 de julio,
+            de servicios de la sociedad de información y de comercio electrónico. El prestador de servicios es la sociedad de nacionalidad española, DIVIDAE RECOVERY S.L., con
             CIF B06970677 que se encuentra inscrita en el Registro Mercantil de Madrid, Tomo 42310, Folio 172, Sección 8, Hoja M-748997, correo electronico <a href='mailto:info@dividae.com'>info@dividae.com</a>.
             Ser USUARIO de <a class="dividae" href="{{url('/')}}">www.dividae.com</a>
             implica que usted reconoce haber leído y aceptado las presentes condiciones y la normativa legal aplicable en esta materia. Si no está de acuerdo con estas condiciones,
-            le rogamos que no continúe utilizando <a class="dividae" href="{{url('/')}}">www.dividae.com</a> ni los recursos que le ofrece. RENTACARONE S.L. podrá variar y actualizar
+            le rogamos que no continúe utilizando <a class="dividae" href="{{url('/')}}">www.dividae.com</a> ni los recursos que le ofrece. DIVIDAE RECOVERY S.L. podrá variar y actualizar
             las presentes Condiciones en cualquier momento, no obstante, cabe resaltar que no es intención de que sea frecuente. El hecho de usar este portal web implica que el
             USUARIO acepta estas Condiciones de uso y se compromete a aceptar las modificaciones realizadas en las mismas, obligándose a revisar esta página con mera frecuencia.
         </p>
@@ -177,15 +177,15 @@ a:visited, span.MsoHyperlinkFollowed
             de 19 de diciembre, de firma electrónica, Real Decreto Legislativo 1/2007, de 16 de noviembre, por el que se aprueba el texto refundido de la Ley General para la
             Defensa de los Consumidores y Usuarios y otras leyes complementarias, Ley 7/1996, de 15 de enero,
             de Ordenación del Comercio Minorista y cuantas disposiciones legales resulten de aplicación. Estos términos y condiciones, junto con cualquier otros términos y condiciones
-            particulares para un determinado servicio prestado por el presente sitio web, constituyen un acuerdo completo entre RENTACARONE S.L. y el participante. La información
+            particulares para un determinado servicio prestado por el presente sitio web, constituyen un acuerdo completo entre DIVIDAE RECOVERY S.L. y el participante. La información
             que aporte el Usuario se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esa información en el sistema lo que en ella se vierta, afirme o
-            manifieste. La entidad RENTACARONE S.L. informa de que los trámites para reclamar la deuda son aquellos que se describen en las presentes condiciones generales, así como
+            manifieste. La entidad DIVIDAE RECOVERY S.L. informa de que los trámites para reclamar la deuda son aquellos que se describen en las presentes condiciones generales, así como
             aquellos otros específicos que se indiquen en la pantalla durante la navegación, de manera que el Usuario declara conocer y aceptar dichos trámites como necesarios para
             acceder a los servicios ofrecidos en su página web.
         </p>
 
         <p class="subtitulo">3. PARTICIPACIÓN Y ADMISIÓN</p>
-        <p class="texto">Para poder participar y acceder a los servicios ofrecidos por RENTACARONE S.L., es necesario registrarse y abrir una cuenta en el sitio web:
+        <p class="texto">Para poder participar y acceder a los servicios ofrecidos por DIVIDAE RECOVERY S.L., es necesario registrarse y abrir una cuenta en el sitio web:
             <a class="dividae" href="{{url('/')}}">www.dividae.com</a>. Al hacerlo, acepta obligarse a estos Términos y Condiciones. Para poder participar es necesario:
             <ol class="texto" start=1 type=1>
                 <li>Ser mayor de edad y tener capacidad legal para obligarse en este acuerdo.</li>
@@ -205,7 +205,7 @@ a:visited, span.MsoHyperlinkFollowed
         <p class="texto">Una vez registrado en la página web se le enviará automáticamente un email a la cuenta de correo facilitado en el formulario de registro con el fin de
             que confirme su alta. Los usuarios que infrinjan las reglas recogidas en los términos y condiciones no podrán continuar con la reclamación de la deuda realizada a
             través de <a class="dividae" href="{{url('/')}}">www.dividae.com</a> y perderán, en su caso, las cantidades que hubieran entregado como honorarios o <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>,
-            reservándose RENTACARONE S.L. el derecho a ejercitar las acciones legales oportunas a efectos de exigir responsabilidad por los daños y perjuicios causados.
+            reservándose DIVIDAE RECOVERY S.L. el derecho a ejercitar las acciones legales oportunas a efectos de exigir responsabilidad por los daños y perjuicios causados.
             La información que aporte el Usuario se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esa información en el sistema lo que en ella
             se vierta, afirme o manifieste, por lo que ninguna responsabilidad cabe exigir a <span class="dividae">Dividae</span> en caso de que se produzca una condena en
             costas o una sentencia desestimatoria en contra de los intereses del Usuario. <span class="dividae">Dividae</span> se compromete al cumplimiento de los plazos y
@@ -217,7 +217,7 @@ a:visited, span.MsoHyperlinkFollowed
         </p>
 
         <p class="subtitulo">5. PROTECCIÓN DE DATOS</p>
-        <p class="texto">El objetivo de la Política de Privacidad de RENTACARONE S.L. es cumplir la legislación vigente sobre protección de datos personales. A través de
+        <p class="texto">El objetivo de la Política de Privacidad de DIVIDAE RECOVERY S.L. es cumplir la legislación vigente sobre protección de datos personales. A través de
             nuestra web <a class="dividae" href="{{url('/')}}">www.dividae.com</a> se recogen datos de carácter personal, necesarios para la gestión y mantenimiento de nuestros
             servicios. Los datos serán tratados y protegidos conforme a lo regulado en la Ley Orgánica de 15/1999, de 13 de diciembre de protección de datos de carácter personal
             y su normativa de desarrollo, con las medidas de seguridad que sean de aplicación según el Real Decreto 1720/2007 de 21 de diciembre de Protección de Datos de la
@@ -227,7 +227,7 @@ a:visited, span.MsoHyperlinkFollowed
 
         <p class="subtitulo">6. LIMITACIONES DE USO</p>
         <p class="texto">Será necesario disponer de un correo electrónico y de un número de teléfono móvil, mediante los que se procederá a validar la autenticidad del Usuario
-            para que sea completado correctamente el registro como Usuario en la web de la entidad RENTACARONE S.L. Dicho proceso, se inicia con un simple formulario en el que
+            para que sea completado correctamente el registro como Usuario en la web de la entidad DIVIDAE RECOVERY S.L. Dicho proceso, se inicia con un simple formulario en el que
             el Usuario debe cumplimentar aportando sus datos de persona física o jurídica tales como nombre completo o razón social, correo electrónico válido y contraseña.
             Con esta información, la plataforma envía automáticamente un email para validar el correo electrónico. Una vez validados estos datos, se podrá acceder a un
             formulario en el que completar los datos de registro: un número de teléfono móvil válido, DNI o CIF, fotocopia del DNI, en caso de ser una persona jurídica
@@ -235,10 +235,10 @@ a:visited, span.MsoHyperlinkFollowed
             número de cuenta corriente para transferirle las cantidades que el deudor abone. Una vez completado este proceso, podrá acceder a la plataforma identificándose con
             su correo electrónico y la clave de acceso personal seleccionada. Los Usuarios podrán cambiar su clave de acceso en cualquier momento por cualquier otra.
             Los Usuarios se comprometen a hacer un uso diligente de las claves de acceso, así como a no poner a disposición de terceros sus claves de acceso.
-            Los Usuarios se comprometen a comunicar a RENTACARONE S.L., con la mayor brevedad, la pérdida o robo de sus claves de acceso, así como cualquier riesgo de acceso a
+            Los Usuarios se comprometen a comunicar a DIVIDAE RECOVERY S.L., con la mayor brevedad, la pérdida o robo de sus claves de acceso, así como cualquier riesgo de acceso a
             las mismas por parte de un tercero. No se permite el registro de más de un Usuario con el mismo correo electrónico o con el mismo número de teléfono móvil.
-            En caso de que RENTACARONE S.L. localice datos ficticios, incompletos o inválidos, en una cuenta de usuario, se reserva el derecho de eliminar a este Usuario.
-            Para el caso de que RENTACARONE S.L. constate la intervención, por sí mismo, representado por terceros o en representación de terceros, del usuario que en
+            En caso de que DIVIDAE RECOVERY S.L. localice datos ficticios, incompletos o inválidos, en una cuenta de usuario, se reserva el derecho de eliminar a este Usuario.
+            Para el caso de que DIVIDAE RECOVERY S.L. constate la intervención, por sí mismo, representado por terceros o en representación de terceros, del usuario que en
             reclamación de deudas anteriores haya incumplido en todo o en parte las obligaciones antedichas, podrá excluirlo en la intervención pretendida en la reclamación
             de deuda sea cual fuere el estado de tramitación de la misma. Los Usuarios se comprometen a utilizar este sitio web y sus servicios de conformidad con la ley y
             las presentes condiciones de uso, así como de conformidad con la moral y las buenas costumbres generalmente aceptadas y el orden público.
@@ -260,7 +260,7 @@ a:visited, span.MsoHyperlinkFollowed
                 <li>Promuevan actividades ilegales de cualquier tipo.</li>
             </ul>
         <p class="texto">
-            3º) Conservar la documentación original de la reclamación mientras dure la vigencia del contrato con RENTACARONE S.L., y se compromete a aportarla a <span class="dividae">Dividae</span>
+            3º) Conservar la documentación original de la reclamación mientras dure la vigencia del contrato con DIVIDAE RECOVERY S.L., y se compromete a aportarla a <span class="dividae">Dividae</span>
             para que ésta la entregue en el Juzgado que se lo requiera tan pronto como <span class="dividae">Dividae</span> se lo solicite. 4º) Guardar de forma segura y eficaz, y
             comprometerse a no ceder a terceros, la contraseña de acceso a <a class="dividae" href="{{url('/')}}">www.dividae.com</a> que haya introducido, asegurándose de que nadie
             pueda acceder a la misma, poniendo para ello los medios necesarios y el máximo empeño. 5º) <span class="dividae">Dividae</span> se reserva el derecho de llevar a cabo las
@@ -314,9 +314,9 @@ temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se t
             CONDICIONES GENERALES DE LA CONTRATACIÓN, según la fase en la que se encuentre.</p>
 
         <p class="subtitulo">10. MODIFICACIONES</p>
-        <p class="texto">RENTACARONE S.L. se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su portal, pudiendo cambiar, suprimir o añadir tanto
+        <p class="texto">DIVIDAE RECOVERY S.L. se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su portal, pudiendo cambiar, suprimir o añadir tanto
             los contenidos y servicios que se presten a través de la misma como la forma en la que éstos aparezcan presentados en su portal. El hecho de usar este portal web implica que el
-            usuario está de acuerdo con las Condiciones de Uso de RENTACARONE S.L. y se compromete a aceptar las modificaciones que puedan surgir así, cada vez que el USUARIO acceda deberá
+            usuario está de acuerdo con las Condiciones de Uso de DIVIDAE RECOVERY S.L. y se compromete a aceptar las modificaciones que puedan surgir así, cada vez que el USUARIO acceda deberá
             revisar atentamente las mismas. Para el caso de no aceptar estas condiciones, no puede reclamar ninguna deuda con <span class="dividae">Dividae</span>.
         </p>
         <p class="subtitulo">11. RESPONSABILIDAD</p>
@@ -332,28 +332,28 @@ temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se t
             responsable de los perjuicios causados por la recepción o no recepción de los e-mails informativos remitidos a los usuarios.
         </p>
         <p class="subtitulo">12. PROPIEDAD INTELECTUAL E INDUSTRIAL</p>
-        <p class="texto">RENTACARONE S.L. es titular de todos los derechos de propiedad intelectual e industrial de su página web, así como los elementos contenidos en la misma (imágenes, marcas,
+        <p class="texto">DIVIDAE RECOVERY S.L. es titular de todos los derechos de propiedad intelectual e industrial de su página web, así como los elementos contenidos en la misma (imágenes, marcas,
             nombres comerciales, signos distintivos, servicios, contenidos, información…).</p>
         <p class="texto">En virtud de lo dispuesto en la Ley de Propiedad Intelectual, quedan expresamente prohibidas la reproducción, distribución, la comunicación pública, transformación o
             cualquier otra actividad similar o análoga, incluida su modalidad de puesta a disposición, de la totalidad o parte de los contenidos de esta página web, salvo que medie expresa
-            autorización de RENTACARONE S.L.</p>
-        <p class="texto">El Usuario se compromete a respetar los derechos de Propiedad Intelectual e Industrial titularidad de RENTACARONE S.L. y deberá abstenerse de suprimir, alterar, eludir o
-            manipular cualquier dispositivo de protección o sistema de seguridad que estuviera instalado en las páginas de RENTACARONE S.L. </p>
+            autorización de DIVIDAE RECOVERY S.L.</p>
+        <p class="texto">El Usuario se compromete a respetar los derechos de Propiedad Intelectual e Industrial titularidad de DIVIDAE RECOVERY S.L. y deberá abstenerse de suprimir, alterar, eludir o
+            manipular cualquier dispositivo de protección o sistema de seguridad que estuviera instalado en las páginas de DIVIDAE RECOVERY S.L. </p>
         <p class="texto">Únicamente queda autorizada la visualización y carga para el uso personal y no comercial del usuario, sin que pueda hacerlo extensivo a terceras personas o entidades.
             Queda terminantemente prohibida la alteración de esta web por parte del usuario y que pueda afectar a su contenido, tales como vínculos (o links) y similares.</p>
 
         <p class="subtitulo">13. RECLAMACIONES</p>
         <p class="texto">Todas las reclamaciones o disputas deberán ser enviadas vía mail a <a class="dividae" href="mailto:info@dividae.com">info@dividae.com</a>, asunto: “RECLAMACIÓN” o
             “INCIDENCIA”.</p>
-        <p class="texto">El usuario renuncia a todo tipo de reclamaciones contra RENTACARONE S.L. por los daños, pérdidas, gastos, lesiones sufridas, o sanciones que no sean consecuencia
-            directa de los servicios ofertados por RENTACARONE S.L. a través de este sitio web.
+        <p class="texto">El usuario renuncia a todo tipo de reclamaciones contra DIVIDAE RECOVERY S.L. por los daños, pérdidas, gastos, lesiones sufridas, o sanciones que no sean consecuencia
+            directa de los servicios ofertados por DIVIDAE RECOVERY S.L. a través de este sitio web.
         </p>
 
         <p class="subtitulo">14. LEGISLACIÓN APLICABLE Y JURISDICCIÓN</p>
         <p class="texto">Para la resolución de cualquier controversia que pudiera suscitarse en cuanto a la utilización y uso de la plataforma web o interpretación de las presentes
             Condiciones de uso, resultará de aplicación la legislación española vigente. Asimismo, el Usuario se somete a la jurisdicción de los Juzgados y Tribunales de la ciudad de
             Madrid (España) con renuncia expresa a cualquier otro fuero que pudiera corresponderle. Si tiene alguna duda sobre la utilización de la información contenida en este portal
-            web puede contactar con RENTACARONE S.L. mediante el correo electrónico habilitado al efecto <a class="dividae" href="mailto:info@dividae.com">info@dividae.com</a>.
+            web puede contactar con DIVIDAE RECOVERY S.L. mediante el correo electrónico habilitado al efecto <a class="dividae" href="mailto:info@dividae.com">info@dividae.com</a>.
         </p>
         <p>&nbsp;</p>
     </div>

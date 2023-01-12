@@ -133,7 +133,7 @@
 
 
             <h3 class ="subtitulo">1. OBJETO</h3>
-            <p class="texto">El presente documento regula el contrato de servicios formalizado entre el/la Cliente/a y <span class="dividae">Dividae</span> (RENTACARONE S.L.).
+            <p class="texto">El presente documento regula el contrato de servicios formalizado entre el/la Cliente/a y <span class="dividae">Dividae</span> (DIVIDAE RECOVERY S.L.).
                 El/la Cliente debe incorporar sus propios datos, los del DEUDOR y los de la DEUDA en el sistema informático de <span class="dividae">Dividae</span>,
                 para que los profesionales que forman parte de <span class="dividae">Dividae</span> reclamen ante los Juzgados las cantidades debidas y sus correspondientes intereses.
                 Con dicha información, <span class="dividae">Dividae</span> también podrá negociar con el deudor teniendo en cuenta las <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Cantidad que estarías dispuesto a dejar de cobrar">quitas</span> y <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">esperas</span> indicadas por el cliente.
