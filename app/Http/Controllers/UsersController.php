@@ -204,7 +204,7 @@ class UsersController extends Controller
             'province' => $request->province,
             'cop' => $request->cop,
             'iban' => $request->iban,
-            //'role' => $request->role,
+            'role' => $request->role,
             'password' => $password,
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
