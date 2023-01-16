@@ -29,26 +29,32 @@
 	  </table>
 
 	  <table>
-	      <tr>
+        <tr>
             <td colspan="4" ><strong>Facturado a:</strong></td>
             <td colspan="2" style="text-align: right;"><strong>Pagado a:</strong></td>
-          </tr>
-		  <tr>
+        </tr>
+        <tr>
             <td colspan="4" >{{$i->cnofac}} </td>
             <td colspan="2" style="text-align: right;">{{ $c->invoice_name }}</td>
         </tr>
-		  <tr>
-            <td colspan="4" >{{$i->cdofac}}, {{$i->cpofac}}, {{$i->cprfac}} </td>
+        <tr>
+            <td colspan="4" >{{$i->cnifac}} </td>
             <td colspan="2" style="text-align: right;">{{ $c->invoice_address_line_1 }}</td>
         </tr>
-		  <tr>
-            <td colspan="4" >{{$i->cnifac}} </td>
+        <tr>
+            <td colspan="4" >{{$i->cdofac}} </td>
             <td colspan="2" style="text-align: right;">{{ $c->invoice_address_line_2 }}</td>
         </tr>
-		  <tr>
-            <td colspan="4" >{{$i->claim->owner->email}}</td>
+        <tr>
+            <td colspan="4" >{{$i->ccpfac}}, {{$i->cpofac}}, {{$i->cprfac}} </td>
             <td colspan="2" style="text-align: right;">{{ $c->invoice_email }}</td>
         </tr>
+        <tr>
+            <td colspan="4" >{{$i->claim->owner->email}}</td>
+            <td colspan="2" style="text-align: right;"></td>
+        </tr>
+
+
 
 	  </table>
 

@@ -315,18 +315,19 @@ class ClaimsController extends Controller
         $claim->save();
 
         $path = '/uploads/claims/' . $claim->id . '/documents/';
+        $pathStorage = '/storage/uploads/claims/' . $claim->id . '/documents/';
 
         foreach (session('documentos') as $key => $d) {
 
             $bn = basename($d[key($d)]['file']);
             Storage::disk('public')->move($d[key($d)]['file'], $path . $bn);
-            $d[key($d)]['file'] = $path . $bn;
+            $d[key($d)]['file'] = $pathStorage . $bn;
 
             // return gettype(json_encode($d));
 
             $debtd = new DebtDocument;
             $debtd->debt_id = $debt->id;
-            $debtd->document = $path . $bn;
+            $debtd->document = $pathStorage . $bn;
             $debtd->type = key($d);
             $debtd->hitos = json_encode($d);
             $debtd->save();
@@ -975,6 +976,9 @@ class ClaimsController extends Controller
     public function uploadApudActa(Request $r)
     {
         $c = Claim::find($r->id);
+        dump($r->id);
+        dump($r->file);
+        dump($c->last_invoice);
 
         $path = public_path().'/uploads/users/' . $c->owner->id . '/apud/';
 
@@ -986,7 +990,7 @@ class ClaimsController extends Controller
             if ($c->last_invoice) {
                 $c->status = 7;
 
-                $a = Actuation::where('claim_id',$c->id)->where('subject',"302")->first();
+                $a = Actuation::where('claim_id',$c->id)->where('subject',"30017")->first();
                 if ($a) {
                     $a->delete();
                 }
@@ -1003,7 +1007,7 @@ class ClaimsController extends Controller
 
             }else{
                 $c->status = 10;
-
+                // Aqui debemos comprobar si viene de gestoria o no ya en gestorias no debe quedar en 30017
                 actuationActions("30017",$c->id);
             }
             $c->save();

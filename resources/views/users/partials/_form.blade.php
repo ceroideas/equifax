@@ -159,7 +159,7 @@
             </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-<!--                <x-adminlte-input name="dni_img" label="Copia del DNI / CIF" placeholder="Copia del DNI / CIF" type="file"
+            <!--<x-adminlte-input name="dni_img" label="Copia del DNI / CIF" placeholder="Copia del DNI / CIF" type="file"
                 igroup-size="sm">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">

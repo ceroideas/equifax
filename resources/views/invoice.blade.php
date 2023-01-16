@@ -48,8 +48,9 @@
 	    <div class="col-sm-6 order-sm-0"> <strong>Facturado a:</strong>
 	      <address>
 		  {{$i->cnofac}} <br>
-		  {{$i->cdofac}}, {{$i->cpofac}}, {{$i->cprfac}} <br>
 		  {{$i->cnifac}} <br>
+		  {{$i->cdofac}}, <br>
+          {{$i->ccpfac}}, {{$i->cpofac}}, {{$i->cprfac}} <br>
 		  @if(isset($i->claim->owner->email))
             {{$i->claim->owner->email}} <br>
           @endif

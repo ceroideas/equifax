@@ -15,7 +15,7 @@
         								@php
         									$ext = array_reverse(explode('.', $doc->document))[0];
         								@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - FACTURA.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - FACTURA.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -65,7 +65,7 @@
         								@php
         									$ext = array_reverse(explode('.', $doc->document))[0];
         								@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - FACTURA.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - FACTURA.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -115,7 +115,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - ALBARÁN.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - ALBARÁN.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -152,7 +152,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - RECIBO DE ENTREGA.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - RECIBO DE ENTREGA.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -185,7 +185,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - CONTRATO.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - CONTRATO.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -218,7 +218,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - HOJA DE ENCARGO.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - HOJA DE ENCARGO.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -251,7 +251,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - HOJA DE PEDIDO.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - HOJA DE PEDIDO.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -284,7 +284,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - RECONOCIMIENTO DE DEUDA.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - RECONOCIMIENTO DE DEUDA.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -325,7 +325,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - EXTRACTO BANCARIO.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - EXTRACTO BANCARIO.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -358,7 +358,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - ESCRITURA NOTARIAL.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - ESCRITURA NOTARIAL.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -399,7 +399,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - BUROFAX.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - BUROFAX.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -432,7 +432,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - CARTA CERTIFICADA.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - CARTA CERTIFICADA.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -465,7 +465,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - E-MAILS.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - E-MAILS.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
@@ -498,7 +498,7 @@
         							@php
         								$ext = array_reverse(explode('.', $doc->document))[0];
         							@endphp
-        								<i class="fas fa-file"></i> <a download="Descarga - OTROS.{{$ext}}" href="{{url('storage'.$doc->document)}}">Descargar Documento</a>
+        								<i class="fas fa-file"></i> <a download="Descarga - OTROS.{{$ext}}" href="{{url($doc->document)}}">Descargar Documento</a>
         							</div>
         						</div>
         						<div class="col-sm-6">
