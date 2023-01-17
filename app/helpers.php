@@ -23,12 +23,10 @@ function getHito($id_hito)
 {
 	$h = null;
 	$f = null;
-	// foreach (config('app.actuations') as $key => $value) {
-	foreach (Hito::whereNull('parent_id')->get() as $key => $value) {
 
+	foreach (Hito::whereNull('parent_id')->get() as $key => $value) {
         if (count($value->hitos)) {
             foreach ($value->hitos as $key1 => $value1) {
-                // if ($value1['id'] === $id_hito) {
                 if ($value1->ref_id === $id_hito) {
                     $h = $value1;
                     $f = $value;
@@ -40,7 +38,6 @@ function getHito($id_hito)
             if ($value->ref_id === $id_hito) {
                 $h = $value;
                 $f = $value;
-
                 return [$h,$f];
             }
         }
@@ -66,70 +63,9 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
         fclose($file);
     }
 
-
-	/*if ($claim->claim_type == 2) {
-
-		if ($h) {
-			if ($h['redirect_to'] != "20") {
-
-				$a = new Actuation;
-		        $a->claim_id = $claim_id;
-		        $a->subject = "001";
-		        $a->amount = null;
-		        $a->description = null;
-		        $a->actuation_date = Carbon::now()->format('d-m-Y');
-
-		        $a->hito_padre = $h['id'];
-
-		        $a->type = null;
-		        $a->mailable = $h['email'] ? 1 : null;
-
-		        $a->save();
-
-			}else{
-
-				$a = new Actuation;
-		        $a->claim_id = $claim_id;
-		        $a->subject = "20";
-		        $a->amount = null;
-		        $a->description = null;
-		        $a->actuation_date = Carbon::now()->format('d-m-Y');
-
-		        $a->hito_padre = $h['id'];
-
-		        $a->type = null;
-		        $a->mailable = $h['email'] ? 1 : null;
-
-		        $a->save();
-			}
-		}
-
-
-	}
-	else */
     if ($h) {
 
 		// comprobar si el hito es de la fase de cobro directamente
-
-		/*if ($h['id'] == 301 || $h['id'] == 302) {
-			// code...
-			$a = new Actuation;
-	        $a->claim_id = $claim_id;
-	        $a->subject = $h['id'];
-	        $a->amount = $amount;
-	        $a->description = $observations;
-	        $a->actuation_date = $date;
-	        $a->type = null;
-	        $a->mailable = $h['email'] ? 1 : null;
-
-	        $a->save();
-
-			return actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
-		}
-
-		// comprobar si el hito redirecciona a otro hito
-
-		else */
 		if($h['redirect_to'])
 		{
             if(file_exists('testing/testing_claims_actuations.txt')){
@@ -223,9 +159,6 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 				$claim->claim_type = 1;
 				$claim->save();
 
-                // Escribe descripcion invoice
-
-
                 /************* Inicio creacion de documento (Order / Invoice ) ***************/
 
                 // Determinamos si hay tasa
@@ -236,31 +169,17 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 							if ($claim->third_parties_id) {
 				                if ($claim->representant->type == 1) {
 				                    if ($claim->debt->pending_amount > 2000) {
-                                        // TODO: Escribir linea de detalle de tasa
-				                        /*$amount += $c[$value];
-				                        $amounts[] = $c[$value];
-				                        $type[] = $value;*/
                                         $tasa = 1;
 				                    }
 				                }
 				            }else{
 				                if ($claim->client->type == 1) {    //client = user_id
 				                    if ($claim->debt->pending_amount > 2000) {
-                                        // TODO: Escribir linea de detalle de tasa
-				                        /*$amount += $c[$value];
-				                        $amounts[] = $c[$value];
-				                        $type[] = $value;*/
                                         $tasa = 1;
 				                    }
 				                }
 				            }
-						}/*else{
-                            // TODO: Escribir linea de detalle del hito correspondiente.
-							/*
-                            $amount += $c[$value];
-							$amounts[] = $c[$value];
-							$type[] = $value;
-						}*/
+						}
 					}
 				}
 
@@ -284,12 +203,10 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     }
                 }
 
-
                 // Verificamos si la reclamacion tiene un gestor para saber si generamos pedido o factura directamente
                 if(file_exists('testing/testing_claims_actuations.txt')){
                     $file = fopen('testing/testing_claims_actuations.log', 'a');
                     fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento: ' . PHP_EOL);
-
                 }
                 if($claim->gestor_id <> null){
                     addDocument('order', $claim->id, $articulo,$tasa);
@@ -300,10 +217,8 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                         fwrite($file, date("d/m/Y H:i:s").'-'.'Genera pedido: claim_id/articulo/tasa: ' . $claim->id .'/'. $articulo .'/'. $tasa . PHP_EOL);
                         fclose($file);
                     }
-
                 }else{
                     $idFactura = addDocument('invoice',$claim->id, $articulo,$tasa);
-
                     $a->invoice_id = $idFactura;
                     $a->save();
 
@@ -317,49 +232,6 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                 }
 
                 /*********** Fin generacion de documento *****************/
-
-                // Si el hito tiene una redireccion 301, debe tener en type los elementos con los que puede generar tanto la factura como la tasa.
-				// Esto se realiza en el la creacion del documento
-
-                /*$description = "Pago de la tarifa procedimiento ";
-                if($h['type'][0]){
-                    switch ($h['type'][0]) {
-                        case 'judicial_amount':
-                            $description .= "Monitorio";
-                            break;
-                        case 'verbal_amount':
-                            $description .= "Verbal";
-                            break;
-                        case 'ordinary_amount':
-                            $description .= "Ordinario";
-                            break;
-                        case 'execution':
-                            $description .= "Ejecución";
-                            break;
-                        case 'resource':
-                            $description .= "Recurso";
-                            break;
-                    }
-                }*/
-
-                // TODO: Generar nuevo documento nuevo formato
-                /*
-				$invoice = new Invoice;
-		        $invoice->claim_id = $claim->id;
-		        $invoice->user_id = $claim->user_id;
-		        $invoice->amounts = implode('|',$amounts);
-		        $invoice->amount = $amount;
-		        $invoice->description = $description;
-		        $invoice->type = implode('|',$type);
-		        if (Auth::user()->isGestor()) {
-		            $invoice->status = 1;
-		        }
-		        $invoice->save();*/
-
-
-
-
-
 
 		        if (Auth::user()->isGestor()) {
 		        	actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
@@ -453,15 +325,6 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                 } // Fin envio email
 
             } // fin actuacion simple no redirecciona
-
-		/*echo 'Email: '.($h['email'] ? 'Si' : 'No');
-		echo '<br>';
-		echo 'Genera Cobro: '.(($h['redirect_to'] === "301" || ($h['id'] == 301 || $h['id'] == 302)) ? 'Si' : 'No');
-		echo '<br>';
-		echo ($h['redirect_to'] === "301" ? ('Tipo de Cobro: '.$h['type'].'<br>') : '');
-		echo 'Finaliza: '.($h['redirect_to'] === "20" ? 'Si' : 'No');
-		echo '<br>';*/
-
 	}
 }
 
@@ -481,17 +344,8 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
         $document->claim_id =  $claim_id;
 
 
-        /////////////////////////////// Siempre se factura en nombre del owner
+        // Siempre se factura en nombre del owner
         $claim = Claim::find($claim_id);
-
-        /*
-        if(!$gestoria_id == 0){
-            $user = User::find($gestoria_id);
-            $document->user_id = $user->id;
-        }else{
-            $user = User::find($claim->owner_id);
-            $document->user_id =  $user->id;
-        }*/
 
         // Asignamos el documento siempre a nombre del
         if($articulo == 'mensual'){
@@ -500,28 +354,17 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
             $user = User::find($claim->owner_id);
         }
 
-        //dump($user->id);
+
 
         $document->user_id =  $user->id;
         // Solo en invoice almacenamos los datos del cliente en el momento de su creación
         if($typeDocument == 'invoice'){
-           // if(!$gestoria_id == 0){
                 $document->cnofac = $user->name;
                 $document->cdofac = $user->address;
                 $document->cpofac = $user->location;
                 $document->ccpfac = $user->cop;
                 $document->cprfac = $user->province;
                 $document->cnifac = $user->dni;
-            //}else{
-                // Es mejor facturar en nombre el owner del claim ? Si
-
-                /*$document->cnofac = Auth::user()->name;
-                $document->cdofac = Auth::user()->address;
-                $document->cpofac = Auth::user()->location;
-                $document->ccpfac = Auth::user()->cop;
-                $document->cprfac = Auth::user()->province;
-                $document->cnifac = Auth::user()->dni;*/
-            //}
         }
 
         // Lineas de detalle, probamos enviar mas de una
@@ -557,7 +400,6 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
                 $document->type = 'execution';
                 $document->description = $c->execution_concept;
                 addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount);
-                // Ejecucion no lleva tasa
                 break;
 
             case 'RES-001':
@@ -571,8 +413,6 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
             case 'mensual':
                 $document->type = 'automatic';
                 $document->description = 'Factura periodica de gestoría';
-                // TODO: Se podria optimizar que coja el importe e iva del momento de creacion del pedido.
-                //tambien coger los importes de las lineas de detalle con descuento
                     $orders = DB::table('orders')
                     ->join('lorders', 'orders.id','=','lorders.order_id')
                         ->where('orders.facord',0)
@@ -671,13 +511,13 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
         $lDocument->order_id = $idDocument;
         $lDocument->poslor = maxId('lorders', 'poslor',$idDocument);
         $lDocument->canlor = $cantidad;
-        $lDocument->dtolor = $discount;
         switch($articulo){ // Comprobamos siempre si hay tasa
             case 'EXT-001':
                 $lDocument->artlor = $c->extra_code;
                 $lDocument->deslor = $c->extra_concept;
                 $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->fixed_fees_tax;
                 $lDocument->prelor = floatval($c->fixed_fees);
+                $lDocument->dtolor = $discount;
                 break;
 
             case 'JUD-001':
@@ -692,6 +532,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->deslor = $c->judicial_amount_concept;
                     $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->judicial_amount_tax;
                     $lDocument->prelor = floatval($c->judicial_amount);
+                    $lDocument->dtolor = $discount;
                 }
                 break;
 
@@ -707,6 +548,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->deslor = $c->verbal_amount_concept;
                     $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->verbal_amount_tax;
                     $lDocument->prelor = floatval($c->verbal_amount);
+                    $lDocument->dtolor = $discount;
                 }
                 break;
 
@@ -722,6 +564,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->deslor = $c->ordinary_amount_concept;
                     $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->ordinary_amount_tax;
                     $lDocument->prelor = floatval($c->ordinary_amount);
+                    $lDocument->dtolor = $discount;
                 }
                 break;
 
@@ -744,46 +587,42 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->deslor = $c->resource_concept;
                     $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->resource_tax;
                     $lDocument->prelor = floatval($c->resource);
+                    $lDocument->dtolor = $discount;
                 }
                 break;
         }
         // total linea
         $idto = round(($lDocument->prelor*($lDocument->dtolor/100)),2);
         $lDocument->totlor =  round(($lDocument->canlor * ($lDocument->prelor-$idto)),2);
-        //$lDocument->totlor =  round(($lDocument->canlor * $lDocument->prelor),2);
 
     }else{
         $lDocument = new Linvoice;
         $lDocument->invoice_id = $idDocument;
         $lDocument->poslin = maxId('linvoices','poslin',$idDocument);
         $lDocument->canlin = $cantidad;
-        $lDocument->dtolin = $discount;
 
-        //buscar articulo esto es de extrajudicial switch case
         switch($articulo){ // Comprobamos siempre si hay tasa
             case 'EXT-001':
                 $lDocument->artlin = $c->extra_code;
                 $lDocument->deslin = $c->extra_concept;
-                //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->fixed_fees_tax;
-                //$lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': (Auth::user()->taxcode =='IVA0'?'IVA0': $c->fixed_fees_tax);
                 $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0':$c->fixed_fees_tax;
                 $lDocument->prelin = floatval($c->fixed_fees);
+                $lDocument->dtolin = $discount;
                 break;
 
             case 'JUD-001':
                 if($tasa == 1){
                     $lDocument->artlin = $c->judicial_fees_code;
                     $lDocument->deslin = $c->judicial_fees_concept;
-                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_fees_tax;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->judicial_fees_tax;
                     $lDocument->prelin = floatval($c->judicial_fees);
 
                 }else{
                     $lDocument->artlin = $c->judicial_amount_code;
                     $lDocument->deslin = $c->judicial_amount_concept;
-                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_amount_tax;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0' : $c->judicial_amount_tax;
                     $lDocument->prelin = floatval($c->judicial_amount);
+                    $lDocument->dtolin = $discount;
                 }
                 break;
 
@@ -791,16 +630,15 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 if($tasa == 1){
                     $lDocument->artlin = $c->verbal_fees_code;
                     $lDocument->deslin = $c->verbal_fees_concept;
-                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_fees_tax;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->verbal_fees_tax;
                     $lDocument->prelin = floatval($c->verbal_fees);
 
                 }else{
                     $lDocument->artlin = $c->verbal_amount_code;
                     $lDocument->deslin = $c->verbal_amount_concept;
-                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_amount_tax;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0':  $c->verbal_amount_tax;
                     $lDocument->prelin = floatval($c->verbal_amount);
+                    $lDocument->dtolin = $discount;
                 }
                 break;
 
@@ -808,23 +646,21 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 if($tasa == 1){
                     $lDocument->artlin = $c->ordinary_fees_code;
                     $lDocument->deslin = $c->ordinary_fees_concept;
-                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_fees_tax;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->ordinary_fees_tax;
                     $lDocument->prelin = floatval($c->ordinary_fees);
 
                 }else{
                     $lDocument->artlin = $c->ordinary_amount_code;
                     $lDocument->deslin = $c->ordinary_amount_concept;
-                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_amount_tax;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->ordinary_amount_tax;
                     $lDocument->prelin = floatval($c->ordinary_amount);
+                    $lDocument->dtolin = $discount;
                 }
                 break;
 
             case 'EJE-001':
                 $lDocument->artlin = $c->execution_code;
                 $lDocument->deslin = $c->execution_concept;
-                //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->execution_tax;
                 $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->execution_tax;
                 $lDocument->prelin = floatval($c->execution);
                 break;
@@ -833,23 +669,21 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 if($tasa == 1){
                     $lDocument->artlin = $c->deposit_code;
                     $lDocument->deslin = $c->deposit_concept;
-                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->deposit_tax;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->deposit_tax;
                     $lDocument->prelin = floatval($c->deposit_amount);
 
                 }else{
                     $lDocument->artlin = $c->resource_code;
                     $lDocument->deslin = $c->resource_concept;
-                    //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->resource_tax;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->resource_tax;
                     $lDocument->prelin = floatval($c->resource);
+                    $lDocument->dtolin = $discount;
                 }
                 break;
 
             case 'JUD-101':
                 $lDocument->artlin = $c->judicial_fees_code;
                 $lDocument->deslin = $c->judicial_fees_concept;
-                //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->judicial_fees_tax;
                 $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->judicial_fees_tax;
                 $lDocument->prelin = floatval($c->judicial_fees);
                 break;
@@ -857,7 +691,6 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
             case 'ORD-101':
                 $lDocument->artlin = $c->ordinary_fees_code;
                 $lDocument->deslin = $c->ordinary_fees_concept;
-                //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->ordinary_fees_tax;
                 $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->ordinary_fees_tax;
                 $lDocument->prelin = floatval($c->ordinary_fees);
                 break;
@@ -865,17 +698,13 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
             case 'VER-101':
                 $lDocument->artlin = $c->verbal_fees_code;
                 $lDocument->deslin = $c->verbal_fees_concept;
-                //$lDocument->ivalin = Auth::user()->taxcode =='IVA0'?'IVA0': $c->verbal_fees_tax;
                 $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->verbal_fees_tax;
                 $lDocument->prelin = floatval($c->verbal_fees);
                 break;
         }
-
         // total linea
         $idto = round(($lDocument->prelin*($lDocument->dtolin/100)),2);
         $lDocument->totlin =  round(($lDocument->canlin * ($lDocument->prelin-$idto)),2);
-
-
 
     }
     $lDocument->save();
@@ -947,20 +776,17 @@ function totalDocument($typeDocument, $idDocument){
         $document->net4ord = $total0;
         // Descuento porcentaje e importe
         // Se obtiene de
-        $document->pdto1ord = $user->discount; //Auth::user()->discount;
-        $document->pdto2ord = $user->discount; //Auth::user()->discount;
-        $document->pdto3ord = $user->discount; //Auth::user()->discount;
-        $document->pdto4ord = $user->discount; //Auth::user()->discount;
+        $document->pdto1ord = $user->discount;
+        $document->pdto2ord = $user->discount;
+        $document->pdto3ord = $user->discount;
+        $document->pdto4ord = $user->discount;
         // el descuento se aplica directo a linea de detalle
         //$document->idto1ord = round(($document->net1ord * ($document->pdto1ord / 100)),2);
-        //$document->idto2ord = round(($document->net2ord * ($document->pdto2ord / 100)),2);
-        //$document->idto3ord = round(($document->net3ord * ($document->pdto3ord / 100)),2);
-        //$document->idto4ord = round(($document->net4ord * ($document->pdto4ord / 100)),2);
         // Bases
-        $document->bas1ord = $total21; //round(($document->net1ord-$document->idto1ord),2);
-        $document->bas2ord = $total10; //round(($document->net2ord-$document->idto2ord),2);
-        $document->bas3ord = $total4;  //round(($document->net3ord-$document->idto3ord),2);
-        $document->bas4ord = $total0;  //round(($document->net4ord-$document->idto4ord),2);
+        $document->bas1ord = $total21;
+        $document->bas2ord = $total10;
+        $document->bas3ord = $total4;
+        $document->bas4ord = $total0;
         //%iva  TODO: optimizar, para traerlo de tabla de configuracion, unificando cfgs y configurations
         $document->piva1ord = 21;
         $document->piva2ord = 10;
@@ -979,20 +805,17 @@ function totalDocument($typeDocument, $idDocument){
         $document->net3fac = $total4;
         $document->net4fac = $total0;
         // Descuento porcentaje e importe
-        $document->pdto1fac = $user->discount; //Auth::user()->discount;
-        $document->pdto2fac = $user->discount; //Auth::user()->discount;
-        $document->pdto3fac = $user->discount; //Auth::user()->discount;
-        $document->pdto4fac = $user->discount; //Auth::user()->discount;
+        $document->pdto1fac = $user->discount;
+        $document->pdto2fac = $user->discount;
+        $document->pdto3fac = $user->discount;
+        $document->pdto4fac = $user->discount;
         // el descuento se aplica directo a linea de detalle
         // $document->idto1fac = round(($document->net1fac * ($document->pdto1fac / 100)),2);
-        // $document->idto2fac = round(($document->net2fac * ($document->pdto2fac / 100)),2);
-        // $document->idto3fac = round(($document->net3fac * ($document->pdto3fac / 100)),2);
-        // $document->idto4fac = round(($document->net4fac * ($document->pdto4fac / 100)),2);
         // Bases
-        $document->bas1fac = $total21;//round(($document->net1fac-$document->idto1fac),2);
-        $document->bas2fac = $total10;//round(($document->net2fac-$document->idto2fac),2);
-        $document->bas3fac = $total4;//round(($document->net3fac-$document->idto3fac),2);
-        $document->bas4fac = $total0;//round(($document->net4fac-$document->idto4fac),2);
+        $document->bas1fac = $total21;
+        $document->bas2fac = $total10;
+        $document->bas3fac = $total4;
+        $document->bas4fac = $total0;
         //%iva  TODO: optimizar, para traerlo de tabla de configuracion, unificando cfgs y configurations
         $document->piva1fac = 21;
         $document->piva2fac = 10;
