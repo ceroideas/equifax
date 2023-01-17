@@ -48,19 +48,19 @@
                         <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
 
                             {{-- Card 1 --}}
-                            {{--<div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
+                            <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
                                 <div class="card mb-12 rounded-3" style="width: 17rem;">
-                                    <img class="card-img-top" src="http://127.0.0.1:8000/storage/uploads/blogs/oOp9zokkvE8vvBQDxikriBmwbTK5hQcO7CuyMeBL.png" alt="Card image cap" >
+                                    <img class="card-img-top" src="https://dividae.com/storage/uploads/blogs/S58S8KEV1LnvwozG5i9gjkClAIMiJm8cqzAormxJ.png" alt="Dividae en Radio Intereconomia" >
                                     <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
                                         <br>
-                                        <small>2022: un año marcado por grandes logros y resultados</small>
+                                        <small>Dividae en Radio Intereconomía</small>
                                     </span>
                                     <div class="card-body">
-                                    <p class="card-text">¡Estamos orgullosos de cerrar el año 2022 con grandes resultados, tanto en el crecimiento como compañía como en nuestro firme compromiso con la sociedad!</p>
-                                    <a href="http://127.0.0.1:8000/blog/2022" class="btn btn-primary">Leer más</a>
+                                    <p class="card-text">El pasado viernes 13, Daniel Jaume, Head of Sales and Business Development en el Grupo Atlante, realizó una entrevista para Radio Intereconomía.</p>
+                                    <a href="https://dividae.com/blog/dividae-radio-intereconomia" class="btn btn-primary">Leer más</a>
                                     </div>
                                 </div>
-                            </div>--}}
+                            </div>
 
                             {{-- Card 2 --}}
                             {{--<div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
