@@ -191,6 +191,12 @@ class UsersController extends Controller
             $password = $user->password;
         }
 
+        if(isset($request->role)){
+            $role = $request->role;
+        }else{
+            $role = Auth::user()->role;
+        }
+
         $user->update([
 
             'type' => $request->type,
@@ -204,7 +210,7 @@ class UsersController extends Controller
             'province' => $request->province,
             'cop' => $request->cop,
             'iban' => $request->iban,
-            'role' => $request->role,
+            'role' => $role,
             'password' => $password,
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
@@ -240,7 +246,12 @@ class UsersController extends Controller
             return redirect('/users')->with(['msj' => 'Usuario actualizado exitosamente']);
         }
 
-        return redirect('claims/select-client')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
+        if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
+            return redirect('panel')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
+        }else{
+            return redirect('claims/select-client')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
+        }
+
     }
 
     /**
@@ -301,16 +312,14 @@ class UsersController extends Controller
 
         if(request()->method() == 'PUT'){
 
-
-            // dd('hola');
             $rules['password'] = 'sometimes|confirmed';
             $rules['email'] = 'required|email|unique:users,email,'.request()->user->id;
-            // $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->user->id;
+            /* $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->user->id;
             if(Auth::user()->dni_img != NUll){
-                // $rules['dni_img']  = 'mimes:jpg,png,pdf';
+                $rules['dni_img']  = 'mimes:jpg,png,pdf';
             }else{
-                // $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
-            }
+                $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
+            }*/
             if (request()->type == 1) {
                 //$rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
                 $rules['legal_representative'] = 'required';

@@ -1,4 +1,4 @@
-@if (Auth::check() && (Auth::user()->isClient() || Auth::user()->isGestor()))
+@if (Auth::check() && (Auth::user()->isClient() || Auth::user()->isGestor() || Auth::user()->isAssociate()))
     @include('front.layout')
 @else
     <!DOCTYPE html>

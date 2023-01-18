@@ -45,6 +45,8 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('gestor-claims', [ClaimPolicy::class, 'checkGestor']);
 
+        Gate::define('associate-claims', [ClaimPolicy::class, 'checkGestor']);
+
         Gate::define('see-fees', function(User $user){
             if($user->isAdmin() || $user->isSuperAdmin() ){
                 return true;

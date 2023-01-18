@@ -85,6 +85,12 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
+    public function isAssociate(){
+        if($this->role === 4){
+            return true;
+        }
+    }
+
     public function getRole(){
         switch ($this->role) {
             case 0:
@@ -98,6 +104,9 @@ class User extends Authenticatable implements MustVerifyEmail
                 break;
             case 3:
                 return 'Gestoría';
+                break;
+            case 4:
+                return 'Asociado';
                 break;
             default:
                 return 'Cliente';

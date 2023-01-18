@@ -23,7 +23,7 @@
 @section('content')
 {{-- Configuración del componente para el datatable --}}
     @php
-    if (Auth::user()->isClient()) {
+    if (Auth::user()->isClient() || Auth::user()->isAssociate()) {
         $heads = [
             'ID',
             'Reclamación',
@@ -74,7 +74,15 @@
         </x-adminlte-alert>
     @endif
 
-    @if (!Auth::user()->isClient())
+    @if(Auth::user()->isAssociate())
+        <a href="{{url('invoices-export')}}" class="btn btn-sm btn-success">Asociado</a>
+    @endif
+
+    @if(Auth::user()->isClient())
+    <a href="{{url('invoices-export')}}" class="btn btn-sm btn-success">Cliente</a>
+    @endif
+
+    @if (!Auth::user()->isClient() || !Auth::user()->isAssociate())
         <a href="{{url('invoices-export')}}" class="btn btn-sm btn-success">Exportar Facturas Pagadas</a>
         <a href="{{url('invoices-export-all')}}" class="btn btn-sm btn-primary">Exportar Todas las Facturas</a>
     @endif

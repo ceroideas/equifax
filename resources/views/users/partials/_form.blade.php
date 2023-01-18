@@ -244,6 +244,7 @@
                         <option value="1" @if(isset($user) && $user->isAdmin()) selected @endif>Administrador</option>
                         <option value="2"  @if(isset($user) && $user->isClient()) selected @endif>Cliente</option>
                         <option value="3" @if(isset($user) && $user->isGestor()) selected @endif>Gestoría</option>
+                        <option value="4" @if(isset($user) && $user->isAssociate()) selected @endif>Asociado</option>
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-user"></i>
