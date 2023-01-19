@@ -104,12 +104,18 @@ class ClaimPolicy
     public function checkAdmin(User $user){
 
         return $user->isAdmin();
- 
+
     }
 
     public function checkGestor(User $user){
 
         return $user->isGestor();
- 
+
+    }
+
+    public function checkAssociate(User $user){
+
+        return $user->isAssociate();
+
     }
 }

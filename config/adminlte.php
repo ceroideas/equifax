@@ -355,24 +355,24 @@ return [
         [
             'text'    => 'Reclamaciones',
             'icon'    => 'fas fa-fw fa-book',
-            'can' =>  ['superadmin','create-claims', 'admin-claims', 'gestor-claims'],
+            'can' =>  ['superadmin','create-claims', 'admin-claims', 'gestor-claims', 'associate-claims'],
             'submenu' => [
                 [
                     'text' => 'Listado de Reclamaciones',
                     'icon' => '',
-                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims'],
+                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims','associate-claims'],
                     'url'  => '/claims',
                 ],
                 [
                     'text' => 'Nueva Reclamación',
                     'icon' => '',
-                    'can' => ['create-claims','gestor-claims'],
+                    'can' => ['create-claims','gestor-claims', 'associate-claims'],
                     'url'  => '/claims/select-client',
                 ],
                 [
                     'text' => 'Reclamaciones Finalizadas',
                     'icon' => '',
-                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims'],
+                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims','associate-claims'],
                     'url'  => '/claims/pending',
                 ],
             ],
@@ -399,6 +399,12 @@ return [
                     'icon' => '',
                     'can' => ['superadmin','admin-claims'],
                     'url'  => '/configurations/templates',
+                ],
+                [
+                    'text' => 'Códigos de descuentos',
+                    'icon' => '',
+                    'can' => ['superadmin','admin-claims'],
+                    'url'  => '/configurations/discount-codes',
                 ],
 
             ],

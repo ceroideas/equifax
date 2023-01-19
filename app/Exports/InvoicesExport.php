@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Carbon\Carbon;
+use Auth;
 
 class InvoicesExport implements FromView, WithTitle
 {
@@ -20,9 +21,20 @@ class InvoicesExport implements FromView, WithTitle
     public function view(): View{
 
         if($this->type == 0 || $this->type == 3){
-            $invoices = Invoice::where('status', 1)->get();
+            if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
+                $invoices = Invoice::where('status', 1)->get();
+            }else{
+                $invoices = Invoice::where('status', 1)
+                                    ->where('user_id', Auth::user()->id)
+                                    ->get();
+            }
+
         }else{
-            $invoices = Invoice::all();
+            if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
+                $invoices = Invoice::all();
+            }else{
+                $invoices = Invoice::where('user_id', Auth::user()->id)->get();
+            }
         }
 
         if($this->type == 3||$this->type == 4){

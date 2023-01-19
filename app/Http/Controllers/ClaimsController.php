@@ -51,8 +51,9 @@ class ClaimsController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->isClient()){
+        if(Auth::user()->isClient() || Auth::user()->isAssociate()){
             $claims = Auth::user()->claims()->whereNotIn('status',[-1,0,1])->get();
+
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $claims = Claim::all();
         }else{
@@ -777,7 +778,7 @@ class ClaimsController extends Controller
 
     public function myInvoices()
     {
-        if(Auth::user()->isClient()){
+        if(Auth::user()->isClient() || Auth::user()->isAssociate()){
             $invoices = Auth::user()->invoices;
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $invoices = Invoice::all();

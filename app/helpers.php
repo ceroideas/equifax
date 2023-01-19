@@ -516,7 +516,12 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 $lDocument->artlor = $c->extra_code;
                 $lDocument->deslor = $c->extra_concept;
                 $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->fixed_fees_tax;
-                $lDocument->prelor = floatval($c->fixed_fees);
+                if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                    $lDocument->prelor = floatval($c->fixed_fees_dto);
+                }else{
+                    $lDocument->prelor = floatval($c->fixed_fees);
+                }
+
                 $lDocument->dtolor = $discount;
                 break;
 
@@ -526,12 +531,16 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->deslor = $c->judicial_fees_concept;
                     $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->judicial_fees_tax;
                     $lDocument->prelor = floatval($c->judicial_fees);
-
                 }else{
                     $lDocument->artlor = $c->judicial_amount_code;
                     $lDocument->deslor = $c->judicial_amount_concept;
                     $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->judicial_amount_tax;
-                    $lDocument->prelor = floatval($c->judicial_amount);
+                    if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                        $lDocument->prelor = floatval($c->judicial_amount_dto);
+                    }else{
+                        $lDocument->prelor = floatval($c->judicial_amount);
+                    }
+
                     $lDocument->dtolor = $discount;
                 }
                 break;
@@ -547,7 +556,12 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->artlor = $c->verbal_amount_code;
                     $lDocument->deslor = $c->verbal_amount_concept;
                     $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->verbal_amount_tax;
-                    $lDocument->prelor = floatval($c->verbal_amount);
+                    if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                        $lDocument->prelor = floatval($c->verbal_amount_dto);
+                    }else{
+                        $lDocument->prelor = floatval($c->verbal_amount);
+                    }
+
                     $lDocument->dtolor = $discount;
                 }
                 break;
@@ -563,7 +577,12 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->artlor = $c->ordinary_amount_code;
                     $lDocument->deslor = $c->ordinary_amount_concept;
                     $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->ordinary_amount_tax;
-                    $lDocument->prelor = floatval($c->ordinary_amount);
+                    if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                        $lDocument->prelor = floatval($c->ordinary_amount_dto);
+                    }else{
+                        $lDocument->prelor = floatval($c->ordinary_amount);
+                    }
+
                     $lDocument->dtolor = $discount;
                 }
                 break;
@@ -572,7 +591,12 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 $lDocument->artlor = $c->execution_code;
                 $lDocument->deslor = $c->execution_concept;
                 $lDocument->ivalor = $taxcode =='IVA0'?'IVA0':$c->execution_tax;
-                $lDocument->prelor = floatval($c->execution);
+                if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                    $lDocument->prelor = floatval($c->execution_dto);
+                }else{
+                    $lDocument->prelor = floatval($c->execution);
+                }
+
                 break;
 
             case 'RES-001':
@@ -586,7 +610,11 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->artlor = $c->resource_code;
                     $lDocument->deslor = $c->resource_concept;
                     $lDocument->ivalor = $taxcode =='IVA0'?'IVA0': $c->resource_tax;
-                    $lDocument->prelor = floatval($c->resource);
+                    if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                        $lDocument->prelor = floatval($c->resource_dto);
+                    }else{
+                        $lDocument->prelor = floatval($c->resource);
+                    }
                     $lDocument->dtolor = $discount;
                 }
                 break;
@@ -606,7 +634,11 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 $lDocument->artlin = $c->extra_code;
                 $lDocument->deslin = $c->extra_concept;
                 $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0':$c->fixed_fees_tax;
-                $lDocument->prelin = floatval($c->fixed_fees);
+                if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                    $lDocument->prelin = floatval($c->fixed_fees_dto);
+                }else{
+                    $lDocument->prelin = floatval($c->fixed_fees);
+                }
                 $lDocument->dtolin = $discount;
                 break;
 
@@ -616,12 +648,15 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->deslin = $c->judicial_fees_concept;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->judicial_fees_tax;
                     $lDocument->prelin = floatval($c->judicial_fees);
-
                 }else{
                     $lDocument->artlin = $c->judicial_amount_code;
                     $lDocument->deslin = $c->judicial_amount_concept;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0' : $c->judicial_amount_tax;
-                    $lDocument->prelin = floatval($c->judicial_amount);
+                    if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                        $lDocument->prelin = floatval($c->judicial_amount_dto);
+                    }else{
+                        $lDocument->prelin = floatval($c->judicial_amount);
+                    }
                     $lDocument->dtolin = $discount;
                 }
                 break;
@@ -637,7 +672,11 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->artlin = $c->verbal_amount_code;
                     $lDocument->deslin = $c->verbal_amount_concept;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0':  $c->verbal_amount_tax;
-                    $lDocument->prelin = floatval($c->verbal_amount);
+                    if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                        $lDocument->prelin = floatval($c->verbal_amount_dto);
+                    }else{
+                        $lDocument->prelin = floatval($c->verbal_amount);
+                    }
                     $lDocument->dtolin = $discount;
                 }
                 break;
@@ -653,7 +692,11 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->artlin = $c->ordinary_amount_code;
                     $lDocument->deslin = $c->ordinary_amount_concept;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->ordinary_amount_tax;
-                    $lDocument->prelin = floatval($c->ordinary_amount);
+                    if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                        $lDocument->prelin = floatval($c->ordinary_amount_dto);
+                    }else{
+                        $lDocument->prelin = floatval($c->ordinary_amount);
+                    }
                     $lDocument->dtolin = $discount;
                 }
                 break;
@@ -662,7 +705,11 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 $lDocument->artlin = $c->execution_code;
                 $lDocument->deslin = $c->execution_concept;
                 $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->execution_tax;
-                $lDocument->prelin = floatval($c->execution);
+                if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                    $lDocument->prelin = floatval($c->execution_dto);
+                }else{
+                    $lDocument->prelin = floatval($c->execution);
+                }
                 break;
 
             case 'RES-001':
@@ -676,7 +723,11 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->artlin = $c->resource_code;
                     $lDocument->deslin = $c->resource_concept;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->resource_tax;
-                    $lDocument->prelin = floatval($c->resource);
+                    if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                        $lDocument->prelin = floatval($c->resource_dto);
+                    }else{
+                        $lDocument->prelin = floatval($c->resource);
+                    }
                     $lDocument->dtolin = $discount;
                 }
                 break;
