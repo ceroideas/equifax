@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ActuationsController;
 use App\Http\Controllers\CollectsController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DiscountCodeController;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -158,8 +159,6 @@ Route::group(['prefix' => 'third-parties'], function(){
     Route::put('/{thirdParty}', [ThirdPartiesController::class, 'update']);
     Route::delete('/{thirdParty}', [ThirdPartiesController::class, 'destroy']);
 
-
-
 });
 
 /* Deudores */
@@ -173,12 +172,9 @@ Route::group(['prefix' => 'debtors'], function(){
     Route::put('/{debtor}', [DebtorsController::class, 'update']);
     Route::delete('/{debtor}', [DebtorsController::class, 'destroy']);
 
-
-
 });
 
 /* Deudas */
-
 Route::group(['prefix' => 'debts'], function(){
 
     // Route::get('/', [DebtorsController::class, 'index']);
@@ -194,21 +190,16 @@ Route::group(['prefix' => 'debts'], function(){
     // Route::put('/{debtor}', [DebtorsController::class, 'update']);
     // Route::delete('/{debtor}', [DebtorsController::class, 'destroy']);
 
-
-
 });
 
 /* Acuerdos */
 Route::group(['prefix' => 'agreements'], function(){
-
     Route::get('/create', [AgreementsController::class, 'create']);
     Route::post('/save-agreement', [AgreementsController::class, 'saveAgreement']);
 });
 
 /* Configuraciones */
-
 Route::group(['prefix'  => 'configurations'], function(){
-
     Route::get('/fees', [ConfigurationsController::class, 'fees']);
     Route::post('/fees', [ConfigurationsController::class, 'feesStore']);
     Route::put('{configuration}/fees', [ConfigurationsController::class, 'feesUpdate']);
@@ -228,9 +219,19 @@ Route::group(['prefix'  => 'configurations'], function(){
     Route::post('/templates/{id}/update', [ConfigurationsController::class, 'updateTemplate']);
 
 
+    /*****************************************/
+    Route::get('/discount-codes', [ConfigurationsController::class, 'discountCodes'])->middleware(['auth', 'verified']);
+    Route::get('/discount-codes/create', [ConfigurationsController::class, 'createDiscountCodes'])->middleware(['auth', 'verified']);
+    Route::get('/discount-codes/{id}/edit', [ConfigurationsController::class, 'createDiscountCodes'])->middleware(['auth', 'verified']);
+
+
+    Route::post('/discount-codes/save', [ConfigurationsController::class, 'saveDiscountCodes'])->middleware(['auth', 'verified']);
+    Route::post('/discount-codes/{id}/update', [ConfigurationsController::class, 'updateDiscountCodes'])->middleware(['auth', 'verified']);
+
 });
 Route::delete('/template/{id}', [ConfigurationsController::class, 'deleteTemplates']);
 Route::delete('/hitos/{id}', [ConfigurationsController::class, 'deleteHitos']);
+Route::delete('/discount-codes/{id}', [ConfigurationsController::class, 'deleteDiscountCodes']);
 
 /**/
 Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
@@ -310,3 +311,5 @@ Route::group(['prefix' => 'blogs'], function(){
     Route::get('/{id}/edit', [BlogController::class, 'createPosts']);
 
 });
+
+Route::get('discountcode', [DiscountCodeController::class, 'index']);

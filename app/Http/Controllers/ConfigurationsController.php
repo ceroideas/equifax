@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;*/
 use App\Models\Hito;
 use App\Models\Template;
+use App\Models\DiscountCode;
+use Auth;
 
 
 class ConfigurationsController extends Controller
@@ -211,32 +213,6 @@ class ConfigurationsController extends Controller
 
     public function hitos()
     {
-        /*Hito::truncate();
-        foreach (config('app.actuations') as $key => $value) {
-
-            $h = new Hito;
-            $h->ref_id = $value['id'];
-            $h->parent_id = null;
-            $h->phase = $value['phase'];
-            $h->name = $value['name'];
-            $h->redirect_to = $value['redirect_to'];
-            $h->type = isset($value['type']) ? $value['type'] : null;
-            $h->save();
-
-            if ($value['hitos']){
-                foreach ($value['hitos'] as $ht){
-                    $h = new Hito;
-                    $h->ref_id = $ht['id'];
-                    $h->parent_id = $value['id'];
-                    $h->phase = null;
-                    $h->name = $ht['name'];
-                    $h->redirect_to = $ht['redirect_to'];
-                    $h->type = isset($ht['type']) ? $ht['type'] : null;
-                    $h->save();
-                }
-            }
-        }*/
-
         $hitos = Hito::all();
 
         return view('hitos.index',compact('hitos'));
@@ -355,12 +331,11 @@ class ConfigurationsController extends Controller
     {
         return $id;
     }
+
     public function deleteHitos($id)
     {
         return $id;
     }
-
-
 
     /**
      * Display a listing of the resource.
@@ -436,5 +411,57 @@ class ConfigurationsController extends Controller
     public function destroy(Configuration $configuration)
     {
         //
+    }
+
+    public function discountCodes(){
+
+        if(Auth::user()->role==0 || Auth::user()->role==1 ){
+
+            $discountCodes = DiscountCode::all();
+
+        return view('discount_codes.index',compact('discountCodes'));
+
+        }else{
+            return redirect('/');
+        }
+
+
+    }
+
+    public function createDiscountCodes($id = null){
+
+        $dc = DiscountCode::find($id);
+
+        return view('discount_codes.create', compact('dc'));
+    }
+
+    public function saveDiscountCodes(Request $r)
+    {
+        $dc = new DiscountCode;
+        $dc->code = $r->code;
+        $dc->description = $r->description;
+        $dc->date_from = $r->date_from;
+        $dc->date_end = $r->date_end;
+        $dc->save();
+
+        return redirect('configurations/discount-codes')->with('msj','Se ha guardado el código de descuento');
+    }
+
+    public function updateDiscountCodes(Request $r, $id)
+    {
+        $dc = DiscountCode::find($id);
+        $dc->code = $r->code;
+        $dc->description = $r->description;
+        $dc->date_from = $r->date_from;
+        $dc->date_end = $r->date_end;
+        $dc->save();
+
+        return redirect('configurations/discount-codes')->with('msj','Se ha guardado el código de descuento');
+    }
+
+
+    public function deleteDiscountCodes($id)
+    {
+        return $id;
     }
 }

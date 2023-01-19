@@ -400,6 +400,12 @@ return [
                     'can' => ['superadmin','admin-claims'],
                     'url'  => '/configurations/templates',
                 ],
+                [
+                    'text' => 'Códigos de descuentos',
+                    'icon' => '',
+                    'can' => ['superadmin','admin-claims'],
+                    'url'  => '/configurations/discount-codes',
+                ],
 
             ],
         ],
