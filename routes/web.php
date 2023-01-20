@@ -312,4 +312,4 @@ Route::group(['prefix' => 'blogs'], function(){
 
 });
 
-Route::get('discountcode', [DiscountCodeController::class, 'index']);
+Route::post('ckeckdiscountcode', [DiscountCodeController::class, 'check']);

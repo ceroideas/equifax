@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\DiscountCode;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Template;
@@ -78,8 +79,24 @@ class RegisterController extends Controller
         ]);
 
        $user->newsletter = isset($data['newsletter']) ? 1 : 0;
-       $user->role = 2;
-       if(!$data['referenced'] == null) {$user->referenced = $data['referenced'];}
+       /* Control de roles */
+       if(!$data['referenced'] == null){
+            $user->referenced = $data['referenced'];
+
+            $dc = DiscountCode::where('code',$data['referenced'])
+                            ->where('status',1)
+                            ->get();
+
+            if($dc){
+                $user->role = 4;
+            }else{
+                $user->role = 2;
+            }
+
+        }else{
+            $user->role = 2;
+        }
+
        $user->save();
 
 

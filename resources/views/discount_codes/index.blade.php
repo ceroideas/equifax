@@ -31,12 +31,13 @@
         'Descripción',
         'Fecha inicio',
         'Fecha fin',
+        'Status',
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
 
     $config = [
 
-        'columns' => [null, null, null, null, null, ['orderable' => false]],
+        'columns' => [null, null, null, null, null, null, ['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
@@ -61,6 +62,7 @@
                     <td>{{ $discountCode->description }}</td>
                     <td>{{ Carbon\Carbon::parse($discountCode->date_from)->format('d/m/Y') }}</td>
                     <td>{{ Carbon\Carbon::parse($discountCode->date_end)->format('d/m/Y') }}</td>
+                    <td>{{ $discountCode->status==1 ? 'Activo' : 'Inactivo' }}</td>
                     <td>
                      <nobr>
                         <a href="{{ url('/configurations/discount-codes/' . $discountCode->id . '/edit/') }}">

@@ -124,6 +124,7 @@ class UsersController extends Controller
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
+            'referenced'=>$request->referenced,
         ]);
 
 
@@ -183,6 +184,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $validation = $this->validateRequest();
 
         if($request->password != Null){
@@ -216,7 +218,7 @@ class UsersController extends Controller
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
-
+            'referenced'=>$request->referenced,
         ]);
         if($request->file('dni_img')){
             if($user->dni_img != NULL){

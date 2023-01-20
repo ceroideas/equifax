@@ -238,7 +238,7 @@
         @endif
         @if (Auth::user()->email == 'luiscampos@atlantelt.com' || Auth::user()->email == 'danielmachuca@dividae.com' || Auth::user()->email == 'barbaraderon@atlantelt.com')
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <x-adminlte-select name="role" label="Rol" placeholder="Selecciona El Rol">
                         <option {{ !isset($user) ? 'selected' : ''}} disabled>Selecciona un Rol</option>
                         <option value="1" @if(isset($user) && $user->isAdmin()) selected @endif>Administrador</option>
@@ -252,7 +252,7 @@
                         </x-slot>
                     </x-adminlte-select>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <x-adminlte-input name="discount" label="Porcentaje de descuento" placeholder="Porcentaje de descuento" min="0" max="100" step="0.01" type="number"
                     igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->discount   :  ''}}">
                         <x-slot name="appendSlot">
@@ -262,6 +262,17 @@
                         </x-slot>
                     </x-adminlte-input>
                 </div>
+                <div class="col-sm-4">
+                    <x-adminlte-input name="referenced" label="Código descuento" placeholder="Código de descuento" type="text"
+                    igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->referenced   :  ''}}">
+                        <x-slot name="appendSlot">
+                            <div class="input-group-text bg-dark">
+                                <i class="fas fa-map-marker"></i>
+                            </div>
+                        </x-slot>
+                    </x-adminlte-input>
+                </div>
+
             </div>
         @endif
         <div class="card-footer">
