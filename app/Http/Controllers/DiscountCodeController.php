@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class DiscountCodeController extends Controller
 {
-    public function index(){
+    public function check(){
 
-        print_r("DiscountCodeController index");
+        $msg = "DiscountCodeController check";
+        return $msg;
     }
 }

@@ -27,15 +27,23 @@
 
         <div class="row">
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group">
-                    <x-adminlte-input name="id" label="Id " placeholder="Automático" type="text"
+                    <x-adminlte-input name="id" label="Id" placeholder="Automático" type="text"
                     igroup-size="sm" enable-old-support="true" value="{{ isset($dc) ? $dc->id : ''}}" disabled>
                     </x-adminlte-input>
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <x-adminlte-input name="status" label="Estado" placeholder="Status" type="text"
+                    igroup-size="sm" enable-old-support="true" value="{{ isset($dc) ? ($dc->status==1 ? 'Activo': 'Inactivo') : ''}}" disabled>
+                    </x-adminlte-input>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
                 <div class="form-group">
                     <x-adminlte-input name="date_from" label="Fecha de inicio *" placeholder="Fecha de inicio" type="date"
                     igroup-size="sm" enable-old-support="true" value="{{ isset($dc) ? Carbon\Carbon::parse($dc->date_from)->format('Y-m-d') : ''}}">
@@ -48,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group">
                     <x-adminlte-input name="date_end" label="Fecha de fin *" placeholder="Fecha de fin" type="date"
                     igroup-size="sm" enable-old-support="true" value="{{ isset($dc) ? Carbon\Carbon::parse($dc->date_end)->format('Y-m-d') : ''}}">
@@ -81,6 +89,9 @@
         <div class="card-footer">
              <div class="row">
                 <span class="float-left">(*) Los campos marcados son requeridos.</span>
+             </div>
+            <div class="row">
+                <span class="float-left">(*) El estado cambia automáticamente con la fecha de validez.</span>
             </div>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
             <a href="{{ url('/configurations/discount-codes') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>

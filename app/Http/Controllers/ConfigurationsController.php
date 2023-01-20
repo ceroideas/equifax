@@ -442,6 +442,13 @@ class ConfigurationsController extends Controller
         $dc->description = $r->description;
         $dc->date_from = $r->date_from;
         $dc->date_end = $r->date_end;
+
+        if($r->date_from <= now() && now() <= $r->date_end ){
+            $dc->status = 1;
+        }else{
+            $dc->status = 0;
+        }
+
         $dc->save();
 
         return redirect('configurations/discount-codes')->with('msj','Se ha guardado el código de descuento');
@@ -454,6 +461,12 @@ class ConfigurationsController extends Controller
         $dc->description = $r->description;
         $dc->date_from = $r->date_from;
         $dc->date_end = $r->date_end;
+        if($r->date_from <= now() && now() <= $r->date_end ){
+            $dc->status = 1;
+        }else{
+            $dc->status = 0;
+        }
+
         $dc->save();
 
         return redirect('configurations/discount-codes')->with('msj','Se ha guardado el código de descuento');

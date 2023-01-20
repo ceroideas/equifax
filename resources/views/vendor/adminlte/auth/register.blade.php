@@ -158,6 +158,25 @@
             @enderror
         </div>
 
+        {{-- referenced --}}
+        <div class="input-group mb-3">
+            <input type="text" name="referenced" class="form-control @error('referenced') is-invalid @enderror"
+                    value="{{ old('referenced') }}" placeholder="Código de descuento">
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-angle-double-down "></span>
+                </div>
+            </div>
+
+            @error('referenced')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+
         {{-- Agreements --}}
 
         <div class="custom-control custom-checkbox mb-3">
@@ -222,7 +241,8 @@
               Iniciar sesión con facebook
             </button>
         </div> --}}
-        <input type="text" name="referenced" id="referencedid" hidden>
+
+        {{--<input type="text" name="referenced" id="referencedid" >--}}
 
     </form>
 

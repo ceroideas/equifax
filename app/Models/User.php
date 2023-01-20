@@ -37,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'taxcode',
         'discount',
         'status',
+        'referenced',
     ];
 
     /**
