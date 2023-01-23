@@ -549,7 +549,7 @@
             <h4>Datos de facturas emitidas</h4>
         </div>
         <div class="row" style="background-color: rgb(239, 243, 241)">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <x-adminlte-input name="invoice_name" label="Nombre de la empresa" placeholder="Nombre de la empresa" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->invoice_name : ''}}">
                     <x-slot name="appendSlot">
@@ -559,7 +559,17 @@
                     </x-slot>
                 </x-adminlte-input>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
+                <x-adminlte-input name="invoice_cif" label="Cif Factura" placeholder="CIF" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->invoice_cif : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-3">
                 <x-adminlte-input name="invoice_email" label="Email de factura " placeholder="Email" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->invoice_email : ''}}">
                     <x-slot name="appendSlot">
@@ -569,7 +579,7 @@
                     </x-slot>
                 </x-adminlte-input>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <x-adminlte-input name="tax" label="Porcentaje general de IVA" placeholder="% IVA" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->tax : ''}}">
                     <x-slot name="appendSlot">
@@ -582,7 +592,7 @@
         </div>
 
         <div class="row" style="background-color: rgb(239, 243, 241)">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <x-adminlte-input name="invoice_address_line_1" label="Dirección de facturación" placeholder="Dirección de facturación" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->invoice_address_line_1 : ''}}">
                     <x-slot name="appendSlot">
@@ -592,7 +602,7 @@
                     </x-slot>
                 </x-adminlte-input>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <x-adminlte-input name="invoice_address_line_2" label="C.P., Provincia, País" placeholder="C.P., Provincia, País" type="text"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->invoice_address_line_2 : ''}}">
                     <x-slot name="appendSlot">
@@ -602,7 +612,17 @@
                     </x-slot>
                 </x-adminlte-input>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
+                <x-adminlte-input name="invoice_account" label="Cuenta bancaria" placeholder="Cuenta" type="text"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->invoice_account : ''}}">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-eur"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            <div class="col-sm-3">
                 <x-adminlte-input name="percentage_fees" label="Porcentaje de comisión en recuperación deudas" placeholder="Porcentaje comisión" type="number" min="0" max="100"
                 igroup-size="sm" enable-old-support="true" value="{{ isset($configuration) ? $configuration->percentage_fees : ''}}">
                     <x-slot name="appendSlot">

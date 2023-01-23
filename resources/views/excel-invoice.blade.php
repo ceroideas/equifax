@@ -39,19 +39,19 @@
         </tr>
         <tr>
             <td colspan="4" >{{$i->cnifac}} </td>
-            <td colspan="2" style="text-align: right;">{{ $c->invoice_address_line_1 }}</td>
+            <td colspan="2" style="text-align: right;">{{ $c->invoice_cif }}</td>
         </tr>
         <tr>
             <td colspan="4" >{{$i->cdofac}} </td>
-            <td colspan="2" style="text-align: right;">{{ $c->invoice_address_line_2 }}</td>
+            <td colspan="2" style="text-align: right;">{{ $c->invoice_address_line_1 }}</td>
         </tr>
         <tr>
             <td colspan="4" >{{$i->ccpfac}}, {{$i->cpofac}}, {{$i->cprfac}} </td>
-            <td colspan="2" style="text-align: right;">{{ $c->invoice_email }}</td>
+            <td colspan="2" style="text-align: right;">{{ $c->invoice_address_line_2 }}</td>
         </tr>
         <tr>
             <td colspan="4" >{{$i->claim->owner->email}}</td>
-            <td colspan="2" style="text-align: right;"></td>
+            <td colspan="2" style="text-align: right;">{{ $c->invoice_email }}</td>
         </tr>
 
 
@@ -96,7 +96,7 @@
 
 
 		  <tfoot class="card-footer">
-<tr></tr>
+            <tr></tr>
 			<tr>
               <td colspan="5" style="text-align: right;"><strong>SubTotal:</strong></td>
               <td style="text-align: right;">{{number_format($i->bas1fac+$i->bas2fac+$i->bas3fac+$i->bas4fac,2,',','.')}} €</td>
@@ -108,6 +108,12 @@
 			<tr>
               <td colspan="5" style="text-align: right;"><strong>Total:</strong></td>
               <td style="text-align: right;">{{number_format($i->totfac,2,',','.')}} €</td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>Número de cuenta de pago: </strong> &nbsp; {{ $c->invoice_account }}</td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>Fecha de vencimiento: </strong> &nbsp; 30 días desde fecha factura.</td>
             </tr>
 		  </tfoot>
     </table>

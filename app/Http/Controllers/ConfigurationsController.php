@@ -82,6 +82,9 @@ class ConfigurationsController extends Controller
         $configuration->execution_dto = array_key_exists('execution_dto', $data) ? $data['execution_dto'] : null;
         $configuration->resource_dto = array_key_exists('resource_dto', $data) ? $data['resource_dto'] : null;
 
+        $configuration->invoice_cif = array_key_exists('invoice_cif', $data) ? $data['invoice_cif'] : null;
+        $configuration->invoice_account = array_key_exists('invoice_account', $data) ? $data['invoice_account'] : null;
+
         $configuration->save();
 
         return redirect('configurations/fees')->with('msj' , 'Tasas guardadas correctamente');
@@ -145,6 +148,9 @@ class ConfigurationsController extends Controller
         $configuration->execution_dto = array_key_exists('execution_dto', $data) ? $data['execution_dto'] : null;
         $configuration->resource_dto = array_key_exists('resource_dto', $data) ? $data['resource_dto'] : null;
 
+        $configuration->invoice_cif = array_key_exists('invoice_cif', $data) ? $data['invoice_cif'] : null;
+        $configuration->invoice_account = array_key_exists('invoice_account', $data) ? $data['invoice_account'] : null;
+
         $configuration->update();
 
         return redirect('configurations/fees')->with('msj' , 'Tasas actualizadas correctamente');
@@ -205,6 +211,8 @@ class ConfigurationsController extends Controller
         if(!request('execution_dto')){$rules['execution_dto'] = 'required';}
         if(!request('resource_dto')){$rules['resource_dto'] = 'required';}
 
+        if(!request('invoice_cif')){$rules['invoice_cif'] = 'required';}
+        if(!request('invoice_account')){$rules['invoice_account'] = 'required';}
 
         return request()->validate($rules);
 

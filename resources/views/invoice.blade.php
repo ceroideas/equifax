@@ -40,6 +40,7 @@
 	    <div class="col-sm-6 text-sm-right order-sm-1"> <strong>Pagado a: </strong>
 	      <address>
 	      {{ $c->invoice_name }}<br>
+          {{ $c->invoice_cif}}<br>
 	      {{ $c->invoice_address_line_1 }}<br>
 	      {{ $c->invoice_address_line_2 }}<br>
 		  {{ $c->invoice_email }}
@@ -158,6 +159,8 @@
 	  </main>
 	  <!-- Footer -->
 	  <footer class="text-center mt-4">
+        <p style="text-align:left"><strong>Número de cuenta de pago: </strong>{{ $c->invoice_account }}</p>
+        <p style="text-align:left"><strong>Fecha de vencimiento: </strong>30 días desde fecha factura.</p>
 	  <p class="text-1"><strong>NOTA:</strong> Este es un documento generado por electrónicamente y no requiere firma física.</p>
 	  <div class="btn-group btn-group-sm d-print-none"> <a href="javascript:window.print()" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-print"></i> Imprimir</a></div>
 
