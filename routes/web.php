@@ -133,7 +133,7 @@ Route::group(['prefix' => 'claims'], function(){
 
 Route::group(['prefix' => 'collects'], function(){
     Route::get('/', [CollectsController::class , 'index']);
-    Route::get('/create', [CollectsController::class , 'create']);
+    Route::get('/create/{invoice?}', [CollectsController::class , 'create']);
     Route::post('/', [CollectsController::class, 'store']);
 });
 Route::get('viability', [ClaimsController::class, 'viability']);
