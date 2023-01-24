@@ -77,14 +77,16 @@ class InvoicesExport implements FromView, WithTitle
                 }
             }
 
+            if($this->type == 3){
+                $this->setExport($invoices);
+            }
             return view('invoices-export-conta', compact('invoices'));
 
 
         }else{
+
             return view('invoices-export', compact('invoices'));
         }
-
-
 
     }
 
@@ -93,6 +95,15 @@ class InvoicesExport implements FromView, WithTitle
             return 'Facturas Pagadas';
         }else{
             return 'Facturas';
+        }
+    }
+
+    public function setExport($invoices){
+
+        foreach($invoices as $invoice){
+            $invoice = Invoice::find($invoice['id']);
+            $invoice->trafac = 1;
+            $invoice->save();
         }
     }
 }
