@@ -1065,7 +1065,12 @@ class ClaimsController extends Controller
 
     public function collectsExport()
     {
-        return Excel::download(new CollectsExport, 'collects-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        return Excel::download(new CollectsExport(0), 'collects-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
+    public function collectsExportAll()
+    {
+        return Excel::download(new CollectsExport(1), 'collects-all-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
     public function checkDebtor(Request $r)

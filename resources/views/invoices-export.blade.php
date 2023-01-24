@@ -37,7 +37,7 @@
         <td>{{ $invoice->amount }}€</td>
         <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d-m-Y H:i') }}</td>
         <td>{{ $invoice->type }}</td>
-        <td>{{ $invoice->status == 1 ? 'Pagado' : 'Pendiente' }}</td>
+        <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':'Pendiente') }}</td>
 
         <td>
             @if(isset($invoice->claim->id))

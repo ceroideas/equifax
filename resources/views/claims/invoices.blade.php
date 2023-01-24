@@ -103,7 +103,7 @@
                     <td>{{ number_format(($invoice->amount) ,2,',','.')}} €</td>
                     <td>{{ $invoice->payment_date <> null ? Carbon\Carbon::parse($invoice->payment_date)->format('d/m/Y') : '' }}</td>
                     @if (Auth::user()->isSuperAdmin())
-                        <td>{{ $invoice->trafac }}</td>
+                        <td>{{ $invoice->trafac==1 ? 'Exportada': 'No exportada'}}</td>
                     @endif
                     <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':'Pendiente') }}</td>
                     <td>

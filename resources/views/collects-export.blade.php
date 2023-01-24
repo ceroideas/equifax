@@ -13,7 +13,11 @@
     </thead>
 
     <tbody>
-
+    @if(count($collects)==0)
+        <tr>
+            <td>No existen cobros nuevos</td>
+        </tr>
+    @endif
     @foreach($collects as $collect)
         <tr>
             <td>{{ Carbon\Carbon::parse($collect->feccob)->format('d/m/Y') }}</td>
