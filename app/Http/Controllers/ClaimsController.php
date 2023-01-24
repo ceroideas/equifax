@@ -778,6 +778,7 @@ class ClaimsController extends Controller
 
     public function myInvoices()
     {
+
         if(Auth::user()->isClient() || Auth::user()->isAssociate()){
             $invoices = Auth::user()->invoices;
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
@@ -789,6 +790,14 @@ class ClaimsController extends Controller
                   ->whereRaw('claims.gestor_id = '.Auth::id());
             })->get();
         }
+
+        /*
+        foreach($invoices as $invoice){
+            dump($invoice->id);
+            dump($invoice->amount);
+            dump($invoice->collects());
+        }
+        die();*/
 
         return view('claims.invoices', compact('invoices'));
     }

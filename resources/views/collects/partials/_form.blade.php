@@ -30,7 +30,7 @@
 
             <div class="col-sm-6">
                 <x-adminlte-input name="importe" label="Importe *" placeholder="Importe" type="number" step="0.01" min="0"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($invoice) ? $invoice->totfac : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($invoice) ? (number_format($invoice->totfac - $invoice->collects() ,2,',','.'))   : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>

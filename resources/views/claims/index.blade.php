@@ -35,12 +35,12 @@
             'Importe pendiente de pago',
             ['label' => 'Tipo de Reclamación'],
             ['label' => 'Status'],
-            ['label' => 'Saldo Generado'],
+            //['label' => 'Saldo Generado'],
             ['label' => 'Acciones','width' => 5],
         ];
         $config = [
 
-            'columns' => [null, null, null,null, null, null, null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
     }else{
@@ -107,33 +107,8 @@
         <x-adminlte-datatable id="table1" :heads="$heads" class="table-responsive" striped hoverable bordered compresed responsive :config="$config">
             @foreach($claims as $claim)
                 <tr>
-                    <td>
-                        {{ ($claim->debt) ? $claim->debt->document_number:'No existe' }}</td>
-                    <td>
-                        {{--  Partido judicial, no se usara
-                        @php
-                            $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
-
-                            $juzgado = "--";
-                            $procurador = "--";
-
-                            if ($pc) {
-                                $type = App\Models\Type::where('locality',$pc->province)->first();
-
-                                if ($type) {
-                                    $juzgado = $type->type;
-
-                                    $party = App\Models\Party::where('locality',$pc->province)->first();
-
-                                    if ($party) {
-                                        $procurador = $party->procurator;
-                                    }
-                                }
-                            }
-                        @endphp
-                    --}}
-                    {{-- $juzgado.'/'.$procurador --}}
-                        {{ ($claim->owner) ? $claim->owner->name:'No existe'}}</td>
+                    <td>{{ ($claim->debt) ? $claim->debt->document_number:'No existe' }}</td>
+                    <td>{{ ($claim->owner) ? $claim->owner->name:'No existe'}}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ ($claim->debtor)? $claim->debtor->name :'No existe'}}</td>
                     <td>{{ number_format( ($claim->debt->total_amount + (($claim->debt->total_amount * $claim->debt->tax)/100) ) , 2,',','.') }} € </td>
@@ -147,7 +122,8 @@
                     @endif
 
                     <td>{{ $claim->getHito() }}</td>
-                    {{--  TODO: Esto mostraba el descontar saldo en el listado de reclamaciones al cliente gestoria, revisar porque lo puso cero ideas--}}
+
+                    {{--
                     @if (Auth::user()->isSuperAdmin())
                         <td>
                             {{number_format(($claim->saldo() - $claim->discounts()), 2,',','.')}}€
@@ -208,7 +184,10 @@
                         </td>
                     @endif
 
+
                     @if (Auth::user()->isGestor()) <td>{{ number_format(($claim->saldo() - $claim->discounts()), 2,',','.')  }} € </td>@endif
+
+                    --}}
 
                     {{--<td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td>--}}
                     {{-- <td>{{ $claim->getStatus() }}</td> --}}

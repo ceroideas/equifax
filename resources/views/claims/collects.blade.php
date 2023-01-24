@@ -11,7 +11,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
-                    <li class="breadcrumb-item active">Facturas</li>
+                    <li class="breadcrumb-item active">Cobros</li>
                 </ol>
             </div>
         </div>
@@ -32,7 +32,7 @@
             'Factura',
             'Forma de pago',
             'Observaciones',
-            'Traspasada',
+            'Exportado (Altai)',
             'Usuario'
         ];
         $config = [

@@ -58,13 +58,25 @@ class CollectsController extends Controller
 
         $collect->save();
 
-        $invoice = Invoice::where('id',$request->factura)->first();
-        if($invoice && $request->importe == $invoice->totfac){
-            $invoice->status = 1;
-            $invoice->payment_date = Carbon::now()->format('Y-m-d H:i:s');
-            $invoice->save();
 
-            return redirect('/collects')->with('msj', 'Cobro añadido correctamente y actualizado el estado de la factura');
+        /* Comprobacion de saldo para determinar si se da por pagada la factura */
+
+        $invoice = Invoice::where('id',$request->factura)->first();
+
+        if($invoice){
+
+            if($invoice->collects() >= $invoice->totfac){
+                $invoice->status = 1;
+                $invoice->payment_date = Carbon::now()->format('Y-m-d H:i:s');
+                $invoice->save();
+
+                return redirect('/collects')->with('msj', 'Cobro añadido correctamente y actualizado el estado de la factura');
+             }else{
+                $invoice->status = 2;
+                $invoice->save();
+                return redirect('/collects')->with('msj', 'Cobro añadido correctamente.');
+             }
+
         }
 
         return redirect('/collects')->with('msj', 'Cobro añadido correctamente.');
