@@ -67,7 +67,7 @@ class CollectsController extends Controller
 
             if($invoice->collects() >= $invoice->totfac){
                 $invoice->status = 1;
-                $invoice->payment_date = Carbon::now()->format('Y-m-d H:i:s');
+                $invoice->payment_date = Carbon::parse($request->fecha)->format('Y-m-d H:i:s');
                 $invoice->save();
 
                 return redirect('/collects')->with('msj', 'Cobro añadido correctamente y actualizado el estado de la factura');
