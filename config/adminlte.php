@@ -319,12 +319,12 @@ return [
                     'can' => ['superadmin','create-users'],
                     'url'  => '/users/create',
                 ],
-                [
+                /*[
                     'text' => 'Usuarios Pendientes',
                     'icon' => '',
                     'can' => ['superadmin','create-users'],
                     'url'  => '/users/pending',
-                ],
+                ],*/
                 [
                     'text' => 'Listado de Usuarios',
                     'icon' => '',
