@@ -69,6 +69,15 @@
         <a href="{{ url('/collects/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important; font-size: 16px;" type="button" label="Registrar un cobro" icon="fas fa-lg fa-pencil"/></a>
     @endif
 
+    <form action="{{url('import-collects')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
+        @csrf
+
+        <label style="margin: 0;" for="collects" class="btn btn-danger btn-sm">Importar cobros (Kmaleon)</label>
+
+        <input name="file" type="file" id="collects" style="display: none;">
+
+    </form>
+
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" class="table-responsive" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
 
@@ -88,5 +97,21 @@
 
         </x-adminlte-datatable>
     </x-adminlte-card>
+
+@stop
+
+
+@section('js')
+
+    <script>
+        $('[name="file"]').change(function (e) {
+            e.preventDefault();
+
+            if (confirm("¿Desea subir el archivo seleccionado?") == true) {
+                $(this).parent().submit();
+            }
+
+        });
+    </script>
 
 @stop

@@ -87,7 +87,7 @@
     @if (Auth::user()->isGestor())
     <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
     @endif
-    @if (Auth::user()->isSuperAdmin())
+    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
         <a href="{{url('export-new-claims')}}" class="btn btn-sm btn-success">Exportar Nuevas Reclamaciones</a>
         <a href="{{url('export-actuations-all')}}" class="btn btn-sm btn-primary">Exportar Actuaciones</a>

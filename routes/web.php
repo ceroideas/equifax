@@ -260,6 +260,7 @@ Route::get('loadActuations/{phase}', [ClaimsController::class, 'loadActuations']
 
 Route::post('import-actuations', [ClaimsController::class, 'importActuations']);
 
+Route::post('import-collects', [CollectsController::class, 'importCollects']);
 
 
 Route::get('addCountEmail/{id}', [ClaimsController::class, 'addCountEmail']);
