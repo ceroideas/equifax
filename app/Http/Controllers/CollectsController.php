@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Collect;
 use App\Models\User;
+use App\Models\Invoice;
 use Auth;
+use Carbon\Carbon;
+
 
 
 class CollectsController extends Controller
@@ -23,9 +26,12 @@ class CollectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($invoice = null)
     {
-        return view('collects.create');
+
+        $invoice = Invoice::where('id',$invoice)->first();
+
+        return view('collects.create',compact('invoice'));
     }
 
 
@@ -39,11 +45,6 @@ class CollectsController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request);
-  //      dd($request->factura);
-        //$data = $this->validateRequest();
-//print_r("Data como llega");
-        //dd($request);
         $collect = new Collect();
 
         $collect->invoice_id = $request->factura;
@@ -57,7 +58,28 @@ class CollectsController extends Controller
 
         $collect->save();
 
-        return redirect('/collects')->with('msj', 'Cobro añadido correctamente');
+
+        /* Comprobacion de saldo para determinar si se da por pagada la factura */
+
+        $invoice = Invoice::where('id',$request->factura)->first();
+
+        if($invoice){
+
+            if($invoice->collects() >= $invoice->totfac){
+                $invoice->status = 1;
+                $invoice->payment_date = Carbon::now()->format('Y-m-d H:i:s');
+                $invoice->save();
+
+                return redirect('/collects')->with('msj', 'Cobro añadido correctamente y actualizado el estado de la factura');
+             }else{
+                $invoice->status = 2;
+                $invoice->save();
+                return redirect('/collects')->with('msj', 'Cobro añadido correctamente.');
+             }
+
+        }
+
+        return redirect('/collects')->with('msj', 'Cobro añadido correctamente.');
 
     }
 

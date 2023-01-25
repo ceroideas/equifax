@@ -12,4 +12,15 @@ class Invoice extends Model
     public function claim(){
         return $this->belongsTo(Claim::class);
     }
+
+    public function collects(){
+        $total = 0;
+        $total = $this->payments->sum('impcob');
+
+        return number_format($total,2);
+    }
+
+    public function payments(){
+        return $this->hasMany(Collect::class);
+    }
 }

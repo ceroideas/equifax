@@ -11,7 +11,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
-                    <li class="breadcrumb-item active">Facturas</li>
+                    <li class="breadcrumb-item active">Cobros</li>
                 </ol>
             </div>
         </div>
@@ -32,7 +32,7 @@
             'Factura',
             'Forma de pago',
             'Observaciones',
-            'Traspasada',
+            'Exportado (Altai)',
             'Usuario'
         ];
         $config = [
@@ -64,7 +64,8 @@
     @endif
 
     @if (Auth::user()->isAdmin() || Auth::user()->isSuperAdmin())
-        <a href="{{url('collects-export')}}" class="btn btn-sm btn-info">Exportar cobros (Formato contable)</a>
+        <a href="{{url('collects-export')}}" class="btn btn-sm btn-info">Exportar nuevos cobros (Formato contable)</a>
+        <a href="{{url('collects-export-all')}}" class="btn btn-sm btn-primary">Exportar todos los cobros (Formato contable)</a>
         <a href="{{ url('/collects/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important; font-size: 16px;" type="button" label="Registrar un cobro" icon="fas fa-lg fa-pencil"/></a>
     @endif
 
@@ -80,7 +81,7 @@
                     <td>{{ $collect->invoice_id }}</td>
                     <td>{{ $collect->fpacob }}</td>
                     <td>{{ $collect->obscob }}</td>
-                    <td>{{ $collect->tracob }}</td>
+                    <td>{{ $collect->tracob == 1 ? 'Exportado' : 'No exportado' }}</td>
                     <td>{{ $collect->usuario->name }}</td>
                 </tr>
             @endforeach

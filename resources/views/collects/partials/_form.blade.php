@@ -19,7 +19,7 @@
 
             <div class="col-sm-6">
                 <x-adminlte-input name="factura" label="No. Factura *" placeholder="Número de factura" type="text"
-                    igroup-size="sm"  enable-old-support="true" required>
+                    igroup-size="sm"  enable-old-support="true" required value="{{ isset($invoice) ? $invoice->id : ''}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-envelope"></i>
@@ -29,8 +29,8 @@
             </div>
 
             <div class="col-sm-6">
-                <x-adminlte-input name="importe" label="Importe *" placeholder="Importe" type="number" min="0"
-                igroup-size="sm" enable-old-support="true" required>
+                <x-adminlte-input name="importe" label="Importe *" placeholder="Importe" type="number" step="0.01" min="0"
+                igroup-size="sm" enable-old-support="true" value="{{ isset($invoice) ? (number_format($invoice->totfac - $invoice->collects() ,2,',','.'))   : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -43,7 +43,7 @@
         <div class="row ">
             <div class="col-sm-6">
                 <x-adminlte-input name="fecha" required label="Fecha *" type="date"
-                igroup-size="sm" enable-old-support="true">
+                igroup-size="sm" enable-old-support="true" value="{{ now()->format('Y-m-d') }}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -53,7 +53,8 @@
             </div>
             <div class="col-sm-6">
                 <x-adminlte-input name="concepto" label="Concepto contable *" placeholder="Concepto" type="text"
-                    igroup-size="sm" enable-old-support="true" value="" required>
+                    igroup-size="sm" enable-old-support="true"
+                    value="COBRO FRA. {{ now()->year }}/{{ isset($invoice) ?  $invoice->cnofac : ''}} " required>
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-map-marker"></i>
@@ -66,7 +67,7 @@
             <div class="col-sm-6">
 
                 <x-adminlte-input name="observaciones" label="Observaciones" placeholder="Observaciones" type="text"
-                    igroup-size="sm" enable-old-support="true" value="">
+                    igroup-size="sm" enable-old-support="true" value="PAGO FACTURA {{ isset($invoice) ?  $invoice->id : ''}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-map-marker"></i>

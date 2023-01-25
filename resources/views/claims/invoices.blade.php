@@ -29,14 +29,13 @@
             'Reclamación',
             'Concepto',
             'Importe',
-            'Fecha del pago',
-            'Tipo de cobro',
             'Status',
+            'Fecha del pago',
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
         $config = [
 
-            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
     }else{
@@ -46,14 +45,15 @@
             'Reclamación',
             'Concepto',
             'Importe',
-            'Fecha',
-            'Exportada',
             'Status',
+            'Importe pendiente',
+            'Fecha del pago',
+            'Exportada (Altai)',
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
         $config = [
 
-            'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
     }
@@ -101,14 +101,19 @@
                         <td>Varias</td>
                     @endif
                     <td>{{ $invoice->description }}</td>
-                    <td>{{ number_format(($invoice->amount) ,2,',','.')}} €</td>
-                    <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d/m/Y') }}</td>
-                    @if (Auth::user()->isSuperAdmin())
-                        <td>{{ $invoice->trafac }}</td>
-                    @else
-                        <td>{{ $invoice->type }}</td>
+                    <td>{{ number_format(($invoice->totfac) ,2,',','.')}} €</td>
+
+                    <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':'Pendiente') }}</td>
+
+                    @if(Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin())
+                        <td>{{ number_format(($invoice->totfac-$invoice->collects()) ,2,',','.')}} €</td>
                     @endif
-                    <td>{{ $invoice->status == 1 ? 'Pagado' : 'Pendiente' }}</td>
+
+                    <td>{{ $invoice->payment_date <> null ? Carbon\Carbon::parse($invoice->payment_date)->format('d/m/Y') : '' }}</td>
+                    @if (Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin())
+                        <td>{{ $invoice->trafac==1 ? 'Exportada': 'No exportada'}}</td>
+                    @endif
+
                     <td>
                      <nobr>
                         <a target="_blank" href="{{ url('/claims/invoices/' . $invoice->id ) }}">
@@ -116,6 +121,13 @@
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>
                         </a>
+                        @if ((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()) && $invoice->status <> 1)
+                        <a href="{{ url('/collects/create/' . $invoice->id ) }}">
+                            <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Generar cobro">
+                                <i class="fa fa-lg fa-fw fa-money-bill"></i>
+                            </button>
+                        </a>
+                        @endif
                     </nobr>
                     </td>
                 </tr>
