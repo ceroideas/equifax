@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Collect;
 use App\Models\User;
 use App\Models\Invoice;
+
 use Auth;
+use Excel;
+
 use Carbon\Carbon;
 
+use App\Imports\CollectsImport;
 
 
 class CollectsController extends Controller
@@ -92,6 +96,17 @@ class CollectsController extends Controller
 
         return request()->validate($rules);
 
+    }
+
+    public function importCollects(Request $r)
+    {
+
+        if ($r->hasFile('file')) {
+            $r->file->move(public_path().'/uploads/excel','collects.xlsx');
+            Excel::import(new CollectsImport, public_path().'/uploads/excel/collects.xlsx');
+        }
+
+        return back()->with('msj','Se ha cargado correctamente el archivo excel de cobros!');
     }
 
 
