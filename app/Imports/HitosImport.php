@@ -4,55 +4,51 @@ namespace App\Imports;
 
 use App\Models\Actuation;
 use App\Models\ActuationDocument;
-use App\Models\Claim;
 use App\Models\Debt;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-
-use Carbon\Carbon;
 
 class HitosImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
     	// \Log::info($row);
-    	$d = Debt::where('document_number',$row['numero_de_documento'])->first();
-    	if ($d) {
-    		$h = getHito( (string) $row['id_hito'])[0];
+    	$debt = Debt::where('claim_id',$row['referencia'])->first();
+        if ($debt) {
+    		$hito = getHito( (string) $row['codigo_macro_generadora'])[0];
 	        // \Log::info([$row['id_hito'],gettype( (string) $row['id_hito'])]);
 	        \Log::info($row);
 
-	        if ($h) {
-	            $a = new Actuation;
-		        $a->claim_id = $d->claim_id;
-		        $a->subject = $h['ref_id'];
-		        $a->amount = array_key_exists('monto_recuperado', $row) &&  $row['monto_recuperado'] != '' ? $row['monto_recuperado'] : null;
-		        $a->description = array_key_exists('observaciones', $row) ? $row['observaciones'] : null;
-		        if (array_key_exists('fecha_actuacion', $row)) {
-
-		        	$row['fecha_actuacion'] = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['fecha_actuacion'])->format('d-m-Y');
-
-		        	$a->actuation_date = $row['fecha_actuacion'];
+	        if ($hito) {
+	            $actuation = new Actuation;
+		        $actuation->claim_id = $debt->claim_id;
+		        $actuation->subject = $hito['ref_id'];
+		        $actuation->amount = array_key_exists('cuantia_reducida', $row) &&  $row['cuantia_reducida'] != '' ? $row['cuantia_reducida'] : null;
+		        $actuation->description = array_key_exists('texto_macro_generadora', $row) ? $row['texto_macro_generadora'] : null;
+		        if (array_key_exists('fecha', $row)) {
+		        	$row['fecha'] = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['fecha'])->format('d-m-Y');
+		        	$actuation->actuation_date = $row['fecha'];
 		        }
-		        $a->type = null;
-		        $a->mailable = null;
-		        $a->save();
+		        $actuation->type = null;
+		        $actuation->mailable = null;
+		        $actuation->save();
 
 		        if (array_key_exists('archivo', $row) && $row['archivo'] != "") {
 		        	if ($row['archivo']) {
-			        	$path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
-			        	mkdir(public_path().'/uploads/actuations/' . $a->id,0777);
+			        	$path = public_path().'/uploads/actuations/' . $actuation->id . '/documents/';
+			        	mkdir(public_path().'/uploads/actuations/' . $actuation->id,0777);
 			        	mkdir($path,0777);
 			        	copy($row['archivo'], $path.basename($row['archivo']));
-		                $d = new ActuationDocument;
-		                $d->actuation_id = $a->id;
-		                $d->document_name = basename($row['archivo']);
-		                $d->save();
+		                $ad = new ActuationDocument;
+		                $ad->actuation_id = $actuation->id;
+		                $ad->document_name = basename($row['archivo']);
+		                $ad->save();
 		        	}
 		        }
 
-		        actuationActions($h['ref_id'],$a->claim_id,$a->amount, $a->actuation_date, $a->description);
+		        actuationActions($hito['ref_id'],$actuation->claim_id,$actuation->amount, $actuation->actuation_date, $actuation->description);
 	        }
         }
+
     }
 }
