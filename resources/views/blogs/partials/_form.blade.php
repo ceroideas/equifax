@@ -31,7 +31,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <x-adminlte-input name="title" label="Título del post *" placeholder="Título del post" type="text"
-                    igroup-size="sm" enable-old-support="true" value="{{ isset($blog) ? $blog->title : ''}}">
+                    igroup-size="sm" enable-old-support="true" value="{{ isset($blog) ? $blog->title : ''}} " maxlength="27">
                     </x-adminlte-input>
                 </div>
             </div>
@@ -133,6 +133,12 @@
 
              <div class="row">
                 <span class="float-left">(*) Los campos marcados son requeridos.</span>
+            </div>
+            <div class="row">
+                <span class="float-left">(1) Título limitado a 30 caracteres</span>
+            </div>
+            <div class="row">
+                <span class="float-left">(2) Resumen limitado a 150 caracteres</span>
             </div>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
             <a href="{{ url('/blogs') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
