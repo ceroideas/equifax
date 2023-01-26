@@ -49,9 +49,7 @@ Route::get('/tarifas', function () {
     return view('tarifas');
 });
 
-Route::get('/blog', function () {
-    return view('blog');
-});
+Route::get('/blog', [BlogController::class, 'items']);
 
 Route::get('/blog/{slug}', [BlogController::class, 'showPost']);
 

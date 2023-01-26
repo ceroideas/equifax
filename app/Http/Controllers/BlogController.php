@@ -16,17 +16,34 @@ class BlogController extends Controller
      */
     public function index()
     {
-
         $blogs = Blog::all();
-
-            //dump($blogs);
 
         return view('blogs.index', [
             'blogs' => $blogs
         ]);
-
-
     }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function items()
+    {
+        $blogs = Blog::where('status',1)
+                        ->orderBy('id','desc')
+                        ->paginate(4);
+                        //->get();
+    //dd($blogs);
+        //$blogs->sortBy('id');
+
+        return view('blog', [
+            'blogs' => $blogs
+        ]);
+    }
+
+
 
 
     public function createPosts($id = null){
@@ -109,10 +126,8 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
-        print_r("Entra a store");
-        die();
         $blog = new Blog();
         $blog->title = 'Titulo controller';
         $blog->slug = 'Titulo controller';
@@ -122,9 +137,7 @@ class BlogController extends Controller
         $blog->user = Auth::user()->id;
         $blog->save();
 
-        dd("Datos almacenados");
-
-    }
+    }  */
 
 
 

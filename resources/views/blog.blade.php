@@ -47,71 +47,43 @@
                         <div data-v-9cc878a2="" class="text-tarifa">Últimas entradas</div>
                         <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
 
-                            {{-- Card 1 --}}
-                            <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
-                                <div class="card mb-12 rounded-3" style="width: 17rem;">
-                                    <img class="card-img-top" src="https://dividae.com/storage/uploads/blogs/S58S8KEV1LnvwozG5i9gjkClAIMiJm8cqzAormxJ.png" alt="Dividae en Radio Intereconomia" >
-                                    <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                        <br>
-                                        <small>Dividae en Radio Intereconomía</small>
-                                    </span>
-                                    <div class="card-body">
-                                    <p class="card-text">El pasado viernes 13, Daniel Jaume, Head of Sales and Business Development en el Grupo Atlante, realizó una entrevista para Radio Intereconomía.</p>
-                                    <a href="https://dividae.com/blog/dividae-radio-intereconomia" class="btn btn-primary">Leer más</a>
+                            @foreach($blogs as $blog)
+
+                                <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
+                                    <div class="card mb-12 rounded-3" style="width: 17rem; height: 33rem;">
+                                        <img class="card-img-top" src="{{url('storage/'.$blog->image_post)}}" alt="image" >
+                                        <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
+                                            <br>
+                                            <small>{{ \Illuminate\Support\Str::limit($blog->title,27, $end='...')}}</small>
+                                        </span>
+                                        <div class="card-body">
+                                            <p class="card-text">{!! \Illuminate\Support\Str::limit($blog->extract,150, $end='...')!!}</p>
+                                        </div>
+                                        <div>
+                                            <a href="{{ url('blog/'.$blog->slug)}}" class="btn btn-primary">Leer más</a>
+                                            <p></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {{-- Card 2 --}}
-                            {{--<div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
-                                <div class="card mb-12 rounded-3" style="width: 17rem;">
-                                    <img class="card-img-top" src="http://dividae.com/landing/assets/testimonio-1.png" alt="Card image cap">
-                                    <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                        <br>
-                                        <small>Titulo</small>
-                                    </span>
-                                    <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Leer más</a>
-                                    </div>
-                                </div>
-                            </div>--}}
-
-                            {{-- Card 3 --}}
-                            {{--<div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
-                                <div class="card mb-12 rounded-3" style="width: 17rem;">
-                                    <img class="card-img-top" src="http://127.0.0.1:8000/landing/assets/grafico-ilustraciones-simulador.png" alt="Card image cap">
-                                    <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                        <br>
-                                        <small>Titulo</small>
-                                    </span>
-                                    <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Leer más</a>
-                                    </div>
-                                </div>
-                            </div>--}}
-
-                            {{-- Card 4 --}}
-                            {{--<div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
-                                <div class="card mb-12 rounded-3" style="width: 17rem;">
-                                    <img class="card-img-top" src="http://dividae.com/landing/assets/testimonio-1.png" alt="Card image cap">
-                                    <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                        <br>
-                                        <small>Titulo</small>
-                                    </span>
-                                    <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Leer más</a>
-                                    </div>
-                                </div>
-                            </div>--}}
-
+                            @endforeach
+                            {{-- Ejemplo paginacion bootstrap
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>--}}
 
                         </div>
+                        <div>{{ $blogs->links() }}</div>
                     </div>
-                </div>
 
+                </div>
+                {{ $blogs->onEachSide(4)->links() }}
 
                 @include('footer')
 
