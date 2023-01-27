@@ -185,8 +185,18 @@
                             @endif
 
 
-                            @if (Auth::user()->isSuperAdmin())
+                            @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
                                 <div class="post">
+                                    <div class="form-group">
+                                        <b>FECHA DE REGISTRO DE EXPEDIENTE: </b> {{date('d/m/Y', strtotime($claim->created_at))}}<br>
+                                        <b>DIAS TRANSCURRIDOS:
+                                            @if($dias>30)
+                                                <span style="color:#e65927;">
+                                            @else
+                                                <span>
+                                            @endif
+                                            {{$dias}}</b></span>
+                                    </div>
 
                                     <b>DEUDOR CON CÓDIGO POSTAL:</b> {{$claim->debtor->cop}}
 
