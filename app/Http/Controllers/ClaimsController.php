@@ -375,7 +375,8 @@ class ClaimsController extends Controller
         // Control de autenticacion y pertenencia a reclamación
         if(Auth::user() <> null){
             if($claim->owner_id == Auth::user()->id || Auth::user()->isSuperAdmin()){
-                return view('claims.show', ['claim' => $claim]);
+                $dias = Carbon::now()->diffInDays(Carbon::parse($claim->created_at));
+                return view('claims.show', ['claim' => $claim, 'dias'=>$dias]);
             }else{
                 return redirect('panel');
             }
