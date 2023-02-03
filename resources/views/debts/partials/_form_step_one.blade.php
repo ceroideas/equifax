@@ -1,6 +1,6 @@
 <x-adminlte-alert theme="primary">
-    <span>¡Importante! Solo se puede reclamar una deuda por concepto al mismo deudor, en caso de poseer múltiples conceptos debe registrar una reclamación para cada concepto.
-        ¡No olvides rellenar el mayor número de datos para que nuestro equipo de letrados pueda disponer de toda la información!
+    <span>IMPORTANTE! EN CASO DE QUERER RECLAMAR DEUDAS AL MISMO DEUDOR, PERO DISTINTOS CONCEPTOS, DEBES REGISTRAR UNA RECLAMACIÓN POR CADA UNA DE ELLAS.
+        ¡NO OLVIDES RELLENAR EL MAYOR NUMERO DE DATOS PARA QUE NUESTRO EQUIPO DE LETRADOS PUEDA DISPONER DE TODA LA INFORMACIÓN!
     </span>
     <br>
     {{-- <span>¡Importante! Recuerde que es responable de toda la información adjuntada en éste apartado así como la veracidad de la misma y entiende de las consecuencias en caso de no resolverse de forma positiva el litigio.</span>
