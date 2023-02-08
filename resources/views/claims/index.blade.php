@@ -121,7 +121,13 @@
                         <td>{{ $claim->getType() }}</td>
                     @endif
 
-                    <td>{{ $claim->getHito() }}</td>
+                    <td>
+                        @if ($claim->getIdHito()==30037)
+                            <a href="{{ url('/claims/' . $claim->id ) }}" style="color:#e65927;font-weight: bold;"> {{ $claim->getHito() }} </a>
+                        @else
+                            {{ $claim->getHito() }}
+                        @endif
+                    </td>
 
                     {{--
                     @if (Auth::user()->isSuperAdmin())

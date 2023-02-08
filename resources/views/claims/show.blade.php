@@ -253,6 +253,41 @@
                             @endif
 
 
+                            @if($claim->getIdHito()==30037)
+
+                            <div class="row text-center">
+                                <div class="col-sm-12">
+                                    <x-adminlte-alert theme="warning">
+                                        {{-- <p>{{ $claim->getType() }}</p> --}}
+                                        {{ $claim->getHito() }}
+
+
+                                        <div class="text-center">
+                                            <x-adminlte-button label="Continuar con la reclamación" data-toggle="modal" data-target="#modalContinue" theme="success"/>
+                                                <x-adminlte-modal id="modalContinue" title="¿Desea continuar con la reclamación {{$claim->id}}?" size="lg" v-centered="true">
+                                                    <p>La reclamación <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> continuara a la fase judicial</p>
+
+                                                    <x-slot name="footerSlot">
+                                                        <a href="{{url('claims/continue',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
+                                                        <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
+                                                    </x-slot>
+                                                </x-adminlte-modal>
+                                        </div>
+
+                                    </x-adminlte-alert>
+                                </div>
+                            </div>
+
+                                {{--
+                                <p>Continuar con la reclamacion Judicial?</p>
+                                <p>Status: {{$claim->status}}</p>
+                                <p>Hito: {{$claim->getHito()}}</p>
+                                <p>getIdHito: {{$claim->getIdHito()}}</p>
+                                --}}
+                            @else
+                                <p>Nada</p>
+                            @endif
+
 
                         </div>
                     </div>
@@ -467,7 +502,7 @@
 
                         @else
                         <h5 class="mt-5 text-muted">Última actuación</h5>
-                            @if ($claim->getHito())
+                            @if ($claim->getHito()&& $claim->getIdHito()<>30037)
                                 <div class="row text-center">
                                     <div class="col-sm-12">
                                         <x-adminlte-alert theme="success">
@@ -507,27 +542,27 @@
                         @endif
                     @endif
 
-                    @if ((Auth::user()->isAdmin() || Auth::user()->isGestor()) && !$claim->isFinished() && !$claim->isPending())
-                        <div class="text-center">
-                            <x-adminlte-button label="Finalizar Reclamación" data-toggle="modal" data-target="#modalFinish" theme="primary"/>
 
-                            <x-adminlte-modal id="modalFinish" title="¿Desea dar por finalizada la reclamación actual?" theme="primary" size="sm" v-centered="true">
-                                {{-- <div class="card">     --}}
-                                    {{-- <div class="card-body">
-                                        <div class="row">
-                                        <div class="col-sm-12">
-                                                {!! $claim->observation !!}
-                                        </div>
-                                        </div>
-                                    </div> --}}
-                                {{-- </div> --}}
-                                <x-slot name="footerSlot">
-                                    <a href="{{url('claims/close',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
-                                    <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
-                                </x-slot>
-                            </x-adminlte-modal>
+                    {{--@if ((Auth::user()->isAdmin() || Auth::user()->isGestor()||Auth::user()->isSuperAdmin()) && !$claim->isFinished() && !$claim->isPending())--}}
+                    @if (!$claim->isFinished() && !$claim->isPending())
+                    <br>
+                        <div class="text-center">
+                            <x-adminlte-button label="Finalizar Reclamación {{$claim->id}}" data-toggle="modal" data-target="#modalFinish" theme="danger"/>
+                                <x-adminlte-modal id="modalFinish" title="¿Desea dar por finalizada la reclamación {{$claim->id}}?" size="lg" v-centered="true">
+                                    @if($claim->claim_type == 2)
+                                            <p>La relamación <strong>{{$claim->id}} </strong> usuario <strong>{{ $claim->debtor->name }} </strong> finalizará</p>
+                                        @else
+                                            <p>La reclamación <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> esta en fase judicial, el equipo de Dividae se pondrá en contacto contigo</p>
+                                        @endif
+
+                                    <x-slot name="footerSlot">
+                                        <a href="{{url('claims/close',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
+                                        <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
+                                    </x-slot>
+                                </x-adminlte-modal>
                         </div>
                     @endif
+
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@ class Claim extends Model
                 return "Finalizada";
                 break;
             case 0:
-                return "Pendiente";
+                return "Expirada";
                 break;
             case 1:
                 return "Inviable";
@@ -51,6 +51,9 @@ class Claim extends Model
                 break;
             case 11:
                 return "Registro Apud Acta";
+                break;
+            case 12:
+                return "Pendiente aceptación cliente";
                 break;
             default:
                 return "Pendiente";
@@ -94,6 +97,7 @@ class Claim extends Model
             || $this->status == 9
             || $this->status == 10
             || $this->status == 11
+            || $this->status == 12
         ){
             return true;
         }
@@ -115,7 +119,7 @@ class Claim extends Model
         }
 
         if ($this->getIdHito() && (
-            $this->getIdHito() == 20 || $this->getIdHito() == 19 ||
+            $this->getIdHito() == 2001 || $this->getIdHito() == 1901 ||
             $this->getParentHito() == 20 || $this->getParentHito() == 19
         )
         ) {
@@ -222,15 +226,6 @@ class Claim extends Model
     {
         $total = 0;
         // verificar si la claim tiene un gestor verifica ordenes sino facturas
-        /*if (Auth::user()->isGestor()) {
-            foreach ($this->orders as $key => $value) {
-                $total += $value->amount;
-            }
-        }else{
-            foreach ($this->invoices as $key => $value) {
-                $total += $value->amount;
-            }
-        }*/
         if($this->gestor_id <> Null){
             foreach ($this->orders as $key => $value) {
                 $total += $value->amount;

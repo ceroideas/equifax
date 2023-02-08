@@ -126,6 +126,7 @@ Route::group(['prefix' => 'claims'], function(){
     Route::post('payToken', [PaymentsController::class, 'payToken']);
     /**/
     Route::post('check_debtor', [ClaimsController::class, 'checkDebtor']);
+    Route::get('/continue/{claim}', [ClaimsController::class , 'continue']);
 
 });
 

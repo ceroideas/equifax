@@ -981,15 +981,30 @@ class ClaimsController extends Controller
         $c->status = -1;
         $c->save();
 
+        switch(Auth::user()->role){
+            case 0:
+            case 1:
+                $usuario = "Equipo Dividae #".Auth::user()->id;
+                break;
+            case 2:
+                $usuario = "cliente #".Auth::user()->id;
+                break;
+            case 3:
+                $usuario = "gestoría #".Auth::user()->id;
+                break;
+            case 4:
+                $usuario = "asociado #".Auth::user()->id;
+                break;
+        }
+        /* Add actuation */
+        actuationActions(30033,$id, 0, now(), "Finalizada por ".$usuario);
+
         return redirect('claims')->with('msj', 'La reclamación ha sido finalizada');
     }
 
     public function uploadApudActa(Request $r)
     {
         $c = Claim::find($r->id);
-        dump($r->id);
-        dump($r->file);
-        dump($c->last_invoice);
 
         $path = public_path().'/uploads/users/' . $c->owner->id . '/apud/';
 
@@ -1240,6 +1255,14 @@ class ClaimsController extends Controller
             return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
         }
 
+    }
+
+    public function continue($id)
+    {
+
+        actuationActions(30038,$id, 0, now(), "Aceptación por parte del usuario");
+
+        return redirect('info/'.$id)->with('msj', 'Continuamos con la reclamación');
     }
 
 }

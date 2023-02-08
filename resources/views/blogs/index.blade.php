@@ -57,8 +57,8 @@
                     <td>{{ $blog->id }}</td>
                     <td>{{ $blog->title }}</td>
                     <td>{{ $blog->slug }}</td>
-                    <td>{{ $blog->extract }}</td>
-                    <td>{{ $blog->body }}</td>
+                    <td>{!! $blog->extract !!}</td>
+                    <td>{!! $blog->body !!}</td>
                     <td>{{ $blog->status == 0 ? 'Borrador': 'Publicado' }}</td>
                     <td>
                      <nobr>
