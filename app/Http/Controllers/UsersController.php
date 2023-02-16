@@ -138,6 +138,11 @@ class UsersController extends Controller
             $path = $request->file('representative_dni_img')->store('uploads/users/' . $user->id . '/representative_dni_img', 'public');
             $user->update(['representative_dni_img' => $path]);
         }
+
+        if($request->file('apud_acta')){
+            $path = $request->file('apud_acta')->store('uploads/users/' . $user->id . '/apud_acta', 'public');
+            $user->update(['apud_acta' => $path]);
+        }
         return redirect('/users')->with(['msj' => 'Usuario creado exitosamente']);
     }
 
@@ -216,17 +221,15 @@ class UsersController extends Controller
             'password' => $password,
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
+            'apud_acta' => $request->apud_acta,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
             'referenced'=>$request->referenced,
         ]);
         if($request->file('dni_img')){
             if($user->dni_img != NULL){
-
                 Storage::disk('public')->delete($user->dni_img);
-
             }
-
             $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
             $user->update(['dni_img' => $path]);
             $user->pending();
@@ -234,15 +237,23 @@ class UsersController extends Controller
 
         if($request->file('representative_dni_img')){
             if($user->representative_dni_img != NULL){
-
                 Storage::disk('public')->delete($user->representative_dni_img);
-
             }
-
             $path = $request->file('representative_dni_img')->store('uploads/users/' . $user->id . '/representative_dni_img', 'public');
             $user->update(['representative_dni_img' => $path]);
             $user->pending();
         }
+
+        if($request->file('apud_acta')){
+            if($user->apud_acta != NULL){
+                Storage::disk('public')->delete($user->apud_acta);
+            }
+            $path = $request->file('apud_acta')->store('uploads/users/' . $user->id . '/apud_acta', 'public');
+            $user->update(['apud_acta' => $path]);
+            $user->pending();
+        }
+
+
 
         if(Auth::user()->can('create', 'user')){
             return redirect('/users')->with(['msj' => 'Usuario actualizado exitosamente']);

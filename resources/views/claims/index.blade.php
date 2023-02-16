@@ -259,16 +259,12 @@
 @stop
 
 @section('js')
-
     <script>
         $('[name="file"]').change(function (e) {
             e.preventDefault();
-
             if (confirm("¿Desea subir el archivo seleccionado?") == true) {
                 $(this).parent().submit();
             }
-
         });
     </script>
-
 @stop

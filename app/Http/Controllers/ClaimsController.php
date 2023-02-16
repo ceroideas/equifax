@@ -129,15 +129,6 @@ class ClaimsController extends Controller
         }
         return redirect('users/'.Auth::id())->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');
 
-
-
-        /*
-        if (!isComplete()) {
-            return redirect('users/'.Auth::id())->with('msj','Antes de realizar una nueva reclamación, deberá completar su perfil.');
-        }
-        return view('claims.create_step_1');
-        */
-
     }
 
     public function stepTwo()
@@ -191,30 +182,13 @@ class ClaimsController extends Controller
                 $presc = Carbon::now()->diffInYears(Carbon::parse($debt->debt_date));
             }
 
-        /* TODO: Borrar debug */
-        /*print_r("Claims Controller -> Step six ");echo "<br>";
-        var_dump(config('app.deudas')[$debt->type]);echo "<br>";*/
-
-
-
-
             $deuda = config('app.deudas')[$debt->type];
             $prescribe = null;
             $message = "¡Gracias, ya hemos terminado!";
 
-            /* TODO: Borrar debug */
-            /*var_dump($deuda['prescripcion']);
-            print_r($deuda['prescripcion']);*/
-
             if ($presc < $deuda['prescripcion']) {
                 $prescribe = 1;
             }
-            /* TODO: Borrar debug */
-            /*print_r("Evalua prescripción ");echo "<br>";
-            print_r($presc);echo " es menor que: "; print_r($deuda['prescripcion']);echo "<br>";
-            print_r("Prescribe? ");echo "<br>";
-            print_r($prescribe);*/
-            //die();
 
             return view('claims.create_step_6', compact('prescribe','message'));
         }
@@ -228,9 +202,6 @@ class ClaimsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(session('claim_client'), session('claim_debtor'), session('claim_debt'), session('claim_agreement'));
-        // $debt = session('claim_debt');
-
         $claim = new Claim();
 
         if (Auth::user()->isGestor()) {
@@ -241,8 +212,6 @@ class ClaimsController extends Controller
             $client = User::find(session('claim_client'));
             $claim->user_id = $client->id;
         }elseif(session('claim_third_party')){
-
-            // dd(session('claim_third_party'));
             $client = ThirdParty::find(session('claim_third_party'));
             $claim->third_parties_id = $client->id;
         }
@@ -1002,45 +971,65 @@ class ClaimsController extends Controller
         return redirect('claims')->with('msj', 'La reclamación ha sido finalizada');
     }
 
-    public function uploadApudActa(Request $r)
+    public function uploadApudActa(Request $request)
     {
-        $c = Claim::find($r->id);
+        if ($request->file) {
+            $claim = Claim::find($request->id);
 
-        $path = public_path().'/uploads/users/' . $c->owner->id . '/apud/';
+            if($claim->user_id){
+                $path = public_path().'/uploads/users/' . $claim->owner->id . '/apud_acta/';
+                $path = $request->file->store('uploads/users/' . $claim->owner->id . '/apud_acta', 'public');
+                $claim->owner->update(['apud_acta' => $path]);
+                $claim->owner->pending();
+            }else{
+                $path = public_path().'/uploads/third-parties/' . $claim->representant->id . '/apud_acta/';
+                $path = $request->file->store('uploads/third-parties/' . $claim->representant->id . '/apud_acta', 'public');
+                $claim->representant->apud_acta = $path;
+                $claim->representant->pending();
+            }
+            /* Comprueba que exista un last Invoice pero debemos ver si es gestoria debe buscar pedidos*/
+            /* Si la reclamacion es de gestoria debe pasar al else*/
 
-        if ($r->file) {
-            $name = $r->file->getClientOriginalName();
-            $r->file->move($path,$name);
-            $c->owner->apud_acta = $name;
+            if ($claim->last_invoice && !$claim->gestor_id) {
+                //dd("Reclamacion tiene factura pendiente y no es de gestor");
+                $claim->status = 7;  // se pone la reclamacion como pendiente de pago al haber una factura pendiente
 
-            if ($c->last_invoice) {
-                $c->status = 7;
-
-                $a = Actuation::where('claim_id',$c->id)->where('subject',"30017")->first();
-                if ($a) {
-                    $a->delete();
+                $actuation = Actuation::where('claim_id',$claim->id)->where('subject',"30017")->first();
+                if ($actuation) {
+                    $actuation->delete();
                 }
 
-                $a = new Actuation;
-                $a->claim_id = $c->id;
-                $a->subject = "30017";
-                $a->amount = null;
-                $a->description = null;
-                $a->actuation_date = Carbon::now()->format('d-m-Y');
-                $a->type = null;
-                $a->mailable = null;
-                $a->save();
+                $actuation = new Actuation;
+                $actuation->claim_id = $claim->id;
+                $actuation->subject = "30017";
+                $actuation->amount = null;
+                $actuation->description = "Apud acta subido, factura pendiente de pago";
+                $actuation->actuation_date = Carbon::now()->format('d-m-Y');
+                $actuation->type = null;
+                $actuation->mailable = null;
+                $actuation->save();
 
             }else{
-                $c->status = 10;
+                $claim->status = 10;  // reclamacion en status "Gestion reclamacion judicial"
                 // Aqui debemos comprobar si viene de gestoria o no ya en gestorias no debe quedar en 30017
-                actuationActions("30017",$c->id);
+                //if($claim->gestor_id){
+                    // es de gestoria, debe quedar en la actuacion .....30035 para esto ya acepto
+                    //dd("Es gestoria");
+                    actuationActions("30035",$claim->id);  // Pagado, continua con reclamacion judicial sea gestoria o cliente y ya esta pagado
+
+                //}else{
+                //    actuationActions("30035",$claim->id);
+                //}
+
             }
-            $c->save();
-            $c->owner->save();
+            $claim->save();
+            $claim->owner->save();
+            return back()->with('msj', 'Se ha subido el archivo!');
+        }else{
+            return back()->with('msj', 'No se ha podido subir el archivo!');
         }
 
-        return back()->with('msj', 'Se ha subido el archivo!');
+
     }
 
     public function exportAll()
@@ -1207,60 +1196,80 @@ class ClaimsController extends Controller
     {
         list($infopago, $titulo, $msg, $conceptos, $importes) = array(config('app.infopago'), "","",array(),array());
 
-        $invoice = Invoice::where('claim_id',$id)
+        // TODO: recuperar la pantalla de pagos aunque no tenga factura pendiente puesto que puede ser una gestoria
+        // Recuperar si la reclamacion es de gestoria o de cliente para saber si buscar factura o no,
+        // a la gestoria solo debemos mostrar el estado del pedido para que suba un apud acta
+        $claim = Claim::find($id);
+
+
+        if(isset($claim)){
+            // buscamos si la reclamacion esta en estado 11, mostrar mensaje de apud acta
+
+            $claim->getStatus()==11 ? $apudActa = 0: $apudActa = 1;
+            $claim->gestor_id <> Null ? $gestoria = 1: $gestoria = 0;
+
+            if($claim->gestor_id){
+                // Mostrar pantalla de pago solo con apudActa (Gestoria)
+                return view('info-public', compact('titulo','msg', 'id', 'claim'));
+            }else{
+
+                // debemos recuperar la pantalla de info para permitir se suba el apud acta.
+                $invoice = Invoice::where('claim_id',$id)
                             ->where('status','=',NULL)
                             ->orderBy('id','desc')
                             ->get();
 
-        if(count($invoice)){
+                if(count($invoice)){
 
-            $Linvoices = Linvoice::where('invoice_id',$invoice[0]->id)
-                            ->get();
+                    $Linvoices = Linvoice::where('invoice_id',$invoice[0]->id)
+                                    ->get();
 
-            if(count($Linvoices)){
-                $extrajudicial = false;
-                foreach($Linvoices as $key => $LInvoice){
-                    if($LInvoice->artlin=='EXT-001'){
-                        $extrajudicial = true;
-                        $titulo = 'Procedimiento extrajudicial';
-                    }
-                    $conceptos[$key] = $Linvoices[$key]->deslin;
-                    $importes[$key] = $Linvoices[$key]->prelin;
-                    $descuentos[$key] = $Linvoices[$key]->dtolin;
-                    $ivas[$key] = $Linvoices[$key]->ivalin;
-                    $totales[$key] = $Linvoices[$key]->totlin;
-                }
-
-                if($extrajudicial==true){
-                    return view('info-public', compact('titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice'));
-                }else{
-
-                    // Se requiere encontrar la actuacion que genero la factura para poder buscar por ese hito el
-                    foreach($infopago as $key => $value){
-                        if($value['articulo']==$LInvoice->artlin){
-                            $titulo = $value['titulo'];
-                            $msg = $value['msg'];
+                    if(count($Linvoices)){
+                        $extrajudicial = false;
+                        foreach($Linvoices as $key => $LInvoice){
+                            if($LInvoice->artlin=='EXT-001'){
+                                $extrajudicial = true;
+                                $titulo = 'Procedimiento extrajudicial';
+                            }
+                            $conceptos[$key] = $Linvoices[$key]->deslin;
+                            $importes[$key] = $Linvoices[$key]->prelin;
+                            $descuentos[$key] = $Linvoices[$key]->dtolin;
+                            $ivas[$key] = $Linvoices[$key]->ivalin;
+                            $totales[$key] = $Linvoices[$key]->totlin;
                         }
+
+                        if($extrajudicial==true){
+                            return view('info-public', compact('titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice','claim'));
+                        }else{
+
+                            // TODO: recuperar el hito que facturo Se requiere encontrar la actuacion que genero la factura para poder buscar por ese hito el
+                            foreach($infopago as $key => $value){
+                                if($value['articulo']==$LInvoice->artlin){
+                                    $titulo = $value['titulo'];
+                                    $msg = $value['msg'];
+                                    //dump($titulo);
+                                    //dump($value);
+                                }
+                            }
+                            return view('info-public', compact('titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice','claim'));
+                        }
+                    }else{
+                        $titulo = 'Error al leer lineas de detalle';
+                        return view('info-public', compact('titulo','msg','conceptos','importes', 'id','claim'));
                     }
-                    return view('info-public', compact('titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice'));
+                }else{
+                    return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
                 }
-
-            }else{
-                $titulo = 'Error al leer lineas de detalle';
-
-                return view('info-public', compact('titulo','msg','conceptos','importes', 'id'));
             }
-
         }else{
-            return redirect('/')->with('msg', 'La reclamación no tiene una factura pendiente de pago');
+            return redirect('/')->with('msg', 'No existe la reclamación');
         }
-
     }
 
     public function continue($id)
     {
 
-        actuationActions(30038,$id, 0, now(), "Aceptación por parte del usuario");
+        actuationActions("30038",$id, 0, now(), "Aceptación por parte del usuario");
 
         return redirect('info/'.$id)->with('msj', 'Continuamos con la reclamación');
     }

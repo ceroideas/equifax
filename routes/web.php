@@ -63,7 +63,6 @@ Auth::routes();
 Route::post('registerSocial', [RegisterController::class, 'registerSocial']);
 
 /* Usuarios */
-
 Route::group(['prefix' => 'users'], function(){
     Route::get('/', [UsersController::class, 'index']);
     Route::get('/pending', [UsersController::class, 'pending']);
@@ -99,7 +98,6 @@ Route::group([
     Route::get('/check-agreement', [ClaimsController::class, 'stepFive']);
     Route::get('/accept-terms', [ClaimsController::class, 'stepSix']);
     Route::get('/save-option-one', [ClaimsController::class, 'saveOptionOne']);
-    // Route::post('/save-client', [ClaimsController::class, 'saveClient']);
     Route::get('/save-option-two/{id}', [ClaimsController::class, 'saveOptionTwo']);
     Route::get('/save-debtor/{id}', [ClaimsController::class, 'saveDebtor']);
     Route::get('/clear-option-one', [ClaimsController::class, 'flushOptionOne']);
@@ -124,13 +122,10 @@ Route::group([
     Route::get('/close/{claim}', [ClaimsController::class , 'close']);
     Route::post('/non-viable/{claim}/save', [ClaimsController::class, 'setNonViable']);
     Route::post('/viable/{claim}/save', [ClaimsController::class, 'setViable']);
-
     Route::post('payment', [PaymentsController::class, 'payment']);
     Route::post('payToken', [PaymentsController::class, 'payToken']);
-    /**/
     Route::post('check_debtor', [ClaimsController::class, 'checkDebtor']);
     Route::get('/continue/{claim}', [ClaimsController::class , 'continue']);
-
 });
 
 Route::group([
@@ -155,7 +150,6 @@ Route::group([
     Route::get('/{thirdParty}/edit', [ThirdPartiesController::class, 'edit']);
     Route::put('/{thirdParty}', [ThirdPartiesController::class, 'update']);
     Route::delete('/{thirdParty}', [ThirdPartiesController::class, 'destroy']);
-
 });
 
 /* Deudores */
@@ -248,6 +242,7 @@ Route::group([
     Route::get('getHito/{blade}', [DebtsController::class, 'getHito']);
     Route::post('import-actuations', [ClaimsController::class, 'importActuations']);
     Route::post('import-collects', [CollectsController::class, 'importCollects']);
+    Route::get('info/{id}', [ClaimsController::class, 'info']);
 });
 
 Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
@@ -258,7 +253,7 @@ Route::post('uploadApudActa', [ClaimsController::class, 'uploadApudActa']);
 Route::get('testEmail/{email?}/{template?}', [UsersController::class, 'testEmail']);
 Route::get('sendEmailsCron', [ClaimsController::class, 'sendEmailsCron'])->middleware('guest');
 
-Route::get('info/{id}', [ClaimsController::class, 'info']);
+
 Route::post('saveDiscount', [ClaimsController::class, 'saveDiscount']);
 
 /* Ruta verificacion token */

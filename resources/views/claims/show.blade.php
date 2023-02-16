@@ -252,43 +252,25 @@
                                 </div>
                             @endif
 
-
                             @if($claim->getIdHito()==30037)
-
-                            <div class="row text-center">
-                                <div class="col-sm-12">
-                                    <x-adminlte-alert theme="warning">
-                                        {{-- <p>{{ $claim->getType() }}</p> --}}
-                                        {{ $claim->getHito() }}
-
-
-                                        <div class="text-center">
-                                            <x-adminlte-button label="Continuar con la reclamación" data-toggle="modal" data-target="#modalContinue" theme="success"/>
-                                                <x-adminlte-modal id="modalContinue" title="¿Desea continuar con la reclamación {{$claim->id}}?" size="lg" v-centered="true">
-                                                    <p>La reclamación <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> continuara a la fase judicial</p>
-
-                                                    <x-slot name="footerSlot">
-                                                        <a href="{{url('claims/continue',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
-                                                        <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
-                                                    </x-slot>
-                                                </x-adminlte-modal>
-                                        </div>
-
-                                    </x-adminlte-alert>
+                                <div class="row text-center">
+                                    <div class="col-sm-12">
+                                        <x-adminlte-alert theme="warning">
+                                            {{ $claim->getHito() }}
+                                            <div class="text-center">
+                                                <x-adminlte-button label="Continuar con la reclamación" data-toggle="modal" data-target="#modalContinue" theme="success"/>
+                                                    <x-adminlte-modal id="modalContinue" title="¿Desea continuar con la reclamación {{$claim->id}}?" size="lg" v-centered="true">
+                                                        <p>La reclamación <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> continuara a la fase judicial</p>
+                                                        <x-slot name="footerSlot">
+                                                            <a href="{{url('claims/continue',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
+                                                            <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
+                                                        </x-slot>
+                                                    </x-adminlte-modal>
+                                            </div>
+                                        </x-adminlte-alert>
+                                    </div>
                                 </div>
-                            </div>
-
-                                {{--
-                                <p>Continuar con la reclamacion Judicial?</p>
-                                <p>Status: {{$claim->status}}</p>
-                                <p>Hito: {{$claim->getHito()}}</p>
-                                <p>getIdHito: {{$claim->getIdHito()}}</p>
-                                --}}
-                            @else
-                                <p>Nada</p>
                             @endif
-
-
                         </div>
                     </div>
                 </div>
@@ -298,7 +280,6 @@
                     <h4>Detalles del acreedor</h4>
 
                     <h3 class="text-primary"><i class="fas fa-user"></i> {{ $claim->user_id ? $claim->client->name : $claim->representant->name  }}</h3>
-
 
                     <div class="text-muted">
                        <div class="row">
@@ -314,12 +295,6 @@
                                     {{ $claim->user_id ? $claim->client->phone : 'N/A' }}
                                 </p>
                             </div>
-                            {{-- <div class="col-sm-6">
-                                <b>Tipo</b>
-                                <p>
-                                    {{ $claim->user_id ? $claim->client->getRole() : 'Representado' }}
-                                </p>
-                           </div> --}}
                        </div>
                        <div class="row">
                             <div class="col-sm-6">
@@ -334,32 +309,9 @@
                                     {{ $claim->user_id ? $claim->client->location : $claim->representant->location }}
                                 </p>
                             </div>
-                            {{-- <div class="col-sm-6">
-                                <b>Código Postal</b>
-                                <p>
-                                    {{ $claim->user_id ? $claim->client->cop : $claim->representant->cop }}
-                                </p>
-                            </div> --}}
                         </div>
                     </div>
 
-                    {{--
-                    <div>
-                        <div class="row">
-                            <div class="col text-center">
-                                @php
-                                    $ext = array_reverse(explode('.', $claim->user_id ? $claim->client->dni_img : $claim->representant->dni_img))[0];
-                                @endphp
-                                @if(strtolower($ext) == 'pdf')
-                                 <iframe src="{{ $claim->user_id ? asset($claim->client->dni_img) : asset($claim->representant->dni_img )}}" frameborder="0" style="width: 100%; height:400px "></iframe>
-                                @else
-                                <img src="{{ $claim->user_id ? asset($claim->client->dni_img) : asset($claim->representant->dni_img )}}" alt="" class="img img-fluid img-responsive" width="400" height="200">
-                                @endif
-
-                            </div>
-                        </div>
-                    </div>
-                    --}}
                     <br>
                     @if(/*$claim->isPending()*/true)
                         <h5 class="mt-5 text-muted">Documentación de la Deuda</h5>
@@ -372,106 +324,57 @@
                                 @endphp
                                 @include('claims.document', ['doc' => $d, 'idx' => $key, 'h' => $h])
                             @endforeach
-                            {{-- <div class="row">
-                                <div class="col-sm-4">
-
-                                    @if($claim->debt->factura)
-                                    <li>
-                                        <a href="{{ asset($claim->debt->factura) }}" class="btn-link text-secondary" target="_blank" download="Factura Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Factura</a>
-                                    </li>
-                                    @endif
-
-                                </div>
-                                <div class="col-sm-4">
-
-                                    @if($claim->debt->albaran)
-                                    <li>
-                                        <a href="{{ asset($claim->debt->albaran) }}" class="btn-link text-secondary" target="_blank" download="Albarán Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Albarán</a>
-                                    </li>
-                                    @endif
-
-                                </div>
-                                <div class="col-sm-4">
-
-                                    @if($claim->debt->contrato)
-                                    <li>
-                                        <a href="{{ asset($claim->debt->contrato) }}" class="btn-link text-secondary" target="_blank" download="Contrato de Prestación de Servicios Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Contrato</a>
-                                    </li>
-                                    @endif
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-
-                                    @if($claim->debt->documentacion_pedido)
-                                    <li>
-                                        <a href="{{ asset($claim->debt->documentacion_pedido) }}" class="btn-link text-secondary" target="_blank" download="Documentación del Pedido Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Doc. del Pedido</a>
-                                    </li>
-                                    @endif
-                                </div>
-                                <div class="col-sm-4">
-                                    @if($claim->debt->extracto)
-                                    <li>
-                                        <a href="{{ asset($claim->debt->extracto) }}" class="btn-link text-secondary" target="_blank" download="Extracto Bancario Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Extracto</a>
-                                    </li>
-                                    @endif
-                                </div>
-                                <div class="col-sm-4">
-                                    @if($claim->debt->reconocimiento_deuda)
-                                    <li>
-                                        <a href="{{ asset($claim->debt->reconocimiento_deuda) }}" class="btn-link text-secondary" target="_blank" download="Reconocimiento de Deuda Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Reconocimiento</a>
-                                    </li>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-
-
-                                    @if($claim->debt->escritura_notarial)
-                                    <li>
-                                        <a href="{{ asset($claim->debt->escritura_notarial) }}" class="btn-link text-secondary" target="_blank" download="Escritura Notarial Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Escritura Notarial</a>
-                                    </li>
-                                    @endif
-                                </div>
-                                <div class="col-sm-4">
-
-                                    @if($claim->debt->reclamacion_previa)
-                                    <li>
-                                        <a href="{{ asset($claim->debt->reclamacion_previa) }}" class="btn-link text-secondary" target="_blank" download="Reclamación Previa Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Reclam. Previa</a>
-                                    </li>
-                                    @endif
-                                </div>
-                            </div> --}}
-                            {{-- @if($claim->debt->others)
-
-                            <h5 class="mt-3 text-muted">Documentación Extra</h5>
-
-                            <div class="row">
-                                @foreach (explode(',', $claim->debt->others) as $doc)
-
-                                    <div class="col-sm">
-                                        <li>
-                                            <a href="{{ asset($doc) }}" class="btn-link text-secondary" target="_blank" download="Documento Extra #{{ $loop->iteration }} Reclamo #{{ $claim->id }}"><i class="far fa-fw fa-file"></i>Doc. Extra #{{ $loop->iteration }}</a>
-                                        </li>
-                                    </div>
-                                @endforeach
-                            </div>
-                            @endif --}}
-                            {{-- @if($claim->debt->motivo_reclamacion_previa)
-                            <div class="row my-4">
-                                <div class="col">
-
-                                    <li>
-
-                                        <p><strong>Motivo Reclamación Previa:</strong> {{ $claim->debt->motivo_reclamacion_previa }}</p>
-                                    </li>
-
-                                </div>
-                            </div>
-                            @endif --}}
                         </ul>
+                    @endif
+
+                    @if($claim->claim_type == 1)
+                        <h5 class="mt-5 text-muted">Apud Acta</h5>
+                        <hr>
+                        @if($claim->user_id)
+                            @if(isset($claim->client->apud_acta))
+                                <div class="text-center my-3">
+                                    <li style="list-style: none;">
+                                        <a href="{{ url('storage/'.$claim->client->apud_acta) }}" class="btn-link text-secondary" target="_blank"
+                                            download="Apud Acta - {{ $claim->client->name }} - {{ $claim->client->dni }}.pdf">
+                                            <i class="far fa-fw fa-file"></i>Descargar Apud Acta</a>
+                                    </li>
+                                </div>
+                            @else
+                                <x-adminlte-alert theme="warning">
+                                    <p>No existe apud acta en cliente</p>
+                                    <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="id" value="{{$claim->id}}">
+                                        <input type="file" style="display: none;" id="apud-{{$claim->id}}" name="file">
+                                        <label for="apud-{{$claim->id}}" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Apud acta" style="margin: 0">
+                                            <i class="fa fa-lg fa-fw fa-upload"></i>
+                                        </label>
+                                    </form>
+                                </x-adminlte-alert>
+                            @endif
+                        @else
+                            @if(isset($claim->representant->apud_acta))
+                                <div class="text-center my-3">
+                                    <li style="list-style: none;">
+                                        <a href="{{ url('storage/'.$claim->representant->apud_acta) }}" class="btn-link text-secondary" target="_blank"
+                                            download="Apud Acta - {{ $claim->representant->name }} - {{ $claim->representant->dni }}.pdf">
+                                            <i class="far fa-fw fa-file"></i>Descargar Apud Acta</a>
+                                    </li>
+                                </div>
+                            @else
+                                <x-adminlte-alert theme="warning">
+                                    <p>No existe apud acta en representado</p>
+                                    <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="id" value="{{$claim->id}}">
+                                        <input type="file" style="display: none;" id="apud-{{$claim->id}}" name="file">
+                                        <label for="apud-{{$claim->id}}" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Apud acta" style="margin: 0">
+                                            <i class="fa fa-lg fa-fw fa-upload"></i>
+                                        </label>
+                                    </form>
+                                </x-adminlte-alert>
+                            @endif
+                        @endif
                     @endif
 
                     @if(((Auth::user()->isAdmin() || Auth::user()->isGestor()) || Auth::user()->isSuperAdmin()) && $claim->isPending())
@@ -532,14 +435,7 @@
                             </div>
                         @endif
 
-                        @if ($claim->claim_type == 1 && $claim->owner->apud_acta)
-                            <div class="text-center my-3">
-                                {{-- <b>Apud Acta: </b> --}}
-                                <li style="list-style: none;">
-                                    <a href="{{ url('uploads/users/' . $claim->owner->id . '/apud',$claim->owner->apud_acta) }}" class="btn-link text-secondary" target="_blank" download="Apud Acta - {{ $claim->owner->name }} - {{ $claim->owner->dni }}.pdf"><i class="far fa-fw fa-file"></i>Apud Acta</a>
-                                </li>
-                            </div>
-                        @endif
+
                     @endif
 
 
@@ -567,9 +463,6 @@
             </div>
         </div>
     </div>
-
-
-
 
 @stop
 
@@ -610,6 +503,15 @@
                 $('#juzgado').text(data[0]);
                 $('#procurador').text(data[1]);
             });
+        });
+
+        $('[name="file"]').change(function (e) {
+            e.preventDefault();
+
+            if (confirm("¿Desea subir el archivo seleccionado?") == true) {
+                $(this).parent().submit();
+            }
+
         });
 
     </script>

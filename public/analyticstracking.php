@@ -1,4 +1,3 @@
-[13:13] Ines Izuzquiza Avanzini
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S4DQDXMTQC"></script>
 <script>

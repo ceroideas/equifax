@@ -251,6 +251,37 @@
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
+                        {{-- Inicio Apud Acta --}}
+                        @if($claim->user_id)
+                            @if($claim->client->apud_acta==NULL)
+                                <x-adminlte-alert theme="warning">
+                                    <p>No existe apud acta en cliente</p>
+                                    <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="id" value="{{$claim->id}}">
+                                        <input type="file" style="display: none;" id="apud-{{$claim->id}}" name="file">
+                                        <label for="apud-{{$claim->id}}" class="btn btn-light-descubre mx-1 shadow" title="Subir Apud acta" style="margin: 0">
+                                            Subir Apud Acta
+                                        </label>
+                                    </form>
+                                </x-adminlte-alert>
+                            @endif
+                        @else
+                            @if($claim->representant->apud_acta==NULL)
+                                <x-adminlte-alert theme="warning">
+                                    <p>No existe apud acta en representado</p>
+                                    <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="id" value="{{$claim->id}}">
+                                        <input type="file" style="display: none;" id="apud-{{$claim->id}}" name="file">
+                                        <label for="apud-{{$claim->id}}" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Apud acta" style="margin: 0">
+                                            <i class="fa fa-lg fa-fw fa-upload"></i>
+                                        </label>
+                                    </form>
+                                </x-adminlte-alert>
+                            @endif
+                        @endif
+                        {{-- Fin Apud Acta --}}
                         <div data-v-9cc878a2="" class="text-tarifa">
                                 <p>{{$titulo}}</p>
                         </div>
@@ -322,25 +353,15 @@
                             </div>
                             <div class="col-sm-3"></div>
                         </div>
-
-
-                        {{--<p style="color:#285ba3; font-style: italic;">IVA no incluido</p>
-                        <p style="color:#285ba3; font-style: italic;">** Precio fijo que deberá abonarse por el cliente
-                            previo al inicio de cada procedimiento.</p>--}}
-                            <p></p>
                     </div>
-
                 </div>
-
             </div>
-
-
 
             @include('footer-slim')
 
-    </div>
+        </div>
     </main>
-    </div>
+</div>
     <!-- Scripts -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -352,7 +373,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script>
 
+    $('[name="file"]').change(function (e) {
+            e.preventDefault();
+
+            if (confirm("¿Desea subir el archivo seleccionado?") == true) {
+                $(this).parent().submit();
+            }
+
+        });
+
+    </script>
     @yield('extrajs')
 
 </body>

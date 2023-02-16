@@ -8,6 +8,7 @@
             <th>Reclamación</th>
             <th>Concepto</th>
             <th>Importe</th>
+            <th>Fecha de la factura</th>
             <th>Fecha del pago</th>
             <th>Tipo de cobro</th>
             <th>Status</th>
@@ -34,8 +35,9 @@
             @endif
         </td>
         <td>{{ $invoice->description }}</td>
-        <td>{{ $invoice->amount }}€</td>
-        <td>{{ Carbon\Carbon::parse($invoice->payment_date)->format('d-m-Y H:i') }}</td>
+        <td>{{ $invoice->amount }}&euro;</td>
+        <td>{{ Carbon\Carbon::parse($invoice->created_at)->format('d/m/Y') }}</td>
+        <td>{{ $invoice->payment_date ? Carbon\Carbon::parse($invoice->payment_date)->format('d/m/Y'): '' }} </td>
         <td>{{ $invoice->type }}</td>
         <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':'Pendiente') }}</td>
 

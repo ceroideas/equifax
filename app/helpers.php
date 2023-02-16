@@ -74,8 +74,18 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Graba nueva Actuacion: '.PHP_EOL);
                 fclose($file);
             }
-
 			if ($h['id'] != "-1") {
+                /* Si hay redireccion, debemos grabar la propia actuacion si es 30038 */
+                if($h['ref_id']=="30038"|| $h['ref_id']=="30033" ){
+                    $act = new Actuation;
+                    $act->claim_id = $claim_id;
+                    $act->subject = $h['ref_id'];
+                    $act->description=$observations;
+                    $act->actuation_date = $date ? $date : Carbon::now()->format('d-m-Y');
+                    $act->hito_padre = $h['parent_id'];
+                    $act->save();
+                }
+
 				$a = new Actuation;
 		        $a->claim_id = $claim_id;
 		        $a->subject = $h['redirect_to'];
@@ -83,7 +93,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        $a->description = $observations;
 		        $a->actuation_date = $date ? $date : Carbon::now()->format('d-m-Y');
 
-		        $a->hito_padre = $h['id'];
+		        $a->hito_padre = $h['parent_id'];
 
 		        $a->type = null;
 		        $a->mailable = $h['email'] ? 1 : null;
