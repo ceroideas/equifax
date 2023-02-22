@@ -329,7 +329,8 @@
                     </div>
                 </div>
             </div>
-            @if($claim->status <>12)
+
+            @if($claim->status <>12 && !$claim->gestor_id)
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="container" data-v-effc9f78="" style="width: 100%;">
                     <div class="row">
                         <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
@@ -390,13 +391,11 @@
                                 </div>
                                 <div class="col-sm-3"></div>
                             </div>
+                            <div class="row"><p></p></div>
                         </div>
                     </div>
                 </div>
-
             @endif
-
-
 
             @include('footer-slim')
 

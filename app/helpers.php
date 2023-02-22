@@ -253,14 +253,13 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        if (Auth::user()->isGestor()) {
 		        	actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
 
-		        	return actuationActions("30017",$claim_id);
+		        	return actuationActions("30018",$claim_id);
 		        }else{
 
 					if ($claim->owner->apud_acta) {
 						return actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
 			        }
 				}
-
 			}
 
 			// comprobar si la redirección es al inicio del proceso de cobros (generacion de cobro)

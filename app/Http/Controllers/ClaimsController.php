@@ -1215,14 +1215,17 @@ class ClaimsController extends Controller
 
             // buscamos si la reclamacion esta en estado 11, mostrar mensaje de apud acta
 
-            $claim->getStatus()==11 ? $apudActa = 0: $apudActa = 1;
-            $claim->gestor_id <> Null ? $gestoria = 1: $gestoria = 0;
+            //$claim->getStatus()==11 ? $apudActa = 0: $apudActa = 1;
+            //$claim->gestor_id ? $gestoria = 1: $gestoria = 0;
 
             if($claim->gestor_id){
                 // Mostrar pantalla de pago solo con apudActa (Gestoria)
+                if($claim->status == 10){
+                    $titulo=$claim->getStatus();
+                    $msg="La reclamación esta en fase judicial.";
+                }
                 return view('info-public', compact('titulo','msg', 'id', 'claim'));
             }else{
-
                 // debemos recuperar la pantalla de info para permitir se suba el apud acta.
                 $invoice = Invoice::where('claim_id',$id)
                             ->where('status','=',NULL)
@@ -1257,8 +1260,7 @@ class ClaimsController extends Controller
                                 if($value['articulo']==$LInvoice->artlin){
                                     $titulo = $value['titulo'];
                                     $msg = $value['msg'];
-                                    //dump($titulo);
-                                    //dump($value);
+
                                 }
                             }
                             return view('info-public', compact('titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice','claim'));
