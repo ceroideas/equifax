@@ -883,7 +883,13 @@ return [
          'hito'=>"30030",
          'titulo'=>'ACUERDO INCUMPLIDO - RECOMENDACIÓN VÍA JUDICIAL - DEMANDA EJECUCIÓN',
          'msg'=>'¡Vaya! El deudor ha incumplido el acuerdo. Dividae te recomienda presentar una demanda de ejecución para poder embargar sus bienes. Para ello, tienes que tomar una decisión, abonando la tarifa ejecución*.',
-         'concepto'=>'tarifa ejecución'
-        ]
+         'concepto'=>'Tarifa ejecución'
+        ],
+        ['articulo'=>'EXT-001',
+        'hito'=>"30037",
+        'titulo'=>'ACEPTACION CONTINUAR A LA SIGUIENTE FASE',
+        'msg'=>'Acepta el acuerdo y la reclamación continuará por vía judicial, en la que interpondremos la correspondiente demanda de monitorio.',
+        'concepto'=>'Continuar a la siguiente fase'
+       ]
     ]
 ];

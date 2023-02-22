@@ -49,12 +49,11 @@ class PaymentsController extends Controller
             if ($purchaseResult->DS_RESPONSE == "1") {
 
                 $c = Claim::find($r->claim_id);
-
                 if ($c->status == 7) {
                     if ($c->claim_type == 1) {
-                        if (!$c->last_invoice) {
-                            $c->status = 10;
-                        }
+                        //if (!$c->last_invoice) {
+                        $c->status = 10;
+                        //}
                     }else{
                         $c->status = 8;
                     }
@@ -77,6 +76,9 @@ class PaymentsController extends Controller
 
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
+
+                        actuationActions("30018",$c->id);
+                    }else{
                         actuationActions("30017",$c->id);
                     }
                 }else{
@@ -85,9 +87,9 @@ class PaymentsController extends Controller
 
                 return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
 
-                // return response()->json('El pago ha sido efectuado',200);
+            } else {  // error en pago
 
-            } else {
+                /*
                 $c = Claim::find($r->claim_id);
 
                 if ($c->status == 7) {
@@ -123,8 +125,8 @@ class PaymentsController extends Controller
                     actuationActions("-1",$c->id);
                 }
 
-                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
-                var_dump($purchaseResult->DS_ERROR_ID);
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');*/
+                //var_dump($purchaseResult->DS_ERROR_ID);
 
                 return response()->json('Error al procesar el pago Intente nuevamente',422);
             }
@@ -202,21 +204,27 @@ class PaymentsController extends Controller
 
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
+
+                        actuationActions("30018",$c->id);
+                    }else{
                         actuationActions("30017",$c->id);
                     }
                 }else{
                     actuationActions("-1",$c->id);
                 }
 
-
                 return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
 
-                // return response()->json('El pago ha sido efectuado',200);
 
             } else {
 
-                $c = Claim::find($r->claim_id);
+                /*$c = Claim::find($r->claim_id);*/
+                //dump("Payment Error: ");
+                //dump($purchaseResult->DS_RESPONSE);
 
+                //dump($purchaseResult->DS_ERROR_ID);  // Int(456)
+                //dd();
+                /*
                 if ($c->status == 7) {
                     if ($c->claim_type == 1) {
                         $c->status = 10;
@@ -249,11 +257,10 @@ class PaymentsController extends Controller
                 }
 
 
-                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');*/
 
-                var_dump($purchaseResult->DS_ERROR_ID);
+                return back()->with('msj', 'Error al procesar el pago, Intente nuevamente');
 
-                return response()->json('Error al procesar el pago Intente nuevamente',422);
             }
         } else {
             return response()->json('Error, no se ha obtenido token',422);

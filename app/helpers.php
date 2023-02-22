@@ -76,12 +76,12 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
             }
 			if ($h['id'] != "-1") {
                 /* Si hay redireccion, debemos grabar la propia actuacion si es 30038 */
-                if($h['ref_id']=="30038"|| $h['ref_id']=="30033" ){
+                if($h['ref_id']=="30038"|| $h['ref_id']=="30033" || $h['ref_id']=="30018" ){
                     $act = new Actuation;
                     $act->claim_id = $claim_id;
                     $act->subject = $h['ref_id'];
                     $act->description=$observations;
-                    $act->actuation_date = $date ? $date : Carbon::now()->format('d-m-Y');
+                    $act->actuation_date = $date ? $date : Carbon::now()->format('Y-m-d H:i:s');
                     $act->hito_padre = $h['parent_id'];
                     $act->save();
                 }
@@ -91,7 +91,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        $a->subject = $h['redirect_to'];
 		        $a->amount = $amount;
 		        $a->description = $observations;
-		        $a->actuation_date = $date ? $date : Carbon::now()->format('d-m-Y');
+		        $a->actuation_date = $date ? $date : Carbon::now()->format('Y-m-d H:i:s');
 
 		        $a->hito_padre = $h['parent_id'];
 
@@ -100,9 +100,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
 		        $a->save();
 
-
                 // comprobar si el hito debe enviar un email
-
 				if ($h['template_id']) {
 					// code...
 					$se = new SendEmail;
@@ -160,13 +158,22 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     fclose($file);
                 }
 
-				if ($claim->owner->apud_acta) {
-	                $claim->status = 7;
-	            }else{
-	                $claim->status = 11;
-	            }
+				/* Comprobar si la reclamacion es de terceros */
+                if($claim->user_id){
+                    if($claim->client->apud_acta){
+                        $claim->status = 7;
+                    }else{
+                        $claim->status = 11;
+                    }
+                }else{
+                    if($claim->representant->apud_acta){
+                        $claim->status = 7;
+                    }else{
+                        $claim->status = 11;
+                    }
+                }
 
-				$claim->claim_type = 1;
+                $claim->claim_type = 1;
 				$claim->save();
 
                 /************* Inicio creacion de documento (Order / Invoice ) ***************/
@@ -286,6 +293,14 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 			if ($h['redirect_to'] === "30035") {
 				// la reclamación queda aqui porque es el inicio del proceso e id del hito para exportar las reclamaciones
 			}
+
+            // Cambiamos reclamacion a pendiente aceptacion cliente.
+            if($h['redirect_to']=="30037") {
+                $claim->status = 12;
+                $claim->save();
+            }
+
+
 		}else{
 
                 // comprobar si el hito debe enviar un email

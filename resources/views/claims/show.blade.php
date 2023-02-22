@@ -341,7 +341,9 @@
                                 </div>
                             @else
                                 <x-adminlte-alert theme="warning">
-                                    <p>No existe apud acta en cliente</p>
+                                    <p>No existe apud acta en cliente, descarga las
+                                        <a href="/docs/Instrucciones_apud_acta_electronico.pdf" target="_blank"> instrucciones para generar el apud acta.</a>
+                                    </p>
                                     <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
                                         {{csrf_field()}}
                                         <input type="hidden" name="id" value="{{$claim->id}}">
@@ -363,7 +365,9 @@
                                 </div>
                             @else
                                 <x-adminlte-alert theme="warning">
-                                    <p>No existe apud acta en representado</p>
+                                    <p>No existe apud acta en representado, descarga las
+                                        <a href="/docs/Instrucciones_apud_acta_electronico.pdf" target="_blank"> instrucciones para generar el apud acta.</a>
+                                    </p>
                                     <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
                                         {{csrf_field()}}
                                         <input type="hidden" name="id" value="{{$claim->id}}">

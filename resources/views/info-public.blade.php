@@ -251,37 +251,45 @@
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
-                        {{-- Inicio Apud Acta --}}
-                        @if($claim->user_id)
-                            @if($claim->client->apud_acta==NULL)
-                                <x-adminlte-alert theme="warning">
-                                    <p>No existe apud acta en cliente</p>
-                                    <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="id" value="{{$claim->id}}">
-                                        <input type="file" style="display: none;" id="apud-{{$claim->id}}" name="file">
-                                        <label for="apud-{{$claim->id}}" class="btn btn-light-descubre mx-1 shadow" title="Subir Apud acta" style="margin: 0">
-                                            Subir Apud Acta
-                                        </label>
-                                    </form>
-                                </x-adminlte-alert>
+                        @if($claim->status<>12)
+                            {{-- Inicio Apud Acta --}}
+                            @if($claim->user_id)
+                                @if($claim->client->apud_acta==NULL)
+                                    <x-adminlte-alert theme="warning">
+                                        <p>No existe apud acta en cliente, descarga las
+                                            <a href="/docs/Instrucciones_apud_acta_electronico.pdf" target="_blank"> instrucciones para generar el apud acta.</a>
+                                        </p>
+                                        <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="id" value="{{$claim->id}}">
+                                            <input type="file" style="display: none;" id="apud-{{$claim->id}}" name="file">
+                                            <label for="apud-{{$claim->id}}" class="btn btn-light-descubre mx-1 shadow" title="Subir Apud acta" style="margin: 0">
+                                                Subir Apud Acta
+                                            </label>
+                                        </form>
+                                    </x-adminlte-alert>
+                                @endif
+                            @else
+                                @if($claim->representant->apud_acta==NULL)
+                                    <x-adminlte-alert theme="warning">
+                                        <p>No existe apud acta en representado, descarga las
+                                            <a href="/docs/Instrucciones_apud_acta_electronico.pdf" target="_blank"> instrucciones para generar el apud acta.</a>
+                                        </p>
+                                        <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="id" value="{{$claim->id}}">
+                                            <input type="file" style="display: none;" id="apud-{{$claim->id}}" name="file">
+                                            <label for="apud-{{$claim->id}}" class="btn btn-light-descubre mx-1 shadow" title="Subir Apud acta" style="margin: 0">
+                                                Subir Apud Acta
+                                            </label>
+                                        </form>
+                                    </x-adminlte-alert>
+                                @endif
                             @endif
-                        @else
-                            @if($claim->representant->apud_acta==NULL)
-                                <x-adminlte-alert theme="warning">
-                                    <p>No existe apud acta en representado</p>
-                                    <form action="{{url('uploadApudActa')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="id" value="{{$claim->id}}">
-                                        <input type="file" style="display: none;" id="apud-{{$claim->id}}" name="file">
-                                        <label for="apud-{{$claim->id}}" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Apud acta" style="margin: 0">
-                                            <i class="fa fa-lg fa-fw fa-upload"></i>
-                                        </label>
-                                    </form>
-                                </x-adminlte-alert>
-                            @endif
+                            {{-- Fin Apud Acta --}}
                         @endif
-                        {{-- Fin Apud Acta --}}
+
+
                         <div data-v-9cc878a2="" class="text-tarifa">
                                 <p>{{$titulo}}</p>
                         </div>
@@ -289,73 +297,106 @@
                         <div class="container text-center bottom-text">
                                 <p>{{$msg}}</p>
                         </div>
+
+                        @if($claim->getIdHito()==30037)
+                            {{--<div class="row text-center">
+                                <div class="col-sm-12">
+                                    <x-adminlte-alert theme="warning">
+                                        {{ $claim->getHito() }}
+                                        <div class="text-center">--}}
+                                            <x-adminlte-button label="Continuar con la reclamación" data-toggle="modal" data-target="#modalContinue" theme="success"/>
+                                                <x-adminlte-modal id="modalContinue" title="¿Desea continuar con la reclamación {{$claim->id}}?" size="lg" v-centered="true">
+                                                    <p>La reclamación <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> continuara a la fase judicial</p>
+                                                    <x-slot name="footerSlot">
+                                                        <a href="{{url('claims/continue',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
+                                                        <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
+                                                    </x-slot>
+                                                </x-adminlte-modal>
+                                {{--        </div>
+                                    </x-adminlte-alert>
+                                </div>
+                            </div>--}}
+
+                            <div>
+                                <br>
+                            </div>
+                        @endif
+
+
+
+
+
                     </div>
                 </div>
             </div>
-
-            <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="" style="width: 100%;">
-                <div class="row">
-                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    </div>
-                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                        <div class="content">
-                            <!--<div class="center"><img src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologopositivo"></div>-->
-                          </div>
-
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th style="background-color: #e65927; text-align: center; color: #fff">Tipo de procedimiento</th>
-                                    <th style="background-color: #e65927; text-align: center; color: #fff">Importe</th>
-                                    <th style="background-color: #e65927; text-align: center; color: #fff">Descuento</th>
-                                    <th style="background-color: #e65927; text-align: center; color: #fff">IVA</th>
-                                    <th style="background-color: #e65927; text-align: center; color: #fff">Total linea</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach($conceptos as $key => $concepto)
-                                    <tr>
-                                        <td style="color:#285ba3">{{$concepto}}</td>
-                                        <!--<td rowspan="5"
-                                            style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>-->
-                                        <td style="text-align: right;color:#285ba3;">{{number_format($importes[$key],2,',','.')}} €</td>
-                                        <td style="text-align: right;color:#285ba3;">{{number_format($descuentos[$key],0)}} %</td>
-                                        <td style="text-align: right;color:#285ba3;">{{ $ivas[$key]=='IVA0'?0:21 }} %</td>
-                                        <td style="text-align: right;color:#285ba3;">{{number_format($totales[$key],2,',','.')}} €</td>
-                                    </tr>
-                                @endforeach
-
-                                <tr>
-                                    <th colspan="3"></th>
-                                    <th style="text-align: right;color:#285ba3;">Subtotal</th>
-                                    <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->bas1fac+ $invoice[0]->bas2fac+$invoice[0]->bas3fac+$invoice[0]->bas4fac),2,',','.') }} €</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"></th>
-                                    <th style="text-align: right;color:#285ba3;">Iva</th>
-                                    <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->iiva1fac+ $invoice[0]->iiva2fac+$invoice[0]->iiva3fac),2,',','.') }} €</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"></th>
-                                    <th style="text-align: right;color:#285ba3;">Total</th>
-                                    <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->totfac),2,',','.') }} €</th>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="row">
-                            <div class="col-sm-5"></div>
-                            <div class="col-sm-3">
-                                <a data-v-9cc878a2="" href="/claims/payment/<?php echo $id?>" aria-current="page"
-                                    class="btn btn-light-descubre" type="button">Proceder al pago de {{ number_format(($invoice[0]->totfac),2,',','.') }} €</a>
-                                    <br>
+            @if($claim->status <>12)
+                <div data-v-9cc878a2="" data-v-63cd6604="" class="container" data-v-effc9f78="" style="width: 100%;">
+                    <div class="row">
+                        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                            <div class="content">
+                                <!--<div class="center"><img src="{{url('landing')}}/assets/grafico-logo-positivo.png" class="graficologopositivo"></div>-->
                             </div>
-                            <div class="col-sm-3"></div>
+
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: #e65927; text-align: center; color: #fff">Tipo de procedimiento</th>
+                                        <th style="background-color: #e65927; text-align: center; color: #fff">Importe</th>
+                                        <th style="background-color: #e65927; text-align: center; color: #fff">Descuento</th>
+                                        <th style="background-color: #e65927; text-align: center; color: #fff">IVA</th>
+                                        <th style="background-color: #e65927; text-align: center; color: #fff">Total linea</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach($conceptos as $key => $concepto)
+                                        <tr>
+                                            <td style="color:#285ba3">{{$concepto}}</td>
+                                            <!--<td rowspan="5"
+                                                style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>-->
+                                            <td style="text-align: right;color:#285ba3;">{{number_format($importes[$key],2,',','.')}} €</td>
+                                            <td style="text-align: right;color:#285ba3;">{{number_format($descuentos[$key],0)}} %</td>
+                                            <td style="text-align: right;color:#285ba3;">{{ $ivas[$key]=='IVA0'?0:21 }} %</td>
+                                            <td style="text-align: right;color:#285ba3;">{{number_format($totales[$key],2,',','.')}} €</td>
+                                        </tr>
+                                    @endforeach
+
+                                    <tr>
+                                        <th colspan="3"></th>
+                                        <th style="text-align: right;color:#285ba3;">Subtotal</th>
+                                        <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->bas1fac+ $invoice[0]->bas2fac+$invoice[0]->bas3fac+$invoice[0]->bas4fac),2,',','.') }} €</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3"></th>
+                                        <th style="text-align: right;color:#285ba3;">Iva</th>
+                                        <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->iiva1fac+ $invoice[0]->iiva2fac+$invoice[0]->iiva3fac),2,',','.') }} €</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3"></th>
+                                        <th style="text-align: right;color:#285ba3;">Total</th>
+                                        <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->totfac),2,',','.') }} €</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="row">
+                                <div class="col-sm-5"></div>
+                                <div class="col-sm-3">
+                                    <a data-v-9cc878a2="" href="/claims/payment/<?php echo $id?>" aria-current="page"
+                                        class="btn btn-light-descubre" type="button">Proceder al pago de {{ number_format(($invoice[0]->totfac),2,',','.') }} €</a>
+                                        <br>
+                                </div>
+                                <div class="col-sm-3"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            @endif
+
+
 
             @include('footer-slim')
 

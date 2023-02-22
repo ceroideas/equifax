@@ -1201,8 +1201,18 @@ class ClaimsController extends Controller
         // a la gestoria solo debemos mostrar el estado del pedido para que suba un apud acta
         $claim = Claim::find($id);
 
-
         if(isset($claim)){
+            if($claim->status==12){
+                foreach($infopago as $key => $value){
+                    if($value['hito']==$claim->getIdHito()){
+                        $titulo = $value['titulo'];
+                        $msg = $value['msg'];
+                    }
+                }
+
+                return view('info-public', compact('titulo','msg', 'id', 'claim'));
+            }
+
             // buscamos si la reclamacion esta en estado 11, mostrar mensaje de apud acta
 
             $claim->getStatus()==11 ? $apudActa = 0: $apudActa = 1;
