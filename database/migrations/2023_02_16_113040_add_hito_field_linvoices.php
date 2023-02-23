@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('linvoices', function(Blueprint $table) {
-            $table->string('apud_acta')->nullable();
+            $table->string('hitlin')->nullable();
         });
     }
 

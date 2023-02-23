@@ -182,13 +182,25 @@ class Claim extends Model
     }
 
     public function getParentHito()
-    {
-        if ($this->actuations->count()) {
+    {   if ($this->actuations->count()) {
             $id = $this->actuations->last()->getRawOriginal('subject');
             $ht = Hito::where('ref_id',$id)->first();
             if ($ht) {return $ht->parent_id;}
         }
 
+        return false;
+    }
+
+    public function getHitoSell(){
+        if ($this->actuations->count()) {
+            $actuations = $this->actuations;
+            //Comprobamos si la actuacion esta en 30037-Pendiente de aceptacion por parte del cliente
+            if($this->getIdHito()=="30037"){
+                // si el ultimo es 30037, simplemente coger el penultimo
+                $hitoSell = $actuations[$this->actuations->count()-2]->getRawOriginal('subject');
+            }
+            return $hitoSell;
+        }
         return false;
     }
 

@@ -1004,7 +1004,7 @@ class ClaimsController extends Controller
                 $actuation->subject = "30017";
                 $actuation->amount = null;
                 $actuation->description = "Apud acta subido, factura pendiente de pago";
-                $actuation->actuation_date = Carbon::now()->format('d-m-Y');
+                $actuation->actuation_date = Carbon::now()->format('Y-m-d H:i:s');
                 $actuation->type = null;
                 $actuation->mailable = null;
                 $actuation->save();
@@ -1255,12 +1255,10 @@ class ClaimsController extends Controller
                             return view('info-public', compact('titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice','claim'));
                         }else{
 
-                            // TODO: recuperar el hito que facturo Se requiere encontrar la actuacion que genero la factura para poder buscar por ese hito el
                             foreach($infopago as $key => $value){
-                                if($value['articulo']==$LInvoice->artlin){
+                                if($value['hito']==$LInvoice->hitlin && $value['articulo']==$LInvoice->artlin){
                                     $titulo = $value['titulo'];
                                     $msg = $value['msg'];
-
                                 }
                             }
                             return view('info-public', compact('titulo','msg','conceptos','importes', 'descuentos','ivas','totales', 'id', 'invoice','claim'));
@@ -1278,12 +1276,59 @@ class ClaimsController extends Controller
         }
     }
 
-    public function continue($id)
+    public function continue($claim_id)
     {
+        /*TODO: identificar a que fase debe continuar */
+        // la penultima actuacion de la reclamacion nos determina de donde viene
+        $claim = Claim::find($claim_id);
 
-        actuationActions("30038",$id, 0, now(), "Aceptación por parte del usuario");
+        switch($claim->getHitoSell()){
+            case "30015":
+                actuationActions("30038",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
 
-        return redirect('info/'.$id)->with('msj', 'Continuamos con la reclamación');
+            case "30019":
+                actuationActions("30039",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
+
+            case "30020":
+                actuationActions("30040",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
+
+            case "30021":
+                actuationActions("30041",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
+
+            case "20015":
+                actuationActions("30042",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
+
+            case "20016":
+                actuationActions("30043",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
+
+            case "30025":
+                actuationActions("30044",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
+
+            case "30026":
+                actuationActions("30045",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
+
+            case "30030":
+                actuationActions("30046",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
+
+            case "30023":
+                actuationActions("30047",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
+
+            default:
+                    actuationActions("30038",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
+                break;
+        }
+
+        return redirect('info/'.$claim_id)->with('msj', 'Continuamos con la reclamación');
     }
 
 }

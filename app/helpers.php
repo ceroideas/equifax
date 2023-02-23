@@ -76,7 +76,9 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
             }
 			if ($h['id'] != "-1") {
                 /* Si hay redireccion, debemos grabar la propia actuacion si es 30038 */
-                if($h['ref_id']=="30038"|| $h['ref_id']=="30033" || $h['ref_id']=="30018" ){
+                if($h['ref_id']=="30038"|| $h['ref_id']=="30033" || $h['ref_id']=="30018"
+                || $h['ref_id']=="30039" || $h['ref_id']=="30040" || $h['ref_id']=="30041"
+                || $h['ref_id']=="30042"|| $h['ref_id']=="30043" || $h['ref_id']=="30044" || $h['ref_id']=="30045" || $h['ref_id']=="30046" || $h['ref_id']=="30047"){
                     $act = new Actuation;
                     $act->claim_id = $claim_id;
                     $act->subject = $h['ref_id'];
@@ -146,7 +148,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 			}
 
 			// comprobar si la redirección es al inicio del proceso de cobros (carga apud acta)
-            if ($h['redirect_to'] === "30016") {
+            if ($h['redirect_to'] === "30016" || $h['redirect_to'] === "30017") {
 
 				$c = Configuration::first();
 
@@ -235,7 +237,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                         fclose($file);
                     }
                 }else{
-                    $idFactura = addDocument('invoice',$claim->id, $articulo,$tasa);
+                    $idFactura = addDocument('invoice',$claim->id, $articulo,$tasa,0,$h['ref_id']);
                     $a->invoice_id = $idFactura;
                     $a->save();
 
@@ -352,7 +354,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 	}
 }
 
-function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0){
+function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0, $id_hito=NULL){
     // Necesitamos el tipo de documento
     if($typeDocument == 'order'){
         $idDocument = maxId('orders','id');
@@ -392,46 +394,47 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
         }
 
         // Lineas de detalle, probamos enviar mas de una
+
         switch($articulo){
             case 'EXT-001':
                 $document->type = 'fixed_fees';
                 $document->description = $c->extra_concept;
-                addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $user->discount);
+                addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $user->discount,$id_hito);
                 break;
 
             case 'JUD-001':
                 $document->type = 'judicial_fees';
                 $document->description = $c->judicial_amount_concept;
-                addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount);
-                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo,1,1, $user->taxcode, $user->discount);}
+                addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount,$id_hito);
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo,1,1, $user->taxcode, $user->discount,$id_hito);}
                 break;
 
             case 'VER-001':
                 $document->type = 'verbal_fees';
                 $document->description = $c->verbal_amount_concept;
-                addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount);
-                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo, 1,1,$user->taxcode, $user->discount);}
+                addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount,$id_hito);
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo, 1,1,$user->taxcode, $user->discount,$id_hito);}
                 break;
 
             case 'ORD-001':
                 $document->type = 'ordinary_fees';
                 $document->description = $c->ordinary_amount_concept;
-                addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount);
-                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo, 1,1,$user->taxcode, $user->discount);}
+                addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount,$id_hito);
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo, 1,1,$user->taxcode, $user->discount,$id_hito);}
                 break;
 
             case 'EJE-001':
                 $document->type = 'execution';
                 $document->description = $c->execution_concept;
-                addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount);
+                addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount,$id_hito);
                 break;
 
             case 'RES-001':
                 $document->type = 'resource';
                 $document->description = $c->resource_concept;
-                addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount);
+                addLineDocument($typeDocument, $idDocument, $articulo, 0,1,$user->taxcode, $user->discount,$id_hito);
                 // Recurso no lleva tasa pero si deposito usamos variable tasa
-                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo, 1,1,$user->taxcode, $user->discount);}
+                if($tasa==1){ addLineDocument($typeDocument, $idDocument, $articulo, 1,1,$user->taxcode, $user->discount,$id_hito);}
                 break;
 
             case 'mensual':
@@ -475,7 +478,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
                                     fclose($file);
                                 }
                             }else{
-                                addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode);
+                                addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode,0,$id_hito);
                                 if(file_exists('testing/testing_automatic_invoices.txt')){
                                     $file = fopen('testing/testing_automatic_invoices.log', 'a');
                                     fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea cantidad: ' . $cantidad. ' articulo: '. $buscado .'reinicia cantidad'.PHP_EOL);
@@ -488,7 +491,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
                             }
 
                             if($orders->count()-1 == $key){
-                                addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode);
+                                addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode,0,$id_hito);
 
                                 if(file_exists('testing/testing_automatic_invoices.txt')){
                                     $file = fopen('testing/testing_automatic_invoices.log', 'a');
@@ -525,7 +528,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0)
     return $idDocument;
 }
 
-function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantidad = 1, $taxcode = 'IVA21', $discount = 0){
+function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantidad = 1, $taxcode = 'IVA21', $discount = 0, $hito=NULL){
 
     // Cogemos los datos del momento de creacion de la linea
     $c = Configuration::first();
@@ -664,6 +667,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->prelin = floatval($c->fixed_fees);
                 }
                 $lDocument->dtolin = $discount;
+                $lDocument->hitlin = $hito;
                 break;
 
             case 'JUD-001':
@@ -672,6 +676,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->deslin = $c->judicial_fees_concept;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->judicial_fees_tax;
                     $lDocument->prelin = floatval($c->judicial_fees);
+                    $lDocument->hitlin = $hito;
                 }else{
                     $lDocument->artlin = $c->judicial_amount_code;
                     $lDocument->deslin = $c->judicial_amount_concept;
@@ -682,6 +687,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                         $lDocument->prelin = floatval($c->judicial_amount);
                     }
                     $lDocument->dtolin = $discount;
+                    $lDocument->hitlin = $hito;
                 }
                 break;
 
@@ -691,7 +697,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->deslin = $c->verbal_fees_concept;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->verbal_fees_tax;
                     $lDocument->prelin = floatval($c->verbal_fees);
-
+                    $lDocument->hitlin = $hito;
                 }else{
                     $lDocument->artlin = $c->verbal_amount_code;
                     $lDocument->deslin = $c->verbal_amount_concept;
@@ -702,6 +708,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                         $lDocument->prelin = floatval($c->verbal_amount);
                     }
                     $lDocument->dtolin = $discount;
+                    $lDocument->hitlin = $hito;
                 }
                 break;
 
@@ -711,7 +718,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->deslin = $c->ordinary_fees_concept;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->ordinary_fees_tax;
                     $lDocument->prelin = floatval($c->ordinary_fees);
-
+                    $lDocument->hitlin = $hito;
                 }else{
                     $lDocument->artlin = $c->ordinary_amount_code;
                     $lDocument->deslin = $c->ordinary_amount_concept;
@@ -722,6 +729,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                         $lDocument->prelin = floatval($c->ordinary_amount);
                     }
                     $lDocument->dtolin = $discount;
+                    $lDocument->hitlin = $hito;
                 }
                 break;
 
@@ -734,6 +742,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 }else{
                     $lDocument->prelin = floatval($c->execution);
                 }
+                $lDocument->hitlin = $hito;
                 break;
 
             case 'RES-001':
@@ -742,7 +751,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                     $lDocument->deslin = $c->deposit_concept;
                     $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->deposit_tax;
                     $lDocument->prelin = floatval($c->deposit_amount);
-
+                    $lDocument->hitlin = $hito;
                 }else{
                     $lDocument->artlin = $c->resource_code;
                     $lDocument->deslin = $c->resource_concept;
@@ -753,6 +762,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                         $lDocument->prelin = floatval($c->resource);
                     }
                     $lDocument->dtolin = $discount;
+                    $lDocument->hitlin = $hito;
                 }
                 break;
 
@@ -761,6 +771,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 $lDocument->deslin = $c->judicial_fees_concept;
                 $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->judicial_fees_tax;
                 $lDocument->prelin = floatval($c->judicial_fees);
+                $lDocument->hitlin = $hito;
                 break;
 
             case 'ORD-101':
@@ -768,6 +779,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 $lDocument->deslin = $c->ordinary_fees_concept;
                 $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->ordinary_fees_tax;
                 $lDocument->prelin = floatval($c->ordinary_fees);
+                $lDocument->hitlin = $hito;
                 break;
 
             case 'VER-101':
@@ -775,6 +787,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
                 $lDocument->deslin = $c->verbal_fees_concept;
                 $lDocument->ivalin = $taxcode == 'IVA0'?'IVA0': $c->verbal_fees_tax;
                 $lDocument->prelin = floatval($c->verbal_fees);
+                $lDocument->hitlin = $hito;
                 break;
         }
         // total linea
