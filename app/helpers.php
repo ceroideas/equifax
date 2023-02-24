@@ -183,72 +183,76 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                 // Determinamos si hay tasa
 				if ($c) {
                     $tasa = 0;
-                    foreach ($h['type'] as $key => $value) {
-						if ($key == 1) {
-							if ($claim->third_parties_id) {
-				                if ($claim->representant->type == 1) {
-				                    if ($claim->debt->pending_amount > 2000) {
-                                        $tasa = 1;
-				                    }
-				                }
-				            }else{
-				                if ($claim->client->type == 1) {    //client = user_id
-				                    if ($claim->debt->pending_amount > 2000) {
-                                        $tasa = 1;
-				                    }
-				                }
-				            }
-						}
-					}
+                    $articulo = "";
+                    dump($h);
+
+                    if($h['type']){
+                        foreach ($h['type'] as $key => $value) {
+                            if ($key == 1) {
+                                if ($claim->third_parties_id) {
+                                    if ($claim->representant->type == 1) {
+                                        if ($claim->debt->pending_amount > 2000) {
+                                            $tasa = 1;
+                                        }
+                                    }
+                                }else{
+                                    if ($claim->client->type == 1) {    //client = user_id
+                                        if ($claim->debt->pending_amount > 2000) {
+                                            $tasa = 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if($h['type'][0]){
+                            switch ($h['type'][0]) {
+                                case 'judicial_amount':
+                                    $articulo= "JUD-001";
+                                    break;
+                                case 'verbal_amount':
+                                    $articulo= "VER-001";
+                                    break;
+                                case 'ordinary_amount':
+                                    $articulo = "ORD-001";
+                                    break;
+                                case 'execution':
+                                    $articulo = "EJE-001";
+                                    break;
+                                case 'resource':
+                                    $articulo = "RES-001";
+                                    break;
+                            }
+                        }
+
+                        // Verificamos si la reclamacion tiene un gestor para saber si generamos pedido o factura directamente
+                        if(file_exists('testing/testing_claims_actuations.txt')){
+                            $file = fopen('testing/testing_claims_actuations.log', 'a');
+                            fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento: ' . PHP_EOL);
+                        }
+                        if($claim->gestor_id <> null){
+                            addDocument('order', $claim->id, $articulo,$tasa);
+
+                            if(file_exists('testing/testing_claims_actuations.txt')){
+                                $file = fopen('testing/testing_claims_actuations.log', 'a');
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento Pedido: ' . PHP_EOL);
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Genera pedido: claim_id/articulo/tasa: ' . $claim->id .'/'. $articulo .'/'. $tasa . PHP_EOL);
+                                fclose($file);
+                            }
+                        }else{
+                            $idFactura = addDocument('invoice',$claim->id, $articulo,$tasa,0,$h['ref_id']);
+                            $a->invoice_id = $idFactura;
+                            $a->save();
+
+                            if(file_exists('testing/testing_claims_actuations.txt')){
+                                $file = fopen('testing/testing_claims_actuations.log', 'a');
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento Factura: ' . PHP_EOL);
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Genera factura: claim_id/articulo/tasa: ' . $claim->id .'/'. $articulo .'/'. $tasa . PHP_EOL);
+                                fclose($file);
+                            }
+                        }
+                    }
 				}
-
-                if($h['type'][0]){
-                    switch ($h['type'][0]) {
-                        case 'judicial_amount':
-                            $articulo= "JUD-001";
-                            break;
-                        case 'verbal_amount':
-                            $articulo= "VER-001";
-                            break;
-                        case 'ordinary_amount':
-                            $articulo = "ORD-001";
-                            break;
-                        case 'execution':
-                            $articulo = "EJE-001";
-                            break;
-                        case 'resource':
-                            $articulo = "RES-001";
-                            break;
-                    }
-                }
-
-                // Verificamos si la reclamacion tiene un gestor para saber si generamos pedido o factura directamente
-                if(file_exists('testing/testing_claims_actuations.txt')){
-                    $file = fopen('testing/testing_claims_actuations.log', 'a');
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento: ' . PHP_EOL);
-                }
-                if($claim->gestor_id <> null){
-                    addDocument('order', $claim->id, $articulo,$tasa);
-
-                    if(file_exists('testing/testing_claims_actuations.txt')){
-                        $file = fopen('testing/testing_claims_actuations.log', 'a');
-                        fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento Pedido: ' . PHP_EOL);
-                        fwrite($file, date("d/m/Y H:i:s").'-'.'Genera pedido: claim_id/articulo/tasa: ' . $claim->id .'/'. $articulo .'/'. $tasa . PHP_EOL);
-                        fclose($file);
-                    }
-                }else{
-                    $idFactura = addDocument('invoice',$claim->id, $articulo,$tasa,0,$h['ref_id']);
-                    $a->invoice_id = $idFactura;
-                    $a->save();
-
-                    if(file_exists('testing/testing_claims_actuations.txt')){
-                        $file = fopen('testing/testing_claims_actuations.log', 'a');
-                        fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento Factura: ' . PHP_EOL);
-                        fwrite($file, date("d/m/Y H:i:s").'-'.'Genera factura: claim_id/articulo/tasa: ' . $claim->id .'/'. $articulo .'/'. $tasa . PHP_EOL);
-                        fclose($file);
-                    }
-
-                }
 
                 /*********** Fin generacion de documento *****************/
 

@@ -256,7 +256,7 @@
                                 <div class="row text-center">
                                     <div class="col-sm-12">
                                         <x-adminlte-alert theme="warning">
-                                            Acepta el acuerdo y la reclamación continuará por vía judicial, en la que interpondremos la correspondiente demanda de monitorio.
+                                            Para poder continuar con la reclamación, debes aceptar que continuemos a la siguiente fase.
                                             <div class="text-center">
                                                 <x-adminlte-button label="Continuar con la reclamación" data-toggle="modal" data-target="#modalContinue" theme="success"/>
                                                     <x-adminlte-modal id="modalContinue" title="¿Desea continuar con la reclamación {{$claim->id}}?" size="lg" v-centered="true">
