@@ -72,7 +72,7 @@
     <form action="{{url('import-collects')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <label style="margin: 0;" for="collects" class="btn btn-danger btn-sm">Importar cobros (Kmaleon)</label>
+        <label style="margin: 0;" for="collects" class="btn btn-danger btn-sm">Importar cobros</label>
 
         <input name="file" type="file" id="collects" style="display: none;">
 

@@ -39,6 +39,8 @@ use App\Models\Order;
 use App\Models\Lorder;
 use App\Models\Collect;
 
+use App\Imports\CollectsKmaleonImport;
+
 use Illuminate\Support\Facades\DB;
 
 
@@ -884,7 +886,7 @@ class ClaimsController extends Controller
         $a->subject = $r->subject;
         $a->amount = $r->amount;
         $a->description = $r->description;
-        $a->actuation_date = $r->actuation_date;
+        $a->actuation_date = date('Y-m-d H:i:s', strtotime($r->actuation_date));
         $a->type = null;
         $a->mailable = null;
         $a->save();
@@ -1132,6 +1134,16 @@ class ClaimsController extends Controller
         }
 
         return back()->with('msj','Se ha cargado correctamente el archivo excel!');
+    }
+
+    public function importCollectsKmaleon(Request $r)
+    {
+        if ($r->hasFile('file')) {
+            $r->file->move(public_path().'/uploads/excel','collectskmaleon.xlsx');
+            Excel::import(new CollectsKmaleonImport, public_path().'/uploads/excel/collectskmaleon.xlsx');
+        }
+
+        return back()->with('msj','Se ha cargado correctamente el archivo excel de cobros de Kmaleon!');
     }
 
     public function addCountEmail($id)

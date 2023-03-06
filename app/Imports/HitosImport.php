@@ -26,7 +26,7 @@ class HitosImport implements ToModel, WithHeadingRow
 		        $actuation->amount = array_key_exists('cuantia_reducida', $row) &&  $row['cuantia_reducida'] != '' ? $row['cuantia_reducida'] : null;
 		        $actuation->description = array_key_exists('texto_macro_generadora', $row) ? $row['texto_macro_generadora'] : null;
 		        if (array_key_exists('fecha', $row)) {
-		        	$row['fecha'] = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['fecha'])->format('d-m-Y');
+		        	$row['fecha'] = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['fecha'])->format('Y-m-d H:i:s');
 		        	$actuation->actuation_date = $row['fecha'];
 		        }
 		        $actuation->type = null;

@@ -241,6 +241,7 @@ Route::group([
     Route::post('importType', [WordController::class, 'importType']);
     Route::get('getHito/{blade}', [DebtsController::class, 'getHito']);
     Route::post('import-actuations', [ClaimsController::class, 'importActuations']);
+    Route::post('import-collects-kmaleon', [ClaimsController::class, 'importCollectsKmaleon']);
     Route::post('import-collects', [CollectsController::class, 'importCollects']);
     Route::get('info/{id}', [ClaimsController::class, 'info']);
 });
