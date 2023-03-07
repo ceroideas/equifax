@@ -23,7 +23,7 @@
 @section('content')
 {{-- Configuración del componente para el datatable --}}
     @php
-    if (Auth::user()->isClient() || Auth::user()->isAssociate()) {
+    if (Auth::user()->isClient() || Auth::user()->isAssociate() || Auth::user()->isGestor()) {
         $heads = [
             'ID',
             'Reclamación',
@@ -88,7 +88,7 @@
             @foreach($invoices as $invoice)
                 <tr>
                     <td>{{ $invoice->id }}</td>
-                    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isGestor())
+                    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
                         @if( $invoice->claim_id <> 0 )
                             <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
                         @else

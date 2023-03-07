@@ -57,7 +57,8 @@ class ClaimsController extends Controller
             $claims = Auth::user()->claims()->whereNotIn('status',[-1,0,1])->get();
 
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
-            $claims = Claim::all();
+            //$claims = Claim::all();
+            $claims=Claim::whereNotIn('status',[-1,0,1])->get();
         }else{
             $claims = Claim::where('gestor_id',Auth::id())->get();
         }
@@ -91,18 +92,11 @@ class ClaimsController extends Controller
      */
     public function create()
     {
-
         return view('claims.create');
-
-
     }
 
     public function stepOne()
     {
-        /*if (Auth::user()->isGestor() && !session('other_user')) {
-            return view('claims.create_step_pre1');
-        }*/
-
         if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
 
             /* Borrar archivos temporales del usuario */
@@ -113,7 +107,6 @@ class ClaimsController extends Controller
                 Storage::deleteDirectory($rutatemp);
             }
 
-            // borrar datos session
             session()->forget('other_user');
             session()->forget('claim_client');
             session()->forget('claim_third_party');
@@ -218,11 +211,8 @@ class ClaimsController extends Controller
             $claim->third_parties_id = $client->id;
         }
 
-        /*if (Auth::user()->isGestor()) {
-            $claim->owner_id = session('other_user');
-        }else{*/
             $claim->owner_id = Auth::user()->id;
-        // }
+
         $debtor = Debtor::find(session('claim_debtor'));
         $claim->debtor_id = $debtor->id;
 
@@ -255,17 +245,6 @@ class ClaimsController extends Controller
 
                 $claim->status = 7;
                 $claim->claim_type = 2;
-/*
-                $c = Configuration::first();
-
-                $invoice = new Invoice;
-                $invoice->claim_id = $claim->id;
-                $invoice->user_id = $claim->user_id;
-                $invoice->amount = $c ? $c->fixed_fees : '0';
-                $invoice->type = 'fixed_fees';
-                $invoice->description = "Pago de tarifa proceso Extrajudicial";
-                $invoice->save();
-                */
             }
         }
 
@@ -295,15 +274,12 @@ class ClaimsController extends Controller
             Storage::disk('public')->move($d[key($d)]['file'], $path . $bn);
             $d[key($d)]['file'] = $pathStorage . $bn;
 
-            // return gettype(json_encode($d));
-
             $debtd = new DebtDocument;
             $debtd->debt_id = $debt->id;
             $debtd->document = $pathStorage . $bn;
             $debtd->type = key($d);
             $debtd->hitos = json_encode($d);
             $debtd->save();
-
         }
 
         $request->session()->forget('other_user');
@@ -319,20 +295,12 @@ class ClaimsController extends Controller
         $request->session()->forget('documentos');
 
         if (Auth::user()->isGestor()) {
-
             actuationActions("-1",$claim->id);
 
             return redirect('claims')->with('msj', 'Tu reclamación ha sido creada exitosamente.');
         }
 
-
-        //if ($claim->last_invoice){
             return redirect('/claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
-        //}else{
-            // Redirigia al panel y quedaba pendiente viabilidad por parte de administracion
-            // return redirect('/panel')->with('msj', 'Reclamación generada exitosamente, será revisado por nuestros Administradores y le llegará una notficación si el mismo procede o no luego de su revisión');
-        //}
-
     }
 
     /**
@@ -443,31 +411,7 @@ class ClaimsController extends Controller
             actuationActions("2",$claim->id);
         }
 
-        /*$invoice = new Invoice;
-        $invoice->claim_id = $claim->id;
-        $invoice->user_id = $claim->user_id;
-        $invoice->amounts = $amounts;
-        $invoice->amount = $amount;
-        if ($request['tipo_viabilidad'] == 1) {
-            $invoice->description = "Pago de tarifa proceso Judicial";
-        }else{
-            $invoice->description = "Pago de tarifa proceso Extrajudicial";
-        }
-        $invoice->type = $type;
-        $invoice->save();
-
-        $a = new Actuation;
-        $a->claim_id = $claim->id;
-        $a->subject = "4";
-        $a->amount = null;
-        $a->description = null;
-        $a->actuation_date = Carbon::now()->format('d-m-Y');
-        $a->type = null;
-        $a->mailable = null;
-        $a->save();*/
-
         return redirect('claims')->with('msj', 'Reclamación actualizada exitosamente!');
-
     }
 
 
@@ -484,55 +428,6 @@ class ClaimsController extends Controller
         $claim->status = 1;
         $claim->save();
 
-        /*if($claim->debt->factura){
-            Storage::disk('public')->delete($claim->debt->factura);
-            $claim->debt->factura = NULL;
-        }
-        if($claim->debt->albaran){
-            Storage::disk('public')->delete($claim->debt->albaran);
-            $claim->debt->albaran = NULL;
-        }
-        if($claim->debt->contrato){
-            Storage::disk('public')->delete($claim->debt->contrato);
-            $claim->debt->contrato = NULL;
-        }
-        if($claim->debt->documentacion_pedido){
-            Storage::disk('public')->delete($claim->debt->documentacion_pedido);
-            $claim->debt->documentacion_pedido = NULL;
-        }
-        if($claim->debt->extracto){
-            Storage::disk('public')->delete($claim->debt->extracto);
-            $claim->debt->extracto = NULL;
-        }
-        if($claim->debt->reconocimiento_deuda){
-            Storage::disk('public')->delete($claim->debt->reconocimiento_deuda);
-            $claim->debt->reconocimiento_deuda = NULL;
-        }
-        if($claim->debt->escritura_notarial){
-            Storage::disk('public')->delete($claim->debt->escritura_notarial);
-            $claim->debt->escritura_notarial = NULL;
-        }
-        if($claim->debt->reclamacion_previa){
-            Storage::disk('public')->delete($claim->debt->reclamacion_previa);
-            $claim->debt->reclamacion_previa = NULL;
-            $claim->debt->motivo_reclamacion_previa = NULL;
-        }
-        if($claim->debt->others){
-
-            $session_docs = explode(',' , $claim->debt->others);
-
-
-            foreach ($session_docs as $d) {
-
-                Storage::disk('public')->delete($d);
-            }
-
-            $claim->debt->others = NULL;
-        }
-
-        $claim->debt->save();*/
-
-
         return redirect('claims')->with('msj', 'Informe de reclamación generado exitosamente');
 
     }
@@ -546,7 +441,7 @@ class ClaimsController extends Controller
      */
     public function update(Request $request, Claim $claim)
     {
-        //
+
     }
 
     /**
@@ -557,16 +452,12 @@ class ClaimsController extends Controller
      */
     public function destroy(Claim $claim)
     {
-        //
+
     }
 
     public function saveOptionOne(Request $request){
-
-        /*if (Auth::user()->isGestor()) {
-            $request->session()->put('claim_client', session('other_user'));
-        }else{*/
             $request->session()->put('claim_client', Auth::id());
-        // }
+
 
         $this->flushOptionTwo();
 
@@ -574,15 +465,6 @@ class ClaimsController extends Controller
 
     }
 
-    /*public function saveClient(Request $request){
-
-        $request->session()->put('other_user', $request->client_id);
-
-        $this->flushOptionTwo();
-
-        return redirect('/claims/select-client')->with('msj', 'Se ha guardado tu respuesta correctamente');
-
-    }*/
 
     public function saveOptionTwo(Request $request){
 
@@ -614,11 +496,7 @@ class ClaimsController extends Controller
     }
 
     public function flushOptionTwo(){
-
         request()->session()->forget('claim_third_party');
-
-        // return redirect('/third-parties')->with('msj', 'Se ha guardado tu respuesta correctamente');
-
     }
 
     public function invalidDebtor(Request $request){
@@ -639,8 +517,6 @@ class ClaimsController extends Controller
             $debt->agreement = false;
             Session()->put('claim_debt', $debt);
             Session()->put('claim_agreement', 'false');
-
-            // return redirect('viability');
 
             return redirect('claims/accept-terms');
         }
@@ -699,7 +575,6 @@ class ClaimsController extends Controller
                     Storage::disk('public')->delete($d);
                 }
             }
-
         }
 
 
@@ -717,9 +592,7 @@ class ClaimsController extends Controller
 
     public function validateViable(){
         $rules = [
-
             'tipo_viabilidad' => 'required',
-            // 'observaciones' => 'required',
         ];
 
         return request()->validate($rules);
@@ -729,15 +602,6 @@ class ClaimsController extends Controller
     public function payment($id)
     {
         $claim = Claim::find($id);
-
-        /*$c = Configuration::first();
-        $amount = 0;
-
-        $amount += $c->fixed_fees;
-
-        $amount += ($claim->debt->pending_amount*$c->percentage_fees)/100;*/
-
-        // $i = Invoice::where(['claim_id'=>$id,'status'=>null])->first();
 
         if ($claim->last_invoice) {
             $amount = $claim->last_invoice->amount;
@@ -762,14 +626,6 @@ class ClaimsController extends Controller
                   ->whereRaw('claims.gestor_id = '.Auth::id());
             })->get();
         }
-
-        /*
-        foreach($invoices as $invoice){
-            dump($invoice->id);
-            dump($invoice->amount);
-            dump($invoice->collects());
-        }
-        die();*/
 
         return view('claims.invoices', compact('invoices'));
     }
@@ -804,7 +660,6 @@ class ClaimsController extends Controller
 
     public function myOrder($id)
     {
-
         $i = Order::find($id);
         $c = Configuration::first();
         $lines = Lorder::where('order_id',$id)->get();
@@ -813,8 +668,6 @@ class ClaimsController extends Controller
 
     public function facturar()
     {
-        /*Version 1 facturamos todo lo pendiente de las gestorias, en etapa 2 podriamos añadir filtros para facturar por gestoria especifica
-        Añadiendo una accion por cada gestoria o con un select para seleccionar todo lo que debemos facturar */
         $gestorias = DB::table('orders')
             ->select(DB::raw('user_id, count(id) as pedidos'))
             ->where('facord',0)
@@ -830,7 +683,6 @@ class ClaimsController extends Controller
 
                 addDocument('invoice',0, 'mensual',0, $gestoria->user_id);
             }
-            // Actualizamos estado para que no este como pendiente de facturar
             foreach ($pedidos as $pedido){
                 $order = Order::find($pedido->id);
                 $order->facord = 1;
@@ -860,8 +712,6 @@ class ClaimsController extends Controller
 
     public function byGestoriaDetail($id)
     {
-        //Detalle de pedidos por gestoria
-        // usamos la misma vista de orders de funcion myOrder()
         if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $orders = Order::where('user_id',$id)
                             ->where('facord',0)
@@ -879,8 +729,6 @@ class ClaimsController extends Controller
 
     public function saveActuation(Request $r,$id)
     {
-        // $h = getHito($r->subject)[0];
-        // return response()->json([$f,$h],422);
         $a = new Actuation;
         $a->claim_id = $id;
         $a->subject = $r->subject;
@@ -911,12 +759,7 @@ class ClaimsController extends Controller
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Solo registra envio email template: ' . $h['template_id']. PHP_EOL);
                 fclose($file);
             }
-            /* Se almacena en helper
-            $se = new SendEmail;
-            $se->addresse = $a->claim ? $a->claim->owner->email : '';
-            $se->template_id = $h['template_id'];
-            $se->actuation_id = $a->id;
-            $se->save();*/
+
         }
 
 
@@ -940,7 +783,6 @@ class ClaimsController extends Controller
             fwrite($file, date("d/m/Y H:i:s").'-'.'r->subject: ' . $r->subject. ' ID: '. $id. ' r->description: '. $r->description . PHP_EOL);
             fclose($file);
         }
-
 
         actuationActions($r->subject,$id,$r->amount,$r->actuation_date,$r->description, $a->id);
 
@@ -967,7 +809,7 @@ class ClaimsController extends Controller
                 $usuario = "asociado #".Auth::user()->id;
                 break;
         }
-        /* Add actuation */
+
         actuationActions(30033,$id, 0, now(), "Finalizada por ".$usuario);
 
         return redirect('claims')->with('msj', 'La reclamación ha sido finalizada');
@@ -989,12 +831,9 @@ class ClaimsController extends Controller
                 $claim->representant->apud_acta = $path;
                 $claim->representant->pending();
             }
-            /* Comprueba que exista un last Invoice pero debemos ver si es gestoria debe buscar pedidos*/
-            /* Si la reclamacion es de gestoria debe pasar al else*/
 
             if ($claim->last_invoice && !$claim->gestor_id) {
-                //dd("Reclamacion tiene factura pendiente y no es de gestor");
-                $claim->status = 7;  // se pone la reclamacion como pendiente de pago al haber una factura pendiente
+                $claim->status = 7;
 
                 $actuation = Actuation::where('claim_id',$claim->id)->where('subject',"30017")->first();
                 if ($actuation) {
@@ -1012,17 +851,8 @@ class ClaimsController extends Controller
                 $actuation->save();
 
             }else{
-                $claim->status = 10;  // reclamacion en status "Gestion reclamacion judicial"
-                // Aqui debemos comprobar si viene de gestoria o no ya en gestorias no debe quedar en 30017
-                //if($claim->gestor_id){
-                    // es de gestoria, debe quedar en la actuacion .....30035 para esto ya acepto
-                    //dd("Es gestoria");
-                    actuationActions("30035",$claim->id);  // Pagado, continua con reclamacion judicial sea gestoria o cliente y ya esta pagado
-
-                //}else{
-                //    actuationActions("30035",$claim->id);
-                //}
-
+                $claim->status = 10;
+                actuationActions("30035",$claim->id);
             }
             $claim->save();
             $claim->owner->save();
@@ -1110,12 +940,9 @@ class ClaimsController extends Controller
         }
 
         // Almacenamos eleccion
-        session()->put('tipo_deuda',$r->tipo_deuda);//, $request->tipo_deuda
-        session()->put('deuda_extra',$r->deuda_extra);//, $request->tipo_deuda
-        /*
-        var_dump(session('tipo_deuda'));
-        var_dump(session('deuda_extra'));
-        */
+        session()->put('tipo_deuda',$r->tipo_deuda);
+        session()->put('deuda_extra',$r->deuda_extra);
+
         return redirect('claims/select-debtor');
     }
 
@@ -1208,9 +1035,6 @@ class ClaimsController extends Controller
     {
         list($infopago, $titulo, $msg, $conceptos, $importes) = array(config('app.infopago'), "","",array(),array());
 
-        // TODO: recuperar la pantalla de pagos aunque no tenga factura pendiente puesto que puede ser una gestoria
-        // Recuperar si la reclamacion es de gestoria o de cliente para saber si buscar factura o no,
-        // a la gestoria solo debemos mostrar el estado del pedido para que suba un apud acta
         $claim = Claim::find($id);
 
         if(isset($claim)){
@@ -1225,20 +1049,15 @@ class ClaimsController extends Controller
                 return view('info-public', compact('titulo','msg', 'id', 'claim'));
             }
 
-            // buscamos si la reclamacion esta en estado 11, mostrar mensaje de apud acta
-
-            //$claim->getStatus()==11 ? $apudActa = 0: $apudActa = 1;
-            //$claim->gestor_id ? $gestoria = 1: $gestoria = 0;
-
             if($claim->gestor_id){
-                // Mostrar pantalla de pago solo con apudActa (Gestoria)
+
                 if($claim->status == 10){
                     $titulo=$claim->getStatus();
                     $msg="La reclamación esta en fase judicial.";
                 }
                 return view('info-public', compact('titulo','msg', 'id', 'claim'));
             }else{
-                // debemos recuperar la pantalla de info para permitir se suba el apud acta.
+
                 $invoice = Invoice::where('claim_id',$id)
                             ->where('status','=',NULL)
                             ->orderBy('id','desc')
@@ -1290,8 +1109,6 @@ class ClaimsController extends Controller
 
     public function continue($claim_id)
     {
-        /*TODO: identificar a que fase debe continuar */
-        // la penultima actuacion de la reclamacion nos determina de donde viene
         $claim = Claim::find($claim_id);
 
         switch($claim->getHitoSell()){

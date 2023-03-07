@@ -22,9 +22,17 @@ class CollectsKmaleonImport implements ToModel, WithHeadingRow
 	        //\Log::info($row);
             if($claim->status <> -1){
                 if ($row['abono'] != '') {
+
+                    $deudaPendiente = floatval(number_format($claim->debt->pending_amount - ($claim->amountClaimed()), 2));
+                    if($row['abono'] >= $deudaPendiente && $deudaPendiente > 0){
+                        $hito = 30027;
+                    }else{
+                        $hito = 20233;
+                    }
+
                     $actuation = new Actuation;
                     $actuation->claim_id = $debt->claim_id;
-                    $actuation->subject = 20233;//$hito['ref_id'];
+                    $actuation->subject = $hito;
                     $actuation->amount = $row['abono'];
                     $actuation->description = array_key_exists('tipo_de_concepto', $row) ? $row['tipo_de_concepto'] : null;
                     if (array_key_exists('fecha', $row)) {
@@ -34,6 +42,8 @@ class CollectsKmaleonImport implements ToModel, WithHeadingRow
                     $actuation->type = null;
                     $actuation->mailable = null;
                     $actuation->save();
+
+                    actuationActions($hito,$actuation->claim_id,$actuation->amount, $actuation->actuation_date, $actuation->description);
                 }
             }
         }

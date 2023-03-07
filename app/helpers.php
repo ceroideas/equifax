@@ -78,7 +78,8 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                 /* Si hay redireccion, debemos grabar la propia actuacion si es 30038 */
                 if($h['ref_id']=="30038"|| $h['ref_id']=="30033" || $h['ref_id']=="30018"
                 || $h['ref_id']=="30039" || $h['ref_id']=="30040" || $h['ref_id']=="30041"
-                || $h['ref_id']=="30042"|| $h['ref_id']=="30043" || $h['ref_id']=="30044" || $h['ref_id']=="30045" || $h['ref_id']=="30046" || $h['ref_id']=="30047"){
+                || $h['ref_id']=="30042"|| $h['ref_id']=="30043" || $h['ref_id']=="30044"
+                || $h['ref_id']=="30045" || $h['ref_id']=="30046" || $h['ref_id']=="30047"){
                     $act = new Actuation;
                     $act->claim_id = $claim_id;
                     $act->subject = $h['ref_id'];
@@ -163,13 +164,15 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 				/* Comprobar si la reclamacion es de terceros */
                 if($claim->user_id){
                     if($claim->client->apud_acta){
-                        $claim->status = 7;
+                        //$claim->status = 7;
+                        $claim->status = $claim->gestor_id ? 10 : 7;
                     }else{
                         $claim->status = 11;
                     }
                 }else{
                     if($claim->representant->apud_acta){
-                        $claim->status = 7;
+                        //$claim->status = 7;
+                        $claim->status = $claim->gestor_id ? 10 : 7;
                     }else{
                         $claim->status = 11;
                     }
@@ -184,7 +187,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 				if ($c) {
                     $tasa = 0;
                     $articulo = "";
-                    dump($h);
+                    //dump($h);
 
                     if($h['type']){
                         foreach ($h['type'] as $key => $value) {
@@ -291,6 +294,8 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
 			if ($h['redirect_to'] === "30034") {
 				// la reclamación queda aqui y se considera finalizada
+                $claim->status = -1;
+                $claim->save();
 			}
 
 			// comprobar si continua con la reclamación
