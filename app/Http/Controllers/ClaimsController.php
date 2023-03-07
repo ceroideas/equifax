@@ -55,7 +55,8 @@ class ClaimsController extends Controller
             $claims = Auth::user()->claims()->whereNotIn('status',[-1,0,1])->get();
 
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
-            $claims = Claim::all();
+            //$claims = Claim::all();
+            $claims=Claim::whereNotIn('status',[-1,0,1])->get();
         }else{
             $claims = Claim::where('gestor_id',Auth::id())->get();
         }
