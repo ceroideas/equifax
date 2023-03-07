@@ -63,7 +63,6 @@ Auth::routes();
 Route::post('registerSocial', [RegisterController::class, 'registerSocial']);
 
 /* Usuarios */
-
 Route::group(['prefix' => 'users'], function(){
     Route::get('/', [UsersController::class, 'index']);
     Route::get('/pending', [UsersController::class, 'pending']);
@@ -85,24 +84,26 @@ Route::post('change-password', [UsersController::class, 'changePassword']);
 
 /* Reclamaciones */
 
-Route::group(['prefix' => 'claims'], function(){
+Route::group([
+    'prefix' => 'claims',
+    'middleware'=>'auth'
+], function(){
     Route::get('/', [ClaimsController::class, 'index']);
     Route::get('/invalid-debtor', [ClaimsController::class, 'invalidDebtor']);
     Route::get('/create', [ClaimsController::class, 'create']);
-    Route::get('/select-client', [ClaimsController::class, 'stepOne'])->middleware(['auth', 'verified']);
+    Route::get('/select-client', [ClaimsController::class, 'stepOne']);
     Route::get('/select-debtor', [ClaimsController::class, 'stepTwo']);
     Route::get('/create-debt', [ClaimsController::class, 'stepThree']);
     Route::get('/check-debtor', [ClaimsController::class, 'stepFour']);
     Route::get('/check-agreement', [ClaimsController::class, 'stepFive']);
     Route::get('/accept-terms', [ClaimsController::class, 'stepSix']);
     Route::get('/save-option-one', [ClaimsController::class, 'saveOptionOne']);
-    // Route::post('/save-client', [ClaimsController::class, 'saveClient']);
     Route::get('/save-option-two/{id}', [ClaimsController::class, 'saveOptionTwo']);
     Route::get('/save-debtor/{id}', [ClaimsController::class, 'saveDebtor']);
     Route::get('/clear-option-one', [ClaimsController::class, 'flushOptionOne']);
     Route::get('/clear-option-two', [ClaimsController::class, 'flushOptionTwo']);
     Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
-    Route::get('/invoices', [ClaimsController::class , 'myInvoices'])->middleware(['auth', 'verified']);
+    Route::get('/invoices', [ClaimsController::class , 'myInvoices']);
     Route::get('/invoices/{id}', [ClaimsController::class , 'myInvoice']);
     Route::get('/orders', [ClaimsController::class , 'myOrders']);
     Route::get('/orders/{id}', [ClaimsController::class , 'myOrder']);
@@ -121,34 +122,27 @@ Route::group(['prefix' => 'claims'], function(){
     Route::get('/close/{claim}', [ClaimsController::class , 'close']);
     Route::post('/non-viable/{claim}/save', [ClaimsController::class, 'setNonViable']);
     Route::post('/viable/{claim}/save', [ClaimsController::class, 'setViable']);
-
     Route::post('payment', [PaymentsController::class, 'payment']);
     Route::post('payToken', [PaymentsController::class, 'payToken']);
-    /**/
     Route::post('check_debtor', [ClaimsController::class, 'checkDebtor']);
-
+    Route::get('/continue/{claim}', [ClaimsController::class , 'continue']);
 });
 
-Route::group(['prefix' => 'collects'], function(){
+Route::group([
+    'prefix' => 'collects',
+    'middleware'=>'auth'
+], function(){
     Route::get('/', [CollectsController::class , 'index']);
     Route::get('/create/{invoice?}', [CollectsController::class , 'create']);
     Route::post('/', [CollectsController::class, 'store']);
 });
-Route::get('viability', [ClaimsController::class, 'viability']);
 
-Route::post('uploadApudActa', [ClaimsController::class, 'uploadApudActa']);
-
-Route::get('export-all', [ClaimsController::class, 'exportAll']);
-Route::get('export-new-claims', [ClaimsController::class, 'exportNewClaims']);
-Route::get('export-finished', [ClaimsController::class, 'exportFinished']);
-Route::get('export-users', [UsersController::class, 'exportUsers']);
-
-Route::get('export-actuations-all', [ActuationsController::class, 'exportActuationsAll']);
-Route::get('export-new-actuations', [ActuationsController::class, 'exportNewActuations']);
 
 /* Terceros */
-Route::group(['prefix' => 'third-parties'], function(){
-
+Route::group([
+    'prefix' => 'third-parties',
+    'middleware'=>'auth'
+], function(){
     Route::get('/', [ThirdPartiesController::class, 'index']);
     Route::get('/create', [ThirdPartiesController::class, 'create']);
     Route::post('/', [ThirdPartiesController::class, 'store']);
@@ -156,12 +150,13 @@ Route::group(['prefix' => 'third-parties'], function(){
     Route::get('/{thirdParty}/edit', [ThirdPartiesController::class, 'edit']);
     Route::put('/{thirdParty}', [ThirdPartiesController::class, 'update']);
     Route::delete('/{thirdParty}', [ThirdPartiesController::class, 'destroy']);
-
 });
 
 /* Deudores */
-Route::group(['prefix' => 'debtors'], function(){
-
+Route::group([
+    'prefix' => 'debtors',
+    'middleware'=>'auth'
+], function(){
     Route::get('/', [DebtorsController::class, 'index']);
     Route::get('/create', [DebtorsController::class, 'create']);
     Route::post('/', [DebtorsController::class, 'store']);
@@ -169,12 +164,13 @@ Route::group(['prefix' => 'debtors'], function(){
     Route::get('/{debtor}/edit', [DebtorsController::class, 'edit']);
     Route::put('/{debtor}', [DebtorsController::class, 'update']);
     Route::delete('/{debtor}', [DebtorsController::class, 'destroy']);
-
 });
 
 /* Deudas */
-Route::group(['prefix' => 'debts'], function(){
-
+Route::group([
+    'prefix' => 'debts',
+    'middleware'=>'auth'
+], function(){
     // Route::get('/', [DebtorsController::class, 'index']);
     Route::get('/create/step-one', [DebtsController::class, 'stepOne']);
     Route::get('/create/step-two', [DebtsController::class, 'stepTwo']);
@@ -182,95 +178,84 @@ Route::group(['prefix' => 'debts'], function(){
     Route::post('/step-one/save', [DebtsController::class, 'saveStepOne']);
     Route::post('/step-two/save', [DebtsController::class, 'saveStepTwo']);
     Route::post('/step-three/save', [DebtsController::class, 'saveStepThree']);
-    // Route::post('/', [DebtorsController::class, 'store']);
-    // Route::get('/{debtor}', [DebtorsController::class, 'show']);
-    // Route::get('/{debtor}/edit', [DebtorsController::class, 'edit']);
-    // Route::put('/{debtor}', [DebtorsController::class, 'update']);
-    // Route::delete('/{debtor}', [DebtorsController::class, 'destroy']);
-
 });
 
 /* Acuerdos */
-Route::group(['prefix' => 'agreements'], function(){
+Route::group([
+    'prefix' => 'agreements',
+    'middleware'=>'auth'
+], function(){
     Route::get('/create', [AgreementsController::class, 'create']);
     Route::post('/save-agreement', [AgreementsController::class, 'saveAgreement']);
 });
 
 /* Configuraciones */
-Route::group(['prefix'  => 'configurations'], function(){
+Route::group([
+    'prefix'  => 'configurations',
+    'middleware'  => 'auth',
+], function(){
     Route::get('/fees', [ConfigurationsController::class, 'fees']);
     Route::post('/fees', [ConfigurationsController::class, 'feesStore']);
     Route::put('{configuration}/fees', [ConfigurationsController::class, 'feesUpdate']);
-    //
     Route::get('/hitos', [ConfigurationsController::class, 'hitos']);
     Route::get('/hitos/create', [ConfigurationsController::class, 'createHitos']);
     Route::get('/hitos/{id}/edit', [ConfigurationsController::class, 'createHitos']);
-
     Route::post('/hitos/save', [ConfigurationsController::class, 'saveHitos']);
     Route::post('/hitos/{id}/update', [ConfigurationsController::class, 'updateHitos']);
-
     Route::get('/templates', [ConfigurationsController::class, 'templates']);
     Route::get('/templates/create', [ConfigurationsController::class, 'createTemplate']);
     Route::get('/templates/{id}/edit', [ConfigurationsController::class, 'createTemplate']);
-
     Route::post('/templates/save', [ConfigurationsController::class, 'saveTemplate']);
     Route::post('/templates/{id}/update', [ConfigurationsController::class, 'updateTemplate']);
-
-
-    /*****************************************/
-    Route::get('/discount-codes', [ConfigurationsController::class, 'discountCodes'])->middleware(['auth', 'verified']);
-    Route::get('/discount-codes/create', [ConfigurationsController::class, 'createDiscountCodes'])->middleware(['auth', 'verified']);
-    Route::get('/discount-codes/{id}/edit', [ConfigurationsController::class, 'createDiscountCodes'])->middleware(['auth', 'verified']);
-
-
-    Route::post('/discount-codes/save', [ConfigurationsController::class, 'saveDiscountCodes'])->middleware(['auth', 'verified']);
-    Route::post('/discount-codes/{id}/update', [ConfigurationsController::class, 'updateDiscountCodes'])->middleware(['auth', 'verified']);
-
+    Route::get('/discount-codes', [ConfigurationsController::class, 'discountCodes']);
+    Route::get('/discount-codes/create', [ConfigurationsController::class, 'createDiscountCodes']);
+    Route::get('/discount-codes/{id}/edit', [ConfigurationsController::class, 'createDiscountCodes']);
+    Route::post('/discount-codes/save', [ConfigurationsController::class, 'saveDiscountCodes']);
+    Route::post('/discount-codes/{id}/update', [ConfigurationsController::class, 'updateDiscountCodes']);
 });
-Route::delete('/template/{id}', [ConfigurationsController::class, 'deleteTemplates']);
-Route::delete('/hitos/{id}', [ConfigurationsController::class, 'deleteHitos']);
-Route::delete('/discount-codes/{id}', [ConfigurationsController::class, 'deleteDiscountCodes']);
 
-/**/
+Route::group([
+    'middleware'=>'auth'
+], function(){
+    Route::get('viability', [ClaimsController::class, 'viability']);
+    Route::get('export-all', [ClaimsController::class, 'exportAll']);
+    Route::get('export-new-claims', [ClaimsController::class, 'exportNewClaims']);
+    Route::get('export-finished', [ClaimsController::class, 'exportFinished']);
+    Route::get('export-users', [UsersController::class, 'exportUsers']);
+    Route::get('export-actuations-all', [ActuationsController::class, 'exportActuationsAll']);
+    Route::get('export-new-actuations', [ActuationsController::class, 'exportNewActuations']);
+    Route::delete('/template/{id}', [ConfigurationsController::class, 'deleteTemplates']);
+    Route::delete('/hitos/{id}', [ConfigurationsController::class, 'deleteHitos']);
+    Route::delete('/discount-codes/{id}', [ConfigurationsController::class, 'deleteDiscountCodes']);
+    Route::get('invoices-export', [ClaimsController::class, 'invoicesExport']);
+    Route::get('invoices-export-all', [ClaimsController::class, 'invoicesExportAll']);
+    Route::get('invoices-export-conta', [ClaimsController::class, 'invoicesExportConta']);
+    Route::get('invoices-export-all-conta', [ClaimsController::class, 'invoicesExportAllConta']);
+    Route::get('orders-export', [ClaimsController::class, 'ordersExport']);
+    Route::get('collects-export', [ClaimsController::class, 'collectsExport']);
+    Route::get('collects-export-all', [ClaimsController::class, 'collectsExportAll']);
+    Route::get('migrar', [UsersController::class, 'migrar']);
+    Route::get('exportTemplate/{id}', [WordController::class, 'exportTemplate']);
+    Route::post('importParty', [WordController::class, 'importParty']);
+    Route::post('importPostalCode', [WordController::class, 'importPostalCode']);
+    Route::post('importType', [WordController::class, 'importType']);
+    Route::get('getHito/{blade}', [DebtsController::class, 'getHito']);
+    Route::post('import-actuations', [ClaimsController::class, 'importActuations']);
+    Route::post('import-collects-kmaleon', [ClaimsController::class, 'importCollectsKmaleon']);
+    Route::post('import-collects', [CollectsController::class, 'importCollects']);
+    Route::get('info/{id}', [ClaimsController::class, 'info']);
+});
+
 Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
-Route::get('invoices-export', [ClaimsController::class, 'invoicesExport']);
-Route::get('invoices-export-all', [ClaimsController::class, 'invoicesExportAll']);
-Route::get('invoices-export-conta', [ClaimsController::class, 'invoicesExportConta']);
-Route::get('invoices-export-all-conta', [ClaimsController::class, 'invoicesExportAllConta']);
-Route::get('orders-export', [ClaimsController::class, 'ordersExport']);
-Route::get('collects-export', [ClaimsController::class, 'collectsExport']);
-Route::get('collects-export-all', [ClaimsController::class, 'collectsExportAll']);
-
-Route::get('migrar', [UsersController::class, 'migrar']);
-
-Route::get('exportTemplate/{id}', [WordController::class, 'exportTemplate']);
-
-Route::post('importParty', [WordController::class, 'importParty']);
-Route::post('importPostalCode', [WordController::class, 'importPostalCode']);
-Route::post('importType', [WordController::class, 'importType']);
-
-Route::get('getPopulation/{code}', [UsersController::class, 'getPopulation']);
-/**/
-Route::get('getHito/{blade}', [DebtsController::class, 'getHito']);
-
 Route::get('loadActuations/{phase}', [ClaimsController::class, 'loadActuations']);
-
-
-Route::post('import-actuations', [ClaimsController::class, 'importActuations']);
-
-Route::post('import-collects', [CollectsController::class, 'importCollects']);
-
-
+Route::get('getPopulation/{code}', [UsersController::class, 'getPopulation']);
 Route::get('addCountEmail/{id}', [ClaimsController::class, 'addCountEmail']);
+Route::post('uploadApudActa', [ClaimsController::class, 'uploadApudActa']);
 Route::get('testEmail/{email?}/{template?}', [UsersController::class, 'testEmail']);
-
 Route::get('sendEmailsCron', [ClaimsController::class, 'sendEmailsCron'])->middleware('guest');
 
-/* Ruta publica para mensajes y notificaciones generales */
-Route::get('info/{id}', [ClaimsController::class, 'info']);
 
 Route::post('saveDiscount', [ClaimsController::class, 'saveDiscount']);
-
 
 /* Ruta verificacion token */
 Route::get('/email/verify', function () {
@@ -295,21 +280,15 @@ Route::get('/email/resend', function () {
 })->middleware('auth')->name('verification.resend');
 
 
-Route::group(['prefix' => 'blogs'], function(){
+Route::group([
+    'prefix' => 'blogs',
+    'middleware'=>'auth'
+], function(){
     Route::get('/', [BlogController::class, 'index']);
     Route::get('/create', [BlogController::class, 'createPosts']);
-
-
     Route::post('/{id}/update', [BlogController::class, 'updatePosts']);
     Route::post('/save', [BlogController::class, 'savePosts']);
-
-    //Route::post('/', [BlogController::class, 'store']);
-
-    //Route::get('/{slug}', [BlogController::class, 'show']);  // Me esta dando problemas replantear ruta
-
-    //Route::get('/posts', [BlogController::class, 'posts']);  Esta ruta es la que debe mostrar las entradas publicas
     Route::get('/{id}/edit', [BlogController::class, 'createPosts']);
-
 });
 
 Route::post('ckeckdiscountcode', [DiscountCodeController::class, 'check']);

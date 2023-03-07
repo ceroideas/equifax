@@ -34,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'legal_representative',
         'representative_dni',
+        'apud_acta',
         'taxcode',
         'discount',
         'status',

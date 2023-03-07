@@ -78,6 +78,11 @@ class ThirdPartiesController extends Controller
         $poa_path = $request->file('poder_legal')->store('uploads/third-parties/' . $thirdParty->id . '/poa', 'public');
         $thirdParty->poa = $poa_path;
         // }
+        if($request->file('apud_acta')){
+            $apud_path = "";
+            $apud_path = $request->file('apud_acta')->store('uploads/third-parties/' . $thirdParty->id . '/apud_acta', 'public');
+            $thirdParty->apud_acta = $apud_path;
+        }
 
         /*$rep_dni = "";
         if($request->file('representative_dni')){
@@ -98,7 +103,7 @@ class ThirdPartiesController extends Controller
 
 
 
-        dd($request->all());
+        //dd($request->all());
     }
 
     /**
@@ -165,27 +170,27 @@ class ThirdPartiesController extends Controller
         }*/
 
         if($request->file('poder_legal')){
-
             if($thirdParty->poa != NULL){
-
                 Storage::disk('public')->delete($thirdParty->poa);
-
             }
-
             $poa_path = $request->file('poder_legal')->store('uploads/third-parties/' . $thirdParty->id . '/poa', 'public');
             $thirdParty->poa = $poa_path;
             $thirdParty->save();
+        }
 
+        if($request->file('apud_acta')){
+            if($thirdParty->apud_acta != NULL){
+                Storage::disk('public')->delete($thirdParty->apud_acta);
+            }
+            $apud_path = $request->file('apud_acta')->store('uploads/third-parties/' . $thirdParty->id . '/apud_acta', 'public');
+            $thirdParty->apud_acta = $apud_path;
+            $thirdParty->save();
         }
 
         if($request->file('representative_dni_img')){
-
             if ($thirdParty->representative_dni_img != NULL) {
-
                 Storage::disk('public')->delete($thirdParty->representative_dni_img);
-
             }
-
             $rep_dni = $request->file('representative_dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/rep', 'public');
             $thirdParty->representative_dni_img = $rep_dni;
             $thirdParty->save();

@@ -177,6 +177,42 @@
             </x-adminlte-input>
             </div>
         </div>
+
+        <div class="col-sm-12">
+            <hr>
+        </div>
+        <div class="row">
+            @if (!$user->apud_acta)
+                <div class="col-sm-6">
+                    <p style="text-align: left;">El Apud acta es necesario para actuar en representación del cliente, puedes descargar las instrucciones de como generar el apud acta en el siguiente enlace
+                        <a href="/docs/Instrucciones_apud_acta_electronico.pdf" target="_blank">Instrucciones para generar el apud acta.</a>
+                    </p>
+                </div>
+            @endif
+
+            <div class="col-sm-6">
+                <x-adminlte-input name="apud_acta" label="Apud Acta" type="file" igroup-size="sm">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-file"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            @if ($user->apud_acta)
+                <div class="col-sm-6">
+                    @php
+                        $ext = array_reverse(explode('.', $user->apud_acta))[0];
+                    @endphp
+                    <a href="{{url('storage/'.$user->apud_acta)}}" download="Apud Acta usuario.{{$ext}}">
+                        Descargar Apud Acta
+                    </a>
+                </div>
+            @endif
+
+
+
+        </div>
         <div class="row hide-natural d-none">
             <div class="col-sm-12">
                 <hr>
@@ -214,6 +250,9 @@
         </div>
         @if (!Auth::user()->isClient())
             <div class="row">
+                <div class="col-sm-12">
+                    <hr>
+                </div>
                 <div class="col-sm-6">
                     <x-adminlte-input name="password" label="Contraseña" placeholder="Ingresa la Contraseña" type="password"
                     igroup-size="sm">

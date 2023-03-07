@@ -14,7 +14,6 @@ class CollectsImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
-
         $invoice = Invoice::where('claim_id',$row['loan_id'])
                                 ->where('status','<>',1)
                                 ->first();

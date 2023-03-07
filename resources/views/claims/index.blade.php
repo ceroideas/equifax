@@ -95,13 +95,18 @@
 
         <form action="{{url('import-actuations')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
             @csrf
-
             <label style="margin: 0;" for="actuations" class="btn btn-danger btn-sm">Importar Actuaciones</label>
-
             <input name="file" type="file" id="actuations" style="display: none;">
+        </form>
 
+
+        <form action="{{url('import-collects-kmaleon')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
+            @csrf
+            <label style="margin: 0;" for="collects" class="btn btn-danger btn-sm">Importar cobros (Kmaleon)</label>
+            <input name="file" type="file" id="collects" style="display: none;">
         </form>
     @endif
+
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" class="table-responsive" striped hoverable bordered compresed responsive :config="$config">
@@ -115,13 +120,27 @@
                     <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} €</td>
                     <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} €</td>
                     <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
-                    @if($claim->gestor_id)
-                        <td><b>Gestoría:</b> {{ $claim->getType() }}</td>
-                    @else
-                        <td>{{ $claim->getType() }}</td>
-                    @endif
 
-                    <td>{{ $claim->getHito() }}</td>
+                    @switch($claim->owner->role)
+                        @case(3)
+                            <td><b>Gestoría:</b> {{ $claim->getType() }}</td>
+                            @break
+
+                        @case(4)
+                            <td><b>Asociado:</b> {{ $claim->getType() }}</td>
+                            @break
+
+                        @default
+                            <td><b>Cliente:</b> {{ $claim->getType() }}</td>
+                    @endswitch
+
+                    <td>
+                        @if ($claim->getIdHito()==30037)
+                            <a href="{{ url('/claims/' . $claim->id ) }}" style="color:#e65927;font-weight: bold;"> {{ $claim->getHito() }} </a>
+                        @else
+                            {{ $claim->getHito() }}
+                        @endif
+                    </td>
 
                     {{--
                     @if (Auth::user()->isSuperAdmin())
@@ -253,16 +272,12 @@
 @stop
 
 @section('js')
-
     <script>
         $('[name="file"]').change(function (e) {
             e.preventDefault();
-
             if (confirm("¿Desea subir el archivo seleccionado?") == true) {
                 $(this).parent().submit();
             }
-
         });
     </script>
-
 @stop

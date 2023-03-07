@@ -153,8 +153,8 @@
                         @php
                             $ext = array_reverse(explode('.', $third_party->poa))[0];
                         @endphp
-                        <a href="{{url('uploads/users/' . $third_party->id . '/poa',$third_party->poa)}}" download="Título de acreditación.{{$ext}}">
-                            Descargar Documento
+                        <a href="{{url('storage/'.$third_party->poa)}}" download="Título de acreditación.{{$ext}}">
+                            Descargar acreditación
                         </a>
                     @endif
                 @endisset
@@ -173,7 +173,42 @@
             </div>
 
         </div>
+        <hr>
+        <div class="row">
+            @if(isset($third_party))
 
+            @else
+                <div class="col-sm-6">
+                    <p style="text-align: left;">El Apud acta es necesario para actuar en representación del cliente, puedes descargar las instrucciones de como generar el apud acta en el siguiente enlace
+                        <a href="/docs/Instrucciones_apud_acta_electronico.pdf" target="_blank">Instrucciones para generar el apud acta.</a>
+                    </p>
+                </div>
+            @endif
+
+            <div class="col-sm-6">
+                <x-adminlte-input name="apud_acta" label="Apud Acta" type="file" igroup-size="sm">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-file"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            @if(isset($third_party))
+                @if ($third_party->apud_acta)
+                    <div class="col-sm-6">
+                        @php
+                            $ext = array_reverse(explode('.', $third_party->apud_acta))[0];
+                        @endphp
+                        <a href="{{url('storage/'.$third_party->apud_acta)}}" download="Apud Acta .{{$ext}}">
+                            Descargar Apud Acta
+                        </a>
+                    </div>
+                @endif
+            @endif
+
+
+        </div>
         <hr>
 
         <div class="row poa-div d-none">
@@ -212,8 +247,8 @@
                     @php
                         $ext = array_reverse(explode('.', $third_party->representative_dni_img))[0];
                     @endphp
-                    <a href="{{url('uploads/users/' . $third_party->id . '/rep',$third_party->representative_dni_img)}}" download="Poder de representación de la empresa.{{$ext}}">
-                        Descargar Documento
+                    <a href="{{url('storage/'.$third_party->representative_dni_img)}}" download="Poder de representación de la empresa.{{$ext}}">
+                        Descargar representación
                     </a>
                 @endif
 

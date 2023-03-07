@@ -59,7 +59,7 @@
                 <tr>
                     <td>{{ $tmp->id }}</td>
                     <td>{{ $tmp->title }}</td>
-                    <td>{{ strip_tags($tmp->body_content) }}</td>
+                    <td>{!! strip_tags($tmp->body_content) !!}</td>
                     <td>{{ strip_tags($tmp->cta_button) }}</td>
                     <td>{{ strip_tags($tmp->signature) }}</td>
                     <td>
