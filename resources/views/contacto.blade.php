@@ -5835,7 +5835,7 @@
                                 </div>
                                 <div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto-img mt-5"><img
                                         data-v-cfd2b624="" data-v-effc9f78=""
-                                        src="{{ url('landing') }}/assets/contacto.png" class="img-fluid"></div>
+                                        src="{{ url('landing') }}/assets/contacto.png" ></div>
                             </div>
                             <div data-v-cfd2b624="" data-v-effc9f78=""
                                 class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 block-form">
@@ -5871,17 +5871,63 @@
                                         </div>
                                         <div data-v-ab748da8="" class="form-group "><label data-v-ab748da8=""
                                                 for="mensaje">Mensaje</label>
-                                            <textarea required data-v-ab748da8="" id="mensaje" rows="3" placeholder="Escribe un mensaje"
+                                            <textarea required data-v-ab748da8="" id="mensaje" rows="2" placeholder="Escribe un mensaje"
                                                 class="form-control"></textarea> <span data-v-ab748da8=""
                                                 class="invalid-feedback">El campo Mensaje es requerido</span>
                                             <!---->
                                             <!---->
-                                        </div> <span data-v-ab748da8=""><button data-v-ab748da8=""
-                                                class="btn btn-primary mt-3 mb-2">Enviar mensaje
+                                        </div>
+                                        <label data-v-ab748da8="" style="text-align: justify">Le informamos que el responsable de los datos personales que facilite a través de este formulario será DIVIDAE RECOVERY, S.L.
+                                            Sus datos serán tratados para resolver sus consultas, tramitar su registro en nuestro sitio web, facilitarle la información, tramitar los
+                                            servicios solicitados, o para remitirle información que pueda resultar de su interés y no serán comunicados a terceros salvo por obligación legal.
+                                            Podrá ejercer sus derechos a través de la siguiente dirección: <a href='mailto:info@dividae.com'>info@dividae.com</a>.
+                                            Puede consultar más información en la <a data-v-a242bae8="" href="javascript:;"
+                                            data-target="#politica" data-toggle="modal"
+                                            class="nav-link p-0 footer-text">Política de privacidad</a></label>
+
+                                            <div class="custom-control custom-checkbox mb-3">
+                                                <a data-toggle="modal" href="#politica" style="color: #666">
+                                                <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
+                                                <label data-v-ab748da8="" for="customCheckbox1" class="custom-control-label"> He leído y acepto la Política de privacidad</label></a>
+                                                @error('tos')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                        <span data-v-ab748da8=""><button data-v-ab748da8="" id="envios"
+                                                class="btn btn-primary mt-3 mb-2" disabled>Enviar mensaje
                                                 <img data-v-ab748da8=""
                                                     src="{{ url('landing') }}/assets/icons-arrow-right.png"
                                                     class="iconsarrow-right img-fluid"></button></span>
                                     </form>
+
+
+                                    <div class="modal fade" id="politica" style="max-width: 100%;">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header" style="color: #111"></div>
+                                                <div class="modal-body">
+
+                                                    <div style="height: 600px; overflow: auto;">
+                                                        @include('politica-privacidad')
+
+                                                        {{-- <br>
+
+                                                        @include('terminos-contratacion') --}}
+
+                                                        <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar la política de privacidad</button>
+                                                        <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="modal-footer"></div> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
 
                             </div>
@@ -5939,7 +5985,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script>
+            $('#accept-terms').click(function(event) {
+                /* Act on the event */
+                $('#customCheckbox1').prop('checked', true)
+                $('#envios').prop('disabled', false)
+            });
 
+    </script>
     @yield('extrajs')
 
 
