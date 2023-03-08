@@ -115,6 +115,9 @@
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="javascript:;"
                         data-target="#politica" data-toggle="modal"
                         class="nav-link p-0 footer-text">Política de privacidad</a></li>
+                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="javascript:;"
+                            data-target="#cookies" data-toggle="modal"
+                            class="nav-link p-0 footer-text">Política de cookies</a></li>
                 </ul>
             </div>
 
@@ -156,6 +159,18 @@
                         <div class="modal-header" style="color: #111"></div>
                         <div class="modal-body">
                             @include('politica-privacidad')
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="cookies" style="max-width: 100%;">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <div class="modal-header" style="color: #111"></div>
+                        <div class="modal-body">
+                            @include('politica-cookies')
                         </div>
 
                     </div>
