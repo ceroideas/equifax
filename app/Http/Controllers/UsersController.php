@@ -125,6 +125,8 @@ class UsersController extends Controller
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
             'referenced'=>$request->referenced,
+            'status'=>3,
+            'type'=>$request->type
         ]);
 
 
@@ -221,11 +223,12 @@ class UsersController extends Controller
             'password' => $password,
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
-            'apud_acta' => $request->apud_acta,
+            //'apud_acta' => $request->apud_acta,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
             'referenced'=>$request->referenced,
         ]);
+
         if($request->file('dni_img')){
             if($user->dni_img != NULL){
                 Storage::disk('public')->delete($user->dni_img);

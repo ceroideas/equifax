@@ -168,7 +168,7 @@
                     </x-slot>
             </x-adminlte-input> -->
             <x-adminlte-input name="cop" label="Código Postal" placeholder="Código Postal" type="text"
-            igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->cop   :  ''}}">
+            igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $user->cop : ''}}">
                 <x-slot name="appendSlot">
                     <div class="input-group-text bg-dark">
                         <i class="fas fa-map-marker"></i>
@@ -182,7 +182,9 @@
             <hr>
         </div>
         <div class="row">
-            @if (!$user->apud_acta)
+            @if(isset($user))
+
+            @else
                 <div class="col-sm-6">
                     <p style="text-align: left;">El Apud acta es necesario para actuar en representación del cliente, puedes descargar las instrucciones de como generar el apud acta en el siguiente enlace
                         <a href="/docs/Instrucciones_apud_acta_electronico.pdf" target="_blank">Instrucciones para generar el apud acta.</a>
@@ -199,18 +201,20 @@
                     </x-slot>
                 </x-adminlte-input>
             </div>
-            @if ($user->apud_acta)
-                <div class="col-sm-6">
-                    @php
-                        $ext = array_reverse(explode('.', $user->apud_acta))[0];
-                    @endphp
-                    <a href="{{url('storage/'.$user->apud_acta)}}" download="Apud Acta usuario.{{$ext}}">
-                        Descargar Apud Acta
-                    </a>
-                </div>
+
+
+            @if(isset($user))
+                @if(isset($user->apud_acta))
+                    <div class="col-sm-6">
+                        @php
+                            $ext = array_reverse(explode('.', $user->apud_acta))[0];
+                        @endphp
+                        <a href="{{url('storage/'.$user->apud_acta)}}" download="Apud Acta usuario.{{$ext}}">
+                            Descargar Apud Acta
+                        </a>
+                    </div>
+                @endif
             @endif
-
-
 
         </div>
         <div class="row hide-natural d-none">
