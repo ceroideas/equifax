@@ -176,9 +176,7 @@ class UsersController extends Controller
         }
 
         return view('users.edit', [
-
             'user' => $user
-
         ]);
     }
 
@@ -223,7 +221,6 @@ class UsersController extends Controller
             'password' => $password,
             'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
-            //'apud_acta' => $request->apud_acta,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
             'referenced'=>$request->referenced,
@@ -256,8 +253,6 @@ class UsersController extends Controller
             $user->pending();
         }
 
-
-
         if(Auth::user()->can('create', 'user')){
             return redirect('/users')->with(['msj' => 'Usuario actualizado exitosamente']);
         }
@@ -267,7 +262,6 @@ class UsersController extends Controller
         }else{
             return redirect('claims/select-client')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
         }
-
     }
 
     /**
@@ -280,9 +274,7 @@ class UsersController extends Controller
 
     {
         if($user->dni_img != NULL){
-
             Storage::disk('public')->delete($user->dni_img);
-
         }
 
         $user->delete();
@@ -310,7 +302,6 @@ class UsersController extends Controller
             'location' => 'required',
             'province' => 'required',
             'cop' => 'required|numeric',
-
         ];
 
 
@@ -327,27 +318,18 @@ class UsersController extends Controller
         }
 
         if(request()->method() == 'PUT'){
-
             $rules['password'] = 'sometimes|confirmed';
             $rules['email'] = 'required|email|unique:users,email,'.request()->user->id;
-            /* $rules['dni'] = 'required|min:8|max:10|unique:users,dni,' . request()->user->id;
-            if(Auth::user()->dni_img != NUll){
-                $rules['dni_img']  = 'mimes:jpg,png,pdf';
-            }else{
-                $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
-            }*/
+
             if (request()->type == 1) {
-                //$rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
                 $rules['legal_representative'] = 'required';
                 $rules['representative_dni'] = 'required';
             }
 
         }else{
             $rules['password'] = 'required|confirmed|min:8|max:255';
-            // $rules['dni_img']  = 'required|mimes:jpg,png,pdf';
 
             if (request()->type == 1) {
-                // $rules['representative_dni_img']  = 'required|mimes:jpg,png,pdf';
                 $rules['legal_representative'] = 'required';
                 $rules['representative_dni'] = 'required';
             }
@@ -392,13 +374,13 @@ class UsersController extends Controller
 
     public function migrar()
     {
-        $c = Claim::find(4);
-        // return $c->getIdHito();
+
+        /*$c = Claim::find(4);
         $u = User::find(3);
         $u->apud_acta = null;
         $u->save();
 
-        return $u;
+        return $u;*/
 
         // Schema::create('discounts', function (Blueprint $table) {
         //     $table->increments('id');
@@ -413,17 +395,17 @@ class UsersController extends Controller
         Claim::find(9)->delete();
 
         return 1;*/
-        Schema::table('claims', function(Blueprint $table) {
+        /*Schema::table('claims', function(Blueprint $table) {
             //
             $table->integer('gestor_id')->nullable();
         });
 
-        return "";
+        return "";*/
         // return Hito::all();
         // Auth::loginUsingId(39);
         // return Claim::all();
 
-        $temp = [
+       /* $temp = [
             ['001', 2, 1, 0],
             ['1', 6, 1, 0],
             ['101', 6, 1, 0],
@@ -471,7 +453,7 @@ class UsersController extends Controller
             $h->send_times = $value[2];
             $h->send_interval = $value[3];
             $h->save();
-        }
+        }*/
         // $tmp = Template::find(1);
         // Mail::send('email_base', ['tmp' => $tmp], function ($message) use($tmp) {
         //     $message->to('jorgesolano92@gmail.com', 'Jorge Solano');

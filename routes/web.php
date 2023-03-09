@@ -234,7 +234,7 @@ Route::group([
     Route::get('orders-export', [ClaimsController::class, 'ordersExport']);
     Route::get('collects-export', [ClaimsController::class, 'collectsExport']);
     Route::get('collects-export-all', [ClaimsController::class, 'collectsExportAll']);
-    Route::get('migrar', [UsersController::class, 'migrar']);
+    //Route::get('migrar', [UsersController::class, 'migrar']);
     Route::get('exportTemplate/{id}', [WordController::class, 'exportTemplate']);
     Route::post('importParty', [WordController::class, 'importParty']);
     Route::post('importPostalCode', [WordController::class, 'importPostalCode']);
