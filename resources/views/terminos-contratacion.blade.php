@@ -128,6 +128,9 @@
 <body lang=ES>
 
     {{--<div class=WordSection1>--}}
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
 
         <h1 class="titulo">CONDICIONES GENERALES DE LA CONTRATACIÓN</h1>
 

@@ -42,7 +42,9 @@
 
 </style>
 <body lang=ES link=blue vlink="#954F72">
-
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
     <div class=Section1>
         <h1 class="titulo">AVISO LEGAL</h1>
         <p class="subtitulo">1. TITULAR DEL SITIO WEB</p>
