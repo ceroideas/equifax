@@ -83,7 +83,12 @@
         <x-adminlte-datatable id="table1" class="table-responsive" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($orders as $order)
                 <tr>
-                    <td>{{ $order->id }}
+                    @if(isset($order->artlor))
+                        <td>{{ $order->order_id }}
+                    @else
+                        <td>{{ $order->id }}
+                    @endif
+
                     @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isGestor())
                         @if(isset($order->claim))
                             <td>{{ $order->claim->gestor->name }}</td>
