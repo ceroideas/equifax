@@ -626,7 +626,10 @@ class ClaimsController extends Controller
                   ->whereRaw('claims.gestor_id = '.Auth::id());
             })->get();
         }
-
+        if(Auth::user()->isGestor()){
+            $invoices = Invoice::where('user_id', Auth::id())->get();
+        }
+        //dd($invoices);
         return view('claims.invoices', compact('invoices'));
     }
 
@@ -698,25 +701,50 @@ class ClaimsController extends Controller
 
     public function byGestoria()
     {
-        $orders = DB::table('orders')
-                ->join('users', 'orders.user_id','=','users.id')
-                ->select('orders.user_id', 'users.name', 'users.email','users.phone','users.location',
-                          DB::raw('count(orders.id) as pedidos, sum(orders.amount) as total') )
-                ->where('orders.facord',0)
-                ->groupBy('orders.user_id','users.name', 'users.email','users.phone','users.location')
-                ->get();
+        //dd("ByGestoria");
+        //$invoiced =0;
+       /* if($invoiced==1){
+            $orders = DB::table('orders')
+            ->join('users', 'orders.user_id','=','users.id')
+            ->select('orders.user_id', 'users.name', 'users.email','users.phone','users.location',
+                      DB::raw('count(orders.id) as pedidos, sum(orders.amount) as total') )
+            ->where('orders.facord',1)
+            ->groupBy('orders.user_id','users.name', 'users.email','users.phone','users.location')
+            ->get();
+
+        }else{*/
+            $orders = DB::table('orders')
+            ->join('users', 'orders.user_id','=','users.id')
+            ->select('orders.user_id', 'users.name', 'users.email','users.phone','users.location',
+                      DB::raw('count(orders.id) as pedidos, sum(orders.amount) as total') )
+            ->where('orders.facord',0)
+            ->groupBy('orders.user_id','users.name', 'users.email','users.phone','users.location')
+            ->get();
+        //}
 
         return view('claims.gestoria', compact('orders'));
     }
 
 
-    public function byGestoriaDetail($id)
+    public function byGestoriaDetail($id, $invoiceId = 0)
     {
-        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+        if($invoiceId==0){
             $orders = Order::where('user_id',$id)
-                            ->where('facord',0)
-                            ->get();
+                ->where('facord',0)
+                ->get();
+        }else{
+
+            $orders = DB::table('orders')
+                ->join('lorders', 'orders.id','=','lorders.order_id')
+                //->where('orders.facord',1)
+                //->where('orders.user_id',$gestoria_id)
+                ->where('lorders.dcolor',$invoiceId)
+                //->orderBy('lorders.artlor','asc')
+                ->get();
         }
+
+//dump($orders);
+//dd();
         $usuario = DB::table('users')
                     ->select('users.name')
                     ->where('users.id', $id)

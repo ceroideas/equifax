@@ -122,11 +122,18 @@
                             </button>
                         </a>
                         @if ((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()) && $invoice->status <> 1)
-                        <a href="{{ url('/collects/create/' . $invoice->id ) }}">
-                            <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Generar cobro">
-                                <i class="fa fa-lg fa-fw fa-money-bill"></i>
-                            </button>
-                        </a>
+                            <a href="{{ url('/collects/create/' . $invoice->id ) }}">
+                                <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Generar cobro">
+                                    <i class="fa fa-lg fa-fw fa-money-bill"></i>
+                                </button>
+                            </a>
+                        @endif
+                        @if((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin() || Auth::user()->isGestor()) && $invoice->type == 'automatic')
+                            <a href="{{ url('/claims/gestoria/' . $invoice->user_id.'/'.$invoice->id ) }}">
+                                <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver pedidos de la factura">
+                                    <i class="fa fa-lg fa-fw fa-address-book"></i>
+                                </button>
+                            </a>
                         @endif
                     </nobr>
                     </td>
