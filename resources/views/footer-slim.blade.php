@@ -39,9 +39,9 @@
             <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
                 <h5 data-v-a242bae8="" class="footer-title">Legal</h5>
                 <ul data-v-a242bae8="" class="nav flex-column">
-                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="javascript:;"
+                    <!--<li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="javascript:;"
                             data-target="#terminos" data-toggle="modal" class="nav-link p-0 footer-text">Términos y
-                            Condiciones</a></li>
+                            Condiciones</a></li>-->
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="javascript:;"
                             data-target="#contratacion" data-toggle="modal" class="nav-link p-0 footer-text">Condiciones
                             de Contratación</a></li>

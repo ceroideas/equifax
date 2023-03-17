@@ -46,6 +46,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 
+    <!--
     <div class=Section1>
         <h1 class="titulo">TÉRMINOS Y CONDICIONES</h1>
         <p class="subtitulo">1. INTRODUCCIÓN</p>
@@ -169,7 +170,7 @@
         </p>
 
         <p class="texto">En la plataforma se indican las diferentes formas de pago por las que el Usuario puede abonar los honorarios, el porcentaje de las cantidades recobradas y las <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>/<span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
-temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span>.
+            temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span>.
             Tanto para abonar el precio fijo pactado como para abonar el pago correspondiente a las cantidades recobradas Dividae emitirá una factura por dicha cantidad fija y otra por la resultante
             de aplicar el porcentaje a la cantidad recuperada. La factura se remitirá por mail al Usuario y se anexará en la plataforma en el apartado de “ÁREA DE USUARIO”.
         </p>
@@ -248,4 +249,5 @@ temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se t
         </p>
         <p>&nbsp;</p>
     </div>
+    -->
 </body>
