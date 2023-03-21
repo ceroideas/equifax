@@ -189,7 +189,7 @@
         <div class="custom-control custom-checkbox mb-3">
             <a data-toggle="modal" href="#terminos" style="color: #666">
             <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
-            <label for="customCheckbox1" class="custom-control-label"> Aceptar los Términos y Condiciones de uso General y Protección de Datos</label></a>
+            <label for="customCheckbox1" class="custom-control-label"> Aceptar las condiciones generales de contratación</label></a>
             @error('tos')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -197,6 +197,15 @@
             @enderror
         </div>
 
+        <div class="custom-control custom-checkbox mb-3">
+            <input class="custom-control-input @error('lopd') is-invalid @enderror"" type="checkbox" id="customCheckbox2" value="1" name="lopd">
+            <label for="customCheckbox2" class="custom-control-label">Autorizo que mis datos sean guardados durante 4 años, desde que finalice la reclamación, para posibles reclamaciones.</a></label>
+            @error('lopd')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+        </div>
 
 
 
@@ -254,13 +263,13 @@
                 <div class="modal-body">
 
                     <div style="height: 600px; overflow: auto;">
-                        @include('terminos-condiciones')
+                        @include('terminos-contratacion')
 
                         {{-- <br>
 
                         @include('terminos-contratacion') --}}
 
-                        <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button>
+                        <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar las condiciones</button>
                         <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
                     </div>
                 </div>
@@ -294,6 +303,11 @@
             });
 
             $('#accept-terms').click(function(event) {
+                /* Act on the event */
+                $('#customCheckbox1').prop('checked', true)
+            });
+
+            $('#accept-lopd').click(function(event) {
                 /* Act on the event */
                 $('#customCheckbox1').prop('checked', true)
             });
