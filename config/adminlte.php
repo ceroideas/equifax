@@ -444,12 +444,12 @@ return [
         [
             'text'    => 'Blog',
             'icon'    => 'fas fa-fw fa-rss',
-            'can' =>  ['superadmin','see-fees', 'admin-claims'],
+            'can' =>  ['superadmin','see-fees', 'admin-claims', 'admin'],
             'submenu' => [
                 [
                     'text' => 'Listado de entradas',
                     'icon' => '',
-                    'can' => ['superadmin'],
+                    'can' => ['superadmin','admin'],
                     'url'  => '/blogs',
                 ],
             ],
