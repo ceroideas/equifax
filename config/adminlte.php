@@ -311,7 +311,7 @@ return [
         [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-fw fa-user',
-            'can' =>  ['superadmin','create-users'],
+            'can' =>  ['superadmin','create-users','admin'],
             'submenu' => [
                 [
                     'text' => 'Nuevo Usuario',
@@ -328,7 +328,7 @@ return [
                 [
                     'text' => 'Listado de Usuarios',
                     'icon' => '',
-                    'can' => ['superadmin','create-users'],
+                    'can' => ['superadmin','create-users','admin'],
                     'url'  => '/users',
                 ],
             ],
@@ -385,25 +385,25 @@ return [
                 [
                     'text' => 'Tasas Dividae',
                     'icon' => '',
-                    'can' => ['superadmin','see-fees'],
+                    'can' => ['superadmin'],
                     'url'  => '/configurations/fees',
                 ],
                 [
                     'text' => 'Hitos',
                     'icon' => '',
-                    'can' => ['superadmin','admin-claims'],
+                    'can' => ['superadmin'],
                     'url'  => '/configurations/hitos',
                 ],
                 [
                     'text' => 'Plantillas de Emails',
                     'icon' => '',
-                    'can' => ['superadmin','admin-claims'],
+                    'can' => ['superadmin'],
                     'url'  => '/configurations/templates',
                 ],
                 [
                     'text' => 'Códigos de descuentos',
                     'icon' => '',
-                    'can' => ['superadmin','admin-claims'],
+                    'can' => ['superadmin'],
                     'url'  => '/configurations/discount-codes',
                 ],
 
@@ -412,30 +412,30 @@ return [
         [
             'text'    => 'Contabilidad',
             'icon'    => 'fas fa-fw fa-file-invoice',
-            'can' =>  ['superadmin','see-fees', 'admin-claims'],
+            'can' =>  ['superadmin','see-fees', 'admin-claims','pending', 'admin'],
             'submenu' => [
                 [
                     'text' => 'Pedidos gestoría',
                     'icon' => '',
-                    'can' => ['superadmin'],
+                    'can' => ['superadmin','admin'],
                     'url'  => '/claims/orders',
                 ],
                 [
                     'text' => 'Saldo gestorías',
                     'icon' => '',
-                    'can' => ['superadmin'],
+                    'can' => ['superadmin', 'admin'],
                     'url'  => '/claims/gestoria',
                 ],
                 [
                     'text' => 'Facturas',
                     'icon' => '',
-                    'can' => ['superadmin'],
+                    'can' => ['superadmin','admin'],
                     'url'  => '/claims/invoices',
                 ],
                 [
                     'text' => 'Cobros',
                     'icon' => '',
-                    'can' => ['superadmin'],
+                    'can' => ['superadmin','admin'],
                     'url'  => '/collects',
                 ],
 
@@ -444,12 +444,12 @@ return [
         [
             'text'    => 'Blog',
             'icon'    => 'fas fa-fw fa-rss',
-            'can' =>  ['superadmin','see-fees', 'admin-claims'],
+            'can' =>  ['superadmin','see-fees', 'admin-claims', 'admin'],
             'submenu' => [
                 [
                     'text' => 'Listado de entradas',
                     'icon' => '',
-                    'can' => ['superadmin'],
+                    'can' => ['superadmin','admin'],
                     'url'  => '/blogs',
                 ],
             ],

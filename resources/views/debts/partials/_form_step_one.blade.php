@@ -3,8 +3,6 @@
         ¡NO OLVIDES RELLENAR EL MAYOR NUMERO DE DATOS PARA QUE NUESTRO EQUIPO DE LETRADOS PUEDA DISPONER DE TODA LA INFORMACIÓN!
     </span>
     <br>
-    {{-- <span>¡Importante! Recuerde que es responable de toda la información adjuntada en éste apartado así como la veracidad de la misma y entiende de las consecuencias en caso de no resolverse de forma positiva el litigio.</span>
-    <br> --}}
 
 </x-adminlte-alert>
 
@@ -19,9 +17,6 @@
 </x-adminlte-alert>
 @endif
 
-{{-- {{print_r(session('documentos'))}} --}}
-
-
 <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline" body-class="" title="Registro de Deuda - Datos de la Deuda">
 
     <form action="{{ url('/debts/step-one/save') }}" method="POST" enctype="multipart/form-data">
@@ -30,15 +25,6 @@
 
         <div class="row">
             <div class="col-sm-6">
-                {{--<x-adminlte-input name="importe" label="Importe Principal *" placeholder="Importe Principal" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->total_amount : ''}}">
-                    <x-slot name="appendSlot">
-                        <div class="input-group-text bg-dark">
-                            <i class="fas fa-eur"></i>
-                        </div>
-                    </x-slot>
-                </x-adminlte-input>--}}
-
                 <x-adminlte-input name="importe" label="Importe a reclamar *" placeholder="Incluye el total que quieres que reclamemos" type="number" step="0.01" min="0"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->total_amount : ''}}">
                     <x-slot name="appendSlot">
@@ -49,14 +35,14 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-input name="iva" label="Porcentaje de IVA *" placeholder="Introduce el porcentaje de IVA (en caso de no tener IVA pon cero)" type="number" step="0.01" min="0"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->tax : ''}}">
-                    <x-slot name="appendSlot">
-                        <div class="input-group-text bg-dark">
-                            <i class="fas fa-eur"></i>
-                        </div>
-                    </x-slot>
-                </x-adminlte-input>
+                <x-adminlte-select2 id="iva" name="iva" label="Deuda seleccionada *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true" >
+                    <option value="0">Sin Iva</option>
+                    <option value="3">3%</option>
+                    <option value="4">4%</option>
+                    <option value="7">7%</option>
+                    <option value="10">10%</option>
+                    <option value="21" selected>21%</option>
+                </x-adminlte-select2>
             </div>
         </div>
 
@@ -71,18 +57,6 @@
                     </x-slot>
                 </x-adminlte-input>
             </div>
-            {{-- <div class="col-sm-6">
-                <x-adminlte-input name="numero_documento" label="N° De Documento *" placeholder="N° De Documento" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->document_number : ''}}">
-                    <x-slot name="appendSlot">
-                        <div class="input-group-text bg-dark">
-                            <i class="fas fa-eur"></i>
-                        </div>
-                    </x-slot>
-                </x-adminlte-input>
-            </div> --}}
-        {{-- </div>
-        <div class="row mt-2"> --}}
             <div class="col-sm-3">
                 <x-adminlte-input name="fecha_deuda" label="Fecha de la Deuda *" placeholder="Fecha de la Deuda" type="date"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->debt_date : ''}}">
@@ -111,7 +85,6 @@
 
                     @foreach (config('app.deudas') as $key => $deuda)
                         <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : (session('tipo_deuda')==$key ? 'selected' : '') }} value="{{$key}}">{{$deuda['deuda']}}</option>
-                        {{--<option {{(session('tipo_deuda')==$key ? 'selected' : '')}} value="{{$key}}">{{$deuda['deuda']}}</option>--}}
                     @endforeach
 
                     <optgroup label="Otro **">
@@ -329,9 +302,6 @@
             <div class="row">
                 <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
-            {{--<div class="row">
-                <span class="float-left">(**) Por favor ingresa toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
-            </div>--}}
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save"/>
             <a href="{{ url('/claims/create-debt/') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
@@ -347,12 +317,8 @@
 
     function makeCalculation(event) {
         /* Act on the event */
-        //let importe = parseFloat($('[name="importe"]').val());
         let importe = parseFloat($('[name="importe"]').val().replace(',', '.'));
         let iva = parseFloat($('[name="iva"]').val().replace(',', '.'));
-
-        //console.log('importe: ',importe);
-
         let abonos = parseFloat(0);
 
         $.each($('[name="amounts[]"]'), function(index, val) {
@@ -360,19 +326,12 @@
                 abonos = parseFloat(abonos) + parseFloat($(this).val().replace(',', '.'));
             }
         });
-        console.log('calc:',importe,iva,abonos)
-        //console.log(importe,iva,abonos);
-        console.log('importe original',importe, iva);
-
-
 
         let pendiente = parseFloat(importe);
         let original = parseFloat(importe);
-        //console.log('Pendiente: ',pendiente);
 
         if (importe != null && iva != null && abonos != null) {
             pendiente += parseFloat(((importe * iva)/100));
-
             pendiente -= parseFloat(abonos);
         }
 
@@ -381,20 +340,17 @@
         }
 
         if(original > 0){
-            $('[name="deuda_original"]').val(original);
+            $('[name="deuda_original"]').val(Number(original.toFixed(2)));
         }
 
-
         if (pendiente > 0) {
-           $('[name="importe_pendiente"]').val(pendiente);
+           $('[name="importe_pendiente"]').val(Number(pendiente.toFixed(2)));
         }
     }
 
     $('[name="importe"],[name="iva"],[name="abonos"],.amounts').change(makeCalculation);
 
     $('[name="importe"],[name="iva"],[name="abonos"],.amounts').click(makeCalculation);
-
-
 
 
     $('[name="abonos"]').on('change',function(){
@@ -430,12 +386,12 @@
         makeCalculation();
         $("#add-document").click();
         if($('#tipo_deuda').val() == -1){
-            //console.log("Otros");
+
             $('#deuda_otros').find('label').html('Otro **')
             $('#deudas_otros_input').attr('placeholder', 'Indique la deuda');
             $('#deuda_otros').removeClass('d-none');
         }else{
-            //console.log('deuda normal');
+
             $('#deuda_otros').addClass('d-none');
         }
     });
@@ -449,14 +405,7 @@
             $('#deudas_otros_input').attr('placeholder', 'Indique la deuda');
             $('#deuda_otros').removeClass('d-none');
 
-        }/*else if($(this).val() == 13){
-            // console.log($('#deudas_otros_input'));
-            $('#deuda_otros').find('label').html('Indique el motivo de la deuda *')
-            $('#deudas_otros_input').attr('placeholder', 'Ej: ¿Ha sido dudosa y voluntaria por parte del deudor?');
-            $('#deuda_otros').removeClass('d-none');
-
-        }*/
-        else{
+        }else{
 
             $('#deuda_otros').addClass('d-none');
 
