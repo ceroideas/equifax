@@ -35,6 +35,8 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('superadmin', [UserPolicy::class, 'superadmin']);
 
+        Gate::define('admin', [UserPolicy::class, 'admin']);
+
         Gate::define('see-pendings', [UserPolicy::class, 'pending']);
 
         Gate::define('create-users', [UserPolicy::class, 'create']);
