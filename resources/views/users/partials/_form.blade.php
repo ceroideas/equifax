@@ -19,11 +19,10 @@
 
         <div class="row mb-4">
             <div class="col float-center">
-                <h1>¿Qué tipo de Persona eres?</h1>
+                <h1>¿Qué tipo de Persona eres?@if(isset($user)){{$user->type}}@endif</h1>
                 <div class="row">
                     <div class="col-sm-2">
-                        <x-adminlte-input name="type" type="radio"
-                        igroup-size="xs" value="1" >
+                        <x-adminlte-input name="type" type="radio" igroup-size="xs" value="1" >
                             <x-slot name="prependSlot">
                                 <div class="input-group-text bg-dark">
                                     <i class="">Persona Jurídica</i>
@@ -32,8 +31,7 @@
                         </x-adminlte-input>
                     </div>
                     <div class="col-sm-2">
-                        <x-adminlte-input name="type" type="radio"
-                        igroup-size="xs" value="2">
+                        <x-adminlte-input name="type" type="radio" igroup-size="xs" value="2">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text bg-dark">
                                     <i class="">Persona Física</i>
@@ -41,16 +39,6 @@
                             </x-slot>
                         </x-adminlte-input>
                     </div>
-                    {{-- <div class="col-sm-2">
-                        <x-adminlte-input name="type" type="radio"
-                        igroup-size="xs" value="3" >
-                            <x-slot name="prependSlot">
-                                <div class="input-group-text bg-dark">
-                                    <i class="">Autónomo</i>
-                                </div>
-                            </x-slot>
-                        </x-adminlte-input>
-                    </div> --}}
                </div>
             </div>
         </div>
@@ -79,7 +67,7 @@
         </div>
         <div class="row ">
             <div class="col-sm-6">
-                <label id="dni">
+                <label id="dnilbl">
                 @isset ($user)
                     @if ($user->type == 2)
                         DNI-NIE
@@ -279,7 +267,7 @@
                 </div>
             </div>
         @endif
-        @if (Auth::user()->email == 'luiscampos@atlantelt.com' || Auth::user()->email == 'danielmachuca@dividae.com' || Auth::user()->email == 'barbaraderon@atlantelt.com')
+        @if (Auth::user()->email == 'luiscampos@atlantelt.com' || Auth::user()->email == 'barbaraderon@atlantelt.com')
             <div class="row">
                 <div class="col-sm-4">
                     <x-adminlte-select name="role" label="Rol" placeholder="Selecciona El Rol">
@@ -332,7 +320,6 @@
         $('input[value="{{ $user->type }}"]').attr('checked', true);
     </script>
 @elseif(old('type'))
-
     <script>
         $('input[value="{{ old('type') }}"]').attr('checked', true);
     </script>
@@ -342,11 +329,11 @@
     $('[name="type"]').on('change',function(){
         if ($(this).val() == 1) {
             $('.hide-natural').removeClass('d-none');
-            $('#dni').text('CIF');
+            $('#dnilbl').text('CIF');
             $('#address').text('Domicilio Fiscal');
         }else{
             $('.hide-natural').addClass('d-none');
-            $('#dni').text('DNI-NIE');
+            $('#dnilbl').text('DNI-NIE');
             $('#address').text('Dirección');
         }
     });
@@ -354,13 +341,47 @@
     let sel = $('[name="type"]:checked').val();
     if (sel == 1) {
         $('.hide-natural').removeClass('d-none');
-        $('#dni').text('CIF');
+        $('#dnilbl').text('CIF');
         $('#address').text('Domicilio Fiscal');
     }else{
         $('.hide-natural').addClass('d-none');
-        $('#dni').text('DNI-NIE');
+        $('#dnilbl').text('DNI-NIE');
         $('#address').text('Dirección');
     }
 
+
+    $('[name="dni"]').on('change',function(){
+        let leftdni = document.getElementById('dni').value.substr(0,1);
+        //console.log("LeftDNI",typeof(leftdni), leftdni);
+
+        switch(leftdni){
+            case 'x':
+            case 'X':
+            case 't':
+            case 'T':
+            case 'z':
+            case 'Z':
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                console.log("Persona fisica");
+                /*document.getElementById('type').value = 1;
+                $('input[value="{{ old('type') }}"]').attr('checked', true);*/
+                break;
+
+            default:
+                console.log("Persona Juridica");
+                /*document.getElementById('type').value = 2;*/
+                break;
+        }
+
+    });
 </script>
 @stop

@@ -302,6 +302,7 @@ class UsersController extends Controller
             'location' => 'required',
             'province' => 'required',
             'cop' => 'required|numeric',
+            'type'=>'required'
         ];
 
 
