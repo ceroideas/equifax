@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Reclamación #' . $claim->id)
+@section('title', 'Reclamaci&oacute;n #' . $claim->id)
 
 @section('content_header')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
-                    <li class="breadcrumb-item active">Actuaciones | Reclamación #{{ $claim->id }}</li>
+                    <li class="breadcrumb-item active">Actuaciones | Reclamaci&oacute;n #{{ $claim->id }}</li>
                 </ol>
             </div>
         </div>
@@ -48,7 +48,7 @@
 
     <div class="card">
         <div class="card-header card-orange card-outline">
-            <h3 class="card-title">Actuaciones de la Reclamación #{{ $claim->id }}</h3>
+            <h3 class="card-title">Actuaciones de la Reclamaci&oacute;n #{{ $claim->id }}</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -88,9 +88,9 @@
         			@empty
                         <div class="col-sm-12">
                             @if ($claim->isFinished())
-                            <h4>No se registraron actuaciones en esta reclamación</h4>
+                            <h4>No se registraron actuaciones en esta reclamaci&oacute;n</h4>
                             @else
-                            <h4>No se han registrado actuaciones en esta reclamación</h4>
+                            <h4>No se han registrado actuaciones en esta reclamaci&oacute;n</h4>
                             @endif
                         </div>
         			@endforelse
@@ -116,7 +116,7 @@
 	            		</div>
 	            		<div class="col-sm-6">
 	            			<div class="form-group">
-	            				<label for="actuation_date">Fecha de la actuación</label>
+	            				<label for="actuation_date">Fecha de la actuaci&oacute;n</label>
 	            				@php
 									$config = ['format' => 'DD-MM-YYYY'];
 								@endphp
@@ -126,14 +126,14 @@
 
 	            		<div class="col-sm-12">
 	            			<div class="form-group">
-	            				<label for="description">Descripción</label>
-	            				<x-adminlte-textarea name="description" id="description" placeholder="Inserte descripción..."/>
+	            				<label for="description">Descripci&oacute;n</label>
+	            				<x-adminlte-textarea name="description" id="description" placeholder="Inserte descripci&oacute;n..."/>
 	            			</div>
 	            		</div>
 
 	            		<div class="col-sm-12">
 	            			<div class="form-group">
-	            				<x-adminlte-input-file id="ifMultiple" name="files[]" label="Archivos de la actuacion"
+	            				<x-adminlte-input-file id="ifMultiple" name="files[]" label="Archivos de la actuaci&oacute;n"
 								    placeholder="Puede subir varios archivos..." igroup-size="lg" legend="Seleccione" multiple>
 								    <x-slot name="prependSlot">
 								        <div class="input-group-text text-primary">
@@ -151,7 +151,7 @@
 	            	<hr>
 	            	<div class="row" style="display: none-;">
 	            		<div class="col-sm-12">
-	            			<x-adminlte-input name="amount" label="Si se ha recuperado algún importe, especificarlo" placeholder="Importe" min="0" step="0.01" type="number"
+	            			<x-adminlte-input name="amount" label="Si se ha recuperado alg&uacute;n importe, especificarlo" placeholder="Importe" min="0" step="0.01" type="number"
 			                    igroup-size="sm" >
 			                        <x-slot name="appendSlot">
 			                            <div class="input-group-text bg-dark">
@@ -165,7 +165,7 @@
 	            	<div class="d-none">
 		            	<div class="row" style="display: none-;" id="invoice-data">
 		            		<div class="col-sm-12">
-		            			<label for="mailable">¿Desea notificar al cliente de ésta actuación?</label>
+		            			<label for="mailable">¿Desea notificar al cliente de ésta actuaci&oacute;n?</label>
 		            			<x-adminlte-input-switch name="mailable" id="mailable" data-on-text="Si" data-off-text="No" data-on-color="teal"/>
 		            		</div>
 		            	</div>
@@ -202,6 +202,41 @@
 	            	<x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
             	</form>
             @endif
+
+
+            @if ((Auth::user()->isClient()) && !$claim->isFinished())
+            <hr>
+            <h5>Puede añadir intrucciones y archivos a la reclamaci&oacute;n</h5>
+            <form action="{{url('claims/actuations',$claim->id)}}" method="POST" id="actuation-form" enctype="multipart/form-data">
+                {{csrf_field()}}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="description">Descripción</label>
+                            <x-adminlte-textarea name="description" id="description" placeholder="Inserte descripción..."/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <x-adminlte-input-file id="ifMultiple" name="files[]" label="Archivos de la actuaci&oacute;n"
+                                placeholder="Puede subir varios archivos..." igroup-size="lg" legend="Seleccione" multiple>
+                                <x-slot name="prependSlot">
+                                    <div class="input-group-text text-primary">
+                                        <i class="fas fa-file-upload"></i>
+                                    </div>
+                                </x-slot>
+                            </x-adminlte-input-file>
+                        </div>
+                    </div>
+
+                </div>
+                <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
+            </form>
+            @endif
+
+
+
         </div>
     </div>
 

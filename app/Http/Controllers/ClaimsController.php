@@ -736,36 +736,55 @@ class ClaimsController extends Controller
     {
         $a = new Actuation;
         $a->claim_id = $id;
-        $a->subject = $r->subject;
         $a->amount = $r->amount;
         $a->description = $r->description;
-        $a->actuation_date = date('Y-m-d H:i:s', strtotime($r->actuation_date));
-        $a->type = null;
+        if($r->subject == null){
+            $a->subject = 30049;
+            $a->actuation_date = date('Y-m-d H:i:s');
+            $a->type = null;
+            $a->mailable = null;
+            $a->save();
+
+          //  $a->claim->phase = $r->phase;
+            $a->claim->save();
+            //return 'saved';
+        }else{
+            $a->subject = $r->subject;
+            $a->actuation_date = date('Y-m-d H:i:s', strtotime($r->actuation_date));
+            $a->type = null;
+            $a->mailable = null;
+            $a->save();
+
+            $a->claim->phase = $r->phase;
+            $a->claim->save();
+        }
+        //$a->actuation_date = date('Y-m-d H:i:s', strtotime($r->actuation_date));
+        /*$a->type = null;
         $a->mailable = null;
         $a->save();
 
         $a->claim->phase = $r->phase;
-        $a->claim->save();
+        $a->claim->save();*/
 
         $h = getHito($r->subject)[0];
 
-        if(file_exists('testing/testing_claims_actuations.txt')){
+        /*if(file_exists('testing/testing_claims_actuations.txt')){
             $file = fopen('testing/testing_claims_actuations.log', 'a');
             fwrite($file, date("d/m/Y H:i:s").'-'.'saveActuation claim_id: ' . $id . PHP_EOL);
             fwrite($file, date("d/m/Y H:i:s").'-'.'saveActuation id actuation: ' . $a->id . PHP_EOL);
             fwrite($file, date("d/m/Y H:i:s").'-'.$r->subject[0]. PHP_EOL);
             fwrite($file, date("d/m/Y H:i:s").'-'.$h. PHP_EOL);
             fclose($file);
-        }
+        }*/
 
-        if ($h && $h['template_id']) {
+        /*if ($h && $h['template_id']) {
             if(file_exists('testing/testing_claims_actuations.txt')){
                 $file = fopen('testing/testing_claims_actuations.log', 'a');
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Solo registra envio email template: ' . $h['template_id']. PHP_EOL);
                 fclose($file);
             }
 
-        }
+        }*/
 
 
         $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
@@ -782,12 +801,12 @@ class ClaimsController extends Controller
             }
         }
 
-        if(file_exists('testing/testing_claims_actuations.txt')){
+        /*if(file_exists('testing/testing_claims_actuations.txt')){
             $file = fopen('testing/testing_claims_actuations.log', 'a');
             fwrite($file, date("d/m/Y H:i:s").'-'.'Proceso files y vamos a actuations con parametros: ' . PHP_EOL);
             fwrite($file, date("d/m/Y H:i:s").'-'.'r->subject: ' . $r->subject. ' ID: '. $id. ' r->description: '. $r->description . PHP_EOL);
             fclose($file);
-        }
+        }*/
 
         actuationActions($r->subject,$id,$r->amount,$r->actuation_date,$r->description, $a->id);
 
