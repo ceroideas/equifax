@@ -213,14 +213,14 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="description">Descripción</label>
-                            <x-adminlte-textarea name="description" id="description" placeholder="Inserte descripción..."/>
+                            <x-adminlte-input name="description" id="description" placeholder="Inserte descripción..."/>
                         </div>
                     </div>
 
                     <div class="col-sm-6">
                         <div class="form-group">
                             <x-adminlte-input-file id="ifMultiple" name="files[]" label="Archivos de la actuaci&oacute;n"
-                                placeholder="Puede subir varios archivos..." igroup-size="lg" legend="Seleccione" multiple>
+                                placeholder="Puede subir archivos..." igroup-size="lg" legend="Seleccione" multiple>
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text text-primary">
                                         <i class="fas fa-file-upload"></i>

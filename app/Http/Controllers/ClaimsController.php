@@ -739,8 +739,8 @@ class ClaimsController extends Controller
         $a->amount = $r->amount;
         $a->description = $r->description;
 
-        $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
-        $pathStorage = '/uploads/actuations/' . $a->id . '/documents/';
+        //$path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
+        //$pathStorage = '/uploads/actuations/' . $a->id . '/documents/';
 
         if($r->subject == null){
             /* Buscamos el debt_id */
@@ -752,6 +752,9 @@ class ClaimsController extends Controller
             $a->mailable = null;
             $a->save();
             $a->claim->save();
+
+            $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
+            $pathStorage = '/uploads/actuations/' . $a->id . '/documents/';
 
             /* V1 Si hay ficheros adjuntos se inserta url en debt_document y en actuation_document */
             if ($r->files) {
@@ -773,6 +776,8 @@ class ClaimsController extends Controller
                 }
             }
 
+            return redirect('claims/94')->with('msj','Se ha añadido la actuación');
+
         }else{
             $a->subject = $r->subject;
             $a->actuation_date = date('Y-m-d H:i:s', strtotime($r->actuation_date));
@@ -781,6 +786,7 @@ class ClaimsController extends Controller
             $a->save();
             $a->claim->phase = $r->phase;
             $a->claim->save();
+            $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
 
             if ($r->files) {
                 foreach ($r->files as $key => $file) {
