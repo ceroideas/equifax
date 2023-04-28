@@ -35,7 +35,7 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-6">
-                <x-adminlte-select2 id="iva" name="iva" label="Deuda seleccionada *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true" >
+                <x-adminlte-select2 id="iva" name="iva" label="Porcentaje de IVA *" placeholder="% de IVA" class="form-control-sm" enable-old-support="true" >
                     <option value="0">Sin Iva</option>
                     <option value="3">3%</option>
                     <option value="4">4%</option>
@@ -104,7 +104,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-6">
-                <x-adminlte-input name="abonos" label="Número de Pagos realizados por el Deudor" placeholder="Número de Pagos realizados por el Deudor (La suma de lo abonado)" type="number" min="0"
+                <x-adminlte-input name="abonos" label="Número de pagos realizados por el Deudor" placeholder="Número de Pagos realizados por el Deudor (La suma de lo abonado)" type="number" min="0"
                 igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->partials_amount : ''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">

@@ -11,7 +11,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
-                    <li class="breadcrumb-item active">Reclamación #{{ $claim->id }}</li>
+                    <li class="breadcrumb-item active">Reclamaci&oacute;n #{{ $claim->id }}</li>
                 </ol>
             </div>
         </div>
@@ -45,7 +45,7 @@
     @endif
     <div class="card">
         <div class="card-header card-orange card-outline">
-            <h3 class="card-title"  style="color:#e65927;" >Detalles de la Reclamación - {{ $claim->debt->document_number }} - {{ $claim->getStatus() }} </h3>
+            <h3 class="card-title"  style="color:#e65927;" >Detalles de la Reclamaci&oacute;n - {{ $claim->debt->document_number }} - {{ $claim->getStatus() }} </h3>
             <div class="card-tools">
                 <input type="button" class="btn-secondary" name="imprimir" value="Imprimir reclamaci&oacute;n" onclick="window.print();">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -126,7 +126,7 @@
                             <div class="post clearfix">
                                 <h4>Detalles de la Deuda</h4>
                                 <div class="row">
-                                    <div class="col-lg-6 col-sm-6 col-md-6"><b>Concepto o Justificación:</b> <p>{{ $claim->debt->concept }}</p></div>
+                                    <div class="col-lg-6 col-sm-6 col-md-6"><b>Concepto o Justificaci&oacute;n:</b> <p>{{ $claim->debt->concept }}</p></div>
                                     {{-- <div class="col-lg-6 col-sm-6 col-md-6"><b>N° De Documento:</b> <p>{{ $claim->debt->document_number }} </p></div> --}}
                                     {{--<div class="col-lg-6 col-sm-6 col-md-6"><b>Fecha de la Deuda:</b> <p>{{ $claim->debt->debt_date }}</p></div> --}}
                                     <div class="col-lg-6 col-sm-6 col-md-6"><b>Fecha de la Deuda:</b> <p>{{ date('d/m/Y', strtotime($claim->debt->debt_date)) }}</p></div>
@@ -168,8 +168,8 @@
 
                                     @if($claim->debt->hasAgreement())
                                     <div class="row">
-                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>Mínimo:</b> <p>{{ $claim->debt->agreements->take }}€</p></div>
-                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>Máximo <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span>:</b> <p>{{ $claim->debt->agreements->wait }} </p></div>
+                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>M&iacute;nimo:</b> <p>{{ $claim->debt->agreements->take }}€</p></div>
+                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>M&aacute;ximo <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span>:</b> <p>{{ $claim->debt->agreements->wait }} </p></div>
                                         <div class="col-lg-6 col-sm-12 col-md-12"><b>Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
                                     </div>
                                     <div class="row mt-3">
@@ -198,7 +198,7 @@
                                             {{$dias}}</b></span>
                                     </div>
 
-                                    <b>DEUDOR CON CÓDIGO POSTAL:</b> {{$claim->debtor->cop}}
+                                    <b>DEUDOR CON C&Oacute;DIGO POSTAL:</b> {{$claim->debtor->cop}}
 
                                     <select name="postal_code_id" class="js-data-example-ajax form-control">
                                         @if ($claim->debtor->cop)
@@ -256,11 +256,11 @@
                                 <div class="row text-center">
                                     <div class="col-sm-12">
                                         <x-adminlte-alert theme="warning">
-                                            Para poder continuar con la reclamación, debes aceptar que continuemos a la siguiente fase.
+                                            Para poder continuar con la reclamaci&oacute;n, debes aceptar que continuemos a la siguiente fase.
                                             <div class="text-center">
                                                 <x-adminlte-button label="Continuar con la reclamación" data-toggle="modal" data-target="#modalContinue" theme="success"/>
                                                     <x-adminlte-modal id="modalContinue" title="¿Desea continuar con la reclamación {{$claim->id}}?" size="lg" v-centered="true">
-                                                        <p>La reclamación <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> continuara a la fase judicial</p>
+                                                        <p>La reclamaci&oacute;n <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> continuara a la fase judicial</p>
                                                         <x-slot name="footerSlot">
                                                             <a href="{{url('claims/continue',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
                                                             <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
@@ -290,7 +290,7 @@
                                 </p>
                            </div>
                            <div class="col-sm-6">
-                                <b>N° de Teléfono</b>
+                                <b>N° de Tel&eacute;fono</b>
                                 <p>
                                     {{ $claim->user_id ? $claim->client->phone : 'N/A' }}
                                 </p>
@@ -298,13 +298,13 @@
                        </div>
                        <div class="row">
                             <div class="col-sm-6">
-                                <b>Dirección</b>
+                                <b>Direcci&oacute;n</b>
                                 <p>
                                     {{ $claim->user_id ? $claim->client->address : $claim->representant->address }}
                                 </p>
                             </div>
                             <div class="col-sm-6">
-                                <b>Población</b>
+                                <b>Poblaci&oacute;n</b>
                                 <p>
                                     {{ $claim->user_id ? $claim->client->location : $claim->representant->location }}
                                 </p>
@@ -314,7 +314,7 @@
 
                     <br>
                     @if(/*$claim->isPending()*/true)
-                        <h5 class="mt-5 text-muted">Documentación de la Deuda</h5>
+                        <h5 class="mt-5 text-muted">Documentaci&oacute;n de la Deuda</h5>
 
                         <ul class="list-unstyled">
 
@@ -329,7 +329,6 @@
 
                     @if($claim->claim_type == 1)
                         <h5 class="mt-5 text-muted">Apud Acta</h5>
-                        <hr>
                         @if($claim->user_id)
                             @if(isset($claim->client->apud_acta))
                                 <div class="text-center my-3">
@@ -379,15 +378,16 @@
                                 </x-adminlte-alert>
                             @endif
                         @endif
+                        <hr>
                     @endif
 
                     @if(((Auth::user()->isAdmin() || Auth::user()->isGestor()) || Auth::user()->isSuperAdmin()) && $claim->isPending())
 
                         <div class="text-center mt-5 mb-3 float-bottom">
 
-                            <a href="{{ url('claims/'. $claim->id . '/viable/') }}" class="btn btn-sm btn-primary">Reclamación Viable</a>
+                            <a href="{{ url('claims/'. $claim->id . '/viable/') }}" class="btn btn-sm btn-primary">Reclamaci&oacute;n Viable</a>
 
-                            <a href="{{ url('claims/'. $claim->id . '/non-viable/') }}" class="btn btn-sm btn-danger">Reclamación Inviable</a>
+                            <a href="{{ url('claims/'. $claim->id . '/non-viable/') }}" class="btn btn-sm btn-danger">Reclamaci&oacute;n Inviable</a>
 
                         </div>
                         @elseif(!$claim->isViable() && !$claim->isPending() && !$claim->isFinished())
@@ -402,13 +402,13 @@
                             <div class="row text-center">
                                 <div class="col-sm-6 offset-sm-3">
                                     <div class="alert-danger">
-                                        <p>Reclamación Finalizada</p>
+                                        <p>Reclamaci&oacute;n Finalizada</p>
                                     </div>
                                 </div>
                             </div>
 
                         @else
-                        <h5 class="mt-5 text-muted">Última actuación</h5>
+                        <h5 class="mt-5 text-muted">&Uacute;ltima actuaci&oacute;n</h5>
                             @if ($claim->getHito()&& $claim->getIdHito()<>30037)
                                 <div class="row text-center">
                                     <div class="col-sm-12">
@@ -432,9 +432,9 @@
                         @if ($claim->isFinished() && $claim->claim_type == 2 && !Auth::user()->isClient())
                             <div class="text-center my-3">
 
-                            <a href="{{ url('claims/'. $claim->id . '/viable',1) }}" class="btn btn-sm btn-primary">Reclamación Judicial Viable</a>
+                            <a href="{{ url('claims/'. $claim->id . '/viable',1) }}" class="btn btn-sm btn-primary">Reclamaci&oacute;n Judicial Viable</a>
 
-                            <a href="{{ url('claims/'. $claim->id . '/non-viable',1) }}" class="btn btn-sm btn-danger">Reclamación Judicial Inviable</a>
+                            <a href="{{ url('claims/'. $claim->id . '/non-viable',1) }}" class="btn btn-sm btn-danger">Reclamaci&oacute;n Judicial Inviable</a>
 
                             </div>
                         @endif
@@ -450,9 +450,9 @@
                             <x-adminlte-button label="Finalizar Reclamación {{$claim->id}}" data-toggle="modal" data-target="#modalFinish" theme="danger"/>
                                 <x-adminlte-modal id="modalFinish" title="¿Desea dar por finalizada la reclamación {{$claim->id}}?" size="lg" v-centered="true">
                                     @if($claim->claim_type == 2)
-                                            <p>La relamación <strong>{{$claim->id}} </strong> usuario <strong>{{ $claim->debtor->name }} </strong> finalizará</p>
+                                            <p>La relamaci&oacute;n <strong>{{$claim->id}} </strong> usuario <strong>{{ $claim->debtor->name }} </strong> finalizar&aacute;</p>
                                         @else
-                                            <p>La reclamación <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> esta en fase judicial, el equipo de Dividae se pondrá en contacto contigo</p>
+                                            <p>La reclamaci&oacute;n <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> esta en fase judicial, el equipo de Dividae se pondr&aacute; en contacto contigo</p>
                                         @endif
 
                                     <x-slot name="footerSlot">

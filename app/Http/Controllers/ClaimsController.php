@@ -736,57 +736,69 @@ class ClaimsController extends Controller
     {
         $a = new Actuation;
         $a->claim_id = $id;
-        $a->subject = $r->subject;
         $a->amount = $r->amount;
         $a->description = $r->description;
-        $a->actuation_date = date('Y-m-d H:i:s', strtotime($r->actuation_date));
-        $a->type = null;
-        $a->mailable = null;
-        $a->save();
 
-        $a->claim->phase = $r->phase;
-        $a->claim->save();
+        //$path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
+        //$pathStorage = '/uploads/actuations/' . $a->id . '/documents/';
 
-        $h = getHito($r->subject)[0];
+        if($r->subject == null){
+            /* Buscamos el debt_id */
+            $claim = Claim::find($id);
 
-        if(file_exists('testing/testing_claims_actuations.txt')){
-            $file = fopen('testing/testing_claims_actuations.log', 'a');
-            fwrite($file, date("d/m/Y H:i:s").'-'.'saveActuation claim_id: ' . $id . PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'saveActuation id actuation: ' . $a->id . PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.$r->subject[0]. PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.$h. PHP_EOL);
-            fclose($file);
-        }
+            $a->subject = 30049;
+            $a->actuation_date = date('Y-m-d H:i:s');
+            $a->type = null;
+            $a->mailable = null;
+            $a->save();
+            $a->claim->save();
 
-        if ($h && $h['template_id']) {
-            if(file_exists('testing/testing_claims_actuations.txt')){
-                $file = fopen('testing/testing_claims_actuations.log', 'a');
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Solo registra envio email template: ' . $h['template_id']. PHP_EOL);
-                fclose($file);
+            $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
+            $pathStorage = '/uploads/actuations/' . $a->id . '/documents/';
+
+            /* V1 Si hay ficheros adjuntos se inserta url en debt_document y en actuation_document */
+            if ($r->files) {
+                foreach ($r->files as $key => $value) {
+                    $name = $value[0]->getClientOriginalName();
+                    $value[0]->move($path,$name);
+
+                    $debtd = new DebtDocument;
+                    $debtd->debt_id = $claim->debt_id;
+                    $debtd->document = $pathStorage . $name;
+                    $debtd->type = 'otros';
+                    $debtd->hitos = json_encode(array("otros"=> array("file"=>$pathStorage.$name,"fecha_otros"=>date('Y-m-d'))));
+                    $debtd->save();
+
+                    $d = new ActuationDocument;
+                    $d->actuation_id = $a->id;
+                    $d->document_name = $name;
+                    $d->save();
+                }
             }
 
-        }
+            return redirect('claims/94')->with('msj','Se ha añadido la actuación');
 
+        }else{
+            $a->subject = $r->subject;
+            $a->actuation_date = date('Y-m-d H:i:s', strtotime($r->actuation_date));
+            $a->type = null;
+            $a->mailable = null;
+            $a->save();
+            $a->claim->phase = $r->phase;
+            $a->claim->save();
+            $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
 
-        $path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
+            if ($r->files) {
+                foreach ($r->files as $key => $file) {
+                    $name = $file[0]->getClientOriginalName();
+                    $file[0]->move($path,$name);
 
-        if ($r->files) {
-            foreach ($r->files as $key => $file) {
-                $name = $file[0]->getClientOriginalName();
-                $file[0]->move($path,$name);
-
-                $d = new ActuationDocument;
-                $d->actuation_id = $a->id;
-                $d->document_name = $name;
-                $d->save();
+                    $d = new ActuationDocument;
+                    $d->actuation_id = $a->id;
+                    $d->document_name = $name;
+                    $d->save();
+                }
             }
-        }
-
-        if(file_exists('testing/testing_claims_actuations.txt')){
-            $file = fopen('testing/testing_claims_actuations.log', 'a');
-            fwrite($file, date("d/m/Y H:i:s").'-'.'Proceso files y vamos a actuations con parametros: ' . PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'r->subject: ' . $r->subject. ' ID: '. $id. ' r->description: '. $r->description . PHP_EOL);
-            fclose($file);
         }
 
         actuationActions($r->subject,$id,$r->amount,$r->actuation_date,$r->description, $a->id);
