@@ -292,3 +292,5 @@ Route::group([
 });
 
 Route::post('ckeckdiscountcode', [DiscountCodeController::class, 'check']);
+
+Route::get('/notificar', [DiscountCodeController::class, 'enviarNotificacion']);

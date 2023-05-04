@@ -208,7 +208,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <x-adminlte-input name="reclamacion_previa" label="Documentación de la reclamación anterior *" type="file"
+                    <x-adminlte-input name="reclamacion_previa" label="Documentación de la reclamación anterior" type="file"
                     igroup-size="sm" enable-old-support="true">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
