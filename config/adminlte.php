@@ -168,8 +168,8 @@ return [
     |
     */
 
-    'right_sidebar' => false,
-    'right_sidebar_icon' => 'fas fa-cogs',
+    'right_sidebar' => true,
+    'right_sidebar_icon' => 'fas fa-bell',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
@@ -229,7 +229,7 @@ return [
         // Navbar items:
         [
             'type'         => 'navbar-search',
-            'text'         => 'search',
+            'text'         => 'Buscar',
             'topnav_right' => true,
         ],
         [
@@ -254,7 +254,7 @@ return [
         //     'label'       => 4,
         //     'label_color' => 'success',
         // ],
-        // ['header' => 'account_settings'],
+        //['header' => 'account_settings'],
         // [
         //     'text' => 'profile',
         //     'url'  => 'admin/settings',
