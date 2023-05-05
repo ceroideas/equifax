@@ -7,8 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
 
-
-    <title>Dividae</title>
+    <meta name="robots" content="index, follow" />
+    <title>Contacta con el equipo de Dividae</title>
+    <meta name="description" content="Completa el formulario de contacto y nos pondremos en contacto contigo."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

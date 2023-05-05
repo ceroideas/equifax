@@ -7,8 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="ZTvvFBs0fJ6f864MWTU3BPQOJfKdC9Xa0PneA26E">
 
+    <meta name="robots" content="index, follow" />
 
-    <title>Dividae</title>
+    <title>Dividae - ¿Quiénes somos?</title>
+    <meta name="description" content="Dividae es una plataforma 100% online que ofrece a PYMES y autónomos la solución para reclamar facturas impagadas."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

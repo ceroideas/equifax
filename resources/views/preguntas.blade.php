@@ -5,8 +5,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
 
-
-    <title>Dividae</title>
+    <meta name="robots" content="index, follow" />
+    <title>Dividae - Preguntas frecuentes</title>
+    <meta name="description" content="¿Tienes dudas sobre cómo recuperar una factura impagada, cómo subir facturas del mismo deudor o acerca del poder para pleitos?"/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

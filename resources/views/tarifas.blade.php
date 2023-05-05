@@ -7,8 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
 
-
-    <title>Dividae</title>
+    <meta name="robots" content="index, follow" />
+    <title>Dividae - Tarifas</title>
+    <meta name="description" content="Dividae cuenta con tarifas fijas para reclamación extrajudicial y judicial."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

@@ -7,7 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
 
-    <title>Dividae</title>
+    <meta name="robots" content="index, follow" />
+    <title>Dividae - Novedades y actualidad para PYMES y AUTÓNOMOS</title>
+    <meta name="description" content="A través del blog de Dividae podrás estar al día de todas las novedades del sector dirigido a PYMES y autónomos con facturas impagadas."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
