@@ -7,8 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="ZTvvFBs0fJ6f864MWTU3BPQOJfKdC9Xa0PneA26E">
 
-
-    <title>Dividae</title>
+    <meta name="robots" content="index, follow" />
+    <title>Dividae - Testimonios</title>
+    <meta name="description" content="Conoce las opiniones de personas que ya han confiado en Dividae para reclamar sus facturas impagadas."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
