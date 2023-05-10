@@ -68,10 +68,11 @@
                                     <i class="fa fa-lg fa-fw fa-pen"></i>
                                 </button>
                             </a>
+                            <!--Eliminamos el boton de eliminar para evitar problemas con null en reclamaciones
                             <form id="delete-form-{{ $user->id }}" action="{{ url('/users/' . $user->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
                             <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">
                                 <i class="fa fa-lg fa-fw fa-trash"></i>
-                            </button>
+                            </button>-->
                         @endcan
                         <a href="{{ url('/users/' . $user->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
