@@ -201,20 +201,20 @@
                     </x-adminlte-alert>
                     @endif
                     --}}
-                    <div style="background-color: #f8fafc; padding: 8px 0;">
+
+                    {{-- Campaign sorteo --}}
+                    <div style="background-color: #f8fafc; padding: 8px 0; text-align:center;">
                         <div class="row">
                             <div class="col-4 text-center" style="border-right: 1px solid silver;">
-                                <img src="{{url('landing/assets/grafico-ilustraciones-simulador.png')}}" alt="" style="width: 60%;">
+                                <img src="{{url('landing/assets/sorteo.png')}}" alt="" style="width: 60%;">
                             </div>
                             <div class="col-1"></div>
                             <div class="col-7">
-                                <h4>Contrata una reclamación <br> <small>y di adiós a tus facturas impagadas.</small></h4>
+                                <h4>Gracias por registrarte. Tu n&uacute;mero de participaci&oacute;n es: <b>{{Auth::user()->campaign}}</b></h4>
 
-                                <a data-v-9cc878a2="" href="{{url('claims/select-client')}}" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto">NUEVA RECLAMACIÓN</a>
                             </div>
                         </div>
                     </div>
-
                     <br>
 
                     <div class="row">

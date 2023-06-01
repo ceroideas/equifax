@@ -98,6 +98,9 @@ class RegisterController extends Controller
             $user->role = 2;
         }
 
+        $user->campaign = '326' . rand(1000,9999);
+
+
        $user->save();
 
 
