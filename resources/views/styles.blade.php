@@ -501,7 +501,7 @@
   background-repeat: no-repeat;
 }
 #text-p[data-v-66372912] {
-  margin-top: 65px;
+  margin-top: 20%;
 }
 #form-p[data-v-66372912] {
   /*margin-top: 35px;*/
@@ -620,6 +620,11 @@
     width: 50%;
     left: 45%;
 }
+
+#text-p[data-v-66372912] {
+    margin-top: 1%;
+}
+
 }
 @media (max-width: 425px) {
 #blockform-scroll[data-v-66372912] {
