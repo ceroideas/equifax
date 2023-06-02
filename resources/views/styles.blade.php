@@ -376,7 +376,7 @@
   position: relative;*/
 }
 
-.blockRegistro .btn-registerHome[data-v-5fddf304] {
+.blockRegistro .btn-registerHome[data-v-5fddf304]  {
   margin-right: 10px;
   border-radius: 37.5px;
   background-color: #2c60aa;
@@ -535,14 +535,20 @@
     font-size: 35px;
 }
 }
-.blockRegistro .btn-registerHome[data-v-66372912] {
+.blockRegistro .btn-registerHome[data-v-66372912]{
   /* width: 196px;
   height: 48px; */
   margin: 56px 0 70px 0;
   border-radius: 37.5px;
   background-color: #2c60aa;
 }
-.blockRegistro .btn-registerHome .text-register-btn[data-v-66372912] {
+
+.btn-registerHome[data-v-66372912]{
+    margin: 5px 0 5px 0;
+  border-radius: 37.5px;
+  background-color: #2c60aa;
+}
+.blockRegistro .btn-registerHome .text-register-btn[data-v-66372912], .btn-registerHome .text-register-btn[data-v-66372912]{
   /* width: 96.8px;
   height: 19px;
   margin: 2px 27.2px 3px 0; */
@@ -556,7 +562,7 @@
   text-align: center;
   color: #fff;
 }
-.blockRegistro .btn-registerHome img.iconsarrow-right[data-v-66372912] {
+.blockRegistro .btn-registerHome img.iconsarrow-right[data-v-66372912], .btn-registerHome img.iconsarrow-right[data-v-66372912] {
   /* width: 24px;
   height: 24px; */
   margin: 0 0 0 27.2px;
