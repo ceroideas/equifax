@@ -203,19 +203,22 @@
                     --}}
 
                     {{-- Campaign sorteo --}}
-                    <div style="background-color: #f8fafc; padding: 8px 0; text-align:center;">
-                        <div class="row">
-                            <div class="col-4 text-center" style="border-right: 1px solid silver;">
-                                <img src="{{url('landing/assets/sorteo.png')}}" alt="" style="width: 60%;">
-                            </div>
-                            <div class="col-1"></div>
-                            <div class="col-7">
-                                <h4>Gracias por registrarte. Tu n&uacute;mero de participaci&oacute;n es: <b>{{Auth::user()->campaign}}</b></h4>
+                    @if(isset(Auth::user()->campaign))
+                        <div style="background-color: #f8fafc; padding: 8px 0; text-align:center;">
+                            <div class="row">
+                                <div class="col-4 text-center" style="border-right: 1px solid silver;">
+                                    <img src="{{url('landing/assets/sorteo.png')}}" alt="" style="width: 60%;">
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-7">
+                                    <h4>Gracias por registrarte. Tu n&uacute;mero de participaci&oacute;n es: <b>{{Auth::user()->campaign}}</b></h4>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
+                    @endif
+
+
 
                     <div class="row">
                         <div class="col-md-9 col-sm-12 col-xs-12">
