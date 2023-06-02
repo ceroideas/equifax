@@ -250,12 +250,34 @@
                                                 <img data-v-66372912=""
                                                     src="{{ url('landing') }}/assets/icons-arrow-right.png"
                                                     class="iconsarrow-right img-fluid"></span></a></div>
-                                </div>
-                            </div> {{-- fin colmna 1 --}}
 
+                                </div>
+                            </div>
 
                             <div data-v-66372912="" id="text-p" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                <img data-v-66372912="" src="{{ url('landing') }}/assets/main_sorteo.png" style="max-width: 500px;">
+                                 <!-- Modal -->
+                                <div class="modal fade" id="sorteoModal" tabindex="-1" role="dialog" aria-labelledby="sorteoModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img data-v-66372912="" src="{{ url('landing') }}/assets/main_sorteo.png" style="max-width:100%">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a data-v-66372912="" href="{{ url('register') }}" class="btn btn-registerHome">
+                                                    <span data-v-66372912="" class="text-register-btn">
+                                                        Regístrate
+                                                        <img data-v-66372912="" src="{{ url('landing') }}/assets/icons-arrow-right.png" class="iconsarrow-right img-fluid">
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             @include('followus')
@@ -749,6 +771,13 @@
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X7LBKM6LDD"></script>
+
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#sorteoModal').modal('show');
+        });
+    </script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
