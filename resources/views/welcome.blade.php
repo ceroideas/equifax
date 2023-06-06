@@ -772,11 +772,11 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X7LBKM6LDD"></script>
 
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         $(window).on('load', function() {
             $('#sorteoModal').modal('show');
         });
-    </script>
+    </script>-->
 
     <script>
         window.dataLayer = window.dataLayer || [];
