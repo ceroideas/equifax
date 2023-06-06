@@ -254,8 +254,8 @@
                                 </div>
                             </div>
 
-                            <div data-v-66372912="" id="text-p" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                 <!-- Modal -->
+                            <!-- Modal -->
+                            <!--<div data-v-66372912="" id="text-p" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                                 <div class="modal fade" id="sorteoModal" tabindex="-1" role="dialog" aria-labelledby="sorteoModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -278,7 +278,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
                             @include('followus')
 
