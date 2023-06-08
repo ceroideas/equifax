@@ -52,6 +52,11 @@
             {{ session('msj') }}
         </x-adminlte-alert>
     @endif
+    @if(session()->has('error'))
+        <x-adminlte-alert theme="danger" dismissable>
+            {{ session('error') }}
+        </x-adminlte-alert>
+    @endif
 
     @if(session()->has('claim_client'))
         <x-adminlte-alert theme="primary" dismissable>

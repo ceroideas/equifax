@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ThirdParty;
+use App\Models\Claim;
 use App\Rules\Iban;
 use App\Rules\CifNie;
 use Illuminate\Http\Request;
@@ -208,9 +209,14 @@ class ThirdPartiesController extends Controller
     public function destroy(ThirdParty $thirdParty)
     {
         if($thirdParty->dni_img != NULL){
-
             Storage::disk('public')->delete($thirdParty->dni_img);
+        }
 
+        $claim= Claim::where('third_parties_id', $thirdParty->id)
+                        ->first();
+
+        if($claim){
+            return redirect('/third-parties')->with(['error' => 'El tercero no se puede eliminar, tiene asociada una reclamación']);
         }
 
         $thirdParty->delete();
