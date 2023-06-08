@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Debtor;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Claim;
 
 class DebtorsController extends Controller
 {
@@ -144,7 +145,14 @@ class DebtorsController extends Controller
      */
     public function destroy(Debtor $debtor)
     {
+        $claim= Claim::where('debtor_id', $debtor->id)
+                    ->first();
+
+        if($claim){
+            return redirect('/debtors')->with('error', 'El deudor no se puede eliminar, tiene asociada una reclamación');
+        }
         $debtor->delete();
+
 
         return redirect('/debtors')->with('msj', 'Deudor eliminado correctamente');
     }

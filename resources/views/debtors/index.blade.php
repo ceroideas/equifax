@@ -50,6 +50,11 @@
             {{ session('msj') }}
         </x-adminlte-alert>
     @endif
+    @if(session()->has('error'))
+        <x-adminlte-alert theme="danger" dismissable>
+            {{ session('error') }}
+        </x-adminlte-alert>
+    @endif
     @if(!session()->has('claim_client') && !session()->has('claim_third_party'))
         <x-adminlte-alert theme="primary" dismissable>
         <span>Para utilizar un deudor, inicia un proceso de reclamación</span>
