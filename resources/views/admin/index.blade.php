@@ -202,7 +202,7 @@
                     @endif
                     --}}
 
-                    {{-- Campaign sorteo
+                    {{-- Campaign sorteo --}}
                     @if(isset(Auth::user()->campaign))
                         <div style="background-color: #f8fafc; padding: 8px 0; text-align:center;">
                             <div class="row">
@@ -216,7 +216,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif--}}
+                    @endif
                     <div style="background-color: #f8fafc; padding: 8px 0;">
                         <div class="row">
                             <div class="col-4 text-center" style="border-right: 1px solid silver;">

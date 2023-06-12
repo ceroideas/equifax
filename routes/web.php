@@ -58,6 +58,10 @@ Route::get('/contacto', function () {
     return view('contacto');
 });
 
+Route::get('/bases-sorteo', function () {
+    return view('bases-sorteo');
+});
+
 Auth::routes();
 
 Route::post('registerSocial', [RegisterController::class, 'registerSocial']);

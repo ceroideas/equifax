@@ -279,7 +279,7 @@
     </div>
 @stop
 
-@section('bg-auth',url('landing/images/HP/bg_register.png'))
+@section('bg-auth',url('landing/images/HP/bg_register_sorteo.png'))
 
 {{-- @section('auth_footer')
     <p class="my-0">

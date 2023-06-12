@@ -118,6 +118,9 @@
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="javascript:;"
                             data-target="#cookies" data-toggle="modal"
                             class="nav-link p-0 footer-text">Política de cookies</a></li>
+                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8=""
+                                href="{{ url('/') }}/bases-sorteo" aria-current="page"
+                                class="nav-link p-0 footer-text router-link-exact-active router-link-active">Bases del sorteo</a></li>
                 </ul>
             </div>
 
