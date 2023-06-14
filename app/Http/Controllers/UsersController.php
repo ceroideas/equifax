@@ -232,7 +232,7 @@ class UsersController extends Controller
             }
             $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');
             $user->update(['dni_img' => $path]);
-            $user->pending();
+            $user->approval();
         }
 
         if($request->file('representative_dni_img')){
@@ -241,7 +241,7 @@ class UsersController extends Controller
             }
             $path = $request->file('representative_dni_img')->store('uploads/users/' . $user->id . '/representative_dni_img', 'public');
             $user->update(['representative_dni_img' => $path]);
-            $user->pending();
+            $user->approval();
         }
 
         if($request->file('apud_acta')){
@@ -250,7 +250,7 @@ class UsersController extends Controller
             }
             $path = $request->file('apud_acta')->store('uploads/users/' . $user->id . '/apud_acta', 'public');
             $user->update(['apud_acta' => $path]);
-            $user->pending();
+            $user->approval();
         }
 
         if(Auth::user()->can('create', 'user')){

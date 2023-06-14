@@ -22,6 +22,11 @@ class ClaimsExport implements FromView
                 if (Auth::user()->isGestor()) {
                     $q->where('gestor_id',Auth::id());
                 }
+
+                if (Auth::user()->isClient()) {
+                    $q->where('owner_id',Auth::id());
+                }
+
             })->get();
             $type = 0;
 
