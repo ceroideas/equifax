@@ -158,7 +158,7 @@
 
                                     {{-- <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button> --}}
                                     <button data-dismiss="modal" id="accept-terms" class="btn btn-flat btn-success create-claim">Aceptar las condiciones</button>
-                                    <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+                                    <button data-dismiss="modal" class="btn btn-flat btn-danger">Cancelar</button>
                                 </div>
                             </div>
                             {{-- <div class="modal-footer"></div> --}}

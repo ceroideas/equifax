@@ -28,6 +28,7 @@
    <x-adminlte-alert theme="success" dismissable>
        <span> {{ session('msj') }}</span>
    </x-adminlte-alert>
+
    @endif
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
     <form action="{{url('claims/check_debtor')}}" method="POST">

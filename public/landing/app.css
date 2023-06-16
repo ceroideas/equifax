@@ -15503,8 +15503,10 @@ input[type=button].btn-block {
   margin-bottom: 0;
 }
 
-.card-text:last-child {
-  margin-bottom: 0;
+.card-text {
+
+  color: #285ba3;
+  text-align: center;
 }
 
 .card-link:hover {

@@ -161,7 +161,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <nobr>
-                    <a href="{{ route('user.edit', $user) }}" class="btn btn-default btn-block my-4"><b>Completar Perfil</b></a>
+                    <a href="{{ route('user.edit', $user) }}" class="btn btn-default btn-block my-4">
+                        @if($user->dni && $user->phone && $user->cop && $user->address && $user->location)
+                            <b>Modificar perfil</b>
+                        @else
+                            <b>Completar perfil</b>
+                        @endif
+                    </a>
+
                 </nobr>
             </div>
          </div>
