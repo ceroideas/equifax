@@ -90,16 +90,16 @@ class ClaimsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         return view('claims.create');
     }
 
-    public function stepOne()
-    {
+    public function stepOne(){
+
+        /*  TODO: Delete after 16/06/2023
         if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
 
-            /* Borrar archivos temporales del usuario */
+
             $rutatemp = 'public/temporal/debts/'.Auth::user()->id;
             $ficheros = Storage::AllFiles($rutatemp);
 
@@ -122,12 +122,47 @@ class ClaimsController extends Controller
 
             return view('claims.create_step_1');
         }
-        return redirect('users/'.Auth::id())->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');
+        return redirect('users/'.Auth::id())->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');*/
+
+        return view('claims.create_step_1');
 
     }
 
-    public function stepTwo()
-    {
+    public function selectType(){
+
+        if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
+
+            /* Borrar archivos temporales del usuario */
+            $rutatemp = 'public/temporal/debts/'.Auth::user()->id;
+            $ficheros = Storage::AllFiles($rutatemp);
+
+            if($ficheros){
+                Storage::deleteDirectory($rutatemp);
+            }
+
+            session()->forget('other_user');
+            session()->forget('claim_client');
+            session()->forget('claim_third_party');
+            session()->forget('claim_debtor');
+            session()->forget('claim_debt');
+            session()->forget('debt_step_one');
+            session()->forget('debt_step_two');
+            session()->forget('debt_step_three');
+            session()->forget('claim_agreement');
+            session()->forget('type_other');
+            session()->forget('documentos');
+            session()->forget('type_claim');
+
+
+            //return view('claims.create_step_1');
+            return view('claims.select_type');
+        }
+        return redirect('users/'.Auth::id())->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');
+
+
+    }
+
+    public function stepTwo(){
 
         return redirect('debtors');
 
@@ -198,6 +233,7 @@ class ClaimsController extends Controller
     public function store(Request $request)
     {
         $claim = new Claim();
+        $tasa = 0;
 
         if (Auth::user()->isGestor()) {
             $claim->gestor_id = Auth::id();
@@ -244,22 +280,64 @@ class ClaimsController extends Controller
             }else{
 
                 $claim->status = 7;
-                $claim->claim_type = 2;
+                if(session('type_claim')==1){
+                    $claim->claim_type = 1;
+                    /*if (Auth::user()->isGestor()) {
+                        $claim->status = 10;
+                    }*/
+                }else{
+                    $claim->claim_type = 2;
+                    if (Auth::user()->isGestor()) {
+                        $claim->status = 8;
+                    }
+
+                }
+
             }
         }
 
 
-        if (Auth::user()->isGestor()) {
-            $claim->status = 8;
-        }
+
 
 
         /************* Inicio creacion de documento (Order / Invoice ) ***************/
-        if(Auth::user()->isGestor()){
-            addDocument('order', $claim->id, 'EXT-001',0);
-        }else{
-            addDocument('invoice',$claim->id, 'EXT-001',0);
-        }
+        //if(Auth::user()->isGestor()){
+        //    addDocument('order', $claim->id, 'EXT-001',0);
+        //}else{
+
+            if(session('type_claim')==1){
+
+                if ($claim->third_parties_id) {
+                    if ($claim->representant->type == 1) {
+                        if ($claim->debt->pending_amount > 2000) {
+                            $tasa = 1;
+                        }
+                    }
+                }else{
+                    if ($claim->client->type == 1) {
+                        if ($claim->debt->pending_amount > 2000) {
+                            $tasa = 1;
+                        }
+                    }
+                }
+
+                //addDocument('invoice',$claim->id, 'JUD-001',$tasa);
+                // La actuacion añade la factura
+                actuationActions("30038",$claim->id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Solicitud directa de reclamación Judicial");
+            }else{
+
+                // add order
+                if(Auth::user()->isGestor()){
+                    addDocument('order', $claim->id, 'EXT-001',$tasa);
+                }else{
+                    addDocument('invoice',$claim->id, 'EXT-001',$tasa);
+                }
+
+
+            }
+        //}
+
+
         /*********** Fin generacion de factura *****************/
 
         $debt->save();
@@ -293,6 +371,7 @@ class ClaimsController extends Controller
         $request->session()->forget('claim_agreement');
         $request->session()->forget('type_other');
         $request->session()->forget('documentos');
+        $request->session()->forget('type_claim');
 
         if (Auth::user()->isGestor()) {
             actuationActions("-1",$claim->id);
@@ -311,7 +390,6 @@ class ClaimsController extends Controller
      */
     public function show(Claim $claim)
     {
-        // Control de autenticacion y pertenencia a reclamación
         if(Auth::user() <> null){
             if($claim->owner_id == Auth::user()->id || Auth::user()->isSuperAdmin()){
                 $dias = Carbon::now()->diffInDays(Carbon::parse($claim->created_at));
@@ -452,6 +530,14 @@ class ClaimsController extends Controller
      */
     public function destroy(Claim $claim)
     {
+
+    }
+
+
+    public function saveTypeClaim(Request $request){
+        $request->session()->put('type_claim', $request->id);
+
+    return redirect('/claims/select-client')->with('msj', 'Se ha seleccionado el tipo de reclamación ');
 
     }
 
@@ -640,7 +726,9 @@ class ClaimsController extends Controller
 
     public function actuations($id)
     {
-        $actuations = Actuation::where('claim_id',$id)->get();
+        $actuations = Actuation::where('claim_id',$id)
+            ->orderBy('id', 'desc')
+            ->get();
         $claim = Claim::find($id);
         return view('claims.actuations', compact('actuations','claim'));
     }
@@ -849,7 +937,7 @@ class ClaimsController extends Controller
                 $claim->representant->pending();
             }
 
-            if ($claim->last_invoice && !$claim->gestor_id) {
+            if ($claim->last_invoice && !$claim->gestor_id) {  // last_invoice = factura pendiente de pago
                 $claim->status = 7;
 
                 $actuation = Actuation::where('claim_id',$claim->id)->where('subject',"30017")->first();
@@ -868,8 +956,18 @@ class ClaimsController extends Controller
                 $actuation->save();
 
             }else{
+
                 $claim->status = 10;
-                actuationActions("30035",$claim->id);
+                $actuation = new Actuation;
+                $actuation->claim_id = $claim->id;
+                $actuation->subject = "30035";
+                $actuation->amount = null;
+                $actuation->description = "Continua con reclamación judicial";
+                $actuation->actuation_date = Carbon::now()->format('Y-m-d H:i:s');
+                $actuation->type = null;
+                $actuation->mailable = null;
+                $actuation->save();
+                //actuationActions("30035",$claim->id);
             }
             $claim->save();
             $claim->owner->save();

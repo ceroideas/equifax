@@ -64,8 +64,8 @@
 
         				<div class="col-sm-12">
 
-        					<h6><b style="color: #333">@if (Auth::user()->isSuperAdmin()){{$act->getRawOriginal('subject')}} - @endif
-                                {{$act->subject}}</b> ( {!! date('d/m/Y', strtotime($act->actuation_date)) !!} )</h6>
+        					<h6>{!! date('d/m/Y', strtotime($act->actuation_date)) !!} - <b style="color: #333">@if (Auth::user()->isSuperAdmin()){{$act->getRawOriginal('subject')}} - @endif
+                                {{$act->subject}}</b></h6>
 
         					<p style="margin: 0">{{$act->description}}</p>
         					@if ($act->amount)

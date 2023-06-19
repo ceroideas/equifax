@@ -80,6 +80,7 @@ class PaymentsController extends Controller
                         actuationActions("30018",$c->id);
                     }else{
                         actuationActions("30017",$c->id);
+                        return redirect('claims/'.$c->id)->with('msj_apud', 'Hemos detectado que te falta el Apud Acta, para poder continuar');
                     }
                 }else{
                     actuationActions("-1",$c->id);
@@ -208,6 +209,7 @@ class PaymentsController extends Controller
                         actuationActions("30018",$c->id);
                     }else{
                         actuationActions("30017",$c->id);
+                        return redirect('claims/'.$c->id)->with('msj_apud', 'Hemos detectado que te falta el Apud Acta, para poder continuar');
                     }
                 }else{
                     actuationActions("-1",$c->id);

@@ -25,6 +25,11 @@
             {{ session('msj') }}
         </x-adminlte-alert>
     @endif
+    @if(session()->has('msj_apud'))
+        <x-adminlte-alert theme="warning" dismissable>
+            {{ session('msj_apud') }}
+        </x-adminlte-alert>
+    @endif
 
     @if(!$claim->isViable())
         <x-adminlte-modal id="modalMin" title="Informe de Inviabilidad" theme="primary" size="lg" v-centered="true">

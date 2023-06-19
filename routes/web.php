@@ -95,12 +95,14 @@ Route::group([
     Route::get('/', [ClaimsController::class, 'index']);
     Route::get('/invalid-debtor', [ClaimsController::class, 'invalidDebtor']);
     Route::get('/create', [ClaimsController::class, 'create']);
+    Route::get('/select-type', [ClaimsController::class, 'selectType']);
     Route::get('/select-client', [ClaimsController::class, 'stepOne']);
     Route::get('/select-debtor', [ClaimsController::class, 'stepTwo']);
     Route::get('/create-debt', [ClaimsController::class, 'stepThree']);
     Route::get('/check-debtor', [ClaimsController::class, 'stepFour']);
     Route::get('/check-agreement', [ClaimsController::class, 'stepFive']);
     Route::get('/accept-terms', [ClaimsController::class, 'stepSix']);
+    Route::get('/save-type-claim/{id?}', [ClaimsController::class, 'saveTypeClaim']);
     Route::get('/save-option-one', [ClaimsController::class, 'saveOptionOne']);
     Route::get('/save-option-two/{id}', [ClaimsController::class, 'saveOptionTwo']);
     Route::get('/save-debtor/{id}', [ClaimsController::class, 'saveDebtor']);

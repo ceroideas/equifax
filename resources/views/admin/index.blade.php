@@ -204,19 +204,34 @@
 
                         {{-- Campaign sorteo --}}
                         @if(isset(Auth::user()->campaign))
-                            <div style="background-color: #f8fafc; padding: 8px 0; text-align:center;">
-                                <div class="row">
-                                    <div class="col-4 text-center" style="border-right: 1px solid silver;">
-                                        <img src="{{url('landing/assets/sorteo.png')}}" alt="" style="width: 60%;">
-                                    </div>
-                                    <div class="col-1"></div>
-                                    <div class="col-7">
-                                        <h4>Gracias por registrarte. Tu n&uacute;mero de participaci&oacute;n es: <b>{{Auth::user()->campaign}}</b></h4>
-
+                            @if(Auth::user()->id ==71)
+                                <div style="background-color: #f8fafc; padding: 8px 0; text-align:center;">
+                                    <div class="row">
+                                        <div class="col-4 text-center" style="border-right: 1px solid silver;">
+                                            <img src="{{url('landing/assets/sorteo.png')}}" alt="" style="width: 60%;">
+                                        </div>
+                                        <div class="col-1"></div>
+                                        <div class="col-7 text-justify">
+                                            <h4><b>¡Enhorabuena!</b><small> <span style="font-weight:600;">Has sido el ganador de una de las camisetas firmadas por todos los jugadores de la S.D.Tarazona.
+                                                En breve nos pondremos en contacto contigo</span></small></h4>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @else
+                                <div style="background-color: #f8fafc; padding: 8px 0; text-align:center;">
+                                    <div class="row">
+                                        <div class="col-4 text-center" style="border-right: 1px solid silver;">
+                                            <img src="{{url('landing/assets/sorteo.png')}}" alt="" style="width: 60%;">
+                                        </div>
+                                        <div class="col-1"></div>
+                                        <div class="col-7 text-justify">
+                                            <h4><small><span style="font-weight:600;">Lo sentimos, no has sido premiado, muchas gracias por participar</span></small></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         @endif
+
                         <div style="background-color: #f8fafc; padding: 8px 0;">
                             <div class="row">
                                 <div class="col-4 text-center" style="border-right: 1px solid silver;">

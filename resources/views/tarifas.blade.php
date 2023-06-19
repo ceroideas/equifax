@@ -159,66 +159,6 @@
 
                 <div data-v-c7d18d50="" data-v-effc9f78="" class="block-About">
 
-                    {{--<nav data-v-5fddf304="" data-v-c7d18d50="" class="navbar navbar-expand-lg navbar-dark"
-                        data-v-effc9f78="">
-                        <div data-v-5fddf304="" class="container"><a data-v-5fddf304="" href="{{ url('/') }}"
-                                class="navbar-brand router-link-active">
-                                <div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304=""
-                                        src="{{ url('landing') }}/assets/grafico-logo-negativo.png"
-                                        class="graficologonegativo"></div>
-                            </a> <a data-v-5fddf304="" href="{{ url('/') }}"
-                                class="navbar-brand router-link-active" style="display: none;">
-                                <div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304=""
-                                        src="{{ url('landing') }}/assets/grafico-logo-positivo.png"
-                                        class="graficologonegativo"></div>
-                            </a> <button data-v-5fddf304="" type="button" data-toggle="collapse"
-                                data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-                                aria-label="Toggle navigation" class="navbar-toggler"><span data-v-5fddf304=""
-                                    class="navbar-toggler-icon"></span></button>
-                            <div data-v-5fddf304="" id="navbarCollapse" class="navbar-collapse" style="display: none;">
-                                <ul data-v-5fddf304="" class="navbar-nav">
-                                    <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
-                                            href="{{ url('/') }}/testimonios" class="nav-link"><span
-                                                data-v-5fddf304="" class="Type-something">
-                                                Testimonios
-                                            </span></a>
-                                        <div data-v-5fddf304="" class=""></div>
-                                    </li>
-                                    <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
-                                            href="{{ url('/') }}/quienes-somos" aria-current="page"
-                                            class="nav-link router-link-exact-active router-link-active"><span
-                                                data-v-5fddf304="" class="Type-something">
-                                                ¿Quiénes somos?
-                                            </span></a>
-                                        <div data-v-5fddf304="" class=""></div>
-                                    </li>
-                                    <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
-                                            href="{{ url('/') }}/preguntas" class="nav-link"><span
-                                                data-v-5fddf304="" class="Type-something">
-                                                ¿Tienes dudas?
-                                            </span></a>
-                                        <div data-v-5fddf304="" class=""></div>
-                                    </li>
-                                    <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
-                                            href="{{ url('tarifas') }}" class="nav-link"><span data-v-5fddf304=""
-                                                class="Type-something">
-                                                Tarifas
-                                            </span></a>
-                                        <div data-v-5fddf304="" class="punto-active"></div>
-                                    </li>
-                                    <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
-                                            href="{{ url('/') }}/contacto" class="nav-link"><span
-                                                data-v-5fddf304="" class="Type-something">
-                                                Contacto
-                                            </span></a>
-                                        <div data-v-5fddf304="" class=""></div>
-                                    </li>
-                                </ul>
-                                @include('front.loginButtons')
-                                <!---->
-                            </div>
-                        </div>
-                    </nav>--}}
                     @include('front.navbar')
 
 
@@ -238,137 +178,80 @@
                     </div> @include('followus')
                 </div>
 
-                <div class="container text-center bottom-text">
-                    <br>
-
-                    <p style="color:#285ba3; text-align: center;"><b>Dividae</b> cuenta con tarifas fijas. Nuestro
+                <div class="container text-center bottom-text pt-4">
+                    <p><b>Dividae</b> cuenta con tarifas fijas. Nuestro
                         mayor objetivo es que no pagues nada que no sepas, ser <b>100% transparentes</b> y que tú estés
                         <b>100% tranquilo</b> durante todo el proceso. </p>
 
-                    <p style="color:#285ba3; text-align: center;">Te explicamos paso a paso las fases de la reclamación
+                    <p>Te explicamos paso a paso las fases de la reclamación
                         y sus tarifas.</p>
                 </div>
-
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
                         <div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div>
+
                         <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
-
-                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
-
-                            </div>
-
-                            <div data-v-9cc878a2=""
-                                class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
-
-                                {{-- <div data-v-9cc878a2="" class="op-frecuente">Opción más frecuente</div> --}}
-
+                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12"></div>
+                            <!-- Card 1 -->
+                            <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
                                 <div data-v-9cc878a2="" class="card mb-4 rounded-3">
-                                    <div data-v-9cc878a2="" class="py-3">
-
+                                    <div data-v-9cc878a2="" class="pt-5">
                                         <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                            <br>
                                             <small>Reclamación extrajudicial</small>
                                         </span>
-
                                     </div>
-                                    <div data-v-9cc878a2="" class="card-body">
-
+                                    <div data-v-9cc878a2="" >
                                         <ul data-v-9cc878a2="" class="list-unstyled mt-3 mb-4">
-
                                             <li data-v-9cc878a2="">
-                                                <p data-v-9cc878a2="" class="card-text">
-
-                                                    {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
-                                                <p style="color:#285ba3; text-align: center;">
+                                                <div class="card-text pt-4">
                                                     Comienza con tu reclamacion por vía extrajudicial
-                                                </p>
+                                                </div>
                                             </li>
-
                                         </ul>
                                     </div>
-
-                                    <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                        <small>Por solo</small> 19,90 €
+                                    <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
+                                        <small>Por solo</small> 19,90€
                                     </span>
-
-                                    <br>
-
-                                    <div class="row">
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-8">
-                                            <br><a data-v-9cc878a2="" href="#tbltarifas" aria-current="page"
-                                                class="btn btn-light-descubre" type="button">Descubrir más</a><br>
-                                        </div>
+                                    <div class="col-12 pb-3 pt-3">
+                                        <a data-v-9cc878a2="" href="#tbltarifas" aria-current="page"
+                                            class="btn btn-light-descubre" type="button"> Descubrir más</a>
                                     </div>
-
-                                    <br>
-
                                 </div>
                             </div>
-
-                            <div data-v-9cc878a2=""
-                                class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
-
-                                {{-- <div data-v-9cc878a2="" class="op-frecuente">Opción más frecuente</div> --}}
-
+                            <!-- Card 2 -->
+                            <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
                                 <div data-v-9cc878a2="" class="card mb-4 rounded-3">
-                                    <div data-v-9cc878a2="" class="py-3">
-
+                                    <div data-v-9cc878a2="" class="pt-5">
                                         <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                            <br>
                                             <small>Reclamación judicial</small>
                                         </span>
-
                                     </div>
-                                    <div data-v-9cc878a2="" class="card-body">
-
+                                    <div data-v-9cc878a2="">
                                         <ul data-v-9cc878a2="" class="list-unstyled mt-3 mb-4">
-
                                             <li data-v-9cc878a2="">
-                                                <p data-v-9cc878a2="" class="card-text">
-
-                                                    {{-- <img data-v-9cc878a2="" src="{{url('landing')}}/assets/icons-check-circle.png" class="iconscheck-circle"> --}}
-                                                <p style="color:#285ba3; text-align: center;">
+                                                <div class="card-text pt-4">
                                                     Comienza con tu reclamación por vía judicial
-                                                </p>
+                                                </div>
                                             </li>
-
                                         </ul>
                                     </div>
-
-                                    <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                        <small>Por solo</small> 69,90 €
+                                    <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
+                                        <small>Desde</small> 69,90€
                                     </span>
-
-                                    <br>
-
-                                    <div class="row">
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-8">
-                                            <br><a data-v-9cc878a2="" href="#tbltarifas" aria-current="page"
-                                                class="btn btn-light-descubre" type="button">Descubrir más</a><br>
-                                        </div>
+                                    <div class="col-12 pb-3 pt-3">
+                                        <a data-v-9cc878a2="" href="#tbltarifas" aria-current="page"
+                                            class="btn btn-light-descubre" type="button"> Descubrir más</a>
                                     </div>
-
-                                    <br>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
 
-
                 <div data-v-c7d18d50="" data-v-effc9f78="" class="block-nosotros">
                     <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros container">
                         <div data-v-c7d18d50="" data-v-effc9f78="" class="row">
-
-                            {{-- <div data-v-c7d18d50="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-
-                          <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-title">Explicación Gráfica</div></div> --}}
                             <div data-v-c7d18d50="" data-v-effc9f78=""
                                 class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros-text">
@@ -404,26 +287,16 @@
                                 </p>
                             </div>
 
-
-
-
                         </div>
                     </div>
                 </div>
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78=""
                     style="width: 98%;">
-
-
                     <div class="row">
-
                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
-
                         </div>
-
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
-
-
                             <table id="tbltarifas" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
