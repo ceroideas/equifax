@@ -204,7 +204,7 @@
 
                         {{-- Campaign sorteo --}}
                         @if(isset(Auth::user()->campaign))
-                            @if(Auth::user()->id ==71)
+                            @if(Auth::user()->id ==153 || Auth::user()->id ==161 || Auth::user()->id ==172 || Auth::user()->id ==217 || Auth::user()->id ==232)
                                 <div style="background-color: #f8fafc; padding: 8px 0; text-align:center;">
                                     <div class="row">
                                         <div class="col-4 text-center" style="border-right: 1px solid silver;">
