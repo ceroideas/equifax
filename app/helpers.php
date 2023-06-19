@@ -261,7 +261,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
 		        if (Auth::user()->isGestor()) {
 		        	actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
-
+                    // add 30018 completada fase de pago con exito
 		        	return actuationActions("30018",$claim_id);
 		        }else{
 

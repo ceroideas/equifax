@@ -282,23 +282,28 @@ class ClaimsController extends Controller
                 $claim->status = 7;
                 if(session('type_claim')==1){
                     $claim->claim_type = 1;
+                    /*if (Auth::user()->isGestor()) {
+                        $claim->status = 10;
+                    }*/
                 }else{
                     $claim->claim_type = 2;
+                    if (Auth::user()->isGestor()) {
+                        $claim->status = 8;
+                    }
+
                 }
 
             }
         }
 
 
-        if (Auth::user()->isGestor()) {
-            $claim->status = 8;
-        }
+
 
 
         /************* Inicio creacion de documento (Order / Invoice ) ***************/
-        if(Auth::user()->isGestor()){
-            addDocument('order', $claim->id, 'EXT-001',0);
-        }else{
+        //if(Auth::user()->isGestor()){
+        //    addDocument('order', $claim->id, 'EXT-001',0);
+        //}else{
 
             if(session('type_claim')==1){
 
@@ -320,11 +325,19 @@ class ClaimsController extends Controller
                 // La actuacion añade la factura
                 actuationActions("30038",$claim->id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Solicitud directa de reclamación Judicial");
             }else{
-                addDocument('invoice',$claim->id, 'EXT-001',$tasa);
+
+                // add order
+                if(Auth::user()->isGestor()){
+                    addDocument('order', $claim->id, 'EXT-001',$tasa);
+                }else{
+                    addDocument('invoice',$claim->id, 'EXT-001',$tasa);
+                }
+
+
             }
+        //}
 
 
-        }
         /*********** Fin generacion de factura *****************/
 
         $debt->save();
