@@ -327,7 +327,12 @@ class ClaimsController extends Controller
 
                 //addDocument('invoice',$claim->id, 'JUD-001',$tasa);
                 // La actuacion añade la factura
+                if(Auth::user()->isGestor()){
+
+                    actuationActions("30018",$claim->id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Pedido completado con exito");
+                }
                 actuationActions("30038",$claim->id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Solicitud directa de reclamación Judicial");
+
             }else{
 
                 $claim->claim_type = 2;
@@ -978,7 +983,6 @@ class ClaimsController extends Controller
                 $actuation->save();
 
             }else{
-
                 $claim->status = 10;
                 $actuation = new Actuation;
                 $actuation->claim_id = $claim->id;

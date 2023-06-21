@@ -76,10 +76,10 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
             }
 			if ($h['id'] != "-1") {
                 /* Si hay redireccion, debemos grabar la propia actuacion si es 30038 */
-                if($h['ref_id']=="30038"|| $h['ref_id']=="30033" || $h['ref_id']=="30018"
-                || $h['ref_id']=="30039" || $h['ref_id']=="30040" || $h['ref_id']=="30041"
-                || $h['ref_id']=="30042"|| $h['ref_id']=="30043" || $h['ref_id']=="30044"
-                || $h['ref_id']=="30045" || $h['ref_id']=="30046" || $h['ref_id']=="30047"){
+                if($h['ref_id']=="30018" || $h['ref_id']=="30033" || $h['ref_id']=="30038" ||
+                   $h['ref_id']=="30039" || $h['ref_id']=="30040" || $h['ref_id']=="30041" ||
+                   $h['ref_id']=="30042" || $h['ref_id']=="30043" || $h['ref_id']=="30044" ||
+                   $h['ref_id']=="30045" || $h['ref_id']=="30046" || $h['ref_id']=="30047"){
                     $act = new Actuation;
                     $act->claim_id = $claim_id;
                     $act->subject = $h['ref_id'];
@@ -260,9 +260,12 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                 /*********** Fin generacion de documento *****************/
 
 		        if (Auth::user()->isGestor()) {
-		        	actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
-                    // add 30018 completada fase de pago con exito
-		        	return actuationActions("30018",$claim_id);
+
+                    /*
+                    Quitamos la actuacion y la dejamos en claimsController
+                    */
+
+		        	//return actuationActions("30018",$claim_id);
 		        }else{
 
 					if ($claim->owner->apud_acta) {
@@ -281,7 +284,8 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 			// comprobar si la redirección es al inicio del proceso de cobros (generacion de cobro)
 
 			if ($h['redirect_to'] === "30018") {
-				return actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
+				// Comprobar si en gestorias lo hace bien  en clientes no hace falta
+                //return actuationActions($h['redirect_to'],$claim_id,$amount,$date,$observations);
 			}
 
 			// comprobar si el cliente acepta el acuerdo
