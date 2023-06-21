@@ -260,7 +260,7 @@ class UsersController extends Controller
         if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
             return redirect('panel')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
         }else{
-            return redirect('claims/select-client')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
+            return redirect('claims/select-type')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
         }
     }
 

@@ -19,7 +19,7 @@
 
         <div class="row mb-4">
             <div class="col float-center">
-                <h1>¿Qué tipo de Persona eres?@if(isset($user)){{$user->type}}@endif</h1>
+                <h1>¿Qué tipo de Persona eres?</h1>
                 <div class="row">
                     <div class="col-sm-2">
                         <x-adminlte-input name="type" type="radio" igroup-size="xs" value="1" >

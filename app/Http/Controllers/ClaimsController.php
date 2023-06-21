@@ -277,14 +277,16 @@ class ClaimsController extends Controller
 
             if (session('type_other')) {
                 $claim->status = 0;
-            }else{
+            }
+            /*  TODO: delete after 20/06
+            else{
 
                 $claim->status = 7;
                 if(session('type_claim')==1){
                     $claim->claim_type = 1;
-                    /*if (Auth::user()->isGestor()) {
-                        $claim->status = 10;
-                    }*/
+                    //if (Auth::user()->isGestor()) {
+                    //    $claim->status = 10;
+                    //}
                 }else{
                     $claim->claim_type = 2;
                     if (Auth::user()->isGestor()) {
@@ -293,7 +295,7 @@ class ClaimsController extends Controller
 
                 }
 
-            }
+            }*/
         }
 
 
@@ -306,7 +308,9 @@ class ClaimsController extends Controller
         //}else{
 
             if(session('type_claim')==1){
+                $claim->claim_type = 1;
 
+                /* Gestion de tasas */
                 if ($claim->third_parties_id) {
                     if ($claim->representant->type == 1) {
                         if ($claim->debt->pending_amount > 2000) {
@@ -326,10 +330,13 @@ class ClaimsController extends Controller
                 actuationActions("30038",$claim->id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Solicitud directa de reclamación Judicial");
             }else{
 
+                $claim->claim_type = 2;
                 // add order
                 if(Auth::user()->isGestor()){
+                    $claim->status = 8;
                     addDocument('order', $claim->id, 'EXT-001',$tasa);
                 }else{
+                    $claim->status = 7;
                     addDocument('invoice',$claim->id, 'EXT-001',$tasa);
                 }
 
@@ -374,12 +381,27 @@ class ClaimsController extends Controller
         $request->session()->forget('type_claim');
 
         if (Auth::user()->isGestor()) {
-            actuationActions("-1",$claim->id);
 
-            return redirect('claims')->with('msj', 'Tu reclamación ha sido creada exitosamente.');
+            if(session('type_claim')==2){
+                actuationActions("-1",$claim->id);
+            }
+
+            if($claim->user_id){
+                if(!isset($claim->client->apud_acta)){
+                    return redirect('claims/'.$claim->id)->with('msj_apud', 'Hemos detectado que te falta el Apud Acta, para poder continuar');
+                }else{
+                    return redirect('claims')->with('msj', 'Tu reclamación ha sido creada exitosamente.');
+                }
+            }else{
+                if(!isset($claim->representant->apud_acta)){
+                    return redirect('claims/'.$claim->id)->with('msj_apud', 'Hemos detectado que te falta el Apud Acta del representante, para poder continuar');
+                }else{
+                    return redirect('claims')->with('msj', 'Tu reclamación ha sido creada exitosamente.');
+                }
+            }
         }
 
-            return redirect('/claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
+            return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
     }
 
     /**
