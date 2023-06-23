@@ -363,6 +363,16 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     }
                 } // Fin envio email
 
+                /*add actuation simple */
+                $a = new Actuation;
+		        $a->claim_id = $claim_id;
+		        $a->subject = $id_hito;
+                $a->description = $h['name'];
+		        $a->actuation_date = $date ? $date : Carbon::now()->format('Y-m-d H:i:s');
+		        $a->type = null;
+		        $a->mailable = null;
+    	        $a->save();
+
             } // fin actuacion simple no redirecciona
 	}
 }

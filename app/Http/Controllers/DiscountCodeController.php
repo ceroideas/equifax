@@ -19,9 +19,9 @@ class DiscountCodeController extends Controller
         return $msg;
     }
 
-    public function enviarNotificacion(){
+    /*public function sendNotification(){
 
-        $esquema = User::find(3);
+        $esquema = User::find(3); // usuario superadmin
 
         $notificacion = [
             'titulo' => 'Se agrego una nueva notificacion',
@@ -32,5 +32,5 @@ class DiscountCodeController extends Controller
 
         dd('Save notification');
 
-    }
+    }*/
 }

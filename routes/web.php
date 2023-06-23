@@ -15,6 +15,7 @@ use App\Http\Controllers\ActuationsController;
 use App\Http\Controllers\CollectsController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DiscountCodeController;
+use App\Http\Controllers\NotificationsController;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -299,4 +300,14 @@ Route::group([
 
 Route::post('ckeckdiscountcode', [DiscountCodeController::class, 'check']);
 
-Route::get('/notificar', [DiscountCodeController::class, 'enviarNotificacion']);
+Route::group([
+    'prefix' => 'notifications',
+    'middleware'  => 'auth',
+], function(){
+    Route::get('/', [NotificationsController::class, 'index']);
+    Route::get('/setnotification', [NotificationsController::class, 'setNotification']);
+    Route::get('/{id}', [NotificationsController::class, 'show']);
+    Route::get('/read/{id}', [NotificationsController::class, 'read']);
+    Route::get('/unread/{id}', [NotificationsController::class, 'unread']);
+});
+
