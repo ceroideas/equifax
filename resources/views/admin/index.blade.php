@@ -136,11 +136,12 @@
 
         <!--<a class="nav-link" data-widget="control-sidebar" href="#">Open/close right Sidebar</a>-->
 
-        <!-- Right Sidebar -->
+        <!-- Right Sidebar Notifications example -->
+        <!--
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
-                  <!--<i class="far fa-bell"></i>-->
+
                   <span class="badge badge-warning navbar-badge"><i class="far fa-bell"></i>14</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -164,7 +165,7 @@
                   <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
             </li>
-        </ul>
+        </ul>-->
 
     @endif
 
