@@ -43,11 +43,6 @@ use App\Imports\CollectsKmaleonImport;
 
 use Illuminate\Support\Facades\DB;
 
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\NotifyUpdate;
-
-
-
 
 class ClaimsController extends Controller
 {
@@ -389,6 +384,8 @@ class ClaimsController extends Controller
         $request->session()->forget('type_other');
         $request->session()->forget('documentos');
         $request->session()->forget('type_claim');
+
+        addNotification('Nueva reclamación', 'Nueva reclamación registrada en Dividae', $claim->id);
 
         if (Auth::user()->isGestor()) {
 
@@ -895,14 +892,7 @@ class ClaimsController extends Controller
                 }
             }
 
-            /* Notificacion */
-            $user = User::find(3);
-            $notificacion = [
-                'titulo' => 'Mensaje recibido de cliente',
-                'contenido' => $r->description,
-                'reclamacion'=>$id
-            ];
-            Notification::send($user, new NotifyUpdate($notificacion));
+            addNotification('Mensaje recibido de cliente', $r->description, $id);
 
             return redirect('claims/'.$id)->with('msj','Se ha añadido la actuación');
 
@@ -1010,6 +1000,9 @@ class ClaimsController extends Controller
             }
             $claim->save();
             $claim->owner->save();
+
+            addNotification('Apud acta subido','Se ha subido el Apud Acta correctamente',$claim->id );
+
             return back()->with('msj', 'Se ha subido el archivo!');
         }else{
             return back()->with('msj', 'No se ha podido subir el archivo!');
@@ -1310,6 +1303,8 @@ class ClaimsController extends Controller
                     actuationActions("30038",$claim_id, 0, Carbon::now()->format('Y-m-d H:i:s'), "Aceptación por parte del usuario");
                 break;
         }
+
+        addNotification('Continuar con la reclamación', 'Cliente acepta continuar con la reclamación', $claim_id);
 
         return redirect('info/'.$claim_id)->with('msj', 'Continuamos con la reclamación');
     }

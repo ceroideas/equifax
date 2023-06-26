@@ -73,7 +73,10 @@
                     Contenido: {{$notification->data['contenido']}}
                     <br>
                     Reclamación: {{$notification->data['reclamacion']}}
+                    <br>
+                    <a href="{{url('claims/'.$notification->data['reclamacion'])}}">Ir a la reclamaci&oacute;n {{$notification->data['reclamacion']}}</a>
                 </div>
+
                     <!-- Placement of additional controls. Optional -->
                 <div class="timeline-footer">
                     <a href="{{ url('notifications/read/'.$notification->id)}}" class="btn btn-primary btn-sm">Marcar como leido</a>
