@@ -168,7 +168,7 @@ return [
     |
     */
 
-    'right_sidebar' => true,
+    'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-bell',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
@@ -269,6 +269,11 @@ return [
             'text' => 'Área personal',
             'url'  => 'panel',
             'icon' => 'fas fa-fw fa-tachometer-alt',
+        ],
+        [
+        'text' => 'Notificaciones',
+        'url'  => 'notifications',
+        'icon' => 'fas fa-fw fa-bell',
         ],
         [
             'text'    => 'Acreditación De Terceros',

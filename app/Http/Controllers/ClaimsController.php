@@ -43,6 +43,11 @@ use App\Imports\CollectsKmaleonImport;
 
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NotifyUpdate;
+
+
+
 
 class ClaimsController extends Controller
 {
@@ -856,7 +861,6 @@ class ClaimsController extends Controller
 
         //$path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
         //$pathStorage = '/uploads/actuations/' . $a->id . '/documents/';
-
         if($r->subject == null){
             /* Buscamos el debt_id */
             $claim = Claim::find($id);
@@ -891,7 +895,16 @@ class ClaimsController extends Controller
                 }
             }
 
-            return redirect('claims/94')->with('msj','Se ha añadido la actuación');
+            /* Notificacion */
+            $user = User::find(3);
+            $notificacion = [
+                'titulo' => 'Mensaje recibido de cliente',
+                'contenido' => $r->description,
+                'reclamacion'=>$id
+            ];
+            Notification::send($user, new NotifyUpdate($notificacion));
+
+            return redirect('claims/'.$id)->with('msj','Se ha añadido la actuación');
 
         }else{
             $a->subject = $r->subject;

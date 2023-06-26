@@ -59,7 +59,8 @@ class NotifyUpdate extends Notification
     {
         return [
             'titulo' => $this->notificacion['titulo'],
-            'contenido' => $this->notificacion['contenido']
+            'contenido' => $this->notificacion['contenido'],
+            'reclamacion'=>$this->notificacion['reclamacion']
         ];
     }
 }
