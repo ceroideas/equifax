@@ -83,35 +83,6 @@
                     <a href="{{ url('notifications/unread/'.$notification->id)}}" class="btn btn-danger btn-sm">Marcar como no leido</a>
                 </div>
             </div>
-
-            <div class="pt-3"></div>
-            <div class="timeline-item">
-                <!-- Time -->
-                <span class="time"><i class="fas fa-clock"></i>&nbsp;{{$notification->created_at->format('d/m/Y h:i')}}</span>
-                    <!-- Header. Optional -->
-                <h3 class="timeline-header">Notificacion del sistema {{$notification->id}}</h3>
-                        <!-- Body -->
-                <div class="timeline-body">
-                    {{-- contenido --}}
-                    Titulo: {{$notification->data['titulo']}}
-                    <br>
-                    Contenido: {{$notification->data['contenido']}}
-                    <br>
-                    Reclamación: {{$notification->data['reclamacion']}}
-                    <br>
-                    <a href="{{url('claims/'.$notification->data['reclamacion'])}}">Ir a la reclamaci&oacute;n {{$notification->data['reclamacion']}}</a>
-                </div>
-
-                    <!-- Placement of additional controls. Optional -->
-                <div class="timeline-footer">
-                    <a href="{{ url('notifications/read/'.$notification->id)}}" class="btn btn-primary btn-sm">Marcar como leido</a>
-                    <a href="{{ url('notifications/unread/'.$notification->id)}}" class="btn btn-danger btn-sm">Marcar como no leido</a>
-                </div>
-            </div>
-
-
-
-
         </div>
         <div>
             <i class="fas fa-clock bg-gray"></i>

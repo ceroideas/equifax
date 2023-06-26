@@ -15,6 +15,11 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NotifyUpdate;
+
+
+
 function isComplete()
 {
 	return (Auth::user()->dni && Auth::user()->phone && Auth::user()->cop);
@@ -960,4 +965,18 @@ function maxId($table, $field, $idDocument=0){
         }
     $idMax = intval($idMax[0]->last + 1);
     return $idMax;
+}
+
+
+function addNotification($title, $content, $claim){
+
+
+    $user = User::find(3);
+    $notificacion = [
+        'titulo' => $title,
+        'contenido' => $content,
+        'reclamacion'=>$claim
+    ];
+    Notification::send($user, new NotifyUpdate($notificacion));
+
 }
