@@ -9,7 +9,12 @@ $config = ['tags' => true];
 			@if ($ph['hitos'])
                 <optgroup label="{{$ph['name']}}">
                     @foreach ($ph['hitos'] as $ht)
-                        <option value="{{$ht['ref_id']}}" @if($ht['ref_id']==30002) selected @endif>{{$ht['ref_id']}} - {{$ht['name']}}</option>
+                        <option value="{{$ht['ref_id']}}"
+                        @if($ht['ref_id']==30002) selected @endif
+                        @if($ht['ref_id']==30034) disabled @endif
+                        >{{$ht['ref_id']}} - {{$ht['name']}}
+                        @if($ht['ref_id']==30034) - No seleccionable (seleccionar hito que finaliza la reclamación) @endif
+                    </option>
                     @endforeach
                 </optgroup>
 			@else
