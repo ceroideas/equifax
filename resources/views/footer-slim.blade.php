@@ -39,9 +39,6 @@
             <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
                 <h5 data-v-a242bae8="" class="footer-title">Legal</h5>
                 <ul data-v-a242bae8="" class="nav flex-column">
-                    <!--<li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="javascript:;"
-                            data-target="#terminos" data-toggle="modal" class="nav-link p-0 footer-text">Términos y
-                            Condiciones</a></li>-->
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="javascript:;"
                             data-target="#contratacion" data-toggle="modal" class="nav-link p-0 footer-text">Condiciones
                             de Contratación</a></li>
@@ -56,7 +53,6 @@
                         <div class="modal-body">
                             @include('terminos-condiciones')
                         </div>
-                        {{-- <div class="modal-footer"></div> --}}
                     </div>
                 </div>
             </div>
@@ -69,35 +65,19 @@
                         <div class="modal-body">
                             @include('terminos-contratacion')
                         </div>
-                        {{-- <div class="modal-footer"></div> --}}
                     </div>
                 </div>
             </div>
-
-            {{--<div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
-                <h5 data-v-a242bae8="" class="footer-title ">Contacto</h5>
-                <ul data-v-a242bae8="" class="nav flex-column">
-                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
-                            class="nav-link p-0 footer-text"><img data-v-a242bae8=""
-                                src="{{ url('landing') }}/assets/icons-phone-white.png" class="img-fluid"> <a href="tel:+34680933286">+34 680933286</a>
-                        </a></li>
-                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
-                            class="nav-link p-0 footer-text"><img data-v-a242bae8=""
-                                src="{{ url('landing') }}/assets/icons-email-white.png" class="img-fluid">
-                                <a href="mailto:info@dividae.com">info@dividae.com</a>
-                        </a></li>
-                </ul>
-            </div>--}}
             <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
                 <h5 data-v-a242bae8="" class="footer-title ">Contacto</h5>
                 <ul data-v-a242bae8="" class="nav flex-column">
                     <li data-v-a242bae8="" class="nav-item mb-2">
-                        <a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">
+                        <a data-v-a242bae8="" href="tel:913258610" class="nav-link p-0 footer-text">
                             <img data-v-a242bae8="" src="/landing/assets/icons-phone-white.png" class="img-fluid"> +34 913 258 610
                         </a>
                     </li>
                     <li data-v-a242bae8="" class="nav-item mb-2">
-                        <a data-v-a242bae8="" href="#" class="nav-link p-0 footer-text">
+                        <a data-v-a242bae8="" href="mailto:info@dividae.com" class="nav-link p-0 footer-text">
                             <img data-v-a242bae8="" src="/landing/assets/icons-email-white.png" class="img-fluid"> info@dividae.com
                         </a>
                     </li>
@@ -106,7 +86,7 @@
         </div>
         <div data-v-a242bae8="" class="row row-cols-2 justify-content-start border-top pt-4">
             <div data-v-a242bae8="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 copyright-text">
-                © Dividae 2022 . All Rights Reserved.
+                &copy; Dividae <?php echo date('Y'); ?>. All Rights Reserved.
             </div>
 
             <div data-v-a242bae8=""
@@ -115,11 +95,6 @@
                 <a data-v-a242bae8="" href="https://www.linkedin.com/company/86028193/admin/" aria-current="page"
                     class="router-link-exact-active router-link-active"><img data-v-a242bae8=""
                         src="{{ url('landing') }}/assets/linkedin.png" class="img-fluid"></a>
-
-                {{-- <a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-whatsapp.png" class="img-fluid s-icon"></a>
-
-                  <a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-instagram.png" class="img-fluid"></a> --}}
-
             </div>
         </div>
     </div>

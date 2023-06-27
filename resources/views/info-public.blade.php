@@ -1,4 +1,5 @@
 <html lang="en">
+    @extends('adminlte::page')
 
 <head>
     <meta charset="utf-8">
@@ -249,8 +250,8 @@
 
 
 
-                <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
-                    <div data-v-9cc878a2="" class="text-center card-tarifa container">
+                <div data-v-9cc878a2="" data-v-63cd6604="" class="pt-5" data-v-effc9f78="">
+                    <div data-v-9cc878a2="" class="text-center container pt-5">
                         @if($claim->status<>12)
                             {{-- Inicio Apud Acta --}}
                             @if($claim->user_id)
@@ -290,11 +291,11 @@
                         @endif
 
 
-                        <div data-v-9cc878a2="" class="text-tarifa">
+                        <div data-v-9cc878a2="" class="text-tarifa pt-5">
                                 <p>{{$titulo}}</p>
                         </div>
 
-                        <div class="container text-center bottom-text">
+                        <div class="container text-center bottom-text pt-5 pb-5">
                                 <p>{{$msg}}</p>
                         </div>
 

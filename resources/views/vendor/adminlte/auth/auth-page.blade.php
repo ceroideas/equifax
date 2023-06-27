@@ -66,12 +66,12 @@
 
         </div>
     </div>
-    <!-- background sorteo -->
-    <div class="col-sm-6" style="background-image: url('@yield('bg-auth')'); background-size: 600px; background-position: center;background-repeat: no-repeat;">
+    <!-- background sorteo
+    <div class="col-sm-6" style="background-image: url('@yield('bg-auth')'); background-size: 600px; background-position: center;background-repeat: no-repeat;">-->
 
-    <!--
+
     <div class="col-sm-6" style="background-image: url('@yield('bg-auth')'); background-position: center;background-repeat: no-repeat;">
-    -->
+
     </div>
 </div>
 
