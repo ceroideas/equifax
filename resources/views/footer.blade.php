@@ -187,7 +187,7 @@
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
                                 src="{{ url('landing') }}/assets/icons-phone-white.png" class="img-fluid"> +34 913 258 610
                         </a></li>
-                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
+                    <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="mailto:info@dividae.com"
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
                                 src="{{ url('landing') }}/assets/icons-email-white.png" class="img-fluid">
                                 &nbsp;info@dividae.com
@@ -203,7 +203,7 @@
         </div>
         <div data-v-a242bae8="" class="row row-cols-2 justify-content-start border-top pt-4">
             <div data-v-a242bae8="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 copyright-text">
-                © Dividae 2022 . All Rights Reserved. DIVIDAE RECOVERY S.L. B06970677
+                &copy; Dividae <?php echo date('Y'); ?>. All Rights Reserved. DIVIDAE RECOVERY S.L. B06970677
             </div>
 
             <div data-v-a242bae8=""
