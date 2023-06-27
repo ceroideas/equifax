@@ -61,10 +61,10 @@ class ClaimsController extends Controller
             $claims=Claim::whereNotIn('status',[-1,0,1])->get();
         }else{
             $claims = Claim::where('gestor_id',Auth::id())->get();
+
         }
 
         return view('claims.index', [
-
             'claims' => $claims
         ]);
     }
@@ -278,34 +278,9 @@ class ClaimsController extends Controller
             if (session('type_other')) {
                 $claim->status = 0;
             }
-            /*  TODO: delete after 20/06
-            else{
-
-                $claim->status = 7;
-                if(session('type_claim')==1){
-                    $claim->claim_type = 1;
-                    //if (Auth::user()->isGestor()) {
-                    //    $claim->status = 10;
-                    //}
-                }else{
-                    $claim->claim_type = 2;
-                    if (Auth::user()->isGestor()) {
-                        $claim->status = 8;
-                    }
-
-                }
-
-            }*/
         }
 
-
-
-
-
         /************* Inicio creacion de documento (Order / Invoice ) ***************/
-        //if(Auth::user()->isGestor()){
-        //    addDocument('order', $claim->id, 'EXT-001',0);
-        //}else{
 
             if(session('type_claim')==1){
                 $claim->claim_type = 1;
@@ -347,8 +322,6 @@ class ClaimsController extends Controller
 
 
             }
-        //}
-
 
         /*********** Fin generacion de factura *****************/
 
@@ -855,6 +828,7 @@ class ClaimsController extends Controller
         $a->claim_id = $id;
         $a->amount = $r->amount;
         $a->description = $r->description;
+        dump($r->subject);  //3003
 
         //$path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
         //$pathStorage = '/uploads/actuations/' . $a->id . '/documents/';
