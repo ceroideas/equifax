@@ -129,7 +129,7 @@ class UsersController extends Controller
             'type'=>$request->type
         ]);
 
-
+        addNotification('Nuevo usuario', 'Nuevo usuario registrado', 0,$user->id);
 
         if ($request->file('dni_img')) {
             $path = $request->file('dni_img')->store('uploads/users/' . $user->id . '/dni', 'public');

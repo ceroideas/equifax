@@ -968,14 +968,15 @@ function maxId($table, $field, $idDocument=0){
 }
 
 
-function addNotification($title, $content, $claim){
+function addNotification($title, $content, $claim_id=0, $user_id=0){
 
 
     $user = User::find(3);
     $notificacion = [
         'titulo' => $title,
         'contenido' => $content,
-        'reclamacion'=>$claim
+        'reclamacion'=>$claim_id,
+        'usuario'=>$user_id,
     ];
     Notification::send($user, new NotifyUpdate($notificacion));
 
