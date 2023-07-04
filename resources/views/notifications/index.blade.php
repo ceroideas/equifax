@@ -32,6 +32,7 @@
         'Id',
         'Notificación',
         'Reclamación',
+        'Usuario',
         'Lectura',
         // ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
@@ -39,7 +40,7 @@
 
     $config = [
 
-        'columns' => [null, null,null, ['orderable' => false]],
+        'columns' => [null, null,null, null,['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
@@ -66,6 +67,7 @@
                         <td>{{$notification->id}}</td>
                         <td>{{$notification->data['titulo']}}: {{$notification->data['contenido']}}</td>
                         <td>{{$notification->data['reclamacion']}}</td>
+                        <td>{{$notification->data['usuario']}}</td>
                         <td>
                             @if($notification->read_at)
                                 {{$notification->read_at->format('d/m/Y h:i')}}

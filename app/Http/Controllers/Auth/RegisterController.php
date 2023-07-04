@@ -73,6 +73,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+
         $user = User::create([
             'name' => $data['nombre'],
             'email' => $data['email'],
@@ -104,6 +106,7 @@ class RegisterController extends Controller
 
        $user->save();
 
+       addNotification('Nuevo usuario', 'Nuevo usuario registrado', 0,$user->id);
 
        $tmp = Template::find(1);
         Mail::send('email_base_2', ['tmp' => $tmp], function ($message) use($tmp, $user) {

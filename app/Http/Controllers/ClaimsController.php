@@ -358,7 +358,7 @@ class ClaimsController extends Controller
         $request->session()->forget('documentos');
         $request->session()->forget('type_claim');
 
-        addNotification('Nueva reclamación', 'Nueva reclamación registrada en Dividae', $claim->id);
+        addNotification('Nueva reclamación', 'Nueva reclamación registrada en Dividae', $claim->id,0);
 
         if (Auth::user()->isGestor()) {
 
@@ -866,7 +866,7 @@ class ClaimsController extends Controller
                 }
             }
 
-            addNotification('Mensaje recibido de cliente', $r->description, $id);
+            addNotification('Mensaje recibido de cliente', $r->description, $id, 0);
 
             return redirect('claims/'.$id)->with('msj','Se ha añadido la actuación');
 
@@ -975,7 +975,7 @@ class ClaimsController extends Controller
             $claim->save();
             $claim->owner->save();
 
-            addNotification('Apud acta subido','Se ha subido el Apud Acta correctamente',$claim->id );
+            addNotification('Apud acta subido','Se ha subido el Apud Acta correctamente',$claim->id,0 );
 
             return back()->with('msj', 'Se ha subido el archivo!');
         }else{
@@ -1278,7 +1278,7 @@ class ClaimsController extends Controller
                 break;
         }
 
-        addNotification('Continuar con la reclamación', 'Cliente acepta continuar con la reclamación', $claim_id);
+        addNotification('Continuar con la reclamación', 'Cliente acepta continuar con la reclamación', $claim_id,0);
 
         return redirect('info/'.$claim_id)->with('msj', 'Continuamos con la reclamación');
     }

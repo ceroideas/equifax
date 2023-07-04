@@ -64,7 +64,7 @@
                 <!-- Time -->
                 <span class="time"><i class="fas fa-clock"></i>&nbsp;{{$notification->created_at->format('d/m/Y h:i')}}</span>
                     <!-- Header. Optional -->
-                <h3 class="timeline-header">Notificacion del sistema {{$notification->id}}</h3>
+                <h3 class="timeline-header">Notificación del sistema {{$notification->id}}</h3>
                         <!-- Body -->
                 <div class="timeline-body">
                     {{--json_encode($notification->data)--}}
@@ -72,11 +72,16 @@
                     <br>
                     Contenido: {{$notification->data['contenido']}}
                     <br>
-                    Reclamación: {{$notification->data['reclamacion']}}
-                    <br>
-                    <a href="{{url('claims/'.$notification->data['reclamacion'])}}">Ir a la reclamaci&oacute;n {{$notification->data['reclamacion']}}</a>
+                    @if($notification->data['reclamacion']!=0)
+                        Reclamación: {{$notification->data['reclamacion']}}
+                        <br>
+                        <a href="{{url('claims/'.$notification->data['reclamacion'])}}">Ir a la reclamaci&oacute;n {{$notification->data['reclamacion']}}</a>
+                    @else
+                        Usuario: {{$notification->data['usuario']}}
+                        <br>
+                        <a href="{{url('users/'.$notification->data['usuario']).'/edit'}}">Ir a la ficha del usuario {{$notification->data['usuario']}}</a>
+                    @endif
                 </div>
-
                     <!-- Placement of additional controls. Optional -->
                 <div class="timeline-footer">
                     <a href="{{ url('notifications/read/'.$notification->id)}}" class="btn btn-primary btn-sm">Marcar como leido</a>
