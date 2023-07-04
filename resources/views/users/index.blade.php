@@ -27,7 +27,8 @@
         'ID',
         'Nombre Completo',
         ['label' => 'Email'],
-        'Newsletter',
+        'Fecha alta',
+        'Código descuento',
         ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
@@ -58,8 +59,11 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->newsletter ? 'Si' : 'No' }}</td>
+                    {{--<td>{{ $user->newsletter ? 'Si' : 'No' }}</td>--}}
+                    <td>{{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</td>
+                    <td>{{$user->referenced}}</td>
                     <td>{{ $user->getStatus() }}</td>
+
                     <td>
                      <nobr>
                         @can('create', $user)
