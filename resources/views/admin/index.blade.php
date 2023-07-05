@@ -87,8 +87,76 @@
     @endif
 
     @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin() )
+
         <div class="row">
-            <div class="col-sm-4">
+
+            <div class="col-sm-3">
+                <div class="small-box bg-gradient-success">
+                    <div class="inner">
+                        <h3>{{App\Http\Controllers\NotificationsController::countUnread()}}</h3>
+                        <p>Notificaciones pendientes</p>
+                    </div>
+                <div class="icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <a href="/notifications" class="small-box-footer">
+                    Notificaciones <i class="fas fa-arrow-circle-right"></i>
+                  </a>
+                </div>
+            </div>
+
+
+            <div class="col-sm-3">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                      <h3>{{App\Models\claim::where('claim_type','2')->where('status','!=','-1')->count()}}</h3>
+                      <p>Reclamaciones extrajudiciales</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <a href="/claims" class="small-box-footer">
+                      Reclamaciones <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                  </div>
+            </div>
+
+
+            <div class="col-sm-3">
+                <div class="small-box bg-gradient-warning">
+                    <div class="inner">
+                        <h3>{{App\Models\claim::where('claim_type','1')->where('status','!=','-1')->count()}}</h3>
+                      <p>Reclamaciones judiciales</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <a href="/claims" class="small-box-footer">
+                      Reclamaciones <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                  </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{App\Models\claim::where('status','-1')->count()}}</h3>
+                      <p>Reclamaciones finalizadas</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <a href="/claims/pending" class="small-box-footer">
+                      Reclamaciones <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                  </div>
+            </div>
+
+
+
+
+
+            {{--<div class="col-sm-3">
                 <form action="{{url('importPostalCode')}}" enctype="multipart/form-data" method="POST">
                     {{csrf_field()}}
                     <div class="btn-group btn-group-toggle">
@@ -102,7 +170,7 @@
                     <input type="file" name="file" style="display: none;" id="importPostalCode" class="upload-excel">
                 </form>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <form action="{{url('importType')}}" enctype="multipart/form-data" method="POST">
                     {{csrf_field()}}
                     <div class="btn-group btn-group-toggle">
@@ -117,7 +185,7 @@
                 </form>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <form action="{{url('importParty')}}" enctype="multipart/form-data" method="POST">
                     {{csrf_field()}}
                     <div class="btn-group btn-group-toggle">
@@ -130,7 +198,7 @@
                     </div>
                     <input type="file" name="file" style="display: none;" id="importParty" class="upload-excel">
                 </form>
-            </div>
+            </div>--}}
         </div>
 
 
@@ -172,9 +240,9 @@
     <div class="row">
 
         @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin() )
-
+            <div class="col-1"></div>
             <div class="col-9">
-                <canvas id="myChart"></canvas>
+                <canvas id="newUsersChart"></canvas>
             </div>
 
 
@@ -465,14 +533,14 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById('newUsersChart');
 
     new Chart(ctx, {
         type: 'bar',
         data: {
         labels: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre'],
         datasets: [{
-            label: 'Nuevos usuarios por mes',
+            label: 'Usuarios registrados por mes',
             data: [ {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','01')->count()}},
                     {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','02')->count()}},
                     {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','03')->count()}},

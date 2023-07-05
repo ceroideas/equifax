@@ -68,6 +68,7 @@ class NotificationsController extends Controller
     public function show($id)
     {
 
+
         $user = User::find(3);
 
         $notification = "";
@@ -121,6 +122,13 @@ class NotificationsController extends Controller
         }
 
         return redirect('notifications')->with('error', 'Notificación marcada como no leida');
+    }
+
+    public static function countUnread()
+    {
+        $user = User::find(3);
+
+        return $user->unreadNotifications->count();
     }
 
 }
