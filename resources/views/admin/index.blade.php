@@ -172,6 +172,12 @@
     <div class="row">
 
         @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin() )
+
+            <div class="col-9">
+                <canvas id="myChart"></canvas>
+            </div>
+
+
             {{--<div class="col-lg-3 col-6">
                 <div class="small-box bg-warning ">
                     <div class="inner">
@@ -453,4 +459,43 @@
         $(this).parent().submit();
     })
 </script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre'],
+        datasets: [{
+            label: 'Nuevos usuarios por mes',
+            data: [{{App\Models\user::whereMonth('created_at','01')->count()}},
+            {{App\Models\user::whereMonth('created_at','02')->count()}},
+            {{App\Models\user::whereMonth('created_at','03')->count()}},
+            {{App\Models\user::whereMonth('created_at','04')->count()}},
+            {{App\Models\user::whereMonth('created_at','05')->count()}},
+            {{App\Models\user::whereMonth('created_at','06')->count()}},
+            {{App\Models\user::whereMonth('created_at','07')->count()}},
+            {{App\Models\user::whereMonth('created_at','08')->count()}},
+            {{App\Models\user::whereMonth('created_at','09')->count()}},
+            {{App\Models\user::whereMonth('created_at','10')->count()}},
+            {{App\Models\user::whereMonth('created_at','11')->count()}},
+            {{App\Models\user::whereMonth('created_at','12')->count()}}],
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
+</script>
+
 @endsection
