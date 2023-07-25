@@ -345,25 +345,16 @@ class ClaimsController extends Controller
             $debtd->save();
         }
 
-        $request->session()->forget('other_user');
-        $request->session()->forget('claim_client');
-        $request->session()->forget('claim_third_party');
-        $request->session()->forget('claim_debtor');
-        $request->session()->forget('claim_debt');
-        $request->session()->forget('debt_step_one');
-        $request->session()->forget('debt_step_two');
-        $request->session()->forget('debt_step_three');
-        $request->session()->forget('claim_agreement');
-        $request->session()->forget('type_other');
-        $request->session()->forget('documentos');
-        $request->session()->forget('type_claim');
+
 
         addNotification('Nueva reclamación', 'Nueva reclamación registrada en Dividae', $claim->id,0);
 
         if (Auth::user()->isGestor()) {
 
             if(session('type_claim')==2){
+
                 actuationActions("-1",$claim->id);
+                return redirect('claims')->with('msj', 'Tu reclamación ha sido creada exitosamente.');
             }
 
             if($claim->user_id){
@@ -380,6 +371,19 @@ class ClaimsController extends Controller
                 }
             }
         }
+
+        $request->session()->forget('other_user');
+        $request->session()->forget('claim_client');
+        $request->session()->forget('claim_third_party');
+        $request->session()->forget('claim_debtor');
+        $request->session()->forget('claim_debt');
+        $request->session()->forget('debt_step_one');
+        $request->session()->forget('debt_step_two');
+        $request->session()->forget('debt_step_three');
+        $request->session()->forget('claim_agreement');
+        $request->session()->forget('type_other');
+        $request->session()->forget('documentos');
+        $request->session()->forget('type_claim');
 
             return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
     }

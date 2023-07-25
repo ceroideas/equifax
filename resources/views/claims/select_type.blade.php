@@ -43,9 +43,11 @@
                                 </li>
                             </ul>
                         </div>
-                        <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
-                            <small>Por solo</small> 19,90€
-                        </span>
+                        @if(!Auth::user()->isGestor())
+                            <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
+                                <small>Por solo</small> 19,90€
+                            </span>
+                        @endif
                         <div class="col-12 pb-3 pt-3">
                             <a data-v-9cc878a2="" href="/claims/save-type-claim/2" aria-current="page"
                                 class="btn btn-light-descubre" type="button">Reclamaci&oacute;n Extrajudicial</a>
@@ -69,9 +71,11 @@
                                 </li>
                             </ul>
                         </div>
-                        <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
-                            <small>Desde</small> 69,90€
-                        </span>
+                        @if(!Auth::user()->isGestor())
+                            <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
+                                <small>Desde</small> 69,90€
+                            </span>
+                        @endif
                         <div class="col-12 pb-3 pt-3">
                             <a data-v-9cc878a2="" href="/claims/save-type-claim/1" aria-current="page"
                                 class="btn btn-light-descubre" type="button">Reclamaci&oacute;n Judicial</a>
