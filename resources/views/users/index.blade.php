@@ -30,12 +30,13 @@
         'Fecha alta',
         'Código descuento',
         ['label' => 'Status'],
+        'Rol',
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
 
     $config = [
 
-        'columns' => [null, null, null, null, ['orderable' => false]],
+        'columns' => [null, null, null, null, null,['orderable' => false]],
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
@@ -63,6 +64,23 @@
                     <td>{{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</td>
                     <td>{{$user->referenced}}</td>
                     <td>{{ $user->getStatus() }}</td>
+                    @switch($user->role)
+                        @case(0)
+                            <td>SuperAdmin</td>
+                            @break
+                        @case(1)
+                            <td>Admin</td>
+                            @break
+                        @case(3)
+                            <td>Gestor&iacute;a</td>
+                            @break
+                        @case(4)
+                            <td>Asociado</td>
+                            @break
+                        @default
+                            <td>Cliente</td>
+                    @endswitch
+                    {{--0(superadmin),1(administracion),2(Cliente),3(Gestoria),4(Asociado) --}}
 
                     <td>
                      <nobr>
