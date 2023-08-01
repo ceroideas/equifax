@@ -43,96 +43,145 @@
     @include('styles')
 
     <style>
-.floating-social-bar {
-    display:flex;
-    border-radius: 10px;
-    position:fixed;
-    bottom: 4px;
-    left:70%;
-    width: 30%;
-    height: 7%;
-    padding: 5px 0;
-    text-align: left;
-    background-color: #2c60aa;
-    font-family: 'Roobert', Arial, Helvetica, sans-serif, serif;
-    color:#ffff;
-    z-index: 999;
-}
+        .floating-social-bar {
+            display:flex;
+            border-radius: 10px;
+            position:fixed;
+            bottom: 4px;
+            left:70%;
+            width: 30%;
+            height: 7%;
+            padding: 5px 0;
+            text-align: left;
+            background-color: #2c60aa;
+            font-family: 'Roobert', Arial, Helvetica, sans-serif, serif;
+            color:#ffff;
+            z-index: 999;
+        }
 
 
-/*Antes .floating-button*/
-.floating-social-bar button {
-	border-radius: 37.5px;
-	background-color: #e65927;
-	border: 1px solid #e65927;
-	box-shadow: 0 16px 22px -17px #e65927;
-	color: #fff;
-	cursor: pointer;
-	font-size: 16px;
-	line-height: 12px;
-	padding: 12px 20px;
-	position: fixed;
-	bottom: 15px;
-	right: 20px;
-	z-index: 999;
-}
+        /*Antes .floating-button*/
+        .floating-social-bar button {
+            border-radius: 37.5px;
+            background-color: #e65927;
+            border: 1px solid #e65927;
+            box-shadow: 0 16px 22px -17px #e65927;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 12px;
+            padding: 12px 20px;
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            z-index: 999;
+        }
 
-.floating-social-bar button:hover {
-    background-color: #ffffff;
-	color: #e65927;
-}
+        .floating-social-bar button:hover {
+            background-color: #ffffff;
+            color: #e65927;
+        }
 
-.floating-social-bar button:focus {
-    outline: none;
-}
+        .floating-social-bar button:focus {
+            outline: none;
+        }
 
-.floating-social-bar span {
-    /*flex: 0 0 50%;*/
-    max-width: 50%;
-    margin-left: 3%;
-}
-.floating-social-bar img {
-    margin-left: 3%;
-}
+        .floating-social-bar span {
+            /*flex: 0 0 50%;*/
+            max-width: 50%;
+            margin-left: 3%;
+        }
+        .floating-social-bar img {
+            margin-left: 3%;
+        }
 
-@media (min-width: 100px) and (max-width: 1200px) {
-.floating-social-bar {
-    visibility: hidden;
-}
+        /* The Modal (background) */
+        .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+        background-color: #fefefe;
+        margin: 4% auto 0 auto; /* 5% from the top and centered */
+        /*padding: 20px;*/
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+        }
+
+        @media (min-width: 100px) and (max-width: 1200px) {
+            .floating-social-bar {
+                visibility: hidden;
+            }
 
 
-.floating-comprobar button {
-    border-radius: 37.5px;
-	background-color: #e65927;
-	border: 1px solid #e65927;
-	box-shadow: 0 16px 22px -17px #e65927;
-	color: #fff;
-	cursor: pointer;
-	font-size: 16px;
-	line-height: 12px;
-	padding: 12px 20px;
-	position: fixed;
-	bottom: 15px;
-	right: 20px;
-	z-index: 999;
-}
+            .floating-comprobar button {
+                border-radius: 37.5px;
+                background-color: #e65927;
+                border: 1px solid #e65927;
+                box-shadow: 0 16px 22px -17px #e65927;
+                color: #fff;
+                cursor: pointer;
+                font-size: 16px;
+                line-height: 12px;
+                padding: 12px 20px;
+                position: fixed;
+                bottom: 15px;
+                right: 20px;
+                z-index: 999;
+            }
 
 
-.floating-comprobar button:hover {
-    background-color: #ffffff;
-	color: #e65927;
-}
+            .floating-comprobar button:hover {
+                background-color: #ffffff;
+                color: #e65927;
+            }
 
-.floating-comprobar button:focus {
-    outline: none;
-}
-}
+            .floating-comprobar button:focus {
+                outline: none;
+            }
+            .modal-content {
+                margin: 30% auto 0 auto; /* 5% from the top and centered */
+            }
+        }
 
-@media (min-width: 1201px) {
-.floating-comprobar {
-    visibility: hidden;
-}
-}
+        @media (min-width: 1201px) {
+            .floating-comprobar {
+                visibility: hidden;
+            }
+        }
+
+        /*@media only screen and (max-width: 800px) {
+            .modal-content {
+                margin: 30% auto 0 auto;
+            }
+        }*/
+
+
 
 
 
@@ -146,7 +195,6 @@
         <main>
             <div data-v-effc9f78="" data-v-63cd6604="">
                 <div data-v-66372912="" data-v-63cd6604="" class="portada-3dblue" data-v-effc9f78="">
-
 
                    <video id="background-video" autoplay loop muted >
                         <source src="{{ url('landing/videohome.mp4') }}" type="video/mp4">
@@ -320,13 +368,38 @@
                                 <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>.</p>
                         </div>
 
-                        <div data-v-63cd6604="" data-v-effc9f78=""><a data-v-63cd6604="" href="{{ url('register') }}" class="btn QSomos-btn" data-v-effc9f78="">Regístrate</a></div>
+                        <div data-v-63cd6604="" data-v-effc9f78="" class="pb-3"><a data-v-63cd6604="" href="{{ url('register') }}" class="btn QSomos-btn" data-v-effc9f78="">Regístrate</a></div>
 
-                        <div class="videoDividae">
+
+
+
+
+                        <!-- Trigger/Open The Modal -->
+                        <button id="videoBtn">
+                            <img src="{{ url('landing') }}/assets/portada_video_dividae.png" style="max-width:100%;">
+                        </button>
+
+                        <!-- The Modal -->
+                        <div id="videoModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <div class="videoDividae">
+                                <video class="videoDividae" controls autoplay muted >
+                                    <source src="{{ url('landing/dividaemision.mp4') }}" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+
+                        </div>
+
+
+                        <!--<div class="videoDividae">
                             <video class="videoDividae" controls autoplay muted >
                                 <source src="{{ url('landing/dividaemision.mp4') }}" type="video/mp4">
                             </video>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 
@@ -836,6 +909,34 @@
             $('.img-amistosa').attr('other', src);
         });
 
+
+
+
+        // Get the modal
+        var modal = document.getElementById("videoModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("videoBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+        modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 
 </body>
