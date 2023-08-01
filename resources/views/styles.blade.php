@@ -795,7 +795,7 @@
 }
 
 .videoDividae {
-  padding: 25px;
+  padding-top: 10px;
   width:100%;
 }
 .blockTarifa .card-tarifa[data-v-9cc878a2] {
