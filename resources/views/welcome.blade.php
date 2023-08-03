@@ -383,13 +383,11 @@
                         <div id="videoModal" class="modal">
 
                         <!-- Modal content -->
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <div class="videoDividae">
-                                <video class="videoDividae" controls autoplay muted >
-                                    <source src="{{ url('landing/dividaemision.mp4') }}" type="video/mp4">
-                                </video>
-                            </div>
+                        <div id="home-video" class="modal-content-video">
+                            <span id="stop" class="close">&times;</span>
+                            <video controls autoplay muted playsinline preload="none" style="width: -moz-available;">
+                                <source src="{{ url('landing/dividaemision.mp4') }}" type="video/mp4">
+                            </video>
                         </div>
 
                         </div>
@@ -858,6 +856,7 @@
     @yield('extrajs')
 
     <script>
+
         var owl = $('#testimonios').owlCarousel({
             loop: true,
             margin: 10,
@@ -923,20 +922,25 @@
 
         // When the user clicks on the button, open the modal
         btn.onclick = function() {
-        modal.style.display = "block";
+            modal.style.display = "block";
         }
 
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
-        modal.style.display = "none";
+            modal.style.display = "none";
         }
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
+                $('video').trigger('pause');
                 modal.style.display = "none";
             }
         }
+
+        $("#stop").on('click', function(){
+            $('video').trigger('pause');
+        });
     </script>
 
 </body>

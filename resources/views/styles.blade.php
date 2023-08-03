@@ -603,41 +603,7 @@
   background-color: #285ba3;
   z-index: 999999;
 }
-@media (min-width: 1440px) and (max-width: 1600px) {
-#blockform-scroll[data-v-66372912] {
-    right: 11%;
-    width: 25%;
-}
-}
-@media (min-width: 1200px) and (max-width: 1280px) {
-#blockform-scroll[data-v-66372912] {
-    right: 6%;
-    width: 30%;
-}
-}
-@media (min-width: 1024px) and (max-width: 1024px) {
-#blockform-scroll[data-v-66372912] {
-    right: 3%;
-    width: 40%;
-}
-}
-@media (min-width: 768px) and (max-width: 768px) {
-#blockform-scroll[data-v-66372912] {
-    width: 50%;
-    left: 45%;
-}
 
-#text-p[data-v-66372912] {
-    margin-top: 1%;
-}
-
-}
-@media (max-width: 425px) {
-#blockform-scroll[data-v-66372912] {
-    right: 0%;
-    width: 90%;
-}
-}
 #blockform-scroll .Scroll[data-v-66372912] {
   height: 55px;
 }
@@ -796,8 +762,16 @@
 
 .videoDividae {
   padding-top: 10px;
-  width:100%;
 }
+
+.modal-content-video{
+    background-color: #fefefe;
+    margin: 4% auto 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 73%;
+}
+
 .blockTarifa .card-tarifa[data-v-9cc878a2] {
   border-radius: 16px;
   /*-webkit-backdrop-filter: blur(2px);
@@ -4945,5 +4919,41 @@ text-align: left;
   line-height: 1.5;
   letter-spacing: normal;
   color: #285ba3;
+}
+
+@media (min-width: 1440px) and (max-width: 1600px) {
+#blockform-scroll[data-v-66372912] {
+    right: 11%;
+    width: 25%;
+}
+}
+@media (min-width: 1200px) and (max-width: 1280px) {
+#blockform-scroll[data-v-66372912] {
+    right: 6%;
+    width: 30%;
+}
+}
+@media (min-width: 1024px) and (max-width: 1024px) {
+#blockform-scroll[data-v-66372912] {
+    right: 3%;
+    width: 40%;
+}
+}
+@media (min-width: 768px) and (max-width: 768px) {
+#blockform-scroll[data-v-66372912] {
+    width: 50%;
+    left: 45%;
+}
+
+#text-p[data-v-66372912] {
+    margin-top: 1%;
+}
+
+}
+@media (max-width: 425px) {
+#blockform-scroll[data-v-66372912] {
+    right: 0%;
+    width: 90%;
+}
 }
 </style>
