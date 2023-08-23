@@ -21,7 +21,7 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-{{-- Configuración del componente para el datatable --}}
+
     @php
     $heads = [
         'ID',
@@ -37,11 +37,10 @@
     $config = [
         'columns' => [null, null, null, null, null,null, null,['orderable' => false]],
         'order'=>[[0,'desc']],
+        'pageLength' => 25,
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
-
-    {{-- Datatable para los usuarios --}}
 
     @if(session()->has('msj'))
         <x-adminlte-alert theme="success" dismissable>
@@ -80,7 +79,6 @@
                         @default
                             <td>Cliente</td>
                     @endswitch
-                    {{--0(superadmin),1(administracion),2(Cliente),3(Gestoria),4(Asociado) --}}
 
                     <td>
                      <nobr>

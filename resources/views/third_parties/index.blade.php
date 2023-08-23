@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Usuarios')
+@section('title', 'Terceros')
 
 @section('content_header')
     <div class="container-fluid">
@@ -21,7 +21,6 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-{{-- Configuración del componente para el datatable --}}
 
     @if(session()->has('claim_third_party') && session()->has('claim_third_party') == 'waiting')
     @include('progressbar', ['step' => 1])
@@ -33,8 +32,6 @@
         'Nombre Completo',
         'Representante Legal',
         'DNI Representante',
-
-        // ['label' => 'Status'],
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
 
@@ -44,8 +41,6 @@
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
-
-    {{-- Datatable para los usuarios --}}
 
     @if(session()->has('msj'))
         <x-adminlte-alert theme="success" dismissable>
@@ -114,7 +109,6 @@
         <div class="row">
             <span class="float-left">(*) Selecciona o añade un tercero</span>
         </div>
-        <!--<x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save" id="btnsiguiente"/>-->
         <a href="{{ url('claims/select-client') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
     </div>
 

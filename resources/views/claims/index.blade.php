@@ -21,7 +21,7 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-{{-- Configuración del componente para el datatable --}}
+
     @php
     if (Auth::user()->isGestor() || Auth::user()->isSuperAdmin()) {
         $heads = [
@@ -42,6 +42,7 @@
 
             'columns' => [null, null, null, null, null, null, null, null, null, null, ['orderable' => false]],
             'order'=>[[0,'desc']],
+            'pageLength' => 25,
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
     }else{
@@ -69,8 +70,6 @@
 
     @endphp
 
-    {{-- Datatable para los usuarios --}}
-
     @if(session()->has('msj'))
         <x-adminlte-alert theme="success" dismissable>
             {{ session('msj') }}
@@ -83,11 +82,8 @@
         </x-adminlte-alert>
     @endif
 
-
-    {{-- TODO: Esto mostraba el saldo al cliente gestoria, revisar porque lo puso Cero Ideas
-    @if (!Auth::user()->isClient())--}}
     @if (Auth::user()->isGestor() || Auth::user()->isClient())
-    <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
+        <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
     @endif
     @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
@@ -101,14 +97,12 @@
             <input name="file" type="file" id="actuations" style="display: none;">
         </form>
 
-
         <form action="{{url('import-collects-kmaleon')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
             @csrf
             <label style="margin: 0;" for="collects" class="btn btn-danger btn-sm">Importar cobros (Kmaleon)</label>
             <input name="file" type="file" id="collects" style="display: none;">
         </form>
     @endif
-
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" class="table-responsive" striped hoverable bordered compresed responsive :config="$config">
@@ -144,86 +138,10 @@
                         @endif
                     </td>
 
-                    {{--
-                    @if (Auth::user()->isSuperAdmin())
-                        <td>
-                            {{number_format(($claim->saldo() - $claim->discounts()), 2,',','.')}}€
-                            <a data-toggle="modal" href="#view-details-{{$claim->id}}"><i class="fa fa-eye"></i></a>
-
-                            @if($claim->gestor_id)
-                                <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#discount-{{$claim->id}}">Descontar Saldo</button>
-                            @endif
-
-
-                            <div class="modal fade" id="view-details-{{$claim->id}}">
-                                <div class="modal-dialog modal-sm">
-                                    <div class="modal-content">
-                                        <div class="modal-header">Detalle de Saldo</div>
-                                        <div class="modal-body">
-                                            Saldo Principal: <b>{{number_format( $claim->saldo(), 2,',','.')}}€</b>
-
-                                            <hr>
-
-                                            Descuentos:
-
-                                            @forelse (App\Models\Discount::where('claim_id',$claim->id)->get() as $key => $value)
-                                                <li>{{number_format( $value->amount, 2,',','.' )}}€</li>
-                                            @empty
-                                                --
-                                            @endforelse
-
-                                            <hr>
-
-                                            Saldo Final: <b>{{number_format(($claim->saldo() - $claim->discounts()), 2,',','.')}}€</b>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button data-dismiss="modal" class="btn btn-sm btn-danger">Cerrar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal fade" id="discount-{{$claim->id}}">
-                                <div class="modal-dialog modal-sm">
-                                    <form class="modal-content" method="POST" action="{{url('saveDiscount')}}">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="claim_id" value="{{$claim->id}}">
-                                        <div class="modal-header">Descontar importe por pago recibido</div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label>Monto a descontar</label>
-                                                <input type="number" step="0.01" min="0" max="{{$claim->saldo() - $claim->discounts()}}" class="form-control" name="amount" required>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-sm btn-success">Aceptar</button>
-                                            <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
-                    @endif
-
-
-                    @if (Auth::user()->isGestor()) <td>{{ number_format(($claim->saldo() - $claim->discounts()), 2,',','.')  }} € </td>@endif
-
-                    --}}
-
-                    {{--<td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td>--}}
-                    {{-- <td>{{ $claim->getStatus() }}</td> --}}
                     <td>
                      <nobr>
                         @can('create', $claim)
-                            {{-- <a href="{{ url('/claims/' . $claim->id . '/edit/') }}">
-                                <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                                    <i class="fa fa-lg fa-fw fa-pen"></i>
-                                </button>
-                            </a> --}}
                             <form id="delete-form-{{ $claim->id }}" action="{{ url('/claims/' . $claim->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
-                            {{-- <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $claim->id }}').submit();">
-                                <i class="fa fa-lg fa-fw fa-trash"></i>
-                            </button> --}}
                         @endcan
 
                         @if (Auth::user()->id == $claim->owner_id && $claim->status == 11 && $claim->claim_type == 1)

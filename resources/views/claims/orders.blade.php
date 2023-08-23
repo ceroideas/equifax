@@ -21,25 +21,7 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-{{-- Configuración del componente para el datatable --}}
     @php
-    //if (Auth::user()->isClient()) {
-        /*$heads = [
-            'ID',
-            'Reclamación',
-            'Concepto',
-            'Importe',
-            'Fecha del pago',
-            'Tipo de cobro',
-            'Status',
-            ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
-        ];
-        $config = [
-
-            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
-            'language' => ['url' => '/js/datatables/dataTables.spanish.json']
-        ];*/
-    //}else{
         $heads = [
             'ID',
             'Gestoria',
@@ -56,13 +38,11 @@
 
             'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
             'order'=>[[0,'desc']],
+            'pageLength' => 25,
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
-    //}
 
     @endphp
-
-    {{-- Datatable para los usuarios --}}
 
     @if(session()->has('msj'))
         <x-adminlte-alert theme="success" dismissable>
@@ -97,16 +77,11 @@
                             <td>{{ $gestoria}}</td>
                         @endif
 
-
                     @endif
                     <td><a href="{{ url('/claims/' . $order->claim_id ) }}">#{{$order->claim_id}}</a></td>
                     <td>{{ $order->description }}</td>
                     <td>{{ number_format($order->totord ,2,',','.') }}</td>
-                    {{--<td>{{ number_format(($invoice->amount) ,2,',','.')}}   €</td>--}}
-
-
                     <td>{{ Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }}   </td>
-                    {{--<td>{{ $order->id }}</td>--}}
                     <td>{{ $order->facord == 1 ? 'Facturado' : 'Pendiente' }}</td>
                     <td>
 
