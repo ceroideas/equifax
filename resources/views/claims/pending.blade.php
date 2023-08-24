@@ -21,7 +21,7 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-{{-- Configuración del componente para el datatable --}}
+
     @php
     $heads = [
         'ID',
@@ -39,11 +39,11 @@
     $config = [
 
         'columns' => [null, null, null, null, null, null, null, null, null, ['orderable' => false]],
+        'order'=>[[0,'desc']],
+        'pageLength' => 25,
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
-
-    {{-- Datatable para los usuarios --}}
 
     @if(session()->has('msj'))
         <x-adminlte-alert theme="success" dismissable>
@@ -67,7 +67,6 @@
                 <tr>
                     <td>{{ $claim->debt->document_number }}</td>
                     <td>
-
                         @php
                             $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
 
@@ -97,12 +96,6 @@
                     <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
                     <td>{{ $claim->getType() }}</td>
                     <td>{{ $claim->getHito() }}</td>
-                    {{-- <td>{{ $claim->id }}</td>
-                    <td>{{ $claim->user_id ? $claim->client->name : $claim->representant->name}}</td>
-                    <td>{{ $claim->debtor->name }}</td>
-                    <td>{{ $claim->debt->pending_amount }}</td>
-                    <td>{{ $claim->debt->agreement == true ? 'Si Tiene' : 'No Tiene' }}</td>
-                    <td> --}}
                     <td>
                     <nobr>
                         @if(Auth::user()->id === $claim->user_id && $claim->status  == 1)

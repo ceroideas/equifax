@@ -191,17 +191,20 @@
 
 
                             @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+                                <b>FECHA DE REGISTRO DE EXPEDIENTE: </b> {{date('d/m/Y', strtotime($claim->created_at))}}<br>
+                                <div class="form-group">
+
+                                    <b>DIAS TRANSCURRIDOS:
+                                        @if($dias>30)
+                                            <span style="color:#e65927;">
+                                        @else
+                                            <span>
+                                        @endif
+                                        {{$dias}}</b></span>
+                                </div>
+                            @endif
+                            @if (Auth::user()->email == 'luiscampos@atlantelt.com' || Auth::user()->email == 'barbaraderon@atlantelt.com' || Auth::user()->email == 'superadmin@dividae.com')
                                 <div class="post">
-                                    <div class="form-group">
-                                        <b>FECHA DE REGISTRO DE EXPEDIENTE: </b> {{date('d/m/Y', strtotime($claim->created_at))}}<br>
-                                        <b>DIAS TRANSCURRIDOS:
-                                            @if($dias>30)
-                                                <span style="color:#e65927;">
-                                            @else
-                                                <span>
-                                            @endif
-                                            {{$dias}}</b></span>
-                                    </div>
 
                                     <b>DEUDOR CON C&Oacute;DIGO POSTAL:</b> {{$claim->debtor->cop}}
 

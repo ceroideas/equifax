@@ -39,6 +39,7 @@
     $config = [
 
         'columns' => [null, null, null, null, ['orderable' => false]],
+        'pageLength' => 25,
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
     @endphp
