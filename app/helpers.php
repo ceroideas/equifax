@@ -60,25 +60,27 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 	$type = [];
 	$claim = Claim::find($claim_id);
 
+    /* TODO: Debug delete after Aug2023
     if(file_exists('testing/testing_claims_actuations.txt')){
         $file = fopen('testing/testing_claims_actuations.log', 'a');
         fwrite($file, date("d/m/Y H:i:s").'-'.'ActuationActions en Helper inicia con: ' . PHP_EOL);
         fwrite($file, date("d/m/Y H:i:s").'-'.'$id_hito: ' . $id_hito . ' $claim_id: '. $claim_id. ' $observations: '. $observations .' id_actuation: '. $actuation_id.PHP_EOL);
         fwrite($file, date("d/m/Y H:i:s").'-'.'Busca hito: ' . $h . PHP_EOL);
         fclose($file);
-    }
+    }*/
 
     if ($h) {
 
 		// comprobar si el hito es de la fase de cobro directamente
 		if($h['redirect_to'])
 		{
+            /* TODO: Debug delete after Aug2023
             if(file_exists('testing/testing_claims_actuations.txt')){
                 $file = fopen('testing/testing_claims_actuations.log', 'a');
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Actuacion '. $actuation_id .' redirecciona a: ' . $h['redirect_to'].PHP_EOL);
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Graba nueva Actuacion: '.PHP_EOL);
                 fclose($file);
-            }
+            }*/
 			if ($h['id'] != "-1") {
                 /* Si hay redireccion, debemos grabar la propia actuacion si es 30038 */
                 if($h['ref_id']=="30018" || $h['ref_id']=="30033" || $h['ref_id']=="30038" ||
@@ -108,8 +110,9 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
 		        $a->save();
 
-                // comprobar si el hito debe enviar un email
-				if ($h['template_id']) {
+                // comprobar si el hito debe enviar un email  Envio email por hito
+
+				if ($h['template_id'] && $claim->owner->msgusr == 1) {
 					// code...
 					$se = new SendEmail;
 					$se->addresse = $claim ? $claim->owner->email : '';
@@ -144,12 +147,13 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		            $se->send_count += 1;
 		            $se->save();
 
+                    /* TODO: Debug delete after Aug2023
                     if(file_exists('testing/testing_claims_actuations.txt')){
                         $file = fopen('testing/testing_claims_actuations.log', 'a');
                         fwrite($file, date("d/m/Y H:i:s").'-'.'SendEmail grabado  ' . PHP_EOL);
                         fwrite($file, date("d/m/Y H:i:s").'-'.'Enviando email a: ' .$o->email .' '. $o->name . PHP_EOL);
                         fclose($file);
-                    }
+                    }*/
 				}
 			}
 
@@ -158,13 +162,14 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
 				$c = Configuration::first();
 
+                /* TODO: Debug delete after Aug2023
                 if(file_exists('testing/testing_claims_actuations.txt')){
                     $file = fopen('testing/testing_claims_actuations.log', 'a');
                     fwrite($file, date("d/m/Y H:i:s").'-'.'Hito redirecciona 301'.PHP_EOL);
                     fwrite($file, date("d/m/Y H:i:s").'-'.'Usuario tiene apud acta? : '. $claim->owner->apud_acta . PHP_EOL);
                     fwrite($file, date("d/m/Y H:i:s").'-'.'Cambia la reclamacion a Judicial type y actualiza : ' . PHP_EOL);
                     fclose($file);
-                }
+                }*/
 
 				/* Comprobar si la reclamacion es de terceros */
                 if($claim->user_id){
@@ -234,30 +239,33 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                         }
 
                         // Verificamos si la reclamacion tiene un gestor para saber si generamos pedido o factura directamente
+                        /* TODO: Debug delete after Aug2023
                         if(file_exists('testing/testing_claims_actuations.txt')){
                             $file = fopen('testing/testing_claims_actuations.log', 'a');
                             fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento: ' . PHP_EOL);
-                        }
+                        }*/
                         if($claim->gestor_id <> null){
                             addDocument('order', $claim->id, $articulo,$tasa);
 
+                            /* TODO: Debug delete after Aug2023
                             if(file_exists('testing/testing_claims_actuations.txt')){
                                 $file = fopen('testing/testing_claims_actuations.log', 'a');
                                 fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento Pedido: ' . PHP_EOL);
                                 fwrite($file, date("d/m/Y H:i:s").'-'.'Genera pedido: claim_id/articulo/tasa: ' . $claim->id .'/'. $articulo .'/'. $tasa . PHP_EOL);
                                 fclose($file);
-                            }
+                            }*/
                         }else{
                             $idFactura = addDocument('invoice',$claim->id, $articulo,$tasa,0,$h['ref_id']);
                             $a->invoice_id = $idFactura;
                             $a->save();
 
+                            /* TODO: Debug delete after Aug2023
                             if(file_exists('testing/testing_claims_actuations.txt')){
                                 $file = fopen('testing/testing_claims_actuations.log', 'a');
                                 fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento Factura: ' . PHP_EOL);
                                 fwrite($file, date("d/m/Y H:i:s").'-'.'Genera factura: claim_id/articulo/tasa: ' . $claim->id .'/'. $articulo .'/'. $tasa . PHP_EOL);
                                 fclose($file);
-                            }
+                            }*/
                         }
                     }
 				}
@@ -323,19 +331,22 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		}else{
 
                 // comprobar si el hito debe enviar un email
+                /* TODO: Debug delete after Aug2023
                 if(file_exists('testing/testing_claims_actuations.txt')){
                     $file = fopen('testing/testing_claims_actuations.log', 'a');
                     fwrite($file, date("d/m/Y H:i:s").'-'.'No hay redireccion en el hito: ' . PHP_EOL);
                     fwrite($file, date("d/m/Y H:i:s").'-'.'Comprobamos si envia email si existe template: ' . $h['template_id']. PHP_EOL);
                     fclose($file);
-                }
-                if ($h['template_id']) {
+                }*/
+                /* Envio email*/
+                if ($h['template_id'] && $claim->owner->msgusr == 1) {
 
+                    /* TODO: Debug delete after Aug2023
                     if(file_exists('testing/testing_claims_actuations.txt')){
                         $file = fopen('testing/testing_claims_actuations.log', 'a');
                         fwrite($file, date("d/m/Y H:i:s").'-'.'Preparando email  ' . PHP_EOL);
                         fclose($file);
-                    }
+                    }*/
 
                     // code...
                     $se = new SendEmail;
@@ -344,11 +355,12 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     $se->actuation_id = $actuation_id;// viene desde claimsController
                     $se->save();
 
+                    /* TODO: Debug delete after Aug2023
                     if(file_exists('testing/testing_claims_actuations.txt')){
                         $file = fopen('testing/testing_claims_actuations.log', 'a');
                         fwrite($file, date("d/m/Y H:i:s").'-'.'SendEmail grabado  ' . PHP_EOL);
                         fclose($file);
-                    }
+                    }*/
 
                     $o = User::where('email',$se->addresse)->first();
 
@@ -361,11 +373,12 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     $se->send_count += 1;
                     $se->save();
 
+                    /* TODO: Debug delete after Aug2023
                     if(file_exists('testing/testing_claims_actuations.txt')){
                         $file = fopen('testing/testing_claims_actuations.log', 'a');
                         fwrite($file, date("d/m/Y H:i:s").'-'.'Enviando email a: ' .$o->email .' '. $o->name . PHP_EOL);
                         fclose($file);
-                    }
+                    }*/
                 } // Fin envio email
 
                 /*add actuation simple quitamos, no debe añadir actuaciones las reclamaciones*/
