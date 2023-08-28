@@ -126,7 +126,8 @@ class UsersController extends Controller
             'discount'=> $request->discount,
             'referenced'=>$request->referenced,
             'status'=>3,
-            'type'=>$request->type
+            'type'=>$request->type,
+            'msgusr'=>1,
         ]);
 
         addNotification('Nuevo usuario', 'Nuevo usuario registrado', 0,$user->id);
@@ -190,6 +191,8 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
 
+
+
         $validation = $this->validateRequest();
 
         if($request->password != Null){
@@ -200,6 +203,7 @@ class UsersController extends Controller
 
         if(isset($request->role)){
             $role = $request->role;
+
         }else{
             $role = Auth::user()->role;
         }
@@ -224,6 +228,8 @@ class UsersController extends Controller
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
             'referenced'=>$request->referenced,
+            'msgusr'=> isset($request->msgusr)?1:0,
+
         ]);
 
         if($request->file('dni_img')){

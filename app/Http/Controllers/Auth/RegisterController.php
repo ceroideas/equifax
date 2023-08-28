@@ -92,12 +92,15 @@ class RegisterController extends Controller
 
             if($dc){
                 $user->role = 4;
+                $user->msgusr = 0;
             }else{
                 $user->role = 2;
+                $user->msgusr = 1;
             }
 
         }else{
             $user->role = 2;
+            $user->msgusr = 1;
         }
 
         /*Asignacion participacion sorteos*/

@@ -240,6 +240,21 @@
             </x-adminlte-input>
             </div> --}}
         </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <hr>
+            </div>
+            <div class="col-sm-6">
+                @if(isset($user->msgusr) && $user->msgusr==1)
+                    <input type="checkbox" name="msgusr" checked>
+                @else
+                    <input type="checkbox" name="msgusr">
+                @endif
+
+                <label for="msgusr">Recibir emails con las actualizaciones de cada uno de mis expedientes</label>
+            </div>
+        </div>
         @if (!Auth::user()->isClient())
             <div class="row">
                 <div class="col-sm-12">
