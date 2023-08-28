@@ -40,6 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'status',
         'referenced',
         'campaign',
+        'msgusr',
     ];
 
     /**
