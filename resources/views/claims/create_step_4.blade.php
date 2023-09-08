@@ -70,7 +70,7 @@
                 @endforeach
                 <optgroup label=""></optgroup>
                 @foreach (config('app.no_viables') as $clave => $no_viable)
-                    <option {{session('claim_debt') ? (session('claim_debt')->type == $clave ? 'selected' : '') : '' }} value="{{$clave+11}}">{{$no_viable['deuda']}}</option>
+                    <option {{session('claim_debt') ? (session('claim_debt')->type == $clave ? 'selected' : '') : '' }} value="{{$clave+12}}">{{$no_viable['deuda']}}</option>
                 @endforeach
                 <optgroup label="Otro **">
                     <option value="-1">Especifique</option>
