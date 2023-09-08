@@ -264,13 +264,13 @@ return [
             "judicial"=> true,
             "cataluna" => 10
         ],
-        /*[
-            "deuda" => "Otro",
+        [
+            "deuda" => "COMUNIDADES DE PROPIETARIOS",
             "prescripcion" => 5,
             "extrajudicial" => true,
             "judicial"=> true,
-            "cataluna" => 10
-        ]*/
+            "cataluna" => 3
+        ]
     ],
 
     "no_viables" => [
