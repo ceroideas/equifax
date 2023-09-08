@@ -1058,7 +1058,7 @@ class ClaimsController extends Controller
 
         }
 
-        if ($r->concurso == 0 && $r->tipo_deuda == 11 ) {
+        if ($r->concurso == 0 && $r->tipo_deuda == 12 ) {
 
             return redirect('/panel')->with('alert', 'Lo sentimos, dadas las características de tu deuda no podemos tramitarla.
             Nos pondremos en contacto contigo para ampliarte información y poder ofrecerte alternativas');
