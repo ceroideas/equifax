@@ -60,27 +60,11 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 	$type = [];
 	$claim = Claim::find($claim_id);
 
-    /* TODO: Debug delete after Aug2023
-    if(file_exists('testing/testing_claims_actuations.txt')){
-        $file = fopen('testing/testing_claims_actuations.log', 'a');
-        fwrite($file, date("d/m/Y H:i:s").'-'.'ActuationActions en Helper inicia con: ' . PHP_EOL);
-        fwrite($file, date("d/m/Y H:i:s").'-'.'$id_hito: ' . $id_hito . ' $claim_id: '. $claim_id. ' $observations: '. $observations .' id_actuation: '. $actuation_id.PHP_EOL);
-        fwrite($file, date("d/m/Y H:i:s").'-'.'Busca hito: ' . $h . PHP_EOL);
-        fclose($file);
-    }*/
-
     if ($h) {
 
 		// comprobar si el hito es de la fase de cobro directamente
 		if($h['redirect_to'])
 		{
-            /* TODO: Debug delete after Aug2023
-            if(file_exists('testing/testing_claims_actuations.txt')){
-                $file = fopen('testing/testing_claims_actuations.log', 'a');
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Actuacion '. $actuation_id .' redirecciona a: ' . $h['redirect_to'].PHP_EOL);
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Graba nueva Actuacion: '.PHP_EOL);
-                fclose($file);
-            }*/
 			if ($h['id'] != "-1") {
                 /* Si hay redireccion, debemos grabar la propia actuacion si es 30038 */
                 if($h['ref_id']=="30018" || $h['ref_id']=="30033" || $h['ref_id']=="30038" ||
@@ -147,13 +131,6 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		            $se->send_count += 1;
 		            $se->save();
 
-                    /* TODO: Debug delete after Aug2023
-                    if(file_exists('testing/testing_claims_actuations.txt')){
-                        $file = fopen('testing/testing_claims_actuations.log', 'a');
-                        fwrite($file, date("d/m/Y H:i:s").'-'.'SendEmail grabado  ' . PHP_EOL);
-                        fwrite($file, date("d/m/Y H:i:s").'-'.'Enviando email a: ' .$o->email .' '. $o->name . PHP_EOL);
-                        fclose($file);
-                    }*/
 				}
 			}
 
@@ -161,15 +138,6 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
             if ($h['redirect_to'] === "30016" || $h['redirect_to'] === "30017") {
 
 				$c = Configuration::first();
-
-                /* TODO: Debug delete after Aug2023
-                if(file_exists('testing/testing_claims_actuations.txt')){
-                    $file = fopen('testing/testing_claims_actuations.log', 'a');
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'Hito redirecciona 301'.PHP_EOL);
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'Usuario tiene apud acta? : '. $claim->owner->apud_acta . PHP_EOL);
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'Cambia la reclamacion a Judicial type y actualiza : ' . PHP_EOL);
-                    fclose($file);
-                }*/
 
 				/* Comprobar si la reclamacion es de terceros */
                 if($claim->user_id){
@@ -239,33 +207,15 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                         }
 
                         // Verificamos si la reclamacion tiene un gestor para saber si generamos pedido o factura directamente
-                        /* TODO: Debug delete after Aug2023
-                        if(file_exists('testing/testing_claims_actuations.txt')){
-                            $file = fopen('testing/testing_claims_actuations.log', 'a');
-                            fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento: ' . PHP_EOL);
-                        }*/
+
                         if($claim->gestor_id <> null){
                             addDocument('order', $claim->id, $articulo,$tasa);
 
-                            /* TODO: Debug delete after Aug2023
-                            if(file_exists('testing/testing_claims_actuations.txt')){
-                                $file = fopen('testing/testing_claims_actuations.log', 'a');
-                                fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento Pedido: ' . PHP_EOL);
-                                fwrite($file, date("d/m/Y H:i:s").'-'.'Genera pedido: claim_id/articulo/tasa: ' . $claim->id .'/'. $articulo .'/'. $tasa . PHP_EOL);
-                                fclose($file);
-                            }*/
                         }else{
                             $idFactura = addDocument('invoice',$claim->id, $articulo,$tasa,0,$h['ref_id']);
                             $a->invoice_id = $idFactura;
                             $a->save();
 
-                            /* TODO: Debug delete after Aug2023
-                            if(file_exists('testing/testing_claims_actuations.txt')){
-                                $file = fopen('testing/testing_claims_actuations.log', 'a');
-                                fwrite($file, date("d/m/Y H:i:s").'-'.'Iniciamos generacion de documento Factura: ' . PHP_EOL);
-                                fwrite($file, date("d/m/Y H:i:s").'-'.'Genera factura: claim_id/articulo/tasa: ' . $claim->id .'/'. $articulo .'/'. $tasa . PHP_EOL);
-                                fclose($file);
-                            }*/
                         }
                     }
 				}
@@ -331,22 +281,8 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		}else{
 
                 // comprobar si el hito debe enviar un email
-                /* TODO: Debug delete after Aug2023
-                if(file_exists('testing/testing_claims_actuations.txt')){
-                    $file = fopen('testing/testing_claims_actuations.log', 'a');
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'No hay redireccion en el hito: ' . PHP_EOL);
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'Comprobamos si envia email si existe template: ' . $h['template_id']. PHP_EOL);
-                    fclose($file);
-                }*/
                 /* Envio email*/
                 if ($h['template_id'] && $claim->owner->msgusr == 1) {
-
-                    /* TODO: Debug delete after Aug2023
-                    if(file_exists('testing/testing_claims_actuations.txt')){
-                        $file = fopen('testing/testing_claims_actuations.log', 'a');
-                        fwrite($file, date("d/m/Y H:i:s").'-'.'Preparando email  ' . PHP_EOL);
-                        fclose($file);
-                    }*/
 
                     // code...
                     $se = new SendEmail;
@@ -354,13 +290,6 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     $se->template_id = $h['template_id'];
                     $se->actuation_id = $actuation_id;// viene desde claimsController
                     $se->save();
-
-                    /* TODO: Debug delete after Aug2023
-                    if(file_exists('testing/testing_claims_actuations.txt')){
-                        $file = fopen('testing/testing_claims_actuations.log', 'a');
-                        fwrite($file, date("d/m/Y H:i:s").'-'.'SendEmail grabado  ' . PHP_EOL);
-                        fclose($file);
-                    }*/
 
                     $o = User::where('email',$se->addresse)->first();
 
@@ -373,12 +302,6 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     $se->send_count += 1;
                     $se->save();
 
-                    /* TODO: Debug delete after Aug2023
-                    if(file_exists('testing/testing_claims_actuations.txt')){
-                        $file = fopen('testing/testing_claims_actuations.log', 'a');
-                        fwrite($file, date("d/m/Y H:i:s").'-'.'Enviando email a: ' .$o->email .' '. $o->name . PHP_EOL);
-                        fclose($file);
-                    }*/
                 } // Fin envio email
 
                 /*add actuation simple quitamos, no debe añadir actuaciones las reclamaciones*/
@@ -488,43 +411,22 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
                         ->orderBy('lorders.artlor','asc')
                         ->get();
 
-                        if(file_exists('testing/testing_automatic_invoices.txt')){
-                            $file = fopen('testing/testing_automatic_invoices.log', 'a');
-                            fwrite($file, date("d/m/Y H:i:s").'-'.'Facturacion mensual: ' . $orders->count(). ' lineas'.PHP_EOL);
-                            fclose($file);
-                        }
-
                     if($orders->count()){
                         $cantidad = 0;
-                        $buscado = '';
+                        $articulo = '';
 
                         foreach($orders as $key => $linea){
 
-                            if(file_exists('testing/testing_automatic_invoices.txt')){
-                                $file = fopen('testing/testing_automatic_invoices.log', 'a');
-                                fwrite($file, date("d/m/Y H:i:s").'-'.'Linea: ' . $key. ' - '. ' id: '. $linea->id .' - ' .$linea->artlor .PHP_EOL);
-                                fclose($file);
-                            }
-
                             if($cantidad == 0){
-                                $buscado = $linea->artlor;
+                                $articulo = $linea->artlor;
                             }
 
-                            if($buscado == $linea->artlor){
+                            if($articulo == $linea->artlor){
                                 $cantidad = $cantidad + 1;
 
-                                if(file_exists('testing/testing_automatic_invoices.txt')){
-                                    $file = fopen('testing/testing_automatic_invoices.log', 'a');
-                                    fwrite($file, date("d/m/Y H:i:s").'-'.'Linea: ' . $key.'Buscado = artlor, aumenta cantidad' . $buscado. ' - '. $linea->artlor .' - ' .$cantidad . PHP_EOL);
-                                    fclose($file);
-                                }
                             }else{
-                                addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode,0,$id_hito);
-                                if(file_exists('testing/testing_automatic_invoices.txt')){
-                                    $file = fopen('testing/testing_automatic_invoices.log', 'a');
-                                    fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea cantidad: ' . $cantidad. ' articulo: '. $buscado .'reinicia cantidad'.PHP_EOL);
-                                    fclose($file);
-                                }
+
+                                copyLineDocument($idDocument, $orders[$key-1], $cantidad);
 
                                 $cantidad = 1;
                                 $buscado = $linea->artlor;
@@ -532,13 +434,8 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
                             }
 
                             if($orders->count()-1 == $key){
-                                addLineDocument('Invoice',$idDocument,$buscado,0,$cantidad,$user->taxcode,0,$id_hito);
+                                copyLineDocument($idDocument, $orders[$key], $cantidad);
 
-                                if(file_exists('testing/testing_automatic_invoices.txt')){
-                                    $file = fopen('testing/testing_automatic_invoices.log', 'a');
-                                    fwrite($file, date("d/m/Y H:i:s").'-'.'Añade Ultima linea cantidad: ' . $cantidad. ' articulo: '. $buscado .' idDocument: '.$idDocument.' taxcode: '. $user->taxcode .PHP_EOL);
-                                    fclose($file);
-                                }
                             }
 
                             //update de linea procesadas
@@ -571,7 +468,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
 
 function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantidad = 1, $taxcode = 'IVA21', $discount = 0, $hito=NULL){
 
-    // Cogemos los datos del momento de creacion de la linea
+
     $c = Configuration::first();
 
     if($typeDocument == 'order'){
@@ -993,4 +890,23 @@ function addNotification($title, $content, $claim_id=0, $user_id=0){
     ];
     Notification::send($user, new NotifyUpdate($notificacion));
 
+}
+
+function copyLineDocument($idDocument, $linea, $cantidad){
+
+    $lDocument = new Linvoice;
+    $lDocument->invoice_id = $idDocument;
+    $lDocument->poslin = maxId('linvoices','poslin',$idDocument);
+    $lDocument->artlin = $linea->artlor;
+    $lDocument->deslin = $linea->deslor;
+    $lDocument->canlin = $cantidad;
+    $lDocument->dtolin = $linea->dtolor;
+
+    $lDocument->ivalin = $linea->ivalor;
+    $lDocument->prelin = $linea->prelor;
+
+    $idto = round(($lDocument->prelin*($lDocument->dtolin/100)),2);
+    $lDocument->totlin =  round(($lDocument->canlin * ($lDocument->prelin-$idto)),2);
+
+    $lDocument->save();
 }
