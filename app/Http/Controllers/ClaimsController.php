@@ -400,6 +400,8 @@ class ClaimsController extends Controller
 
         $client = new Client();
 
+
+
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Wannme-Is-Debug' => 'false',
@@ -411,26 +413,40 @@ class ClaimsController extends Controller
             "checksum"=> $checksum,
             "amount"=> $amount,
             "description"=> $debt->document_number. " Pago de factura ".$claim->last_invoice->id,
-            "mobilePhone"=> "666333999",
-            "mobilePhone2"=> "666999333",
-            "mobilePhone3"=> "654321987",
-            "email"=> "cliente@email.com",
-            "email2"=> "email2@email.com",
-            "email3"=> "email3@email.com",
+            "mobilePhone"=> $claim->owner->phone,
+            "mobilePhone2"=> $claim->owner->phone,
+            "mobilePhone3"=> "",
+            "email"=> $claim->owner->email,
+            "email2"=> $claim->owner->email,
+            "email3"=> "",
             "expirationDate"=> "2024-06-26T19:19:00.000+02:00",
             "partnerReference1"=> $debt->document_number,
-            "partnerReference2"=> "pr2",
-            "customField1"=> "customfield1",
-            "customField2"=> "customfield2",
-            "customField3"=> "customfield3",
-            "customField4"=> "customfield4",
-            "customField5"=> "customfield5",
-            "customField6"=> "customfield6",
-            "notificationURL"=> "https://notification.ngrok.io",
-            "returnOKURL"=> "https://www.google.ok",
-            "returnKOURL"=> "https://www.google.ko",
-            "usersGroup"=> "LOC_1",
+            "partnerReference2"=> "",
+            "customField1"=> "",
+            "customField2"=> "",
+            "customField3"=> "",
+            "customField4"=> "",
+            "customField5"=> "",
+            "customField6"=> "",
+            "notificationURL"=> "",
+            "returnOKURL"=> "",
+            "returnKOURL"=> "",
+            "usersGroup"=> "DIVID",
             "paymentMethods"=> [],
+            "customer"=> [
+                "address"=> "",
+                "bankAccountIban"=> "",
+                "document"=> "",
+                "documentType"=> "",
+                "firstName"=> $claim->owner->name,
+                "floorStairsDoor"=> "",
+                "lastName1"=> "",
+                "lastName2"=> "",
+                "location"=> $claim->owner->location,
+                "postalCode"=> $claim->owner->cop,
+                "provinceType"=> "",
+                "viaType"=> ""
+            ]
         ])->throw()->json();
 
 
