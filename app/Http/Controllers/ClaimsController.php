@@ -374,130 +374,93 @@ class ClaimsController extends Controller
         }
 
 
+        /* Forma pago Wannme */
+
+        if(file_exists('testing/wannme.txt')){
+            $file = fopen('testing/wannme.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Testing wannme '.PHP_EOL);
+
+        }
         //Checksum SHA512[partnerId(config.arg3) + privateKey(config(wannme.arg4)) + amount + partnerReference1]
-    $amount = "156";//$claim->last_invoice->amount;
-    //$cadena = config('wannme.arg3').config('wannme.arg4').$amount.$debt->document_number;
-    $cadena = config('wannme.arg3').config('wannme.arg4').$amount."48";
-    //-dq7jmsf5v3i6oiockveAXLQtVw*9pgJ541PUdRy8oGVKQIxS524.08DVD-0144
+        $amount = $claim->last_invoice->amount;
+        $cadena = config('wannme.arg3').config('wannme.arg4').$amount.$debt->document_number; //$amount.$debt->document_number;
+        //-dq7jmsf5v3i6oiockveAXLQtVw*9pgJ541PUdRy8oGVKQIxS524.08DVD-0144
 
-    //$checksum = hash('sha512', $cadena);  // No lo valida
-    $checksum = sha1($cadena);
-        dump($cadena);
-        dump($checksum);
+        //$checksum = hash('sha512', $cadena);  // No lo valida
+        $checksum = sha1($cadena);
+        /*dump($cadena);
+        dump($checksum);*/
 
-    //$checksumsha = "5127be59550f3edc2a2c755a687797d4db0ed141";
-    //$checksum512 = "c2e6f233a86e2659996a2dae72d18656b176ae6ba94659505c96daf3deca955f6856831fa1e58250b4bf3af481b717efa9e77c69c56d145ec33bafa84b566434";
-    // Config ();
-    $client = new Client();
+        /* debug*/
+        if(file_exists('testing/wannme.txt')){
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Cadena: '.$cadena.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Checksum: '.$checksum.PHP_EOL);
+            fclose($file);
+        }
 
-    $response = Http::withHeaders([
-        'Content-Type' => 'application/json',
-        'Wannme-Is-Debug' => 'false',
-        'Wannme-Integration-Version' => 'Postman Demo V2',
-        'Authorization' => '778199111ac61968b18ac08c36aa04b44aa0ecc6'
-    ])->post('https://rest-demo.wannme.com:443/integration/v2/wannmepay/payment/', [
-        "partnerId"=> "-dq7jmsf5v3i6oiockve",
-        //"checksum"=> "5dbff428eb6245cb2e406ecd6011c858d2cb7310",
-        "checksum"=> $checksum,
-        "amount"=> 156,
-        "description"=> "Description field Laravel",
-        "mobilePhone"=> "666333999",
-        "mobilePhone2"=> "666999333",
-        "mobilePhone3"=> "654321987",
-        "email"=> "cliente@email.com",
-        "email2"=> "email2@email.com",
-        "email3"=> "email3@email.com",
-        "expirationDate"=> "2024-06-26T19:19:00.000+02:00",
-        "partnerReference1"=> "48",
-        "partnerReference2"=> "pr2",
-        "customField1"=> "customfield1",
-        "customField2"=> "customfield2",
-        "customField3"=> "customfield3",
-        "customField4"=> "customfield4",
-        "customField5"=> "customfield5",
-        "customField6"=> "customfield6",
-        "notificationURL"=> "https://notification.ngrok.io",
-        "returnOKURL"=> "https://www.google.ok",
-        "returnKOURL"=> "https://www.google.ko",
-        "usersGroup"=> "LOC_1",
-        "paymentMethods"=> [],
-    ]);
-/*
-    $response = Http::withHeaders([
-        'Content-Type' => 'application/json',
-        'Wannme-Is-Debug' => 'false',
-        'Wannme-Integration-Version' => 'Dividae',
-        'Authorization' => config('wannme.arg1')
-    ])->post(config('wannme.arg2'), [
-        "partnerId"=> config('wannme.arg3'),
-        "checksum"=> $checksum,
-        "amount"=> $amount,
-        //"description"=> $debt->document_number. "Pago de factura ".$claim->last_invoice->id,
-        "description"=> "DVD-0144 manual Pago de factura ".$claim->last_invoice->id,
-        "mobilePhone"=> "666333999",
-        "mobilePhone2"=> "666999333",
-        "mobilePhone3"=> "654321987",
-        "email"=> "cliente@email.com",
-        "email2"=> "email2@email.com",
-        "email3"=> "email3@email.com",
-        "expirationDate"=> "2024-06-26T19:19:00.000+02:00",
-        "partnerReference1"=> "48",
-        "partnerReference2"=> ":",
-        "customField1"=> "customfield1",
-        "customField2"=> "customfield2",
-        "customField3"=> "customfield3",
-        "customField4"=> "customfield4",
-        "customField5"=> "customfield5",
-        "customField6"=> "customfield6",
-        "notificationURL"=> "https://notification.ngrok.io",
-        "returnOKURL"=> "https://www.google.ok",
-        "returnKOURL"=> "https://www.google.ko",
-        "usersGroup"=> "LOC_1",
-        "paymentMethods"=> [],
-    ])->throw()->json();
+        $client = new Client();
 
-*/
-
-    //dump($response->ok());  si añado el throw ya no funciona el metodo ok
-
-    // Enlace a la plataforma de pago de wannme
-    /*dump("Status code");
-    dump($response['statusCode']);
-
-    dump($response['statusDescription']);
-    dump("Errror code");
-    dump($response['errorCode']);
-    dump("Enlace de pago a la plataforma de Wannme");
-    dump($response['url']);
-    dump("Enlace de pago directo a pago con tarjeta redsys");
-    dump($response['directLinks'][0]['paymentMethod']);
-    dump($response['directLinks'][0]['url']);
-
-*/
-
-    dd($response);
-    //$response = $request->send();
-    //$response = $response->getBody();
-    //$response->successful();
-
-    //dump($response);
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Wannme-Is-Debug' => 'false',
+            'Wannme-Integration-Version' => 'Demo V2',
+            'Authorization' => config('wannme.arg1')
+        ])->post(config('wannme.arg2'), [
+            "partnerId"=> config('wannme.arg3'),
+            //"checksum"=> "5dbff428eb6245cb2e406ecd6011c858d2cb7310",
+            "checksum"=> $checksum,
+            "amount"=> $amount,
+            "description"=> $debt->document_number. " Pago de factura ".$claim->last_invoice->id,
+            "mobilePhone"=> "666333999",
+            "mobilePhone2"=> "666999333",
+            "mobilePhone3"=> "654321987",
+            "email"=> "cliente@email.com",
+            "email2"=> "email2@email.com",
+            "email3"=> "email3@email.com",
+            "expirationDate"=> "2024-06-26T19:19:00.000+02:00",
+            "partnerReference1"=> $debt->document_number,
+            "partnerReference2"=> "pr2",
+            "customField1"=> "customfield1",
+            "customField2"=> "customfield2",
+            "customField3"=> "customfield3",
+            "customField4"=> "customfield4",
+            "customField5"=> "customfield5",
+            "customField6"=> "customfield6",
+            "notificationURL"=> "https://notification.ngrok.io",
+            "returnOKURL"=> "https://www.google.ok",
+            "returnKOURL"=> "https://www.google.ko",
+            "usersGroup"=> "LOC_1",
+            "paymentMethods"=> [],
+        ])->throw()->json();
 
 
+        // Respuestas recibidas
+        if(file_exists('testing/wannme.txt')){
+            $file = fopen('testing/wannme.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Respuestas recibidas '.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Status code: '.$response['statusCode']. " - " .$response['statusDescription'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Error code: '.$response['errorCode'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'URL wannme: '.$response['url'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Forma de pago: '.$response['directLinks'][0]['paymentMethod'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'URL de pago: '.$response['directLinks'][0]['url'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
+            fclose($file);
+        }
 
-    $request->session()->forget('other_user');
-    $request->session()->forget('claim_client');
-    $request->session()->forget('claim_third_party');
-    $request->session()->forget('claim_debtor');
-    $request->session()->forget('claim_debt');
-    $request->session()->forget('debt_step_one');
-    $request->session()->forget('debt_step_two');
-    $request->session()->forget('debt_step_three');
-    $request->session()->forget('claim_agreement');
-    $request->session()->forget('type_other');
-    $request->session()->forget('documentos');
-    $request->session()->forget('type_claim');
+        $request->session()->forget('other_user');
+        $request->session()->forget('claim_client');
+        $request->session()->forget('claim_third_party');
+        $request->session()->forget('claim_debtor');
+        $request->session()->forget('claim_debt');
+        $request->session()->forget('debt_step_one');
+        $request->session()->forget('debt_step_two');
+        $request->session()->forget('debt_step_three');
+        $request->session()->forget('claim_agreement');
+        $request->session()->forget('type_other');
+        $request->session()->forget('documentos');
+        $request->session()->forget('type_claim');
 
-            return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
+        return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
     }
 
     /**
