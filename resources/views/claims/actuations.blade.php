@@ -208,7 +208,7 @@
         @endif
 
 
-        @if ((Auth::user()->isClient()) && !$claim->isFinished())
+        @if ((Auth::user()->isClient()|| Auth::user()->isGestor()||Auth::user()->isAssociate()) && !$claim->isFinished())
             <hr>
             <h5>Puede añadir intrucciones y archivos a la reclamaci&oacute;n</h5>
             <form action="{{url('claims/actuations',$claim->id)}}" method="POST" id="actuation-form" enctype="multipart/form-data">
