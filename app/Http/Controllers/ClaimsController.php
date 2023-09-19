@@ -530,6 +530,7 @@ echo $response;
     $res = $client->sendAsync($request)->wait();
     echo $res->getBody();
     */
+    /*
     $body = '{
         "partnerId": "-dq7jmsf5v3i6oiockve",
         "checksum": "2ca2fdc07b293e69b65365ee3a35e0b1dfef8e24",
@@ -588,7 +589,7 @@ echo $response;
         'body' => $body,
     ]);
 
-    $response->successful();
+    $response->successful();*/
 
             return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
     }
