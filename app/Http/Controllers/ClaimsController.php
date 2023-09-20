@@ -374,24 +374,18 @@ class ClaimsController extends Controller
         }
 
 
-        /* Forma pago Wannme */
-
+        /* Wannme cobros */
         if(file_exists('testing/wannme.txt')){
             $file = fopen('testing/wannme.log', 'a');
             fwrite($file, date("d/m/Y H:i:s").'-'.'Testing wannme '.PHP_EOL);
-
         }
-        //Checksum SHA512[partnerId(config.arg3) + privateKey(config(wannme.arg4)) + amount + partnerReference1]
         $amount = $claim->last_invoice->amount;
-        $cadena = config('wannme.arg3').config('wannme.arg4').$amount.$debt->document_number; //$amount.$debt->document_number;
-        //-dq7jmsf5v3i6oiockveAXLQtVw*9pgJ541PUdRy8oGVKQIxS524.08DVD-0144
+        $dateNow = (new \DateTime())->modify('+1 month');
+        $cadena = config('wannme.arg3').config('wannme.arg4').$amount.$debt->document_number;
 
-        //$checksum = hash('sha512', $cadena);  // No lo valida
-        $checksum = sha1($cadena);
-        /*dump($cadena);
-        dump($checksum);*/
+        $checksum = hash('sha512', $cadena);
+        //$checksum = sha1($cadena);  // deprecated
 
-        /* debug*/
         if(file_exists('testing/wannme.txt')){
             fwrite($file, date("d/m/Y H:i:s").'-'.'Cadena: '.$cadena.PHP_EOL);
             fwrite($file, date("d/m/Y H:i:s").'-'.'Checksum: '.$checksum.PHP_EOL);
@@ -400,8 +394,6 @@ class ClaimsController extends Controller
 
         $client = new Client();
 
-
-
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Wannme-Is-Debug' => 'false',
@@ -409,17 +401,16 @@ class ClaimsController extends Controller
             'Authorization' => config('wannme.arg1')
         ])->post(config('wannme.arg2'), [
             "partnerId"=> config('wannme.arg3'),
-            //"checksum"=> "5dbff428eb6245cb2e406ecd6011c858d2cb7310",
             "checksum"=> $checksum,
             "amount"=> $amount,
             "description"=> $debt->document_number. " Pago de factura ".$claim->last_invoice->id,
-            "mobilePhone"=> $claim->owner->phone,
-            "mobilePhone2"=> $claim->owner->phone,
+            "mobilePhone"=> "",//$claim->owner->phone,
+            "mobilePhone2"=> "",
             "mobilePhone3"=> "",
-            "email"=> $claim->owner->email,
-            "email2"=> $claim->owner->email,
+            "email"=> "",//$claim->owner->email,
+            "email2"=> "",
             "email3"=> "",
-            "expirationDate"=> "2024-06-26T19:19:00.000+02:00",
+            "expirationDate"=>$dateNow->format('c'),
             "partnerReference1"=> $debt->document_number,
             "partnerReference2"=> "",
             "customField1"=> "",
@@ -431,19 +422,19 @@ class ClaimsController extends Controller
             "notificationURL"=> "",
             "returnOKURL"=> "",
             "returnKOURL"=> "",
-            "usersGroup"=> "DIVID",
+            "usersGroup"=> "DIVIDAE",
             "paymentMethods"=> [],
             "customer"=> [
                 "address"=> "",
                 "bankAccountIban"=> "",
                 "document"=> "",
                 "documentType"=> "",
-                "firstName"=> $claim->owner->name,
+                "firstName"=> "",//$claim->owner->name,
                 "floorStairsDoor"=> "",
                 "lastName1"=> "",
                 "lastName2"=> "",
-                "location"=> $claim->owner->location,
-                "postalCode"=> $claim->owner->cop,
+                "location"=> "",//$claim->owner->location,
+                "postalCode"=> "",//$claim->owner->cop,
                 "provinceType"=> "",
                 "viaType"=> ""
             ]
