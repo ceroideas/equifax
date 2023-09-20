@@ -28,11 +28,11 @@ return new class extends Migration
 
         Schema::table('invoices', function(Blueprint $table) {
             $table->string('trafac')->nullable()->default(0);
-            $table->string('tipfac')->nullable()->default(0);
+            $table->string('tipfac')->nullable()->default(1);
         });
 
         Schema::table('linvoices', function(Blueprint $table) {
-            $table->string('dcolfa')->nullable()->default(0);
+            $table->string('tiplin')->nullable()->default(1);
         });
 
         Schema::table('claims', function(Blueprint $table) {
