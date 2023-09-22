@@ -78,7 +78,7 @@
                 <tr>
                     <td>{{ $collect->id }}</td>
                     <td>{{ Carbon\Carbon::parse($collect->feccob)->format('d/m/Y') }}</td>
-                    <td>{{number_format($collect->impcob,2,',','.')}} €</td>
+                    <td>{{number_format($collect->impcob,2,',','.')}} &euro;</td>
                     <td>{{ $collect->cptcob }}</td>
                     <td>{{ $collect->invoice_id }}</td>
                     <td>{{ $collect->fpacob }}</td>

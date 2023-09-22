@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{asset('invoice.css')}}">
 <link href="{{url('landing')}}/app.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
-<title>Factura #{{$i->id}}</title>
+<title>Factura {{$i->id}}</title>
 <div class="container-fluid">
 
 	<div class="container invoice-container">
@@ -32,7 +32,7 @@
         </div>
 
         <div class="col-sm-3"> </div>
-	    <div class="col-sm-3 text-sm-right"> <strong>Factura Nº: <br></strong> {{$i->id}}</div>
+	    <div class="col-sm-3 text-sm-right"> <strong>Factura Nº: <br></strong>{{$i->tipfac}} / {{$i->id}}</div>
 
 	  </div>
 	  <hr>
@@ -83,7 +83,7 @@
                             {{$value['deslin']}}
                             </td>
                             <td class="col-1 w-auto text-center border-0">{{$value['canlin']}}</td>
-                            <td class="col-2 w-auto text-center border-0">{{number_format($value['prelin'],2,',','.')}} €</td>
+                            <td class="col-2 w-auto text-center border-0">{{number_format($value['prelin'],2,',','.')}} &euro;</td>
                             <td class="col-2 w-auto text-center border-0">
                                 {{ $value['dtolin']==0 ? '' : $value['dtolin'].' %' }}
                             </td>
@@ -96,7 +96,7 @@
                             @else
                                 <td class="col-2 w-auto text-center border-0">21 %</td>
                             @endif
-                            <td class="col-2 w-auto text-center border-0">{{number_format($value['totlin'],2,',','.')}}  €</td>
+                            <td class="col-2 w-auto text-center border-0">{{number_format($value['totlin'],2,',','.')}}  &euro;</td>
                         </tr>
                     @endforeach
 	            </tbody>
@@ -111,7 +111,7 @@
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Subtotal:</strong></td>
                         {{-- Sumatorio de Bases --}}
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>
-                            {{number_format($i->bas1fac+$i->bas2fac+$i->bas3fac+$i->bas4fac,2,',','.')}} €
+                            {{number_format($i->bas1fac+$i->bas2fac+$i->bas3fac+$i->bas4fac,2,',','.')}} &euro;
                         </strong></td>
                     </tr>
                     <tr>
@@ -121,7 +121,7 @@
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>IVA:</strong></td>{{-- Sumatoria de ivas --}}
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>
-                            {{number_format($i->iiva1fac+$i->iiva2fac+$i->iiva3fac,2,',','.')}} €
+                            {{number_format($i->iiva1fac+$i->iiva2fac+$i->iiva3fac,2,',','.')}} &euro;
                         </strong></td>
                     </tr>
                     <tr>
@@ -130,28 +130,10 @@
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong></strong></td>
                         <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>Total:</strong></td>
-                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>{{number_format($i->totfac,2,',','.')}} €</strong></td>
+                        <td class="col-2 w-auto text-center border-0" style="width: 100px !important"><strong>{{number_format($i->totfac,2,',','.')}} &euro;</strong></td>
                       </tr>
                   </tfoot>
 
-{{--                <tfoot class="card-footer">
-                    @php
-                        $tax = ($i->amount * 100)/(100 + $c->tax);
-                    @endphp
-                    <tr>
-                    <td colspan="2" class="text-right"><strong>Sub Total:</strong></td>
-                    <td class="text-right">{{ number_format($tax ,2,',','.')}} €</td>
-                    </tr>
-                    <tr>
-                    <td colspan="2" class="text-right"><strong>IVA ({{$c->tax}}%):</strong></td>
-                    <td class="text-right">{{number_format(($i->amount - $tax) ,2,',','.')}} €</td>
-                    </tr>
-                    <tr>
-                    <td colspan="2" class="text-right"><strong>Total:</strong></td>
-                    <td class="text-right">{{ number_format($i->amount ,2,',','.') }} €</td>
-                    </tr>
-			    </tfoot>
---}}
 	        </table>
 	      </div>
 	    </div>

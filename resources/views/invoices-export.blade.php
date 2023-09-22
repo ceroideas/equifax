@@ -3,6 +3,7 @@
 
     <thead>
         <tr>
+            <th>Serie</th>
             <th>ID</th>
             @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
                 <th>Cliente</th>
@@ -25,6 +26,7 @@
     <tbody>
 @foreach($invoices as $invoice)
     <tr>
+        <td>{{ $invoice->tipfac }}</td>
         <td>{{ $invoice->id }}</td>
         @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
             @if(isset($invoice->claim->client))
@@ -47,7 +49,7 @@
         @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
             <td>{{ $invoice->type }}</td>
         @endif
-        <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':'Pendiente') }}</td>
+        <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':($invoice->status == 3 ? 'Rectificativa':'Pendiente')) }}</td>
 
         <td>
             @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())

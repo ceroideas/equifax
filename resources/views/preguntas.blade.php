@@ -5192,7 +5192,7 @@ Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exi
 									    </div>
 									    <div id="ecollapseEight" class="collapse" aria-labelledby="eheadingEight" data-parent="#eaccordionExample">
 									      <div class="card-body">
-									        Una tasa judicial tiene como finalidad sufragar el servicio prestado por la Administración de Justicia. Sin embargo, no se abona en todos los procedimientos, sino que tan sólo se deberá hacer frente a la misma si quien reclama es persona jurídica y la cantidad que solicitada es superior a 2.000€. Si quien reclama la deuda es una persona física, no deberá abonar tasa alguna ya que está exenta.
+									        Una tasa judicial tiene como finalidad sufragar el servicio prestado por la Administración de Justicia. Sin embargo, no se abona en todos los procedimientos, sino que tan sólo se deberá hacer frente a la misma si quien reclama es persona jurídica y la cantidad que solicitada es superior a 2.000&euro;. Si quien reclama la deuda es una persona física, no deberá abonar tasa alguna ya que está exenta.
 									      </div>
 									    </div>
 									  </div>

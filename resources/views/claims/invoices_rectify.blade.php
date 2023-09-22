@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Facturas</h1>
+                <h1>Facturas Rectificativas</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
-                    <li class="breadcrumb-item active">Facturas</li>
+                    <li class="breadcrumb-item active">Facturas rectificativas</li>
                 </ol>
             </div>
         </div>
@@ -76,14 +76,9 @@
         </x-adminlte-alert>
     @endif
 
-    @if (!Auth::user()->isClient() || !Auth::user()->isAssociate())
-        <a href="{{url('invoices-export')}}" class="btn btn-sm btn-success">Exportar Facturas Pagadas</a>
-        <a href="{{url('invoices-export-all')}}" class="btn btn-sm btn-primary">Exportar Todas las Facturas</a>
+    @if (!Auth::user()->isClient() || !Auth::user()->isAssociate() || !Auth::user()->isGestor())
+        <a href="{{url('invoices-rectify-export-all')}}" class="btn btn-sm btn-primary">Exportar todas las facturas rectificativas</a>
     @endif
-    @if (Auth::user()->isAdmin() || Auth::user()->isSuperAdmin())
-    <a href="{{url('invoices-export-conta')}}" class="btn btn-sm btn-info">Exportar Facturas Pagadas (Altai)</a>
-    <a href="{{url('invoices-export-all-conta')}}" class="btn btn-sm btn-info">Exportar Todas las Facturas (Altai)</a>
-@endif
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" class="table-responsive" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
@@ -106,17 +101,7 @@
                     <td>{{ $invoice->description }}</td>
                     <td>{{ number_format(($invoice->totfac) ,2,',','.')}} &euro;</td>
 
-
-
-                    @if ($invoice->status == 3)
-                        <td><span style="color:#e65927;font-weight: bold;"> Rectificativa</span></td>
-                    @elseif($invoice->status == 4)
-                        <td><span style="color:#e92626;font-weight: bold;"> Anulada</span></td>
-                    @else
-                        <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':'Pendiente') }}</td>
-                    @endif
-
-
+                    <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':'Pendiente') }}</td>
 
                     @if(Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin())
                         <td>{{ number_format(($invoice->totfac-$invoice->collects()) ,2,',','.')}} &euro;</td>
@@ -142,7 +127,7 @@
                             </a>
                         @endif
                         @if ((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()) && ($invoice->status == 0 ||$invoice->status == NULL))
-                            <a href="{{ url('/invoices/rectify/create/' . $invoice->tipfac.'/'.$invoice->id ) }}">
+                            <a href="{{ url('/claims/invoices-rectify/create/' . $invoice->id ) }}">
                                 <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Generar factura rectificativa">
                                     <i class="fa fa-lg fa-fw fa-backward"></i>
                                 </button>

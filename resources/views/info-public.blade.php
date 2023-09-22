@@ -358,27 +358,27 @@
                                             <td style="color:#285ba3">{{$concepto}}</td>
                                             <!--<td rowspan="5"
                                                 style="text-align: center; vertical-align: middle; color:#285ba3">15%</td>-->
-                                            <td style="text-align: right;color:#285ba3;">{{number_format($importes[$key],2,',','.')}} €</td>
+                                            <td style="text-align: right;color:#285ba3;">{{number_format($importes[$key],2,',','.')}} &euro;</td>
                                             <td style="text-align: right;color:#285ba3;">{{number_format($descuentos[$key],0)}} %</td>
                                             <td style="text-align: right;color:#285ba3;">{{ $ivas[$key]=='IVA0'?0:21 }} %</td>
-                                            <td style="text-align: right;color:#285ba3;">{{number_format($totales[$key],2,',','.')}} €</td>
+                                            <td style="text-align: right;color:#285ba3;">{{number_format($totales[$key],2,',','.')}} &euro;</td>
                                         </tr>
                                     @endforeach
 
                                     <tr>
                                         <th colspan="3"></th>
                                         <th style="text-align: right;color:#285ba3;">Subtotal</th>
-                                        <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->bas1fac+ $invoice[0]->bas2fac+$invoice[0]->bas3fac+$invoice[0]->bas4fac),2,',','.') }} €</th>
+                                        <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->bas1fac+ $invoice[0]->bas2fac+$invoice[0]->bas3fac+$invoice[0]->bas4fac),2,',','.') }} &euro;</th>
                                     </tr>
                                     <tr>
                                         <th colspan="3"></th>
                                         <th style="text-align: right;color:#285ba3;">Iva</th>
-                                        <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->iiva1fac+ $invoice[0]->iiva2fac+$invoice[0]->iiva3fac),2,',','.') }} €</th>
+                                        <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->iiva1fac+ $invoice[0]->iiva2fac+$invoice[0]->iiva3fac),2,',','.') }} &euro;</th>
                                     </tr>
                                     <tr>
                                         <th colspan="3"></th>
                                         <th style="text-align: right;color:#285ba3;">Total</th>
-                                        <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->totfac),2,',','.') }} €</th>
+                                        <th style="text-align: right;color:#285ba3;">{{ number_format(($invoice[0]->totfac),2,',','.') }} &euro;</th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -387,7 +387,7 @@
                                 <div class="col-sm-5"></div>
                                 <div class="col-sm-3">
                                     <a data-v-9cc878a2="" href="/claims/payment/<?php echo $id?>" aria-current="page"
-                                        class="btn btn-light-descubre" type="button">Proceder al pago de {{ number_format(($invoice[0]->totfac),2,',','.') }} €</a>
+                                        class="btn btn-light-descubre" type="button">Proceder al pago de {{ number_format(($invoice[0]->totfac),2,',','.') }} &euro;</a>
                                         <br>
                                 </div>
                                 <div class="col-sm-3"></div>

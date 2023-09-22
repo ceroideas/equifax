@@ -438,6 +438,12 @@ return [
                     'url'  => '/claims/invoices',
                 ],
                 [
+                    'text' => 'Facturas rectificativas',
+                    'icon' => '',
+                    'can' => ['superadmin','admin'],
+                    'url'  => '/claims/invoices-rectify',
+                ],
+                [
                     'text' => 'Cobros',
                     'icon' => '',
                     'can' => ['superadmin','admin'],

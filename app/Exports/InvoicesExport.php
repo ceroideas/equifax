@@ -29,6 +29,10 @@ class InvoicesExport implements FromView, WithTitle
                                     ->get();
             }
 
+        }elseif($this->type == 5){
+            if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
+                $invoices = Invoice::where('tipfac', 'rec')->get();
+            }
         }else{
             if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
                 $invoices = Invoice::all();

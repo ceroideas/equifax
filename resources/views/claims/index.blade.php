@@ -112,10 +112,10 @@
                     <td>{{ ($claim->owner) ? $claim->owner->name:'No existe'}}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ ($claim->debtor)? $claim->debtor->name :'No existe'}}</td>
-                    <td>{{ number_format( ($claim->debt->total_amount + (($claim->debt->total_amount * $claim->debt->tax)/100) ) , 2,',','.') }} € </td>
-                    <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} €</td>
-                    <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} €</td>
-                    <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
+                    <td>{{ number_format( ($claim->debt->total_amount + (($claim->debt->total_amount * $claim->debt->tax)/100) ) , 2,',','.') }} &euro; </td>
+                    <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} &euro;</td>
+                    <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} &euro;</td>
+                    <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} &euro;</td>
 
                     @switch($claim->owner->role)
                         @case(3)

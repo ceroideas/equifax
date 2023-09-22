@@ -97,34 +97,6 @@ class ClaimsController extends Controller
 
     public function stepOne(){
 
-        /*  TODO: Delete after 16/06/2023
-        if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
-
-
-            $rutatemp = 'public/temporal/debts/'.Auth::user()->id;
-            $ficheros = Storage::AllFiles($rutatemp);
-
-            if($ficheros){
-                Storage::deleteDirectory($rutatemp);
-            }
-
-            session()->forget('other_user');
-            session()->forget('claim_client');
-            session()->forget('claim_third_party');
-            session()->forget('claim_debtor');
-            session()->forget('claim_debt');
-            session()->forget('debt_step_one');
-            session()->forget('debt_step_two');
-            session()->forget('debt_step_three');
-            session()->forget('claim_agreement');
-            session()->forget('type_other');
-            session()->forget('documentos');
-
-
-            return view('claims.create_step_1');
-        }
-        return redirect('users/'.Auth::id())->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');*/
-
         return view('claims.create_step_1');
 
     }
@@ -928,11 +900,46 @@ echo $response;
         return view('claims.invoices', compact('invoices'));
     }
 
-    public function myInvoice($id)
+    public function myInvoicesRectify()
     {
-        $i = Invoice::find($id);
+
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $invoices = Invoice::where('tipfac', 'rec')
+                        ->get();
+        }
+
+        return view('claims.invoices_rectify', compact('invoices'));
+    }
+
+    public function myInvoice($tipfac, $id)
+    {
+        //$i = Invoice::find($id);
+        $i = Invoice::where('id', '=', $id)
+                    ->where('tipfac','=',$tipfac)
+                    ->first();
         $c = Configuration::first();
-        $lines = Linvoice::where('invoice_id',$id)->get();
+        $lines = Linvoice::where('invoice_id','=',$id)
+                            ->where('tiplin', '=',$tipfac)
+                            ->get();
+        if(Auth::user()->id == $i->user_id ||Auth::user()->isSuperAdmin()||Auth::user()->isAdmin()){
+            return view('invoice', compact('c','i','lines'));
+        }else{
+            print_r("Acceso no permitido al documento solicitado");
+        }
+
+    }
+
+    public function myInvoiceRectify($id)
+    {
+        $i = Invoice::where('id', '=', $id)
+                    ->where('tipfac','=','REC')
+                    ->first();
+        $c = Configuration::first();
+
+        $lines = Linvoice::where('invoice_id','=',$id)
+                            ->where('tiplin', '=','REC')
+                            ->get();
+
         return view('invoice', compact('c','i','lines'));
     }
 
@@ -1224,6 +1231,12 @@ echo $response;
     {
         return Excel::download(new InvoicesExport(1), 'all-invoices-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
+
+    public function invoicesRectifyExportAll()
+    {
+        return Excel::download(new InvoicesExport(5), 'all-invoices-rectify'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
 
     public function invoicesExportConta()
     {

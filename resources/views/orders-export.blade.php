@@ -42,7 +42,7 @@
                 @endif
                 <td>#{{ $order->claim->id }}</td>
                 <td>{{ $order->description }}</td>
-                <td>{{ $order->amount }}€</td>
+                <td>{{ $order->amount }}&euro;</td>
                 <td>{{ Carbon\Carbon::parse($order->payment_date)->format('d-m-Y H:i') }}</td>
                 <td>{{ $order->type }}</td>
                 <td>{{ $order->facord == 1 ? 'Facturado' : 'Pendiente' }}</td>

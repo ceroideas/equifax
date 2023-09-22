@@ -16,6 +16,7 @@ use App\Http\Controllers\CollectsController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DiscountCodeController;
 use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\InvoicesController;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -111,7 +112,9 @@ Route::group([
     Route::get('/clear-option-two', [ClaimsController::class, 'flushOptionTwo']);
     Route::get('/refuse-agreement', [ClaimsController::class, 'refuseAgreement']);
     Route::get('/invoices', [ClaimsController::class , 'myInvoices']);
-    Route::get('/invoices/{id}', [ClaimsController::class , 'myInvoice']);
+    Route::get('/invoices-rectify', [ClaimsController::class , 'myInvoicesRectify']);
+    Route::get('/invoices/{tipfac}/{id}', [ClaimsController::class , 'myInvoice']);
+    Route::get('/invoices-rectify/{id}', [ClaimsController::class , 'myInvoiceRectify']);
     Route::get('/orders', [ClaimsController::class , 'myOrders']);
     Route::get('/orders/{id}', [ClaimsController::class , 'myOrder']);
     Route::get('/facturar', [ClaimsController::class , 'facturar']);
@@ -144,6 +147,14 @@ Route::group([
     Route::post('/', [CollectsController::class, 'store']);
 });
 
+Route::group([
+    'prefix' => 'invoices',
+    'middleware'=>'auth'
+], function(){
+    //Route::get('/', [InvoicesController::class , 'index']);
+    Route::get('/rectify/create/{tipfac}/{invoice}', [InvoicesController::class , 'create']);
+    //Route::post('/', [InvoicesController::class, 'store']);
+});
 
 /* Terceros */
 Route::group([
@@ -236,6 +247,7 @@ Route::group([
     Route::delete('/discount-codes/{id}', [ConfigurationsController::class, 'deleteDiscountCodes']);
     Route::get('invoices-export', [ClaimsController::class, 'invoicesExport']);
     Route::get('invoices-export-all', [ClaimsController::class, 'invoicesExportAll']);
+    Route::get('invoices-rectify-export-all', [ClaimsController::class, 'invoicesRectifyExportAll']);
     Route::get('invoices-export-conta', [ClaimsController::class, 'invoicesExportConta']);
     Route::get('invoices-export-all-conta', [ClaimsController::class, 'invoicesExportAllConta']);
     Route::get('orders-export', [ClaimsController::class, 'ordersExport']);
