@@ -22,24 +22,6 @@
 
 @section('content')
     @php
-    if (Auth::user()->isClient() || Auth::user()->isAssociate() || Auth::user()->isGestor()) {
-        $heads = [
-            'Serie',
-            'ID',
-            'Reclamación',
-            'Concepto',
-            'Importe',
-            'Status',
-            'Fecha del pago',
-            ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
-        ];
-        $config = [
-
-            'columns' => [null,null, null, null, null, null, null, ['orderable' => false]],
-            'order'=>[[0,'desc'],[1,'desc']],
-            'language' => ['url' => '/js/datatables/dataTables.spanish.json']
-        ];
-    }else{
         $heads = [
             'Serie',
             'ID',
@@ -47,20 +29,17 @@
             'Reclamación',
             'Concepto',
             'Importe',
-            'Status',
-            'Importe pendiente',
-            'Fecha del pago',
             'Exportada (Altai)',
             ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
         ];
         $config = [
 
-            'columns' => [null,null, null, null, null, null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
             'order'=>[[0,'desc'],[1,'desc']],
             'pageLength' => 25,
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
-    }
+
 
     @endphp
 
@@ -101,13 +80,7 @@
                     <td>{{ $invoice->description }}</td>
                     <td>{{ number_format(($invoice->totfac) ,2,',','.')}} &euro;</td>
 
-                    <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':'Pendiente') }}</td>
 
-                    @if(Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin())
-                        <td>{{ number_format(($invoice->totfac-$invoice->collects()) ,2,',','.')}} &euro;</td>
-                    @endif
-
-                    <td>{{ $invoice->payment_date <> null ? Carbon\Carbon::parse($invoice->payment_date)->format('d/m/Y') : '' }}</td>
                     @if (Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin())
                         <td>{{ $invoice->trafac==1 ? 'Exportada': 'No exportada'}}</td>
                     @endif
@@ -119,27 +92,6 @@
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>
                         </a>
-                        @if ((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()) && $invoice->status <> 1)
-                            <a href="{{ url('/collects/create/' . $invoice->id ) }}">
-                                <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Generar cobro">
-                                    <i class="fa fa-lg fa-fw fa-money-bill"></i>
-                                </button>
-                            </a>
-                        @endif
-                        @if ((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()) && ($invoice->status == 0 ||$invoice->status == NULL))
-                            <a href="{{ url('/claims/invoices-rectify/create/' . $invoice->id ) }}">
-                                <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Generar factura rectificativa">
-                                    <i class="fa fa-lg fa-fw fa-backward"></i>
-                                </button>
-                            </a>
-                        @endif
-                        @if((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin() || Auth::user()->isGestor()) && $invoice->type == 'automatic')
-                            <a href="{{ url('/claims/gestoria/' . $invoice->user_id.'/'.$invoice->id ) }}">
-                                <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver pedidos de la factura">
-                                    <i class="fa fa-lg fa-fw fa-address-book"></i>
-                                </button>
-                            </a>
-                        @endif
                     </nobr>
                     </td>
                 </tr>

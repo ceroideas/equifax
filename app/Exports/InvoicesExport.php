@@ -31,7 +31,10 @@ class InvoicesExport implements FromView, WithTitle
 
         }elseif($this->type == 5){
             if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
-                $invoices = Invoice::where('tipfac', 'rec')->get();
+
+                $invoices = Invoice::where('tipfac', 'LIKE','REC%')
+                                    ->get();
+
             }
         }else{
             if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){

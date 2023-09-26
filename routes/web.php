@@ -143,7 +143,7 @@ Route::group([
     'middleware'=>'auth'
 ], function(){
     Route::get('/', [CollectsController::class , 'index']);
-    Route::get('/create/{invoice?}', [CollectsController::class , 'create']);
+    Route::get('/create/{tipfac?}/{invoice?}', [CollectsController::class , 'create']);
     Route::post('/', [CollectsController::class, 'store']);
 });
 

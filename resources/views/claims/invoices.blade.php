@@ -109,11 +109,11 @@
 
 
                     @if ($invoice->status == 3)
-                        <td><span style="color:#e65927;font-weight: bold;"> Rectificativa</span></td>
+                        <td><span style="color:#e65927;font-weight: bold;">{{$invoice->status}} Rectificativa</span></td>
                     @elseif($invoice->status == 4)
-                        <td><span style="color:#e92626;font-weight: bold;"> Anulada</span></td>
+                        <td><span style="color:#e92626;font-weight: bold;">{{$invoice->status}} Anulada</span></td>
                     @else
-                        <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':'Pendiente') }}</td>
+                        <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? $invoice->status.' Pendiente parcial':$invoice->status.' Pendiente') }}</td>
                     @endif
 
 
@@ -134,16 +134,21 @@
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>
                         </a>
-                        @if ((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()) && $invoice->status <> 1)
-                            <a href="{{ url('/collects/create/' . $invoice->id ) }}">
-                                <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Generar cobro">
+                        {{--@if ((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()) && ($invoice->status == null || $invoice->status == 2)) --}}
+                        @if (Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin())
+                            <a href="{{ url('/collects/create/' . $invoice->tipfac.'/'. $invoice->id ) }}">
+                                <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Generar cobro"
+                                @disabled(($invoice->status==null||$invoice->status==2)?false:true)>
                                     <i class="fa fa-lg fa-fw fa-money-bill"></i>
                                 </button>
                             </a>
                         @endif
-                        @if ((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()) && ($invoice->status == 0 ||$invoice->status == NULL))
+                        @if (Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin() )
+                        {{--@if ((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()) && ($invoice->status == 0 ||$invoice->status == NULL))--}}
                             <a href="{{ url('/invoices/rectify/create/' . $invoice->tipfac.'/'.$invoice->id ) }}">
-                                <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Generar factura rectificativa">
+                                <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Generar factura rectificativa"
+                                @disabled(($invoice->status==null||$invoice->status==0)?false:true)>
+
                                     <i class="fa fa-lg fa-fw fa-backward"></i>
                                 </button>
                             </a>

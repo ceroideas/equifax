@@ -17,14 +17,15 @@
 
         <div class="row mt-2">
 
-            <div class="col-sm-6">
+            <div class="col-sm-3">
+                <x-adminlte-input name="serie" label="Serie Factura *" placeholder="Serie de factura" type="text"
+                    igroup-size="sm"  enable-old-support="true" required value="{{ isset($invoice) ? $invoice->tipfac : ''}}">
+                </x-adminlte-input>
+            </div>
+
+            <div class="col-sm-3">
                 <x-adminlte-input name="factura" label="No. Factura *" placeholder="Número de factura" type="text"
                     igroup-size="sm"  enable-old-support="true" required value="{{ isset($invoice) ? $invoice->id : ''}}">
-                        <x-slot name="appendSlot">
-                            <div class="input-group-text bg-dark">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                        </x-slot>
                 </x-adminlte-input>
             </div>
 
@@ -54,7 +55,7 @@
             <div class="col-sm-6">
                 <x-adminlte-input name="concepto" label="Concepto contable *" placeholder="Concepto" type="text"
                     igroup-size="sm" enable-old-support="true"
-                    value="COBRO FRA. {{ isset($invoice) ? $invoice->id : ''}} - {{ now()->year }}/{{ isset($invoice) ? $invoice->cnofac : ''}} " required>
+                    value="COBRO FRA. {{ isset($invoice) ? Carbon\Carbon::parse($invoice->fecfac)->format('y').'/'.$invoice->id : ''}} {{ isset($invoice) ? $invoice->cnofac : ''}} " required>
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-map-marker"></i>
@@ -67,7 +68,7 @@
             <div class="col-sm-6">
 
                 <x-adminlte-input name="observaciones" label="Observaciones" placeholder="Observaciones" type="text"
-                    igroup-size="sm" enable-old-support="true" value="PAGO FACTURA {{ isset($invoice) ? $invoice->id : ''}}">
+                    igroup-size="sm" enable-old-support="true" value="PAGO FACTURA {{ isset($invoice) ? Carbon\Carbon::parse($invoice->fecfac)->format('y') : ''}}/{{ isset($invoice) ? $invoice->id : ''}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-map-marker"></i>
@@ -84,9 +85,11 @@
             @if(isset($invoice))
                 <div>
                     <p>Información adicional de la factura:</p>
-                    <p>Total factura: {{$invoice->totfac }}</p>
-                    <p>Cobros recibidos: {{ $invoice->collects()}}</p>
-                    <p>Pendiente por pagar: {{ $invoice->totfac - $invoice->collects()}}</p>
+                    <p>Total factura: {{number_format($invoice->totfac ,2,',','.')}}</p>
+                    <p>Cobros recibidos: {{ number_format($invoice->collects() ,2,',','.') }}</p>
+                    <p>Pendiente por pagar: {{ number_format($invoice->totfac - $invoice->collects() ,2,',','.') }}</p>
+
+
                 </div>
             @endif
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>

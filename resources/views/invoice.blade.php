@@ -80,10 +80,21 @@
                     @foreach ($lines as $value)
                         <tr>
                             <td colspan="2" class="col-5 w-auto text-1 border-0">
-                            {{$value['deslin']}}
+                                @if($value['artlin']=='REC-001')
+                                    <strong>{{$value['deslin']}}</strong>
+                                @else
+                                    {{$value['deslin']}}
+                                @endif
                             </td>
-                            <td class="col-1 w-auto text-center border-0">{{$value['canlin']}}</td>
-                            <td class="col-2 w-auto text-center border-0">{{number_format($value['prelin'],2,',','.')}} &euro;</td>
+
+                            <td class="col-1 w-auto text-center border-0">{{$value['canlin']==0?'':$value['canlin']}}</td>
+                            <td class="col-2 w-auto text-center border-0">
+                                @if($value['prelin']<>0 ||$value['prelin']<>null)
+                                    {{number_format($value['prelin'],2,',','.')}} &euro;</td>
+                                @else
+                                    </td>
+                                @endif
+
                             <td class="col-2 w-auto text-center border-0">
                                 {{ $value['dtolin']==0 ? '' : $value['dtolin'].' %' }}
                             </td>
@@ -93,10 +104,18 @@
                                 <td class="col-2 w-auto text-center border-0">10 %</td>
                             @elseif($value['ivalin']=='IVA4')
                                 <td class="col-2 w-auto text-center border-0">4 %</td>
+                            @elseif($value['ivalin']==null)
+                                <td class="col-2 w-auto text-center border-0"></td>
                             @else
                                 <td class="col-2 w-auto text-center border-0">21 %</td>
                             @endif
-                            <td class="col-2 w-auto text-center border-0">{{number_format($value['totlin'],2,',','.')}}  &euro;</td>
+                            <td class="col-2 w-auto text-center border-0">
+                                @if($value['prelin']<>0 ||$value['prelin']<>null)
+                                    {{number_format($value['totlin'],2,',','.')}} &euro;</td>
+                                @else
+                                    </td>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
 	            </tbody>

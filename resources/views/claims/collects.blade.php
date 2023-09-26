@@ -27,6 +27,7 @@
             'Fecha cobro',
             'Importe',
             'Concepto',
+            'Serie',
             'Factura',
             'Forma de pago',
             'Observaciones',
@@ -35,8 +36,8 @@
         ];
         $config = [
 
-            'columns' => [null, null, null, null, null, null, null, null, null],
-            'order'=>[[0,'desc']],
+            'columns' => [null, null, null, null, null, null, null, null, null, null],
+            'order'=>[[0,'desc'],[1,'desc']],
             'pageLength' => 25,
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
@@ -80,6 +81,7 @@
                     <td>{{ Carbon\Carbon::parse($collect->feccob)->format('d/m/Y') }}</td>
                     <td>{{number_format($collect->impcob,2,',','.')}} &euro;</td>
                     <td>{{ $collect->cptcob }}</td>
+                    <td>{{ $collect->tipcob }}</td>
                     <td>{{ $collect->invoice_id }}</td>
                     <td>{{ $collect->fpacob }}</td>
                     <td>{{ $collect->obscob }}</td>

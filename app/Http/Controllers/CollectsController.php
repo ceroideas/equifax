@@ -30,10 +30,13 @@ class CollectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($invoice = null)
+    public function create($serie = null, $invoice = null)
     {
 
-        $invoice = Invoice::where('id',$invoice)->first();
+        $invoice = Invoice::where('id',$invoice)
+                            ->where('tipfac',$serie)
+                            ->first();
+
 
         return view('collects.create',compact('invoice'));
     }
@@ -51,6 +54,7 @@ class CollectsController extends Controller
 
         $collect = new Collect();
 
+        $collect->tipcob = $request->serie;
         $collect->invoice_id = $request->factura;
         $collect->impcob = $request->importe;
         $collect->feccob = $request->fecha;
@@ -65,7 +69,9 @@ class CollectsController extends Controller
 
         /* Comprobacion de saldo para determinar si se da por pagada la factura */
 
-        $invoice = Invoice::where('id',$request->factura)->first();
+        $invoice = Invoice::where('id',$request->factura)
+                            ->where('tipfac',$request->serie)
+                            ->first();
 
         if($invoice){
 

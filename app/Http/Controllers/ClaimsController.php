@@ -902,9 +902,8 @@ echo $response;
 
     public function myInvoicesRectify()
     {
-
         if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
-            $invoices = Invoice::where('tipfac', 'rec')
+            $invoices = Invoice::where('tipfac', 'LIKE','REC%')
                         ->get();
         }
 
@@ -932,12 +931,12 @@ echo $response;
     public function myInvoiceRectify($id)
     {
         $i = Invoice::where('id', '=', $id)
-                    ->where('tipfac','=','REC')
+                    ->where('tipfac','LIKE','REC%')
                     ->first();
         $c = Configuration::first();
 
         $lines = Linvoice::where('invoice_id','=',$id)
-                            ->where('tiplin', '=','REC')
+                            ->where('tiplin', 'LIKE','REC%')
                             ->get();
 
         return view('invoice', compact('c','i','lines'));
