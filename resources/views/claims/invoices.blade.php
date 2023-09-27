@@ -109,11 +109,11 @@
 
 
                     @if ($invoice->status == 3)
-                        <td><span style="color:#e65927;font-weight: bold;">{{$invoice->status}} Rectificativa</span></td>
+                        <td><span style="color:#e65927;font-weight: bold;">Rectificativa</span></td>
                     @elseif($invoice->status == 4)
-                        <td><span style="color:#e92626;font-weight: bold;">{{$invoice->status}} Anulada</span></td>
+                        <td><span style="color:#e92626;font-weight: bold;">Anulada</span></td>
                     @else
-                        <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? $invoice->status.' Pendiente parcial':$invoice->status.' Pendiente') }}</td>
+                        <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':' Pendiente') }}</td>
                     @endif
 
 
