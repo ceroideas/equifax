@@ -70,7 +70,7 @@
                         <td>{{ $order->id }}
                     @endif
 
-                    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isGestor())
+                    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isGestor()|| Auth::user()->isFinance())
                         @if(isset($order->claim))
                             <td>{{ $order->claim->gestor->name }}</td>
                         @else

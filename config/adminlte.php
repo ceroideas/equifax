@@ -274,22 +274,23 @@ return [
         'text' => 'Notificaciones',
         'url'  => 'notifications',
         'icon' => 'fas fa-fw fa-bell',
+        'can' =>  ['superadmin','admin', 'finance'],
         ],
         [
             'text'    => 'Acreditación De Terceros',
             'icon'    => 'fas fa-fw fa-users',
-            'can' =>  ['superadmin','create-claims'],
+            'can' =>  ['superadmin','create-claims', 'admin', 'finance'],
             'submenu' => [
                 [
                     'text' => 'Añadir Nuevo',
                     'icon' => '',
-                    'can' => ['create-claims'],
+                    'can' =>  ['superadmin','create-claims'],
                     'url'  => '/third-parties/create',
                 ],
                 [
                     'text' => 'Listado de Acreditación De Terceros',
                     'icon' => '',
-                    'can' => ['superadmin','create-claims'],
+                    'can' =>  ['superadmin','create-claims', 'admin', 'finance'],
                     'url'  => '/third-parties',
                 ],
             ],
@@ -297,18 +298,18 @@ return [
         [
             'text'    => 'Deudores',
             'icon'    => 'fas fa-fw fa-address-book',
-            'can' =>  ['superadmin','create-claims'],
+            'can' =>  ['superadmin','create-claims', 'admin', 'finance'],
             'submenu' => [
                 [
                     'text' => 'Añadir Nuevo',
                     'icon' => '',
-                    'can' => ['create-claims'],
+                    'can' => ['superadmin','create-claims'],
                     'url'  => '/debtors/create',
                 ],
                 [
                     'text' => 'Listado de Deudores',
                     'icon' => '',
-                    'can' => ['superadmin','create-claims'],
+                    'can' =>  ['superadmin','create-claims', 'admin', 'finance'],
                     'url'  => '/debtors',
                 ],
             ],
@@ -316,7 +317,7 @@ return [
         [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-fw fa-user',
-            'can' =>  ['superadmin','create-users','admin'],
+            'can' =>  ['superadmin','create-users','admin', 'finance'],
             'submenu' => [
                 [
                     'text' => 'Nuevo Usuario',
@@ -333,7 +334,7 @@ return [
                 [
                     'text' => 'Listado de Usuarios',
                     'icon' => '',
-                    'can' => ['superadmin','create-users','admin'],
+                    'can' => ['superadmin','create-users','admin', 'finance'],
                     'url'  => '/users',
                 ],
             ],
@@ -360,12 +361,12 @@ return [
         [
             'text'    => 'Reclamaciones',
             'icon'    => 'fas fa-fw fa-book',
-            'can' =>  ['superadmin','create-claims', 'admin-claims', 'gestor-claims', 'associate-claims'],
+            'can' =>  ['superadmin','create-claims', 'admin-claims', 'gestor-claims', 'associate-claims', 'finance'],
             'submenu' => [
                 [
                     'text' => 'Listado de Reclamaciones',
                     'icon' => '',
-                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims','associate-claims'],
+                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims','associate-claims','finance'],
                     'url'  => '/claims',
                 ],
                 [
@@ -377,7 +378,7 @@ return [
                 [
                     'text' => 'Reclamaciones Finalizadas',
                     'icon' => '',
-                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims','associate-claims'],
+                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims','associate-claims','finance'],
                     'url'  => '/claims/pending',
                 ],
             ],
@@ -385,30 +386,30 @@ return [
         [
             'text'    => 'Configuraciones',
             'icon'    => 'fas fa-fw fa-cog',
-            'can' =>  ['superadmin','see-fees', 'admin-claims'],
+            'can' =>  ['superadmin'],
             'submenu' => [
                 [
                     'text' => 'Tasas Dividae',
                     'icon' => '',
-                    'can' => ['superadmin'],
+                    'can' => 'superadmin',
                     'url'  => '/configurations/fees',
                 ],
                 [
                     'text' => 'Hitos',
                     'icon' => '',
-                    'can' => ['superadmin'],
+                    'can' => 'superadmin',
                     'url'  => '/configurations/hitos',
                 ],
                 [
                     'text' => 'Plantillas de Emails',
                     'icon' => '',
-                    'can' => ['superadmin'],
+                    'can' => 'superadmin',
                     'url'  => '/configurations/templates',
                 ],
                 [
                     'text' => 'Códigos de descuentos',
                     'icon' => '',
-                    'can' => ['superadmin'],
+                    'can' => 'superadmin',
                     'url'  => '/configurations/discount-codes',
                 ],
 
@@ -417,36 +418,36 @@ return [
         [
             'text'    => 'Contabilidad',
             'icon'    => 'fas fa-fw fa-file-invoice',
-            'can' =>  ['superadmin','see-fees', 'admin-claims','pending', 'admin'],
+            'can' =>  ['superadmin','finance', 'admin-claims','pending', 'admin'],
             'submenu' => [
                 [
                     'text' => 'Pedidos gestoría',
                     'icon' => '',
-                    'can' => ['superadmin','admin'],
+                    'can' => ['superadmin','admin','finance'],
                     'url'  => '/claims/orders',
                 ],
                 [
                     'text' => 'Saldo gestorías',
                     'icon' => '',
-                    'can' => ['superadmin', 'admin'],
+                    'can' => ['superadmin', 'admin','finance'],
                     'url'  => '/claims/gestoria',
                 ],
                 [
                     'text' => 'Facturas',
                     'icon' => '',
-                    'can' => ['superadmin','admin'],
+                    'can' => ['superadmin','admin','finance'],
                     'url'  => '/claims/invoices',
                 ],
                 [
                     'text' => 'Facturas rectificativas',
                     'icon' => '',
-                    'can' => ['superadmin','admin'],
+                    'can' => ['superadmin','admin','finance'],
                     'url'  => '/claims/invoices-rectify',
                 ],
                 [
                     'text' => 'Cobros',
                     'icon' => '',
-                    'can' => ['superadmin','admin'],
+                    'can' => ['superadmin','admin','finance'],
                     'url'  => '/collects',
                 ],
 
@@ -455,7 +456,7 @@ return [
         [
             'text'    => 'Blog',
             'icon'    => 'fas fa-fw fa-rss',
-            'can' =>  ['superadmin','see-fees', 'admin-claims', 'admin'],
+            'can' =>  ['superadmin', 'admin-claims', 'admin'],
             'submenu' => [
                 [
                     'text' => 'Listado de entradas',

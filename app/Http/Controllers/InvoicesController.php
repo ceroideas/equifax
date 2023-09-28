@@ -22,13 +22,35 @@ class InvoicesController extends Controller
         $rectify->created_at = Carbon::now();
         $rectify->updated_at = Carbon::now();
         $rectify->trafac= 0;
-        $rectify->status= null;
+        $rectify->status= 3;
 
 
         // Comprobamos si el estado es pago parcial para totalizar de nuevo
         if($invoice->status==2){
             // Ponemos los importes recalculando lo pendiente con iva, sin iva, etc, dependo de administración
 
+            $pending = ($invoice->totfac-$invoice->collects())*-1;
+            $pendingBase = number_format(($pending/1.21),2);
+            $pendingTax = $pending - $pendingBase;
+
+            $rectify->amount = $pending;
+            $rectify->net1fac = $pendingBase;
+            $rectify->net2fac = 0;
+            $rectify->net3fac = 0;
+            $rectify->net4fac = 0;
+            $rectify->idto1fac = 0;
+            $rectify->idto2fac = 0;
+            $rectify->idto3fac = 0;
+            $rectify->idto4fac = 0;
+            $rectify->bas1fac = $pendingBase;
+            $rectify->bas2fac = 0;
+            $rectify->bas3fac = 0;
+            $rectify->bas4fac = 0;
+            $rectify->iiva1fac = $pendingTax;
+            $rectify->iiva2fac = 0;
+            $rectify->iiva3fac = 0;
+            $rectify->totfac = $pending;
+            $rectify->save();
         }else{
             $rectify->amount = $rectify->amount * -1;
             $rectify->net1fac = $rectify->net1fac *-1;
@@ -72,7 +94,7 @@ class InvoicesController extends Controller
         $ldocument = new Linvoice;
         $ldocument->tiplin = 'REC'.Carbon::now()->format('y');
         $ldocument->invoice_id = $invoice_id;
-        $ldocument->poslin = $linvoices->count()+1;
+        $ldocument->poslin = $invoice->status==2 ? 1 :$linvoices->count()+1;
         $ldocument->artlin = 'REC-001';
         $ldocument->deslin = 'ABONO F '.$serie.' '.$id.' DEL '.Carbon::now()->format('d/m/Y');
         $ldocument->canlin=0;
@@ -80,8 +102,8 @@ class InvoicesController extends Controller
         $ldocument->save();
 
         // Cancelamos la factura Original
-        // TODO: Añadir un if que compruebe si no es status 2 (cobro parcial) para ver si cancelamos o no (Pendiente respuesta de administración)
-        $invoice->status = 4;
+        // Pendiente de definir, si status 2 (cobro parcial) Anulamos parcialmente (5) sino anulamos (4)
+        $invoice->status = $invoice->status==2? 5: 4;
         $invoice->save();
 
         return redirect('/claims/invoices-rectify')->with('msj', 'Factura rectificativa creada correctamente');

@@ -190,7 +190,7 @@
                             @endif
 
 
-                            @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+                            @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
                                 <b>FECHA DE REGISTRO DE EXPEDIENTE: </b> {{date('d/m/Y', strtotime($claim->created_at))}}<br>
                                 <div class="form-group">
 
@@ -389,7 +389,7 @@
                         <hr>
                     @endif
 
-                    @if(((Auth::user()->isAdmin() || Auth::user()->isGestor()) || Auth::user()->isSuperAdmin()) && $claim->isPending())
+                    @if(((Auth::user()->isAdmin() || Auth::user()->isGestor()) || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()) && $claim->isPending())
 
                         <div class="text-center mt-5 mb-3 float-bottom">
 

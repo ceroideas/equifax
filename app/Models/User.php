@@ -63,7 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function isSuperAdmin(){
+    public function isSuperAdmin(){ // webmaster
 
         if($this->role === 0){
             return true;
@@ -71,26 +71,32 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function isAdmin(){
+    public function isAdmin(){ // gestor legal
         if($this->role === 1){
             return true;
         }
     }
 
-    public function isClient(){
+    public function isClient(){  // cliente
         if($this->role === 2){
             return true;
         }
     }
 
-    public function isGestor(){
+    public function isGestor(){  //gestorias (cliente)
         if($this->role === 3){
             return true;
         }
     }
 
-    public function isAssociate(){
+    public function isAssociate(){ //asociaciones (cliente)
         if($this->role === 4){
+            return true;
+        }
+    }
+
+    public function isFinance(){ //Financiero (Empresa)
+        if($this->role === 5){
             return true;
         }
     }
@@ -111,6 +117,9 @@ class User extends Authenticatable implements MustVerifyEmail
                 break;
             case 4:
                 return 'Asociado';
+                break;
+            case 5:
+                return 'Finanzas';
                 break;
             default:
                 return 'Cliente';

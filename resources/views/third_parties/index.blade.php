@@ -63,7 +63,9 @@
         <a href="{{ url('/claims/select-client') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-white " style="color: black !important;" type="button" label="Volver" icon="fas fa-lg fa-pencil"/></a>
     @endif
 
-    <a href="{{ url('/third-parties/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important;" type="button" label="Añadir Nuevo" icon="fas fa-lg fa-pencil"/></a>
+    @if(Auth::user()->isSuperadmin()||Auth::user()->isClient()||Auth::user()->isGestor()||Auth::user()->isAssociate())
+        <a href="{{ url('/third-parties/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important;" type="button" label="Añadir Nuevo" icon="fas fa-lg fa-pencil"/></a>
+    @endif
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">

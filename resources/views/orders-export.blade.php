@@ -37,7 +37,7 @@
         @foreach(App\Models\Order::all() as $order)
             <tr>
                 <td>{{ $order->id }}</td>
-                @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+                @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
                     <td>{{ $order->claim->client ? $order->claim->client->name : ($order->claim->representant ? $order->claim->representant->name : '') }}</td>
                 @endif
                 <td>#{{ $order->claim->id }}</td>

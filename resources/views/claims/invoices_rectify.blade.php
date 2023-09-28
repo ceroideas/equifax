@@ -35,7 +35,7 @@
         $config = [
 
             'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
-            'order'=>[[0,'desc'],[1,'desc']],
+            'order'=>[[0,'asc'],[1,'desc']],
             'pageLength' => 25,
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
@@ -65,7 +65,7 @@
                 <tr>
                     <td>{{ $invoice->tipfac}}</td>
                     <td>{{ $invoice->id }}</td>
-                    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+                    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
                         @if( $invoice->claim_id <> 0 )
                             <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
                         @else
@@ -81,7 +81,7 @@
                     <td>{{ number_format(($invoice->totfac) ,2,',','.')}} &euro;</td>
 
 
-                    @if (Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin())
+                    @if (Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()|| Auth::user()->isFinance())
                         <td>{{ $invoice->trafac==1 ? 'Exportada': 'No exportada'}}</td>
                     @endif
 

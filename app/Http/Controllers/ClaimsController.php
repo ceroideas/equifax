@@ -57,7 +57,7 @@ class ClaimsController extends Controller
         if(Auth::user()->isClient() || Auth::user()->isAssociate()){
             $claims = Auth::user()->claims()->whereNotIn('status',[-1,0,1])->get();
 
-        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
             //$claims = Claim::all();
             $claims=Claim::whereNotIn('status',[-1,0,1])->get();
         }else{
@@ -74,7 +74,7 @@ class ClaimsController extends Controller
     {
         if(Auth::user()->isClient()){
             $claims = Auth::user()->claims()->whereIn('status', [-1,0,1])->get();
-        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
             $claims = Claim::whereIn('status', [-1,0,1])->get();
         }else{
             $claims = Claim::whereIn('status', [-1,0,1])->where('gestor_id',Auth::id())->get();
@@ -575,7 +575,7 @@ echo $response;
     public function show(Claim $claim)
     {
         if(Auth::user() <> null){
-            if($claim->owner_id == Auth::user()->id || Auth::user()->isSuperAdmin()){
+            if($claim->owner_id == Auth::user()->id || Auth::user()->isSuperAdmin() ||Auth::user()->isAdmin() ||Auth::user()->isFinance() ){
                 $dias = Carbon::now()->diffInDays(Carbon::parse($claim->created_at));
                 return view('claims.show', ['claim' => $claim, 'dias'=>$dias]);
             }else{
@@ -887,7 +887,7 @@ echo $response;
 
         if(Auth::user()->isClient() || Auth::user()->isAssociate() ||Auth::user()->isGestor()){
             $invoices = Auth::user()->invoices;
-        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
             $invoices = Invoice::all();
         }else{
             $invoices = Invoice::whereExists(function($q){
@@ -902,7 +902,7 @@ echo $response;
 
     public function myInvoicesRectify()
     {
-        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
             $invoices = Invoice::where('tipfac', 'LIKE','REC%')
                         ->get();
         }
@@ -920,7 +920,7 @@ echo $response;
         $lines = Linvoice::where('invoice_id','=',$id)
                             ->where('tiplin', '=',$tipfac)
                             ->get();
-        if(Auth::user()->id == $i->user_id ||Auth::user()->isSuperAdmin()||Auth::user()->isAdmin()){
+        if(Auth::user()->id == $i->user_id ||Auth::user()->isSuperAdmin()||Auth::user()->isAdmin()|| Auth::user()->isFinance()){
             return view('invoice', compact('c','i','lines'));
         }else{
             print_r("Acceso no permitido al documento solicitado");
@@ -953,7 +953,7 @@ echo $response;
 
     public function myOrders()
     {
-        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
             $orders = Order::all();
         }
         if(Auth::user()->isGestor()){

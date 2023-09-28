@@ -23,7 +23,7 @@
 @section('content')
 
     @php
-    if (Auth::user()->isGestor() || Auth::user()->isSuperAdmin()) {
+    if (Auth::user()->isGestor() || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()) {
         $heads = [
             'ID',
             'Usuario',
@@ -85,7 +85,7 @@
     @if (Auth::user()->isGestor() || Auth::user()->isClient())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
     @endif
-    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
         <a href="{{url('export-new-claims')}}" class="btn btn-sm btn-success">Exportar Nuevas Reclamaciones</a>
         <a href="{{url('export-actuations-all')}}" class="btn btn-sm btn-primary">Exportar Actuaciones</a>
