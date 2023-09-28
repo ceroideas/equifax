@@ -1125,13 +1125,16 @@ echo $response;
                 $usuario = "Equipo Dividae #".Auth::user()->id;
                 break;
             case 2:
-                $usuario = "cliente #".Auth::user()->id;
+                $usuario = "Cliente #".Auth::user()->id;
                 break;
             case 3:
-                $usuario = "gestoría #".Auth::user()->id;
+                $usuario = "Gestoría #".Auth::user()->id;
                 break;
             case 4:
-                $usuario = "asociado #".Auth::user()->id;
+                $usuario = "Asociado #".Auth::user()->id;
+                break;
+            case 5:
+                $usuario = "Financiero #".Auth::user()->id;
                 break;
         }
 
