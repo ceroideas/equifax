@@ -37,12 +37,12 @@
         @foreach(App\Models\Order::all() as $order)
             <tr>
                 <td>{{ $order->id }}</td>
-                @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+                @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
                     <td>{{ $order->claim->client ? $order->claim->client->name : ($order->claim->representant ? $order->claim->representant->name : '') }}</td>
                 @endif
                 <td>#{{ $order->claim->id }}</td>
                 <td>{{ $order->description }}</td>
-                <td>{{ $order->amount }}€</td>
+                <td>{{ $order->amount }}&euro;</td>
                 <td>{{ Carbon\Carbon::parse($order->payment_date)->format('d-m-Y H:i') }}</td>
                 <td>{{ $order->type }}</td>
                 <td>{{ $order->facord == 1 ? 'Facturado' : 'Pendiente' }}</td>

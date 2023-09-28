@@ -282,15 +282,16 @@
                 </div>
             </div>
         @endif
-        @if (Auth::user()->email == 'luiscampos@atlantelt.com' || Auth::user()->email == 'barbaraderon@atlantelt.com')
+        @if (Auth::user()->isSuperAdmin)
             <div class="row">
                 <div class="col-sm-4">
                     <x-adminlte-select name="role" label="Rol" placeholder="Selecciona El Rol">
                         <option {{ !isset($user) ? 'selected' : ''}} disabled>Selecciona un Rol</option>
                         <option value="1" @if(isset($user) && $user->isAdmin()) selected @endif>Administrador</option>
-                        <option value="2"  @if(isset($user) && $user->isClient()) selected @endif>Cliente</option>
+                        <option value="2" @if(isset($user) && $user->isClient()) selected @endif>Cliente</option>
                         <option value="3" @if(isset($user) && $user->isGestor()) selected @endif>Gestoría</option>
                         <option value="4" @if(isset($user) && $user->isAssociate()) selected @endif>Asociado</option>
+                        <option value="5" @if(isset($user) && $user->isFinance()) selected @endif>Financiero</option>
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-user"></i>

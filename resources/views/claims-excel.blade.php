@@ -118,10 +118,10 @@
                 {{-- Datos de deuda --}}
                 <td>{{ $claim->debt->concept }}</td>
                 {{--  --}}
-                <td>{{ ($claim->debt->total_amount + ($claim->debt->total_amount * ($claim->debt->tax/100)))}}€</td>
-                <td>{{ $claim->debt->pending_amount }}€</td>
-                <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}€</td>
-                <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}€</td>
+                <td>{{ ($claim->debt->total_amount + ($claim->debt->total_amount * ($claim->debt->tax/100)))}}&euro;</td>
+                <td>{{ $claim->debt->pending_amount }}&euro;</td>
+                <td>{{ $claim->amountClaimed() /* + $claim->debt->partialAmounts()*/ }}&euro;</td>
+                <td>{{ $claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/) }}&euro;</td>
                 <td>{{ $claim->getType() }}</td>
                 <td>{{ $claim->getStatus() }}</td>
                 <td>{{ $claim->actuations()->count() ? $claim->actuations()->get()->last()->getRawOriginal('subject') : '' }}</td>
@@ -156,7 +156,7 @@
 
                     @if(count($partials))
                         @foreach($partials as $partial)
-                            <td> {{ $partial->amount}} € </td>
+                            <td> {{ $partial->amount}} &euro; </td>
                             <td> {{ date("d/m/Y",strtotime($partial->date))}} </td>
                         @endforeach
                         @for ($i = count($partials); $i < 5; $i++)

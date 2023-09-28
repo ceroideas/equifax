@@ -322,6 +322,8 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
     // Necesitamos el tipo de documento
     if($typeDocument == 'order'){
         $idDocument = maxId('orders','id');
+    }elseif($typeDocument == 'REC'){
+        $idDocument = maxId('REC','id');
     }else{
         $idDocument = maxId('invoices','id');
     }
@@ -329,10 +331,19 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
     $c = Configuration::first();
 
     if(isset($c)){
-        $typeDocument == 'order' ? $document = new Order : $document = new Invoice;
-        $document->id = $idDocument;
-        $document->claim_id =  $claim_id;
 
+        if($typeDocument == 'order'){
+            $document = new Order;
+        }elseif($typeDocument == 'REC'){
+            $document = new Invoice;
+            $document->tipfac = 'REC'.Carbon::now()->format('y');
+        }else{
+            $document = new Invoice;
+            $document->tipfac = Carbon::now()->format('y');
+        }
+
+        $document->id = $idDocument;
+        $document->claim_id = $claim_id;
 
         // Siempre se factura en nombre del owner
         $claim = Claim::find($claim_id);
@@ -343,8 +354,6 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
         }else{
             $user = User::find($claim->owner_id);
         }
-
-
 
         $document->user_id =  $user->id;
         // Solo en invoice almacenamos los datos del cliente en el momento de su creación
@@ -858,21 +867,42 @@ function totalDocument($typeDocument, $idDocument){
 }
 
 function maxId($table, $field, $idDocument=0){
+    $rectificativa=0;
+    if($table=="REC"){
+        $table="invoices";
+        $rectificativa=1;
+    }
     if($table == 'linvoices'){
         $idMax = DB::table($table)
         ->select(DB::raw('max('.$field.') as last'))
         ->where('invoice_id',$idDocument)
+        ->where('tiplin',Carbon::now()->format('y'))
         ->get();
     }elseif($table == 'lorders'){
         $idMax = DB::table($table)
         ->select(DB::raw('max('.$field.') as last'))
         ->where('order_id',$idDocument)
         ->get();
+    }elseif($table == 'invoices'){
+        if($rectificativa==1){
+            $idMax = DB::table($table)
+            ->select(DB::raw('max('.$field.') as last'))
+            ->where('tipfac','REC'.Carbon::now()->format('y'))
+            ->get();
+        }else{
+            $idMax = DB::table($table)
+            ->select(DB::raw('max('.$field.') as last'))
+            ->where('tipfac',Carbon::now()->format('y'))
+            ->get();
+        }
+
     }else{
         $idMax = DB::table($table)
         ->select(DB::raw('max('.$field.') as last'))
         ->get();
-        }
+    }
+
+
     $idMax = intval($idMax[0]->last + 1);
     return $idMax;
 }

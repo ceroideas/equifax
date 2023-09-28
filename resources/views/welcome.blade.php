@@ -486,7 +486,7 @@
                                         </ul>
                                     </div>
                                     <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
-                                        <small>Por solo</small> 19,90€
+                                        <small>Por solo</small> 19,90&euro;
                                     </span>
 
                                     <!--<div class="row">
@@ -516,7 +516,7 @@
                                         </ul>
                                     </div>
                                     <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
-                                        <small>Desde</small> 69,90€
+                                        <small>Desde</small> 69,90&euro;
                                     </span>
 
                                     <!--<div class="row">
@@ -572,7 +572,7 @@
                                                     Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
-                                                    10.220<span data-v-455dcd3f="" class="text-style-1">€</span></div>
+                                                    10.220<span data-v-455dcd3f="" class="text-style-1">&euro;</span></div>
                                             </div> <img data-v-455dcd3f=""
                                                 src="{{ url('landing') }}/assets/testimonio-1.png"
                                                 class="testimonio-1 img-fluid">
@@ -627,7 +627,7 @@
                                                     Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
-                                                    1.640<span data-v-455dcd3f="" class="text-style-1">€</span></div>
+                                                    1.640<span data-v-455dcd3f="" class="text-style-1">&euro;</span></div>
                                             </div> <img data-v-455dcd3f=""
                                                 src="{{ url('landing') }}/assets/testimonio-2.png"
                                                 class="testimonio-1 img-fluid">
@@ -644,7 +644,7 @@
                                                     Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
-                                                    3.550<span data-v-455dcd3f="" class="text-style-1">€</span>
+                                                    3.550<span data-v-455dcd3f="" class="text-style-1">&euro;</span>
                                                 </div>
                                             </div> <img data-v-455dcd3f=""
                                                 src="{{ url('landing') }}/assets/testimonio-3.png"
@@ -680,16 +680,16 @@
                                 <div id="testimonios" class="owl-carousel owl-theme">
 
                                     <div>
-                                        <img src="{{ url('landing') }}/assets/logo_avae.png">
+                                        <a href = "https://avae.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avae.png"></a>
                                     </div>
                                     <div>
-                                        <img src="{{ url('landing') }}/assets/logo_avecal.png">
+                                        <a href = "https://avecal.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avecal.png"></a>
                                     </div>
                                     <div>
-                                        <img src="{{ url('landing') }}/assets/logo_toledo.png">
+                                        <a href = "https://www.gestorestoledo.org/" target="_blank"><img src="{{ url('landing') }}/assets/logo_toledo.png"></a>
                                     </div>
                                     <div>
-                                        <img src="{{ url('landing') }}/assets/logo_extremadura.png">
+                                        <a href = "https://gestoresextremadura.com/" target="_blank"><img src="{{ url('landing') }}/assets/logo_extremadura.png"></a>
                                     </div>
 
                                 </div>

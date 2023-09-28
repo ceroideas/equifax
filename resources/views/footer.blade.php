@@ -243,12 +243,12 @@
                                             for="customRange1" class="form-label range-label">
                                             El importe de tu deuda asciende a…
                                         </label> <span data-v-e8aafb5e="" class="importe-range1">
-                                            50 €
+                                            50&euro;
                                         </span> <input data-v-e8aafb5e="" required type="range" min="50"
                                             max="100000" value="50" id="rangeDeuda">
                                         <div data-v-e8aafb5e=""><small data-v-e8aafb5e=""
-                                                class="small-text">50€</small> <small data-v-e8aafb5e=""
-                                                class="small-text d-right">100.000€</small></div>
+                                                class="small-text">50&euro;</small> <small data-v-e8aafb5e=""
+                                                class="small-text d-right">100.000&euro;</small></div>
                                         <!---->
                                     </div>
                                 </div>

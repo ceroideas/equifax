@@ -44,6 +44,9 @@
                     @case(4)
                         <td>Asociado</td>
                         @break
+                    @case(5)
+                        <td>Finanzas</td>
+                        @break
                     @default
                         <td>Cliente</td>
                 @endswitch

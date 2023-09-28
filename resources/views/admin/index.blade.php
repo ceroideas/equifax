@@ -86,7 +86,7 @@
     </x-adminlte-alert>
     @endif
 
-    @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin() )
+    @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance())
 
         <div class="row">
 
@@ -239,7 +239,7 @@
 
     <div class="row">
 
-        @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin() )
+        @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance())
             <div class="col-1"></div>
             <div class="col-9">
                 <canvas id="newUsersChart"></canvas>

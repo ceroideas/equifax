@@ -50,7 +50,7 @@ class UsersController extends Controller
 
         if(Auth::user()->isAdmin()){
             $users = User::where('role', 2)->latest()->get();
-        }elseif(Auth::user()->isSuperAdmin()){
+        }elseif(Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()){
             $users = User::all();
         }
 
@@ -263,7 +263,7 @@ class UsersController extends Controller
             return redirect('/users')->with(['msj' => 'Usuario actualizado exitosamente']);
         }
 
-        if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
+        if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()){
             return redirect('panel')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
         }else{
             return redirect('claims/select-type')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
