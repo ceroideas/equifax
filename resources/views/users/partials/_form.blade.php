@@ -282,6 +282,7 @@
                 </div>
             </div>
         @endif
+
         @if (Auth::user()->isSuperAdmin())
             <div class="row">
                 <div class="col-sm-4">
