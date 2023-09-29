@@ -282,7 +282,7 @@
                 </div>
             </div>
         @endif
-        @if (Auth::user()->isSuperAdmin)
+        @if (Auth::user()->isSuperAdmin())
             <div class="row">
                 <div class="col-sm-4">
                     <x-adminlte-select name="role" label="Rol" placeholder="Selecciona El Rol">
