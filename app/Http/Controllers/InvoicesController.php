@@ -96,7 +96,7 @@ class InvoicesController extends Controller
         $ldocument->invoice_id = $invoice_id;
         $ldocument->poslin = $invoice->status==2 ? 1 :$linvoices->count()+1;
         $ldocument->artlin = 'REC-001';
-        $ldocument->deslin = 'ABONO F '.$serie.' '.$id.' DEL '.Carbon::now()->format('d/m/Y');
+        $ldocument->deslin = 'ABONO F '.$serie.' '.$id.' DEL '.Carbon::parse($invoice->created_at)->format('d/m/Y');
         $ldocument->canlin=0;
 
         $ldocument->save();
