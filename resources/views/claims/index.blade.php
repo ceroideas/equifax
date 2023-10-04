@@ -71,9 +71,20 @@
     @endphp
 
     @if(session()->has('msj'))
-        <x-adminlte-alert theme="success" dismissable>
             {{ session('msj') }}
-        </x-adminlte-alert>
+        <div class="info-box bg-success">
+            <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">{{ session('msj') }}</span>
+              <span class="info-box-number">Actuaciones importadas: {{session('total_actuaciones')}}</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
+              <span class="progress-description">
+                Reclamaciones actualizadas: {{session('id_claims')}}
+              </span>
+            </div>
+        </div>
     @endif
 
     @if(session()->has('err'))
@@ -102,6 +113,7 @@
             <label style="margin: 0;" for="collects" class="btn btn-danger btn-sm">Importar cobros (Kmaleon)</label>
             <input name="file" type="file" id="collects" style="display: none;">
         </form>
+
     @endif
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">

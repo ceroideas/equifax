@@ -19,3 +19,4 @@ public/uploads/
 public/testing/
 public/*.txt
 *.txt
+*.log
