@@ -1303,10 +1303,27 @@ echo $response;
     {
         if ($r->hasFile('file')) {
             $r->file->move(public_path().'/uploads/excel','actuations.xlsx');
+            if(file_exists(public_path().'/logImportHitosXls.log')){
+                unlink(public_path().'/logImportHitosXls.log');
+            }
+
             Excel::import(new HitosImport, public_path().'/uploads/excel/actuations.xlsx');
         }
 
-        return back()->with('msj','Se ha cargado correctamente el archivo excel!');
+        if(file_exists(public_path().'/logImportHitosXls.log')){
+            list($i, $claimsTxt) = array(0,'');
+            $logFile = fopen(public_path().'/logImportHitosXls.log','r');
+            while(!feof($logFile)){
+
+                        $i = $i+1;
+                        $claimsTxt = $claimsTxt.fgets($logFile).'   ';
+                }
+                fclose($logFile);
+        }
+
+        return back()->with(['msj'=>'Se ha cargado correctamente el archivo excel!',
+                            'total_actuaciones'=>$i-1,
+                            'id_claims'=>$claimsTxt]);
     }
 
     public function importCollectsKmaleon(Request $r)

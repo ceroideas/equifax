@@ -24,14 +24,18 @@ class HitosImport implements ToModel, WithHeadingRow
 		        $actuation->claim_id = $debt->claim_id;
 		        $actuation->subject = $hito['ref_id'];
 		        $actuation->amount = array_key_exists('cuantia_reducida', $row) &&  $row['cuantia_reducida'] != '' ? $row['cuantia_reducida'] : null;
-		        $actuation->description = array_key_exists('texto_macro_generadora', $row) ? $row['texto_macro_generadora'] : null;
+		        $actuation->description = array_key_exists('texto_macro_generadora', $row) ? $row['texto'].' '.$row['texto_macro_generadora'] : null;
 		        if (array_key_exists('fecha', $row)) {
 		        	$row['fecha'] = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['fecha'])->format('Y-m-d H:i:s');
 		        	$actuation->actuation_date = $row['fecha'];
 		        }
 		        $actuation->type = null;
 		        $actuation->mailable = null;
+
 		        $actuation->save();
+                $logFile = fopen(public_path().'/logImportHitosXls.log','a');
+                fwrite($logFile, $actuation->claim_id .PHP_EOL);
+                fclose($logFile);
 
 		        if (array_key_exists('archivo', $row) && $row['archivo'] != "") {
 		        	if ($row['archivo']) {
