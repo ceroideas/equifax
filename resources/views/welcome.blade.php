@@ -8,8 +8,8 @@
     <meta name="csrf-token" content="vQquIOeFCyXeIRVqPhnUsIPBw3b13PWS9mA9pMmF">
 
     <meta name="robots" content="index, follow" />
-    <title>Di adiós a tus facturas impagadas, di Dividae</title>
-    <meta name="description" content="Dividae es una plataforma 100% digital que surge para dar una solución a la recuperación de facturas impagadas de forma sencilla, exitosa y económica."/>
+    <title>Di adi&oacute;s a tus facturas impagadas, di Dividae</title>
+    <meta name="description" content="Dividae es una plataforma 100% digital que surge para dar una soluci&oacute;n a la recuperación de facturas impagadas de forma sencilla, exitosa y econ&oacute;mica."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

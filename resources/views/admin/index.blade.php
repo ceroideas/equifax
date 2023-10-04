@@ -348,7 +348,7 @@
                                 </div>
                                 <div class="col-1"></div>
                                 <div class="col-7">
-                                    <h4>Contrata una reclamación <br> <small>y di adiós a tus facturas impagadas.</small></h4>
+                                    <h4>Contrata una reclamaci&oacute;n <br> <small>y di adi&oacute;s a tus facturas impagadas.</small></h4>
 
                                     <a data-v-9cc878a2="" href="{{url('claims/select-client')}}" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto">NUEVA RECLAMACIÓN</a>
                                 </div>

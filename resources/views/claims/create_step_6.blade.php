@@ -37,13 +37,13 @@
     <x-adminlte-alert theme="success" dismissable>
        <span> {{ $message }}</span> <br>
 
-            Estás a un paso de decir adiós a tus facturas impagadas.
+            Est&acute;s a un paso de decir adi&oacute;s a tus facturas impagadas.
     </x-adminlte-alert>
     @else
     <x-adminlte-alert theme="warning" dismissable>
        <span> {{ $message }}</span> <br>
 
-            Esta deuda solo es reclamable extrajudicialmente. Si deseas iniciar con la reclamación proceda al pago.
+            Esta deuda solo es reclamable extrajudicialmente. Si deseas iniciar con la reclamaci&oacute;n proceda al pago.
     </x-adminlte-alert>
     @endif
 
@@ -57,13 +57,13 @@
             Confirmo que todos los datos e información aportada es veraz.<br>
 
             <small>
-                <i>La información que aporte el/la Cliente se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esta información en el sistema.</i>
+                <i>La informaci&oacute;n que aporte el/la Cliente se dar&aacute; por buena, siendo responsabilidad &uacute;nica y exclusiva de quien introduce esta informaci&oacute;n en el sistema.</i>
             </small>
         </h3></span>
 
         <br>
             <span><h3>
-                ¿Acepta las Condiciones Generales de Contratación?
+                ¿Acepta las Condiciones Generales de Contrataci&oacute;n?
             {{-- ¿Acepta tanto las Políticas de Uso como las Condiciones de Contratación? --}}
         </h3></span>
         </div>
@@ -83,7 +83,7 @@
 <div class="custom-control custom-checkbox mb-3">
     <a data-toggle="modal" href="#condiciones" style="color: #666">
     <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
-    <label for="customCheckbox1" class="custom-control-label">Aceptar las Condiciones Generales de Contratación *</label></a>
+    <label for="customCheckbox1" class="custom-control-label">Aceptar las Condiciones Generales de Contrataci&oacute;n *</label></a>
     @error('tos')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -133,7 +133,7 @@
                                     @include('terminos-contratacion') --}}
 
                                     {{-- <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button> --}}
-                                    <button data-dismiss="modal" id="accept-terms" class="btn btn-flat btn-success create-claim">Aceptar los términos</button>
+                                    <button data-dismiss="modal" id="accept-terms" class="btn btn-flat btn-success create-claim">Aceptar los t&eacute;rminos</button>
                                     <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
                                 </div>
                             </div>
