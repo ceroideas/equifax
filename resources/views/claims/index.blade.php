@@ -70,21 +70,27 @@
 
     @endphp
 
+
     @if(session()->has('msj'))
-            {{ session('msj') }}
-        <div class="info-box bg-success">
-            <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
-            <div class="info-box-content">
-              <span class="info-box-text">{{ session('msj') }}</span>
-              <span class="info-box-number">Actuaciones importadas: {{session('total_actuaciones')}}</span>
-              <div class="progress">
-                <div class="progress-bar" style="width: 100%"></div>
-              </div>
-              <span class="progress-description">
-                Reclamaciones actualizadas: {{session('id_claims')}}
-              </span>
+        @if(Auth::user()->isSuperAdmin || Auth::user()->isAdmin())
+            <div class="info-box bg-success">
+                <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+                <div class="info-box-content">
+                <span class="info-box-text">{{ session('msj') }}</span>
+                <span class="info-box-number">Actuaciones importadas: {{session('total_actuaciones')}}</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 100%"></div>
+                </div>
+                <span class="progress-description">
+                    Reclamaciones actualizadas: {{session('id_claims')}}
+                </span>
+                </div>
             </div>
-        </div>
+        @else
+            <x-adminlte-alert theme="success" dismissable>
+                {{ session('msj') }}
+            </x-adminlte-alert>
+        @endif
     @endif
 
     @if(session()->has('err'))

@@ -203,7 +203,7 @@
                                         {{$dias}}</b></span>
                                 </div>
                             @endif
-                            @if (Auth::user()->email == 'luiscampos@atlantelt.com' || Auth::user()->email == 'barbaraderon@atlantelt.com' || Auth::user()->email == 'superadmin@dividae.com')
+                            @if (Auth::user()->isSuperAdmin())
                                 <div class="post">
 
                                     <b>DEUDOR CON C&Oacute;DIGO POSTAL:</b> {{$claim->debtor->cop}}
