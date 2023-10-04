@@ -106,6 +106,16 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
 					$o = User::where('email',$se->addresse)->first();
 
+                    // Comprobamos si el hito que genera la actuacion tiene una redireccion y si es por template 4
+                    // si es correcto cogemos la descripcion y la enviamos
+                    // else
+                    // Descripcion vacia
+                    if($h['template_id']==4){
+                        $hitoDescription = $h['name'];
+                    }else{
+                        $hitoDescription = 'vacia';
+                    }
+
 					$tmp = $se->template;
                     switch($tmp->id){
                         case 3:
@@ -123,7 +133,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                             break;
                     }
 
-		            Mail::send('email_base', ['tmp' => $tmp, 'target'=>$target], function ($message) use($tmp, $o) {
+		            Mail::send('email_base', ['tmp' => $tmp, 'target'=>$target], function ($message) use($tmp, $o, $hitoDescription) {
 		                $message->to($o->email, $o->name);
 		                $message->subject($tmp->title);
 		            });
@@ -291,10 +301,20 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     $se->actuation_id = $actuation_id;// viene desde claimsController
                     $se->save();
 
+                    // Comprobamos si el hito que genera la actuacion tiene una redireccion y si es por template 4
+                    // si es correcto cogemos la descripcion y la enviamos
+                    // else
+                    // Descripcion vacia
+                    if($h['template_id']==4){
+                        $hitoDescription = $h['name'];
+                    }else{
+                        $hitoDescription = 'vacia';
+                    }
+
                     $o = User::where('email',$se->addresse)->first();
 
                     $tmp = $se->template;
-                    Mail::send('email_base', ['se' => $se], function ($message) use($tmp, $o) {
+                    Mail::send('email_base', ['se' => $se], function ($message) use($tmp, $o,$hitoDescription) {
                         $message->to($o->email, $o->name);
                         $message->subject($tmp->title);
                     });

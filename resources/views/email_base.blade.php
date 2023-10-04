@@ -74,6 +74,10 @@
                                 <div style="padding: 10px; background-color: #e65927; color: #fff !important;">
                                     <h3>{!! $tmp->body_content !!}</h3>
                                     <br>
+                                    @if($tmp->id==4)
+                                        <p>{{ $hitoDescription }}</p>
+                                    @endif
+
                                     <h4>{!! $tmp->footer_content !!}</h4>
                                     <br>
                                 </div>
@@ -81,7 +85,7 @@
                         </tr>
                         <tr>
                                 <th>
-                                    @if ($test=1)
+                                    @if ($test==1)
                                         <h3>Entorno de pruebas, en entorno real iria a: {{$tmp->cta_button}}</h3><br>
                                         @if($tmp->id == 2 || $tmp->id == 6 || $tmp->id == 11)
                                             <a href="https://dividae.com" target="_blank">
