@@ -72,7 +72,7 @@
 
 
     @if(session()->has('msj'))
-        @if(Auth::user()->isSuperAdmin || Auth::user()->isAdmin())
+        @if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
             <div class="info-box bg-success">
                 <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
                 <div class="info-box-content">
