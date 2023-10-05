@@ -79,7 +79,7 @@
                                             <p>{{ $hitoDescription }}</p>
                                         @endif
                                     @endif
-
+                                    <br>
                                     <h4>{!! $tmp->footer_content !!}</h4>
                                     <br>
                                 </div>
