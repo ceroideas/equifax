@@ -69,10 +69,6 @@
                     <i class="fas fa-minus"></i>
                 </button>
             </div>
-
-            <iframe src="https://pay-demo.wannme.com/1694705087918611870B"></iframe>
-
-            <a href="https://pay-demo.wannme.com/1694705087918611870B">Pagar</a>
         </div>
 
         <div class="card-body">
