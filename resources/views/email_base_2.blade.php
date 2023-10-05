@@ -64,17 +64,18 @@
 			        	<tr>
 			          		<td style="text-align: center;">
 			          			<br>
-                                @if ($test=1)
-                                    <h3>Entorno de pruebas, en entorno real iria a: {{$tmp->cta_button}}</h3><br>
-                                    <a href="https://dividae.com" target="_blank">
-                                        <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
-                                    </a>
+                                @if(isset($test))
+                                    @if ($test==1)
+                                        <h3>{{$tmp->cta_button}}</h3><br>
+                                        <a href="https://dividae.com" target="_blank">
+                                            <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
+                                        </a>
+                                    @endif
                                 @else
                                     <a href="{{$target}}" target="_blank">
                                         <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
                                     </a>
                                 @endif
-
 			          		</td>
 			        	</tr>
 			          	<tr>

@@ -95,25 +95,21 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        $a->save();
 
                 // comprobar si el hito debe enviar un email  Envio email por hito
-
 				if ($h['template_id'] && $claim->owner->msgusr == 1) {
 					// code...
 					$se = new SendEmail;
 					$se->addresse = $claim ? $claim->owner->email : '';
 					$se->template_id = $h['template_id'];
 					$se->actuation_id = $a->id;
+                    $se->send_count = 10;
 					$se->save();
 
 					$o = User::where('email',$se->addresse)->first();
 
-                    // Comprobamos si el hito que genera la actuacion tiene una redireccion y si es por template 4
-                    // si es correcto cogemos la descripcion y la enviamos
-                    // else
-                    // Descripcion vacia
                     if($h['template_id']==4){
                         $hitoDescription = $h['name'];
                     }else{
-                        $hitoDescription = 'vacia';
+                        $hitoDescription = '';
                     }
 
 					$tmp = $se->template;
@@ -133,12 +129,13 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                             break;
                     }
 
-		            Mail::send('email_base', ['tmp' => $tmp, 'target'=>$target], function ($message) use($tmp, $o, $hitoDescription) {
-		                $message->to($o->email, $o->name);
-		                $message->subject($tmp->title);
-		            });
+                    Mail::send('email_base', ['tmp' => $tmp,'target'=>$target, 'hitoDescription'=>$hitoDescription], function ($message) use($tmp, $o) {
+                        $message->to($o->email, $o->name);
+                        $message->subject($tmp->title);
+                    });
 
-		            $se->send_count += 1;
+		            //$se->send_count += 1;
+                    $se->send_count = 11;
 		            $se->save();
 
 				}
@@ -299,42 +296,48 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     $se->addresse = $claim ? $claim->owner->email : '';
                     $se->template_id = $h['template_id'];
                     $se->actuation_id = $actuation_id;// viene desde claimsController
+                    $se->send_count = 20;
                     $se->save();
 
-                    // Comprobamos si el hito que genera la actuacion tiene una redireccion y si es por template 4
-                    // si es correcto cogemos la descripcion y la enviamos
-                    // else
-                    // Descripcion vacia
                     if($h['template_id']==4){
                         $hitoDescription = $h['name'];
                     }else{
-                        $hitoDescription = 'vacia';
+                        $hitoDescription = '';
                     }
 
                     $o = User::where('email',$se->addresse)->first();
 
                     $tmp = $se->template;
-                    Mail::send('email_base', ['se' => $se], function ($message) use($tmp, $o,$hitoDescription) {
-                        $message->to($o->email, $o->name);
-                        $message->subject($tmp->title);
-                    });
+                    switch($tmp->id){
+                        case 3:
+                        case 7:
+                        case 9:
+                            $target = url('/info'.$tmp->id);
+                            break;
+                        case 2:
+                        case 6:
+                        case 11:
+                            $target = url('/panel');
+                            break;
+                        default:
+                            $target = url('/claims'.$tmp->id);
+                            break;
+                    }
 
-                    $se->send_count += 1;
+                        Mail::send('email_base', ['tmp' => $tmp,'target'=>$target, 'hitoDescription'=>$hitoDescription], function ($message) use($tmp, $o) {
+                                $message->to($o->email, $o->name);
+                                $message->subject($tmp->title);
+                            });
+
+
+                    //$se->send_count += 1;
+                    $se->send_count = 22;
                     $se->save();
 
                 } // Fin envio email
 
-                /*add actuation simple quitamos, no debe añadir actuaciones las reclamaciones*/
-                /*$a = new Actuation;
-		        $a->claim_id = $claim_id;
-		        $a->subject = $id_hito;
-                $a->description = $h['name'];
-		        $a->actuation_date = $date ? $date : Carbon::now()->format('Y-m-d H:i:s');
-		        $a->type = null;
-		        $a->mailable = null;
-    	        $a->save();*/
 
-            } // fin actuacion simple no redirecciona
+            } // fin actuacion simple sin redireccion
 	}
 }
 
