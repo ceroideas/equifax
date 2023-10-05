@@ -42,7 +42,6 @@
                         {{-- Logo sin estilos a tamaño real --}}
                         <tr>
                             <td>
-                                {{ url($tmp->top_logo) }}
                                 <img src="{{ url($tmp->top_logo) }}">
                             </td>
                         </tr>
