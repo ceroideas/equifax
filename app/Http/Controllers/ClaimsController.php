@@ -322,6 +322,14 @@ class ClaimsController extends Controller
 
         addNotification('Nueva reclamación', 'Nueva reclamación registrada en Dividae', $claim->id,0);
 
+        if(isset(Auth::user()->referenced)&& Auth::user()->referenced=='FEDETO'){
+            Auth::user()->campaign = '33' . rand(10000,99999);
+            Auth::user()->save();
+
+            addNotification('Nueva participación sorteo', 'Nueva participacion FEDETO asignada', $claim->id,Auth::user()->id);
+        }
+
+
         if (Auth::user()->isGestor()) {
 
             if(session('type_claim')==2){
