@@ -74,6 +74,10 @@
                                 <div style="padding: 10px; background-color: #e65927; color: #fff !important;">
                                     <h3>{!! $tmp->body_content !!}</h3>
                                     <br>
+                                    @if(isset($sorteo))
+                                        {{$sorteo}}
+                                        <br>
+                                    @endif
                                     @if($tmp->id==4)
                                         @if(isset($hitoDescription))
                                             <p>{{ $hitoDescription }}</p>
