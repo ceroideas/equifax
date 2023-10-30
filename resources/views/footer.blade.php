@@ -195,7 +195,7 @@
                         <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
                                 src="{{ url('landing') }}/assets/icons-address-white.png" class="img-fluid">
-                                Calle Principe de Vergara 37-1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28001, Madrid, España
+                                Calle Basílica 17, 1ª planta (Entrada<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oficinas), 28020, Madrid, España
                         </a></li>
 
                 </ul>

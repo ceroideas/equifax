@@ -52,7 +52,7 @@
             <ul class="texto" >
                 <li>Denominación social: <b>DIVIDAE RECOVERY, S.L </b>(en adelante “DIVIDAE”)</li>
                 <li>NIF: <b>B06970677</b></li>
-                <li>Domicilio social: C/ Príncipe de Vergara, 37 1 ª, 28001. Madrid</li>
+                <li>Domicilio social: Calle Basílica 17, 1ª planta (Entrada Oficinas), 28020. Madrid.</li>
                 <li>Teléfono: 913258610</li>
                 <li>e-mail: <a href='mailto:info@dividae.com'>info@dividae.com</a></li>
                 <li>e-mail DPO: <a href='mailto:rgpd@ateacompliance.com'>rgpd@ateacompliance.com</a></li>
