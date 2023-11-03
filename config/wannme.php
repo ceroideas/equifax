@@ -15,7 +15,7 @@ if($_SERVER['SERVER_NAME']=='develop.dividae.com'||$_SERVER['SERVER_NAME']=='127
     return [
         'arg1'=> '778199111ac61968b18ac08c36aa04b44aa0ecc6',
         'arg2'=> 'https://rest.wannme.com/integration/v2',
-        'arg3'=> '-dq7jmsf5v3i6oiockve',
+        'arg3'=> 'pwfnuv4yqxze9z-ok52-',
         'arg4'=>'qlQrVtXyqzuJBTPlFCe0EKHt8310s5'
         ];
 }
