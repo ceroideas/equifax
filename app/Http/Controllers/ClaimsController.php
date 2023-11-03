@@ -390,7 +390,7 @@ class ClaimsController extends Controller
             "email"=> "",//$claim->owner->email,
             "email2"=> "",
             "email3"=> "",
-            "expirationDate"=>$dateNow->format('c'),
+            "expirationDate"=>"2024-06-26T19:19:00.000+02:00",//$dateNow->format('c'),
             "partnerReference1"=> $debt->document_number,
             "partnerReference2"=> "",
             "customField1"=> "",
