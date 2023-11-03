@@ -111,8 +111,10 @@ class RegisterController extends Controller
 
        addNotification('Nuevo usuario', 'Nuevo usuario registrado', 0,$user->id);
 
+
+
        $tmp = Template::find(1);
-        Mail::send('email_base_2', ['tmp' => $tmp], function ($message) use($tmp, $user) {
+        Mail::send('email_base_2', ['tmp' => $tmp,'target'=>url('/users/'.$user->id)], function ($message) use($tmp, $user) {
             $message->to($user->email, $user->name);
             $message->subject($tmp->title);
         });

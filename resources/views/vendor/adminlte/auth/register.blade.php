@@ -161,7 +161,7 @@
         {{-- referenced --}}
         <div class="input-group mb-3">
             <input type="text" name="referenced" class="form-control @error('referenced') is-invalid @enderror"
-                    value="{{ old('referenced') }}" placeholder="Código de descuento">
+                    value="{{ old('referenced') }}" placeholder="Código de descuento/invitado">
 
             <div class="input-group-append">
                 <div class="input-group-text">

@@ -21,7 +21,7 @@ class InvoicesExport implements FromView, WithTitle
     public function view(): View{
 
         if($this->type == 0 || $this->type == 3){
-            if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
+            if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin() || Auth::user()->isFinance()){
                 $invoices = Invoice::where('status', 1)->get();
             }else{
                 $invoices = Invoice::where('status', 1)
@@ -29,8 +29,15 @@ class InvoicesExport implements FromView, WithTitle
                                     ->get();
             }
 
+        }elseif($this->type == 5){
+            if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()){
+
+                $invoices = Invoice::where('tipfac', 'LIKE','REC%')
+                                    ->get();
+
+            }
         }else{
-            if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
+            if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()){
                 $invoices = Invoice::all();
             }else{
                 $invoices = Invoice::where('user_id', Auth::user()->id)->get();

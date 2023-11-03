@@ -69,7 +69,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe  original</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{number_format( ($claim->debt->total_amount + (($claim->debt->total_amount * $claim->debt->tax)/100) ) , 2,',','.') }} €</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{number_format( ($claim->debt->total_amount + (($claim->debt->total_amount * $claim->debt->tax)/100) ) , 2,',','.') }} &euro;</span>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe  reclamado</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{number_format($claim->debt->pending_amount, 2,',','.') }} €</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{number_format($claim->debt->pending_amount, 2,',','.') }} &euro;</span>
                                 </div>
                             </div>
                         </div>
@@ -96,8 +96,8 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Importe pendiente de pago</span>
-                                    <span class="info-box-number text-center text-muted mb-0">{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed() ), 2,',','.') }} €</span>
-                                    {{--<span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount - ($claim->amountClaimed() /*+ $claim->debt->partialAmounts()*/) }}€</span>--}}
+                                    <span class="info-box-number text-center text-muted mb-0">{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed() ), 2,',','.') }} &euro;</span>
+                                    {{--<span class="info-box-number text-center text-muted mb-0">{{ $claim->debt->pending_amount - ($claim->amountClaimed() /*+ $claim->debt->partialAmounts()*/) }}&euro;</span>--}}
 
                                 </div>
                             </div>
@@ -173,7 +173,7 @@
 
                                     @if($claim->debt->hasAgreement())
                                     <div class="row">
-                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>M&iacute;nimo:</b> <p>{{ $claim->debt->agreements->take }}€</p></div>
+                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>M&iacute;nimo:</b> <p>{{ $claim->debt->agreements->take }}&euro;</p></div>
                                         <div class="col-lg-3 col-sm-6 col-md-6"><b>M&aacute;ximo <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span>:</b> <p>{{ $claim->debt->agreements->wait }} </p></div>
                                         <div class="col-lg-6 col-sm-12 col-md-12"><b>Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
                                     </div>
@@ -190,7 +190,7 @@
                             @endif
 
 
-                            @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+                            @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
                                 <b>FECHA DE REGISTRO DE EXPEDIENTE: </b> {{date('d/m/Y', strtotime($claim->created_at))}}<br>
                                 <div class="form-group">
 
@@ -203,7 +203,7 @@
                                         {{$dias}}</b></span>
                                 </div>
                             @endif
-                            @if (Auth::user()->email == 'luiscampos@atlantelt.com' || Auth::user()->email == 'barbaraderon@atlantelt.com' || Auth::user()->email == 'superadmin@dividae.com')
+                            @if (Auth::user()->isSuperAdmin())
                                 <div class="post">
 
                                     <b>DEUDOR CON C&Oacute;DIGO POSTAL:</b> {{$claim->debtor->cop}}
@@ -389,7 +389,7 @@
                         <hr>
                     @endif
 
-                    @if(((Auth::user()->isAdmin() || Auth::user()->isGestor()) || Auth::user()->isSuperAdmin()) && $claim->isPending())
+                    @if(((Auth::user()->isAdmin() || Auth::user()->isGestor()) || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()) && $claim->isPending())
 
                         <div class="text-center mt-5 mb-3 float-bottom">
 

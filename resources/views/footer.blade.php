@@ -118,10 +118,10 @@
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="javascript:;"
                             data-target="#cookies" data-toggle="modal"
                             class="nav-link p-0 footer-text">Política de cookies</a></li>
-                    <!--Bases sorteo
+                    <!--Bases sorteo-->
                         <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8=""
                                 href="{{ url('/') }}/bases-sorteo" aria-current="page"
-                                class="nav-link p-0 footer-text router-link-exact-active router-link-active">Bases del sorteo</a></li>-->
+                                class="nav-link p-0 footer-text router-link-exact-active router-link-active">Bases del sorteo</a></li>
                 </ul>
             </div>
 
@@ -195,7 +195,7 @@
                         <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
                                 src="{{ url('landing') }}/assets/icons-address-white.png" class="img-fluid">
-                                Calle Principe de Vergara 37-1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28001, Madrid, España
+                                Calle Basílica 17, 1ª planta (Entrada<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oficinas), 28020, Madrid, España
                         </a></li>
 
                 </ul>
@@ -243,12 +243,12 @@
                                             for="customRange1" class="form-label range-label">
                                             El importe de tu deuda asciende a…
                                         </label> <span data-v-e8aafb5e="" class="importe-range1">
-                                            50 €
+                                            50&euro;
                                         </span> <input data-v-e8aafb5e="" required type="range" min="50"
                                             max="100000" value="50" id="rangeDeuda">
                                         <div data-v-e8aafb5e=""><small data-v-e8aafb5e=""
-                                                class="small-text">50€</small> <small data-v-e8aafb5e=""
-                                                class="small-text d-right">100.000€</small></div>
+                                                class="small-text">50&euro;</small> <small data-v-e8aafb5e=""
+                                                class="small-text d-right">100.000&euro;</small></div>
                                         <!---->
                                     </div>
                                 </div>

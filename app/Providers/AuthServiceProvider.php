@@ -37,6 +37,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('admin', [UserPolicy::class, 'admin']);
 
+        Gate::define('finance', [UserPolicy::class, 'finance']);
+
+        //Gate::define('admin', [UserPolicy::class, 'admin']);
+
         Gate::define('see-pendings', [UserPolicy::class, 'pending']);
 
         Gate::define('create-users', [UserPolicy::class, 'create']);
@@ -50,7 +54,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('associate-claims', [ClaimPolicy::class, 'checkGestor']);
 
         Gate::define('see-fees', function(User $user){
-            if($user->isAdmin() || $user->isSuperAdmin() ){
+            if($user->isAdmin() || $user->isSuperAdmin() || $user->isFinance()){
                 return true;
             }
         });

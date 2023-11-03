@@ -57,7 +57,7 @@ class ClaimsController extends Controller
         if(Auth::user()->isClient() || Auth::user()->isAssociate()){
             $claims = Auth::user()->claims()->whereNotIn('status',[-1,0,1])->get();
 
-        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
             //$claims = Claim::all();
             $claims=Claim::whereNotIn('status',[-1,0,1])->get();
         }else{
@@ -74,7 +74,7 @@ class ClaimsController extends Controller
     {
         if(Auth::user()->isClient()){
             $claims = Auth::user()->claims()->whereIn('status', [-1,0,1])->get();
-        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
             $claims = Claim::whereIn('status', [-1,0,1])->get();
         }else{
             $claims = Claim::whereIn('status', [-1,0,1])->where('gestor_id',Auth::id())->get();
@@ -96,34 +96,6 @@ class ClaimsController extends Controller
     }
 
     public function stepOne(){
-
-        /*  TODO: Delete after 16/06/2023
-        if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
-
-
-            $rutatemp = 'public/temporal/debts/'.Auth::user()->id;
-            $ficheros = Storage::AllFiles($rutatemp);
-
-            if($ficheros){
-                Storage::deleteDirectory($rutatemp);
-            }
-
-            session()->forget('other_user');
-            session()->forget('claim_client');
-            session()->forget('claim_third_party');
-            session()->forget('claim_debtor');
-            session()->forget('claim_debt');
-            session()->forget('debt_step_one');
-            session()->forget('debt_step_two');
-            session()->forget('debt_step_three');
-            session()->forget('claim_agreement');
-            session()->forget('type_other');
-            session()->forget('documentos');
-
-
-            return view('claims.create_step_1');
-        }
-        return redirect('users/'.Auth::id())->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');*/
 
         return view('claims.create_step_1');
 
@@ -350,6 +322,14 @@ class ClaimsController extends Controller
 
         addNotification('Nueva reclamación', 'Nueva reclamación registrada en Dividae', $claim->id,0);
 
+        if(isset(Auth::user()->referenced)&& Auth::user()->referenced=='FEDETO'){
+            Auth::user()->campaign = '33' . rand(10000,99999);
+            Auth::user()->save();
+
+            addNotification('Nueva participación sorteo', 'Nueva participacion FEDETO asignada', $claim->id,Auth::user()->id);
+        }
+
+
         if (Auth::user()->isGestor()) {
 
             if(session('type_claim')==2){
@@ -479,7 +459,7 @@ class ClaimsController extends Controller
     public function show(Claim $claim)
     {
         if(Auth::user() <> null){
-            if($claim->owner_id == Auth::user()->id || Auth::user()->isSuperAdmin()){
+            if($claim->owner_id == Auth::user()->id || Auth::user()->isSuperAdmin() ||Auth::user()->isAdmin() ||Auth::user()->isFinance() ){
                 $dias = Carbon::now()->diffInDays(Carbon::parse($claim->created_at));
                 return view('claims.show', ['claim' => $claim, 'dias'=>$dias]);
             }else{
@@ -791,7 +771,7 @@ class ClaimsController extends Controller
 
         if(Auth::user()->isClient() || Auth::user()->isAssociate() ||Auth::user()->isGestor()){
             $invoices = Auth::user()->invoices;
-        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+        }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
             $invoices = Invoice::all();
         }else{
             $invoices = Invoice::whereExists(function($q){
@@ -804,11 +784,45 @@ class ClaimsController extends Controller
         return view('claims.invoices', compact('invoices'));
     }
 
-    public function myInvoice($id)
+    public function myInvoicesRectify()
     {
-        $i = Invoice::find($id);
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
+            $invoices = Invoice::where('tipfac', 'LIKE','REC%')
+                        ->get();
+        }
+
+        return view('claims.invoices_rectify', compact('invoices'));
+    }
+
+    public function myInvoice($tipfac, $id)
+    {
+        //$i = Invoice::find($id);
+        $i = Invoice::where('id', '=', $id)
+                    ->where('tipfac','=',$tipfac)
+                    ->first();
         $c = Configuration::first();
-        $lines = Linvoice::where('invoice_id',$id)->get();
+        $lines = Linvoice::where('invoice_id','=',$id)
+                            ->where('tiplin', '=',$tipfac)
+                            ->get();
+        if(Auth::user()->id == $i->user_id ||Auth::user()->isSuperAdmin()||Auth::user()->isAdmin()|| Auth::user()->isFinance()){
+            return view('invoice', compact('c','i','lines'));
+        }else{
+            print_r("Acceso no permitido al documento solicitado");
+        }
+
+    }
+
+    public function myInvoiceRectify($id)
+    {
+        $i = Invoice::where('id', '=', $id)
+                    ->where('tipfac','LIKE','REC%')
+                    ->first();
+        $c = Configuration::first();
+
+        $lines = Linvoice::where('invoice_id','=',$id)
+                            ->where('tiplin', 'LIKE','REC%')
+                            ->get();
+
         return view('invoice', compact('c','i','lines'));
     }
 
@@ -823,7 +837,7 @@ class ClaimsController extends Controller
 
     public function myOrders()
     {
-        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
             $orders = Order::all();
         }
         if(Auth::user()->isGestor()){
@@ -995,13 +1009,16 @@ class ClaimsController extends Controller
                 $usuario = "Equipo Dividae #".Auth::user()->id;
                 break;
             case 2:
-                $usuario = "cliente #".Auth::user()->id;
+                $usuario = "Cliente #".Auth::user()->id;
                 break;
             case 3:
-                $usuario = "gestoría #".Auth::user()->id;
+                $usuario = "Gestoría #".Auth::user()->id;
                 break;
             case 4:
-                $usuario = "asociado #".Auth::user()->id;
+                $usuario = "Asociado #".Auth::user()->id;
+                break;
+            case 5:
+                $usuario = "Financiero #".Auth::user()->id;
                 break;
         }
 
@@ -1101,6 +1118,12 @@ class ClaimsController extends Controller
         return Excel::download(new InvoicesExport(1), 'all-invoices-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
+    public function invoicesRectifyExportAll()
+    {
+        return Excel::download(new InvoicesExport(5), 'all-invoices-rectify'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+    }
+
+
     public function invoicesExportConta()
     {
         return Excel::download(new InvoicesExport(3), 'invoices-conta-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
@@ -1164,10 +1187,27 @@ class ClaimsController extends Controller
     {
         if ($r->hasFile('file')) {
             $r->file->move(public_path().'/uploads/excel','actuations.xlsx');
+            if(file_exists(public_path().'/logImportHitosXls.log')){
+                unlink(public_path().'/logImportHitosXls.log');
+            }
+
             Excel::import(new HitosImport, public_path().'/uploads/excel/actuations.xlsx');
         }
 
-        return back()->with('msj','Se ha cargado correctamente el archivo excel!');
+        if(file_exists(public_path().'/logImportHitosXls.log')){
+            list($i, $claimsTxt) = array(0,'');
+            $logFile = fopen(public_path().'/logImportHitosXls.log','r');
+            while(!feof($logFile)){
+
+                        $i = $i+1;
+                        $claimsTxt = $claimsTxt.fgets($logFile).'   ';
+                }
+                fclose($logFile);
+        }
+
+        return back()->with(['msj'=>'Se ha cargado correctamente el archivo excel!',
+                            'total_actuaciones'=>$i-1,
+                            'id_claims'=>$claimsTxt]);
     }
 
     public function importCollectsKmaleon(Request $r)

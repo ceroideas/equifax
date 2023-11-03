@@ -23,11 +23,12 @@
 @section('content')
     @php
         $heads = [
+            'Serie',
+            'Factura',
             'ID',
             'Fecha cobro',
             'Importe',
             'Concepto',
-            'Factura',
             'Forma de pago',
             'Observaciones',
             'Exportado (Altai)',
@@ -35,8 +36,8 @@
         ];
         $config = [
 
-            'columns' => [null, null, null, null, null, null, null, null, null],
-            'order'=>[[0,'desc']],
+            'columns' => [null, null, null, null, null, null, null, null, null, null],
+            'order'=>[[0,'desc'],[1,'desc']],
             'pageLength' => 25,
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
@@ -56,31 +57,34 @@
         </x-adminlte-alert>
     @endif
 
-    @if (Auth::user()->isAdmin() || Auth::user()->isSuperAdmin())
+    @if (Auth::user()->isSuperAdmin()|| Auth::user()->isFinance())
         <a href="{{url('collects-export')}}" class="btn btn-sm btn-info">Exportar nuevos cobros (Formato contable)</a>
         <a href="{{url('collects-export-all')}}" class="btn btn-sm btn-primary">Exportar todos los cobros (Formato contable)</a>
         <a href="{{ url('/collects/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important; font-size: 16px;" type="button" label="Registrar un cobro" icon="fas fa-lg fa-pencil"/></a>
+
+        <form action="{{url('import-collects')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <label style="margin: 0;" for="collects" class="btn btn-danger btn-sm">Importar cobros</label>
+
+            <input name="file" type="file" id="collects" style="display: none;">
+
+        </form>
     @endif
 
-    <form action="{{url('import-collects')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
-        @csrf
 
-        <label style="margin: 0;" for="collects" class="btn btn-danger btn-sm">Importar cobros</label>
-
-        <input name="file" type="file" id="collects" style="display: none;">
-
-    </form>
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" class="table-responsive" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
 
             @foreach($collects as $collect)
                 <tr>
+                    <td>{{ $collect->tipcob }}</td>
+                    <td>{{ $collect->invoice_id }}</td>
                     <td>{{ $collect->id }}</td>
                     <td>{{ Carbon\Carbon::parse($collect->feccob)->format('d/m/Y') }}</td>
-                    <td>{{number_format($collect->impcob,2,',','.')}} €</td>
+                    <td>{{number_format($collect->impcob,2,',','.')}} &euro;</td>
                     <td>{{ $collect->cptcob }}</td>
-                    <td>{{ $collect->invoice_id }}</td>
                     <td>{{ $collect->fpacob }}</td>
                     <td>{{ $collect->obscob }}</td>
                     <td>{{ $collect->tracob == 1 ? 'Exportado' : 'No exportado' }}</td>

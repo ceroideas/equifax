@@ -95,16 +95,22 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        $a->save();
 
                 // comprobar si el hito debe enviar un email  Envio email por hito
-
 				if ($h['template_id'] && $claim->owner->msgusr == 1) {
 					// code...
 					$se = new SendEmail;
 					$se->addresse = $claim ? $claim->owner->email : '';
 					$se->template_id = $h['template_id'];
 					$se->actuation_id = $a->id;
+                    $se->send_count = 10;
 					$se->save();
 
 					$o = User::where('email',$se->addresse)->first();
+
+                    if($h['template_id']==4){
+                        $hitoDescription = $h['name'];
+                    }else{
+                        $hitoDescription = '';
+                    }
 
 					$tmp = $se->template;
                     switch($tmp->id){
@@ -114,6 +120,9 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                             $target = url('/info'.$tmp->id);
                             break;
                         case 2:
+                            if($o->referenced =='FEDETO'){
+                                $sorteo = "Estas participando en el sorteo FEDETO, tu número de participación es: ".$o->campaign;
+                            }
                         case 6:
                         case 11:
                             $target = url('/panel');
@@ -123,12 +132,15 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                             break;
                     }
 
-		            Mail::send('email_base', ['tmp' => $tmp, 'target'=>$target], function ($message) use($tmp, $o) {
-		                $message->to($o->email, $o->name);
-		                $message->subject($tmp->title);
-		            });
 
-		            $se->send_count += 1;
+                    Mail::send('email_base', ['tmp' => $tmp,'target'=>$target,
+                    'hitoDescription'=>$hitoDescription, 'sorteo'=>$sorteo], function ($message) use($tmp, $o) {
+                        $message->to($o->email, $o->name);
+                        $message->subject($tmp->title);
+                    });
+
+		            //$se->send_count += 1;
+                    $se->send_count = 11;
 		            $se->save();
 
 				}
@@ -289,32 +301,48 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     $se->addresse = $claim ? $claim->owner->email : '';
                     $se->template_id = $h['template_id'];
                     $se->actuation_id = $actuation_id;// viene desde claimsController
+                    $se->send_count = 20;
                     $se->save();
+
+                    if($h['template_id']==4){
+                        $hitoDescription = $h['name'];
+                    }else{
+                        $hitoDescription = '';
+                    }
 
                     $o = User::where('email',$se->addresse)->first();
 
                     $tmp = $se->template;
-                    Mail::send('email_base', ['se' => $se], function ($message) use($tmp, $o) {
-                        $message->to($o->email, $o->name);
-                        $message->subject($tmp->title);
-                    });
+                    switch($tmp->id){
+                        case 3:
+                        case 7:
+                        case 9:
+                            $target = url('/info'.$tmp->id);
+                            break;
+                        case 2:
+                        case 6:
+                        case 11:
+                            $target = url('/panel');
+                            break;
+                        default:
+                            $target = url('/claims'.$tmp->id);
+                            break;
+                    }
 
-                    $se->send_count += 1;
+                        Mail::send('email_base', ['tmp' => $tmp,'target'=>$target, 'hitoDescription'=>$hitoDescription], function ($message) use($tmp, $o) {
+                                $message->to($o->email, $o->name);
+                                $message->subject($tmp->title);
+                            });
+
+
+                    //$se->send_count += 1;
+                    $se->send_count = 22;
                     $se->save();
 
                 } // Fin envio email
 
-                /*add actuation simple quitamos, no debe añadir actuaciones las reclamaciones*/
-                /*$a = new Actuation;
-		        $a->claim_id = $claim_id;
-		        $a->subject = $id_hito;
-                $a->description = $h['name'];
-		        $a->actuation_date = $date ? $date : Carbon::now()->format('Y-m-d H:i:s');
-		        $a->type = null;
-		        $a->mailable = null;
-    	        $a->save();*/
 
-            } // fin actuacion simple no redirecciona
+            } // fin actuacion simple sin redireccion
 	}
 }
 
@@ -322,6 +350,8 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
     // Necesitamos el tipo de documento
     if($typeDocument == 'order'){
         $idDocument = maxId('orders','id');
+    }elseif($typeDocument == 'REC'){
+        $idDocument = maxId('REC','id');
     }else{
         $idDocument = maxId('invoices','id');
     }
@@ -329,10 +359,19 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
     $c = Configuration::first();
 
     if(isset($c)){
-        $typeDocument == 'order' ? $document = new Order : $document = new Invoice;
-        $document->id = $idDocument;
-        $document->claim_id =  $claim_id;
 
+        if($typeDocument == 'order'){
+            $document = new Order;
+        }elseif($typeDocument == 'REC'){
+            $document = new Invoice;
+            $document->tipfac = 'REC'.Carbon::now()->format('y');
+        }else{
+            $document = new Invoice;
+            $document->tipfac = Carbon::now()->format('y');
+        }
+
+        $document->id = $idDocument;
+        $document->claim_id = $claim_id;
 
         // Siempre se factura en nombre del owner
         $claim = Claim::find($claim_id);
@@ -343,8 +382,6 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
         }else{
             $user = User::find($claim->owner_id);
         }
-
-
 
         $document->user_id =  $user->id;
         // Solo en invoice almacenamos los datos del cliente en el momento de su creación
@@ -858,21 +895,42 @@ function totalDocument($typeDocument, $idDocument){
 }
 
 function maxId($table, $field, $idDocument=0){
+    $rectificativa=0;
+    if($table=="REC"){
+        $table="invoices";
+        $rectificativa=1;
+    }
     if($table == 'linvoices'){
         $idMax = DB::table($table)
         ->select(DB::raw('max('.$field.') as last'))
         ->where('invoice_id',$idDocument)
+        ->where('tiplin',Carbon::now()->format('y'))
         ->get();
     }elseif($table == 'lorders'){
         $idMax = DB::table($table)
         ->select(DB::raw('max('.$field.') as last'))
         ->where('order_id',$idDocument)
         ->get();
+    }elseif($table == 'invoices'){
+        if($rectificativa==1){
+            $idMax = DB::table($table)
+            ->select(DB::raw('max('.$field.') as last'))
+            ->where('tipfac','REC'.Carbon::now()->format('y'))
+            ->get();
+        }else{
+            $idMax = DB::table($table)
+            ->select(DB::raw('max('.$field.') as last'))
+            ->where('tipfac',Carbon::now()->format('y'))
+            ->get();
+        }
+
     }else{
         $idMax = DB::table($table)
         ->select(DB::raw('max('.$field.') as last'))
         ->get();
-        }
+    }
+
+
     $idMax = intval($idMax[0]->last + 1);
     return $idMax;
 }

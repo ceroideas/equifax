@@ -45,7 +45,7 @@
                         </div>
                         @if(!Auth::user()->isGestor())
                             <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
-                                <small>Por solo</small> 19,90€
+                                <small>Por solo</small> 19,90&euro;
                             </span>
                         @endif
                         <div class="col-12 pb-3 pt-3">
@@ -73,7 +73,7 @@
                         </div>
                         @if(!Auth::user()->isGestor())
                             <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
-                                <small>Desde</small> 69,90€
+                                <small>Desde</small> 69,90&euro;
                             </span>
                         @endif
                         <div class="col-12 pb-3 pt-3">

@@ -19,6 +19,7 @@ class CollectsImport implements ToModel, WithHeadingRow
                                 ->first();
         if($invoice){
             $collect = new Collect();
+            $collect->tipcob = Carbon::now()->format('y');
             $collect->invoice_id = $invoice->id;
 
             if (array_key_exists('fecha', $row)) {

@@ -86,9 +86,9 @@
                                     <input type="hidden" name="claim_id" value="{{$claim->id}}">
                                     <input type="hidden" name="amount" value="{{$amount*100}}">
                                     {{-- Quitamos el modal de la aceptacion de contratacion --}}
-                                    {{--<button class="subscribe btn btn-primary btn-block" data-toggle="modal" data-target="#terminos-2" type="button"> Pagar ({{number_format($amount ,2,',','.')}} €) Con tarjeta guardada </button>
+                                    {{--<button class="subscribe btn btn-primary btn-block" data-toggle="modal" data-target="#terminos-2" type="button"> Pagar ({{number_format($amount ,2,',','.')}} &euro;) Con tarjeta guardada </button>
                                     <button data-dismiss="modal" id="accept-terms-2" class="btn btn-sm btn-success">Aceptar las Condiciones</button>--}}
-                                    <button class="subscribe btn btn-primary btn-block" type="button" id="accept-terms-2"> Pagar ({{number_format($amount ,2,',','.')}} €) Con tarjeta guardada </button>
+                                    <button class="subscribe btn btn-primary btn-block" type="button" id="accept-terms-2"> Pagar ({{number_format($amount ,2,',','.')}} &euro;) Con tarjeta guardada </button>
                                 </form>
                             </p>
                             <hr>
@@ -191,9 +191,9 @@
 							</div>
 
 						</div> <!-- row.// -->
-						{{--<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#terminos" type="button" id="accept-terms"> Pagar ({{number_format($amount ,2,',','.')}} €) </button>--}}
-                        <button class="btn btn-primary btn-block" type="button" id="accept-terms"> Pagar ({{number_format($amount ,2,',','.')}} €) </button>
-						<button class="subscribe btn btn-primary btn-block d-none" id="subscribe" type="submit"> Pagar ({{number_format($amount ,2,',','.')}} €) </button>
+						{{--<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#terminos" type="button" id="accept-terms"> Pagar ({{number_format($amount ,2,',','.')}} &euro;) </button>--}}
+                        <button class="btn btn-primary btn-block" type="button" id="accept-terms"> Pagar ({{number_format($amount ,2,',','.')}} &euro;) </button>
+						<button class="subscribe btn btn-primary btn-block d-none" id="subscribe" type="submit"> Pagar ({{number_format($amount ,2,',','.')}} &euro;) </button>
 					</form>
 					<div id="paymentErrorMsg"></div>
 

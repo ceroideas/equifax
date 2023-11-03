@@ -99,15 +99,15 @@
             <tr></tr>
 			<tr>
               <td colspan="5" style="text-align: right;"><strong>SubTotal:</strong></td>
-              <td style="text-align: right;">{{number_format($i->bas1fac+$i->bas2fac+$i->bas3fac+$i->bas4fac,2,',','.')}} €</td>
+              <td style="text-align: right;">{{number_format($i->bas1fac+$i->bas2fac+$i->bas3fac+$i->bas4fac,2,',','.')}} &euro;</td>
             </tr>
             <tr>
               <td colspan="5" style="text-align: right;"><strong>IVA:</strong></td>
-              <td style="text-align: right;">{{number_format($i->iiva1fac+$i->iiva2fac+$i->iiva3fac,2,',','.')}} €</td>
+              <td style="text-align: right;">{{number_format($i->iiva1fac+$i->iiva2fac+$i->iiva3fac,2,',','.')}} &euro;</td>
             </tr>
 			<tr>
               <td colspan="5" style="text-align: right;"><strong>Total:</strong></td>
-              <td style="text-align: right;">{{number_format($i->totfac,2,',','.')}} €</td>
+              <td style="text-align: right;">{{number_format($i->totfac,2,',','.')}} &euro;</td>
             </tr>
             <tr>
                 <td colspan="5"><strong>Número de cuenta de pago: </strong> &nbsp; {{ $c->invoice_account }}</td>

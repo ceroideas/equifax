@@ -74,40 +74,50 @@
                                 <div style="padding: 10px; background-color: #e65927; color: #fff !important;">
                                     <h3>{!! $tmp->body_content !!}</h3>
                                     <br>
+                                    @if(isset($sorteo))
+                                        {{$sorteo}}
+                                        <br>
+                                    @endif
+                                    @if($tmp->id==4)
+                                        @if(isset($hitoDescription))
+                                            <p>{{ $hitoDescription }}</p>
+                                        @endif
+                                    @endif
+                                    <br>
                                     <h4>{!! $tmp->footer_content !!}</h4>
                                     <br>
                                 </div>
                             </th>
                         </tr>
                         <tr>
-                                <th>
-                                    @if ($test=1)
-                                        <h3>Entorno de pruebas, en entorno real iria a: {{$tmp->cta_button}}</h3><br>
+                            <th>
+
+                                @if(isset($test))
+                                    @if ($test==1)
+                                        <h3>{{$tmp->cta_button}}</h3><br>
                                         @if($tmp->id == 2 || $tmp->id == 6 || $tmp->id == 11)
                                             <a href="https://dividae.com" target="_blank">
                                                 <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
                                             </a>
                                         @else
                                             <a href="https://dividae.com" target="_blank">
-                                                <img src="https://dividae.com/templates/btn_acceso_reclamacion.jpg">
-                                            </a>
-
-                                        @endif
-
-                                    @else
-
-                                        @if($tmp->id == 2 || $tmp->id == 6 || $tmp->id == 11)
-                                            <a href="{{$target}}" target="_blank">
-                                                <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
-                                            </a>
-                                        @else
-                                            <a href="{{$target}}" target="_blank">
                                                 <img src="https://dividae.com/templates/btn_acceso_reclamacion.jpg">
                                             </a>
                                         @endif
                                     @endif
-                                    <br>
-                                </th>
+                                @else
+                                    @if($tmp->id == 2 || $tmp->id == 6 || $tmp->id == 11)
+                                        <a href="{{$target}}" target="_blank">
+                                            <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
+                                        </a>
+                                    @else
+                                        <a href="{{$target}}" target="_blank">
+                                            <img src="https://dividae.com/templates/btn_acceso_reclamacion.jpg">
+                                        </a>
+                                    @endif
+                                @endif
+                                <br>
+                            </th>
                         </tr>
                         <tr>
                             <th>

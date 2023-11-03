@@ -21,7 +21,7 @@ class ThirdPartiesController extends Controller
     {
         if(Auth::user()->isClient() || Auth::user()->isGestor() || Auth::user()->isAssociate()){
             $thirdParties = Auth::user()->thirdParties;
-        }elseif(Auth::user()->isSuperAdmin() ){
+        }elseif(Auth::user()->isSuperAdmin()|| Auth::user()->isFinance() || Auth::user()->isAdmin() ){
             $thirdParties = thirdParty::all();
         }/*else{
             $thirdParties = thirdParty::where('user_id',session('other_user'))->get();

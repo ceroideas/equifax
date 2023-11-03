@@ -69,7 +69,7 @@
                             <div class="timeline-body text-left">
                                 <p style="margin: 0">{{$act->description}}</p>
                                 @if ($act->amount)
-                                    <b style="color: #333">Importe recuperado:</b> {{ number_format($act->amount, 2,',','.') }} € <br>
+                                    <b style="color: #333">Importe recuperado:</b> {{ number_format($act->amount, 2,',','.') }} &euro; <br>
                                 @endif
 
                                 @if ($act->documents)

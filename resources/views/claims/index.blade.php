@@ -23,7 +23,7 @@
 @section('content')
 
     @php
-    if (Auth::user()->isGestor() || Auth::user()->isSuperAdmin()) {
+    if (Auth::user()->isGestor() || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()) {
         $heads = [
             'ID',
             'Usuario',
@@ -70,10 +70,27 @@
 
     @endphp
 
+
     @if(session()->has('msj'))
-        <x-adminlte-alert theme="success" dismissable>
-            {{ session('msj') }}
-        </x-adminlte-alert>
+        @if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+            <div class="info-box bg-success">
+                <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+                <div class="info-box-content">
+                <span class="info-box-text">{{ session('msj') }}</span>
+                <span class="info-box-number">Actuaciones importadas: {{session('total_actuaciones')}}</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 100%"></div>
+                </div>
+                <span class="progress-description">
+                    Reclamaciones actualizadas: {{session('id_claims')}}
+                </span>
+                </div>
+            </div>
+        @else
+            <x-adminlte-alert theme="success" dismissable>
+                {{ session('msj') }}
+            </x-adminlte-alert>
+        @endif
     @endif
 
     @if(session()->has('err'))
@@ -85,7 +102,7 @@
     @if (Auth::user()->isGestor() || Auth::user()->isClient())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
     @endif
-    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
+    @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
         <a href="{{url('export-all')}}" class="btn btn-sm btn-primary">Exportar Reclamaciones</a>
         <a href="{{url('export-new-claims')}}" class="btn btn-sm btn-success">Exportar Nuevas Reclamaciones</a>
         <a href="{{url('export-actuations-all')}}" class="btn btn-sm btn-primary">Exportar Actuaciones</a>
@@ -102,6 +119,7 @@
             <label style="margin: 0;" for="collects" class="btn btn-danger btn-sm">Importar cobros (Kmaleon)</label>
             <input name="file" type="file" id="collects" style="display: none;">
         </form>
+
     @endif
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
@@ -112,10 +130,10 @@
                     <td>{{ ($claim->owner) ? $claim->owner->name:'No existe'}}</td>
                     <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
                     <td>{{ ($claim->debtor)? $claim->debtor->name :'No existe'}}</td>
-                    <td>{{ number_format( ($claim->debt->total_amount + (($claim->debt->total_amount * $claim->debt->tax)/100) ) , 2,',','.') }} € </td>
-                    <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} €</td>
-                    <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} €</td>
-                    <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} €</td>
+                    <td>{{ ($claim->debt) ? number_format( ($claim->debt->total_amount + (($claim->debt->total_amount * $claim->debt->tax)/100) ) , 2,',','.'):'-' }} &euro; </td>
+                    <td>{{ ($claim->debt) ? number_format($claim->debt->pending_amount, 2,',','.'): '-' }} &euro;</td>
+                    <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} &euro;</td>
+                    <td>{{ ($claim->debt) ? number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.'):'-' }} &euro;</td>
 
                     @switch($claim->owner->role)
                         @case(3)

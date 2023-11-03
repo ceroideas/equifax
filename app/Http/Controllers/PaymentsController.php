@@ -68,8 +68,9 @@ class PaymentsController extends Controller
     			$collect = new Collect;
 	            $collect->feccob = Carbon::now()->format('Y-m-d H:i:s');
 	            $collect->impcob = number_format(($r->amount/100) ,2);
-                $collect->cptcob = 'Cobro de factura '.$c->last_invoice->id;
-	            $collect->invoice_id = $c->last_invoice->id;
+                $collect->cptcob = 'Cobro de factura '.Carbon::now()->format('y') .'/'.$c->last_invoice->id;
+	            $collect->tipcob = Carbon::now()->format('y');
+                $collect->invoice_id = $c->last_invoice->id;
                 $collect->user_id = '1';
                 $collect->fpacob = 'Tarjeta';
                 $collect->save();
@@ -197,8 +198,9 @@ class PaymentsController extends Controller
                 $collect = new Collect;
 	            $collect->feccob = Carbon::now()->format('Y-m-d H:i:s');
 	            $collect->impcob = number_format(($r->amount/100) ,2);
-                $collect->cptcob = 'Cobro de factura '.$c->last_invoice->id;
-	            $collect->invoice_id = $c->last_invoice->id;
+                $collect->cptcob = 'Cobro de factura '.Carbon::now()->format('y') .'/'.$c->last_invoice->id;
+                $collect->tipcob = Carbon::now()->format('y');
+                $collect->invoice_id = $c->last_invoice->id;
                 $collect->user_id = '1';
                 $collect->fpacob = 'Tarjeta';
                 $collect->save();

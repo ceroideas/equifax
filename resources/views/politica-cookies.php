@@ -144,7 +144,7 @@ table.blueTable td a{
         </ul>
 
         <p class="texto"><b>Datos de contacto para ejercer sus derechos:</b></p>
-        <p class="texto"><b>DIVIDAE RECOVERY, S.L.</b> C/ Príncipe de Vergara, 37 1º - 28001 MADRID (Madrid).E-mail:<a href='mailto:info@dividae.com'>info@dividae.com</a> </p>
+        <p class="texto"><b>DIVIDAE RECOVERY, S.L.</b> Calle Basílica 17, 1ª planta (Entrada Oficinas), 28020 (Madrid).E-mail:<a href='mailto:info@dividae.com'>info@dividae.com</a> </p>
         <p class="texto"><b>Datos de contacto del delegado de protección de datos: C/ Maudes, 51, 8ª Planta, 28003 Madrid(<a href='mailto:rgpd@ateacompliance.com'>rgpd@ateacompliance.com</a>) </b></p>
 
         <p class="subtitulo">COOKIES UTILIZADAS EN ESTE SITIO WEB</p>

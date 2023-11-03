@@ -6,6 +6,7 @@
             <th>Fecha</th>
             <th>Subcuenta banco</th>
             <th>Contrapartida o NIF</th>
+            <th>Serie</th>
             <th>No. Factura</th>
             <th>Concepto</th>
             <th>Importe</th>
@@ -23,6 +24,7 @@
             <td>{{ Carbon\Carbon::parse($collect->feccob)->format('d/m/Y') }}</td>
             <td>57200000</td>
             <td>{{ $collect->factura->cnifac }}</td>
+            <td>{{ $collect->tipcob }}</td>
             <td>{{ $collect->invoice_id }}</td>
             <td>{{ $collect->cptcob }}</td>
             <td>{{number_format($collect->factura->totfac,2,',','.')}}</td>

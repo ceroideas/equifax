@@ -8,8 +8,8 @@
     <meta name="csrf-token" content="vQquIOeFCyXeIRVqPhnUsIPBw3b13PWS9mA9pMmF">
 
     <meta name="robots" content="index, follow" />
-    <title>Di adiós a tus facturas impagadas, di Dividae</title>
-    <meta name="description" content="Dividae es una plataforma 100% digital que surge para dar una solución a la recuperación de facturas impagadas de forma sencilla, exitosa y económica."/>
+    <title>Di adi&oacute;s a tus facturas impagadas, di Dividae</title>
+    <meta name="description" content="Dividae es una plataforma 100% digital que surge para dar una soluci&oacute;n a la recuperación de facturas impagadas de forma sencilla, exitosa y econ&oacute;mica."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -486,7 +486,7 @@
                                         </ul>
                                     </div>
                                     <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
-                                        <small>Por solo</small> 19,90€
+                                        <small>Por solo</small> 19,90&euro;
                                     </span>
 
                                     <!--<div class="row">
@@ -516,7 +516,7 @@
                                         </ul>
                                     </div>
                                     <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
-                                        <small>Desde</small> 69,90€
+                                        <small>Desde</small> 69,90&euro;
                                     </span>
 
                                     <!--<div class="row">
@@ -572,7 +572,7 @@
                                                     Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
-                                                    10.220<span data-v-455dcd3f="" class="text-style-1">€</span></div>
+                                                    10.220<span data-v-455dcd3f="" class="text-style-1">&euro;</span></div>
                                             </div> <img data-v-455dcd3f=""
                                                 src="{{ url('landing') }}/assets/testimonio-1.png"
                                                 class="testimonio-1 img-fluid">
@@ -627,7 +627,7 @@
                                                     Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
-                                                    1.640<span data-v-455dcd3f="" class="text-style-1">€</span></div>
+                                                    1.640<span data-v-455dcd3f="" class="text-style-1">&euro;</span></div>
                                             </div> <img data-v-455dcd3f=""
                                                 src="{{ url('landing') }}/assets/testimonio-2.png"
                                                 class="testimonio-1 img-fluid">
@@ -644,7 +644,7 @@
                                                     Cantidad recuperada
                                                 </div>
                                                 <div data-v-455dcd3f="" class="price-DR">
-                                                    3.550<span data-v-455dcd3f="" class="text-style-1">€</span>
+                                                    3.550<span data-v-455dcd3f="" class="text-style-1">&euro;</span>
                                                 </div>
                                             </div> <img data-v-455dcd3f=""
                                                 src="{{ url('landing') }}/assets/testimonio-3.png"
@@ -672,146 +672,29 @@
                             </div>
 
                             <div data-v-455dcd3f="" class="container OCliente">
-                                <div data-v-455dcd3f="" class="OCliente-title">¿Qué opinan nuestros clientes?</div>
-                                <div data-v-455dcd3f="" class="OCliente-text">
-                                    Conoce las opiniones de personas que ya han confiado en <b>Dividae</b>.
-                                </div>
+                                <div data-v-455dcd3f="" class="OCliente-title">Colaboraciones</div>
+
                                 <br>
                                 <br>
 
                                 <div id="testimonios" class="owl-carousel owl-theme">
-                                    <div data-v-1cb0bef4="" class="card">
-                                        <div data-v-1cb0bef4="" class="card-body">
-                                            <div data-v-1cb0bef4="" class="row block-slide-1">
-                                                <div data-v-1cb0bef4=""
-                                                    class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 OClientes-blockquote-slides">
-                                                    <img data-v-1cb0bef4=""
-                                                        src="{{ url('landing') }}/assets/blockquote-up.png"
-                                                        class="img-fluid"></div>
-                                                <div data-v-1cb0bef4=""
-                                                    class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides">
-                                                    Experiencia de Usuario inmejorable. En todo momento conoces el
-                                                    estado de la reclamación. 100% recomendable.
-                                                </div>
-                                            </div> <br>
-                                            <div data-v-1cb0bef4="" class="row block-slide-2">
-                                                <div data-v-1cb0bef4="" class="col OClientes-img-slides2"><img
-                                                        data-v-1cb0bef4=""
-                                                        src="{{ url('landing') }}/assets/rectangle3.png"></div>
-                                                <div data-v-1cb0bef4="" class="col OClientes-text-slides2">
-                                                    <div data-v-1cb0bef4="">
-                                                        Amelia González
-                                                        <br data-v-1cb0bef4="">
-                                                        @AmeliaGlez_
-                                                    </div>
-                                                </div>
-                                                <div data-v-1cb0bef4="" class="col OClientes-rating-slides2">
-                                                    <div data-v-1cb0bef4="" class="rating"><img
-                                                            data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"></div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                    <div>
+                                        <a href = "https://avae.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avae.png"></a>
+                                    </div>
+                                    <div>
+                                        <a href = "https://avecal.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avecal.png"></a>
+                                    </div>
+                                    <div>
+                                        <a href = "https://www.gestorestoledo.org/" target="_blank"><img src="{{ url('landing') }}/assets/logo_toledo.png"></a>
+                                    </div>
+                                    <div>
+                                        <a href = "https://gestoresextremadura.com/" target="_blank"><img src="{{ url('landing') }}/assets/logo_extremadura.png"></a>
                                     </div>
 
-                                    <div data-v-1cb0bef4="" class="card">
-                                        <div data-v-1cb0bef4="" class="card-body">
-                                            <div data-v-1cb0bef4="" class="row block-slide-1">
-                                                <div data-v-1cb0bef4=""
-                                                    class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 OClientes-blockquote-slides">
-                                                    <img data-v-1cb0bef4=""
-                                                        src="{{ url('landing') }}/assets/blockquote-up.png"
-                                                        class="img-fluid"></div>
-                                                <div data-v-1cb0bef4=""
-                                                    class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides">
-                                                    Conocí <b>Dividae</b> por mi gestoría. Transparente y sencillo.
-                                                    Además comienzan la reclamación con un único pago y te mantienen
-                                                    informado siempre. No vas a pagar nada que no sepas.
-                                                </div>
-                                            </div> <br>
-                                            <div data-v-1cb0bef4="" class="row block-slide-2">
-                                                <div data-v-1cb0bef4="" class="col OClientes-img-slides2"><img
-                                                        data-v-1cb0bef4=""
-                                                        src="{{ url('landing') }}/assets/rectangle2.png"></div>
-                                                <div data-v-1cb0bef4="" class="col OClientes-text-slides2">
-                                                    <div data-v-1cb0bef4="">
-                                                        Emilio Castro
-                                                        <br data-v-1cb0bef4="">
-                                                        @EmiCastro1
-                                                    </div>
-                                                </div>
-                                                <div data-v-1cb0bef4="" class="col OClientes-rating-slides2">
-                                                    <div data-v-1cb0bef4="" class="rating"><img
-                                                            data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div data-v-1cb0bef4="" class="card">
-                                        <div data-v-1cb0bef4="" class="card-body">
-                                            <div data-v-1cb0bef4="" class="row block-slide-1">
-                                                <div data-v-1cb0bef4=""
-                                                    class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 OClientes-blockquote-slides">
-                                                    <img data-v-1cb0bef4=""
-                                                        src="{{ url('landing') }}/assets/blockquote-up.png"
-                                                        class="img-fluid"></div>
-                                                <div data-v-1cb0bef4=""
-                                                    class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 OClientes-text-slides">
-                                                    Ahora que conozco <b>Dividae</b>, nunca más dejaré pasar una factura
-                                                    impagada. Repetiré.
-                                                </div>
-                                            </div> <br>
-                                            <div data-v-1cb0bef4="" class="row block-slide-2">
-                                                <div data-v-1cb0bef4="" class="col OClientes-img-slides2"><img
-                                                        data-v-1cb0bef4=""
-                                                        src="{{ url('landing') }}/assets/rectangle1.png"></div>
-                                                <div data-v-1cb0bef4="" class="col OClientes-text-slides2">
-                                                    <div data-v-1cb0bef4="">
-                                                        Sara Trujillo
-                                                        <br data-v-1cb0bef4="">
-                                                        @SaraTrujilloo
-                                                    </div>
-                                                </div>
-                                                <div data-v-1cb0bef4="" class="col OClientes-rating-slides2">
-                                                    <div data-v-1cb0bef4="" class="rating"><img
-                                                            data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"> <img data-v-1cb0bef4=""
-                                                            src="{{ url('landing') }}/assets/icons-star.png"
-                                                            class="img-fluid"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 

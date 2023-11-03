@@ -50,7 +50,7 @@ class UsersController extends Controller
 
         if(Auth::user()->isAdmin()){
             $users = User::where('role', 2)->latest()->get();
-        }elseif(Auth::user()->isSuperAdmin()){
+        }elseif(Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()){
             $users = User::all();
         }
 
@@ -191,8 +191,6 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
 
-
-
         $validation = $this->validateRequest();
 
         if($request->password != Null){
@@ -208,8 +206,10 @@ class UsersController extends Controller
             $role = Auth::user()->role;
         }
 
+        if(isset($request->referenced)){
+            $user->update(['referenced'=>$request->referenced]);
+        }
         $user->update([
-
             'type' => $request->type,
             'name' => $request->name,
             'email' => $request->email,
@@ -227,9 +227,7 @@ class UsersController extends Controller
             'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
-            'referenced'=>$request->referenced,
             'msgusr'=> isset($request->msgusr)?1:0,
-
         ]);
 
         if($request->file('dni_img')){
@@ -263,7 +261,7 @@ class UsersController extends Controller
             return redirect('/users')->with(['msj' => 'Usuario actualizado exitosamente']);
         }
 
-        if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()){
+        if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()){
             return redirect('panel')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
         }else{
             return redirect('claims/select-type')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);

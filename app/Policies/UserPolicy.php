@@ -112,4 +112,9 @@ class UserPolicy
     {
         return $user->isAdmin();
     }
+
+    public function finance(User $user)
+    {
+        return $user->isFinance();
+    }
 }
