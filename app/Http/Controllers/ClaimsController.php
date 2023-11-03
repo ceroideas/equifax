@@ -353,6 +353,87 @@ class ClaimsController extends Controller
             }
         }
 
+
+        /* Wannme cobros */
+        if(file_exists('testing/wannme.txt')){
+            $file = fopen('testing/wannme.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Testing wannme '.PHP_EOL);
+        }
+        $amount = $claim->last_invoice->amount;
+        $dateNow = (new \DateTime())->modify('+1 month');
+        $cadena = config('wannme.arg3').config('wannme.arg4').$amount.$debt->document_number;
+
+        $checksum = hash('sha512', $cadena);
+        //$checksum = sha1($cadena);  // deprecated
+
+        if(file_exists('testing/wannme.txt')){
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Cadena: '.$cadena.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Checksum: '.$checksum.PHP_EOL);
+            fclose($file);
+        }
+
+        $client = new Client();
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Wannme-Is-Debug' => 'false',
+            'Wannme-Integration-Version' => 'Demo V2',
+            'Authorization' => config('wannme.arg1')
+        ])->post(config('wannme.arg2'), [
+            "partnerId"=> config('wannme.arg3'),
+            "checksum"=> $checksum,
+            "amount"=> $amount,
+            "description"=> $debt->document_number. " Pago de factura ".$claim->last_invoice->id,
+            "mobilePhone"=> "",//$claim->owner->phone,
+            "mobilePhone2"=> "",
+            "mobilePhone3"=> "",
+            "email"=> "",//$claim->owner->email,
+            "email2"=> "",
+            "email3"=> "",
+            "expirationDate"=>$dateNow->format('c'),
+            "partnerReference1"=> $debt->document_number,
+            "partnerReference2"=> "",
+            "customField1"=> "",
+            "customField2"=> "",
+            "customField3"=> "",
+            "customField4"=> "",
+            "customField5"=> "",
+            "customField6"=> "",
+            "notificationURL"=> "",
+            "returnOKURL"=> "",
+            "returnKOURL"=> "",
+            "usersGroup"=> "DIVIDAE",
+            "paymentMethods"=> [],
+            "customer"=> [
+                "address"=> "",
+                "bankAccountIban"=> "",
+                "document"=> "",
+                "documentType"=> "",
+                "firstName"=> "",//$claim->owner->name,
+                "floorStairsDoor"=> "",
+                "lastName1"=> "",
+                "lastName2"=> "",
+                "location"=> "",//$claim->owner->location,
+                "postalCode"=> "",//$claim->owner->cop,
+                "provinceType"=> "",
+                "viaType"=> ""
+            ]
+        ])->throw()->json();
+
+
+        // Respuestas recibidas
+        if(file_exists('testing/wannme.txt')){
+            $file = fopen('testing/wannme.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Respuestas recibidas '.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Status code: '.$response['statusCode']. " - " .$response['statusDescription'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Error code: '.$response['errorCode'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'URL wannme: '.$response['url'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Forma de pago: '.$response['directLinks'][0]['paymentMethod'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'URL de pago: '.$response['directLinks'][0]['url'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
+            fclose($file);
+        }
+
         $request->session()->forget('other_user');
         $request->session()->forget('claim_client');
         $request->session()->forget('claim_third_party');
@@ -366,212 +447,7 @@ class ClaimsController extends Controller
         $request->session()->forget('documentos');
         $request->session()->forget('type_claim');
 
-        /* Call curl */
-
-
-/*
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://rest-demo.wannme.com:443/integration/v2/wannmepay/payment/',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS =>'{
-    "partnerId": "-dq7jmsf5v3i6oiockve",
-    "checksum": "2ca2fdc07b293e69b65365ee3a35e0b1dfef8e24",
-    "amount": 246,
-    "description": "Description field postman",
-    "mobilePhone": "666333999",
-    "mobilePhone2": "666999333",
-    "mobilePhone3": "654321987",
-    "email": "cliente@email.com",
-    "email2": "email2@email.com",
-    "email3": "email3@email.com",
-    "expirationDate": "2024-06-26T19:19:00.000+02:00",
-    "partnerReference1": "48",
-    "partnerReference2": "pr2",
-    "customField1": "customfield1",
-    "customField2": "customfield2",
-    "customField3": "customfield3",
-    "customField4": "customfield4",
-    "customField5": "customfield5",
-    "customField6": "customfield6",
-    "notificationURL": "https://notification.ngrok.io",
-    "returnOKURL": "https://www.google.ok",
-    "returnKOURL": "https://www.google.ko",
-    "usersGroup": "LOC_1",
-    "paymentMethods": [],
-    "customer": {
-        "address": "ADDRESS",
-        "bankAccountIban": "ES6621000418401234567891",
-        "document": "123456789A",
-        "documentType": 2,
-        "firstName": "cliente",
-        "floorStairsDoor": "floorStairsDoor",
-        "lastName1": "Pruebas",
-        "lastName2": "lastname2",
-        "location": "Madrid",
-        "postalCode": "28046",
-        "provinceType": 2,
-        "viaType": 2
-    },
-    "extra": {
-        "sendSMS": false,
-        "sendEmail": false,
-        "manualPayment": false,
-        "tokenizeOnly": false,
-        "sendCertifiedSMS": false,
-        "paymentPassword": ""
-    }
-}',
-  CURLOPT_HTTPHEADER => array(
-    'Content-Type: application/json',
-    'Wannme-Is-Debug: false',
-    'Wannme-Integration-Version: Postman Demo V2',
-    'Authorization: 778199111ac61968b18ac08c36aa04b44aa0ecc6'
-  ),
-));
-
-$response = curl_exec($curl);
-
-curl_close($curl);
-echo $response;
-
-        dump("Llamada curl");
-        dump($curl);
-        dd($response);
-        */
-
-
-    /* Guzzle Postman */
-/*
-    $client = new Client();
-
-    $headers = [
-      'Content-Type' => 'application/json',
-      'Wannme-Is-Debug' => 'false',
-      'Wannme-Integration-Version' => 'Postman Demo V2',
-      'Authorization' => '778199111ac61968b18ac08c36aa04b44aa0ecc6'
-    ];
-    $body = '{
-      "partnerId": "-dq7jmsf5v3i6oiockve",
-      "checksum": "2ca2fdc07b293e69b65365ee3a35e0b1dfef8e24",
-      "amount": 246,
-      "description": "Description field dividae",
-      "mobilePhone": "666333999",
-      "mobilePhone2": "666999333",
-      "mobilePhone3": "654321987",
-      "email": "cliente@email.com",
-      "email2": "email2@email.com",
-      "email3": "email3@email.com",
-      "expirationDate": "2024-06-26T19:19:00.000+02:00",
-      "partnerReference1": "48",
-      "partnerReference2": "pr2",
-      "customField1": "customfield1",
-      "customField2": "customfield2",
-      "customField3": "customfield3",
-      "customField4": "customfield4",
-      "customField5": "customfield5",
-      "customField6": "customfield6",
-      "notificationURL": "https://notification.ngrok.io",
-      "returnOKURL": "https://www.google.ok",
-      "returnKOURL": "https://www.google.ko",
-      "usersGroup": "LOC_1",
-      "paymentMethods": [],
-      "customer": {
-        "address": "ADDRESS",
-        "bankAccountIban": "ES6621000418401234567891",
-        "document": "123456789A",
-        "documentType": 2,
-        "firstName": "cliente",
-        "floorStairsDoor": "floorStairsDoor",
-        "lastName1": "Pruebas",
-        "lastName2": "lastname2",
-        "location": "Madrid",
-        "postalCode": "28046",
-        "provinceType": 2,
-        "viaType": 2
-      },
-      "extra": {
-        "sendSMS": false,
-        "sendEmail": false,
-        "manualPayment": false,
-        "tokenizeOnly": false,
-        "sendCertifiedSMS": false,
-        "paymentPassword": ""
-      }
-    }';
-    $request = new Request('POST', 'https://rest-demo.wannme.com:443/integration/v2/wannmepay/payment/', $headers, $body);
-    $res = $client->sendAsync($request)->wait();
-    echo $res->getBody();
-    */
-    /*
-    $body = '{
-        "partnerId": "-dq7jmsf5v3i6oiockve",
-        "checksum": "2ca2fdc07b293e69b65365ee3a35e0b1dfef8e24",
-        "amount": 246,
-        "description": "Description field postman",
-        "mobilePhone": "666333999",
-        "mobilePhone2": "666999333",
-        "mobilePhone3": "654321987",
-        "email": "cliente@email.com",
-        "email2": "email2@email.com",
-        "email3": "email3@email.com",
-        "expirationDate": "2024-06-26T19:19:00.000+02:00",
-        "partnerReference1": "48",
-        "partnerReference2": "pr2",
-        "customField1": "customfield1",
-        "customField2": "customfield2",
-        "customField3": "customfield3",
-        "customField4": "customfield4",
-        "customField5": "customfield5",
-        "customField6": "customfield6",
-        "notificationURL": "https://notification.ngrok.io",
-        "returnOKURL": "https://www.google.ok",
-        "returnKOURL": "https://www.google.ko",
-        "usersGroup": "LOC_1",
-        "paymentMethods": [],
-        "customer": {
-          "address": "ADDRESS",
-          "bankAccountIban": "ES6621000418401234567891",
-          "document": "123456789A",
-          "documentType": 2,
-          "firstName": "cliente",
-          "floorStairsDoor": "floorStairsDoor",
-          "lastName1": "Pruebas",
-          "lastName2": "lastname2",
-          "location": "Madrid",
-          "postalCode": "28046",
-          "provinceType": 2,
-          "viaType": 2
-        },
-        "extra": {
-          "sendSMS": false,
-          "sendEmail": false,
-          "manualPayment": false,
-          "tokenizeOnly": false,
-          "sendCertifiedSMS": false,
-          "paymentPassword": ""
-        }
-      }';
-
-    $response = Http::withHeaders([
-        'Content-Type' => 'application/json',
-        'Wannme-Is-Debug' => 'false',
-        'Wannme-Integration-Version' => 'Postman Demo V2',
-        'Authorization' => '778199111ac61968b18ac08c36aa04b44aa0ecc6'
-    ])->post('https://rest-demo.wannme.com:443/integration/v2/wannmepay/payment/', [
-        'body' => $body,
-    ]);
-
-    $response->successful();*/
-
-            return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
+        return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
     }
 
     /**
