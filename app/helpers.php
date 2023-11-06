@@ -628,6 +628,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
     }else{
         $lDocument = new Linvoice;
         $lDocument->invoice_id = $idDocument;
+        $lDocument->tiplin = Carbon::now()->format('y');
         $lDocument->poslin = maxId('linvoices','poslin',$idDocument);
         $lDocument->canlin = $cantidad;
 
@@ -954,6 +955,7 @@ function copyLineDocument($idDocument, $linea, $cantidad){
 
     $lDocument = new Linvoice;
     $lDocument->invoice_id = $idDocument;
+    $lDocument->tiplin = Carbon::now()->format('y');
     $lDocument->poslin = maxId('linvoices','poslin',$idDocument);
     $lDocument->artlin = $linea->artlor;
     $lDocument->deslin = $linea->deslor;
