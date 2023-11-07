@@ -390,7 +390,7 @@ class ClaimsController extends Controller
             "email"=> "",//$claim->owner->email,
             "email2"=> "",
             "email3"=> "",
-            "expirationDate"=>"2024-06-26T19:19:00.000+02:00",//$dateNow->format('c'),
+            "expirationDate"=>$dateNow->format('c'), //"2024-06-26T19:19:00.000+02:00",
             "partnerReference1"=> $debt->document_number,
             "partnerReference2"=> "",
             "customField1"=> "",
@@ -447,7 +447,13 @@ class ClaimsController extends Controller
         $request->session()->forget('documentos');
         $request->session()->forget('type_claim');
 
-        return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
+        if($response['statusCode']==1){
+            return redirect($response['url']);
+        }else{
+
+            return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
+        }
+
     }
 
     /**
