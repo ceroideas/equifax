@@ -310,7 +310,7 @@ Route::group([
     Route::get('/{id}/edit', [BlogController::class, 'createPosts']);
 });
 
-Route::post('ckeckdiscountcode', [DiscountCodeController::class, 'check']);
+Route::post('checkdiscountcode', [DiscountCodeController::class, 'check']);
 
 Route::group([
     'prefix' => 'notifications',
@@ -323,3 +323,4 @@ Route::group([
     Route::get('/unread/{id}', [NotificationsController::class, 'unread']);
 });
 
+Route::get('callback', [PaymentsController::class, 'callback']);

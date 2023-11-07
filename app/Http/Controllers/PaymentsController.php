@@ -271,4 +271,9 @@ class PaymentsController extends Controller
         }
         return false;
     }
+
+    public function callback(Request $r){
+        print_r("CallBack function paymentsController ");
+        dump($r);
+    }
 }
