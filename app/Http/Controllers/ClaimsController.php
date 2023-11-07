@@ -934,7 +934,7 @@ class ClaimsController extends Controller
         $a->claim_id = $id;
         $a->amount = $r->amount;
         $a->description = $r->description;
-        dump($r->subject);  //3003
+        //dump($r->subject);  //3003
 
         //$path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
         //$pathStorage = '/uploads/actuations/' . $a->id . '/documents/';
