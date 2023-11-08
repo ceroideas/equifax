@@ -136,6 +136,8 @@ Route::group([
     Route::post('payToken', [PaymentsController::class, 'payToken']);
     Route::post('check_debtor', [ClaimsController::class, 'checkDebtor']);
     Route::get('/continue/{claim}', [ClaimsController::class , 'continue']);
+    Route::post('callback', [PaymentsController::class, 'callback']);
+
 });
 
 Route::group([
@@ -323,4 +325,3 @@ Route::group([
     Route::get('/unread/{id}', [NotificationsController::class, 'unread']);
 });
 
-Route::get('callback', [PaymentsController::class, 'callback']);
