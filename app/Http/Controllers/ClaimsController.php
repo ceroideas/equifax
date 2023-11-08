@@ -401,7 +401,7 @@ class ClaimsController extends Controller
             "customField6"=> "",
             "notificationURL"=> "",
             "returnOKURL"=> "https://dividae.com/claims",
-            "returnKOURL"=> "",
+            "returnKOURL"=> "https://dividae.com/claims",
             "usersGroup"=> "DIVIDAE",
             "paymentMethods"=> [],
             "customer"=> [
@@ -430,8 +430,22 @@ class ClaimsController extends Controller
             fwrite($file, date("d/m/Y H:i:s").'-'.'URL wannme: '.$response['url'].PHP_EOL);
             fwrite($file, date("d/m/Y H:i:s").'-'.'Forma de pago: '.$response['directLinks'][0]['paymentMethod'].PHP_EOL);
             fwrite($file, date("d/m/Y H:i:s").'-'.'URL de pago: '.$response['directLinks'][0]['url'].PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'URL a factura: '.$claim->last_invoice->id.PHP_EOL);
             fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
             fclose($file);
+        }
+
+        if($response['statusCode']==1){
+
+            $claim->last_invoice->payurlfac = $response['url'];
+            $claim->last_invoice->save();
+
+            if(file_exists('testing/wannme.txt')){
+                $file = fopen('testing/wannme.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Grabamos URL en factura: '.$claim->last_invoice->id.PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
+                fclose($file);
+            }
         }
 
         $request->session()->forget('other_user');
