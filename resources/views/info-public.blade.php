@@ -162,6 +162,14 @@
             text-align: right;
 
             }
+            .text-tarifa{
+                color:#285ba3;
+                font-size: 2.5em;
+
+            }
+            .text-total{
+                color:#ffa500;
+            }
 
     </style>
 

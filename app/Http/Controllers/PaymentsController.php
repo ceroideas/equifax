@@ -74,7 +74,7 @@ class PaymentsController extends Controller
                 $collect->user_id = '6';
                 $collect->fpacob = 'Tarjeta';
                 $collect->save();
-
+                /*Update claim */
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
 
@@ -204,7 +204,7 @@ class PaymentsController extends Controller
                 $collect->user_id = '6';
                 $collect->fpacob = 'Tarjeta';
                 $collect->save();
-
+                /* Update claim v2*/
                 if ($c->claim_type == 1) {
                     if ($c->owner->apud_acta) {
 
@@ -272,16 +272,91 @@ class PaymentsController extends Controller
         return false;
     }
 
-    public function callback(Request $r){
+    public function callback(Request $r)
+    {
         if(file_exists('testing/wannme.txt')){
             $file = fopen('testing/wannme_callback.log', 'a');
             fwrite($file, date("d/m/Y H:i:s").'-'.'Callback wannme '.PHP_EOL);
-
             fclose($file);
         }
 
-
-        print_r("CallBack function paymentsController ");
+        //print_r("CallBack function paymentsController ");
         //dump($r);
+
+        if($r->statusCode==1){
+
+            $guion = strpos($r->partnerReference2,'-');
+            $barra = strpos($r->partnerReference2,'/');
+            $tipfac = substr($r->partnerReference2,0,$barra);
+            $idfac = substr($r->partnerReference2, $barra+1,$guion-($barra+1));
+            $control = substr($r->partnerReference2, $guion+1);
+            $claim = substr($r->partnerReference1, 4);
+
+            /* Add control factura */
+            $i = Invoice::where('id', '=', $idfac)
+                        ->where('tipfac','=',$tipfac)
+                        ->first();
+
+            if($i && $i->control == $control){
+                $collect = new Collect;
+                $collect->feccob = Carbon::now()->format('Y-m-d H:i:s');
+                $collect->impcob = $r->amount;
+                $collect->cptcob = 'Cobro de factura '.$tipfac .'/'.$idfac;
+                $collect->tipcob = $tipfac;
+                $collect->invoice_id = $idfac;
+                $collect->user_id = '6';
+                $collect->fpacob = 'Tarjeta';
+                $collect->save();
+
+                // Update factura
+                if($i->amount == $r->amount){
+                    $i->status = 1;
+                    $i->payment_date = Carbon::now()->format('Y-m-d H:i:s');
+                    $i->update();
+                }
+
+                $c = Claim::find($claim);
+
+                //Update claim
+                if ($c->status == 7) {
+                    if ($c->claim_type == 1) {
+                        $c->status = 10;
+                    }else{
+                        $c->status = 8;
+                    }
+                }
+
+
+                if ($c->claim_type == 1) {
+                    if ($c->owner->apud_acta) {
+
+                        actuationActions("30018",$c->id);
+                    }else{
+                        actuationActions("30017",$c->id);
+                        return redirect('claims/'.$c->id)->with('msj_apud', 'Hemos detectado que te falta el Apud Acta, para poder continuar');
+                    }
+                }else{
+                    actuationActions("-1",$c->id);
+                }
+
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
+
+            }// else cobro correcto pero no coincide el importe de la factura o
+
+
+
+
+
+
+
+
+
+        }// else cobro erroneo TODO: Procesar los estados de error
+
+        return redirect('claims')->with('msj', 'Error en el pago código'.$r->statusCode);
+
+
     }
+
+
 }

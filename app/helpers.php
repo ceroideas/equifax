@@ -970,3 +970,11 @@ function copyLineDocument($idDocument, $linea, $cantidad){
 
     $lDocument->save();
 }
+
+function randomchar(){
+
+    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $control = substr(str_shuffle($permitted_chars), 0, 10);
+
+    return $control;
+}
