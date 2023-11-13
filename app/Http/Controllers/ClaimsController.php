@@ -400,9 +400,9 @@ class ClaimsController extends Controller
             "customField4"=> "",
             "customField5"=> "",
             "customField6"=> "",
-            "notificationURL"=> "",
-            "returnOKURL"=> "https://dividae.com/claims",
-            "returnKOURL"=> "https://dividae.com/claims",
+            "notificationURL"=> "https://develop.dividae.com/callback",
+            "returnOKURL"=> "https://develop.dividae.com/claims",
+            "returnKOURL"=> "https://develop.dividae.com/claims",
             "usersGroup"=> "DIVIDAE",
             "paymentMethods"=> [],
             "customer"=> [

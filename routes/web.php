@@ -136,7 +136,7 @@ Route::group([
     //Route::post('payToken', [PaymentsController::class, 'payToken']);
     Route::post('check_debtor', [ClaimsController::class, 'checkDebtor']);
     Route::get('/continue/{claim}', [ClaimsController::class , 'continue']);
-    Route::post('callback', [PaymentsController::class, 'callback']);
+    Route::post('/callback', [PaymentsController::class, 'callback']);
 
 });
 
