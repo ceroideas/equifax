@@ -71,7 +71,7 @@ class PaymentsController extends Controller
                 $collect->cptcob = 'Cobro de factura '.Carbon::now()->format('y') .'/'.$c->last_invoice->id;
 	            $collect->tipcob = Carbon::now()->format('y');
                 $collect->invoice_id = $c->last_invoice->id;
-                $collect->user_id = '1';
+                $collect->user_id = '6';
                 $collect->fpacob = 'Tarjeta';
                 $collect->save();
 
@@ -201,7 +201,7 @@ class PaymentsController extends Controller
                 $collect->cptcob = 'Cobro de factura '.Carbon::now()->format('y') .'/'.$c->last_invoice->id;
                 $collect->tipcob = Carbon::now()->format('y');
                 $collect->invoice_id = $c->last_invoice->id;
-                $collect->user_id = '1';
+                $collect->user_id = '6';
                 $collect->fpacob = 'Tarjeta';
                 $collect->save();
 

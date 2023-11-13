@@ -386,8 +386,9 @@
                             <div class="row">
                                 <div class="col-sm-5"></div>
                                 <div class="col-sm-3">
-                                    <a data-v-9cc878a2="" href="/claims/payment/<?php echo $id?>" aria-current="page"
-                                        class="btn btn-light-descubre" type="button">Proceder al pago de {{ number_format(($invoice[0]->totfac),2,',','.') }} &euro;</a>
+                                    <!-- <a data-v-9cc878a2="" href="/claims/payment/<?php //echo $id?>" aria-current="page" -->
+                                        <a data-v-9cc878a2="" href="{{$invoice[0]->payurlfac}}" aria-current="page"
+                                        class="btn btn-light-descubre" type="button" target="_blank">Proceder al pago de {{ number_format(($invoice[0]->totfac),2,',','.') }} &euro;</a>
                                         <br>
                                 </div>
                                 <div class="col-sm-3"></div>
