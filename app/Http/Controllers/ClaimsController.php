@@ -362,6 +362,7 @@ class ClaimsController extends Controller
         $amount = $claim->last_invoice->amount;
         $dateNow = (new \DateTime())->modify('+1 month');
         $cadena = config('wannme.arg3').config('wannme.arg4').$amount.$debt->document_number;
+        $control = randomchar();
 
         $checksum = hash('sha512', $cadena);
         //$checksum = sha1($cadena);  // deprecated
@@ -383,7 +384,7 @@ class ClaimsController extends Controller
             "partnerId"=> config('wannme.arg3'),
             "checksum"=> $checksum,
             "amount"=> $amount,
-            "description"=> $debt->document_number. " Pago de factura ".$claim->last_invoice->id,
+            "description"=> $debt->document_number. " Pago de factura ".Carbon::now()->format('y') .'/'.$claim->last_invoice->id,
             "mobilePhone"=> "",//$claim->owner->phone,
             "mobilePhone2"=> "",
             "mobilePhone3"=> "",
@@ -392,7 +393,7 @@ class ClaimsController extends Controller
             "email3"=> "",
             "expirationDate"=>$dateNow->format('c'), //"2024-06-26T19:19:00.000+02:00",
             "partnerReference1"=> $debt->document_number,
-            "partnerReference2"=> "",
+            "partnerReference2"=> Carbon::now()->format('y') .'/'.$claim->last_invoice->id.$control,
             "customField1"=> "",
             "customField2"=> "",
             "customField3"=> "",
@@ -438,6 +439,7 @@ class ClaimsController extends Controller
         if($response['statusCode']==1){
 
             $claim->last_invoice->payurlfac = $response['url'];
+            $claim->last_invoice->ctrlfac = $control;
             $claim->last_invoice->save();
 
             if(file_exists('testing/wannme.txt')){

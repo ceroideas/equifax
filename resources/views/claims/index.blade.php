@@ -192,9 +192,11 @@
                         @endif
 
                         @if (Auth::user()->id == $claim->owner_id && $claim->last_invoice)
+
                             @if ($claim->status != -1)
-                            <a href="{{ url('/claims/payment/' . $claim->id ) }}">
-                                <button class="btn btn-xs btn-default text-info mx-1 shadow" title="Pagar">
+                            <!--<a href="{ { url('/claims/payment/' . $claim->id ) } }">-->
+                                <a href="{{$claim->last_invoice->payurlfac}}" target="_blank">
+                                <button class="btn btn-xs btn-default text-info mx-1 shadow" title="Pagar factura Pasarela">
                                     <i class="fa fa-lg fa-fw fa-credit-card"></i>
                                 </button>
                             </a>
@@ -206,6 +208,8 @@
             @endforeach
         </x-adminlte-datatable>
     </x-adminlte-card>
+<p>hola</p>
+<p>  {{$claim->last_invoice->payurlfac}}</p>
 
 @stop
 
