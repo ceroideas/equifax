@@ -48,7 +48,7 @@
             border-radius: 10px;
             position:fixed;
             bottom: 4px;
-            left:70%;
+            /*left:70%;*/
             width: 30%;
             height: 7%;
             padding: 5px 0;
@@ -71,7 +71,7 @@
             font-size: 16px;
             line-height: 12px;
             padding: 12px 20px;
-            position: fixed;
+            /*position: fixed;*/
             bottom: 15px;
             right: 20px;
             z-index: 999;
@@ -825,6 +825,24 @@
             $('video').trigger('pause');
         });
     </script>
+
+    <!-- Start of oct8ne code -->
+   <script type="text/javascript">
+        var oct8ne = document.createElement("script");
+        oct8ne.server = "backoffice-eu.oct8ne.com/";
+        oct8ne.type = "text/javascript";
+        oct8ne.async = true;
+        oct8ne.license ="8B19E88F4BCE8B83D8E70D88F9647A4D";
+        oct8ne.src = (document.location.protocol == "https:" ? "https://" : "http://") + "static-eu.oct8ne.com/api/v2/oct8ne.js?" + (Math.round(new Date().getTime() / 86400000));
+        oct8ne.locale = "es-ES";
+        oct8ne.baseUrl ="//www.dividae.com";
+        var s = document.getElementsByTagName("script")[0];
+        insertOct8ne();
+        function insertOct8ne() {
+                s.parentNode.insertBefore(oct8ne, s);
+        }
+    </script>
+    <!--End of oct8ne code -->
 
 </body>
 

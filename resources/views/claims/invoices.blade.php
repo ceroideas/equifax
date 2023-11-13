@@ -136,6 +136,16 @@
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>
                         </a>
+
+
+                        @if ($invoice->status != 1 && $invoice->status != 3 && $invoice->status != 4 && $invoice->status != 5)
+                        <a target="_blank" href="{{ $invoice->payurlfac }}">
+                            <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Pagar factura">
+                                <i class="fa fa-lg fa-fw fa-credit-card"></i>
+                            </button>
+                        </a>
+                        @endif
+
                         {{--@if ((Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()) && ($invoice->status == null || $invoice->status == 2)) --}}
                         @if (Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()|| Auth::user()->isFinance())
                             <a href="{{ url('/collects/create/' . $invoice->tipfac.'/'. $invoice->id ) }}">

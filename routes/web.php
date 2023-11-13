@@ -132,8 +132,8 @@ Route::group([
     Route::get('/close/{claim}', [ClaimsController::class , 'close']);
     Route::post('/non-viable/{claim}/save', [ClaimsController::class, 'setNonViable']);
     Route::post('/viable/{claim}/save', [ClaimsController::class, 'setViable']);
-    Route::post('payment', [PaymentsController::class, 'payment']);
-    Route::post('payToken', [PaymentsController::class, 'payToken']);
+    //Route::post('payment', [PaymentsController::class, 'payment']);
+    //Route::post('payToken', [PaymentsController::class, 'payToken']);
     Route::post('check_debtor', [ClaimsController::class, 'checkDebtor']);
     Route::get('/continue/{claim}', [ClaimsController::class , 'continue']);
     Route::post('callback', [PaymentsController::class, 'callback']);
