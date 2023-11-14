@@ -274,6 +274,7 @@ class PaymentsController extends Controller
 
     public function callback(Request $r)
     {
+        dd("Callback payment");
         if(file_exists('testing/wannme.txt')){
             $file = fopen('testing/wannme_callback.log', 'a');
             fwrite($file, date("d/m/Y H:i:s").'-'.'Callback wannme '.PHP_EOL);
