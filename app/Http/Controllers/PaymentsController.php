@@ -274,7 +274,6 @@ class PaymentsController extends Controller
 
     public function callback(Request $r)
     {
-        dd("Callback payment");
         if(file_exists('testing/wannme.txt')){
             $file = fopen('testing/wannme_callback.log', 'a');
             fwrite($file, date("d/m/Y H:i:s").'-'.'Callback wannme '.PHP_EOL);
@@ -299,6 +298,13 @@ class PaymentsController extends Controller
                         ->first();
 
             if($i && $i->control == $control){
+
+                if(file_exists('testing/wannme.txt')){
+                    $file = fopen('testing/wannme_callback.log', 'a');
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'Coincide control, todo ok '.PHP_EOL);
+                    fclose($file);
+                }
+
                 $collect = new Collect;
                 $collect->feccob = Carbon::now()->format('Y-m-d H:i:s');
                 $collect->impcob = $r->amount;

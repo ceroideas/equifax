@@ -208,8 +208,6 @@
             @endforeach
         </x-adminlte-datatable>
     </x-adminlte-card>
-<p>hola</p>
-<p>  {{$claim->last_invoice->payurlfac}}</p>
 
 @stop
 
