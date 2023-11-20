@@ -58,6 +58,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 	$amount = null;
 	$amounts = [];
 	$type = [];
+    $sorteo = '';
 	$claim = Claim::find($claim_id);
 
     if ($h) {
