@@ -237,13 +237,13 @@
                                     <div data-v-5fddf304="" class=""></div>
                                 </li>
 
-                                    <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
+{{--                                     <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                                             href="{{ url('testimonios') }}" class="nav-link"><span
                                                 data-v-5fddf304="" class="Type-something">
                                                 Testimonios
                                             </span></a>
                                         <div data-v-5fddf304="" class=""></div>
-                                    </li>
+                                    </li> --}}
 
                                     <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                                             href="{{ url('preguntas') }}" class="nav-link"><span
@@ -560,7 +560,7 @@
 
                         <div data-v-455dcd3f="" class="content">
 
-                            <div id="test-3" class="owl-carousel owl-theme">
+                            {{-- <div id="test-3" class="owl-carousel owl-theme">
 
                                 <div data-v-455dcd3f="" class="container Opinion">
                                     <div data-v-455dcd3f="" class="row">
@@ -669,7 +669,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div data-v-455dcd3f="" class="container OCliente">
                                 <div data-v-455dcd3f="" class="OCliente-title">Colaboraciones</div>
