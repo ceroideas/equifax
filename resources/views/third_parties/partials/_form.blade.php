@@ -263,7 +263,11 @@
         <div class="card-footer">
             <span class="float-left">Los campos marcados con (*) son requeridos.</span> <br>
 
-            <span class="float-left">** El adjunto de copia de DNI es del representante legal.</span>
+            <span class="float-left">** El adjunto de copia de DNI es del representante legal.</span><br>
+
+            <span class="float-left">*** Los datos del representado, no se podrán editar una vez iniciada la reclamación.</span>
+
+
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
             <a href="{{ url('/third-parties/') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>

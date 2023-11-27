@@ -22,8 +22,15 @@ class Debtor extends Model
             case 3:
                 return 'Autónomo';
                 break;
-                             
         }
-
     }
+
+    public function issetClaim()
+    {
+       $this->id;
+       $db = Claim::where('debtor_id',$this->id)->first();
+       return $db;
+    }
+
+
 }

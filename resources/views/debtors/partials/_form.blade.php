@@ -163,9 +163,10 @@
             <div class="row">
                 <span class="float-left">(*) Los campos marcados son requeridos.</span>
             </div>
-            {{--<div class="row">
-                <span class="float-left">(**) Por favor ingresa toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>
-            </div>--}}
+            <div class="row">
+                {{--<span class="float-left">(**) Por favor ingresa toda la información importante posible para la reclamación, esto nos ayudará a acelerar el proceso.</span>--}}
+                <span class="float-left">*** Los datos del deudor, no se podrán editar una vez iniciada la reclamación.</span>
+            </div>
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
             <a href="{{ url('/debtors/') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>

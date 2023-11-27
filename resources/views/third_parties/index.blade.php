@@ -71,7 +71,7 @@
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($third_parties as $third_party)
                 <tr>
-                    <td>{{ $third_party->dni }}</td>
+                    <td>{{ $third_party->dni }}-{{$third_party->id}}</td>
                     <td>{{ $third_party->name }}</td>
                     <td>{{ $third_party->legal_representative }}</td>
                     <td>{{ $third_party->representative_dni }}</td>
@@ -80,26 +80,31 @@
                     <td>
                      <nobr>
                         @if(session()->has('claim_third_party') && session()->get('claim_third_party') == 'waiting')
-                        <a href="{{ url('/claims/save-option-two/' . $third_party->id ) }}">
-                            <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Elegir">
-                                <i class="fa fa-lg fa-fw fa-check"></i>
-                            </button>
-                        </a>
+                            <a href="{{ url('/claims/save-option-two/' . $third_party->id ) }}">
+                                <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Elegir">
+                                    <i class="fa fa-lg fa-fw fa-check"></i>
+                                </button>
+                            </a>
                         @endif
                         <a href="{{ url('/third-parties/' . $third_party->id ) }}">
                             <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>
                         </a>
+
                         <a href="{{ url('/third-parties/' . $third_party->id . '/edit/') }}">
-                            <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
+                            <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" @if($third_party->issetClaim()!=Null) disabled @endif>
                                 <i class="fa fa-lg fa-fw fa-pen"></i>
                             </button>
                         </a>
-                        <form id="delete-form-{{ $third_party->id }}" action="{{ url('/third-parties/' . $third_party->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
-                        <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $third_party->id }}').submit();">
-                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                        </button>
+
+                        @if(Auth::user()->isSuperadmin())
+                            <form id="delete-form-{{ $third_party->id }}" action="{{ url('/third-parties/' . $third_party->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
+                            <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $third_party->id }}').submit();">
+                                <i class="fa fa-lg fa-fw fa-trash"></i>
+                            </button>
+                       @endif
+
 
                     </nobr>
                     </td>
@@ -110,6 +115,9 @@
     <div class="card-footer">
         <div class="row">
             <span class="float-left">(*) Selecciona o añade un tercero</span>
+        </div>
+        <div class="row">
+            <span class="float-left">** Los datos del representado, no se podrán editar una vez iniciada la reclamación</span>
         </div>
         <a href="{{ url('claims/select-client') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
     </div>

@@ -89,15 +89,16 @@
                             </button>
                         </a>
                         <a href="{{ url('/debtors/' . $debtor->id . '/edit/') }}">
-                            <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
+                            <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" @if($debtor->issetClaim()!=Null) disabled @endif>
                                 <i class="fa fa-lg fa-fw fa-pen"></i>
                             </button>
                         </a>
-                        <form id="delete-form-{{ $debtor->id }}" action="{{ url('/debtors/' . $debtor->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
-                        <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $debtor->id }}').submit();">
-                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                        </button>
-
+                        @if(Auth::user()->isSuperadmin())
+                            <form id="delete-form-{{ $debtor->id }}" action="{{ url('/debtors/' . $debtor->id) }}" method="POST"  style="display: none;">@csrf @method('DELETE')</form>
+                            <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $debtor->id }}').submit();">
+                                <i class="fa fa-lg fa-fw fa-trash"></i>
+                            </button>
+                        @endif
                     </nobr>
                     </td>
                 </tr>
@@ -107,6 +108,9 @@
     <div class="card-footer">
         <div class="row">
             <span class="float-left">(*) Selecciona o añade un deudor</span>
+        </div>
+        <div class="row">
+            <span class="float-left">** Los datos del deudor, no se podrán editar una vez iniciada la reclamación</span>
         </div>
         <!--<x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save" id="btnsiguiente"/>-->
         <a href="{{ url('claims/check-debtor') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>

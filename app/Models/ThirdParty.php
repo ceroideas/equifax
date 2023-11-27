@@ -20,4 +20,14 @@ class ThirdParty extends Model
 
         return true;
      }
+
+     public function issetClaim()
+     {
+        $this->id;
+        $tp = Claim::where('third_parties_id',$this->id)->first();
+        //return $this->hasOne(claim::class);
+        //return $this->belongsTo(ThirdParty::class, 'third_parties_id');
+        return $tp;
+     }
+
 }
