@@ -196,7 +196,7 @@
                             @if ($claim->status != -1)
                             <!--<a href="{ { url('/claims/payment/' . $claim->id ) } }">-->
                                 <a href="{{$claim->last_invoice->payurlfac}}" target="_blank">
-                                <button class="btn btn-xs btn-default text-info mx-1 shadow" title="Pagar factura Pasarela">
+                                <button class="btn btn-xs btn-default text-info mx-1 shadow" title="Pagar factura">
                                     <i class="fa fa-lg fa-fw fa-credit-card"></i>
                                 </button>
                             </a>
