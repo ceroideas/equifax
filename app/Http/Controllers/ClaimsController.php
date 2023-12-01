@@ -324,6 +324,7 @@ class ClaimsController extends Controller
 
         if(isset(Auth::user()->referenced)&& Auth::user()->referenced=='FEDETO'){
             Auth::user()->campaign = '33' . rand(10000,99999);
+            Auth::user()->discount = 100;
             Auth::user()->save();
 
             addNotification('Nueva participación sorteo', 'Nueva participacion FEDETO asignada', $claim->id,Auth::user()->id);
@@ -353,102 +354,112 @@ class ClaimsController extends Controller
             }
         }
 
-
-        /* Wannme cobros */
-        if(file_exists('testing/wannme.txt')){
-            $file = fopen('testing/wannme.log', 'a');
-            fwrite($file, date("d/m/Y H:i:s").'-'.'Testing wannme '.PHP_EOL);
-        }
-        $amount = $claim->last_invoice->amount;
-        $dateNow = (new \DateTime())->modify('+1 month');
-        $cadena = config('wannme.arg3').config('wannme.arg4').$amount.$debt->document_number;
-        $control = randomchar();
-
-        $checksum = hash('sha512', $cadena);
-        //$checksum = sha1($cadena);  // deprecated
-
-        if(file_exists('testing/wannme.txt')){
-            fwrite($file, date("d/m/Y H:i:s").'-'.'Cadena: '.$cadena.PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'Checksum: '.$checksum.PHP_EOL);
-            fclose($file);
-        }
-
-        $client = new Client();
-
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Wannme-Is-Debug' => 'false',
-            'Wannme-Integration-Version' => 'Demo V2',
-            'Authorization' => config('wannme.arg1')
-        ])->post(config('wannme.arg2'), [
-            "partnerId"=> config('wannme.arg3'),
-            "checksum"=> $checksum,
-            "amount"=> $amount,
-            "description"=> $debt->document_number. " Pago de factura ".Carbon::now()->format('y') .'/'.$claim->last_invoice->id,
-            "mobilePhone"=> "",//$claim->owner->phone,
-            "mobilePhone2"=> "",
-            "mobilePhone3"=> "",
-            "email"=> "",//$claim->owner->email,
-            "email2"=> "",
-            "email3"=> "",
-            "expirationDate"=>$dateNow->format('c'), //"2024-06-26T19:19:00.000+02:00",
-            "partnerReference1"=> $debt->document_number,
-            "partnerReference2"=> Carbon::now()->format('y') .'/'.$claim->last_invoice->id.$control,
-            "customField1"=> "",
-            "customField2"=> "",
-            "customField3"=> "",
-            "customField4"=> "",
-            "customField5"=> "",
-            "customField6"=> "",
-            "notificationURL"=> "https://develop.dividae.com/callback",
-            "returnOKURL"=> "https://develop.dividae.com/claims",
-            "returnKOURL"=> "https://develop.dividae.com/claims",
-            "usersGroup"=> "DIVIDAE",
-            "paymentMethods"=> [],
-            "customer"=> [
-                "address"=> "",
-                "bankAccountIban"=> "",
-                "document"=> "",
-                "documentType"=> "",
-                "firstName"=> "",//$claim->owner->name,
-                "floorStairsDoor"=> "",
-                "lastName1"=> "",
-                "lastName2"=> "",
-                "location"=> "",//$claim->owner->location,
-                "postalCode"=> "",//$claim->owner->cop,
-                "provinceType"=> "",
-                "viaType"=> ""
-            ]
-        ])->throw()->json();
+        if(Auth::user()->referenced!='FEDETO'){
 
 
-        // Respuestas recibidas
-        if(file_exists('testing/wannme.txt')){
-            $file = fopen('testing/wannme.log', 'a');
-            fwrite($file, date("d/m/Y H:i:s").'-'.'Respuestas recibidas '.PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'Status code: '.$response['statusCode']. " - " .$response['statusDescription'].PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'Error code: '.$response['errorCode'].PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'URL wannme: '.$response['url'].PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'Forma de pago: '.$response['directLinks'][0]['paymentMethod'].PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'URL de pago: '.$response['directLinks'][0]['url'].PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'URL a factura: '.$claim->last_invoice->id.PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
-            fclose($file);
-        }
-
-        if($response['statusCode']==1){
-
-            $claim->last_invoice->payurlfac = $response['url'];
-            $claim->last_invoice->ctrlfac = $control;
-            $claim->last_invoice->save();
-
+            /* Wannme cobros */
             if(file_exists('testing/wannme.txt')){
                 $file = fopen('testing/wannme.log', 'a');
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Grabamos URL en factura: '.$claim->last_invoice->id.PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Testing wannme '.PHP_EOL);
+            }
+            $amount = $claim->last_invoice->amount;
+            $dateNow = (new \DateTime())->modify('+1 month');
+            $cadena = config('wannme.arg3').config('wannme.arg4').$amount.$debt->document_number;
+            $control = randomchar();
+
+            $checksum = hash('sha512', $cadena);
+            //$checksum = sha1($cadena);  // deprecated
+
+            if(file_exists('testing/wannme.txt')){
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Cadena: '.$cadena.PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Checksum: '.$checksum.PHP_EOL);
+                fclose($file);
+            }
+
+            $client = new Client();
+
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                'Wannme-Is-Debug' => 'false',
+                'Wannme-Integration-Version' => 'Demo V2',
+                'Authorization' => config('wannme.arg1')
+            ])->post(config('wannme.arg2'), [
+                "partnerId"=> config('wannme.arg3'),
+                "checksum"=> $checksum,
+                "amount"=> $amount,
+                "description"=> $debt->document_number. " Pago de factura ".Carbon::now()->format('y') .'/'.$claim->last_invoice->id,
+                "mobilePhone"=> "",//$claim->owner->phone,
+                "mobilePhone2"=> "",
+                "mobilePhone3"=> "",
+                "email"=> "",//$claim->owner->email,
+                "email2"=> "",
+                "email3"=> "",
+                "expirationDate"=>$dateNow->format('c'), //"2024-06-26T19:19:00.000+02:00",
+                "partnerReference1"=> $debt->document_number,
+                "partnerReference2"=> Carbon::now()->format('y') .'/'.$claim->last_invoice->id.$control,
+                "customField1"=> "",
+                "customField2"=> "",
+                "customField3"=> "",
+                "customField4"=> "",
+                "customField5"=> "",
+                "customField6"=> "",
+                "notificationURL"=> "https://develop.dividae.com/callback",
+                "returnOKURL"=> "https://develop.dividae.com/claims",
+                "returnKOURL"=> "https://develop.dividae.com/claims",
+                "usersGroup"=> "DIVIDAE",
+                "paymentMethods"=> [],
+                "customer"=> [
+                    "address"=> "",
+                    "bankAccountIban"=> "",
+                    "document"=> "",
+                    "documentType"=> "",
+                    "firstName"=> "",//$claim->owner->name,
+                    "floorStairsDoor"=> "",
+                    "lastName1"=> "",
+                    "lastName2"=> "",
+                    "location"=> "",//$claim->owner->location,
+                    "postalCode"=> "",//$claim->owner->cop,
+                    "provinceType"=> "",
+                    "viaType"=> ""
+                ]
+            ])->throw()->json();
+
+
+            // Respuestas recibidas
+            if(file_exists('testing/wannme.txt')){
+                $file = fopen('testing/wannme.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Respuestas recibidas '.PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Status code: '.$response['statusCode']. " - " .$response['statusDescription'].PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Error code: '.$response['errorCode'].PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'URL wannme: '.$response['url'].PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Forma de pago: '.$response['directLinks'][0]['paymentMethod'].PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'URL de pago: '.$response['directLinks'][0]['url'].PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'URL a factura: '.$claim->last_invoice->id.PHP_EOL);
                 fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
                 fclose($file);
             }
+
+            if($response['statusCode']==1){
+
+                $claim->last_invoice->payurlfac = $response['url'];
+                $claim->last_invoice->ctrlfac = $control;
+                $claim->last_invoice->save();
+
+                if(file_exists('testing/wannme.txt')){
+                    $file = fopen('testing/wannme.log', 'a');
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'Grabamos URL en factura: '.$claim->last_invoice->id.PHP_EOL);
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
+                    fclose($file);
+                }
+            }
+
+
+
+
         }
+
+
+        /* Fin */
 
         $request->session()->forget('other_user');
         $request->session()->forget('claim_client');
@@ -463,12 +474,20 @@ class ClaimsController extends Controller
         $request->session()->forget('documentos');
         $request->session()->forget('type_claim');
 
-        if($response['statusCode']==1){
-            return redirect($response['url']);
-        }else{
+        if(isset($response['statusCode'])){
 
-            return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
+            if($response['statusCode']==1){
+                return redirect($response['url']);
+            }else{
+
+                return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
+            }
+
+        }else{
+            return redirect('claims')->with('msj', 'Tu reclamación ha sido creada exitosamente.');
+
         }
+
 
     }
 
