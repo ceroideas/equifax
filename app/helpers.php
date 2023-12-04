@@ -121,9 +121,9 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                             $target = url('/info'.$tmp->id);
                             break;
                         case 2:
-                            if($o->referenced =='FEDETO'){
+                            /*if($o->referenced =='FEDETO'){
                                 $sorteo = "Estas participando en el sorteo FEDETO, tu número de participación es: ".$o->campaign;
-                            }
+                            }*/
                         case 6:
                         case 11:
                             $target = url('/panel');
