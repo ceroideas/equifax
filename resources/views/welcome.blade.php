@@ -736,6 +736,10 @@
         gtag('config', 'G-X7LBKM6LDD');
     </script>
 
+    <!-- Pixel Code for https://overtracking.com/ -->
+    <script defer src="https://overtracking.com/p/TtP9IRSJvJGgs18A"></script>
+    <!-- END Pixel Code -->
+
     @yield('extrajs')
 
     <script>
