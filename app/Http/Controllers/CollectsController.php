@@ -80,6 +80,11 @@ class CollectsController extends Controller
                 $invoice->payment_date = Carbon::parse($request->fecha)->format('Y-m-d H:i:s');
                 $invoice->save();
 
+                // Añadimos la actuacion de pago completado 30018
+
+                // Cambiamos el estado de la reclamacion
+
+
                 return redirect('/collects')->with('msj', 'Cobro añadido correctamente y actualizado el estado de la factura');
              }else{
                 $invoice->status = 2;

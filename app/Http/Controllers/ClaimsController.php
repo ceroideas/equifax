@@ -322,13 +322,13 @@ class ClaimsController extends Controller
 
         addNotification('Nueva reclamación', 'Nueva reclamación registrada en Dividae', $claim->id,0);
 
-        if(isset(Auth::user()->referenced)&& Auth::user()->referenced=='FEDETO'){
-            Auth::user()->campaign = '33' . rand(10000,99999);
-            Auth::user()->discount = 100;
-            Auth::user()->save();
+        //if(isset(Auth::user()->referenced)&& Auth::user()->referenced=='FEDETO'){
+            //Auth::user()->campaign = '33' . rand(10000,99999);
+            //Auth::user()->discount = 100;
+            //Auth::user()->save();
 
-            addNotification('Nueva participación sorteo', 'Nueva participacion FEDETO asignada', $claim->id,Auth::user()->id);
-        }
+            //addNotification('Nueva participación sorteo', 'Nueva participacion FEDETO asignada', $claim->id,Auth::user()->id);
+        //}
 
 
         if (Auth::user()->isGestor()) {
@@ -480,7 +480,7 @@ class ClaimsController extends Controller
                 return redirect($response['url']);
             }else{
 
-                return redirect('claims/payment/' . $claim->id)->with('msj', 'Tu reclamación ha sido creada exitosamente. Para que el equipo de letrados pueda comenzar a trabajar, deberás realizar el pago que encontrarás a continuación');
+                return redirect('claims')->with('msj', 'Tu reclamación ha sido creada exitosamente');
             }
 
         }else{
