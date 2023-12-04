@@ -313,7 +313,7 @@
                         {{-- Campaign sorteo --}}
 
 
-                        {{--@if(Auth::user()->referenced =='FEDETO')
+                        @if(Auth::user()->referenced =='FEDETO')
                             <div style="background-color: #f8fafc; padding: 8px 0; text-align:center;">
                                 <div class="row">
                                     <div class="col-4 text-center" style="border-right: 1px solid silver;">
@@ -335,7 +335,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif--}}
+                        @endif
 
                         {{--
                         @if(isset(Auth::user()->campaign))
