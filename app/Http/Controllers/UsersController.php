@@ -48,11 +48,11 @@ class UsersController extends Controller
     public function index()
     {
 
-        if(Auth::user()->isAdmin()){
+        /*if(Auth::user()->isAdmin()){
             $users = User::where('role', 2)->latest()->get();
-        }elseif(Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()){
+        }elseif(Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()){*/
             $users = User::all();
-        }
+        //}
 
         return view('users.index',[
             'users' => $users
