@@ -740,6 +740,10 @@
     <script defer src="https://overtracking.com/p/TtP9IRSJvJGgs18A"></script>
     <!-- END Pixel Code -->
 
+    <!-- Pixel Code for https://panel.getconver.com/ -->
+    <script defer src="https://panel.getconver.com/pixel/g25kechl8jfcbn24sobjz8b82hqx8r8l"></script>
+    <!-- END Pixel Code -->
+
     @yield('extrajs')
 
     <script>
