@@ -207,7 +207,7 @@
         @enderror
         </div>
 
-
+        <div class="g-recaptcha" data-sitekey="6Lc50S0pAAAAACO3NJHxuCTgvhLTsLmpjxld7qro"></div>
 
         {{-- Register button --}}
         <div class="col-12 text-center">
@@ -290,6 +290,7 @@
 @stop --}}
 
 @section('js')
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v13.0&appId=3075857299334927&autoLogAppEvents=1" nonce="mCZWGoDY"></script>
     <script>
             $('.change-type').click(function(event) {
