@@ -354,7 +354,7 @@ class ClaimsController extends Controller
             }
         }
 
-        if(Auth::user()->referenced!='FEDETO'){
+       // if(Auth::user()->referenced!='FEDETO'){
 
 
             /* Wannme cobros */
@@ -456,7 +456,7 @@ class ClaimsController extends Controller
 
 
 
-        }
+       // }
 
 
         /* Fin */
