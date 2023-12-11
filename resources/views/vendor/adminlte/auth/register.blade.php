@@ -2,7 +2,7 @@
 
 @php( $login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login') )
 @php( $register_url = View::getSection('register_url') ?? config('adminlte.register_url', 'register') )
-
+{!! RecaptchaV3::initJs() !!}
 @if (config('adminlte.use_route_url', false))
     @php( $login_url = $login_url ? route($login_url) : '' )
     @php( $register_url = $register_url ? route($register_url) : '' )
@@ -58,6 +58,7 @@
     </style>
     <form action="{{ $register_url }}" method="post">
         @csrf
+        {!! RecaptchaV3::field('register') !!}
 
         {{-- Name field --}}
         <div class="input-group mb-3">
@@ -217,6 +218,7 @@
                 {{ __('adminlte::adminlte.register') }}
             </button>
 
+
             <br>
 
             <label style="color: gray; font-size: 12px">¿Ya tienes una cuenta? <a href="{{ $login_url }}">Iniciar Sesión</a></label>
@@ -252,7 +254,7 @@
         </div> --}}
 
         {{--<input type="text" name="referenced" id="referencedid" >--}}
-
+        <input type="submit" value="Register"> </input>
     </form>
 
     <div class="modal fade" id="terminos" style="max-width: 100%;">

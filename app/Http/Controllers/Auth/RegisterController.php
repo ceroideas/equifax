@@ -54,14 +54,14 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'nombre' => ['required', 'string', 'max:255'],
-            // 'razon_social' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'tos' => ['required'],
-            'lopd' => ['required']
-            //'newsletter' => []
+            'lopd' => ['required'],
+            'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
         ]);
     }
 
