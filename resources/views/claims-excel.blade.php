@@ -113,10 +113,10 @@
 
                 @if($claim->status==0 ||$claim->status==-1)
                     <td>{{ date("d/m/Y",strtotime($claim->updated_at))}}</td>
-                    <td>{{ \Carbon\Carbon::parse( $claim->created_at )->diffInDays( $claim->updated_at ) }}</td>
+                    <td>{{ Carbon\Carbon::parse( $claim->created_at )->diffInDays( $claim->updated_at ) }}</td>
                 @else
                     <td> En curso </td>
-                    <td>{{ \Carbon\Carbon::now()->diffInDays(Carbon::parse($claim->created_at)) }}</td>
+                    <td>{{ Carbon\Carbon::now()->diffInDays(Carbon::parse($claim->created_at)) }}</td>
                 @endif
 
                 <td>{{ $claim->owner == NULL ? 'No existe': $claim->owner->id }}</td>
