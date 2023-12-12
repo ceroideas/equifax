@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-sm-3">
 
-		<x-adminlte-input name="hoja_pedido[file][]" required label="Hoja de Pedido *" type="file"
+		<x-adminlte-input name="hoja_pedido[file][]" required label="Hoja de Pedido * (Máximo 16 Mb.)" type="file"
         igroup-size="sm" enable-old-support="true">
             <x-slot name="appendSlot">
                 <div class="input-group-text bg-dark">
