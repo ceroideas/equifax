@@ -61,7 +61,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'tos' => ['required'],
             'lopd' => ['required'],
-            'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
+            /* 'g-recaptcha-response' => 'required|recaptchav3:register,0.5' */
         ]);
     }
 

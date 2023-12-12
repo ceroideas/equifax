@@ -2,7 +2,7 @@
 
 @php( $login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login') )
 @php( $register_url = View::getSection('register_url') ?? config('adminlte.register_url', 'register') )
-{!! RecaptchaV3::initJs() !!}
+{{-- {!! RecaptchaV3::initJs() !!} --}}
 @if (config('adminlte.use_route_url', false))
     @php( $login_url = $login_url ? route($login_url) : '' )
     @php( $register_url = $register_url ? route($register_url) : '' )
@@ -58,7 +58,7 @@
     </style>
     <form action="{{ $register_url }}" method="post">
         @csrf
-        {!! RecaptchaV3::field('register') !!}
+        {{-- {!! RecaptchaV3::field('register') !!} --}}
 
         {{-- Name field --}}
         <div class="input-group mb-3">
@@ -254,7 +254,7 @@
         </div> --}}
 
         {{--<input type="text" name="referenced" id="referencedid" >--}}
-        <input type="submit" value="Register"> </input>
+        {{-- <input type="submit" value="Register"> </input> --}}
     </form>
 
     <div class="modal fade" id="terminos" style="max-width: 100%;">
@@ -292,7 +292,7 @@
 @stop --}}
 
 @section('js')
-<script src='https://www.google.com/recaptcha/api.js'></script>
+{{-- <script src='https://www.google.com/recaptcha/api.js'></script> --}}
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v13.0&appId=3075857299334927&autoLogAppEvents=1" nonce="mCZWGoDY"></script>
     <script>
             $('.change-type').click(function(event) {
