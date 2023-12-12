@@ -9,6 +9,10 @@
 
 			<th>Número de reclamación</th>
 			<th>Reclamación propia</th>
+            <th>Rol cliente</th>
+            <th>Fecha reclamación</th>
+            <th>Fecha finalización</th>
+            <th>Días en gestión</th>
             <th>Cliente ID</th>
 
             <th>Cliente Nombre</th>
@@ -86,6 +90,34 @@
 
                 <td>{{ $claim->debt->document_number }}</td>
                 <td>{{ $claim->user_id == NULL ? 'Tercero':'Propia' }}</td>
+                @switch($claim->owner->role)
+                    @case(0)
+                        <td>SuperAdmin</td>
+                        @break
+                    @case(1)
+                        <td>Admin</td>
+                        @break
+                    @case(3)
+                        <td>Gestor&iacute;a</td>
+                        @break
+                    @case(4)
+                        <td>Asociado</td>
+                        @break
+                    @case(5)
+                        <td>Finanzas</td>
+                        @break
+                    @default
+                        <td>Cliente</td>
+                @endswitch
+                <td> {{ date("d/m/Y",strtotime($claim->created_at))}} </td>
+                @if($claim->status==0 ||$claim->status==-1)
+                    <td>{{ date("d/m/Y",strtotime($claim->updated_at))}}</td>
+                @else
+                    <td> En curso </td>
+                @endif
+
+                <td>{{ \Carbon\Carbon::parse( $claim->created_at )->diffInDays( $claim->updated_at ) }}</td>
+
                 <td>{{ $claim->owner == NULL ? 'No existe': $claim->owner->id }}</td>
                 {{-- Datos del cliente que hizo la reclamacion --}}
                 <td>{{ $claim->owner->name }}</td>
