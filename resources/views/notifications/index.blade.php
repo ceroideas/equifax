@@ -25,6 +25,7 @@
     @php
     $heads = [
         'Id',
+        'Tipo',
         'Notificación',
         'Reclamación',
         'Usuario',
@@ -34,7 +35,7 @@
 
     $config = [
 
-        'columns' => [null, null,null, null,null,['orderable' => false]],
+        'columns' => [null, null, null,null, null,null,['orderable' => false]],
         'pageLength' => 25,
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
@@ -57,7 +58,8 @@
                 @foreach($userNotification->notifications as $notification)
                     <tr>
                         <td>{{$notification->id}}</td>
-                        <td>{{$notification->data['titulo']}}: {{$notification->data['contenido']}}</td>
+                        <td>{{$notification->data['titulo']}}</td>
+                        <td> {{$notification->data['contenido']}}</td>
                         <td>{{$notification->data['reclamacion']}}</td>
                         <td>{{$notification->data['usuario']}}</td>
                         <td>
