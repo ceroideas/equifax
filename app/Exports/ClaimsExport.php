@@ -18,16 +18,21 @@ class ClaimsExport implements FromView
 
         if ($this->type == 0) {
 
-            $claims = Claim::whereNotIn('status', [-1,0,1])->where(function($q){
-                if (Auth::user()->isGestor()) {
-                    $q->where('gestor_id',Auth::id());
-                }
+            if (Auth::user()->isSuperAdmin()) {
+                $claims = Claim::all();
+            }else{
+                $claims = Claim::whereNotIn('status', [-1,0,1])->where(function($q){
+                    if (Auth::user()->isGestor()) {
+                        $q->where('gestor_id',Auth::id());
+                    }
 
-                if (Auth::user()->isClient()) {
-                    $q->where('owner_id',Auth::id());
-                }
+                    if (Auth::user()->isClient()) {
+                        $q->where('owner_id',Auth::id());
+                    }
 
-            })->get();
+                })->get();
+
+            }
             $type = 0;
 
             $this->setExport($claims);
