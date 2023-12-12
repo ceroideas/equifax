@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Auth;
 use App\Models\Claim;
+use Carbon\Carbon;
 
 class ClaimsExport implements FromView
 {
