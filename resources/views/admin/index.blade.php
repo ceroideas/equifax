@@ -90,7 +90,7 @@
 
         <div class="row">
 
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <div class="small-box bg-gradient-success">
                     <div class="inner">
                         <h3>{{App\Http\Controllers\NotificationsController::countUnread()}}</h3>
@@ -100,6 +100,20 @@
                   <i class="fas fa-envelope"></i>
                 </div>
                 <a href="/notifications" class="small-box-footer">
+                    Notificaciones <i class="fas fa-arrow-circle-right"></i>
+                  </a>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{App\Http\Controllers\NotificationsController::countRead()}}</h3>
+                        <p>Notificaciones leidas</p>
+                    </div>
+                <div class="icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <a href="/notifications/allread" class="small-box-footer">
                     Notificaciones <i class="fas fa-arrow-circle-right"></i>
                   </a>
                 </div>
@@ -137,7 +151,7 @@
                   </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <div class="small-box bg-danger">
                     <div class="inner">
                         <h3>{{App\Models\claim::where('status','-1')->count()}}</h3>

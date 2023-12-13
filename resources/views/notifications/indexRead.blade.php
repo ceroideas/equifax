@@ -59,8 +59,6 @@
             @if(isset($userNotification))
                 @foreach($userNotification->notifications as $notification)
                     @if($notification->read_at)
-                        @continue
-                    @else
                         <tr>
                             <td>{{$notification->id}}</td>
                             <td>{{$notification->data['titulo']}}</td>
@@ -88,6 +86,8 @@
                                 </nobr>
                             </td>
                         </tr>
+                    @else
+                        @continue
                     @endif
                 @endforeach
             @else

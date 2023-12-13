@@ -49,6 +49,21 @@ class NotificationsController extends Controller
     }
 
 
+            /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function allRead()
+    {
+        $user = User::find(3);
+
+        return view('notifications.indexRead', [
+
+            'userNotification'=>  $user
+        ]);
+    }
+
 
     public function setNotification(){
 
@@ -129,6 +144,21 @@ class NotificationsController extends Controller
         $user = User::find(3);
 
         return $user->unreadNotifications->count();
+    }
+
+    public static function countRead()
+    {
+        $user = User::find(3);
+        $i = 0;
+        foreach($user->notifications as $notification){
+            if($notification->read_at){
+                $i = $i+1;
+            }else{
+                continue;
+            }
+        }
+
+        return $i;
     }
 
 }
