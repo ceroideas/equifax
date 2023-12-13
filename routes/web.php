@@ -319,6 +319,7 @@ Route::group([
     'middleware'  => 'auth',
 ], function(){
     Route::get('/', [NotificationsController::class, 'index']);
+    Route::get('/allread', [NotificationsController::class, 'allRead']);
     Route::get('/setnotification', [NotificationsController::class, 'setNotification']);
     Route::get('/{id}', [NotificationsController::class, 'show']);
     Route::get('/read/{id}', [NotificationsController::class, 'read']);
