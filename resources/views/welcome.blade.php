@@ -48,7 +48,7 @@
             border-radius: 10px;
             position:fixed;
             bottom: 4px;
-            /*left:70%;*/
+            left:70%;
             width: 30%;
             height: 7%;
             padding: 5px 0;
