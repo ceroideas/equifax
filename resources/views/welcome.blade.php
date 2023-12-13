@@ -835,7 +835,7 @@
     </script>
 
     <!-- Start of oct8ne code -->
-   <script type="text/javascript">
+   <!--<script type="text/javascript">
         var oct8ne = document.createElement("script");
         oct8ne.server = "backoffice-eu.oct8ne.com/";
         oct8ne.type = "text/javascript";
@@ -849,8 +849,23 @@
         function insertOct8ne() {
                 s.parentNode.insertBefore(oct8ne, s);
         }
-    </script>
+    </script>-->
     <!--End of oct8ne code -->
+
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/6579becd70c9f2407f7f7619/1hhhp2l9t';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
 
 </body>
 
