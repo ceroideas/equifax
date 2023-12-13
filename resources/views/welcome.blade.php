@@ -71,8 +71,8 @@
             font-size: 16px;
             line-height: 12px;
             padding: 12px 20px;
-            /*position: fixed;*/
-            bottom: 15px;
+            position: fixed;
+            bottom: 22px;
             right: 20px;
             z-index: 999;
         }
@@ -87,7 +87,7 @@
         }
 
         .floating-social-bar span {
-            /*flex: 0 0 50%;*/
+            flex: 0 0 50%;
             max-width: 50%;
             margin-left: 3%;
         }
