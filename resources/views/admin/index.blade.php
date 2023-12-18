@@ -559,6 +559,74 @@
 
     </div>
 
+    <hr>
+
+    @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance())
+        <div class="col-sm-6">
+            <h3>Herramientas</h3>
+        </div>
+
+        <div class="row">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Ficheros ejemplo importadores</h3>
+
+                    <div class="card-tools">
+                        <!-- This will cause the card to maximize when clicked -->
+                        {{-- <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button> --}}
+                        <!-- This will cause the card to collapse when clicked -->
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                        <!-- This will cause the card to be removed when clicked -->
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+
+
+                    <div class="info-box">
+
+                        <a download="ejemplo_importar_actuaciones.xlsx" href="{{url('excels/ejemplo_importar_actuaciones.xlsx')}}" class="btn btn-info">
+                            <span class="info-box-icon bg-info"><i class="fa fa-arrow-circle-down"></i></span>
+                        </a>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Actuaciones</span>
+                            <a download="ejemplo_importar_actuaciones.xlsx" href="{{url('excels/ejemplo_importar_actuaciones.xlsx')}}">
+                                <span class="info-box-number">Descargar</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info-box">
+
+                        <a download="ejemplo_importar_actuaciones_kmaleon.xlsx" href="{{url('excels/ejemplo_importar_actuaciones_kmaleon.xlsx')}}" class="btn btn-info">
+                            <span class="info-box-icon bg-info"><i class="fa fa-arrow-circle-down"></i></span>
+                        </a>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Actuaciones Kmaleon</span>
+                            <a download="ejemplo_importar_actuaciones_kmaleon.xlsx" href="{{url('excels/ejemplo_importar_actuaciones_kmaleon.xlsx')}}">
+                                <span class="info-box-number">Descargar</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+
+        </div>
+        <div class="row">
+
+
+
+
+
+        </div>
+    @endif
+
 
 @stop
 

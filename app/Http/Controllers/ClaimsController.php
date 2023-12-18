@@ -33,7 +33,7 @@ use App\Exports\InvoicesExport;
 use App\Exports\OrdersExport;
 use App\Exports\CollectsExport;
 
-use App\Imports\HitosImport;
+use App\Imports\ActuationsImport;
 use App\Models\Linvoice;
 use App\Models\Order;
 use App\Models\Lorder;
@@ -1232,7 +1232,7 @@ class ClaimsController extends Controller
                 unlink(public_path().'/logImportHitosXls.log');
             }
 
-            Excel::import(new HitosImport, public_path().'/uploads/excel/actuations.xlsx');
+            Excel::import(new ActuationsImport, public_path().'/uploads/excel/actuations.xlsx');
         }
 
         if(file_exists(public_path().'/logImportHitosXls.log')){
