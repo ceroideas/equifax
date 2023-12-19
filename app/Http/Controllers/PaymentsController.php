@@ -274,12 +274,12 @@ class PaymentsController extends Controller
 
     public function callback(Request $r)
     {
-        if(file_exists('testing/wannme.txt')){
+        //if(file_exists('testing/wannme.txt')){
             $file = fopen('testing/wannme_callback.log', 'a');
             fwrite($file, date("d/m/Y H:i:s").'-'.'Callback wannme '.PHP_EOL);
             fwrite($file, date("d/m/Y H:i:s").'-'.'Status response '.$r->statusCode.PHP_EOL);
             fclose($file);
-        }
+        //}
 
 
 
@@ -294,12 +294,12 @@ class PaymentsController extends Controller
             $control = substr($r->partnerReference2, $guion+1);
             $claim = substr($r->partnerReference1, 4);
 
-            if(file_exists('testing/wannme.txt')){
+            //if(file_exists('testing/wannme.txt')){
                 $file = fopen('testing/wannme_callback.log', 'a');
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference1 '.$r->partnerReference1.PHP_EOL);
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference2 '.$r->partnerReference2.PHP_EOL);
                 fclose($file);
-            }
+            //}
 
             /* Add control factura */
             $i = Invoice::where('id', '=', $idfac)
@@ -308,11 +308,11 @@ class PaymentsController extends Controller
 
             if($i && $i->control == $control){
 
-                if(file_exists('testing/wannme.txt')){
+                //if(file_exists('testing/wannme.txt')){
                     $file = fopen('testing/wannme_callback.log', 'a');
                     fwrite($file, date("d/m/Y H:i:s").'-'.'Coincide control, todo ok '.PHP_EOL);
                     fclose($file);
-                }
+                //}
 
                 $collect = new Collect;
                 $collect->feccob = Carbon::now()->format('Y-m-d H:i:s');

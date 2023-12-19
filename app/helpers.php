@@ -1046,7 +1046,7 @@ function addPayment($claim, $debt, $control){
         "customField5"=> "",
         "customField6"=> "",
         "notificationURL"=> config('wannme.notificationURL'),
-        "returnOKURL"=> config('wannme.returnOKURL'),
+        "returnOKURL"=> config('wannme.returnOKURL'),  //get
         "returnKOURL"=> config('wannme.returnOKURL'),
         "usersGroup"=> "DIVIDAE",
         "paymentMethods"=> [],
