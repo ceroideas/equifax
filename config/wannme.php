@@ -9,8 +9,8 @@ if($_SERVER['SERVER_NAME']=='develop.dividae.com'||$_SERVER['SERVER_NAME']=='127
         'arg3'=> '-dq7jmsf5v3i6oiockve',
         'arg4'=>'AXLQtVw*9pgJ541PUdRy8oGVKQIxS5',
         'notificationURL'=> 'https://develop.dividae.com/callback',
-        'returnOKURL'=> 'https://develop.dividae.com/callback',
-        'returnKOURL'=> 'https://develop.dividae.com/callback'
+        'returnOKURL'=> 'https://develop.dividae.com/callbackok',
+        'returnKOURL'=> 'https://develop.dividae.com/callbackko'
         ];
 }else{
 
@@ -21,7 +21,7 @@ if($_SERVER['SERVER_NAME']=='develop.dividae.com'||$_SERVER['SERVER_NAME']=='127
         'arg3'=> 'pwfnuv4yqxze9z-ok52-',
         'arg4'=>'qlQrVtXyqzuJBTPlFCe0EKHt8310s5',
         'notificationURL'=> 'https://dividae.com/callback',
-        'returnOKURL'=> 'https://dividae.com/callback',
-        'returnKOURL'=> 'https://dividae.com/callback'
+        'returnOKURL'=> 'https://dividae.com/callbackok',
+        'returnKOURL'=> 'https://dividae.com/callbackko'
         ];
 }
