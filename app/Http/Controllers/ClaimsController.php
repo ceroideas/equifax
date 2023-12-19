@@ -33,17 +33,14 @@ use App\Exports\InvoicesExport;
 use App\Exports\OrdersExport;
 use App\Exports\CollectsExport;
 
-use App\Imports\HitosImport;
+use App\Imports\ActuationsImport;
 use App\Models\Linvoice;
 use App\Models\Order;
 use App\Models\Lorder;
 use App\Models\Collect;
 
 use App\Imports\CollectsKmaleonImport;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
-
-use Illuminate\Support\Facades\Http;
 
 class ClaimsController extends Controller
 {
@@ -354,112 +351,26 @@ class ClaimsController extends Controller
             }
         }
 
-       // if(Auth::user()->referenced!='FEDETO'){
+
+        /* Enviamos el cobro a Wannme*/
+        $control = randomchar();
+        $response = addPayment($claim, $debt, $control);
 
 
-            /* Wannme cobros */
+        if($response['statusCode']==1){
+
+            $claim->last_invoice->payurlfac = $response['url'];
+            $claim->last_invoice->ctrlfac = $control;
+            $claim->last_invoice->save();
+
             if(file_exists('testing/wannme.txt')){
                 $file = fopen('testing/wannme.log', 'a');
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Testing wannme '.PHP_EOL);
-            }
-            $amount = $claim->last_invoice->amount;
-            $dateNow = (new \DateTime())->modify('+1 month');
-            $cadena = config('wannme.arg3').config('wannme.arg4').$amount.$debt->document_number;
-            $control = randomchar();
-
-            $checksum = hash('sha512', $cadena);
-            //$checksum = sha1($cadena);  // deprecated
-
-            if(file_exists('testing/wannme.txt')){
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Cadena: '.$cadena.PHP_EOL);
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Checksum: '.$checksum.PHP_EOL);
-                fclose($file);
-            }
-
-            $client = new Client();
-
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                'Wannme-Is-Debug' => 'false',
-                'Wannme-Integration-Version' => 'Demo V2',
-                'Authorization' => config('wannme.arg1')
-            ])->post(config('wannme.arg2'), [
-                "partnerId"=> config('wannme.arg3'),
-                "checksum"=> $checksum,
-                "amount"=> $amount,
-                "description"=> $debt->document_number. " Pago de factura ".Carbon::now()->format('y') .'/'.$claim->last_invoice->id,
-                "mobilePhone"=> "",//$claim->owner->phone,
-                "mobilePhone2"=> "",
-                "mobilePhone3"=> "",
-                "email"=> "",//$claim->owner->email,
-                "email2"=> "",
-                "email3"=> "",
-                "expirationDate"=>$dateNow->format('c'), //"2024-06-26T19:19:00.000+02:00",
-                "partnerReference1"=> $debt->document_number,
-                "partnerReference2"=> Carbon::now()->format('y') .'/'.$claim->last_invoice->id.$control,
-                "customField1"=> "",
-                "customField2"=> "",
-                "customField3"=> "",
-                "customField4"=> "",
-                "customField5"=> "",
-                "customField6"=> "",
-                "notificationURL"=> "https://develop.dividae.com/callback",
-                "returnOKURL"=> "https://develop.dividae.com/claims",
-                "returnKOURL"=> "https://develop.dividae.com/claims",
-                "usersGroup"=> "DIVIDAE",
-                "paymentMethods"=> [],
-                "customer"=> [
-                    "address"=> "",
-                    "bankAccountIban"=> "",
-                    "document"=> "",
-                    "documentType"=> "",
-                    "firstName"=> "",//$claim->owner->name,
-                    "floorStairsDoor"=> "",
-                    "lastName1"=> "",
-                    "lastName2"=> "",
-                    "location"=> "",//$claim->owner->location,
-                    "postalCode"=> "",//$claim->owner->cop,
-                    "provinceType"=> "",
-                    "viaType"=> ""
-                ]
-            ])->throw()->json();
-
-
-            // Respuestas recibidas
-            if(file_exists('testing/wannme.txt')){
-                $file = fopen('testing/wannme.log', 'a');
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Respuestas recibidas '.PHP_EOL);
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Status code: '.$response['statusCode']. " - " .$response['statusDescription'].PHP_EOL);
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Error code: '.$response['errorCode'].PHP_EOL);
-                fwrite($file, date("d/m/Y H:i:s").'-'.'URL wannme: '.$response['url'].PHP_EOL);
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Forma de pago: '.$response['directLinks'][0]['paymentMethod'].PHP_EOL);
-                fwrite($file, date("d/m/Y H:i:s").'-'.'URL de pago: '.$response['directLinks'][0]['url'].PHP_EOL);
-                fwrite($file, date("d/m/Y H:i:s").'-'.'URL a factura: '.$claim->last_invoice->id.PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Grabamos URL en factura: '.$claim->last_invoice->id.PHP_EOL);
                 fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
                 fclose($file);
             }
+        }
 
-            if($response['statusCode']==1){
-
-                $claim->last_invoice->payurlfac = $response['url'];
-                $claim->last_invoice->ctrlfac = $control;
-                $claim->last_invoice->save();
-
-                if(file_exists('testing/wannme.txt')){
-                    $file = fopen('testing/wannme.log', 'a');
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'Grabamos URL en factura: '.$claim->last_invoice->id.PHP_EOL);
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
-                    fclose($file);
-                }
-            }
-
-
-
-
-       // }
-
-
-        /* Fin */
 
         $request->session()->forget('other_user');
         $request->session()->forget('claim_client');
@@ -1232,7 +1143,7 @@ class ClaimsController extends Controller
                 unlink(public_path().'/logImportHitosXls.log');
             }
 
-            Excel::import(new HitosImport, public_path().'/uploads/excel/actuations.xlsx');
+            Excel::import(new ActuationsImport, public_path().'/uploads/excel/actuations.xlsx');
         }
 
         if(file_exists(public_path().'/logImportHitosXls.log')){

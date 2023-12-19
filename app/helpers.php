@@ -17,15 +17,15 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\NotifyUpdate;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 
 
-function isComplete()
-{
+function isComplete(){
 	return (Auth::user()->dni && Auth::user()->phone && Auth::user()->cop);
 }
-function getHito($id_hito)
-{
+function getHito($id_hito){
 	$h = null;
 	$f = null;
 
@@ -52,8 +52,7 @@ function getHito($id_hito)
     return [$ht,$ht];
 }
 
-function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $observations = null, $actuation_id = null)
-{
+function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $observations = null, $actuation_id = null){
 	$h = getHito($id_hito)[0];
 	$amount = null;
 	$amounts = [];
@@ -228,6 +227,25 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                             $idFactura = addDocument('invoice',$claim->id, $articulo,$tasa,0,$h['ref_id']);
                             $a->invoice_id = $idFactura;
                             $a->save();
+
+                            //Enviamos factura a cobro
+                            $control = randomchar();
+                            $response = addPayment($claim, $claim->debt, $control);
+
+
+                            if($response['statusCode']==1){
+
+                                $claim->last_invoice->payurlfac = $response['url'];
+                                $claim->last_invoice->ctrlfac = $control;
+                                $claim->last_invoice->save();
+
+                                if(file_exists('testing/wannme.txt')){
+                                    $file = fopen('testing/wannme.log', 'a');
+                                    fwrite($file, date("d/m/Y H:i:s").'-'.'Grabamos URL en factura en helper: '.$claim->last_invoice->id.PHP_EOL);
+                                    fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
+                                    fclose($file);
+                                }
+                            }
 
                         }
                     }
@@ -978,4 +996,92 @@ function randomchar(){
     $control = substr(str_shuffle($permitted_chars), 0, 10);
 
     return $control;
+}
+
+function addPayment($claim, $debt, $control){
+
+    if(file_exists('testing/wannme.txt')){
+        $file = fopen('testing/wannme.log', 'a');
+        fwrite($file, date("d/m/Y H:i:s").'-'.'Testing wannme '.PHP_EOL);
+    }
+    $amount = $claim->last_invoice->amount;
+    $dateNow = (new \DateTime())->modify('+1 month');
+    $cadena = config('wannme.arg3').config('wannme.arg4').$amount.$debt->document_number;
+
+
+    $checksum = hash('sha512', $cadena);
+    //$checksum = sha1($cadena);  // deprecated
+
+    if(file_exists('testing/wannme.txt')){
+        fwrite($file, date("d/m/Y H:i:s").'-'.'Cadena: '.$cadena.PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.'Checksum: '.$checksum.PHP_EOL);
+        fclose($file);
+    }
+
+    $client = new Client();
+
+    $response = Http::withHeaders([
+        'Content-Type' => 'application/json',
+        'Wannme-Is-Debug' => 'false',
+        'Wannme-Integration-Version' => 'Demo V2',
+        'Authorization' => config('wannme.arg1')
+    ])->post(config('wannme.arg2'), [
+        "partnerId"=> config('wannme.arg3'),
+        "checksum"=> $checksum,
+        "amount"=> $amount,
+        "description"=> $debt->document_number. " Pago de factura ".Carbon::now()->format('y') .'/'.$claim->last_invoice->id,
+        "mobilePhone"=> "",//$claim->owner->phone,
+        "mobilePhone2"=> "",
+        "mobilePhone3"=> "",
+        "email"=> "",//$claim->owner->email,
+        "email2"=> "",
+        "email3"=> "",
+        "expirationDate"=>$dateNow->format('c'), //"2024-06-26T19:19:00.000+02:00",
+        "partnerReference1"=> $debt->document_number,
+        "partnerReference2"=> Carbon::now()->format('y') .'/'.$claim->last_invoice->id.$control,
+        "customField1"=> "",
+        "customField2"=> "",
+        "customField3"=> "",
+        "customField4"=> "",
+        "customField5"=> "",
+        "customField6"=> "",
+        "notificationURL"=> "https://dividae.com/callback",
+        "returnOKURL"=> "https://dividae.com/claims",
+        "returnKOURL"=> "https://dividae.com/claims",
+        "usersGroup"=> "DIVIDAE",
+        "paymentMethods"=> [],
+        "customer"=> [
+            "address"=> "",
+            "bankAccountIban"=> "",
+            "document"=> "",
+            "documentType"=> "",
+            "firstName"=> "",//$claim->owner->name,
+            "floorStairsDoor"=> "",
+            "lastName1"=> "",
+            "lastName2"=> "",
+            "location"=> "",//$claim->owner->location,
+            "postalCode"=> "",//$claim->owner->cop,
+            "provinceType"=> "",
+            "viaType"=> ""
+        ]
+    ])->throw()->json();
+
+
+    // Respuestas recibidas
+    if(file_exists('testing/wannme.txt')){
+        $file = fopen('testing/wannme.log', 'a');
+        fwrite($file, date("d/m/Y H:i:s").'-'.'Respuestas recibidas '.PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.'Status code: '.$response['statusCode']. " - " .$response['statusDescription'].PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.'Error code: '.$response['errorCode'].PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.'URL wannme: '.$response['url'].PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.'Forma de pago: '.$response['directLinks'][0]['paymentMethod'].PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.'URL de pago: '.$response['directLinks'][0]['url'].PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.'URL a factura: '.$claim->last_invoice->id.PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
+        fclose($file);
+    }
+
+    /* fin cobro wannme */
+    return $response;
+
 }
