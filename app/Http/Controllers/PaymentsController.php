@@ -277,12 +277,14 @@ class PaymentsController extends Controller
         if(file_exists('testing/wannme.txt')){
             $file = fopen('testing/wannme_callback.log', 'a');
             fwrite($file, date("d/m/Y H:i:s").'-'.'Callback wannme '.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Status response '.$r->statusCode.PHP_EOL);
             fclose($file);
         }
 
-        //print_r("CallBack function paymentsController ");
-        //dump($r);
 
+
+
+        //OK
         if($r->statusCode==1){
 
             $guion = strpos($r->partnerReference2,'-');
@@ -291,6 +293,13 @@ class PaymentsController extends Controller
             $idfac = substr($r->partnerReference2, $barra+1,$guion-($barra+1));
             $control = substr($r->partnerReference2, $guion+1);
             $claim = substr($r->partnerReference1, 4);
+
+            if(file_exists('testing/wannme.txt')){
+                $file = fopen('testing/wannme_callback.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference1 '.$r->partnerReference1.PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference2 '.$r->partnerReference2.PHP_EOL);
+                fclose($file);
+            }
 
             /* Add control factura */
             $i = Invoice::where('id', '=', $idfac)

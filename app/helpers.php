@@ -1045,9 +1045,9 @@ function addPayment($claim, $debt, $control){
         "customField4"=> "",
         "customField5"=> "",
         "customField6"=> "",
-        "notificationURL"=> "https://dividae.com/callback",
-        "returnOKURL"=> "https://dividae.com/claims",
-        "returnKOURL"=> "https://dividae.com/claims",
+        "notificationURL"=> config('wannme.notificationURL'),
+        "returnOKURL"=> config('wannme.returnOKURL'),
+        "returnKOURL"=> config('wannme.returnOKURL'),
         "usersGroup"=> "DIVIDAE",
         "paymentMethods"=> [],
         "customer"=> [
