@@ -291,17 +291,22 @@ class PaymentsController extends Controller
             $control = substr($r->partnerReference2, $guion+1);
             $claim = substr($r->partnerReference1, 4); #"partnerReference1": "DVD-0146",
 
-            if(file_exists('testing/wannme.txt')){
-                $file = fopen('testing/wannme_callback.log', 'a');
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference1 '.$r->partnerReference1.PHP_EOL);  #DVD-0189
-                fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference2 '.$r->partnerReference2.PHP_EOL);  #23/207ME5eYwJrQB
-                fclose($file);
-            }
 
             /* Add control factura */
             $i = Invoice::where('id', '=', $idfac)
                         ->where('tipfac','=',$tipfac)
                         ->first();
+
+            if(file_exists('testing/wannme.txt')){
+                $file = fopen('testing/wannme_callback.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference1 '.$r->partnerReference1.PHP_EOL);  #DVD-0189
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference2 '.$r->partnerReference2.PHP_EOL);  #23/207ME5eYwJrQB
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Control '.$r->control.PHP_EOL);  #23/207ME5eYwJrQB
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Control factura '.$i->control.PHP_EOL);  #23/207ME5eYwJrQB
+                fclose($file);
+            }
+
+
 
             if($i && $i->control == $control){
 
