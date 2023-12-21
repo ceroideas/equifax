@@ -338,8 +338,8 @@ class PaymentsController extends Controller
 
                 if(file_exists('testing/wannme.txt')){
                     $file = fopen('testing/wannme_callback.log', 'a');
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'Update claim status: '.$c->status.PHP_EOL);
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'Update claim type: '.$c->claim_type.PHP_EOL);
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'Claim status: '.$c->status.PHP_EOL);
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'Claim type: '.$c->claim_type.PHP_EOL);
                     fclose($file);
                 }
                 //Update claim
@@ -349,7 +349,20 @@ class PaymentsController extends Controller
                     }else{
                         $c->status = 8;
                     }
+
+                    if(file_exists('testing/wannme.txt')){
+                        $file = fopen('testing/wannme_callback.log', 'a');
+                        fwrite($file, date("d/m/Y H:i:s").'-'.'Update claim status: '.$c->status.PHP_EOL);
+                        fclose($file);
+                    }
+
                     $c->save();
+
+                    if(file_exists('testing/wannme.txt')){
+                        $file = fopen('testing/wannme_callback.log', 'a');
+                        fwrite($file, date("d/m/Y H:i:s").'-'.'Claim actualizado: '.$c->status.PHP_EOL);
+                        fclose($file);
+                    }
                 }
 
 
