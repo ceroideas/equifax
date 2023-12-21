@@ -277,7 +277,11 @@ class PaymentsController extends Controller
         if(file_exists('testing/wannme.txt')){
             $file = fopen('testing/wannme_callback.log', 'a');
             fwrite($file, date("d/m/Y H:i:s").'-'.'Callback wannme '.PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'Status response '.$r->statusCode.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'notificationType'.$r->notificationType.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'statusCode'.$r->statusCode.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'statusDescription'.$r->statusDescription.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'subStatusCode'.$r->subStatusCode.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'subStatusDescription'.$r->subStatusDescription.PHP_EOL);
             fclose($file);
         }
 
