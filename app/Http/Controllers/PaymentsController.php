@@ -288,7 +288,7 @@ class PaymentsController extends Controller
             $barra = strpos($r->partnerReference2,'/');
             $tipfac = substr($r->partnerReference2,0,$barra);
             $idfac = substr($r->partnerReference2, $barra+1,$guion-($barra+1));
-            $control = substr($r->partnerReference2, $guion+2);
+            $control = substr($r->partnerReference2, $guion+1);
             $claim = substr($r->partnerReference1, 4); #"partnerReference1": "DVD-0146",
 
 
@@ -303,11 +303,12 @@ class PaymentsController extends Controller
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference2 '.$r->partnerReference2.PHP_EOL);  #23/207ME5eYwJrQB
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Control '.$control.PHP_EOL);  #23/207ME5eYwJrQB
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Control factura '.$i->ctrlfac.PHP_EOL);  #23/207ME5eYwJrQB
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Control factura limpio'.substr($i->ctrlfac,1,10).PHP_EOL);  #23/207ME5eYwJrQB
                 fclose($file);
             }
 
 
-            if($i && $i->ctrlfac == $control){
+            if($i && substr($i->ctrlfac,1,10) == $control){
 
                 if(file_exists('testing/wannme.txt')){
                     $file = fopen('testing/wannme_callback.log', 'a');
