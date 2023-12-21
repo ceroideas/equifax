@@ -276,17 +276,15 @@ class PaymentsController extends Controller
     {
         if(file_exists('testing/wannme.txt')){
             $file = fopen('testing/wannme_callback.log', 'a');
-            fwrite($file, date("d/m/Y H:i:s").'-'.'Callback wannme '.PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'notificationType'.$r->notificationType.PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'statusCode'.$r->statusCode.PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'statusDescription'.$r->statusDescription.PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'subStatusCode'.$r->subStatusCode.PHP_EOL);
-            fwrite($file, date("d/m/Y H:i:s").'-'.'subStatusDescription'.$r->subStatusDescription.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'Callback wannme: '.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'notificationType: '.$r->notificationType.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'statusCode: '.$r->statusCode.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'statusDescription: '.$r->statusDescription.PHP_EOL);
             fclose($file);
         }
 
         //OK response
-        if($r->statusCode==1){
+        if($r->notificationType == 'PAYMENT' && $r->statusCode==5 && $r->statusDescription=='PAGO COMPLETADO'){
 
             $guion = strpos($r->partnerReference2,'-'); #"partnerReference2": "23/161mwHgKqoZDi",
             $barra = strpos($r->partnerReference2,'/');
