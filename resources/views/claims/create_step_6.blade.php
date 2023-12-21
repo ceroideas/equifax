@@ -37,7 +37,7 @@
     <x-adminlte-alert theme="success" dismissable>
        <span> {{ $message }}</span> <br>
 
-            Est&acute;s a un paso de decir adi&oacute;s a tus facturas impagadas.
+            Est&aacute;s a un paso de decir adi&oacute;s a tus facturas impagadas.
     </x-adminlte-alert>
     @else
     <x-adminlte-alert theme="warning" dismissable>
