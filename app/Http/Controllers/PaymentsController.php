@@ -288,7 +288,7 @@ class PaymentsController extends Controller
             $barra = strpos($r->partnerReference2,'/');
             $tipfac = substr($r->partnerReference2,0,$barra);
             $idfac = substr($r->partnerReference2, $barra+1,$guion-($barra+1));
-            $control = substr($r->partnerReference2, $guion+1);
+            $control = substr($r->partnerReference2, $guion+2);
             $claim = substr($r->partnerReference1, 4); #"partnerReference1": "DVD-0146",
 
 
