@@ -335,6 +335,12 @@ class PaymentsController extends Controller
 
                 $c = Claim::find($claim);
 
+                if(file_exists('testing/wannme.txt')){
+                    $file = fopen('testing/wannme_callback.log', 'a');
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'Update claim status: '.$c->status.PHP_EOL);
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'Update claim type: '.$c->claim_type.PHP_EOL);
+                    fclose($file);
+                }
                 //Update claim
                 if ($c->status == 7) {
                     if ($c->claim_type == 1) {
@@ -351,7 +357,7 @@ class PaymentsController extends Controller
                         actuationActions("30018",$c->id);
                     }else{
                         actuationActions("30017",$c->id);
-                        return redirect('claims/'.$c->id)->with('msj_apud', 'Hemos detectado que te falta el Apud Acta, para poder continuar');
+                        return redirect('claims'.$c->id)->with('msj_apud', 'Hemos detectado que te falta el Apud Acta, para poder continuar');
                     }
                 }else{
                     actuationActions("-1",$c->id);
