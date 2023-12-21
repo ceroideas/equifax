@@ -313,6 +313,7 @@ class PaymentsController extends Controller
                 if(file_exists('testing/wannme.txt')){
                     $file = fopen('testing/wannme_callback.log', 'a');
                     fwrite($file, date("d/m/Y H:i:s").'-'.'Coincide control, todo ok '.PHP_EOL);
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'Update claim '.$claim.PHP_EOL);
                     fclose($file);
                 }
 
