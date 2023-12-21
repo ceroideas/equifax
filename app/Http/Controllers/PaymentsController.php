@@ -303,6 +303,9 @@ class PaymentsController extends Controller
                 $file = fopen('testing/wannme_callback.log', 'a');
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference1: '.$r->partnerReference1.PHP_EOL);  #DVD-0189
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference2: '.$r->partnerReference2.PHP_EOL);  #23/207ME5eYwJrQB
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference2: '.$r->uniqueNotificationId.PHP_EOL);  #23/207ME5eYwJrQB
+                fwrite($file, date("d/m/Y H:i:s").'-'.'Partner reference2: '.$r->receiptNumber.PHP_EOL);  #23/207ME5eYwJrQB
+
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Control '.$control.PHP_EOL);  #23/207ME5eYwJrQB
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Control factura: '.$i->ctrlfac.PHP_EOL);  #23/207ME5eYwJrQB
                 fwrite($file, date("d/m/Y H:i:s").'-'.'Control factura limpio: '.substr($i->ctrlfac,1,10).PHP_EOL);  #23/207ME5eYwJrQB
@@ -327,6 +330,7 @@ class PaymentsController extends Controller
                 $collect->invoice_id = $idfac;
                 $collect->user_id = '6';
                 $collect->fpacob = 'Tarjeta';
+                $collect->obscob = 'Transacción: '.$r->uniqueNotificationId. ' Recibo: '.$r->receiptNumber;
                 $collect->save();
 
                 // Update factura
@@ -387,7 +391,7 @@ class PaymentsController extends Controller
 
 
 
-        }// else cobro erroneo TODO: Procesar los estados de error
+        }// else cobro erroneo El pago viene con notificationType: PAYMENT, statusCode: 4, statusDescription: ERROR
 
         return redirect('claims')->with('msj', 'Error en el pago código'.$r->statusCode);
 
