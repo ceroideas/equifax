@@ -349,6 +349,7 @@ class PaymentsController extends Controller
                     }else{
                         $c->status = 8;
                     }
+                    $c->save();
                 }
 
 
