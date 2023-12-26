@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Collect;
 use App\Models\User;
 use App\Models\Invoice;
+use App\Models\Claim;
 
 use Auth;
 use Excel;
@@ -80,10 +81,31 @@ class CollectsController extends Controller
                 $invoice->payment_date = Carbon::parse($request->fecha)->format('Y-m-d H:i:s');
                 $invoice->save();
 
-                // Añadimos la actuacion de pago completado 30018
-
                 // Cambiamos el estado de la reclamacion
+                $claim = Claim::find($invoice->claim_id);
 
+                //Update claim
+                if ($claim->status == 7) {
+                    if ($claim->claim_type == 1) {
+                        $claim->status = 10;
+                    }else{
+                        $claim->status = 8;
+                    }
+
+                    $claim->save();
+                }
+
+                if ($claim->claim_type == 1) {
+                    if ($claim->owner->apud_acta) {
+
+                        actuationActions("30018",$claim->id);
+                    }else{
+                        actuationActions("30017",$claim->id);
+                        return redirect('claims'.$claim->id)->with('msj_apud', 'Hemos detectado que te falta el Apud Acta, para poder continuar');
+                    }
+                }else{
+                    actuationActions("-1",$claim->id);
+                }
 
                 return redirect('/collects')->with('msj', 'Cobro añadido correctamente y actualizado el estado de la factura');
              }else{
