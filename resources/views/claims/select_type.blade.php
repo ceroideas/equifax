@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Nueva Reclamaci&oacute;n')
+@section('title', 'Nueva Reclamación')
 
 @section('content_header')
     <div class="container-fluid">
