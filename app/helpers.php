@@ -75,7 +75,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                     $act->claim_id = $claim_id;
                     $act->subject = $h['ref_id'];
                     $act->description=$observations;
-                    $act->actuation_date = $date ? $date : Carbon::now()->format('Y-m-d H:i:s');
+                    $act->actuation_date = $date ? Carbon::parse($date)->format('Y-m-d H:i:s') : Carbon::now()->format('Y-m-d H:i:s');
                     $act->hito_padre = $h['parent_id'];
                     $act->save();
                 }
@@ -85,7 +85,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 		        $a->subject = $h['redirect_to'];
 		        $a->amount = $amount;
 		        $a->description = $observations;
-		        $a->actuation_date = $date ? $date : Carbon::now()->format('Y-m-d H:i:s');
+		        $a->actuation_date = $date ? Carbon::parse($date)->format('Y-m-d H:i:s') : Carbon::now()->format('Y-m-d H:i:s');
 
 		        $a->hito_padre = $h['parent_id'];
 
