@@ -20,7 +20,34 @@
 @stop
 
 @section('content')
+<style>
+    .loading {
+        z-index: 20;
+        position: absolute;
+        top: 0;
+        left:-5px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.4);
+    }
+    .loading-content {
+        position: absolute;
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #e65927;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        top: 50%;
+        left:50%;
+        animation: spin 2s linear infinite;
+    }
 
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+</style>
 
    @include('progressbar', ['step' => 5])
 
@@ -47,134 +74,91 @@
     </x-adminlte-alert>
     @endif
 
-   {{-- @dd(session('claim_debt')) --}}
+    {{-- @dd(session('claim_debt')) --}}
 
-   <x-adminlte-card header-class="d-none text-center" theme="orange" theme-mode="outline">
-      <div class="row">
+    <x-adminlte-card header-class="d-none text-center" theme="orange" theme-mode="outline">
         <div class="col-sm-12 text-center">
-            <span> <h3>
-            {{-- A partir de este momento, Ya ha introducido todos los datos requeridos por el sistema. --}}
-            Confirmo que todos los datos e información aportada es veraz.<br>
-
-            <small>
-                <i>La informaci&oacute;n que aporte el/la Cliente se dar&aacute; por buena, siendo responsabilidad &uacute;nica y exclusiva de quien introduce esta informaci&oacute;n en el sistema.</i>
-            </small>
-        </h3></span>
-
-        <br>
-            <span><h3>
-                ¿Acepta las Condiciones Generales de Contrataci&oacute;n?
-            {{-- ¿Acepta tanto las Políticas de Uso como las Condiciones de Contratación? --}}
-        </h3></span>
+            <span><h3>Confirmo que todos los datos e información aportada es veraz.<br>
+                <small><i>La informaci&oacute;n que aporte el/la Cliente se dar&aacute; por buena, siendo responsabilidad &uacute;nica y exclusiva de quien introduce esta informaci&oacute;n en el sistema.</i></small></h3>
+            </span>
+            <br>
+            <span><h3>¿Acepta las Condiciones Generales de Contrataci&oacute;n?</h3></span>
         </div>
-      </div>
-{{--
-<div class="custom-control custom-checkbox mb-3">
-    <a data-toggle="modal" href="#terminos" style="color: #666">
-    <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
-    <label for="customCheckbox1" class="custom-control-label">Aceptar los Términos y Condiciones de uso General *</label></a>
-    @error('tos')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
---}}
-<div class="custom-control custom-checkbox mb-3">
-    <a data-toggle="modal" href="#condiciones" style="color: #666">
-    <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
-    <label for="customCheckbox1" class="custom-control-label">Aceptar las Condiciones Generales de Contrataci&oacute;n *</label></a>
-    @error('tos')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
 
-<div class="card-footer">
-    <div class="row">
-        <span class="float-left">(*) Los campos marcados son requeridos.</span>
-    </div>
-    <!--<x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Siguiente" theme="success" icon="fas fa-lg fa-save" id="btnsiguiente"/>-->
-    <a href="{{ url('claims/check-agreement') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
-</div>
+        <div class="custom-control custom-checkbox mb-3">
+            <a data-toggle="modal" href="#condiciones" style="color: #666">
+            <input onclick="return false" class="custom-control-input @error('tos') is-invalid @enderror" type="checkbox" id="customCheckbox1" value="1" name="tos">
+            <label for="customCheckbox1" class="custom-control-label">Aceptar las Condiciones Generales de Contrataci&oacute;n *</label></a>
+            @error('tos')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
 
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            {{--<div style="overflow: auto; height: 600px;">--}}
-            <div>
-                <p>
-                {{-- <p>
-                    @include('terminos-condiciones')
-                    --}}
-                </p>
+        <div class="card-footer">
+            <div class="row">
+                <span class="float-left">(*) Los campos marcados son requeridos.</span>
+            </div>
+            <a href="{{ url('claims/check-agreement') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
+        </div>
 
-                {{-- <p>
-                    @include('terminos-contratacion')
-                </p> --}}
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <div>
+                    <form id="create-claim-form" action="{{ url('/claims') }}"method="POST" >
+                        @csrf
+                        @method('POST')
+                    </form>
 
-                <form id="create-claim-form" action="{{ url('/claims') }}"method="POST" >
-                    @csrf
-                    @method('POST')
-                </form>
-
-                <div class="modal fade" id="terminos" style="max-width: 100%;">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-
-                            <div class="modal-header" style="color: #111"></div>
-                            <div class="modal-body">
-
-                                <div style="height: 600px; overflow: auto;">
-                                    @include('terminos-condiciones')
-
-                                    {{-- <br>
-
-                                    @include('terminos-contratacion') --}}
-
-                                    {{-- <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button> --}}
-                                    <button data-dismiss="modal" id="accept-terms" class="btn btn-flat btn-success create-claim">Aceptar los t&eacute;rminos</button>
-                                    <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+                    <div class="modal fade" id="terminos" style="max-width: 100%;">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header" style="color: #111"></div>
+                                <div class="modal-body">
+                                    <div style="height: 600px; overflow: auto;">
+                                        @include('terminos-condiciones')
+                                        <button data-dismiss="modal" id="accept-terms" class="btn btn-flat btn-success create-claim">Aceptar los t&eacute;rminos</button>
+                                        <button data-dismiss="modal" class="btn btn-sm btn-danger">Cancelar</button>
+                                    </div>
                                 </div>
                             </div>
-                            {{-- <div class="modal-footer"></div> --}}
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="condiciones" style="max-width: 100%;">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header" style="color: #111"></div>
+                                <div class="modal-body">
+                                    <div style="height: 600px; overflow: auto;">
+                                        @include('terminos-contratacion')
+                                        <button data-dismiss="modal" id="accept-terms" class="btn btn-flat btn-success create-claim" onclick="showLoading()">Aceptar las condiciones</button>
+                                        <button data-dismiss="modal" class="btn btn-flat btn-danger">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="modal fade" id="condiciones" style="max-width: 100%;">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-
-                            <div class="modal-header" style="color: #111"></div>
-                            <div class="modal-body">
-
-                                <div style="height: 600px; overflow: auto;">
-                                    @include('terminos-contratacion')
-
-                                    {{-- <br>
-
-                                    @include('terminos-contratacion') --}}
-
-                                    {{-- <button data-dismiss="modal" id="accept-terms" class="btn btn-sm btn-success">Aceptar los términos</button> --}}
-                                    <button data-dismiss="modal" id="accept-terms" class="btn btn-flat btn-success create-claim">Aceptar las condiciones</button>
-                                    <button data-dismiss="modal" class="btn btn-flat btn-danger">Cancelar</button>
-                                </div>
-                            </div>
-                            {{-- <div class="modal-footer"></div> --}}
-                        </div>
-                    </div>
-                </div>
-
-{{--
-                <span> <button class="btn btn-flat btn-success create-claim">SI</button></span>
-                <span> <button class="btn btn-flat btn-danger  question-button" href="{{ url('claims/flush-options') }}">NO</button></span>
-                <span> <button class="btn btn-flat btn-default  question-button" href="{{ url('claims/check-agreement') }}">Volver</button></span>
---}}
             </div>
         </div>
-      </div>
-   </x-adminlte-card>
+    </x-adminlte-card>
+    {{--
+        <div class="row">
+            <div class="col-md-6">
+                <a onclick="showLoading()">Show Loading</a>
+            </div>
+            <div class="col-md-6">
+                <a onclick="hideLoading()">Hidden Loading</a>
+            </div>
+            <section id="loading">
+                <div id="loading-content"></div>
+            </section>
+        </div>
+    --}}
+
+
 @stop
 
 @section('js')
@@ -185,7 +169,7 @@
    });
 
    $('.question-button').on('click', function(){
-       console.log($(this).attr('href'));
+       //console.log($(this).attr('href'));
         location.href = $(this).attr('href');
    });
 
@@ -199,5 +183,17 @@
             /* Act on the event */
   /*          $('#customCheckbox1').prop('checked', true)
         });*/
+</script>
+<script>
+    function showLoading() {
+        document.querySelector('#loading').classList.add('loading');
+        document.querySelector('#loading-content').classList.add('loading-content');
+        //setTimeout(hideLoading, 5000);
+    }
+
+    function hideLoading() {
+        document.querySelector('#loading').classList.remove('loading');
+        document.querySelector('#loading-content').classList.remove('loading-content');
+    }
 </script>
 @stop
