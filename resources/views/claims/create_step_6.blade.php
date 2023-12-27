@@ -144,19 +144,19 @@
             </div>
         </div>
     </x-adminlte-card>
-    {{--
+
         <div class="row">
-            <div class="col-md-6">
+{{--             <div class="col-md-6">
                 <a onclick="showLoading()">Show Loading</a>
             </div>
             <div class="col-md-6">
                 <a onclick="hideLoading()">Hidden Loading</a>
-            </div>
+            </div> --}}
             <section id="loading">
                 <div id="loading-content"></div>
             </section>
         </div>
-    --}}
+
 
 
 @stop
