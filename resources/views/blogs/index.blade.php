@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 @extends('adminlte::page')
 
 @section('title', 'Hitos')
