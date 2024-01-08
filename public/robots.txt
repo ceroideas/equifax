@@ -1,2 +1,14 @@
 User-agent: *
-Disallow:
+Disallow: /vendor/
+Disallow: /login
+Disallow: /password/reset
+Disallow: /blog?page=1
+Disallow: /blog?page=2
+Disallow: /blog?page=3
+Disallow: /blog?page=4
+Disallow: /blog/www.dividae.com
+Disallow: /{{url('/')}}
+Disallow: /blog/{{url('/')}}
+Disallow: /landing/plugins/owl/js/owl.carousel.js
+Disallow: /landing/app_quental.css
+Disallow: /landing/app.css
