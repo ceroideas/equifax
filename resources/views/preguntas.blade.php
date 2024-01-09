@@ -4916,13 +4916,15 @@ a.more-link[data-v-167ae8c1] {
 				        <div data-v-038cfd70="" data-v-effc9f78="" class="row">
 				            <div data-v-038cfd70="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 Categoria mb-5">
 				                <div data-v-038cfd70="" data-v-effc9f78="" class="Categoria-content Selected" data-href="#genericas">
-				                    <div data-v-038cfd70="" data-v-effc9f78="" class="Categoria-img text-center"><img data-v-038cfd70="" data-v-effc9f78="" src="{{url('landing')}}/assets/icon-category.png" class="iconsplay img-fluid" /></div>
+				                    <div data-v-038cfd70="" data-v-effc9f78="" class="Categoria-img text-center">
+                                        <img data-v-038cfd70="" data-v-effc9f78="" src="{{url('landing')}}/assets/icon-category.png" class="iconsplay img-fluid" alt="Icono preguntas genericas"/></div>
 				                    <div data-v-038cfd70="" data-v-effc9f78="" class="Categoria-name">Preguntas Genéricas</div>
 				                </div>
 				            </div>
 				            <div data-v-038cfd70="" data-v-effc9f78="" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 Categoria mb-5">
 				                <div data-v-038cfd70="" data-v-effc9f78="" class="Categoria-content" data-href="#especificas">
-				                    <div data-v-038cfd70="" data-v-effc9f78="" class="Categoria-img text-center"><img data-v-038cfd70="" data-v-effc9f78="" src="{{url('landing')}}/assets/icon-category.png" class="iconsplay img-fluid" /></div>
+				                    <div data-v-038cfd70="" data-v-effc9f78="" class="Categoria-img text-center">
+                                        <img data-v-038cfd70="" data-v-effc9f78="" src="{{url('landing')}}/assets/icon-category.png" class="iconsplay img-fluid" alt="Icono preguntas especificas"/></div>
 				                    <div data-v-038cfd70="" data-v-effc9f78="" class="Categoria-name">Preguntas Específicas</div>
 				                </div>
 				            </div>

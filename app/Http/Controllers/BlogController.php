@@ -62,7 +62,7 @@ class BlogController extends Controller
             $blog->image_post = $image_post;
         }
         $blog->title = $request->title;
-        $blog->slug = $request->slug;
+        $blog->slug = strtolower(str_replace(' ', '-', $request->slug));
         $blog->extract = $request->extract;
         $blog->body = $request->body;
         $blog->status = $request->status;
@@ -86,7 +86,7 @@ class BlogController extends Controller
         }
         $blog->id = $request->id;
         $blog->title = $request->title;
-        $blog->slug = $request->slug;
+        $blog->slug = strtolower(str_replace(' ', '-', $request->slug));
         $blog->extract = $request->extract;
         $blog->body = $request->body;
         $blog->status = $request->status;

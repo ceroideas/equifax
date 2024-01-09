@@ -271,7 +271,7 @@
                                                 10.220<span data-v-455dcd3f="" class="text-style-1">&euro;</span></div>
                                         </div> <img data-v-455dcd3f=""
                                             src="{{ url('landing') }}/assets/testimonio-1.png"
-                                            class="testimonio-1 img-fluid">
+                                            class="testimonio-1 img-fluid" alt="Fotografia testimonio de gestoria">
                                     </div>
 
                                     <div data-v-455dcd3f=""
@@ -358,7 +358,7 @@
                                                 1.640<span data-v-455dcd3f="" class="text-style-1">&euro;</span></div>
                                         </div> <img data-v-455dcd3f=""
                                             src="{{ url('landing') }}/assets/testimonio-2.png"
-                                            class="testimonio-1 img-fluid">
+                                            class="testimonio-1 img-fluid" alt="Fotografia testimonio de aparejadora">
                                     </div>
 
                                 </div>
@@ -378,7 +378,7 @@
                                                 3.550<span data-v-455dcd3f="" class="text-style-1">&euro;</span></div>
                                         </div> <img data-v-455dcd3f=""
                                             src="{{ url('landing') }}/assets/testimonio-3.png"
-                                            class="testimonio-1 img-fluid">
+                                            class="testimonio-1 img-fluid" alt="Fotografia testimonio de electricista">
                                     </div>
 
                                     <div data-v-455dcd3f=""
@@ -426,16 +426,16 @@
                             <div id="testimonios" class="owl-carousel owl-theme">
 
                                 <div>
-                                    <a href = "https://avae.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avae.png"></a>
+                                    <a href = "https://avae.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avae.png" alt="Logotipo Avae"></a>
                                 </div>
                                 <div>
-                                    <a href = "https://avecal.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avecal.png"></a>
+                                    <a href = "https://avecal.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avecal.png" alt="Logotipo Avecal"></a>
                                 </div>
                                 <div>
-                                    <a href = "https://www.gestorestoledo.org/" target="_blank"><img src="{{ url('landing') }}/assets/logo_toledo.png"></a>
+                                    <a href = "https://www.gestorestoledo.org/" target="_blank"><img src="{{ url('landing') }}/assets/logo_toledo.png" alt="Logotipo gestores Toledo"></a>
                                 </div>
                                 <div>
-                                    <a href = "https://gestoresextremadura.com/" target="_blank"><img src="{{ url('landing') }}/assets/logo_extremadura.png"></a>
+                                    <a href = "https://gestoresextremadura.com/" target="_blank"><img src="{{ url('landing') }}/assets/logo_extremadura.png" alt="Logotipo gestores Exremadura"></a>
                                 </div>
 
                             </div>

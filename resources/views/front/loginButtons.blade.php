@@ -42,7 +42,7 @@
 	@if (Auth::check())
 		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('claims/select-type')}}" class="btn btn-nueva"><span data-v-5fddf304="" class="btn-text-acceso">
 	        Nueva Reclamación
-            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right">
+            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right" alt="Icono flecha">
 	        </span></a></div>
 
 		<div data-v-5fddf304="" class="blockRegistro">
@@ -50,9 +50,9 @@
 			<div class="btn-group">
 				<button data-v-5fddf304="" class="btn btn-registerHome" data-toggle="dropdown">
                     <span data-v-5fddf304="" class="text-register-btn">
-					    <img data-v-5fddf304="" src="{{url('landing')}}/assets/profile.png" class="img-profile">
+					    <img data-v-5fddf304="" src="{{url('landing')}}/assets/profile.png" class="img-profile" alt="Icono perfil usuario">
 			                {{ Str::ucfirst(Str::before(Auth::user()->name, ' ')) }} {{ Str::substr(Str::ucfirst(Str::after(Auth::user()->name, ' ')), 0, 1) }}.
-			            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" style="transform: rotate(90deg);" class="iconsarrow-right">
+			            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" style="transform: rotate(90deg);" class="iconsarrow-right" alt="Icono flecha">
                     </span>
                 </button>
 			    <div class="dropdown-menu" style="position: absolute;">
@@ -86,10 +86,10 @@
 
 		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('login')}}" class="btn btn-acceso"><span data-v-5fddf304="" class="btn-text-acceso">
 	        Perfil Personal
-	        <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right"></span></a></div>
+	        <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right" alt="Icono flecha"></span></a></div>
 
 	    <div data-v-5fddf304="" class="blockRegistro"><a data-v-5fddf304="" href="{{url('register')}}" class="btn btn-registerHome"><span data-v-5fddf304="" class="text-register-btn">
 	        Regístrate
-	        <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right"></span></a></div>
+	        <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right" alt="Icono flecha"></span></a></div>
 	@endif
 </div>

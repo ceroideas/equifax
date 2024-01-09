@@ -11,7 +11,7 @@
             <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><a data-v-a242bae8=""
                     href="{{ url('/') }}/" class="align-items-center mb-3 link-dark">
                     <p data-v-a242bae8=""><img data-v-a242bae8=""
-                            src="{{ url('landing') }}/assets/grafico-logo-negativo.png" class="graficologonegativo"></p>
+                            src="{{ url('landing') }}/assets/grafico-logo-negativo.png" class="graficologonegativo" alt="Logo Dividae"></p>
                 </a>
                 <p data-v-a242bae8="" class=" footer-text">
                     <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de
@@ -73,12 +73,12 @@
                 <ul data-v-a242bae8="" class="nav flex-column">
                     <li data-v-a242bae8="" class="nav-item mb-2">
                         <a data-v-a242bae8="" href="tel:913258610" class="nav-link p-0 footer-text">
-                            <img data-v-a242bae8="" src="/landing/assets/icons-phone-white.png" class="img-fluid"> +34 913 258 610
+                            <img data-v-a242bae8="" src="/landing/assets/icons-phone-white.png" class="img-fluid" alt="Icono telefono Dividae"> +34 913 258 610
                         </a>
                     </li>
                     <li data-v-a242bae8="" class="nav-item mb-2">
                         <a data-v-a242bae8="" href="mailto:info@dividae.com" class="nav-link p-0 footer-text">
-                            <img data-v-a242bae8="" src="/landing/assets/icons-email-white.png" class="img-fluid"> info@dividae.com
+                            <img data-v-a242bae8="" src="/landing/assets/icons-email-white.png" class="img-fluid" alt="Icono email Dividae"> info@dividae.com
                         </a>
                     </li>
                 </ul>
@@ -94,7 +94,7 @@
 
                 <a data-v-a242bae8="" href="https://www.linkedin.com/company/86028193/admin/" aria-current="page"
                     class="router-link-exact-active router-link-active"><img data-v-a242bae8=""
-                        src="{{ url('landing') }}/assets/linkedin.png" class="img-fluid"></a>
+                        src="{{ url('landing') }}/assets/linkedin.png" class="img-fluid" alt="Icono Linkedin Dividae"></a>
             </div>
         </div>
     </div>

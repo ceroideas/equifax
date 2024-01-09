@@ -13,12 +13,12 @@
             style="">
             <div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304=""
                     src="{{ url('landing') }}/assets/grafico-logo-negativo.png"
-                    class="graficologonegativo"></div>
+                    class="graficologonegativo" alt="Logotipo Dividae"></div>
         </a> <a data-v-5fddf304="" href="{{ url('/') }}" aria-current="page"
             class="navbar-brand router-link-exact-active router-link-active" style="display: none;">
             <div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304=""
                     src="{{ url('landing') }}/assets/grafico-logo-negativo.png"
-                    class="graficologonegativo"></div>
+                    class="graficologonegativo" alt="Logotipo Dividae"></div>
         </a>
 
         <button data-v-5fddf304="" type="button" data-toggle="collapse"
