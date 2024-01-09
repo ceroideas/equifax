@@ -15,12 +15,12 @@
                         <div data-v-18ec2fe4="" class="row my-4">
                             <div data-v-18ec2fe4="" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><img
                                     data-v-18ec2fe4="" src="{{ url('landing') }}/assets/icons-phone.png"
-                                    class="img-fluid mr-1">
+                                    class="img-fluid mr-1" alt="Icono telefono Dividae">
                                 <a href="tel:+34913258610">+34 913 258 610</a>
                             </div>
                             <div data-v-18ec2fe4="" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"><img
                                     data-v-18ec2fe4="" src="{{ url('landing') }}/assets/icons-email.png"
-                                    class="img-fluid mr-1">
+                                    class="img-fluid mr-1" alt="Icono email Dividae">
                                 <a href="mailto:info@dividae.com">info@dividae.com</a>
                             </div>
                         </div>
@@ -28,11 +28,11 @@
                                     href="{{ url('/') }}/contacto" class="btn Contacto-btn">
                                     Contacto
                                     <img data-v-18ec2fe4="" src="{{ url('landing') }}/assets/icons-arrow-right.png"
-                                        class="iconsarrow-down ml-4 img-fluid"></a></span></div>
+                                        class="iconsarrow-down ml-4 img-fluid" alt="Icono enviar mensaje contacto"></a></span></div>
                     </div>
                     <div data-v-18ec2fe4="" class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 my-5"><img
                             data-v-18ec2fe4="" src="{{ url('landing') }}/assets/grafico-ilustraciones-contacto.png"
-                            class="img-fluid"></div>
+                            class="img-fluid" alt="Ilustrarcion contacto Dividae"></div>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
                             {{-- @isset($modal) --}}
                             <a data-v-837e15c2="" data-toggle="modal" href="#consulta-viabilidad"
                                 class="CheckClaim-btn btn">Comprobar deuda <img data-v-837e15c2=""
-                                    src="{{ url('landing') }}/assets/icons-arrow-right-white.png" class="img-fluid"></a>
+                                    src="{{ url('landing') }}/assets/icons-arrow-right-white.png" class="img-fluid" alt="Icono comprobar deuda"></a>
                             {{-- @else
                       <a data-v-837e15c2="" href="{{url('/')}}" class="CheckClaim-btn btn">Comprobar deuda <img data-v-837e15c2="" src="{{url('landing')}}/assets/icons-arrow-right-white.png" class="img-fluid"></a>
                     @endisset --}}
@@ -62,7 +62,7 @@
                     </div>
                     <div data-v-837e15c2="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 my-5"><img
                             data-v-837e15c2="" src="{{ url('landing') }}/assets/grafico-ilustraciones-simulador.png"
-                            class="img-fluid"></div>
+                            class="img-fluid" alt="Ilustracion simulador viabilidad Dividae"></div>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
             <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><a data-v-a242bae8=""
                     href="{{ url('/') }}/" class="align-items-center mb-3 link-dark">
                     <p data-v-a242bae8=""><img data-v-a242bae8=""
-                            src="{{ url('landing') }}/assets/grafico-logo-negativo.png" class="graficologonegativo"></p>
+                            src="{{ url('landing') }}/assets/grafico-logo-negativo.png" class="graficologonegativo" alt="Logotipo Dividae"></p>
                 </a>
                 <p data-v-a242bae8="" class=" footer-text">
                     <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de
@@ -185,16 +185,16 @@
                 <ul data-v-a242bae8="" class="nav flex-column">
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="tel:+34913258610"
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
-                                src="{{ url('landing') }}/assets/icons-phone-white.png" class="img-fluid"> +34 913 258 610
+                                src="{{ url('landing') }}/assets/icons-phone-white.png" class="img-fluid" alt="Icono telefono Dividae"> +34 913 258 610
                         </a></li>
                     <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="mailto:info@dividae.com"
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
-                                src="{{ url('landing') }}/assets/icons-email-white.png" class="img-fluid">
+                                src="{{ url('landing') }}/assets/icons-email-white.png" class="img-fluid" alt="Icono email Dividae">
                                 &nbsp;info@dividae.com
                         </a></li>
                         <li data-v-a242bae8="" class="nav-item mb-2"><a data-v-a242bae8="" href="#"
                             class="nav-link p-0 footer-text"><img data-v-a242bae8=""
-                                src="{{ url('landing') }}/assets/icons-address-white.png" class="img-fluid">
+                                src="{{ url('landing') }}/assets/icons-address-white.png" class="img-fluid" alt="Icono direccion Dividae">
                                 Calle Basílica 17, 1ª planta (Entrada<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oficinas), 28020, Madrid, España
                         </a></li>
 
@@ -211,7 +211,7 @@
 
                 <a data-v-a242bae8="" href="https://www.linkedin.com/company/86028193/admin/" aria-current="page"
                     class="router-link-exact-active router-link-active"><img data-v-a242bae8=""
-                        src="{{ url('landing') }}/assets/linkedin.png" class="img-fluid"></a>
+                        src="{{ url('landing') }}/assets/linkedin.png" class="img-fluid" alt="Icono Linkedin Dividae"></a>
 
                 {{-- <a data-v-a242bae8="" href="{{url('/')}}/contacto" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-a242bae8="" src="{{url('landing')}}/assets/icon-whatsapp.png" class="img-fluid s-icon"></a>
 
@@ -363,11 +363,11 @@
             <div data-v-e8aafb5e="" class="modal-body">
                 <div data-v-e8aafb5e="" class="modal-img text-center"><img data-v-e8aafb5e=""
                         src="{{ url('landing/assets/grafico-ilustraciones-simulador-exito.png') }}"
-                        class="img-fluid"></div>
+                        class="img-fluid" alt="Ilustracion reclamacion viable Dividae"></div>
                 <!---->
                 <div data-v-e8aafb5e="" class="modal-text-info text-center">
                     Tu reclamación es viable <a data-v-e8aafb5e=""><img data-v-e8aafb5e=""
-                            src="{{ url('landing/assets/icons-info-line.png') }}" class="img-fluid"></a></div>
+                            src="{{ url('landing/assets/icons-info-line.png') }}" class="img-fluid" alt="Icono informacion"></a></div>
                 <div data-v-e8aafb5e="" class="modal-text text-center">
                     ¡Registra tu reclamación para que nuestros abogados comiencen a trabajar!
                 </div>
@@ -399,11 +399,11 @@
             <div data-v-e8aafb5e="" class="modal-body">
                 <div data-v-e8aafb5e="" class="modal-img text-center"><img data-v-e8aafb5e=""
                         src="{{ url('landing/assets/grafico-ilustraciones-simulador-exito.png') }}"
-                        class="img-fluid"></div>
+                        class="img-fluid" alt="Ilustracion simulador Dividae"></div>
                 <!---->
                 <div data-v-e8aafb5e="" class="modal-text-info text-center">
                     ¡Ups! Aunque es complicado, aún hay <b>posibilidades</b> de que <b>Dividae</b> reclame tu deuda. ¿Lo intentamos? <a data-v-e8aafb5e=""><img data-v-e8aafb5e=""
-                            src="{{ url('landing/assets/icons-info-line.png') }}" class="img-fluid"></a></div>
+                            src="{{ url('landing/assets/icons-info-line.png') }}" class="img-fluid" alt="Icono informacion"></a></div>
                 <div data-v-e8aafb5e="" class="modal-text text-center">
                     ¡Registra tu reclamación para que nuestros abogados comiencen a trabajar!
                 </div>

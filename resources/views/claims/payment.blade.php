@@ -208,7 +208,7 @@
                         <br>
                         <br>
 
-                    	<img src="{{url('logo-paycomet.png')}}" alt="" style="width: 100%;">
+                    	<img src="{{url('logo-paycomet.png')}}" alt="Logotipo Paycommet" style="width: 100%;">
                     </div>
 
             </div>

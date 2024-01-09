@@ -142,11 +142,11 @@
 </style>
     <div class="steps" id="iconos">
         <ul id="icons">
-            <li><img src="{{ url('landing/assets/progress1.png') }}" alt="Datos acreedor" ></li>
-            <li><img src="{{ url('landing/assets/progress2.png') }}" alt="Datos deudor" ></li>
-            <li><img src="{{ url('landing/assets/progress3.png') }}" alt="Datos deuda" ></li>
-            <li><img src="{{ url('landing/assets/progress4.png') }}" alt="Opciones de acuerdo" ></li>
-            <li><img src="{{ url('landing/assets/progress5.png') }}" alt="Aceptación y pago" ></li>
+            <li><img src="{{ url('landing/assets/progress1.png') }}" alt="Icono datos de acreedor" ></li>
+            <li><img src="{{ url('landing/assets/progress2.png') }}" alt="Icono datos de deudor" ></li>
+            <li><img src="{{ url('landing/assets/progress3.png') }}" alt="Icono datos de deuda" ></li>
+            <li><img src="{{ url('landing/assets/progress4.png') }}" alt="Icono opciones de acuerdo" ></li>
+            <li><img src="{{ url('landing/assets/progress5.png') }}" alt="Icono aceptación y pago" ></li>
         {{-- <li class="{{$step >= 4 ? 'active' : ''}}">Documentación de deuda</li> --}}
         </ul>
     </div>

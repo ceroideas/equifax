@@ -334,7 +334,7 @@
                             <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
                                         src="{{ url('landing') }}/assets/icon-large-justicia.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                        class="iconlargejusticia img-thumbnails img-fluid" alt="Icono plataforma digital"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Plataforma 100% Digital</b>
@@ -349,7 +349,7 @@
                             <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
                                         src="{{ url('landing') }}/assets/icon-large-digital.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                        class="iconlargejusticia img-thumbnails img-fluid" alt="Icono seguridad juridica"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Máxima seguridad Jurídica</b>
@@ -364,7 +364,7 @@
                             <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
                                         src="{{ url('landing') }}/assets/icon-large-seguridad.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                        class="iconlargejusticia img-thumbnails img-fluid" alt="Icono experiencia"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Experiencia Contrastada</b>
@@ -381,7 +381,7 @@
                             <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
                                         src="{{ url('landing') }}/assets/icon-large-justicia.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                        class="iconlargejusticia img-thumbnails img-fluid" alt="Icono transparencia"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Transparente</b>

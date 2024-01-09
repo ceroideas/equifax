@@ -54,7 +54,7 @@
 
                                 <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
                                     <div class="card mb-12 rounded-3" style="width: 17rem; height: 33rem;">
-                                        <img class="card-img-top" src="{{url('storage/'.$blog->image_post)}}" alt="image" >
+                                        <img class="card-img-top" src="{{url('storage/'.$blog->image_post)}}" alt="Imagen del post" >
                                         <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
                                             <br>
                                             <small>{{ \Illuminate\Support\Str::limit($blog->title,27, $end='...')}}</small>

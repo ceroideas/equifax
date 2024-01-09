@@ -5837,7 +5837,7 @@
                                 </div>
                                 <div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto-img mt-5"><img
                                         data-v-cfd2b624="" data-v-effc9f78=""
-                                        src="{{ url('landing') }}/assets/contacto.png" ></div>
+                                        src="{{ url('landing') }}/assets/contacto.png" alt="Contacto dividae"></div>
                             </div>
                             <div data-v-cfd2b624="" data-v-effc9f78=""
                                 class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 block-form">
@@ -5902,7 +5902,7 @@
                                                 class="btn btn-primary mt-3 mb-2" disabled>Enviar mensaje
                                                 <img data-v-ab748da8=""
                                                     src="{{ url('landing') }}/assets/icons-arrow-right.png"
-                                                    class="iconsarrow-right img-fluid"></button></span>
+                                                    class="iconsarrow-right img-fluid" alt="Icono enviar mensaje"></button></span>
                                     </form>
 
 
@@ -5943,7 +5943,7 @@
                                 class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-3"><img data-v-cfd2b624=""
                                     data-v-effc9f78=""
                                     src="{{ url('landing') }}/assets/icon-large-contacto-phone.png"
-                                    class="img-fluid">
+                                    class="img-fluid" alt="Icono telefono Dividae">
                                 <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
                                     <a href="tel:+34913258610">+34 913 258 610</a>
                                 </div>
@@ -5951,7 +5951,7 @@
                             <div data-v-cfd2b624="" data-v-effc9f78=""
                                 class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-3"><img data-v-cfd2b624=""
                                     data-v-effc9f78="" src="{{ url('landing') }}/assets/icon-large-contacto-mail.png"
-                                    class="img-fluid">
+                                    class="img-fluid" alt="Icono email Dividae">
                                 <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
                                     <a href="mailto:info@dividae.com">info@dividae.com</a>
                                 </div>
@@ -5960,7 +5960,7 @@
                                 class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-3"><img data-v-cfd2b624=""
                                     data-v-effc9f78=""
                                     src="{{ url('landing') }}/assets/icon-large-contacto-location.png"
-                                    class="img-fluid">
+                                    class="img-fluid" alt="Icono direccion Dividae">
                                 <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
                                     Madrid
                                     <p data-v-cfd2b624="" data-v-effc9f78="" class="location-street">Sede principal

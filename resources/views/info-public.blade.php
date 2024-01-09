@@ -188,14 +188,14 @@
                             <a data-v-5fddf304="" href="{{ url('/') }}" class="navbar-brand router-link-active">
                                 <div data-v-5fddf304="" class="bartopbardefault-copy-3">
                                     <img data-v-5fddf304="" src="{{ url('landing') }}/assets/grafico-logo-negativo.png"
-                                        class="graficologonegativo">
+                                        class="graficologonegativo" alt="Icono Dividae">
                                 </div>
                             </a>
                             <a data-v-5fddf304="" href="{{ url('/') }}" class="navbar-brand router-link-active"
                                 style="display: none;">
                                 <div data-v-5fddf304="" class="bartopbardefault-copy-3">
                                     <img data-v-5fddf304="" src="{{ url('landing') }}/assets/grafico-logo-positivo.png"
-                                        class="graficologonegativo">
+                                        class="graficologonegativo" alt="Logotipo Dividae">
                                 </div>
                             </a>
                             <button data-v-5fddf304="" type="button" data-toggle="collapse"

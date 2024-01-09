@@ -83,15 +83,15 @@
                 <div style="position: relative; height: 200px;">
                     <div style="position: absolute; height: 80%; width: 100%; background-color: #e65927; border-radius: 8px; bottom: 0;">
                     </div>
-                    <img src="{{url('landing/assets/contacto.png')}}" alt="" style="position: absolute; bottom: 0; right: 0; width: 100%">
+                    <img src="{{url('landing/assets/contacto.png')}}" alt="Imagen agente contacto" style="position: absolute; bottom: 0; right: 0; width: 100%" alt="Icono email">
                 </div>
                 <div class="text-center">
                     <br>
                     <span style="background-color: #2c60aa; border-radius: 4px; display: inline-block; width: 32px; margin: auto 20px;">
-                        <a target="_blank" data-v-7b4478c1="" href="https://www.linkedin.com/company/86028193/admin/" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/linkedin.png" style="padding: 4px; width: 100%"></a>
+                        <a target="_blank" data-v-7b4478c1="" href="https://www.linkedin.com/company/86028193/admin/" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/linkedin.png" style="padding: 4px; width: 100%" alt="Icono Linkedin"></a>
                     </span>
                     <span style="background-color: #2c60aa; border-radius: 4px; display: inline-block; width: 32px; margin: auto 20px;">
-                        <a target="_blank" data-v-7b4478c1="" href="mailto:info@dividae.com" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/mail.png" style="padding: 4px; width: 100%"></a>
+                        <a target="_blank" data-v-7b4478c1="" href="mailto:info@dividae.com" aria-current="page" class="router-link-exact-active router-link-active"><img data-v-7b4478c1="" src="{{url('landing')}}/assets/mail.png" style="padding: 4px; width: 100%" alt="Icono email"></a>
                     </span>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                     <div style="background-color: #f8fafc; padding: 8px 0;">
                         <div class="row">
                             <div class="col-4 text-center" style="border-right: 1px solid silver;">
-                                <img src="{{url('landing/assets/grafico-ilustraciones-simulador.png')}}" alt="" style="width: 60%;">
+                                <img src="{{url('landing/assets/grafico-ilustraciones-simulador.png')}}" alt="Ilustracion simulador viabilidad deuda" style="width: 60%;">
                             </div>
                             <div class="col-1"></div>
                             <div class="col-7">

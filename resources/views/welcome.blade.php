@@ -204,26 +204,26 @@
                     <div data-v-66372912="" class="block-CMO-FUNCIONA"><a data-v-66372912="" href="#como-funciona"
                             class="CMO-FUNCIONA"><img data-v-66372912=""
                                 src="{{ url('landing') }}/assets/icons-arrow-down.png"
-                                class="iconsarrow-down img-fluid"></a></div>
+                                class="iconsarrow-down img-fluid" alt="Icono flecha"></a></div>
 
                     <nav data-v-5fddf304="" data-v-66372912="" class="navbar navbar-expand-lg navbar-dark">
                         <div data-v-5fddf304="" class="container"><a data-v-5fddf304="" href="" aria-current="page"
                                 class="navbar-brand router-link-exact-active router-link-active" style="">
                                 <div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304=""
                                         src="{{ url('landing') }}/assets/grafico-logo-positivo.png"
-                                        class="graficologonegativo"></div>
+                                        class="graficologonegativo" alt="Logotipo Dividae"></div>
                             </a> <a data-v-5fddf304="" href="" aria-current="page"
                                 class="navbar-brand router-link-exact-active router-link-active" style="display: none;">
                                 <div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304=""
                                         src="{{ url('landing') }}/assets/grafico-logo-positivo.png"
-                                        class="graficologonegativo"></div>
+                                        class="graficologonegativo" alt="Logotipo Dividae"></div>
                             </a> <button data-v-5fddf304="" type="button" data-toggle="collapse"
                                 data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                                 aria-label="Toggle navigation" class="navbar-toggler">
 
                                 <span data-v-5fddf304=""
                                     class="navbar-toggler-icon" style="color: #333">
-                                        <img src="https://icon-library.com/images/burger-menu-icon/burger-menu-icon-4.jpg" alt="" style="width: 100%;">
+                                        <img src="https://icon-library.com/images/burger-menu-icon/burger-menu-icon-4.jpg" alt="Icono menu" style="width: 100%;">
                                     </span>
 
                                 </button>
@@ -298,7 +298,7 @@
                                                 Reg&iacute;strate
                                                 <img data-v-66372912=""
                                                     src="{{ url('landing') }}/assets/icons-arrow-right.png"
-                                                    class="iconsarrow-right img-fluid"></span></a></div>
+                                                    class="iconsarrow-right img-fluid" alt="Icono flecha"></span></a></div>
 
                                 </div>
                             </div>
@@ -346,7 +346,7 @@
                 {{-- Floating social bar --}}
                 <div data-v-66372912="" id="pagetop" data-toggle="modal" data-target="#consulta-viabilidad" class="fixed right bottom" style="display: none-;">
                     <div class="floating-social-bar">
-                        <img src="{{ url('landing') }}/assets/group.png">
+                        <img src="{{ url('landing') }}/assets/group.png" alt="Icono reclamacion viable">
                         <span>¿Quieres saber si tu reclamación es viable?</span>
                         <button>Comprobar</button>
                     </div>
@@ -377,7 +377,7 @@
 
                         <!-- Trigger/Open The Modal -->
                         <button id="videoBtn">
-                            <img src="{{ url('landing') }}/assets/portada_video_dividae.png" style="max-width:100%;">
+                            <img src="{{ url('landing') }}/assets/portada_video_dividae.png" style="max-width:100%;" alt="Icono portada video">
                         </button>
 
                         <!-- The Modal -->
@@ -413,7 +413,7 @@
                             <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
                                         src="{{ url('landing') }}/assets/icon-large-justicia.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                        class="iconlargejusticia img-thumbnails img-fluid" alt="Icono plataforma digital"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Plataforma 100% Digital</b>
@@ -424,7 +424,7 @@
                             <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
                                         src="{{ url('landing') }}/assets/icon-large-digital.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                        class="iconlargejusticia img-thumbnails img-fluid" alt="Icono seguridad juridica"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Máxima seguridad Jurídica</b>
@@ -435,7 +435,7 @@
                             <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
                                         src="{{ url('landing') }}/assets/icon-large-seguridad.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                        class="iconlargejusticia img-thumbnails img-fluid" alt="Icono experiencia"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Experiencia Contrastada</b>
@@ -446,7 +446,7 @@
                             <div data-v-43503c2a="" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div data-v-43503c2a="" class="Recovery-img"><img data-v-43503c2a=""
                                         src="{{ url('landing') }}/assets/icon-large-justicia.png"
-                                        class="iconlargejusticia img-thumbnails img-fluid"></div>
+                                        class="iconlargejusticia img-thumbnails img-fluid" alt="Icono transparencia"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
                                         <b>Transparente</b>
@@ -681,16 +681,16 @@
                                 <div id="testimonios" class="owl-carousel owl-theme">
 
                                     <div>
-                                        <a href = "https://avae.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avae.png"></a>
+                                        <a href = "https://avae.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avae.png" alt="Icono Avae"></a>
                                     </div>
                                     <div>
-                                        <a href = "https://avecal.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avecal.png"></a>
+                                        <a href = "https://avecal.es/" target="_blank"><img src="{{ url('landing') }}/assets/logo_avecal.png" alt="Icono Avecal"></a>
                                     </div>
                                     <div>
-                                        <a href = "https://www.gestorestoledo.org/" target="_blank"><img src="{{ url('landing') }}/assets/logo_toledo.png"></a>
+                                        <a href = "https://www.gestorestoledo.org/" target="_blank"><img src="{{ url('landing') }}/assets/logo_toledo.png" alt="Icono Gestores Toledo"></a>
                                     </div>
                                     <div>
-                                        <a href = "https://gestoresextremadura.com/" target="_blank"><img src="{{ url('landing') }}/assets/logo_extremadura.png"></a>
+                                        <a href = "https://gestoresextremadura.com/" target="_blank"><img src="{{ url('landing') }}/assets/logo_extremadura.png" alt="Icono Gestores Extremadura"></a>
                                     </div>
 
                                 </div>

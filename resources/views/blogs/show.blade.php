@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="blog-image">
-                            <img src="{{URL::asset('storage/'.$blog->image_post)}}">
+                            <img src="{{URL::asset('storage/'.$blog->image_post)}}" alt="Imagen principal del post">
                         </div>
 
                         <div class="blog-body">
