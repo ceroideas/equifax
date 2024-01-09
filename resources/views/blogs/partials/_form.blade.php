@@ -138,7 +138,7 @@
                 <span class="float-left">(1) Título limitado a 30 caracteres</span>
             </div>
             <div class="row">
-                <span class="float-left">(2) Resumen limitado a 150 caracteres</span>
+                <span class="float-left">(2) Resumen limitado a 150 caracteres (Incluido HTML)</span>
             </div>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
             <a href="{{ url('/blogs') }}"><x-adminlte-button class="btn-flat btn-sm float-right" type="button" label="Volver" theme="default" icon="fas fa-lg fa-arrow"/></a>
