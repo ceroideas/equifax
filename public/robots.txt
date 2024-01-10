@@ -12,3 +12,4 @@ Disallow: /blog/{{url('/')}}
 Disallow: /landing/plugins/owl/js/owl.carousel.js
 Disallow: /landing/app_quental.css
 Disallow: /landing/app.css
+Sitemap: https://dividae.com/sitemap.xml
