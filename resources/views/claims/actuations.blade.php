@@ -122,7 +122,7 @@
                         <div class="form-group">
                             <label for="actuation_date">Fecha de la actuaci&oacute;n</label>
                             @php
-                                $config = ['format' => 'DD-MM-YYYY'];
+                                $config = ['format' => 'DD-MM-YYYY HH:ss'];
                             @endphp
                             <x-adminlte-input-date name="actuation_date" id="actuation_date" :config="$config" required/>
                         </div>

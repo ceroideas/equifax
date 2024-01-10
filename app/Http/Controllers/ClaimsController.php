@@ -876,18 +876,17 @@ class ClaimsController extends Controller
 
     public function saveActuation(Request $r,$id)
     {
+
         $a = new Actuation;
         $a->claim_id = $id;
         $a->amount = $r->amount;
         $a->description = $r->description;
-        //dump($r->subject);  //3003
 
-        //$path = public_path().'/uploads/actuations/' . $a->id . '/documents/';
-        //$pathStorage = '/uploads/actuations/' . $a->id . '/documents/';
+
         if($r->subject == null){
+
             /* Buscamos el debt_id */
             $claim = Claim::find($id);
-
             $a->subject = 30049;
             $a->actuation_date = date('Y-m-d H:i:s');
             $a->type = null;
