@@ -2,7 +2,7 @@
 
 @php( $login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login') )
 @php( $register_url = View::getSection('register_url') ?? config('adminlte.register_url', 'register') )
-{{-- {!! RecaptchaV3::initJs() !!} --}}
+{!! RecaptchaV3::initJs() !!}
 @if (config('adminlte.use_route_url', false))
     @php( $login_url = $login_url ? route($login_url) : '' )
     @php( $register_url = $register_url ? route($register_url) : '' )
@@ -58,7 +58,7 @@
     </style>
     <form action="{{ $register_url }}" method="post">
         @csrf
-        {{-- {!! RecaptchaV3::field('register') !!} --}}
+
 
         {{-- Name field --}}
         <div class="input-group mb-3">
@@ -207,8 +207,8 @@
             </span>
         @enderror
         </div>
-
-        <div class="g-recaptcha" data-sitekey="6Lc50S0pAAAAACO3NJHxuCTgvhLTsLmpjxld7qro"></div>
+        {!! RecaptchaV3::field('register') !!}
+        {{-- <div class="g-recaptcha" data-sitekey="6Lc50S0pAAAAACO3NJHxuCTgvhLTsLmpjxld7qro"></div> --}}
 
         {{-- Register button --}}
         <div class="col-12 text-center">
