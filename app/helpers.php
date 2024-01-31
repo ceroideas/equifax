@@ -512,7 +512,13 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
 
         $document->save();
         // totalizamos documento
-        totalDocument($typeDocument, $idDocument);
+
+        /*dump($typeDocument);  // invoice
+        dump($document->tipfac);
+        dump($idDocument);  // 6 falta la serie
+        dd("Antes de totalizar documento");*/
+
+        totalDocument($typeDocument, $document->tipfac, $idDocument);
         // Fin generacion de documento
 
     }else{
@@ -794,7 +800,7 @@ function addLineDocument($typeDocument, $idDocument, $articulo, $tasa=0, $cantid
 }
 
 /* Esta funcion totaliza los documentos, resultado de la suma de las lineas de detalle */
-function totalDocument($typeDocument, $idDocument){
+function totalDocument($typeDocument, $serie, $idDocument){
 
     if($typeDocument == 'order'){
 
@@ -825,7 +831,10 @@ function totalDocument($typeDocument, $idDocument){
 
     }else{
 
-        $lDocuments = Linvoice::where('invoice_id', $idDocument)->get();
+        $lDocuments = Linvoice::where('tiplin', $serie )
+                            ->where('invoice_id', $idDocument)
+                            ->get();
+
 
         list($total21, $total10, $total4, $total0) = array(0,0,0,0);
         foreach($lDocuments as $lDocument){
@@ -845,9 +854,16 @@ function totalDocument($typeDocument, $idDocument){
                     break;
             }
         }
-        $document = Invoice::find($idDocument);
+
+        //$document = Invoice::find($idDocument);
+        $document = Invoice::where('tipfac', $serie )
+                            ->where('id', $idDocument)
+                            ->get();
+
+
         // Obtenemos el descuento del usuario asociado a documento
-        $user = User::find($document->user_id);
+
+        $user = User::find($document[0]->user_id);
     }
 
     // Totalizamos
