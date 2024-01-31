@@ -513,11 +513,6 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
         $document->save();
         // totalizamos documento
 
-        /*dump($typeDocument);  // invoice
-        dump($document->tipfac);
-        dump($idDocument);  // 6 falta la serie
-        dd("Antes de totalizar documento");*/
-
         totalDocument($typeDocument, $document->tipfac, $idDocument);
         // Fin generacion de documento
 
