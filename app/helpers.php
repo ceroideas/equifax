@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\Lorder;
 use App\Models\Configuration;
 use App\Models\User;
+use App\Models\Participant;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -419,7 +420,20 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
             case 'EXT-001':
                 $document->type = 'fixed_fees';
                 $document->description = $c->extra_concept;
-                addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $user->discount,$id_hito);
+
+                $participant = Participant::where('email', Auth::user()->email)->first();
+
+                if($participant && $participant->available == 1){
+
+                    $participant->available=0;
+                    $participant->save();
+                    addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, 100,$id_hito);
+
+                }else{
+                    addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $user->discount,$id_hito);
+                }
+
+
                 break;
 
             case 'JUD-001':
@@ -509,6 +523,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
 
                 break;
             }
+
 
         $document->save();
         // totalizamos documento
@@ -850,8 +865,9 @@ function totalDocument($typeDocument, $serie, $idDocument){
             }
         }
 
-        //$document = Invoice::find($idDocument);
-        $document = Invoice::where('tipfac', $serie )
+        //$document1 = Invoice::find($idDocument);   // App/Models/Invoice
+
+        $document = Invoice::where('tipfac', $serie )   //Illuminate/DataBase/Elloquent/Collection
                             ->where('id', $idDocument)
                             ->get();
 
@@ -864,64 +880,67 @@ function totalDocument($typeDocument, $serie, $idDocument){
     // Totalizamos
     if($typeDocument=='order'){
         // Neto
-        $document->net1ord = $total21;
-        $document->net2ord = $total10;
-        $document->net3ord = $total4;
-        $document->net4ord = $total0;
+        $document[0]->net1ord = $total21;
+        $document[0]->net2ord = $total10;
+        $document[0]->net3ord = $total4;
+        $document[0]->net4ord = $total0;
         // Descuento porcentaje e importe
         // Se obtiene de
-        $document->pdto1ord = $user->discount;
-        $document->pdto2ord = $user->discount;
-        $document->pdto3ord = $user->discount;
-        $document->pdto4ord = $user->discount;
+        $document[0]->pdto1ord = $user->discount;
+        $document[0]->pdto2ord = $user->discount;
+        $document[0]->pdto3ord = $user->discount;
+        $document[0]->pdto4ord = $user->discount;
         // el descuento se aplica directo a linea de detalle
-        //$document->idto1ord = round(($document->net1ord * ($document->pdto1ord / 100)),2);
+        //$document[0]->idto1ord = round(($document[0]->net1ord * ($document[0]->pdto1ord / 100)),2);
         // Bases
-        $document->bas1ord = $total21;
-        $document->bas2ord = $total10;
-        $document->bas3ord = $total4;
-        $document->bas4ord = $total0;
+        $document[0]->bas1ord = $total21;
+        $document[0]->bas2ord = $total10;
+        $document[0]->bas3ord = $total4;
+        $document[0]->bas4ord = $total0;
         //%iva  TODO: optimizar, para traerlo de tabla de configuracion, unificando cfgs y configurations
-        $document->piva1ord = 21;
-        $document->piva2ord = 10;
-        $document->piva3ord = 4;
-        $document->iiva1ord = round(($document->bas1ord*($document->piva1ord/100)),2);
-        $document->iiva2ord = round(($document->bas2ord*($document->piva2ord/100)),2);
-        $document->iiva3ord = round(($document->bas3ord*($document->piva3ord/100)),2);
+        $document[0]->piva1ord = 21;
+        $document[0]->piva2ord = 10;
+        $document[0]->piva3ord = 4;
+        $document[0]->iiva1ord = round(($document[0]->bas1ord*($document[0]->piva1ord/100)),2);
+        $document[0]->iiva2ord = round(($document[0]->bas2ord*($document[0]->piva2ord/100)),2);
+        $document[0]->iiva3ord = round(($document[0]->bas3ord*($document[0]->piva3ord/100)),2);
         // Totalizamos
-        $document->totord = ($document->bas1ord+$document->bas2ord+$document->bas3ord+$document->bas4ord+$document->iiva1ord+$document->iiva2ord+$document->iiva3ord);
-        $document->amount=$document->totord;
+        $document[0]->totord = ($document[0]->bas1ord+$document[0]->bas2ord+$document[0]->bas3ord+$document[0]->bas4ord+$document[0]->iiva1ord+$document[0]->iiva2ord+$document[0]->iiva3ord);
+        $document[0]->amount=$document[0]->totord;
+
 
     }else{
         // Neto
-        $document->net1fac = $total21;
-        $document->net2fac = $total10;
-        $document->net3fac = $total4;
-        $document->net4fac = $total0;
+        $document[0]->net1fac = $total21;
+        $document[0]->net2fac = $total10;
+        $document[0]->net3fac = $total4;
+        $document[0]->net4fac = $total0;
         // Descuento porcentaje e importe
-        $document->pdto1fac = $user->discount;
-        $document->pdto2fac = $user->discount;
-        $document->pdto3fac = $user->discount;
-        $document->pdto4fac = $user->discount;
+        $document[0]->pdto1fac = $user->discount;
+        $document[0]->pdto2fac = $user->discount;
+        $document[0]->pdto3fac = $user->discount;
+        $document[0]->pdto4fac = $user->discount;
         // el descuento se aplica directo a linea de detalle
-        // $document->idto1fac = round(($document->net1fac * ($document->pdto1fac / 100)),2);
+        // $document[0]->idto1fac = round(($document[0]->net1fac * ($document[0]->pdto1fac / 100)),2);
         // Bases
-        $document->bas1fac = $total21;
-        $document->bas2fac = $total10;
-        $document->bas3fac = $total4;
-        $document->bas4fac = $total0;
+        $document[0]->bas1fac = $total21;
+        $document[0]->bas2fac = $total10;
+        $document[0]->bas3fac = $total4;
+        $document[0]->bas4fac = $total0;
         //%iva  TODO: optimizar, para traerlo de tabla de configuracion, unificando cfgs y configurations
-        $document->piva1fac = 21;
-        $document->piva2fac = 10;
-        $document->piva3fac = 4;
-        $document->iiva1fac = round(($document->bas1fac*($document->piva1fac/100)),2);
-        $document->iiva2fac = round(($document->bas2fac*($document->piva2fac/100)),2);
-        $document->iiva3fac = round(($document->bas3fac*($document->piva3fac/100)),2);
+        $document[0]->piva1fac = 21;
+        $document[0]->piva2fac = 10;
+        $document[0]->piva3fac = 4;
+        $document[0]->iiva1fac = round(($document[0]->bas1fac*($document[0]->piva1fac/100)),2);
+        $document[0]->iiva2fac = round(($document[0]->bas2fac*($document[0]->piva2fac/100)),2);
+        $document[0]->iiva3fac = round(($document[0]->bas3fac*($document[0]->piva3fac/100)),2);
         // Totalizamos
-        $document->totfac = ($document->bas1fac+$document->bas2fac+$document->bas3fac+$document->bas4fac+$document->iiva1fac+$document->iiva2fac+$document->iiva3fac);
-        $document->amount=$document->totfac;
+        $document[0]->totfac = ($document[0]->bas1fac+$document[0]->bas2fac+$document[0]->bas3fac+$document[0]->bas4fac+$document[0]->iiva1fac+$document[0]->iiva2fac+$document[0]->iiva3fac);
+        $document[0]->amount=$document[0]->totfac;
     }
-    $document->save();
+
+    $document[0]->save();
+
 
 }
 
