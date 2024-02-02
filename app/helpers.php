@@ -510,6 +510,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
                 break;
             }
 
+
         $document->save();
         // totalizamos documento
 
@@ -850,8 +851,9 @@ function totalDocument($typeDocument, $serie, $idDocument){
             }
         }
 
-        //$document = Invoice::find($idDocument);
-        $document = Invoice::where('tipfac', $serie )
+        //$document1 = Invoice::find($idDocument);   // App/Models/Invoice
+
+        $document = Invoice::where('tipfac', $serie )   //Illuminate/DataBase/Elloquent/Collection
                             ->where('id', $idDocument)
                             ->get();
 
@@ -921,7 +923,9 @@ function totalDocument($typeDocument, $serie, $idDocument){
         $document->totfac = ($document->bas1fac+$document->bas2fac+$document->bas3fac+$document->bas4fac+$document->iiva1fac+$document->iiva2fac+$document->iiva3fac);
         $document->amount=$document->totfac;
     }
-    $document->save();
+
+    $document[0]->save();
+
 
 }
 
