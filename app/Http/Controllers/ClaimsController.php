@@ -724,7 +724,10 @@ class ClaimsController extends Controller
         if(Auth::user()->isClient() || Auth::user()->isAssociate() ||Auth::user()->isGestor()){
             $invoices = Auth::user()->invoices;
         }elseif(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance()){
-            $invoices = Invoice::all();
+            //$invoices = Invoice::all();
+
+            $invoices = Invoice::where('tipfac', 'regexp', '^[0-9]+$')->get();
+
         }else{
             $invoices = Invoice::whereExists(function($q){
                 $q->from('claims')

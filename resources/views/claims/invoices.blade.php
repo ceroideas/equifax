@@ -56,8 +56,8 @@
         $config = [
 
             'columns' => [null,null, null, null, null, null, null, null, null, null, ['orderable' => false]],
-            'order'=>[[0,'asc'],[1,'desc']],
-            'pageLength' => 25,
+            'order'=>[[0,'desc'],[1,'desc']],
+            'pageLength' => 50,
             'language' => ['url' => '/js/datatables/dataTables.spanish.json']
         ];
     }
