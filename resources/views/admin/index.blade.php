@@ -611,25 +611,12 @@
                             </a>
                         </div>
                     </div>
-
-
-
                 </div>
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
-
-        </div>
-        <div class="row">
-
-
-
-
-
         </div>
     @endif
-
-
 @stop
 
 @section('js')
@@ -650,21 +637,51 @@
     new Chart(ctx, {
         type: 'bar',
         data: {
-        labels: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre'],
+        //labels: ['{{\Carbon\Carbon::now()->subMonths(12)->format('F')}}', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre','Enero','Febrero', 'Marzo', 'Abril', 'Mayo'],
+         labels: [
+                   '{{ \Carbon\Carbon::now()->subMonths(12)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(11)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(10)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(9)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(8)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(7)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(6)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(5)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(4)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(3)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(2)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->subMonths(1)->format('F') }}',
+                   '{{ \Carbon\Carbon::now()->format('F') }}'
+                ],
         datasets: [{
             label: 'Usuarios registrados por mes',
-            data: [ {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','01')->count()}},
-                    {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','02')->count()}},
-                    {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','03')->count()}},
-                    {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','04')->count()}},
-                    {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','05')->count()}},
-                    {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','06')->count()}},
+            /* data: [ {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','06')->count()}},
                     {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','07')->count()}},
                     {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','08')->count()}},
                     {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','09')->count()}},
                     {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','10')->count()}},
                     {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','11')->count()}},
-                    {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','12')->count()}}
+                    {{App\Models\user::whereYear('created_at','2023')->whereMonth('created_at','12')->count()}},
+                    {{App\Models\user::whereYear('created_at','2024')->whereMonth('created_at','01')->count()}},
+                    {{App\Models\user::whereYear('created_at','2024')->whereMonth('created_at','02')->count()}},
+                    {{App\Models\user::whereYear('created_at','2024')->whereMonth('created_at','03')->count()}},
+                    {{App\Models\user::whereYear('created_at','2024')->whereMonth('created_at','04')->count()}},
+                    {{App\Models\user::whereYear('created_at','2024')->whereMonth('created_at','05')->count()}},
+                ], */
+                data:[
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(12)->year)->whereMonth('created_at',now()->subMonths(12)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(11)->year)->whereMonth('created_at',now()->subMonths(11)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(10)->year)->whereMonth('created_at',now()->subMonths(10)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(9)->year)->whereMonth('created_at',now()->subMonths(9)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(8)->year)->whereMonth('created_at',now()->subMonths(8)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(7)->year)->whereMonth('created_at',now()->subMonths(7)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(6)->year)->whereMonth('created_at',now()->subMonths(6)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(5)->year)->whereMonth('created_at',now()->subMonths(5)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(4)->year)->whereMonth('created_at',now()->subMonths(4)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(3)->year)->whereMonth('created_at',now()->subMonths(3)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(2)->year)->whereMonth('created_at',now()->subMonths(2)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->subMonths(1)->year)->whereMonth('created_at',now()->subMonths(1)->month)->count()}},
+                        {{App\Models\user::whereYear('created_at',now()->year)->whereMonth('created_at',now()->month)->count()}},
                 ],
             borderWidth: 1
         }]
