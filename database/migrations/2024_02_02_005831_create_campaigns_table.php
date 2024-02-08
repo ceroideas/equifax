@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('type')->default(1);
             $table->string('name')->nullable();
+            $table->integer('discount_type')->nullable();
             $table->integer('discount')->nullable();
             $table->string('prefix')->nullable();
             $table->timestamp('init_date')->nullable();

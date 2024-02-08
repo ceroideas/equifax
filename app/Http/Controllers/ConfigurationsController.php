@@ -9,6 +9,9 @@ use Carbon\Carbon;*/
 use App\Models\Hito;
 use App\Models\Template;
 use App\Models\DiscountCode;
+use App\Models\Campaign;
+use App\Models\Participant;
+
 use Auth;
 
 
@@ -485,4 +488,94 @@ class ConfigurationsController extends Controller
     {
         return $id;
     }
+
+    public function participants()
+    {
+        $participants = Participant::all();
+
+        return view('participants.index',compact('participants'));
+    }
+
+    public function createParticipants($id = null){
+
+        $participant = Participant::find($id);
+
+        return view('participants.create', compact('participant'));
+    }
+
+    public function updateParticipants(Request $r, $id)
+    {
+        $p = Participant::find($id);
+        $p->campaign_id = $r->campaign_id;
+        $p->email = $r->email;
+        $p->nombre = $r->nombre;
+        $p->updated_at = now();
+        $p->save();
+
+        return redirect('configurations/participants')->with('msj','Se ha guardado la información del participante');
+    }
+
+    public function saveParticipants(Request $r)
+    {
+        $p = new Participant;
+        $p->created_at = now();
+        $p->available = 1;
+        $p->campaign_id = $r->campaign_id;
+        $p->email = $r->email;
+        $p->nombre = $r->nombre;
+        $p->updated_at = now();
+        $p->save();
+
+        return redirect('configurations/participants')->with('msj','Se ha guardado la información del participante');
+    }
+
+    public function campaigns()
+    {
+        $campaigns = Campaign::all();
+
+        return view('campaigns.index',compact('campaigns'));
+    }
+
+    public function createCampaigns($id = null){
+
+        $campaign = Campaign::find($id);
+
+        return view('campaigns.create', compact('campaign'));
+    }
+
+    public function updateCampaigns(Request $r, $id)
+    {
+        $c = Campaign::find($id);
+        $c->type = $r->type;
+        $c->name = $r->name;
+        $c->discount_type = $r->discount_type;
+        $c->discount = $r->discount;
+        $c->claim_code = $r->claim_code;
+        $c->prefix = $r->prefix;
+        $c->init_date = $r->init_date;
+        $c->end_date = $r->end_date;
+        $c->all_users = $r->all_users;
+        $c->save();
+
+        return redirect('configurations/campaigns')->with('msj','Se ha guardado la información de la campaña');
+    }
+
+    public function saveCampaigns(Request $r)
+    {
+        $c = new Campaign;
+        $c->type = $r->type;
+        $c->name = $r->name;
+        $c->discount_type = $r->discount_type;
+        $c->discount = $r->discount;
+        $c->claim_code = $r->claim_code;
+        $c->prefix = $r->prefix;
+        $c->init_date = $r->init_date;
+        $c->end_date = $r->end_date;
+        $c->all_users = $r->all_users;
+        $c->save();
+
+        return redirect('configurations/campaigns')->with('msj','Se ha guardado la información de la campaña');
+    }
+
+
 }

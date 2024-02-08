@@ -412,6 +412,18 @@ return [
                     'can' => 'superadmin',
                     'url'  => '/configurations/discount-codes',
                 ],
+                [
+                    'text' => 'Campañas',
+                    'icon' => '',
+                    'can' => 'superadmin',
+                    'url'  => '/configurations/campaigns',
+                ],
+                [
+                    'text' => 'Participantes de campañas',
+                    'icon' => '',
+                    'can' => 'superadmin',
+                    'url'  => '/configurations/participants',
+                ],
 
             ],
         ],

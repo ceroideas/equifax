@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
-            $table->integer('campaing_id')->nullable();
+            $table->integer('campaign_id')->nullable();
             $table->string('email');
             $table->string('nombre')->nullable();
             $table->integer('available')->default(1);
