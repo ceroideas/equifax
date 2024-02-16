@@ -27,7 +27,7 @@
 
         <div class="row">
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group">
                     <x-adminlte-input name="id" label="Id de Campaña" placeholder="Id Campaña" type="text"
                     igroup-size="sm" enable-old-support="true" value="{{ isset($campaign) ? $campaign->id : ''}}" disabled>
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
 
                 <x-adminlte-select2 id="type" name="type" igroup-size="sm" enable-old-support="true" label="Tipo campaña">
                     <option {{isset($campaign->type) ? ($campaign->type==0?'selected':''): ''}} value=1>Sorteo</option>
@@ -43,7 +43,15 @@
                 </x-adminlte-select2>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <x-adminlte-input name="referenced" label="Referencia" placeholder="Referencia" type="text"
+                    igroup-size="sm" enable-old-support="true" value="{{ isset($campaign) ? $campaign->referenced : ''}}">
+                    </x-adminlte-input>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
                 <div class="form-group">
                     <x-adminlte-input name="name" label="Nombre" placeholder="Nombre" type="text"
                     igroup-size="sm" enable-old-support="true" value="{{ isset($campaign) ? $campaign->name : ''}}">
@@ -57,7 +65,7 @@
 
             <div class="col-sm-4">
                 <x-adminlte-select2 id="discount_type" name="discount_type" igroup-size="sm" enable-old-support="true" label="Tipo de descuento">
-                    <option {{isset($campaign->discount_type) ? ($campaign->discount_type==NULL?'selected':''): ''}} value=NULL></option>
+                    {{-- <option {{isset($campaign->discount_type) ? ($campaign->discount_type==NULL?'selected':''): ''}} value=NULL></option> --}}
                     <option {{isset($campaign->discount_type) ? ($campaign->discount_type==1?'selected':''): ''}} value=1>Porcentaje</option>
                     <option {{isset($campaign->discount_type) ? ($campaign->discount_type==2?'selected':''): ''}} value=2>Importe</option>
                 </x-adminlte-select2>
@@ -144,8 +152,8 @@
 
             <div class="col-sm-3">
                 <x-adminlte-select2 id="all_users" name="all_users" igroup-size="sm" enable-old-support="true" label="Todos los usuarios">
-                    <option {{isset($campaign->all_users) ? ($campaign->all_users==0?'selected':''): ''}} value=0>No</option>
-                    <option {{isset($campaign->all_users) ? ($campaign->all_users==1?'selected':''): ''}} value=1>Si</option>
+                    <option {{isset($campaign->all_users) ? ($campaign->all_users==0?'selected':''): ''}} value=0>No (Lista participantes)</option>
+                    <option {{isset($campaign->all_users) ? ($campaign->all_users==1?'selected':''): ''}} value=1>Si, cualquier usuario</option>
                 </x-adminlte-select2>
             </div>
 

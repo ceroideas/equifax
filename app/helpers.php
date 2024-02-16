@@ -13,6 +13,7 @@ use App\Models\Lorder;
 use App\Models\Configuration;
 use App\Models\User;
 use App\Models\Participant;
+use App\Models\Campaign;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -367,7 +368,12 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 }
 
 function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0, $id_hito=NULL){
-    // Necesitamos el tipo de documento
+
+    if(file_exists('testing/orders_invoices.txt')){
+        $file = fopen('testing/orders_invoices.log', 'a');
+        fwrite($file, date("d/m/Y H:i:s").'-'.'Testing Helper::addDocument '.PHP_EOL);
+        fwrite($file, date("d/m/Y H:i:s").'-'.$typeDocument.'-'.$articulo.'-'.$gestoria_id.PHP_EOL);
+    }
     if($typeDocument == 'order'){
         $idDocument = maxId('orders','id');
     }elseif($typeDocument == 'REC'){
@@ -396,7 +402,6 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
         // Siempre se factura en nombre del owner
         $claim = Claim::find($claim_id);
 
-        // Asignamos el documento siempre a nombre del
         if($articulo == 'mensual'){
             $user = User::find($gestoria_id);
         }else{
@@ -416,23 +421,130 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
 
         // Lineas de detalle, probamos enviar mas de una
 
+        // Buscamos caracteristicas de campañas
+        // buscamos campaña
+            // buscamos si es para todos
+                // buscamos descuento si aplica
+
+
+
+
         switch($articulo){
             case 'EXT-001':
                 $document->type = 'fixed_fees';
                 $document->description = $c->extra_concept;
 
-                $participant = Participant::where('email', Auth::user()->email)->first();
+/*********************************************************/
 
-                if($participant && $participant->available == 1){
+                $campaign = Campaign::where('type', 1)
+                                ->where('claim_code','EXT-001')
+                                ->whereDate('init_date', '<=', Carbon::now()->format('Y-m-d H:i:s'))
+                                ->whereDate('end_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
+                                ->first();
+                if(file_exists('testing/orders_invoices.txt')){
+                    $file = fopen('testing/orders_invoices.log', 'a');
+                    if($campaign){
+                        fwrite($file, date("d/m/Y H:i:s").'-'.'Hay campaña (1) todos los usuarios (0) solo de la lista: '.$campaign->all_users.PHP_EOL);
+                    }
+                }
+                if($campaign){
+                    if(file_exists('testing/orders_invoices.txt')){
+                        $file = fopen('testing/orders_invoices.log', 'a');
+                        fwrite($file, date("d/m/Y H:i:s").'-'.'Hay campaña, tipo de descuento: '.$campaign->discount_type.PHP_EOL);
+                    }
+                    // Buscamos el tipo de descuento
+                    if($campaign->discount_type !=NULL){
+                        if(file_exists('testing/orders_invoices.txt')){
+                            $file = fopen('testing/orders_invoices.log', 'a');
+                            fwrite($file, date("d/m/Y H:i:s").'-'.'Hay campaña, el descuento no es null es: '.$campaign->discount_type.PHP_EOL);
+                        }
+                        // Descuento por porcentaje
+                        if($campaign->discount_type ==1){
+                            $discount = $campaign->discount;
+                        }else{
+                            // Descuento monetario calcular el porcentaje
+                            if(file_exists('testing/orders_invoices.txt')){
+                                $file = fopen('testing/orders_invoices.log', 'a');
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Hay campaña, el descuento es por importe: '.$campaign->discount.PHP_EOL);
+                            }
 
-                    $participant->available=0;
-                    $participant->save();
-                    addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, 100,$id_hito);
+                            if(Auth::user()->isGestor()||Auth::user()->isAssociate()){
+                                $discount = round((($campaign->discount*100) / floatval($c->fixed_fees_dto)),2);
+
+
+
+                            }else{
+                                $discount = round((($campaign->discount*100) / floatval($c->fixed_fees)),2);
+                            }
+                            if(file_exists('testing/orders_invoices.txt')){
+                                $file = fopen('testing/orders_invoices.log', 'a');
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Hay campaña, el descuento es por importe porcentaje: '.$discount.PHP_EOL);
+                            }
+                        }
+
+
+                    }else{
+                        if(file_exists('testing/orders_invoices.txt')){
+                            $file = fopen('testing/orders_invoices.log', 'a');
+                            fwrite($file, date("d/m/Y H:i:s").'-'.'Hay campaña, No hay descuento es null: '.PHP_EOL);
+                        }
+                        $discount = 0;
+                    }
+
+
+                    if(file_exists('testing/orders_invoices.txt')){
+                        $file = fopen('testing/orders_invoices.log', 'a');
+                        fwrite($file, date("d/m/Y H:i:s").'-'.'Hay campaña, Sale de comprobar el descuento debe entrar en $campaign->all_users: '.$campaign->all_users.PHP_EOL);
+                    }
+
+
+                    if($campaign->all_users == 1){
+                        if(file_exists('testing/orders_invoices.txt')){
+                            $file = fopen('testing/orders_invoices.log', 'a');
+                            fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento de campaña para todos los usuarios'.PHP_EOL);
+                        }
+                        addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $discount,$id_hito);
+                    }else{
+
+                        if(file_exists('testing/orders_invoices.txt')){
+                            $file = fopen('testing/orders_invoices.log', 'a');
+                            fwrite($file, date("d/m/Y H:i:s").'-'.'Campaña solo para unos usuarios, busca si este participa:'.$user->email.PHP_EOL);
+                        }
+
+                        $participants = Participant::where('email',$user->email)
+                                                    ->where('available',1)
+                                                    ->where('campaign_id',$campaign->id)
+                                                    ->first();
+
+                        if($participants){
+
+                            if(file_exists('testing/orders_invoices.txt')){
+                                $file = fopen('testing/orders_invoices.log', 'a');
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento de campaña para solo el usuario '.$user->email.PHP_EOL);
+                            }
+                            addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $discount,$id_hito);
+                            $participants->available = 0;
+                            $participants->save();
+
+                        }else{
+                            if(file_exists('testing/orders_invoices.txt')){
+                                $file = fopen('testing/orders_invoices.log', 'a');
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento el usuario: '.$user->email.' no participa en la campaña'.PHP_EOL);
+                            }
+                            addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $user->discount,$id_hito);
+                        }
+                    }
 
                 }else{
+                    if(file_exists('testing/orders_invoices.txt')){
+                        $file = fopen('testing/orders_invoices.log', 'a');
+                        fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento No hay campaña '.PHP_EOL);
+                    }
                     addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $user->discount,$id_hito);
                 }
 
+
+/*********************************************************/
 
                 break;
 
@@ -518,7 +630,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
 
 
                     }else{
-                        print_r("No hay lineas de detalle en pedidos");
+                        echo "No hay lineas de detalle en pedidos";
                     }
 
                 break;
@@ -880,34 +992,35 @@ function totalDocument($typeDocument, $serie, $idDocument){
     // Totalizamos
     if($typeDocument=='order'){
         // Neto
-        $document[0]->net1ord = $total21;
-        $document[0]->net2ord = $total10;
-        $document[0]->net3ord = $total4;
-        $document[0]->net4ord = $total0;
+        $document->net1ord = $total21;
+        $document->net2ord = $total10;
+        $document->net3ord = $total4;
+        $document->net4ord = $total0;
         // Descuento porcentaje e importe
         // Se obtiene de
-        $document[0]->pdto1ord = $user->discount;
-        $document[0]->pdto2ord = $user->discount;
-        $document[0]->pdto3ord = $user->discount;
-        $document[0]->pdto4ord = $user->discount;
+        $document->pdto1ord = $user->discount;
+        $document->pdto2ord = $user->discount;
+        $document->pdto3ord = $user->discount;
+        $document->pdto4ord = $user->discount;
         // el descuento se aplica directo a linea de detalle
         //$document[0]->idto1ord = round(($document[0]->net1ord * ($document[0]->pdto1ord / 100)),2);
         // Bases
-        $document[0]->bas1ord = $total21;
-        $document[0]->bas2ord = $total10;
-        $document[0]->bas3ord = $total4;
-        $document[0]->bas4ord = $total0;
+        $document->bas1ord = $total21;
+        $document->bas2ord = $total10;
+        $document->bas3ord = $total4;
+        $document->bas4ord = $total0;
         //%iva  TODO: optimizar, para traerlo de tabla de configuracion, unificando cfgs y configurations
-        $document[0]->piva1ord = 21;
-        $document[0]->piva2ord = 10;
-        $document[0]->piva3ord = 4;
-        $document[0]->iiva1ord = round(($document[0]->bas1ord*($document[0]->piva1ord/100)),2);
-        $document[0]->iiva2ord = round(($document[0]->bas2ord*($document[0]->piva2ord/100)),2);
-        $document[0]->iiva3ord = round(($document[0]->bas3ord*($document[0]->piva3ord/100)),2);
+        $document->piva1ord = 21;
+        $document->piva2ord = 10;
+        $document->piva3ord = 4;
+        $document->iiva1ord = round(($document->bas1ord*($document->piva1ord/100)),2);
+        $document->iiva2ord = round(($document->bas2ord*($document->piva2ord/100)),2);
+        $document->iiva3ord = round(($document->bas3ord*($document->piva3ord/100)),2);
         // Totalizamos
-        $document[0]->totord = ($document[0]->bas1ord+$document[0]->bas2ord+$document[0]->bas3ord+$document[0]->bas4ord+$document[0]->iiva1ord+$document[0]->iiva2ord+$document[0]->iiva3ord);
-        $document[0]->amount=$document[0]->totord;
+        $document->totord = ($document->bas1ord+$document->bas2ord+$document->bas3ord+$document->bas4ord+$document->iiva1ord+$document->iiva2ord+$document->iiva3ord);
+        $document->amount=$document->totord;
 
+        $document->save();
 
     }else{
         // Neto
@@ -937,9 +1050,18 @@ function totalDocument($typeDocument, $serie, $idDocument){
         // Totalizamos
         $document[0]->totfac = ($document[0]->bas1fac+$document[0]->bas2fac+$document[0]->bas3fac+$document[0]->bas4fac+$document[0]->iiva1fac+$document[0]->iiva2fac+$document[0]->iiva3fac);
         $document[0]->amount=$document[0]->totfac;
+
+        if($document[0]->totfac==0){
+            $document[0]->status=1;
+            $document[0]->payment_date = now();
+            //añadir actuaciones
+            actuationActions("-1",$document[0]->claim_id);
+        }
+
+        $document[0]->save();
     }
 
-    $document[0]->save();
+
 
 
 }

@@ -547,6 +547,7 @@ class ConfigurationsController extends Controller
     {
         $c = Campaign::find($id);
         $c->type = $r->type;
+        $c->referenced = $r->referenced;
         $c->name = $r->name;
         $c->discount_type = $r->discount_type;
         $c->discount = $r->discount;
@@ -564,6 +565,7 @@ class ConfigurationsController extends Controller
     {
         $c = new Campaign;
         $c->type = $r->type;
+        $c->referenced = $r->referenced;
         $c->name = $r->name;
         $c->discount_type = $r->discount_type;
         $c->discount = $r->discount;

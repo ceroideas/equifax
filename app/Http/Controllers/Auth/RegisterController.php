@@ -7,12 +7,17 @@ use App\Models\DiscountCode;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Template;
+use App\Models\Campaign;
+use App\Models\Participant;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Auth;
 use Mail;
+
+use Carbon\Carbon;
+
 
 class RegisterController extends Controller
 {
@@ -104,12 +109,37 @@ class RegisterController extends Controller
         }
 
         /*Asignacion participacion sorteos*/
-        //$user->campaign = '326' . rand(1000,9999);
+        $campaign = Campaign::where('type', 0)
+                       ->whereDate('init_date', '<=', Carbon::now()->format('Y-m-d H:i:s'))
+                       ->whereDate('end_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
+                       ->first();
+        $notificacion =0;
+        if($campaign){
+            // Buscamos si participan todos los usuarios
+            if($campaign->all_users ==1){
 
+                $user->campaign = $campaign->prefix . rand(1000,99999);
+                $notificacion = 1;
+            }else{
+
+                $participants = Participant::where('email',$user->email)->first();
+
+                if($participants){
+                    $user->campaign = $campaign->prefix . rand(1000,99999);
+                    $participants->available = 0;
+                    $participants->save();
+                    $notificacion = 1;
+                }
+            }
+
+        }
 
        $user->save();
 
        addNotification('Nuevo usuario', 'Nuevo usuario registrado', 0,$user->id);
+       if($notificacion==1){
+            addNotification('Nueva participación sorteo', 'Nueva participación asignada', 0,$user->id);
+       }
 
 
 

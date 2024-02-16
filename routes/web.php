@@ -279,7 +279,7 @@ Route::group([
     Route::get('info/{id}', [ClaimsController::class, 'info']);
 });
 
-Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
+Route::get('excel-invoice/{serie}/{id}', [ClaimsController::class, 'excelInvoice']);
 Route::get('loadActuations/{phase}', [ClaimsController::class, 'loadActuations']);
 Route::get('getPopulation/{code}', [UsersController::class, 'getPopulation']);
 Route::get('addCountEmail/{id}', [ClaimsController::class, 'addCountEmail']);

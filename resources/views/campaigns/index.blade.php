@@ -27,6 +27,7 @@
     $heads = [
     	'Id',
         'Tipo',
+        'Referencia',
         'Nombre',
         'Tipo de descuento',
         'Descuento',
@@ -40,7 +41,7 @@
 
     $config = [
 
-        'columns' => [null, null, null, null, null, null,null, null, null, null, ['orderable' => false]],
+        'columns' => [null, null, null, null, null, null, null,null, null, null, null, ['orderable' => false]],
         'order'=>[[0,'asc']],
         'pageLength' => 25,
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
@@ -63,6 +64,7 @@
                 <tr>
                     <td>{{ $campaign->id }}</td>
                     <td>{{ $campaign->type==0?'Sorteo':'Descuento' }}</td>
+                    <td>{{ $campaign->referenced }}</td>
                     <td>{{ $campaign->name }}</td>
                     <td>{{ isset($campaign->discount_type)?($campaign->discount_type==1?'Porcentaje':'Importe'):'' }}</td>
                     <td>{{ $campaign->discount }} {{ isset($campaign->discount_type)?($campaign->discount_type==1?'%':'€'):''  }}</td>

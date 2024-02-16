@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{asset('invoice.css')}}">
 <link href="{{url('landing')}}/app.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
-<title>Factura {{$i->id}}</title>
+<title>Factura {{$i->tipfac}}/{{$i->id}}</title>
 <div class="container-fluid">
 
 	<div class="container invoice-container">
@@ -165,7 +165,7 @@
 	  <p class="text-1"><strong>NOTA:</strong> Este es un documento generado por electrónicamente y no requiere firma física.</p>
 	  <div class="btn-group btn-group-sm d-print-none"> <a href="javascript:window.print()" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-print"></i> Imprimir</a></div>
 
-	  <div class="btn-group btn-group-sm d-print-none"> <a href="{{url('excel-invoice',$i->id)}}" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-file-excel"></i> Descargar XLSX</a></div>
+	  <div class="btn-group btn-group-sm d-print-none"> <a href="{{url('excel-invoice/'.$i->tipfac.'/'.$i->id)}}" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-file-excel"></i> Descargar factura en XLSX </a></div>
 	  </footer>
 	</div>
 </div>
