@@ -13,6 +13,7 @@ use App\Models\Hito;
 use App\Models\DebtDocument;
 use App\Models\Agreement;
 use App\Models\Invoice;
+use App\Models\Campaign;
 
 use App\Models\Actuation;
 use App\Models\Configuration;
@@ -319,13 +320,15 @@ class ClaimsController extends Controller
 
         addNotification('Nueva reclamación', 'Nueva reclamación registrada en Dividae', $claim->id,0);
 
-        if(isset(Auth::user()->referenced)&& Auth::user()->referenced=='FEDETO'){
-            Auth::user()->campaign = '33' . rand(10000,99999);
-            //Auth::user()->discount = 100;
-            Auth::user()->save();
-
-            addNotification('Nueva participación sorteo', 'Nueva participacion FEDETO asignada', $claim->id,Auth::user()->id);
-        }
+        /*
+        if(isset(Auth::user()->referenced)){
+            $campaign = Campaign::where('referenced', Auth::user()->referenced )->first();
+            if($campaign){
+                Auth::user()->campaign = $campaign->prefix . rand(10000,99999);
+                Auth::user()->save();
+                addNotification('Nueva participación sorteo', 'Nueva participacion FEDETO asignada', $claim->id,Auth::user()->id);
+            }
+        }*/
 
 
         if (Auth::user()->isGestor()) {
@@ -1057,9 +1060,9 @@ class ClaimsController extends Controller
         return Excel::download(new ClaimsExport(1), 'claims_finished-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
     }
 
-    public function excelInvoice($id)
+    public function excelInvoice($serie, $id)
     {
-        return Excel::download(new InvoiceExport($id), 'invoice-id_'.$id.'-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        return Excel::download(new InvoiceExport($serie,$id), 'invoice-id_'.$serie.'-'.$id.'-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
     public function invoicesExport()

@@ -232,6 +232,18 @@ Route::group([
     Route::get('/discount-codes/{id}/edit', [ConfigurationsController::class, 'createDiscountCodes']);
     Route::post('/discount-codes/save', [ConfigurationsController::class, 'saveDiscountCodes']);
     Route::post('/discount-codes/{id}/update', [ConfigurationsController::class, 'updateDiscountCodes']);
+
+    Route::get('/participants', [ConfigurationsController::class, 'participants']);
+    Route::get('/participants/create', [ConfigurationsController::class, 'createParticipants']);
+    Route::get('/participants/{id}/edit', [ConfigurationsController::class, 'createParticipants']);
+    Route::post('/participants/save', [ConfigurationsController::class, 'saveParticipants']);
+    Route::post('/participants/{id}/update', [ConfigurationsController::class, 'updateParticipants']);
+    Route::get('/campaigns', [ConfigurationsController::class, 'campaigns']);
+    Route::get('/campaigns/create', [ConfigurationsController::class, 'createCampaigns']);
+    Route::get('/campaigns/{id}/edit', [ConfigurationsController::class, 'createCampaigns']);
+
+    Route::post('/campaigns/save', [ConfigurationsController::class, 'saveCampaigns']);
+    Route::post('/campaigns/{id}/update', [ConfigurationsController::class, 'updateCampaigns']);
 });
 
 Route::group([
@@ -267,7 +279,7 @@ Route::group([
     Route::get('info/{id}', [ClaimsController::class, 'info']);
 });
 
-Route::get('excel-invoice/{id}', [ClaimsController::class, 'excelInvoice']);
+Route::get('excel-invoice/{serie}/{id}', [ClaimsController::class, 'excelInvoice']);
 Route::get('loadActuations/{phase}', [ClaimsController::class, 'loadActuations']);
 Route::get('getPopulation/{code}', [UsersController::class, 'getPopulation']);
 Route::get('addCountEmail/{id}', [ClaimsController::class, 'addCountEmail']);

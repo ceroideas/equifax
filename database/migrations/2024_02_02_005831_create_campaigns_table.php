@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->integer('type')->default(1);
+            $table->string('referenced')->nullable();
             $table->string('name')->nullable();
+            $table->integer('discount_type')->nullable();
             $table->integer('discount')->nullable();
             $table->string('prefix')->nullable();
             $table->timestamp('init_date')->nullable();

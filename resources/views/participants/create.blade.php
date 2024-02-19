@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Registro hitos')
+@section('title', 'Registro participantes')
 
 @section('plugins.Summernote', true)
 
@@ -10,12 +10,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Registro Hitos</h1>
+                <h1>Registro participantes</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/panel/claims')}}">Reclamaciones</a></li>
-                    <li class="breadcrumb-item active">Registro Hitos</li>
+                    <li class="breadcrumb-item"><a href="{{url('/panel')}}">Panel</a></li>
+                    <li class="breadcrumb-item active">Registro participantes</li>
                 </ol>
             </div>
         </div>
@@ -23,5 +23,5 @@
 @stop
 
 @section('content')
-   @include('hitos.partials._form')
+   @include('participants.partials._form')
 @stop

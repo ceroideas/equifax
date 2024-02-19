@@ -551,7 +551,7 @@
                             </div>
                             <div data-v-e047c7bc="" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6">
                                 <p data-v-e047c7bc="" class="estadisticas-title">+240.000</p>
-                                <p data-v-e047c7bc="" class="estadisticas-text">Procedmiientos en gestión</p>
+                                <p data-v-e047c7bc="" class="estadisticas-text">Procedmientos en gestión</p>
                             </div>
                         </div>
                     </div>
