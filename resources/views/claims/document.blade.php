@@ -1,8 +1,7 @@
 @switch($doc->type)
     @case('factura')
         <div>
-        	<a href="#modal-factura-{{$idx}}" data-toggle="modal">FACTURA</a>
-
+        	<a href="#modal-factura-{{$idx}}" data-toggle="modal">FACTURA {{$h[key($h)]['ndoc_factura']}}</a>
         	<hr>
         	<div class="modal fade" id="modal-factura-{{$idx}}">
         		<div class="modal-dialog">
@@ -51,7 +50,7 @@
 
         @case('factura_rectificativa')
         <div>
-        	<a href="#modal-factura_rectificativa-{{$idx}}" data-toggle="modal">FACTURA RECTIFICATIVA</a>
+        	<a href="#modal-factura_rectificativa-{{$idx}}" data-toggle="modal">FACTURA RECTIFICATIVA {{$h[key($h)]['ndoc_factura']}}</a>
 
         	<hr>
         	<div class="modal fade" id="modal-factura_rectificativa-{{$idx}}">
@@ -101,7 +100,7 @@
 
     @case('albaran')
         <div>
-        	<a href="#modal-albaran-{{$idx}}" data-toggle="modal">ALBARÁN</a>
+        	<a href="#modal-albaran-{{$idx}}" data-toggle="modal">ALBARÁN {{$h[key($h)]['ndoc_albaran']}}</a>
 
         	<hr>
         	<div class="modal fade" id="modal-albaran-{{$idx}}">
