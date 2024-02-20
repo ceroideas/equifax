@@ -95,11 +95,13 @@ Route::group([
     'middleware'=>'auth'
 ], function(){
     Route::get('/', [ClaimsController::class, 'index']);
-    Route::get('/invalid-debtor', [ClaimsController::class, 'invalidDebtor']);
+    //Route::get('/invalid-debtor', [ClaimsController::class, 'invalidDebtor']);
     Route::get('/create', [ClaimsController::class, 'create']);
+    Route::get('/status-claim', [ClaimsController::class, 'statusClaim']);
+    Route::get('/select-claim', [ClaimsController::class, 'selectClaim']);
     Route::get('/select-type', [ClaimsController::class, 'selectType']);
     Route::get('/select-client', [ClaimsController::class, 'stepOne']);
-    Route::get('/select-debtor', [ClaimsController::class, 'stepTwo']);
+    //Route::get('/select-debtor', [ClaimsController::class, 'stepTwo']);
     Route::get('/create-debt', [ClaimsController::class, 'stepThree']);
     Route::get('/check-debtor', [ClaimsController::class, 'stepFour']);
     Route::get('/check-agreement', [ClaimsController::class, 'stepFive']);

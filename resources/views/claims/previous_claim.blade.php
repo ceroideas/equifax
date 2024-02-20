@@ -12,7 +12,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item"><a href="{{url('/')}}/claims">Reclamaciones</a></li>
-                    <li class="breadcrumb-item active">Nueva Reclamac&oacute;n</li>
+                    <li class="breadcrumb-item active">Reclamaciones previas</li>
                 </ol>
             </div>
         </div>
@@ -22,7 +22,6 @@
 @section('content')
 
     @include('progressbar', ['step' => 1])
-    {{-- @include('users.partials._form') --}}
     @if(session()->has('claim_client') || session()->has('claim_third_party'))
         <x-adminlte-alert theme="primary">
             <span> Tu elecci&oacute;n actual es: {{ (session('claim_client')) ? 'SI' : 'Reclamación a nombre de un tercero'}}</span>
@@ -33,21 +32,16 @@
             <span> {{ session('msj') }} {{ session('type_claim')=='1' ? 'Judicial' :'Extrajudicial'}}</span>
         </x-adminlte-alert>
     @endif
-
-    @if(session()->has('claim_tmp_id'))
-        <span>{{session('claim_tmp_id')}}</span>
-    @endif
-
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <h1>¿Reclama en nombre del usuario registrado?</h1>
+                <h2>Existen reclamaciones incompletas, ¿deseas continuar alguna de las reclamaciones previas?</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12 text-center">
-                <button class="btn btn-flat btn-success question-button" href="{{ url('claims/save-option-one') }}">SI</button>
-                <button class="btn btn-flat btn-danger question-button" href="{{ url('claims/clear-option-one') }}">NO</button>
+                <button class="btn btn-flat btn-success question-button" href="{{ url('claims/select-claim') }}">SI </button>
+                <button class="btn btn-flat btn-danger question-button" href="{{ url('claims/select-type') }}">NO (Reclamación nueva)</button>
             </div>
         </div>
     </x-adminlte-card>

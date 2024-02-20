@@ -61,6 +61,9 @@
         <span>Para utilizar un deudor, inicia un proceso de reclamación</span>
         </x-adminlte-alert>
     @endif
+    @if(session()->has('claim_tmp_id'))
+        <span>{{session('claim_tmp_id')}}</span>
+    @endif
 
     @if(Auth::user()->isSuperadmin()||Auth::user()->isClient()||Auth::user()->isGestor()||Auth::user()->isAssociate())
         <a href="{{ url('/debtors/create/') }}"><x-adminlte-button class="btn-flat btn-sm float-top bg-orange " style="color: white !important; font-size: 16px;" type="button" label="Añadir los datos del deudor" icon="fas fa-lg fa-pencil"/></a>

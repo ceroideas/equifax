@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class claim_tmp extends Model
+class Claim_tmp extends Model
 {
     use HasFactory;
 }

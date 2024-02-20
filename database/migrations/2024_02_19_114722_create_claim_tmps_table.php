@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('claim_type')->nullable();
             $table->foreignid('third_parties_id')->nullable();
+            $table->string('debt_type')->nullable();
+            $table->string('debt_type_description')->nullable();
+            $table->string('concurso')->nullable();
             $table->foreignid('debt_tmp_id')->nullable();
             $table->foreignid('debtor_id')->nullable();
             $table->foreignid('user_id')->nullable();

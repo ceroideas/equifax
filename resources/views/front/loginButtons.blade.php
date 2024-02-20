@@ -40,7 +40,7 @@
         }
 	</style>
 	@if (Auth::check())
-		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('claims/select-type')}}" class="btn btn-nueva"><span data-v-5fddf304="" class="btn-text-acceso">
+		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('claims/status-claim')}}" class="btn btn-nueva"><span data-v-5fddf304="" class="btn-text-acceso">
 	        Nueva Reclamación
             <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right" alt="Icono flecha">
 	        </span></a></div>
