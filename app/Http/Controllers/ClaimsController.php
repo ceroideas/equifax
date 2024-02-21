@@ -6,14 +6,14 @@ use App\Models\Claim;
 use App\Models\User;
 use App\Models\ThirdParty;
 use App\Models\Debtor;
-use App\Models\Debt;
+//use App\Models\Debt;
 use App\Models\SendEmail;
-use App\Models\Template;
-use App\Models\Hito;
+//use App\Models\Template;
+//use App\Models\Hito;
 use App\Models\DebtDocument;
-use App\Models\Agreement;
+//use App\Models\Agreement;
 use App\Models\Invoice;
-use App\Models\Campaign;
+//use App\Models\Campaign;
 use App\Models\Claim_tmp;
 use App\Models\Actuation;
 use App\Models\Configuration;
@@ -23,7 +23,6 @@ use Illuminate\Http\Request;
 use Auth;
 use Storage;
 use Carbon\Carbon;
-
 
 use Excel;
 use Mail;
@@ -126,7 +125,7 @@ class ClaimsController extends Controller
             session()->forget('claim_tmp_id');
 
 
-            /* Comprobamos si el usuario se dejo una reclamacion previa */
+            /* Comprobamos si el usuario se dejo una reclamacion inconclusa */
             $claimTmp = Claim_tmp::where('owner_id',Auth::User()->id)
                                     ->where('status','!=',0)
                                     ->get();
@@ -142,7 +141,6 @@ class ClaimsController extends Controller
 
     }
 
-
     public function selectClaim(){
         $claimTmps = Claim_tmp::where('owner_id',Auth::User()->id)
             ->where('status','!=',0)
@@ -155,48 +153,7 @@ class ClaimsController extends Controller
 
         return view('claims.select_type');
 
-        /*if(Auth::user()->dni && Auth::user()->phone && Auth::user()->cop){
-
-
-            $rutatemp = 'public/temporal/debts/'.Auth::user()->id;
-            $ficheros = Storage::AllFiles($rutatemp);
-
-            if($ficheros){
-                Storage::deleteDirectory($rutatemp);
-            }
-
-            session()->forget('other_user');
-            session()->forget('claim_client');
-            session()->forget('claim_third_party');
-            session()->forget('claim_debtor');
-            session()->forget('claim_debt');
-            session()->forget('debt_step_one');
-            session()->forget('debt_step_two');
-            session()->forget('debt_step_three');
-            session()->forget('claim_agreement');
-            session()->forget('type_other');
-            session()->forget('documentos');
-            session()->forget('type_claim');
-
-
-            //return view('claims.create_step_1');
-        return view('claims.select_type');
-        }
-        return redirect('users/'.Auth::id())->with('msj','¡Estás a un paso de decir adiós a las facturas impagadas! Antes de realizar una nueva reclamación, deberás completar tu perfil.');*/
-
-
     }
-
-    /*public function stepTwo(){
-
-        return redirect('debtors');
-
-        if(session()->has('claim_client') || (session()->has('claim_third_party') && session()->get('claim_third_party') != 'waiting')){
-            return view('claims.create_step_2');
-        }
-
-        return redirect('claims/select-client');
-    }*/
 
     public function stepThree()
     {
@@ -257,8 +214,14 @@ class ClaimsController extends Controller
      */
     public function store(Request $request)
     {
+
         $claim = new Claim();
         $tasa = 0;
+
+        $claimTmp = Claim_tmp::where('id',session('claim_tmp_id'))
+                                ->first();
+        $claimTmp->status = 0;
+        $claimTmp->save();
 
         if (Auth::user()->isGestor()) {
             $claim->gestor_id = Auth::id();
@@ -306,7 +269,6 @@ class ClaimsController extends Controller
         }
 
         /************* Inicio creacion de documento (Order / Invoice ) ***************/
-
             if(session('type_claim')==1){
                 $claim->claim_type = 1;
 
@@ -349,7 +311,6 @@ class ClaimsController extends Controller
             }
 
         /*********** Fin generacion de factura *****************/
-
         $debt->save();
         $claim->save();
 
@@ -370,20 +331,7 @@ class ClaimsController extends Controller
             $debtd->save();
         }
 
-
-
         addNotification('Nueva reclamación', 'Nueva reclamación registrada en Dividae', $claim->id,0);
-
-        /*
-        if(isset(Auth::user()->referenced)){
-            $campaign = Campaign::where('referenced', Auth::user()->referenced )->first();
-            if($campaign){
-                Auth::user()->campaign = $campaign->prefix . rand(10000,99999);
-                Auth::user()->save();
-                addNotification('Nueva participación sorteo', 'Nueva participacion FEDETO asignada', $claim->id,Auth::user()->id);
-            }
-        }*/
-
 
         if (Auth::user()->isGestor()) {
 
@@ -408,7 +356,6 @@ class ClaimsController extends Controller
             }
         }
 
-
         /* Enviamos el cobro a Wannme*/
         $control = randomchar();
         $response = addPayment($claim, $debt, $control);
@@ -427,7 +374,6 @@ class ClaimsController extends Controller
                 fclose($file);
             }
         }
-
 
         $request->session()->forget('other_user');
         $request->session()->forget('claim_client');
@@ -457,7 +403,6 @@ class ClaimsController extends Controller
 
         }
 
-
     }
 
     /**
@@ -486,10 +431,10 @@ class ClaimsController extends Controller
      * @param  \App\Models\Claim  $claim
      * @return \Illuminate\Http\Response
      */
-    public function edit(Claim $claim)
+    /*public function edit(Claim $claim)
     {
         //
-    }
+    }*/
 
     public function viable(Claim $claim,$id = null)
     {
@@ -595,10 +540,10 @@ class ClaimsController extends Controller
      * @param  \App\Models\Claim  $claim
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Claim $claim)
+    /*public function update(Request $request, Claim $claim)
     {
 
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -606,17 +551,18 @@ class ClaimsController extends Controller
      * @param  \App\Models\Claim  $claim
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Claim $claim)
+    /*public function destroy(Claim $claim)
     {
 
-    }
-
+    }*/
 
     public function saveTypeClaim(Request $request){
         $request->session()->put('type_claim', $request->id);
-        /* Almacenamos la eleccion de reclamacion */
         $claimTmp = new Claim_tmp;
         $claimTmp->owner_id = Auth::id();
+        if (Auth::user()->isGestor()) {
+            $claimTmp->gestor_id = Auth::id();
+        }
         $claimTmp->status = 1;
         $claimTmp->claim_type = $request->id;
         $claimTmp->save();
@@ -633,10 +579,9 @@ class ClaimsController extends Controller
 
         $claimTmp = Claim_tmp::where('id',session('claim_tmp_id'))
                             ->first();
-
+        $claimTmp->status = 2;
         $claimTmp->user_id = Auth::id();
         $claimTmp->save();
-
 
         $this->flushOptionTwo();
 
@@ -644,12 +589,16 @@ class ClaimsController extends Controller
 
     }
 
-
     public function saveOptionTwo(Request $request){
 
         $request->session()->forget('claim_client');
         $request->session()->put('claim_third_party', $request->id);
 
+        $claimTmp = Claim_tmp::where('id',session('claim_tmp_id'))
+                                ->first();
+        $claimTmp->third_parties_id = $request->id;
+        $claimTmp->status = 2;
+        $claimTmp->save();
 
         return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
@@ -659,9 +608,14 @@ class ClaimsController extends Controller
 
         $request->session()->put('claim_debtor', $request->id);
 
-        return redirect('debts/create/step-one');
+        $claimTmp = Claim_tmp::where('id',session('claim_tmp_id'))
+                            ->first();
 
-        return redirect('/claims/create-debt')->with('msj', 'Se ha guardado tu respuesta correctamente');
+        $claimTmp->debtor_id = $request->id;
+        $claimTmp->status = 4;
+        $claimTmp->save();
+
+        return redirect('debts/create/step-one');
 
     }
 
@@ -669,6 +623,12 @@ class ClaimsController extends Controller
 
         $request->session()->forget('claim_client');
         $request->session()->put('claim_third_party', 'waiting');
+
+        /*$claimTmp = Claim_tmp::where('id',session('claim_tmp_id'))
+                            ->first();
+
+        $claimTmp->user_id = Auth::id();
+        $claimTmp->save();*/
 
         return redirect('/third-parties')->with('msj', 'Se ha guardado tu respuesta correctamente');
 
@@ -678,17 +638,6 @@ class ClaimsController extends Controller
         request()->session()->forget('claim_third_party');
     }
 
-    /*public function invalidDebtor(Request $request){
-
-        $request->session()->forget('claim_client');
-        $request->session()->forget('claim_debtor');
-        $request->session()->forget('claim_debt');
-        $request->session()->forget('debt_step_one');
-        $request->session()->forget('debt_step_two');
-
-        return redirect('/panel')->with('alert', 'Lo sentimos este tipo de deudas no podemos reclamarlas a través de Dividae.');
-    }*/
-
     public function refuseAgreement(){
         if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three')){
 
@@ -696,6 +645,12 @@ class ClaimsController extends Controller
             $debt->agreement = false;
             Session()->put('claim_debt', $debt);
             Session()->put('claim_agreement', 'false');
+
+            $claimTmp = Claim_tmp::where('id',session('claim_tmp_id'))
+                        ->first();
+
+            $claimTmp->status = 6;
+            $claimTmp->save();
 
             return redirect('claims/accept-terms');
         }
@@ -1187,15 +1142,19 @@ class ClaimsController extends Controller
         if($r->deuda_extra){
             $claimTmp->debt_type_description = $r->deuda_extra;
         }
+
         $claimTmp->save();
 
         if ($r->concurso == 1){
             $message = 'Lo sentimos no podemos reclamar una deuda de un deudor en concurso de acreedores';
+
         }elseif($r->tipo_deuda >= 12){
             $message = 'Lo sentimos, dadas las características de tu deuda no podemos tramitarla.
             Nos pondremos en contacto contigo para ampliarte información y poder ofrecerte alternativas';
+
         }else{
             $message='';
+
         }
         if ($r->concurso == 1 || $r->tipo_deuda >= 12) {
             $r->session()->forget('claim_client');
@@ -1205,6 +1164,9 @@ class ClaimsController extends Controller
             $r->session()->forget('debt_step_two');
             $r->session()->forget('claim_tmp_id');
 
+            $claimTmp->status = 0;
+            $claimTmp->save();
+
             return redirect('/panel')->with('alert', $message);
         }
 
@@ -1212,6 +1174,8 @@ class ClaimsController extends Controller
         session()->put('tipo_deuda',$r->tipo_deuda);
         session()->put('deuda_extra',$r->deuda_extra);
 
+        $claimTmp->status = 3;
+        $claimTmp->save();
         //return redirect('claims/select-debtor');
         return redirect('debtors');
     }
@@ -1448,7 +1412,5 @@ class ClaimsController extends Controller
 
         return redirect('info/'.$claim_id)->with('msj', 'Continuamos con la reclamación');
     }
-
-
 
 }

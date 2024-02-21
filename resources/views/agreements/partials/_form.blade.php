@@ -3,14 +3,15 @@
 </x-adminlte-alert> --}}
 
 @if(session()->has('msj'))
-<x-adminlte-alert theme="success" dismissable>
-    {{ session('msj') }}
-</x-adminlte-alert>
+    <x-adminlte-alert theme="success" dismissable>
+        {{ session('msj') }}
+    </x-adminlte-alert>
 @endif
+
 @if(session()->has('alert'))
-<x-adminlte-alert theme="warning" dismissable>
-{{ session('alert') }}
-</x-adminlte-alert>
+    <x-adminlte-alert theme="warning" dismissable>
+        {{ session('alert') }}
+    </x-adminlte-alert>
 @endif
 
 <style>
@@ -78,14 +79,6 @@
                     <option {{ session('claim_agreement') ? (session('claim_agreement')->wait == '12 Meses' ? 'selected' : '') : ''}}>12 Meses</option>
                     <option {{ session('claim_agreement') ? (session('claim_agreement')->wait == 'Más 12 Meses' ? 'selected' : '') : ''}}>Más 12 Meses</option>
                 </x-adminlte-select>
-                {{-- <x-adminlte-input name="espera" label="Espera *" placeholder="Esperas" type="text" class=""
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_agreement') ? session('claim_agreement')->wait : ''}}">
-                <x-slot name="appendSlot">
-                    <div class="input-group-text bg-dark">
-                        <i class="fas fa-address-"></i>
-                    </div>
-                </x-slot>
-                </x-adminlte-input> --}}
             </div>
         </div>
         <div class="row">

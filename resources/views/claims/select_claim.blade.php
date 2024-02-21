@@ -25,7 +25,9 @@
 {{-- Configuración del componente para el datatable --}}
     @php
     $heads = [
+        'Id',
     	'Fecha registro',
+        'Fase',
         'Tipo',
         'Reclamación propia',
         'Tipo deuda',
@@ -35,8 +37,8 @@
 
     $config = [
 
-        'columns' => [null, null, null, null, ['orderable' => false]],
-        'order'=>[[0,'asc']],
+        'columns' => [null,null, null, null, null, null, null,['orderable' => false]],
+        'order'=>[[0,'desc']],
         'pageLength' => 25,
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
@@ -54,7 +56,9 @@
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
 			@foreach($claimTmps as $claimTmp)
 				<tr>
-					<td>{{ Carbon\Carbon::parse($claimTmp->updated_at)->format('d/m/Y - H:i:s') }}</td>
+					<td>{{ $claimTmp->id }}</td>
+                    <td>{{ Carbon\Carbon::parse($claimTmp->updated_at)->format('d/m/Y - H:i:s') }}</td>
+                    <td>{{ $claimTmp->status }}</td>
 					<td>{{ isset($claimTmp->claim_type)?($claimTmp->claim_type==1?'Judicial':'Extrajudicial'):'' }}</td>
 					<td>{{ isset($claimTmp->third_parties_id)?'Tercero':'Propia' }}</td>
                     <td>{{ isset($claimTmp->debt_type)? $claimTmp->debt_type:'' }}</td>

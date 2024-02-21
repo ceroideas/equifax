@@ -22,13 +22,18 @@
 @section('content')
 
 
-   @include('progressbar', ['step' => 4])
+    @include('progressbar', ['step' => 4])
 
-   @if(session()->has('msj'))
-   <x-adminlte-alert theme="success" dismissable>
-       <span> {{ session('msj') }}</span>
-   </x-adminlte-alert>
-   @endif
+    @if(session()->has('msj'))
+        <x-adminlte-alert theme="success" dismissable>
+            <span> {{ session('msj') }}</span>
+        </x-adminlte-alert>
+    @endif
+
+    @if(session()->has('claim_tmp_id'))
+        <span>{{session('claim_tmp_id')}}</span>
+    @endif
+
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
       <div class="row">
         <div class="col-sm-12 text-center">

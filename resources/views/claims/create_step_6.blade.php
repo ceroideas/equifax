@@ -74,6 +74,10 @@
     </x-adminlte-alert>
     @endif
 
+    @if(session()->has('claim_tmp_id'))
+        <span>{{session('claim_tmp_id')}}</span>
+    @endif
+
     {{-- @dd(session('claim_debt')) --}}
 
     <x-adminlte-card header-class="d-none text-center" theme="orange" theme-mode="outline">

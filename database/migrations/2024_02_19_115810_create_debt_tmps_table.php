@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('motivo_reclamacion_previa')->nullable();
             $table->string('agreement')->nullable();
             $table->text('others')->nullable();
-            $table->foreignid('debtor_id');
+            $table->foreignid('debtor_id')->nullable();;
             $table->foreignid('claim_tmp_id')->nullable();
             $table->foreignid('agreement_tmp_id')->nullable();
 
