@@ -122,9 +122,9 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                             $target = url('/info'.$tmp->id);
                             break;
                         case 2:
-                            if($o->referenced =='FEDETO'){
+                            /*if($o->referenced =='FEDETO'){
                                 $sorteo = "Estas participando en el sorteo FEDETO, tu número de participación es: ".$o->campaign;
-                            }
+                            }*/
                         case 6:
                         case 11:
                             $target = url('/panel');
@@ -230,25 +230,32 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
                             $a->invoice_id = $idFactura;
                             $a->save();
 
-                            //Enviamos factura a cobro
-                            $control = randomchar();
-                            $response = addPayment($claim, $claim->debt, $control);
-
-
-                            if($response['statusCode']==1){
-
-                                $claim->last_invoice->payurlfac = $response['url'];
-                                $claim->last_invoice->ctrlfac = $control;
-                                $claim->last_invoice->save();
-
+                            /* Comprobamos si la factura esta pagada*/
+                            $invoice = Invoice::find($idFactura);
+                            if(isset($invoice) && $invoice->amount!=0){
                                 if(file_exists('testing/wannme.txt')){
                                     $file = fopen('testing/wannme.log', 'a');
-                                    fwrite($file, date("d/m/Y H:i:s").'-'.'Grabamos URL en factura en helper: '.$claim->last_invoice->id.PHP_EOL);
-                                    fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
+                                    fwrite($file, date("d/m/Y H:i:s").'-'.'Añadimos un pago a Wannme de factura: '.$claim->last_invoice->id.PHP_EOL);
                                     fclose($file);
                                 }
-                            }
+                                $control = randomchar();
+                                $response = addPayment($claim, $claim->debt, $control);
 
+
+                                if($response['statusCode']==1){
+
+                                    $claim->last_invoice->payurlfac = $response['url'];
+                                    $claim->last_invoice->ctrlfac = $control;
+                                    $claim->last_invoice->save();
+
+                                    if(file_exists('testing/wannme.txt')){
+                                        $file = fopen('testing/wannme.log', 'a');
+                                        fwrite($file, date("d/m/Y H:i:s").'-'.'Grabamos URL en factura en helper: '.$claim->last_invoice->id.PHP_EOL);
+                                        fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
+                                        fclose($file);
+                                    }
+                                }
+                            }
                         }
                     }
 				}
@@ -436,7 +443,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
 
 /*********************************************************/
 
-                $campaign = Campaign::where('type', 1)
+                $campaign = Campaign::where('type', 2)
                                 ->where('claim_code','EXT-001')
                                 ->whereDate('init_date', '<=', Carbon::now()->format('Y-m-d H:i:s'))
                                 ->whereDate('end_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
