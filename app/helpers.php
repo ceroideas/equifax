@@ -436,7 +436,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
 
 /*********************************************************/
 
-                $campaign = Campaign::where('type', 1)
+                $campaign = Campaign::where('type', 2)
                                 ->where('claim_code','EXT-001')
                                 ->whereDate('init_date', '<=', Carbon::now()->format('Y-m-d H:i:s'))
                                 ->whereDate('end_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
