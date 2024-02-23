@@ -16,11 +16,6 @@
     {{ session('alert') }}
     </x-adminlte-alert>
 @endif
-
-@if(session()->has('claim_tmp_id'))
-    <span>{{session('claim_tmp_id')}}</span>
-@endif
-
 <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline" body-class="" title="Registro de Deuda - Datos de la Deuda">
 
     <form action="{{ url('/debts/step-one/save') }}" method="POST" enctype="multipart/form-data">

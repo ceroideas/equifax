@@ -63,7 +63,7 @@
             @foreach($campaigns as $campaign)
                 <tr>
                     <td>{{ $campaign->id }}</td>
-                    <td>{{ $campaign->type==0?'Sorteo':'Descuento' }}</td>
+                    <td>{{ $campaign->type==1?'Sorteo':'Descuento' }}</td>
                     <td>{{ $campaign->referenced }}</td>
                     <td>{{ $campaign->name }}</td>
                     <td>{{ isset($campaign->discount_type)?($campaign->discount_type==1?'Porcentaje':'Importe'):'' }}</td>

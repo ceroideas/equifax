@@ -40,6 +40,8 @@ use App\Models\Lorder;
 use App\Models\Collect;
 
 use App\Imports\CollectsKmaleonImport;
+use App\Models\Agreement_tmp;
+use App\Models\Debt_tmp;
 use Illuminate\Support\Facades\DB;
 
 class ClaimsController extends Controller
@@ -235,10 +237,17 @@ class ClaimsController extends Controller
             $claim->third_parties_id = $client->id;
         }
 
-            $claim->owner_id = Auth::user()->id;
+        $claim->owner_id = Auth::user()->id;
 
         $debtor = Debtor::find(session('claim_debtor'));
         $claim->debtor_id = $debtor->id;
+
+        if($claimTmp->debt_tmp_id){
+            $debtTmp = Debt_tmp::find($claimTmp->debt_tmp_id);
+            $debtTmp->debtor_id = $debtor->id;
+            $debtTmp->claim_tmp_id = $claimTmp->id;
+            $debtTmp->save();
+        }
 
         $debt = session('claim_debt');
         $debt->debtor_id = $debtor->id;
@@ -254,6 +263,19 @@ class ClaimsController extends Controller
             $agreement->debt_id = $debt->id;
             $agreement->claim_id = $claim->id;
             $agreement->save();
+            if($claimTmp->agreement_tmp_id){
+                $agreementTmp = Agreement_tmp::find($claimTmp->agreement_tmp_id);
+                $agreementTmp->debt_tmp_id = $debt->id;
+                $agreementTmp->claim_tmp_id = $claimTmp->id;
+                if($debtTmp){
+                    $agreementTmp->debt_tmp_id = $debtTmp->id;
+                    $debtTmp->agreement = true;
+                    $debtTmp->agreement_tmp_id = $agreementTmp->id;
+                    $debtTmp->save();
+                }
+                $agreementTmp->save();
+            }
+
             $debt->agreement = true;
             $debt->agreement_id = $agreement->id;
             $claim->agreement_id = $agreement->id;

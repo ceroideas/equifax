@@ -29,10 +29,6 @@
         <span> {{ session('msj') }}</span>
     </x-adminlte-alert>
     @endif
-
-    @if(session()->has('claim_tmp_id'))
-        <span>{{session('claim_tmp_id')}}</span>
-    @endif
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
     <form action="{{url('claims/check_debtor')}}" method="POST">
         {{csrf_field()}}

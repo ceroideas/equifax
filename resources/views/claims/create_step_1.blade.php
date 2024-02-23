@@ -33,11 +33,6 @@
             <span> {{ session('msj') }} {{ session('type_claim')=='1' ? 'Judicial' :'Extrajudicial'}}</span>
         </x-adminlte-alert>
     @endif
-
-    @if(session()->has('claim_tmp_id'))
-        <span>{{session('claim_tmp_id')}}</span>
-    @endif
-
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <div class="row">
             <div class="col-sm-12 text-center">

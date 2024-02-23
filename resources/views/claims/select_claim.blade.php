@@ -29,15 +29,18 @@
     	'Fecha registro',
         'Fase',
         'Tipo',
-        'Reclamación propia',
+        'Acreedor',
+        'Deudor',
+        'Importe',
         'Tipo deuda',
-        'Concurso acredores',
+        'Mínimo aceptado',
+        'Tiempo espera',
         ['label' => 'Acciones', 'no-export' => true, 'width' => 5],
     ];
 
     $config = [
 
-        'columns' => [null,null, null, null, null, null, null,['orderable' => false]],
+        'columns' => [null, null, null, null, null, null, null, null, null, null,['orderable' => false]],
         'order'=>[[0,'desc']],
         'pageLength' => 25,
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
@@ -58,11 +61,80 @@
 				<tr>
 					<td>{{ $claimTmp->id }}</td>
                     <td>{{ Carbon\Carbon::parse($claimTmp->updated_at)->format('d/m/Y - H:i:s') }}</td>
-                    <td>{{ $claimTmp->status }}</td>
+                    @switch($claimTmp->status)
+                        @case(1)
+                                <td>1. Datos acreedor</td>
+                            @break
+                        @case(2)
+                                <td>2. Tipo de deuda</td>
+                            @break
+                        @case(3)
+                                <td>3. Datos deudor</td>
+                            @break
+                        @case(4)
+                                <td>4. Datos deuda</td>
+                            @break
+                        @case(5)
+                                <td>5. Opciones de acuerdo</td>
+                            @break
+                        @case(6)
+                                <td>6. Aceptación y pago</td>
+                            @break
+
+                        @default
+                                <td>No existe</td>
+                    @endswitch
+
 					<td>{{ isset($claimTmp->claim_type)?($claimTmp->claim_type==1?'Judicial':'Extrajudicial'):'' }}</td>
-					<td>{{ isset($claimTmp->third_parties_id)?'Tercero':'Propia' }}</td>
-                    <td>{{ isset($claimTmp->debt_type)? $claimTmp->debt_type:'' }}</td>
-                    <td>{{ isset($claimTmp->third_parties_id)?($claimTmp->concurso==0?'No':'Deudor en concurso'):'' }}</td>
+                    <td>{{ isset($claimTmp->user_id) ? $claimTmp->client->name : (isset($claimTmp->representant->name)?$claimTmp->representant->name:'')}}</td>
+                    <td>{{ isset($claimTmp->debtor)? $claimTmp->debtor->name:'' }}</td>
+                    <td>{{ isset($claimTmp->debtTmp) ? number_format( $claimTmp->debtTmp->pending_amount , 2,',','.') :'' }}
+                        @if($claimTmp->debtTmp)
+                            &euro;
+                        @endif
+                    </td>
+                    @switch($claimTmp->debt_type)
+                        @case(0)
+                                <td>Cheques / Pagarés</td>
+                            @break
+                        @case(1)
+                                <td>Venta de productos a consumidor final</td>
+                            @break
+                        @case(2)
+                                <td>Honorarios de profesionales</td>
+                            @break
+                        @case(3)
+                                <td>Venta de productos farmaceúticos</td>
+                            @break
+                        @case(4)
+                                <td>Abono comida y habitación en hoteles</td>
+                            @break
+                        @case(5)
+                                <td>Prestación de servicios</td>
+                            @break
+                        @case(6)
+                                <td>Venta de productos mayorista</td>
+                            @break
+                        @case(7)
+                                <td>Compraventa de bienes muebles para reventa</td>
+                            @break
+                        @case(8)
+                                <td>Pagos aplazados</td>
+                            @break
+                        @case(9)
+                                <td>Resto de deudas no incluidas en las anteriores</td>
+                            @break
+                        @case(10)
+                                <td>Hipotecaria / Alquileres bienes inmuebles. Recuperación de cantidades económicas</td>
+                            @break
+                        @case(11)
+                                <td>Comunidades de propietarios</td>
+                            @break
+                        @default
+                                <td></td>
+                    @endswitch
+                    <td>{{ isset($claimTmp->agreementTmp)? $claimTmp->agreementTmp->take:'' }}</td>
+                    <td>{{ isset($claimTmp->agreementTmp)? $claimTmp->agreementTmp->wait:'' }}</td>
 					<td>
 						<nobr>
 							<a href="">
@@ -74,30 +146,7 @@
                     </td>
 				</tr>
             @endforeach
-            {{-- @foreach($campaigns as $campaign)
-                <tr>
-                    <td>{{ $campaign->id }}</td>
-                    <td>{{ $campaign->type==0?'Sorteo':'Descuento' }}</td>
-                    <td>{{ $campaign->referenced }}</td>
-                    <td>{{ $campaign->name }}</td>
-                    <td>{{ isset($campaign->discount_type)?($campaign->discount_type==1?'Porcentaje':'Importe'):'' }}</td>
-                    <td>{{ $campaign->discount }} {{ isset($campaign->discount_type)?($campaign->discount_type==1?'%':'€'):''  }}</td>
-                    <td>{{ $campaign->claim_code }}</td>
-                    <td>{{ $campaign->prefix }}</td>
-                    <td>{{ Carbon\Carbon::parse($campaign->init_date)->format('d/m/Y') }} </td>
-                    <td>{{ Carbon\Carbon::parse($campaign->end_date)->format('d/m/Y') }}</td>
-                    <td>{{ $campaign->all_users==0?'No':'Si' }}</td>
-                    <td>
-                     <nobr>
-                        <a href="{{ url('/configurations/campaigns/' . $campaign->id . '/edit/') }}">
-                            <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                                <i class="fa fa-lg fa-fw fa-pen"></i>
-                            </button>
-                        </a>
-                    </nobr>
-                    </td>
-                </tr>
-            @endforeach --}}
         </x-adminlte-datatable>
     </x-adminlte-card>
+
 @stop
