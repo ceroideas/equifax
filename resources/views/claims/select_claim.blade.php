@@ -137,8 +137,9 @@
                     <td>{{ isset($claimTmp->agreementTmp)? $claimTmp->agreementTmp->wait:'' }}</td>
 					<td>
 						<nobr>
-							<a href="">
-								<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
+							{{-- <a href="{{ url('/blogs/'. $blog->id . '/edit/') }}"> --}}
+                            <a href="{{ url('claims/restore/'.$claimTmp->id)}}">
+								<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Completar reclamación">
 									<i class="fa fa-lg fa-fw fa-check"></i>
 								</button>
 							</a>
