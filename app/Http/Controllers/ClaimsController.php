@@ -184,6 +184,8 @@ class ClaimsController extends Controller
             }
 
             return view('claims.create_step_6', compact('prescribe','message'));
+        }else{
+            dd("Faltan datos de la session");
         }
     }
 
@@ -1418,12 +1420,12 @@ class ClaimsController extends Controller
 
     public function clearClaimData(){
 
-        $rutatemp = 'public/temporal/debts/'.Auth::user()->id;
+        /*$rutatemp = 'public/temporal/debts/'.Auth::user()->id;
         $ficheros = Storage::AllFiles($rutatemp);
 
         if($ficheros){
             Storage::deleteDirectory($rutatemp);
-        }
+        }*/
 
         session()->forget('other_user');
         session()->forget('claim_client');
@@ -1449,48 +1451,70 @@ class ClaimsController extends Controller
             // Clean data session
             $this->clearClaimData();
             $request->session()->put('claim_tmp_id', $claimTmp->id);
-            switch ($claimTmp->status) {
-                    case '1':
-                            $request->session()->put('type_claim', $claimTmp->claim_type);
-                            $request->session()->put('claim_tmp_id', $claim_id);
-                            return redirect('/claims/select-client')->with('msj', 'Se ha seleccionado el tipo de reclamación ');
-                        break;
 
-                    case '2':
-                            // Simulamos la eleccion del usuario de si es propia o para un tercero
-                            if($claimTmp->user_id){
-                                $request->session()->put('claim_client', Auth::id());
-                                $this->flushOptionTwo();
-                            }else{
-                                $request->session()->forget('claim_client');
-                                $request->session()->put('claim_third_party', $claimTmp->third_parties_id);
-                            }
-
-                            return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu respuesta correctamente');
-
-                        break;
-                    case '3':
-                            dump($claimTmp->status);
-                        break;
-
-                    case '4':
-                            dump($claimTmp->status);
-                        break;
-
-                    case '5':
-                            dump($claimTmp->status);
-                        break;
-
-                    case '6':
-                            dump($claimTmp->status);
-                        break;
-                default:
-                    # code...
-                    break;
+            if($claimTmp->status>=1){
+                $request->session()->put('type_claim', $claimTmp->claim_type);
+                $request->session()->put('claim_tmp_id', $claim_id);
             }
 
-        }else{
-            dump("no existe o no es del usuario y esta completada");
+            if($claimTmp->status>=2){
+                if($claimTmp->user_id){
+                    $request->session()->put('claim_client', Auth::id());
+                    $this->flushOptionTwo();
+                }else{
+                    $request->session()->forget('claim_client');
+                    $request->session()->put('claim_third_party', $claimTmp->third_parties_id);
+                }
+            }
+
+            if($claimTmp->status>=4){
+                $request->session()->put('claim_debtor', $claimTmp->debtor_id);
+            }
+
+            if($claimTmp->status>=5){
+
+                //$request->session()->put('documentos', 'documentos');
+
+                $request->session()->put('claim_debt', $claimTmp->debtTmp);
+                $request->session()->put('debt_step_one', 'completed');
+                $request->session()->put('debt_step_two', 'completed');
+                $request->session()->put('debt_step_three', 'completed');
+
+            }
+
+            if($claimTmp->status>=6){
+
+                if($claimTmp->agreementTmp){
+                    session()->forget('claim_agreement');
+                    session()->put('claim_agreement', $claimTmp->agreementTmp);
+                }else{
+                    session()->put('claim_debt', $claimTmp->debtTmp);
+                    session()->put('claim_agreement', 'false');
+                }
+
+            }
+
+            switch ($claimTmp->status) {
+                    case '1':
+                            return redirect('/claims/select-client')->with('msj', 'Se ha seleccionado el tipo de reclamación ');
+                        break;
+                    case '2':
+                            return redirect('/claims/check-debtor')->with('msj', 'Se ha guardado tu respuesta correctamente');
+                        break;
+                    case '3':
+                            return redirect('/debtors');
+                        break;
+                    case '4':
+                            return redirect('/debts/create/step-one');
+                        break;
+                    case '5':
+                            return redirect('/claims/check-agreement');
+                        break;
+                    case '6':
+                            return redirect('/claims/accept-terms');
+                        break;
+            }
+
         }
     }
 
