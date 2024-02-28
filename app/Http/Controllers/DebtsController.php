@@ -77,7 +77,7 @@ class DebtsController extends Controller
     {
         $documentos = [];
 
-
+        /*
         function rrmdir($dir) {
            if (is_dir($dir)) {
              $objects = scandir($dir);
@@ -95,7 +95,7 @@ class DebtsController extends Controller
 
         if (is_dir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'))) {
             rrmdir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'));
-        }
+        }*/
 
         if ($request->factura) {
             foreach ($request->factura['file'] as $key => $value) {
@@ -277,9 +277,9 @@ class DebtsController extends Controller
                 ]];
             }
         }
-
+        //dump("Documentos");
         session()->put('documentos',$documentos);
-
+        //dd(session('documentos'));
 
         $data = $this->validateStepOne();
 
@@ -332,6 +332,7 @@ class DebtsController extends Controller
         }
 
         session()->put('claim_debt', $debt);
+        session()->put('claim_debt_tmp', $debtTmp);
         session()->put('debt_step_one', 'completed');
         session()->put('debt_step_two', 'completed');
         session()->put('debt_step_three', 'completed');

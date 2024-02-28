@@ -52,18 +52,49 @@
    @include('progressbar', ['step' => 5])
 
     @if ($prescribe)
-    <x-adminlte-alert theme="success" dismissable>
-       <span> {{ $message }}</span> <br>
+        <x-adminlte-alert theme="success" dismissable>
+        <span> {{ $message }}</span> <br>
 
-            Est&aacute;s a un paso de decir adi&oacute;s a tus facturas impagadas.
-    </x-adminlte-alert>
+                Est&aacute;s a un paso de decir adi&oacute;s a tus facturas impagadas.
+        </x-adminlte-alert>
     @else
-    <x-adminlte-alert theme="warning" dismissable>
-       <span> {{ $message }}</span> <br>
+        <x-adminlte-alert theme="warning" dismissable>
+        <span> {{ $message }}</span> <br>
 
-            Esta deuda solo es reclamable extrajudicialmente. Si deseas iniciar con la reclamaci&oacute;n proceda al pago.
-    </x-adminlte-alert>
+                Esta deuda solo es reclamable extrajudicialmente. Si deseas iniciar con la reclamaci&oacute;n proceda al pago.
+        </x-adminlte-alert>
     @endif
+
+
+    {{-- @if(session()->has('claim_debt'))
+        <x-adminlte-alert theme="success" dismissable>
+            <span>Existe claim_debt</span><br>
+            <span>
+                @php
+                    var_dump(session('claim_debt'));
+                @endphp
+            </span>
+        </x-adminlte-alert>
+    @else
+        <x-adminlte-alert theme="warning" dismissable>
+            <span>No hay claim debt</span>
+        </x-adminlte-alert>
+    @endif
+
+    @if(session()->has('claim_debt_tmp'))
+        <x-adminlte-alert theme="success" dismissable>
+            <span>Existe claim_debt_tmp</span><br>
+            <span>
+                @php
+                    var_dump(session('claim_debt_tmp'));
+                @endphp
+            </span>
+        </x-adminlte-alert>
+    @else
+        <x-adminlte-alert theme="warning" dismissable>
+            <span>No hay claim debt tmp</span>
+        </x-adminlte-alert>
+    @endif --}}
 
     <x-adminlte-card header-class="d-none text-center" theme="orange" theme-mode="outline">
         <div class="col-sm-12 text-center">

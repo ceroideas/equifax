@@ -6,7 +6,7 @@ use App\Models\Claim;
 use App\Models\User;
 use App\Models\ThirdParty;
 use App\Models\Debtor;
-//use App\Models\Debt;
+use App\Models\Debt;
 use App\Models\SendEmail;
 //use App\Models\Template;
 //use App\Models\Hito;
@@ -158,16 +158,21 @@ class ClaimsController extends Controller
 
     public function stepFive()
     {
-        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three')){
+        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('claim_debt_tmp') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three')){
             return view('claims.create_step_5');
         }
     }
 
     public function stepSix()
     {
-        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three') && session()->has('claim_agreement')){
+        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three') && session()->has('claim_agreement')){
 
-            $debt = session('claim_debt');
+            if(session()->has('claim_debt_tmp')){
+                $debt = session('claim_debt_tmp');
+            }else{
+                $debt = session('claim_debt');
+            }
+
 
             if ($debt->fecha_reclamacion_previa) {
                 $presc = Carbon::now()->diffInYears(Carbon::parse($debt->fecha_reclamacion_previa));
@@ -206,6 +211,13 @@ class ClaimsController extends Controller
         $claimTmp->status = 0;
         $claimTmp->save();
 
+        if(file_exists('testing/claimtmp_claim.txt')){
+            $file = fopen('testing/claimtmp_claim.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'------------------------------------ '.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L217: Function claimsController::store() claimTmp id:'.$claimTmp->id .'Status: '.$claimTmp->status.PHP_EOL);
+            fclose($file);
+        }
+
         if (Auth::user()->isGestor()) {
             $claim->gestor_id = Auth::id();
         }
@@ -224,26 +236,106 @@ class ClaimsController extends Controller
         $claim->debtor_id = $debtor->id;
 
         if($claimTmp->debt_tmp_id){
+            if(file_exists('testing/claimtmp_claim.txt')){
+                $file = fopen('testing/claimtmp_claim.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'L241: Existe debt_tmp_id: '.$claimTmp->debt_tmp_id.PHP_EOL);
+                fclose($file);
+            }
             $debtTmp = Debt_tmp::find($claimTmp->debt_tmp_id);
             $debtTmp->debtor_id = $debtor->id;
             $debtTmp->claim_tmp_id = $claimTmp->id;
             $debtTmp->save();
+
+            if(file_exists('testing/claimtmp_claim.txt')){
+                $file = fopen('testing/claimtmp_claim.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'L251: Actualizamos debtor_id: '.$debtTmp->debtor_id.' y claim_tmp_id: '. $debtTmp->claim_tmp_id .' primer debtTmp->save() '.PHP_EOL);
+                fclose($file);
+            }
         }
 
-        $debt = session('claim_debt');
+        /*Duplicar el debt_tmp > debt */
+        if(session('claim_debt')){
+            if(file_exists('testing/claimtmp_claim.txt')){
+                $file = fopen('testing/claimtmp_claim.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'L260: Existe claim_debt quiere decir que se creo de cero '.PHP_EOL);
+                fclose($file);
+            }
+            $debt = session('claim_debt');
+
+        }else{
+            if(file_exists('testing/claimtmp_claim.txt')){
+                $file = fopen('testing/claimtmp_claim.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'L268: No existe claim_debt, debemos duplicar el debt'.PHP_EOL);
+                fclose($file);
+            }
+            $debt = new Debt();
+            /*$debt = $debtTmp->replicate();
+            dump($debtTmp);
+            dump($debt);*/
+            $debt->total_amount = $debtTmp->total_amount;
+            $debt->tax = $debtTmp->tax;
+            $debt->concept = $debtTmp->concept;
+            $debt->document_number = $debtTmp->document_number;
+            $debt->debt_date = $debtTmp->debt_date;
+            $debt->debt_expiration_date = $debtTmp->debt_expiration_date;
+            $debt->pending_amount = $debtTmp->pending_amount;
+            $debt->partials_amount = $debtTmp->partials_amount;
+            $debt->additionals = $debtTmp->additionals;
+            $debt->type = $debtTmp->type;
+            $debt->type_extra = $debtTmp->type_extra;
+            $debt->reclamacion_previa_indicar = $debtTmp->reclamacion_previa_indicar;
+            $debt->fecha_reclamacion_previa = $debtTmp->fecha_reclamacion_previa;
+            $debt->partials_amount_details = $debtTmp->partials_amount_details;
+            $debt->reclamacion_previa = $debtTmp->reclamacion_previa;
+            $debt->motivo_reclamacion_previa = $debtTmp->motivo_reclamacion_previa;
+            $debt->agreement = $debtTmp->agreement;
+            $debt->others = $debtTmp->others;
+            $debt->debtor_id = $debtTmp->debtor_id;
+            $debt->save();
+
+            if(file_exists('testing/claimtmp_claim.txt')){
+                $file = fopen('testing/claimtmp_claim.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'L298: Replico y salvamos el debt()'.PHP_EOL);
+                fclose($file);
+            }
+        }
+        //$debt = session('claim_debt');
         $debt->debtor_id = $debtor->id;
+        if(file_exists('testing/claimtmp_claim.txt')){
+            $file = fopen('testing/claimtmp_claim.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L306: Update debt->save() con debtor->id: '.$debt->debtor_id.PHP_EOL);
+            fclose($file);
+        }
         $debt->save();
         $claim->debt_id = $debt->id;
+        if(file_exists('testing/claimtmp_claim.txt')){
+            $file = fopen('testing/claimtmp_claim.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L313: Update claim->save() con claim->debt_id: '.$claim->debt_id.PHP_EOL);
+            fclose($file);
+        }
         $claim->save();
         $debt->claim_id = $claim->id;
         $debt->document_number = "DVD-".str_pad($claim->id, 4 ,"0", STR_PAD_LEFT);
+        if(file_exists('testing/claimtmp_claim.txt')){
+            $file = fopen('testing/claimtmp_claim.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L321: Update debt->save() con debt->claim_id: '.$debt->claim_id.' y debt->document_number: '.$debt->document_number.PHP_EOL);
+            fclose($file);
+        }
+        /*dump($debtTmp);
+        dd($debt);*/
         $debt->save();
 
         if(session('claim_agreement')  != 'false'){
             $agreement = session('claim_agreement');
             $agreement->debt_id = $debt->id;
             $agreement->claim_id = $claim->id;
+            if(file_exists('testing/claimtmp_claim.txt')){
+                $file = fopen('testing/claimtmp_claim.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'L334: Update agreement->save() con agreement->debt_id: '.$agreement->debt_id.' y agreement->claim->id: '.$agreement->claim_id.PHP_EOL);
+                fclose($file);
+            }
             $agreement->save();
+
             if($claimTmp->agreement_tmp_id){
                 $agreementTmp = Agreement_tmp::find($claimTmp->agreement_tmp_id);
                 $agreementTmp->debt_tmp_id = $debt->id;
@@ -252,9 +344,24 @@ class ClaimsController extends Controller
                     $agreementTmp->debt_tmp_id = $debtTmp->id;
                     $debtTmp->agreement = true;
                     $debtTmp->agreement_tmp_id = $agreementTmp->id;
+                    if(file_exists('testing/claimtmp_claim.txt')){
+                        $file = fopen('testing/claimtmp_claim.log', 'a');
+                        fwrite($file, date("d/m/Y H:i:s").'-'.'L349: Update debtTmp->save() con $debtTmp->agreement: '.$debtTmp->agreement.' y $debtTmp->agreement_tmp_id: '.$debtTmp->agreement_tmp_id.PHP_EOL);
+                        fclose($file);
+                    }
                     $debtTmp->save();
                 }
+                if(file_exists('testing/claimtmp_claim.txt')){
+                    $file = fopen('testing/claimtmp_claim.log', 'a');
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'L356: Update $agreementTmp->save() con $agreementTmp->debt_tmp_id: '.$agreementTmp->debt_tmp_id.' y $agreementTmp->claim_tmp_id: '.$agreementTmp->claim_tmp_id.PHP_EOL);
+                    fclose($file);
+                }
                 $agreementTmp->save();
+                if(file_exists('testing/claimtmp_claim.txt')){
+                    $file = fopen('testing/claimtmp_claim.log', 'a');
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'L362: Despues de hacer Update agreementTmp->save() '.PHP_EOL);
+                    fclose($file);
+                }
             }
 
             $debt->agreement = true;
@@ -270,7 +377,11 @@ class ClaimsController extends Controller
                 $claim->status = 0;
             }
         }
-
+        if(file_exists('testing/claimtmp_claim.txt')){
+            $file = fopen('testing/claimtmp_claim.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L382: Inicia la creacion de la Order o invoice '.PHP_EOL);
+            fclose($file);
+        }
         /************* Inicio creacion de documento (Order / Invoice ) ***************/
             if(session('type_claim')==1){
                 $claim->claim_type = 1;
@@ -314,6 +425,11 @@ class ClaimsController extends Controller
             }
 
         /*********** Fin generacion de factura *****************/
+        if(file_exists('testing/claimtmp_claim.txt')){
+            $file = fopen('testing/claimtmp_claim.log', 'a');
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L430: Update despues de la generacion de documentos $debt->save() y $claim->save() '.PHP_EOL);
+            fclose($file);
+        }
         $debt->save();
         $claim->save();
 
@@ -331,6 +447,11 @@ class ClaimsController extends Controller
             $debtd->document = $pathStorage . $bn;
             $debtd->type = key($d);
             $debtd->hitos = json_encode($d);
+            if(file_exists('testing/claimtmp_claim.txt')){
+                $file = fopen('testing/claimtmp_claim.log', 'a');
+                fwrite($file, date("d/m/Y H:i:s").'-'.'L452: Update en documentos $debtd->save() '.PHP_EOL);
+                fclose($file);
+            }
             $debtd->save();
         }
 
@@ -644,11 +765,18 @@ class ClaimsController extends Controller
     }
 
     public function refuseAgreement(){
-        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three')){
+        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three')){
 
-            $debt = Session('claim_debt');
-            $debt->agreement = false;
-            Session()->put('claim_debt', $debt);
+            if(session()->has('claim_debt_tmp')){
+                $debt = Session('claim_debt_tmp');
+                $debt->agreement = false;
+                Session()->put('claim_debt_tmp', $debt);
+            }else{
+                $debt = Session('claim_debt');
+                $debt->agreement = false;
+                Session()->put('claim_debt', $debt);
+            }
+
             Session()->put('claim_agreement', 'false');
 
             $claimTmp = Claim_tmp::where('id',session('claim_tmp_id'))
@@ -1473,9 +1601,10 @@ class ClaimsController extends Controller
 
             if($claimTmp->status>=5){
 
-                //$request->session()->put('documentos', 'documentos');
+                $request->session()->put('documentos', json_decode($claimTmp->observation, true));
 
-                $request->session()->put('claim_debt', $claimTmp->debtTmp);
+                //$request->session()->put('claim_debt', $claimTmp->debtTmp);
+                $request->session()->put('claim_debt_tmp', $claimTmp->debtTmp);
                 $request->session()->put('debt_step_one', 'completed');
                 $request->session()->put('debt_step_two', 'completed');
                 $request->session()->put('debt_step_three', 'completed');
@@ -1488,7 +1617,8 @@ class ClaimsController extends Controller
                     session()->forget('claim_agreement');
                     session()->put('claim_agreement', $claimTmp->agreementTmp);
                 }else{
-                    session()->put('claim_debt', $claimTmp->debtTmp);
+                    //session()->put('claim_debt', $claimTmp->debtTmp);
+                    session()->put('claim_debt_tmp', $claimTmp->debtTmp);
                     session()->put('claim_agreement', 'false');
                 }
 
