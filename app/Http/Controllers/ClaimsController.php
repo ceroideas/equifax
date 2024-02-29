@@ -40,6 +40,7 @@ use App\Models\Lorder;
 use App\Models\Collect;
 
 use App\Imports\CollectsKmaleonImport;
+use App\Models\Agreement;
 use App\Models\Agreement_tmp;
 use App\Models\Debt_tmp;
 use Illuminate\Support\Facades\DB;
@@ -269,9 +270,6 @@ class ClaimsController extends Controller
                 fclose($file);
             }
             $debt = new Debt();
-            /*$debt = $debtTmp->replicate();
-            dump($debtTmp);
-            dump($debt);*/
             $debt->total_amount = $debtTmp->total_amount;
             $debt->tax = $debtTmp->tax;
             $debt->concept = $debtTmp->concept;
@@ -295,7 +293,7 @@ class ClaimsController extends Controller
 
             if(file_exists('testing/claimtmp_claim.txt')){
                 $file = fopen('testing/claimtmp_claim.log', 'a');
-                fwrite($file, date("d/m/Y H:i:s").'-'.'L298: Replico y salvamos el debt()'.PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'L295: Replico y salvamos el debt()'.PHP_EOL);
                 fclose($file);
             }
         }
@@ -303,14 +301,14 @@ class ClaimsController extends Controller
         $debt->debtor_id = $debtor->id;
         if(file_exists('testing/claimtmp_claim.txt')){
             $file = fopen('testing/claimtmp_claim.log', 'a');
-            fwrite($file, date("d/m/Y H:i:s").'-'.'L306: Update debt->save() con debtor->id: '.$debt->debtor_id.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L303: Update debt->save() con debtor->id: '.$debt->debtor_id.PHP_EOL);
             fclose($file);
         }
         $debt->save();
         $claim->debt_id = $debt->id;
         if(file_exists('testing/claimtmp_claim.txt')){
             $file = fopen('testing/claimtmp_claim.log', 'a');
-            fwrite($file, date("d/m/Y H:i:s").'-'.'L313: Update claim->save() con claim->debt_id: '.$claim->debt_id.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L310: Update claim->save() con claim->debt_id: '.$claim->debt_id.PHP_EOL);
             fclose($file);
         }
         $claim->save();
@@ -318,20 +316,25 @@ class ClaimsController extends Controller
         $debt->document_number = "DVD-".str_pad($claim->id, 4 ,"0", STR_PAD_LEFT);
         if(file_exists('testing/claimtmp_claim.txt')){
             $file = fopen('testing/claimtmp_claim.log', 'a');
-            fwrite($file, date("d/m/Y H:i:s").'-'.'L321: Update debt->save() con debt->claim_id: '.$debt->claim_id.' y debt->document_number: '.$debt->document_number.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L319: Update debt->save() con debt->claim_id: '.$debt->claim_id.' y debt->document_number: '.$debt->document_number.PHP_EOL);
             fclose($file);
         }
-        /*dump($debtTmp);
-        dd($debt);*/
         $debt->save();
 
         if(session('claim_agreement')  != 'false'){
-            $agreement = session('claim_agreement');
+            $agreementTmp  = session('claim_agreement');
+            //$agreementTmp = Agreement_tmp::find($claimTmp->agreement_tmp_id);
+            $agreement = new Agreement();
+            $agreement->take =$agreementTmp->take;
+            $agreement->wait = $agreementTmp->wait;
+            $agreement->observation = $agreementTmp->observation;
             $agreement->debt_id = $debt->id;
             $agreement->claim_id = $claim->id;
+            $agreement->save();
+
             if(file_exists('testing/claimtmp_claim.txt')){
                 $file = fopen('testing/claimtmp_claim.log', 'a');
-                fwrite($file, date("d/m/Y H:i:s").'-'.'L334: Update agreement->save() con agreement->debt_id: '.$agreement->debt_id.' y agreement->claim->id: '.$agreement->claim_id.PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'L337: Update agreement->save() con agreement->debt_id: '.$agreement->debt_id.' y agreement->claim->id: '.$agreement->claim_id.PHP_EOL);
                 fclose($file);
             }
             $agreement->save();
@@ -346,20 +349,20 @@ class ClaimsController extends Controller
                     $debtTmp->agreement_tmp_id = $agreementTmp->id;
                     if(file_exists('testing/claimtmp_claim.txt')){
                         $file = fopen('testing/claimtmp_claim.log', 'a');
-                        fwrite($file, date("d/m/Y H:i:s").'-'.'L349: Update debtTmp->save() con $debtTmp->agreement: '.$debtTmp->agreement.' y $debtTmp->agreement_tmp_id: '.$debtTmp->agreement_tmp_id.PHP_EOL);
+                        fwrite($file, date("d/m/Y H:i:s").'-'.'L352: Update debtTmp->save() con $debtTmp->agreement: '.$debtTmp->agreement.' y $debtTmp->agreement_tmp_id: '.$debtTmp->agreement_tmp_id.PHP_EOL);
                         fclose($file);
                     }
                     $debtTmp->save();
                 }
                 if(file_exists('testing/claimtmp_claim.txt')){
                     $file = fopen('testing/claimtmp_claim.log', 'a');
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'L356: Update $agreementTmp->save() con $agreementTmp->debt_tmp_id: '.$agreementTmp->debt_tmp_id.' y $agreementTmp->claim_tmp_id: '.$agreementTmp->claim_tmp_id.PHP_EOL);
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'L359: Update $agreementTmp->save() con $agreementTmp->debt_tmp_id: '.$agreementTmp->debt_tmp_id.' y $agreementTmp->claim_tmp_id: '.$agreementTmp->claim_tmp_id.PHP_EOL);
                     fclose($file);
                 }
                 $agreementTmp->save();
                 if(file_exists('testing/claimtmp_claim.txt')){
                     $file = fopen('testing/claimtmp_claim.log', 'a');
-                    fwrite($file, date("d/m/Y H:i:s").'-'.'L362: Despues de hacer Update agreementTmp->save() '.PHP_EOL);
+                    fwrite($file, date("d/m/Y H:i:s").'-'.'L365: Despues de hacer Update agreementTmp->save() '.PHP_EOL);
                     fclose($file);
                 }
             }
@@ -379,7 +382,7 @@ class ClaimsController extends Controller
         }
         if(file_exists('testing/claimtmp_claim.txt')){
             $file = fopen('testing/claimtmp_claim.log', 'a');
-            fwrite($file, date("d/m/Y H:i:s").'-'.'L382: Inicia la creacion de la Order o invoice '.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L385: Inicia la creacion de la Order o invoice '.PHP_EOL);
             fclose($file);
         }
         /************* Inicio creacion de documento (Order / Invoice ) ***************/
@@ -427,7 +430,7 @@ class ClaimsController extends Controller
         /*********** Fin generacion de factura *****************/
         if(file_exists('testing/claimtmp_claim.txt')){
             $file = fopen('testing/claimtmp_claim.log', 'a');
-            fwrite($file, date("d/m/Y H:i:s").'-'.'L430: Update despues de la generacion de documentos $debt->save() y $claim->save() '.PHP_EOL);
+            fwrite($file, date("d/m/Y H:i:s").'-'.'L433: Update despues de la generacion de documentos $debt->save() y $claim->save() '.PHP_EOL);
             fclose($file);
         }
         $debt->save();
@@ -449,7 +452,7 @@ class ClaimsController extends Controller
             $debtd->hitos = json_encode($d);
             if(file_exists('testing/claimtmp_claim.txt')){
                 $file = fopen('testing/claimtmp_claim.log', 'a');
-                fwrite($file, date("d/m/Y H:i:s").'-'.'L452: Update en documentos $debtd->save() '.PHP_EOL);
+                fwrite($file, date("d/m/Y H:i:s").'-'.'L455: Update en documentos $debtd->save() '.PHP_EOL);
                 fclose($file);
             }
             $debtd->save();
@@ -1593,6 +1596,10 @@ class ClaimsController extends Controller
                     $request->session()->forget('claim_client');
                     $request->session()->put('claim_third_party', $claimTmp->third_parties_id);
                 }
+            }
+
+            if($claimTmp->status>=3){
+                $request->session()->put('tipo_deuda', $claimTmp->debt_type);
             }
 
             if($claimTmp->status>=4){

@@ -131,7 +131,7 @@
                                 <td>Comunidades de propietarios</td>
                             @break
                         @default
-                                <td></td>
+                                <td>{{$claimTmp->debt_type_description}}</td>
                     @endswitch
                     <td>{{ isset($claimTmp->agreementTmp)? $claimTmp->agreementTmp->take:'' }}</td>
                     <td>{{ isset($claimTmp->agreementTmp)? $claimTmp->agreementTmp->wait:'' }}</td>

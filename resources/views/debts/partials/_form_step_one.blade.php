@@ -16,6 +16,69 @@
     {{ session('alert') }}
     </x-adminlte-alert>
 @endif
+
+{{-- @if($client)
+    <x-adminlte-alert theme="warning" dismissable>
+        {{ $client }}
+    </x-adminlte-alert>
+@endif
+
+@if($debtor)
+    <x-adminlte-alert theme="warning" dismissable>
+        {{ $debtor }}
+    </x-adminlte-alert>
+@endif
+
+@if(session()->has('debt'))
+    <x-adminlte-alert theme="warning" dismissable>
+    {{ session('debt') }}
+    </x-adminlte-alert>
+@else
+    <x-adminlte-alert theme="warning" dismissable>
+        No hay debt en session
+    </x-adminlte-alert>
+@endif
+
+@if(session()->has('debt_tmp'))
+    <x-adminlte-alert theme="warning" dismissable>
+    {{ session('debt_tmp') }}
+    </x-adminlte-alert>
+@else
+    <x-adminlte-alert theme="warning" dismissable>
+        No hay debt_tmp en session
+    </x-adminlte-alert>
+@endif
+
+@if(session()->has('claim_debt'))
+    <x-adminlte-alert theme="warning" dismissable>
+    {{ session('claim_debt') }}
+    </x-adminlte-alert>
+@else
+    <x-adminlte-alert theme="warning" dismissable>
+        No hay claim_debt en session
+    </x-adminlte-alert>
+@endif
+
+@if(session()->has('claim_debt_tmp'))
+    <x-adminlte-alert theme="warning" dismissable>
+    {{ session('claim_debt_tmp') }}
+    </x-adminlte-alert>
+@else
+    <x-adminlte-alert theme="warning" dismissable>
+        No hay claim_debt_tmp en session
+    </x-adminlte-alert>
+@endif
+
+@if(session()->has('tipo_deuda'))
+    <x-adminlte-alert theme="warning" dismissable>
+    {{ session('tipo_deuda') }}
+    </x-adminlte-alert>
+@else
+    <x-adminlte-alert theme="warning" dismissable>
+        No hay tipo de deuda en session
+    </x-adminlte-alert>
+@endif --}}
+
 <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline" body-class="" title="Registro de Deuda - Datos de la Deuda">
 
     <form action="{{ url('/debts/step-one/save') }}" method="POST" enctype="multipart/form-data">
@@ -25,7 +88,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="importe" label="Importe a reclamar *" placeholder="Incluye el total que quieres que reclamemos" type="number" step="0.01" min="0"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->total_amount : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{session('claim_debt') ? session('claim_debt')->total_amount :(session('claim_debt_tmp')?session('claim_debt_tmp')->total_amount:'')}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -48,7 +111,7 @@
         <div class="row mt-2">
             <div class="col-sm-6">
                 <x-adminlte-input name="concepto" label="Concepto o Justificación *" placeholder="Introduce el concepto de tu deuda" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->concept : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{session('claim_debt') ? session('claim_debt')->concept :(session('claim_debt_tmp')?session('claim_debt_tmp')->concept:'')}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -57,8 +120,9 @@
                 </x-adminlte-input>
             </div>
             <div class="col-sm-3">
+
                 <x-adminlte-input name="fecha_deuda" label="Fecha de la Deuda *" placeholder="Fecha de la Deuda" type="date"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->debt_date : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{session('claim_debt') ? Carbon\Carbon::parse(session('claim_debt')->debt_date)->format('Y-m-d') :(session('claim_debt_tmp')?Carbon\Carbon::parse(session('claim_debt_tmp')->debt_date)->format('Y-m-d'):'')}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -68,7 +132,7 @@
             </div>
             <div class="col-sm-3">
                 <x-adminlte-input name="fecha_vencimiento_deuda" label="Fecha de Venc. de la Deuda" placeholder="Fecha de Vencimiento de la Deuda" type="date"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->debt_expiration_date : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{session('claim_debt') ? Carbon\Carbon::parse(session('claim_debt')->debt_expiration_date)->format('Y-m-d') :(session('claim_debt_tmp')?Carbon\Carbon::parse(session('claim_debt_tmp')->debt_expiration_date)->format('Y-m-d'):'')}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -83,7 +147,12 @@
                 <x-adminlte-select2 id="tipo_deuda" name="tipo_deuda" label="Deuda seleccionada *" placeholder="Selecciona el Tipo de Deuda" class="form-control-sm" enable-old-support="true" >
 
                     @foreach (config('app.deudas') as $key => $deuda)
-                        <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : (session('tipo_deuda')==$key ? 'selected' : '') }} value="{{$key}}">{{$deuda['deuda']}}</option>
+                        {{-- @if(session('claim_debt')) --}}
+                            {{-- <option {{session('claim_debt') ? (session('claim_debt')->type == $key ? 'selected' : '') : (session('tipo_deuda')==$key ? 'selected' : '') }} value="{{$key}}">{{$deuda['deuda']}}</option> --}}
+                            <option {{ session('tipo_deuda') == $key ? 'selected' : '' }} value="{{$key}}">{{$deuda['deuda']}}</option>
+                        {{-- @else
+                            <option {{session('claim_debt_tmp') ? (session('claim_debt_tmp')->type == $key ? 'selected' : '') : (session('tipo_deuda')==$key ? 'selected' : '') }} value="{{$key}}">{{$deuda['deuda']}}</option>
+                        @endif --}}
                     @endforeach
 
                     <optgroup label="Otro **">
@@ -104,7 +173,7 @@
         <div class="row mt-2">
             <div class="col-sm-6">
                 <x-adminlte-input name="abonos" label="Número de pagos realizados por el Deudor" placeholder="Número de Pagos realizados por el Deudor (La suma de lo abonado)" type="number" min="0"
-                igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->partials_amount : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{session('claim_debt') ? session('claim_debt')->partials_amount :(session('claim_debt_tmp')?session('claim_debt_tmp')->partials_amount:'')}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-eur"></i>
@@ -131,6 +200,20 @@
                 @elseif (session('claim_debt') && session('claim_debt')->partials_amount_details)
                     <label>Pagos Parciales (en &euro;) y fecha en que se realizar&oacute;n</label>
                     @foreach (json_decode(session('claim_debt')->partials_amount_details,true) as $key => $am)
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input type="number" value="{{$am['amount']}}" required class="form-control form-control-sm" onchange="makeCalculation()" step="0.01" min="0" name="amounts[]">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="date" value="{{$am['date']}}" required class="form-control form-control-sm" name="dates[]">
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @elseif (session('claim_debt_tmp') && session('claim_debt_tmp')->partials_amount_details)
+                    <label>Pagos Parciales (en &euro;) y fecha en que se realizar&oacute;n</label>
+                    @foreach (json_decode(session('claim_debt_tmp')->partials_amount_details,true) as $key => $am)
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-8">
@@ -169,7 +252,12 @@
         <div class="row ">
             <div class="col-sm-12">
                 <x-adminlte-textarea name="observaciones" label="Observaciones / Explicaciones *" rows=4 enable-old-support="true" placeholder="Introduce datos adicionales que puedan ser de inter&eacute;s para la localizaci&oacute;n del deudor, esto nos ayudar&aacute; a acelerar el proceso.">
-                    {{ session('claim_debt') ? session('claim_debt')->additionals : ''}}
+                    @if(session('claim_debt'))
+                        {{ session('claim_debt') ? session('claim_debt')->additionals : ''}}
+                    @else
+                        {{ session('claim_debt_tmp') ? session('claim_debt_tmp')->additionals : ''}}
+                    @endif
+
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-address-card"></i>
@@ -182,54 +270,98 @@
         <div class="row">
             <div class="col-sm-12">
                 <x-adminlte-select name="reclamacion_previa_indicar" label="¿Ha reclamado usted esta deuda anteriormente? " enable-old-support="true">
-                    <option
-                    {{session('claim_debt') ? (session('claim_debt')->reclamacion_previa_indicar == 0 ? 'selected' : '') : '' }} value="0">NO</option>
-                    <option
-                    {{session('claim_debt') ? (session('claim_debt')->reclamacion_previa_indicar == 1 ? 'selected' : '') : '' }} value="1">SI</option>
+                    @if(session('claim_debt'))
+                        <option
+                        {{session('claim_debt') ? (session('claim_debt')->reclamacion_previa_indicar == 0 ? 'selected' : '') : '' }} value="0">NO</option>
+                        <option
+                        {{session('claim_debt') ? (session('claim_debt')->reclamacion_previa_indicar == 1 ? 'selected' : '') : '' }} value="1">SI</option>
+                    @else
+                        <option
+                        {{session('claim_debt_tmp') ? (session('claim_debt_tmp')->reclamacion_previa_indicar == 0 ? 'selected' : '') : '' }} value="0">NO</option>
+                        <option
+                        {{session('claim_debt_tmp') ? (session('claim_debt_tmp')->reclamacion_previa_indicar == 1 ? 'selected' : '') : '' }} value="1">SI</option>
+                    @endif
                 </x-adminlte-select>
             </div>
         </div>
 
-        <div id="reclamacion_previa_indicar_box"
+        @if(session('claim_debt'))
+            <div id="reclamacion_previa_indicar_box" class="{{ ((old() && old('reclamacion_previa_indicar') == 1) || (session('claim_debt') && session('claim_debt')->reclamacion_previa_indicar == 1)) ? '' : 'd-none' }}">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <x-adminlte-input name="fecha_reclamacion_previa" label="Fecha de la reclamación anterior *" type="date"
+                        igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->fecha_reclamacion_previa : ''}}">
+                            <x-slot name="appendSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="fas fa-eur"></i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
 
-        class="{{ ((old() && old('reclamacion_previa_indicar') == 1) || (session('claim_debt') && session('claim_debt')->reclamacion_previa_indicar == 1)) ? '' : 'd-none' }}">
+                    <div class="col-sm-6">
+                        <x-adminlte-input name="reclamacion_previa" label="Documentación de la reclamación anterior" type="file"
+                        igroup-size="sm" enable-old-support="true">
+                            <x-slot name="appendSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="fas fa-eur"></i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <x-adminlte-input name="fecha_reclamacion_previa" label="Fecha de la reclamación anterior *" type="date"
-                    igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt') ? session('claim_debt')->fecha_reclamacion_previa : ''}}">
-                        <x-slot name="appendSlot">
-                            <div class="input-group-text bg-dark">
-                                <i class="fas fa-eur"></i>
-                            </div>
-                        </x-slot>
-                    </x-adminlte-input>
+                    <div class="col-sm-12">
+                        <x-adminlte-textarea name="motivo_reclamacion_previa" label="Motivo de oposición alegada por el deudor" placeholder="Explica los motivos por los que justifica el impago" rows=4 enable-old-support="true">
+                            {{ session('claim_debt') ? session('claim_debt')->motivo_reclamacion_previa : ''}}
+                            <x-slot name="appendSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="fas fa-address-card"></i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-textarea>
+                    </div>
                 </div>
+            </div>
+        @else
+            <div id="reclamacion_previa_indicar_box" class="{{ ((old() && old('reclamacion_previa_indicar') == 1) || (session('claim_debt_tmp') && session('claim_debt_tmp')->reclamacion_previa_indicar == 1)) ? '' : 'd-none' }}">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <x-adminlte-input name="fecha_reclamacion_previa" label="Fecha de la reclamación anterior *" type="date"
+                        igroup-size="sm" enable-old-support="true" value="{{ session('claim_debt_tmp') ? session('claim_debt_tmp')->fecha_reclamacion_previa : ''}}">
+                            <x-slot name="appendSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="fas fa-eur"></i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
 
-                <div class="col-sm-6">
-                    <x-adminlte-input name="reclamacion_previa" label="Documentación de la reclamación anterior" type="file"
-                    igroup-size="sm" enable-old-support="true">
-                        <x-slot name="appendSlot">
-                            <div class="input-group-text bg-dark">
-                                <i class="fas fa-eur"></i>
-                            </div>
-                        </x-slot>
-                    </x-adminlte-input>
-                </div>
+                    <div class="col-sm-6">
+                        <x-adminlte-input name="reclamacion_previa" label="Documentación de la reclamación anterior" type="file"
+                        igroup-size="sm" enable-old-support="true">
+                            <x-slot name="appendSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="fas fa-eur"></i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                    </div>
 
-                <div class="col-sm-12">
-                    <x-adminlte-textarea name="motivo_reclamacion_previa" label="Motivo de oposición alegada por el deudor" placeholder="Explica los motivos por los que justifica el impago" rows=4 enable-old-support="true">
-                        {{ session('claim_debt') ? session('claim_debt')->motivo_reclamacion_previa : ''}}
-                        <x-slot name="appendSlot">
-                            <div class="input-group-text bg-dark">
-                                <i class="fas fa-address-card"></i>
-                            </div>
-                        </x-slot>
-                    </x-adminlte-textarea>
+                    <div class="col-sm-12">
+                        <x-adminlte-textarea name="motivo_reclamacion_previa" label="Motivo de oposición alegada por el deudor" placeholder="Explica los motivos por los que justifica el impago" rows=4 enable-old-support="true">
+                            {{ session('claim_debt_tmp') ? session('claim_debt_tmp')->motivo_reclamacion_previa : ''}}
+                            <x-slot name="appendSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="fas fa-address-card"></i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-textarea>
+                    </div>
                 </div>
             </div>
 
-        </div>
+        @endif
+
 
         <hr>
 
