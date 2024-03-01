@@ -17,67 +17,84 @@
     </x-adminlte-alert>
 @endif
 
-{{-- @if($client)
-    <x-adminlte-alert theme="warning" dismissable>
-        {{ $client }}
-    </x-adminlte-alert>
-@endif
 
-@if($debtor)
-    <x-adminlte-alert theme="warning" dismissable>
-        {{ $debtor }}
-    </x-adminlte-alert>
-@endif
 
-@if(session()->has('debt'))
-    <x-adminlte-alert theme="warning" dismissable>
-    {{ session('debt') }}
-    </x-adminlte-alert>
-@else
-    <x-adminlte-alert theme="warning" dismissable>
-        No hay debt en session
-    </x-adminlte-alert>
-@endif
+{{--     @if($client)
+        <x-adminlte-alert theme="warning" dismissable>
+            {{ $client }}
+        </x-adminlte-alert>
+    @endif
 
-@if(session()->has('debt_tmp'))
-    <x-adminlte-alert theme="warning" dismissable>
-    {{ session('debt_tmp') }}
-    </x-adminlte-alert>
-@else
-    <x-adminlte-alert theme="warning" dismissable>
-        No hay debt_tmp en session
-    </x-adminlte-alert>
-@endif
+    @if($debtor)
+        <x-adminlte-alert theme="warning" dismissable>
+            {{ $debtor }}
+        </x-adminlte-alert>
+    @endif
 
-@if(session()->has('claim_debt'))
-    <x-adminlte-alert theme="warning" dismissable>
-    {{ session('claim_debt') }}
-    </x-adminlte-alert>
-@else
-    <x-adminlte-alert theme="warning" dismissable>
-        No hay claim_debt en session
-    </x-adminlte-alert>
-@endif
+    @if(session()->has('debt'))
+        <x-adminlte-alert theme="warning" dismissable>
+        {{ session('debt') }}
+        </x-adminlte-alert>
+    @else
+        <x-adminlte-alert theme="warning" dismissable>
+            No hay debt en session
+        </x-adminlte-alert>
+    @endif
 
-@if(session()->has('claim_debt_tmp'))
-    <x-adminlte-alert theme="warning" dismissable>
-    {{ session('claim_debt_tmp') }}
-    </x-adminlte-alert>
-@else
-    <x-adminlte-alert theme="warning" dismissable>
-        No hay claim_debt_tmp en session
-    </x-adminlte-alert>
-@endif
+    @if(session()->has('debt_tmp'))
+        <x-adminlte-alert theme="warning" dismissable>
+        {{ session('debt_tmp') }}
+        </x-adminlte-alert>
+    @else
+        <x-adminlte-alert theme="warning" dismissable>
+            No hay debt_tmp en session
+        </x-adminlte-alert>
+    @endif
 
-@if(session()->has('tipo_deuda'))
-    <x-adminlte-alert theme="warning" dismissable>
-    {{ session('tipo_deuda') }}
-    </x-adminlte-alert>
-@else
-    <x-adminlte-alert theme="warning" dismissable>
-        No hay tipo de deuda en session
-    </x-adminlte-alert>
-@endif --}}
+    @if(session()->has('claim_debt'))
+        <x-adminlte-alert theme="warning" dismissable>
+        {{ session('claim_debt') }}
+        </x-adminlte-alert>
+    @else
+        <x-adminlte-alert theme="warning" dismissable>
+            No hay claim_debt en session
+        </x-adminlte-alert>
+    @endif
+
+    @if(session()->has('claim_debt_tmp'))
+        <x-adminlte-alert theme="warning" dismissable>
+        {{ session('claim_debt_tmp') }}
+        </x-adminlte-alert>
+    @else
+        <x-adminlte-alert theme="warning" dismissable>
+            No hay claim_debt_tmp en session
+        </x-adminlte-alert>
+    @endif
+
+    @if(session()->has('tipo_deuda'))
+        <x-adminlte-alert theme="warning" dismissable>
+        {{ session('tipo_deuda') }}
+        </x-adminlte-alert>
+    @else
+        <x-adminlte-alert theme="warning" dismissable>
+            No hay tipo de deuda en session
+        </x-adminlte-alert>
+    @endif
+
+    @if(session()->has('documentos'))
+        <x-adminlte-alert theme="warning" dismissable>
+        @php
+            var_dump(session('documentos'));
+        @endphp
+        </x-adminlte-alert>
+    @else
+        <x-adminlte-alert theme="warning" dismissable>
+            No hay documentos en session
+        </x-adminlte-alert>
+    @endif --}}
+
+
+
 
 <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline" body-class="" title="Registro de Deuda - Datos de la Deuda">
 
@@ -405,9 +422,8 @@
                             </div>
 
                             <div class="hitos">
-
+                                <a href="{{ url('storage/'.$d[key($d)]['file']) }}" id="document-link">Ver documento {{key($d)}}</a>
                                 {{-- @include('debts.documents.'.key($d), ["_i" => $d[key($d)]]) --}}
-
                             </div>
 
                             <button class="btn btn-sm btn-danger" type="button" onclick="$(this).parent().remove()">
@@ -515,7 +531,11 @@
 <script>
     $(document).ready(function(){
         makeCalculation();
-        $("#add-document").click();
+
+        if(typeof $("#document-link").attr("href") == 'undefined'){
+            $("#add-document").click();
+        }
+
         if($('#tipo_deuda').val() == -1){
 
             $('#deuda_otros').find('label').html('Otro **')
