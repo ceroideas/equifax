@@ -3,6 +3,7 @@
 @php( $login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login') )
 @php( $register_url = View::getSection('register_url') ?? config('adminlte.register_url', 'register') )
 {{-- {!! RecaptchaV3::initJs() !!} --}}
+{!! NoCaptcha::renderJs() !!}
 @if (config('adminlte.use_route_url', false))
     @php( $login_url = $login_url ? route($login_url) : '' )
     @php( $register_url = $register_url ? route($register_url) : '' )
@@ -212,7 +213,13 @@
 
         {{-- Register button --}}
         <div class="col-12 text-center">
-
+            {!! NoCaptcha::display() !!}
+            @if ($errors->has('g-recaptcha-response'))
+                <span class="feedbak-error">
+                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                </span>
+            @endif
+            <br>
             <button type=submit class="btn btn-block btn-acceder {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
                 {{-- <span class="fas fa-sign-in-alt"></span> --}}
                 {{ __('adminlte::adminlte.register') }}

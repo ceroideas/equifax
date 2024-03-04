@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "anhskohbo/no-captcha": "^3.5",
         "guzzlehttp/guzzle": "*",
         "jeroennoten/laravel-adminlte": "^3.8",
         "josiasmontag/laravel-recaptchav3": "^1.0",
