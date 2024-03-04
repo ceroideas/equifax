@@ -342,7 +342,7 @@
                                                 para dos personas en el restaurante Iv&aacute;n Cerdeño con dos estrellas Michelin? <br><br>
                                                 Sube una factura impagada y participa en nuestro sorteo
                                             </span></small></h4>
-                                            <a data-v-9cc878a2="" href="{{url('claims/select-type')}}" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto">NUEVA RECLAMACIÓN</a>
+                                            <a data-v-9cc878a2="" href="{{url('claims/status-claim')}}" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto">NUEVA RECLAMACIÓN</a>
                                         @endif
                                         @if(isset(Auth::user()->campaign)&& Auth::user()->referenced =='FEDETO')
                                             <h4><b>¡Enhorabuena!</b><br><small> <span>Est&aacute;s participando en el sorteo FEDETO<br>
@@ -393,7 +393,7 @@
                                     <div class="col-7">
                                         <h4>Contrata una reclamaci&oacute;n <br> <small>y di adi&oacute;s a tus facturas impagadas.</small></h4>
 
-                                        <a data-v-9cc878a2="" href="{{url('claims/select-type')}}" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto">NUEVA RECLAMACIÓN</a>
+                                        <a data-v-9cc878a2="" href="{{url('claims/status-claim')}}" aria-current="page" class="btn btn-light-descubre" type="button" style="border-radius: 20px !important; padding: 8px; margin: auto">NUEVA RECLAMACIÓN</a>
                                     </div>
                                 </div>
                             </div>

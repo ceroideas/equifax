@@ -22,43 +22,18 @@
 @section('content')
 
 
-   @include('progressbar', ['step' => 2])
+    @include('progressbar', ['step' => 2])
 
-   @if(session()->has('msj'))
-   <x-adminlte-alert theme="success" dismissable>
-       <span> {{ session('msj') }}</span>
-   </x-adminlte-alert>
-
-   @endif
+    @if(session()->has('msj'))
+    <x-adminlte-alert theme="success" dismissable>
+        <span> {{ session('msj') }}</span>
+    </x-adminlte-alert>
+    @endif
    <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
     <form action="{{url('claims/check_debtor')}}" method="POST">
         {{csrf_field()}}
 
         <span> <h1>Selecciona el tipo de deuda</h1></span>
-{{--
-    <div class="row">
-          <div class="col-sm-12">
-
-              @foreach (config('app.no_viables') as $no_viable)
-
-                <li>
-                    {{$no_viable['deuda']}}
-                </li>
-
-              @endforeach
-
-            <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-top: 8px;">
-              <label class="btn btn-outline-info">
-                <input type="radio" name="options" value="1"> Si
-              </label>
-              <label class="btn btn-outline-info">
-                <input type="radio" name="options" value="0"> No
-              </label>
-            </div>
-
-          </div>
-      </div>
---}}
       {{-- Select --}}
 
       <div class="row">

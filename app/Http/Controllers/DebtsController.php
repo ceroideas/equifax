@@ -7,6 +7,10 @@ use App\Models\DebtDocument;
 use App\Models\User;
 use App\Models\Debtor;
 use App\Models\ThirdParty;
+use App\Models\Claim_tmp;
+use App\Models\Debt_tmp;
+
+
 use Illuminate\Http\Request;
 use Auth;
 use Storage;
@@ -73,7 +77,7 @@ class DebtsController extends Controller
     {
         $documentos = [];
 
-
+        /*
         function rrmdir($dir) {
            if (is_dir($dir)) {
              $objects = scandir($dir);
@@ -91,7 +95,7 @@ class DebtsController extends Controller
 
         if (is_dir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'))) {
             rrmdir(storage_path('app/public/temporal/debts/' . Auth::user()->id . '/documents'));
-        }
+        }*/
 
         if ($request->factura) {
             foreach ($request->factura['file'] as $key => $value) {
@@ -273,61 +277,28 @@ class DebtsController extends Controller
                 ]];
             }
         }
-
+        //dump("Documentos");
         session()->put('documentos',$documentos);
-
-        // $path = '/uploads/claims/test/documents/';
-
-        // foreach (session('documentos') as $key => $d) {
-        //     $bn = basename($d[key($d)]['file']);
-        //     Storage::disk('public')->move($d[key($d)]['file'], $path . $bn);
-        // }
-
-        // return 'OK';
-
-        /*foreach ($documentos as $key => $d) {
-            $file = $request->file('factura')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-            $documentos[$key][key($d)]['documentos'] = $file;
-        }
-
-"file" => $documentos,
-        return "";
-
-        return $documentos;*/
-
-
-/* TODO: borrar debug
-        print_r("Debts Controller -> Save step one ");echo "<br>";
-        var_dump($request->tipo_deuda);echo "<br>";
-        print_r("______________ Isset _____________");echo "<br>";
-        if(isset($request->tipo_deuda)){
-            print_r("Existe deuda");echo "<br>";
-        }else{
-            print_r("NO hay deuda");echo "<br>";
-        }*/
-        //print_r("______________ Request_____________");echo "<br>";
-        //var_dump($request);echo "<br>";
-
-
+        //dd(session('documentos'));
 
         $data = $this->validateStepOne();
 
         $debt = new Debt();
-
-        $debt->total_amount = $data['importe'];
-        $debt->tax = $data['iva'];
-        $debt->concept = $data['concepto'];
-        $debt->document_number = "";
-        $debt->debt_date = $data['fecha_deuda'];
+        $debtTmp = new Debt_tmp();
+        $debtTmp->total_amount = $debt->total_amount = $data['importe'];
+        $debtTmp->tax = $debt->tax = $data['iva'];
+        $debtTmp->concept = $debt->concept = $data['concepto'];
+        $debtTmp->document_number = $debt->document_number = "";
+        $debtTmp->debt_date = $debt->debt_date = $data['fecha_deuda'];
         // Sino hay fecha de vencimiento usamos la fecha de la deuda
-        $data['fecha_vencimiento_deuda'] == NULL ? $debt->debt_expiration_date = $data['fecha_deuda'] : $debt->debt_expiration_date = $data['fecha_vencimiento_deuda'];
-        $debt->pending_amount = $data['importe_pendiente'];
-        $debt->partials_amount = $data['abonos'];
-        $debt->additionals = $data['observaciones'];
+        $data['fecha_vencimiento_deuda'] == NULL ? $debtTmp->debt_expiration_date = $debt->debt_expiration_date = $data['fecha_deuda'] : $debtTmp->debt_expiration_date = $debt->debt_expiration_date = $data['fecha_vencimiento_deuda'];
+        $debtTmp->pending_amount = $debt->pending_amount = $data['importe_pendiente'];
+        $debtTmp->partials_amount = $debt->partials_amount = $data['abonos'];
+        $debtTmp->additionals = $debt->additionals = $data['observaciones'];
 
-        $debt->reclamacion_previa_indicar = array_key_exists('reclamacion_previa_indicar', $data) ? $data['reclamacion_previa_indicar'] : null;
-        $debt->motivo_reclamacion_previa = array_key_exists('motivo_reclamacion_previa', $data) ? $data['motivo_reclamacion_previa'] : null;
-        $debt->fecha_reclamacion_previa = array_key_exists('fecha_reclamacion_previa', $data) ? $data['fecha_reclamacion_previa'] : null;
+        $debtTmp->reclamacion_previa_indicar = $debt->reclamacion_previa_indicar = array_key_exists('reclamacion_previa_indicar', $data) ? $data['reclamacion_previa_indicar'] : null;
+        $debtTmp->motivo_reclamacion_previa = $debt->motivo_reclamacion_previa = array_key_exists('motivo_reclamacion_previa', $data) ? $data['motivo_reclamacion_previa'] : null;
+        $debtTmp->fecha_reclamacion_previa = $debt->fecha_reclamacion_previa = array_key_exists('fecha_reclamacion_previa', $data) ? $data['fecha_reclamacion_previa'] : null;
 
 
         if($debt->reclamacion_previa){
@@ -336,7 +307,7 @@ class DebtsController extends Controller
         if($request['reclamacion_previa']){
 
             $reclamacion_previa = $request->file('reclamacion_previa')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-            $debt->reclamacion_previa = $reclamacion_previa;
+            $debtTmp->reclamacion_previa = $debt->reclamacion_previa = $reclamacion_previa;
         }
 
         $amounts = [];
@@ -347,44 +318,37 @@ class DebtsController extends Controller
             }
         }
 
-        $debt->partials_amount_details = json_encode($amounts);
+        $debtTmp->partials_amount_details = $debt->partials_amount_details = json_encode($amounts);
 
         if($data['tipo_deuda']==-1){
-            $debt->type = 10;
+            $debtTmp->type = $debt->type = 10;
         }else{
-            $debt->type = $data['tipo_deuda'];
+            $debtTmp->type = $debt->type = $data['tipo_deuda'];
         }
 
-
-        /* TODO: borrar debug */
-        /*print_r("Debts type -> Save step one ");echo "<br>";
-        print_r($data['tipo_deuda']);echo "<br>";
-        print_r($debt->type);echo "<br>";*/
-        //die();
-
         if($data['deuda_extra']){
-            $debt->type_extra = $data['deuda_extra'];
+            $debtTmp->type_extra = $debt->type_extra = $data['deuda_extra'];
             session()->put('type_other', true);
         }
 
         session()->put('claim_debt', $debt);
+        session()->put('claim_debt_tmp', $debtTmp);
         session()->put('debt_step_one', 'completed');
         session()->put('debt_step_two', 'completed');
         session()->put('debt_step_three', 'completed');
 
-        // documentacion
+        $debtTmp->save();
 
-        // foreach ($documentos as $key => $d) {
+        $claimTmp = Claim_tmp::where('id',session('claim_tmp_id'))
+                            ->first();
 
-        //     $file = $request->file(key($d))->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-        //     $documentos[$key][key($d)]['file'] = $file;
+        $claimTmp->observation = $documentos;
+        $claimTmp->status = 5;
+        $claimTmp->debt_tmp_id = $debtTmp->id;
 
-        // }
+        $claimTmp->save();
 
-        // session()->put('documentos',$documentos);
 
-        // return redirect('/debts/create/step-two')->with('msj', 'Datos guardados exitosamente');
-        // return redirect('/debts/create/step-three')->with('msj', 'Datos guardados exitosamente');
         return redirect('/claims/check-agreement')->with('msj', 'Datos guardados exitosamente');
     }
 

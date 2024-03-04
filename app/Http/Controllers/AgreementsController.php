@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agreement;
-use App\Models\User;
+use App\Models\Agreement_tmp;
+use App\Models\Claim_tmp;
 use Illuminate\Http\Request;
 use App\Rules\Iban;
 use Auth;
@@ -27,7 +28,7 @@ class AgreementsController extends Controller
      */
     public function create()
     {
-        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('claim_debt') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three')){
+        if((session()->has('claim_client') || session()->has('claim_third_party')) && session()->has('claim_debtor') && session()->has('debt_step_one') && session()->has('debt_step_two') && session()->has('debt_step_three')){
 
             session()->forget('claim_agreement');
 
@@ -41,25 +42,32 @@ class AgreementsController extends Controller
         $this->validateRequest();
 
         $agreement = new Agreement();
-        $agreement->take = $request['quitas'];
-        $agreement->wait = $request['espera'];
-        $agreement->observation = $request['observaciones'] ? $request['observaciones'] : '';
+        $agreementTmp = new Agreement_tmp();
 
-        /*if (Auth::user()->isGestor()) {
-            $u = User::find(session('other_user'));
-            $u->iban = $request['iban'];
-            $u->save();
+        $agreementTmp->take = $agreement->take = $request['quitas'];
+        $agreementTmp->wait = $agreement->wait = $request['espera'];
+        $agreementTmp->observation = $agreement->observation = $request['observaciones'] ? $request['observaciones'] : '';
 
-            // actuationActions("-1",$claim->id);
-        }else{*/
-            Auth::user()->iban = $request['iban'];
-            Auth::user()->save();
-        // }
+        Auth::user()->iban = $request['iban'];
+        Auth::user()->save();
 
 
         session()->put('claim_agreement', $agreement);
 
-        // return redirect('viability');
+        $agreementTmp->save();
+
+        $claimTmp = Claim_tmp::where('id',session('claim_tmp_id'))
+            ->first();
+
+        $claimTmp->status = 6;
+        $claimTmp->agreement_tmp_id = $agreementTmp->id;
+
+        $agreementTmp->debt_tmp_id = $claimTmp->debt_tmp_id;
+        $agreementTmp->claim_tmp_id = $claimTmp->claim_tmp_id;
+
+        $claimTmp->save();
+        $agreementTmp->save();
+
         return redirect('claims/accept-terms')->with('msj', 'Datos guardados exitosamente');
 
     }
