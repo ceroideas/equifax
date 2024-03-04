@@ -1571,6 +1571,7 @@ class ClaimsController extends Controller
         session()->forget('documentos');
         session()->forget('type_claim');
         session()->forget('claim_tmp_id');
+        session()->forget('claim_debt_tmp');
     }
 
     public function restore($claim_id, Request $request){
