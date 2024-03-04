@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->integer('discount_type')->nullable();
             $table->integer('discount')->nullable();
+            $table->string('claim_code')->nullable();
             $table->string('prefix')->nullable();
             $table->timestamp('init_date')->nullable();
             $table->timestamp('end_date')->nullable();
