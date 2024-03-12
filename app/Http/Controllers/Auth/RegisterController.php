@@ -60,15 +60,27 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
 
-        return Validator::make($data, [
-            'nombre' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'tos' => ['required'],
-            'lopd' => ['required'],
-            'g-recaptcha-response' => 'required|captcha',
-            /* 'g-recaptcha-response' => 'required|recaptchav3:register,0.5' */
-        ]);
+        if($_SERVER['SERVER_NAME']=='127.0.0.1'){
+
+            return Validator::make($data, [
+                'nombre' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'tos' => ['required'],
+                'lopd' => ['required'],
+                //'g-recaptcha-response' => 'required|captcha',
+            ]);
+        }else{
+            return Validator::make($data, [
+                'nombre' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'tos' => ['required'],
+                'lopd' => ['required'],
+                'g-recaptcha-response' => 'required|captcha',
+            ]);
+        }
+
     }
 
     /**

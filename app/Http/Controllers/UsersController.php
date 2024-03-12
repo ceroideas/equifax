@@ -91,6 +91,7 @@ class UsersController extends Controller
         $validation = $this->validatePassword();
 
         Auth::user()->password = bcrypt($request->password);
+        Auth::user()->pw_updated_at = carbon::now();
         Auth::user()->save();
 
         return redirect('panel')->with('msj','Tu contraseña se ha cambiado satisfactoriamente!');
@@ -108,7 +109,6 @@ class UsersController extends Controller
         $validation = $this->validateRequest();
 
         $user = $model_user->create([
-
             'name' => $request->name,
             'email' => $request->email,
             'dni' => $request->dni,
@@ -128,6 +128,7 @@ class UsersController extends Controller
             'status'=>3,
             'type'=>$request->type,
             'msgusr'=>1,
+            'pw_updated_at'=>Carbon::now(),
         ]);
 
         addNotification('Nuevo usuario', 'Nuevo usuario registrado', 0,$user->id);

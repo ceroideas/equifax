@@ -41,6 +41,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'referenced',
         'campaign',
         'msgusr',
+        'pw_updated_at',
+
     ];
 
     /**
@@ -60,6 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        //'pw_updated_at'=>'datetime',
     ];
 
 
