@@ -70,9 +70,14 @@
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($debtors as $debtor)
                 <tr>
-                    <td>{{ $debtor->dni }}</td>
-                    <td>{{ $debtor->name }}</td>
-                    <td>{{ $debtor->email }}</td>
+                    @php
+                        $decryptedName = isset($debtor->name) ? Crypt::decryptString($debtor->name) : NULL;
+                        $decryptedEmail = isset($debtor->email) ? Crypt::decryptString($debtor->email) : NULL;
+                        $decryptedDni = isset($debtor->dni) ? Crypt::decryptString($debtor->dni) : NULL;
+                    @endphp
+                    <td>{{ $decryptedDni }}</td>
+                    <td>{{ $decryptedName }}</td>
+                    <td>{{ $decryptedEmail }}</td>
                     <td>{{ $debtor->getType() }}</td>
                     <td>
                      <nobr>

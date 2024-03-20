@@ -33,7 +33,9 @@
     }
 </style>
 
-
+@php
+    $decryptedIban = isset(Auth::user()->iban) ? Crypt::decryptString(Auth::user()->iban) : NULL;
+@endphp
 <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline" body-class="" title="Registro de Acuerdo">
 
     <form action="{{ url('/agreements/save-agreement') }}" method="POST" enctype="multipart/form-data">
@@ -43,10 +45,6 @@
 
         <div class="row">
             <div class="col-sm-12">
-                {{-- {{ json_encode(session()->all()) }}
-                {{session('claim_debt.pending_amount')}} --}}
-                @php
-                @endphp
                 <label for="deudas_otros_input">¿Qué importe sería satisfactorio para dar la deuda por saldada? *{{ old() ? '('.old('quitas').' €)' : '' }}</label>
 
                 <x-adminlte-input-slider min="{{ session('claim_debt.pending_amount')/2 }}" max="{{ session('claim_debt.pending_amount') }}" id="deudas_otros_input" name="quitas" placeholder="Quitas" type="text" class=""
@@ -95,7 +93,7 @@
 
             <div class="col-sm-12">
                 <x-adminlte-input name="iban" label="Identifica el Nº de Cuenta donde ingresaremos las cantidades recuperadas" placeholder="Número de cuenta corriente" type="text"
-                igroup-size="sm" value="{{ Auth::user()->iban }}">
+                igroup-size="sm" value="{{ $decryptedIban }}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-key"></i>
