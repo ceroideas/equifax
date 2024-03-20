@@ -5,10 +5,20 @@
         </x-adminlte-alert>
     @endif
     @if(session()->has('alert'))
-    <x-adminlte-alert theme="warning" dismissable>
-        {{ session('alert') }}
-    </x-adminlte-alert>
-@endif
+        <x-adminlte-alert theme="warning" dismissable>
+            {{ session('alert') }}
+        </x-adminlte-alert>
+    @endif
+
+    @php
+        $decryptedName = isset($third_party->name) ? Crypt::decryptString($third_party->name) : NULL;
+        $decryptedDni = isset($third_party->dni) ? Crypt::decryptString($third_party->dni) : NULL;
+        $decryptedLegalRepresentative = isset($third_party->legal_representative) ? Crypt::decryptString($third_party->legal_representative) : NULL;
+        $decryptedRepresentativeDni = isset($third_party->representative_dni) ? Crypt::decryptString($third_party->representative_dni) : NULL;
+        $decryptedAddress = isset($third_party->address) ? Crypt::decryptString($third_party->address) : NULL;
+        $decryptedIban = isset($third_party->iban) ? Crypt::decryptString($third_party->iban) : NULL;
+    @endphp
+
     <form action="@if(isset($third_party)){{ url('/third-parties/' . $third_party->id) }}@else{{ url('/third-parties') }}@endif" method="POST" enctype="multipart/form-data">
         @csrf
         @if(isset($third_party))
@@ -55,7 +65,7 @@
         <div class="row ">
             <div class="col-sm-6">
                 <x-adminlte-input name="name" label="Nombre Completo / Razón Social" placeholder="Información" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($third_party) ?  $third_party->name   :  ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($third_party) ? $decryptedName :''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-user"></i>
@@ -75,7 +85,7 @@
                     DNI *
                 @endisset</label>
                 <x-adminlte-input name="dni" placeholder="Información Fiscal" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($third_party) ?  $third_party->dni   :  ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($third_party) ? $decryptedDni :''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-id-card"></i>
@@ -96,7 +106,7 @@
                 @else
                     Dirección *
                 @endisset</label>
-                <x-adminlte-textarea name="address" rows=1 enable-old-support="true">{{  isset($third_party) ?  $third_party->address   :  ''}}
+                <x-adminlte-textarea name="address" rows=1 enable-old-support="true">{{ isset($third_party) ? $decryptedAddress:''}}
                     <x-slot name="appendSlot" >
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-address-card"></i>
@@ -105,7 +115,7 @@
             </div>
             <div class="col-sm-6">
                 <x-adminlte-input name="location" label="Población *" placeholder="Población" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($third_party) ?  $third_party->location   :  ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($third_party) ? $third_party->location :''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-map-marker"></i>
@@ -117,7 +127,7 @@
         <div class="row ">
             <div class="col-sm-6">
                 <x-adminlte-input name="cop" label="Código Postal *" placeholder="Código Postal" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($third_party) ?  $third_party->cop   :  ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($third_party) ? $third_party->cop :''}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-map-marker"></i>
@@ -127,7 +137,7 @@
             </div>
             <div class="col-sm-6">
                 <x-adminlte-input name="province" label="Provincia *" placeholder="Provincia" type="text"
-                igroup-size="sm" value="{{  isset($third_party) ?  $third_party->province   :  ''}}" enable-old-support="true">
+                igroup-size="sm" value="{{ isset($third_party) ? $third_party->province :''}}" enable-old-support="true">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas map-marker"></i>
@@ -163,7 +173,7 @@
 
             <div class="col-sm-6">
                 <x-adminlte-input name="iban" label="N° De Cuenta Corriente" placeholder="N° De Cuenta Corriente" type="text"
-                igroup-size="sm" value="{{  isset($third_party) ?  $third_party->iban   :  ''}}" enable-old-support="true">
+                igroup-size="sm" value="{{ isset($third_party) ? $decryptedIban : ''}}" enable-old-support="true">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-university"></i>
@@ -214,7 +224,7 @@
         <div class="row poa-div d-none">
             <div class="col-sm-6">
                 <x-adminlte-input name="legal_representative" label="Nombre del representante legal *" placeholder="Nombre del representante legal" type="text"
-                igroup-size="sm" value="{{  isset($third_party) && !old() ?  $third_party->legal_representative   :  (old() ? old('legal_representative') : '' )}}">
+                igroup-size="sm" value="{{ isset($third_party) && !old() ?  $decryptedLegalRepresentative  : (old() ? old('legal_representative') :'' )}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-file"></i>
@@ -224,7 +234,7 @@
             </div>
             <div class="col-sm-6">
                 <x-adminlte-input name="representative_dni" label="DNI / CIF del representante legal *" placeholder="DNI / CIF del representante legal" type="text"
-                igroup-size="sm" value="{{  isset($third_party) && !old() ?  $third_party->representative_dni   :  (old() ? old('representative_dni') : '' )}}">
+                igroup-size="sm" value="{{ isset($third_party) && !old() ?  $decryptedRepresentativeDni : (old() ? old('representative_dni') :'' )}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-file"></i>

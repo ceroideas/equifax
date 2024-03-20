@@ -86,7 +86,8 @@
                     @endswitch
 
 					<td>{{ isset($claimTmp->claim_type)?($claimTmp->claim_type==1?'Judicial':'Extrajudicial'):'' }}</td>
-                    <td>{{ isset($claimTmp->user_id) ? $claimTmp->client->name : (isset($claimTmp->representant->name)?$claimTmp->representant->name:'')}}</td>
+                    @php $decryptedName = isset($claimTmp->client->name) ? Crypt::decryptString($claimTmp->client->name) : NULL; @endphp
+                    <td>{{ isset($claimTmp->user_id) ? $decryptedName : (isset($claimTmp->representant->name)?$claimTmp->representant->name:'')}}</td>
                     <td>{{ isset($claimTmp->debtor)? $claimTmp->debtor->name:'' }}</td>
                     <td>{{ isset($claimTmp->debtTmp) ? number_format( $claimTmp->debtTmp->pending_amount , 2,',','.') :'' }}
                         @if($claimTmp->debtTmp)

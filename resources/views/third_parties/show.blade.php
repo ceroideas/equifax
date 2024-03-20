@@ -1,17 +1,25 @@
 @extends('adminlte::page')
 
 @section('title', $third_party->name )
+    @php
+        $decryptedName = isset($third_party->name) ? Crypt::decryptString($third_party->name) : NULL;
+        $decryptedDni = isset($third_party->dni) ? Crypt::decryptString($third_party->dni) : NULL;
+        $decryptedLegalRepresentative = isset($third_party->legal_representative) ? Crypt::decryptString($third_party->legal_representative) : NULL;
+        $decryptedRepresentativeDni = isset($third_party->representative_dni) ? Crypt::decryptString($third_party->representative_dni) : NULL;
+        $decryptedAddress = isset($third_party->address) ? Crypt::decryptString($third_party->address) : NULL;
+        $decryptedIban = isset($third_party->iban) ? Crypt::decryptString($third_party->iban) : NULL;
+    @endphp
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{ $third_party->name }}</h1>
+                <h1>{{ $decryptedName }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/panel">&Aacute;rea personal</a></li>
-                    <li class="breadcrumb-item active">{{ $third_party->name }}</li>
+                    <li class="breadcrumb-item active">{{ $decryptedName }}</li>
                 </ol>
             </div>
         </div>
@@ -27,30 +35,8 @@
     @endif
 
 
-<x-adminlte-profile-widget name="{{ $third_party->name }}" desc="Representado" theme="orange" header-class="text-white">
-    {{-- <div class="col-sm-12 col-md-12 col-lg-6">
-        <div class="card card-orange">
-            <div class="card-header text-white">
-                <h3 class="card-title">DNI</h3>
-            </div>
+<x-adminlte-profile-widget name="{{ $decryptedName }}" desc="Representado" theme="orange" header-class="text-white">
 
-            <div class="card-body text-center">
-                @if($third_party->dni_img)
-                    @php
-                        $ext = array_reverse(explode('.', $third_party->dni_img))[0];
-                    @endphp
-                    @if (strtolower($ext) == 'pdf')
-                        <iframe src="{{asset( $third_party->dni_img)}}" frameborder="0" style="width: 100%; height:400px "></iframe>
-                    @else
-                        <img src="{{  asset( $third_party->dni_img)  }}" alt="{{ $third_party->name . ' dni'}}" class="img-fluid"/>
-                    @endif
-                @else
-                    <img src="{{  asset( 'img/placeholders/dniplaceholder.jpg' )  }}" alt="{{ $third_party->name . ' dni'}}" class="img-fluid"/>
-
-                @endif
-            </div>
-        </div>
-    </div> --}}
     <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="row">
             <div class="col-sm-12">
@@ -63,26 +49,26 @@
                             <div class="col-sm-6">
                                 <strong><i class="fas fa-book mr-1"></i>Nombre Completo / Razón Social:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $third_party->name }}
+                                   {{ $decryptedName }}
                                 </p>
                             </div>
                             <div class="col-sm-6">
                                 <strong><i class="fas fa-id-card mr-1"></i>DNI / CIF:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $third_party->dni }}
+                                   {{ $decryptedDni }}
                                 </p>
                             </div>
 
                             <div class="col-sm-6">
-                                <strong><i class="fas fa-book mr-1"></i>Nombre Representante Legal:</strong>
+                                <strong><i class="fas fa-book mr-1"></i>Nombre Representante Legales:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $third_party->legal_representative }}
+                                   {{ $decryptedLegalRepresentative }}
                                 </p>
                             </div>
                             <div class="col-sm-6">
                                 <strong><i class="fas fa-id-card mr-1"></i>DNI / CIF Representante:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $third_party->representative_dni }}
+                                   {{ $decryptedRepresentativeDni }}
                                 </p>
                             </div>
                             {{-- <div class="col-sm-3">
@@ -96,7 +82,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Dirección: </strong>
-                                <p class="text-muted text-uppercase">{{ $third_party->address }}</p>
+                                <p class="text-muted text-uppercase">{{ $decryptedAddress }}</p>
                             </div>
                             <div class="col-sm-3">
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Población: </strong>
@@ -125,7 +111,7 @@
 
                                 <strong><i class="fas fa-university mr-1"></i>Nro de Cuenta</strong>
                                 <p class="text-muted text-uppercase">
-                                    {{ $third_party->iban }}
+                                    {{ $decryptedIban }}
                                 </p>
                             </div>
                             @endif
@@ -135,7 +121,7 @@
 
                                 <strong><i class="fas fa-university mr-1"></i>Poder de Representación / Título de Acreditación</strong>
                                 <p class="text-muted text-uppercase">
-                                   <a href="{{ asset(  $third_party->poa ) }}" download="Acreditación {{ $third_party->name  . ' ' . $third_party->dni}}">Descargar Documento</a>
+                                   <a href="{{ asset(  $third_party->poa ) }}" download="Acreditación {{ $decryptedName  . ' ' . $decryptedDni}}">Descargar Documento</a>
                                 </p>
                             </div>
                             @endif
