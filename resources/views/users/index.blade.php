@@ -55,9 +55,12 @@
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($users as $user)
+                @php
+                    $decryptedName = isset($user->name) ? Crypt::decryptString($user->name) : NULL;
+                @endphp
                 <tr>
                     <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
+                    <td>{{ $decryptedName }}</td>
                     <td>{{ $user->email }}</td>
                     {{--<td>{{ $user->newsletter ? 'Si' : 'No' }}</td>--}}
                     <td>{{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</td>

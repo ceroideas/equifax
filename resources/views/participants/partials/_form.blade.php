@@ -1,12 +1,12 @@
 @if(session()->has('msj'))
-<x-adminlte-alert theme="success" dismissable>
-    {{ session('msj') }}
-</x-adminlte-alert>
+    <x-adminlte-alert theme="success" dismissable>
+        {{ session('msj') }}
+    </x-adminlte-alert>
 @endif
 @if(session()->has('alert'))
-<x-adminlte-alert theme="warning" dismissable>
-{{ session('alert') }}
-</x-adminlte-alert>
+    <x-adminlte-alert theme="warning" dismissable>
+        {{ session('alert') }}
+    </x-adminlte-alert>
 @endif
 
 <style>

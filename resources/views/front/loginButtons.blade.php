@@ -39,7 +39,9 @@
         	}
         }
 	</style>
+
 	@if (Auth::check())
+        @php  $decryptedName = Crypt::decryptString(Auth::user()->name); @endphp
 		<div data-v-5fddf304="" class="blockAcceso"><a data-v-5fddf304="" href="{{url('claims/status-claim')}}" class="btn btn-nueva"><span data-v-5fddf304="" class="btn-text-acceso">
 	        Nueva Reclamación
             <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" class="iconsarrow-right" alt="Icono flecha">
@@ -51,7 +53,7 @@
 				<button data-v-5fddf304="" class="btn btn-registerHome" data-toggle="dropdown">
                     <span data-v-5fddf304="" class="text-register-btn">
 					    <img data-v-5fddf304="" src="{{url('landing')}}/assets/profile.png" class="img-profile" alt="Icono perfil usuario">
-			                {{ Str::ucfirst(Str::before(Auth::user()->name, ' ')) }} {{ Str::substr(Str::ucfirst(Str::after(Auth::user()->name, ' ')), 0, 1) }}.
+			                {{ Str::ucfirst(Str::before($decryptedName, ' ')) }} {{ Str::substr(Str::ucfirst(Str::after($decryptedName, ' ')), 0, 1) }}.
 			            <img data-v-5fddf304="" src="{{url('landing')}}/assets/icons-arrow-right.png" style="transform: rotate(90deg);" class="iconsarrow-right" alt="Icono flecha">
                     </span>
                 </button>

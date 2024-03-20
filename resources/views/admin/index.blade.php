@@ -307,7 +307,8 @@
                 <div class="card">
 
                     <div class="card-body text-left">
-                        <h3 style="margin-top: 0;">¡Bienvenido, {{Auth::user()->name}}! </h3>
+                        @php $decryptedName = Crypt::decryptString(Auth::user()->name); @endphp
+                        <h3 style="margin-top: 0;">¡Bienvenido, {{$decryptedName}}! </h3>
                         @if(isset($message))
                             {{$message}}
                         @endif

@@ -17,7 +17,7 @@
         border: 1px solid #e65927 !important;
     }
 </style>
-
+@php $decryptedName = Crypt::decryptString(Auth::user()->name); @endphp
 @if (!Auth::user()->isClient())
     @section('content_header')
         <div class="container-fluid">
@@ -65,15 +65,15 @@
     </style>
 
     @if(session()->has('alert'))
-    <x-adminlte-alert theme="danger" dismissable>
-        {{ session('alert') }}
-    </x-adminlte-alert>
+        <x-adminlte-alert theme="danger" dismissable>
+            {{ session('alert') }}
+        </x-adminlte-alert>
     @endif
 
     @if(session()->has('msj'))
-    <x-adminlte-alert theme="success" dismissable>
-        {{ session('msj') }}
-    </x-adminlte-alert>
+        <x-adminlte-alert theme="success" dismissable>
+            {{ session('msj') }}
+        </x-adminlte-alert>
     @endif
 
     <div class="row">
@@ -99,7 +99,7 @@
         <div class="col-md-9 col-sm-9 col-xs-12">
             <div class="card">
                 <div class="card-body text-left">
-                    <h3 style="margin-top: 0;">¡Bienvenido, {{Auth::user()->name}}!</h3>
+                    <h3 style="margin-top: 0;">¡Bienvenido, {{ $decryptedName }}!</h3>
                     <div style="background-color: #f8fafc; padding: 8px 0;">
                         <div class="row">
                             <div class="col-4 text-center" style="border-right: 1px solid silver;">

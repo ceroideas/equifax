@@ -11,7 +11,7 @@ use App\Models\Template;
 use App\Models\DiscountCode;
 use App\Models\Campaign;
 use App\Models\Participant;
-
+use Illuminate\Support\Facades\Crypt;
 use Auth;
 
 
@@ -507,8 +507,8 @@ class ConfigurationsController extends Controller
     {
         $p = Participant::find($id);
         $p->campaign_id = $r->campaign_id;
-        $p->email = $r->email;
-        $p->nombre = $r->nombre;
+        $p->email = Crypt::encryptString($r->email);
+        $p->nombre = Crypt::encryptString($r->nombre);
         $p->updated_at = now();
         $p->save();
 
@@ -521,8 +521,8 @@ class ConfigurationsController extends Controller
         $p->created_at = now();
         $p->available = 1;
         $p->campaign_id = $r->campaign_id;
-        $p->email = $r->email;
-        $p->nombre = $r->nombre;
+        $p->email = Crypt::encryptString($r->email);
+        $p->nombre = Crypt::encryptString($r->nombre);
         $p->updated_at = now();
         $p->save();
 

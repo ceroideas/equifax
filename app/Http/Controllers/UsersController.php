@@ -6,17 +6,18 @@ use App\Models\User;
 use App\Models\PostalCode;
 use App\Rules\Iban;
 use App\Rules\CifNie;
-use App\Models\Claim;
-use App\Models\Debt;
+//use App\Models\Claim;
+//use App\Models\Debt;
 use App\Models\Template;
-use App\Models\Hito;
-use App\Models\SendEmail;
-use App\Models\Invoice;
+//use App\Models\Hito;
+//use App\Models\SendEmail;
+//use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+//use Illuminate\Database\Schema\Blueprint;
+//use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Crypt;
 
 use Carbon\Carbon;
 
@@ -212,20 +213,20 @@ class UsersController extends Controller
         }
         $user->update([
             'type' => $request->type,
-            'name' => $request->name,
+            'name' => Crypt::encryptString($request->name),
             'email' => $request->email,
-            'dni' => $request->dni,
+            'dni' => Crypt::encryptString($request->dni),
             'status'=>3,
-            'phone' => $request->tlf,
-            'address' => $request->address,
+            'phone' => Crypt::encryptString($request->tlf),
+            'address' => Crypt::encryptString($request->address),
             'location' => $request->location,
             'province' => $request->province,
             'cop' => $request->cop,
-            'iban' => $request->iban,
+            'iban' => Crypt::encryptString($request->iban),
             'role' => $role,
             'password' => $password,
-            'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
-            'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
+            'legal_representative' => $request->type == 1 ? Crypt::encryptString($request->legal_representative) : null,
+            'representative_dni' => $request->type == 1 ? Crypt::encryptString($request->representative_dni) : null,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
             'msgusr'=> isset($request->msgusr)?1:0,
