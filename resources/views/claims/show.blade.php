@@ -31,6 +31,25 @@
         </x-adminlte-alert>
     @endif
 
+    @php
+        $decryptedDebtorName = isset($claim->debtor) ? Crypt::decryptString($claim->debtor->name) : 'No existe';
+        $decryptedDebtorDni = isset($claim->debtor) ? Crypt::decryptString($claim->debtor->dni) : 'No existe';
+        $decryptedDebtorEmail = isset($claim->debtor) ? Crypt::decryptString($claim->debtor->email) : 'No existe';
+        $decryptedDebtorPhone = isset($claim->debtor) ? Crypt::decryptString($claim->debtor->phone) : 'No existe';
+
+        $decryptedClientName = isset($claim->client) ? Crypt::decryptString($claim->client->name) : 'No existe';
+        $decryptedClientDni = isset($claim->client) ? Crypt::decryptString($claim->client->dni): 'No existe';
+
+        $decryptedRepresentantName = isset($claim->representant)? Crypt::decryptString($claim->representant->name): 'No existe';
+        $decryptedRepresentantDni = isset($claim->representant) ? Crypt::decryptString($claim->representant->dni): 'No existe';
+
+        $decryptedName = isset($claim->user_id) ? $decryptedClientName : $decryptedRepresentantName;
+        $decryptedDni = isset($claim->user_id) ? $decryptedClientDni : $decryptedRepresentantDni;
+        $decryptedPhone = isset($claim->user_id) ? Crypt::decryptString($claim->client->phone):'N/A';
+        $decryptedAddress = isset($claim->user_id) ? Crypt::decryptString($claim->client->address):Crypt::decryptString($claim->representant->address);
+
+    @endphp
+
     @if(!$claim->isViable())
         <x-adminlte-modal id="modalMin" title="Informe de Inviabilidad" theme="primary" size="lg" v-centered="true">
             <div class="card">
@@ -112,16 +131,10 @@
 
                             <div class="post">
                                 <div class="row">
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Nombre:</b> <p>{{ $claim->debtor->name }}</p></div>
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>DNI/CIF:</b> <p>{{ $claim->debtor->dni }} </p></div>
-                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Email:</b> <p>{{ $claim->debtor->email }}</p></div>
-                                    {{-- <div class="col-lg-3 col-sm-6 col-md-6"><b>Tipo de Deudor:</b> <p>{{ $claim->debtor->getType() }}</p></div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-lg-3"><b>Dirección:</b><p> {{ $claim->debtor->address }}</p></div>
-                                    <div class="col-lg-3"><b>Localidad:</b> <p>{{ $claim->debtor->location }}</p> </div>
-                                    <div class="col-lg-3"><b>Código Postal:</b><p> {{ $claim->debtor->cop }}</p></div> --}}
-                                    <div class="col-lg-3"><b>N° Tlf:</b><p> {{ $claim->debtor->phone }}</p></div>
+                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Nombre:</b> <p>{{ $decryptedDebtorName }}</p></div>
+                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>DNI/CIF:</b> <p>{{ $decryptedDebtorDni }} </p></div>
+                                    <div class="col-lg-3 col-sm-6 col-md-6"><b>Email:</b> <p>{{ $decryptedDebtorEmail }}</p></div>
+                                    <div class="col-lg-3"><b>N° Tlf:</b><p> {{ $decryptedDebtorPhone }}</p></div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12"><b>Datos adicionales del deudor / Observaciones :</b><p> {{ $claim->debtor->additional }}</p></div>
@@ -268,7 +281,7 @@
                                             <div class="text-center">
                                                 <x-adminlte-button label="Continuar con la reclamación" data-toggle="modal" data-target="#modalContinue" theme="success"/>
                                                     <x-adminlte-modal id="modalContinue" title="¿Desea continuar con la reclamación {{$claim->id}}?" size="lg" v-centered="true">
-                                                        <p>La reclamaci&oacute;n <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> continuara a la fase judicial</p>
+                                                        <p>La reclamaci&oacute;n <strong>{{$claim->id}}</strong> del usuario <strong>{{ $decryptedDebtorName }}</strong> continuara a la fase judicial</p>
                                                         <x-slot name="footerSlot">
                                                             <a href="{{url('claims/continue',$claim->id)}}" class="btn btn-md btn-success" class="mr-auto" theme="success">Aceptar</a>
                                                             <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal"/>
@@ -287,20 +300,20 @@
 
                     <h4>Detalles del acreedor</h4>
 
-                    <h3 class="text-primary"><i class="fas fa-user"></i> {{ $claim->user_id ? $claim->client->name : $claim->representant->name  }}</h3>
+                    <h3 class="text-primary"><i class="fas fa-user"></i> {{ $decryptedName }}</h3>
 
                     <div class="text-muted">
                        <div class="row">
                            <div class="col-sm-6">
                                 <b>DNI/CIF</b>
                                 <p>
-                                    {{ $claim->user_id ? $claim->client->dni : $claim->representant->dni }}
+                                    {{ $decryptedDni }}
                                 </p>
                            </div>
                            <div class="col-sm-6">
                                 <b>N° de Tel&eacute;fono</b>
                                 <p>
-                                    {{ $claim->user_id ? $claim->client->phone : 'N/A' }}
+                                    {{ $decryptedPhone }}
                                 </p>
                             </div>
                        </div>
@@ -308,7 +321,7 @@
                             <div class="col-sm-6">
                                 <b>Direcci&oacute;n</b>
                                 <p>
-                                    {{ $claim->user_id ? $claim->client->address : $claim->representant->address }}
+                                    {{ $decryptedAddress }}
                                 </p>
                             </div>
                             <div class="col-sm-6">
@@ -342,7 +355,7 @@
                                 <div class="text-center my-3">
                                     <li style="list-style: none;">
                                         <a href="{{ url('storage/'.$claim->client->apud_acta) }}" class="btn-link text-secondary" target="_blank"
-                                            download="Apud Acta - {{ $claim->client->name }} - {{ $claim->client->dni }}.pdf">
+                                            download="Apud Acta - {{ $decryptedClientName }} - {{ $decryptedClientDni }}.pdf">
                                             <i class="far fa-fw fa-file"></i>Descargar Apud Acta</a>
                                     </li>
                                 </div>
@@ -366,7 +379,7 @@
                                 <div class="text-center my-3">
                                     <li style="list-style: none;">
                                         <a href="{{ url('storage/'.$claim->representant->apud_acta) }}" class="btn-link text-secondary" target="_blank"
-                                            download="Apud Acta - {{ $claim->representant->name }} - {{ $claim->representant->dni }}.pdf">
+                                            download="Apud Acta - {{ $decryptedRepresentantName }} - {{ $decryptedRepresentantDni }}.pdf">
                                             <i class="far fa-fw fa-file"></i>Descargar Apud Acta</a>
                                     </li>
                                 </div>
@@ -458,9 +471,9 @@
                             <x-adminlte-button label="Finalizar Reclamación {{$claim->id}}" data-toggle="modal" data-target="#modalFinish" theme="danger"/>
                                 <x-adminlte-modal id="modalFinish" title="¿Desea dar por finalizada la reclamación {{$claim->id}}?" size="lg" v-centered="true">
                                     @if($claim->claim_type == 2)
-                                            <p>La relamaci&oacute;n <strong>{{$claim->id}} </strong> usuario <strong>{{ $claim->debtor->name }} </strong> finalizar&aacute;</p>
+                                            <p>La relamaci&oacute;n <strong>{{$claim->id}} </strong> usuario <strong>{{ $decryptedDebtorName }} </strong> finalizar&aacute;</p>
                                         @else
-                                            <p>La reclamaci&oacute;n <strong>{{$claim->id}}</strong> del usuario <strong>{{ $claim->debtor->name }}</strong> esta en fase judicial, el equipo de Dividae se pondr&aacute; en contacto contigo</p>
+                                            <p>La reclamaci&oacute;n <strong>{{$claim->id}}</strong> del usuario <strong>{{ $decryptedDebtorName }}</strong> esta en fase judicial, el equipo de Dividae se pondr&aacute; en contacto contigo</p>
                                         @endif
 
                                     <x-slot name="footerSlot">
