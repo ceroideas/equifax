@@ -4,9 +4,9 @@
 <title>Factura {{$i->tipfac}}/{{$i->id}}</title>
 
 @php
-    $decryptedName = Crypt::decryptString(trim($i->cnofac));
-    $decryptedDni = Crypt::decryptString(trim($i->cdofac));
-    $decryptedAddress = Crypt::decryptString(trim($i->cnifac));
+    $decryptedName = isset($i->cnofac) ? Crypt::decryptString(trim($i->cnofac)) : 'No existe';
+    $decryptedDni = isset($i->cdofac) ? Crypt::decryptString(trim($i->cdofac)) : 'No existe';
+    $decryptedAddress = isset($i->cnifac) ? Crypt::decryptString(trim($i->cnifac)) : 'No existe';
 @endphp
 
 <div class="container-fluid">
