@@ -5,8 +5,8 @@
 
 @php
     $decryptedName = isset($i->cnofac) ? Crypt::decryptString(trim($i->cnofac)) : 'No existe';
-    $decryptedDni = isset($i->cdofac) ? Crypt::decryptString(trim($i->cdofac)) : 'No existe';
-    $decryptedAddress = isset($i->cnifac) ? Crypt::decryptString(trim($i->cnifac)) : 'No existe';
+    $decryptedAddress = isset($i->cdofac) ? Crypt::decryptString(trim($i->cdofac)) : 'No existe';
+    $decryptedDni = isset($i->cnifac) ? Crypt::decryptString(trim($i->cnifac)) : 'No existe';
 @endphp
 
 <div class="container-fluid">

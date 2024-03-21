@@ -1,13 +1,21 @@
-	  <table>
+
+@php
+
+    $decryptedName = isset($i[0]->cnofac) ? Crypt::decryptString(trim($i[0]->cnofac)) : 'No existe';
+    $decryptedAddress = isset($i[0]->cdofac) ? Crypt::decryptString(trim($i[0]->cdofac)) : 'No existe';
+    $decryptedDni = isset($i[0]->cnifac) ? Crypt::decryptString(trim($i[0]->cnifac)) : 'No existe';
+
+@endphp
+    <table>
 	  	<tr>
-	    <th colspan="5" style="font-size: 18px;">
-	      DIVIDAE
-	    </th>
-	    <th style="text-align: right;">
-	      <h4>Factura</h4>
-	    </th>
+            <th colspan="5" style="font-size: 18px;">
+            DIVIDAE
+            </th>
+            <th style="text-align: right;">
+            <h4>Factura</h4>
+            </th>
 	  	</tr>
-	  </table>
+    </table>
 
 	  <table>
     	  <tr>
@@ -38,15 +46,15 @@
             <td colspan="2" style="text-align: right;"><strong>Pagado a:</strong></td>
         </tr>
         <tr>
-            <td colspan="4" >{{$i[0]->cnofac}} </td>
+            <td colspan="4" >{{ $decryptedName }} </td>
             <td colspan="2" style="text-align: right;">{{ $c->invoice_name }}</td>
         </tr>
         <tr>
-            <td colspan="4" >{{$i[0]->cnifac}} </td>
+            <td colspan="4" >{{ $decryptedDni }} </td>
             <td colspan="2" style="text-align: right;">{{ $c->invoice_cif }}</td>
         </tr>
         <tr>
-            <td colspan="4" >{{$i[0]->cdofac}} </td>
+            <td colspan="4" >{{ $decryptedAddress }} </td>
             <td colspan="2" style="text-align: right;">{{ $c->invoice_address_line_1 }}</td>
         </tr>
         <tr>
