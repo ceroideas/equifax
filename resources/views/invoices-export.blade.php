@@ -26,13 +26,19 @@
     <tbody>
 @foreach($invoices as $invoice)
     <tr>
+        @php
+            $decryptName = isset($invoice->cnofac) ? Crypt::decryptString(trim($invoice->cnofac)) : 'No existe name';
+            $decryptClientName = isset($invoice->claim->client) ? Crypt::decryptString(trim($invoice->claim->client->name)) : 'No existe client';
+            $decryptRepresentantName = isset($invoice->claim->representant) ? Crypt::decryptString(trim($invoice->claim->representant->name)) : 'No existe represen';
+        @endphp
+
         <td>{{ $invoice->tipfac }}</td>
         <td>{{ $invoice->id }}</td>
         @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
             @if(isset($invoice->claim->client))
-                <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
+                <td>{{ $invoice->claim->client ? $decryptClientName : ($invoice->claim->representant ? $decryptRepresentantName : '') }}</td>
             @else
-                <td>{{$invoice->cnofac}}</td>
+                <td>{{ $decryptName }}</td>
             @endif
         @endif
 

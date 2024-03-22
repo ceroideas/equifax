@@ -8,6 +8,7 @@ use App\Rules\Iban;
 use App\Rules\CifNie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Crypt;
 use Auth;
 
 class ThirdPartiesController extends Controller
@@ -54,23 +55,23 @@ class ThirdPartiesController extends Controller
         $data = $this->validateRequest();
 
         // dd($data);
-
+        //'phone' => Crypt::encryptString($request->tlf),
         $thirdParty = new ThirdParty;
         $thirdParty->type = $data['tipo'];
-        $thirdParty->name = $data['name'];
-        $thirdParty->dni = $data['dni'];
-        $thirdParty->address = $data['address'];
+        $thirdParty->name = Crypt::encryptString($data['name']);
+        $thirdParty->dni = Crypt::encryptString($data['dni']);
+        $thirdParty->address = Crypt::encryptString($data['address']);
         $thirdParty->location = $data['location'];
         $thirdParty->province = $data['province'];
         $thirdParty->cop = $data['cop'];
-        $thirdParty->iban = array_key_exists('iban', $data) ? $data['iban'] : null;
+        $thirdParty->iban = array_key_exists('iban', $data) ? Crypt::encryptString($data['iban']) : null;
         if (session('other_user')) {
             $thirdParty->user_id = session('other_user');
         }else{
             $thirdParty->user_id = Auth::user()->id;
         }
-        $thirdParty->legal_representative = $data['tipo'] == 1 ? $data['legal_representative']: null;
-        $thirdParty->representative_dni = $data['tipo'] == 1 ? $data['representative_dni']: null;
+        $thirdParty->legal_representative = $data['tipo'] == 1 ? Crypt::encryptString($data['legal_representative']): null;
+        $thirdParty->representative_dni = $data['tipo'] == 1 ? Crypt::encryptString($data['representative_dni']): null;
         $thirdParty->save();
 
         // $path = $request->file('dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/dni', 'public');
@@ -145,15 +146,15 @@ class ThirdPartiesController extends Controller
         $data = $this->validateRequest();
 
         $thirdParty->type = $data['tipo'];
-        $thirdParty->name = $data['name'];
-        $thirdParty->dni = $data['dni'];
-        $thirdParty->address = $data['address'];
+        $thirdParty->name = Crypt::encryptString($data['name']);
+        $thirdParty->dni = Crypt::encryptString($data['dni']);
+        $thirdParty->address = Crypt::encryptString($data['address']);
         $thirdParty->location = $data['location'];
         $thirdParty->province = $data['province'];
         $thirdParty->cop = $data['cop'];
-        $thirdParty->iban = array_key_exists('iban', $data) ? $data['iban'] : null;
-        $thirdParty->legal_representative = $data['tipo'] == 1 ? $data['legal_representative']: null;
-        $thirdParty->representative_dni = $data['tipo'] == 1 ? $data['representative_dni']: null;
+        $thirdParty->iban = array_key_exists('iban', $data) ? Crypt::encryptString($data['iban']) : null;
+        $thirdParty->legal_representative = $data['tipo'] == 1 ? Crypt::encryptString($data['legal_representative']): null;
+        $thirdParty->representative_dni = $data['tipo'] == 1 ? Crypt::encryptString($data['representative_dni']): null;
         $thirdParty->save();
 
         /*if($request->file('dni_img')){
