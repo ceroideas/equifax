@@ -59,8 +59,8 @@
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($participants as $participant)
                 @php
-                    $decryptedEmail = Crypt::decryptString($participant->email);
-                    $decryptedNombre = Crypt::decryptString($participant->nombre);
+                    $decryptedEmail = isset($participant->email) ? Crypt::decryptString($participant->email) : NULL;
+                    $decryptedNombre = isset($participant->nombre) ? Crypt::decryptString($participant->nombre) : NULL;
                 @endphp
                 <tr>
                     <td>{{ $participant->id }}</td>
