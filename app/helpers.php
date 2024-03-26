@@ -419,12 +419,12 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
         $document->user_id =  $user->id;
         // Solo en invoice almacenamos los datos del cliente en el momento de su creación
         if($typeDocument == 'invoice'){
-                $document->cnofac = Crypt::encryptString($user->name);
-                $document->cdofac = Crypt::encryptString($user->address);
+                $document->cnofac = $user->name;//Crypt::encryptString($user->name);
+                $document->cdofac = $user->address;//Crypt::encryptString($user->address);
                 $document->cpofac = $user->location;
                 $document->ccpfac = $user->cop;
                 $document->cprfac = $user->province;
-                $document->cnifac = Crypt::encryptString($user->dni);
+                $document->cnifac = $user->dni;//Crypt::encryptString($user->dni);
         }
 
         // Lineas de detalle, probamos enviar mas de una

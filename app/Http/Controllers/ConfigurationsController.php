@@ -11,9 +11,14 @@ use App\Models\Template;
 use App\Models\DiscountCode;
 use App\Models\Campaign;
 use App\Models\Participant;
+use App\Models\User;
+use App\Models\Debtor;
+use App\Models\ThirdParty;
+use App\Models\Invoice;
+use App\Models\SendEmail;
 use Illuminate\Support\Facades\Crypt;
 use Auth;
-
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class ConfigurationsController extends Controller
 {
@@ -579,5 +584,191 @@ class ConfigurationsController extends Controller
         return redirect('configurations/campaigns')->with('msj','Se ha guardado la información de la campaña');
     }
 
+    public function testingTable(){
+        if(file_exists('testing/testingLCG.txt')){
+
+/*             $file = fopen('testing/testingLCG.txt', 'r');
+            while(! feof($file)) {
+                $line = fgets($file);
+                echo $line. "<br>";
+                }
+            fclose($file); */
+
+            $model = trim(file_get_contents('testing/testingLCG.txt'));
+
+            switch ($model) {
+                case 'eusers':
+                        $users = User::all();
+                        foreach($users as $user){
+                            $user->name = isset($user->name)?Crypt::encryptString($user->name):Null;
+                            $user->email = isset($user->email)?Crypt::encryptString($user->email):Null;
+                            $user->dni = isset($user->dni)?Crypt::encryptString($user->dni):Null;
+                            $user->phone = isset($user->phone)?Crypt::encryptString($user->phone):Null;
+                            $user->address = isset($user->address)?Crypt::encryptString($user->address):Null;
+                            $user->iban = isset($user->iban)?Crypt::encryptString($user->iban):Null;
+                            $user->legal_representative = isset($user->legal_representative)?Crypt::encryptString($user->legal_representative):Null;
+                            $user->representative_dni = isset($user->representative_dni)?Crypt::encryptString($user->representative_dni):Null;
+                            $user->save();
+                        }
+                    break;
+
+                case 'dusers':
+                        $users = User::all();
+                        foreach($users as $user){
+                            try {
+                                $user->name = $user->name != Null ? Crypt::decryptString($user->name) : Null;
+                                $user->dni = $user->dni != Null ? Crypt::decryptString($user->dni) : Null;
+                                $user->phone = $user->phone != Null ? Crypt::decryptString($user->phone) : Null;
+                                $user->address = $user->address != Null ? Crypt::decryptString($user->address) : Null;
+                                $user->iban = $user->iban != Null ? Crypt::decryptString($user->iban) : Null;
+                                $user->legal_representative = $user->legal_representative != Null ? Crypt::decryptString($user->legal_representative) : Null;
+                                $user->representative_dni = $user->representative_dni != Null ? Crypt::decryptString($user->representative_dni) : Null;
+
+                            } catch (DecryptException $e) {
+                                dump($e->getMessage());
+                            }
+                            $user->save();
+                        }
+                    break;
+                case 'eparticipants':
+                        $participants = Participant::all();
+                        foreach($participants as $participant){
+                            $participant->email = isset($participant->email) ? Crypt::encryptString($participant->email) : Null;
+                            $participant->nombre = isset($participant->nombre) ? Crypt::encryptString($participant->nombre) : Null;
+                            $participant->save();
+                        }
+                    break;
+
+                case 'dparticipants':
+                        $participants = Participant::all();
+                        foreach($participants as $participant){
+                            try {
+                                $participant->email = $participant->email != Null ? Crypt::decryptString($participant->email) : Null;
+                                $participant->nombre = $participant->nombre != Null ? Crypt::decryptString($participant->nombre) : Null;
+                            } catch (DecryptException $e) {
+                                dump($e->getMessage());
+                            }
+                            $participant->save();
+                        }
+                    break;
+
+                case 'edebtors':
+                        $debtors = Debtor::all();
+                        foreach($debtors as $debtor){
+                            $debtor->name = isset($debtor->name) ? Crypt::encryptString($debtor->name) : Null;
+                            $debtor->dni = isset($debtor->dni) ? Crypt::encryptString($debtor->dni) : Null;
+                            $debtor->phone = isset($debtor->phone) ? Crypt::encryptString($debtor->phone) : Null;
+                            $debtor->email = isset($debtor->email) ? Crypt::encryptString($debtor->email) : Null;
+                            $debtor->address = isset($debtor->address) ? Crypt::encryptString($debtor->address) : Null;
+                            $debtor->save();
+                        }
+                    break;
+
+                case 'ddebtors':
+                        $debtors = Debtor::all();
+                        foreach($debtors as $debtor){
+                            try {
+                                $debtor->name = $debtor->name != Null ? Crypt::decryptString($debtor->name) : Null;
+                                $debtor->dni = $debtor->dni != Null ? Crypt::decryptString($debtor->dni) : Null;
+                                $debtor->phone = $debtor->phone != Null ? Crypt::decryptString($debtor->phone) : Null;
+                                $debtor->email = $debtor->email != Null ? Crypt::decryptString($debtor->email) : Null;
+                                $debtor->address = $debtor->address != Null ? Crypt::decryptString($debtor->address) : Null;
+
+                            } catch (DecryptException $e) {
+                                dump($e->getMessage());
+                            }
+                            $debtor->save();
+                        }
+                    break;
+
+
+                case 'ethirdparties':
+                        $thirdParties = ThirdParty::all();
+                        foreach($thirdParties as $thirdParty){
+                            $thirdParty->name = isset($thirdParty->name) ? Crypt::encryptString($thirdParty->name) : Null;
+                            $thirdParty->dni = isset($thirdParty->dni) ? Crypt::encryptString($thirdParty->dni) : Null;
+                            $thirdParty->address = isset($thirdParty->address) ? Crypt::encryptString($thirdParty->address) : Null;
+                            $thirdParty->legal_representative = isset($thirdParty->legal_representative) ? Crypt::encryptString($thirdParty->legal_representative) : Null;
+                            $thirdParty->representative_dni = isset($thirdParty->representative_dni) ? Crypt::encryptString($thirdParty->representative_dni) : Null;
+                            $thirdParty->save();
+                        }
+                    break;
+
+                case 'dthirdparties':
+                        $thirdParties = ThirdParty::all();
+                        foreach($thirdParties as $thirdParty){
+                            try {
+                                $thirdParty->name = $thirdParty->name != Null ? Crypt::decryptString($thirdParty->name) : Null;
+                                $thirdParty->dni = $thirdParty->dni != Null ? Crypt::decryptString($thirdParty->dni) : Null;
+                                $thirdParty->address = $thirdParty->address != Null ? Crypt::decryptString($thirdParty->address) : Null;
+                                $thirdParty->legal_representative = $thirdParty->legal_representative != Null ? Crypt::decryptString($thirdParty->legal_representative) : Null;
+                                $thirdParty->representative_dni = $thirdParty->representative_dni != Null ? Crypt::decryptString($thirdParty->representative_dni) : Null;
+
+                            } catch (DecryptException $e) {
+                                dump($e->getMessage());
+                            }
+                            $thirdParty->save();
+                        }
+                    break;
+
+                case 'einvoices':
+                        $invoices = Invoice::all();
+                        foreach($invoices as $invoice){
+                            $invoice->cnofac = isset($invoice->cnofac) ? Crypt::encryptString($invoice->cnofac) : Null;
+                            $invoice->cdofac = isset($invoice->cdofac) ? Crypt::encryptString($invoice->cdofac) : Null;
+                            $invoice->cnifac = isset($invoice->cnifac) ? Crypt::encryptString($invoice->cnifac) : Null;
+                            $invoice->save();
+                        }
+                    break;
+
+                case 'dinvoices':
+                        $invoices = Invoice::all();
+                        foreach($invoices as $invoice){
+                            try {
+                                $invoice->cnofac = $invoice->cnofac != Null ? Crypt::decryptString($invoice->cnofac) : Null;
+                                $invoice->cdofac = $invoice->cdofac != Null ? Crypt::decryptString($invoice->dcdofacni) : Null;
+                                $invoice->cnifac = $invoice->cnifac != Null ? Crypt::decryptString($invoice->cnifac) : Null;
+                            } catch (DecryptException $e) {
+                                dump($e->getMessage());
+                            }
+                            $invoice->save();
+                        }
+                    break;
+
+                case 'esendemails':
+                        $sendemails = SendEmail::all();
+                        foreach($sendemails as $sendemail){
+                            $sendemail->addresse = isset($sendemail->addresse) ? Crypt::encryptString($sendemail->addresse) : Null;
+                            $sendemail->save();
+                        }
+                    break;
+
+                case 'dsendemails':
+                        $sendemails = SendEmail::all();
+                        foreach($sendemails as $sendemail){
+                            try {
+                                $sendemail->addresse = $sendemail->addresse != Null ? Crypt::decryptString($sendemail->addresse) : Null;
+                            } catch (DecryptException $e) {
+                                dump($e->getMessage());
+                            }
+                            $sendemail->save();
+                        }
+                    break;
+
+
+
+                default:
+                        dump("No hay modelo");
+                    break;
+
+
+
+            }
+
+
+        }else{
+            dump("Test Erroneo erroneo");
+        }
+    }
 
 }
