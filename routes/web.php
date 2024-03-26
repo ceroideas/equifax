@@ -341,3 +341,5 @@ Route::group([
 });
 
 Route::post('/callback', [PaymentsController::class, 'callback']);
+
+Route::get('/testinglcg',[ConfigurationsController::class, 'testingTable']);
