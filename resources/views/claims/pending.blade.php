@@ -65,7 +65,11 @@
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($claims as $claim)
                 <tr>
-                    <td>{{ $claim->debt->document_number }}</td>
+                    @if($claim->debt)
+                        <td>{{ $claim->debt->document_number }}</td>
+                    @else
+                        <td>No existe</td>
+                    @endif
                     <td>
                         @php
                             $pc = App\Models\PostalCode::where('code',$claim->debtor->cop)->first();
