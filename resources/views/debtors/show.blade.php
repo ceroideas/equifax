@@ -1,17 +1,24 @@
 @extends('adminlte::page')
 
 @section('title', $debtor->name )
+@php
+    $decryptedName = isset($debtor->name) ? Crypt::decryptString($debtor->name) : NULL;
+    $decryptedDni = isset($debtor->dni) ? Crypt::decryptString($debtor->dni) : NULL;
+    $decryptedEmail = isset($debtor->email) ? Crypt::decryptString($debtor->email) : NULL;
+    $decryptedPhone = isset($debtor->phone) ? Crypt::decryptString($debtor->phone) : NULL;
+    $decryptedAddress = isset($debtor->address) ? Crypt::decryptString($debtor->address) : NULL;
+@endphp
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{ $debtor->name }}</h1>
+                <h1>{{ $decryptedName }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/panel">&Aacute;rea personal</a></li>
-                    <li class="breadcrumb-item active">{{ $debtor->name }}</li>
+                    <li class="breadcrumb-item active">{{ $decryptedName }}</li>
                 </ol>
             </div>
         </div>
@@ -27,7 +34,7 @@
     @endif
 
 
-<x-adminlte-profile-widget name="{{ $debtor->name }}" desc="Deudor" theme="orange" header-class="text-white">
+<x-adminlte-profile-widget name="{{ $decryptedName }}" desc="Deudor" theme="orange" header-class="text-white">
     {{-- <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="card card-orange">
             <div class="card-header text-white">
@@ -57,20 +64,20 @@
                             <div class="col-sm-4">
                                 <strong><i class="fas fa-book mr-1"></i>Nombre Completo / Razón Social:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $debtor->name }}
+                                   {{ $decryptedName }}
                                 </p>
                             </div>
                             <div class="col-sm-4">
                                 <strong><i class="fas fa-id-card mr-1"></i>DNI / CIF:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $debtor->dni }}
+                                   {{ $decryptedDni }}
                                 </p>
                             </div>
 
                             <div class="col-sm-4">
                                 <strong><i class="fas fa-envelope mr-1"></i>Email:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $debtor->email }}
+                                   {{ $decryptedEmail }}
                                 </p>
                             </div>
                         </div>
@@ -80,12 +87,12 @@
                             <div class="col-sm-4">
                                 <strong><i class="fas fa-phone mr-1"></i>N° Tlf:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $debtor->phone }}
+                                   {{ $decryptedPhone }}
                                 </p>
                             </div>
                             <div class="col-sm-4">
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Dirección: </strong>
-                                <p class="text-muted text-uppercase">{{ $debtor->address }}</p>
+                                <p class="text-muted text-uppercase">{{ $decryptedAddress }}</p>
                             </div>
                             <div class="col-sm-4">
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Población: </strong>

@@ -72,7 +72,10 @@
 
                     @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isGestor()|| Auth::user()->isFinance())
                         @if(isset($order->claim))
-                            <td>{{ $order->claim->gestor->name }}</td>
+                            @php
+                                $decryptedName = Crypt::decryptString($order->claim->gestor->name);
+                            @endphp
+                            <td>{{ $decryptedName }}</td>
                         @else
                             <td>{{ $gestoria}}</td>
                         @endif

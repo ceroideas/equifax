@@ -42,6 +42,7 @@
         'pageLength' => 50,
         'language' => ['url' => '/js/datatables/dataTables.spanish.json']
     ];
+
     @endphp
 
     {{-- Datatable para los usuarios --}}
@@ -57,11 +58,15 @@
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($participants as $participant)
+                @php
+                    $decryptedEmail = Crypt::decryptString($participant->email);
+                    $decryptedNombre = Crypt::decryptString($participant->nombre);
+                @endphp
                 <tr>
                     <td>{{ $participant->id }}</td>
                     <td>{{ $participant->campaign_id }} - {{$participant->getCampaign($participant->campaign_id) }}</td> {{-- <td>{{ $hito->getPhases() }}</td> --}}
-                    <td>{{ $participant->email }}</td>
-                    <td>{{ $participant->nombre }}</td>
+                    <td>{{ $decryptedEmail }}{{--$participant->email--}}</td>
+                    <td>{{ $decryptedNombre }}{{--$participant->nombre--}}</td>
                     <td>{{ $participant->available == 0 ? 'Si': 'No'}}</td>
                     <td>{{ Carbon\Carbon::parse($participant->created_at)->format('d/m/Y') }}</td>
                     <td>

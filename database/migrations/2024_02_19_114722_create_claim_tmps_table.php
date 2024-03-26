@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignid('debtor_id')->nullable();
             $table->foreignid('user_id')->nullable();
             $table->foreignid('owner_id')->nullable();
+            $table->foreignid('gestor_id')->nullable();
             $table->foreignid('agreement_tmp_id')->nullable();
             $table->text('observation')->nullable();
             $table->text('viable_observation')->nullable();

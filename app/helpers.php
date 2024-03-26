@@ -22,6 +22,7 @@ use App\Notifications\NotifyUpdate;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
+use Illuminate\Support\Facades\Crypt;
 
 
 function isComplete(){
@@ -100,7 +101,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 				if ($h['template_id'] && $claim->owner->msgusr == 1) {
 					// code...
 					$se = new SendEmail;
-					$se->addresse = $claim ? $claim->owner->email : '';
+					$se->addresse = $claim ? Crypt::decryptString($claim->owner->email) : '';
 					$se->template_id = $h['template_id'];
 					$se->actuation_id = $a->id;
                     $se->send_count = 10;
@@ -326,7 +327,7 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
                     // code...
                     $se = new SendEmail;
-                    $se->addresse = $claim ? $claim->owner->email : '';
+                    $se->addresse = $claim ? Crypt::decryptString($claim->owner->email) : '';
                     $se->template_id = $h['template_id'];
                     $se->actuation_id = $actuation_id;// viene desde claimsController
                     $se->send_count = 20;
@@ -418,12 +419,12 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
         $document->user_id =  $user->id;
         // Solo en invoice almacenamos los datos del cliente en el momento de su creación
         if($typeDocument == 'invoice'){
-                $document->cnofac = $user->name;
-                $document->cdofac = $user->address;
+                $document->cnofac = $user->name;//Crypt::encryptString($user->name);
+                $document->cdofac = $user->address;//Crypt::encryptString($user->address);
                 $document->cpofac = $user->location;
                 $document->ccpfac = $user->cop;
                 $document->cprfac = $user->province;
-                $document->cnifac = $user->dni;
+                $document->cnifac = $user->dni;//Crypt::encryptString($user->dni);
         }
 
         // Lineas de detalle, probamos enviar mas de una
@@ -515,19 +516,18 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
 
                         if(file_exists('testing/orders_invoices.txt')){
                             $file = fopen('testing/orders_invoices.log', 'a');
-                            fwrite($file, date("d/m/Y H:i:s").'-'.'Campaña solo para unos usuarios, busca si este participa:'.$user->email.PHP_EOL);
+                            fwrite($file, date("d/m/Y H:i:s").'-'.'Campaña solo para unos usuarios, busca si este participa:'.Crypt::decryptString($user->email).PHP_EOL);
                         }
 
-                        $participants = Participant::where('email',$user->email)
+                        $participants = Participant::where('email',Crypt::decryptString($user->email))
                                                     ->where('available',1)
                                                     ->where('campaign_id',$campaign->id)
                                                     ->first();
-
                         if($participants){
 
                             if(file_exists('testing/orders_invoices.txt')){
                                 $file = fopen('testing/orders_invoices.log', 'a');
-                                fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento de campaña para solo el usuario '.$user->email.PHP_EOL);
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento de campaña para solo el usuario '.Crypt::decryptString($user->email).PHP_EOL);
                             }
                             addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $discount,$id_hito);
                             $participants->available = 0;
@@ -536,7 +536,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
                         }else{
                             if(file_exists('testing/orders_invoices.txt')){
                                 $file = fopen('testing/orders_invoices.log', 'a');
-                                fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento el usuario: '.$user->email.' no participa en la campaña'.PHP_EOL);
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento el usuario: '.Crypt::decryptString($user->email).' no participa en la campaña'.PHP_EOL);
                             }
                             addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $user->discount,$id_hito);
                         }
@@ -1067,10 +1067,6 @@ function totalDocument($typeDocument, $serie, $idDocument){
 
         $document[0]->save();
     }
-
-
-
-
 }
 
 function maxId($table, $field, $idDocument=0){

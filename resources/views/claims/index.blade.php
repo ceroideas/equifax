@@ -126,10 +126,16 @@
         <x-adminlte-datatable id="table1" :heads="$heads" class="table-responsive" striped hoverable bordered compresed responsive :config="$config">
             @foreach($claims as $claim)
                 <tr>
+                    @php
+                        $decryptedOwnerName = isset($claim->owner) ? Crypt::decryptString($claim->owner->name) : 'No existe';
+                        $decryptedClienName = isset($claim->user_id) ? Crypt::decryptString($claim->client->name) : Crypt::decryptString($claim->representant->name);
+                        $decryptedDebtorName = isset($claim->debtor) ? Crypt::decryptString($claim->debtor->name) : 'No existe';
+                    @endphp
+
                     <td>{{ ($claim->debt) ? $claim->debt->document_number:'No existe' }}</td>
-                    <td>{{ ($claim->owner) ? $claim->owner->name:'No existe'}}</td>
-                    <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
-                    <td>{{ ($claim->debtor)? $claim->debtor->name :'No existe'}}</td>
+                    <td>{{ $decryptedOwnerName }}</td>
+                    <td>{{ $decryptedClienName }}</td>
+                    <td>{{ $decryptedDebtorName }}</td>
                     <td>{{ ($claim->debt) ? number_format( ($claim->debt->total_amount + (($claim->debt->total_amount * $claim->debt->tax)/100) ) , 2,',','.'):'-' }} &euro; </td>
                     <td>{{ ($claim->debt) ? number_format($claim->debt->pending_amount, 2,',','.'): '-' }} &euro;</td>
                     <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} &euro;</td>

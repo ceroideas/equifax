@@ -93,19 +93,16 @@
                         @endphp
 
                     {{ $juzgado.'/'.$procurador }}</td>
-                    <td>{{ ($claim->user_id) ? $claim->client->name : $claim->representant->name}}</td>
-                    <td>{{ $claim->debtor->name }}</td>
+                    @php
+                        $decryptedName = isset($claim->user_id) ? Crypt::decryptString(trim($claim->client->name)) : Crypt::decryptString(trim($claim->representant->name));
+                        $decryptedDebtorName = isset($claim->debtor->name) ? Crypt::decryptString(trim($claim->debtor->name)) : 'No existe';
+                    @endphp
 
-                    @if($claim->debt)
-                        <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} &euro;</td>
-                        <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} &euro;</td>
-                        <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} &euro;</td>
-                    @else
-                        <td>- &euro;</td>
-                        <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} &euro;</td>
-                        <td>- &euro;</td>
-                    @endif                    
-
+                    <td>{{ $decryptedName }}</td>
+                    <td>{{ $decryptedDebtorName }}</td>
+                    <td>{{ number_format($claim->debt->pending_amount, 2,',','.') }} &euro;</td>
+                    <td>{{ number_format($claim->amountClaimed(), 2,',','.') /* + $claim->debt->partialAmounts()*/ }} &euro;</td>
+                    <td>{{ number_format($claim->debt->pending_amount - ($claim->amountClaimed()/* + $claim->debt->partialAmounts()*/), 2,',','.') }} &euro;</td>
                     <td>{{ $claim->getType() }}</td>
                     <td>{{ $claim->getHito() }}</td>
                     <td>

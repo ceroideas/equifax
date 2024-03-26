@@ -6,6 +6,7 @@ use App\Models\Debtor;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Claim;
+use Illuminate\Support\Facades\Crypt;
 
 class DebtorsController extends Controller
 {
@@ -53,11 +54,11 @@ class DebtorsController extends Controller
 
         $debtor = new Debtor();
 
-        $debtor->name = $data['name'];
-        $debtor->email = $data['email'] ? $data['email'] : '';
-        $debtor->dni = $data['dni'];
-        $debtor->phone = $data['tlf'];
-        $debtor->address = $data['address'];
+        $debtor->name = Crypt::encryptString($data['name']);
+        $debtor->email = $data['email'] ? Crypt::encryptString($data['email']) : '';
+        $debtor->dni = Crypt::encryptString($data['dni']);
+        $debtor->phone = Crypt::encryptString($data['tlf']);
+        $debtor->address = Crypt::encryptString($data['address']);
         $debtor->location = $data['location'];
         $debtor->province = $data['province'];
         $debtor->cop = $data['cop'];
@@ -118,11 +119,11 @@ class DebtorsController extends Controller
     {
         $data = $this->validateRequest($debtor->id);
 
-        $debtor->name = $data['name'];
-        $debtor->email = $data['email'] ? $data['email'] : '';
-        $debtor->dni = $data['dni'];
-        $debtor->phone = $data['tlf'];
-        $debtor->address = $data['address'];
+        $debtor->name = Crypt::encryptString($data['name']);
+        $debtor->email = $data['email'] ? Crypt::encryptString($data['email']) : '';
+        $debtor->dni = Crypt::encryptString($data['dni']);
+        $debtor->phone = Crypt::encryptString($data['tlf']);
+        $debtor->address = Crypt::encryptString($data['address']);
         $debtor->location = $data['location'];
         $debtor->province = $data['province'];
         $debtor->cop = $data['cop'];

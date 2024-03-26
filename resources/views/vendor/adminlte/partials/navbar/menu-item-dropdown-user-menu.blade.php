@@ -1,3 +1,4 @@
+@php( $decryptedName = Crypt::decryptString(Auth::user()->name))
 @php( $logout_url = View::getSection('logout_url') ?? config('adminlte.logout_url', 'logout') )
 @php( $profile_url = View::getSection('profile_url') ?? config('adminlte.profile_url', 'logout') )
 
@@ -13,6 +14,7 @@
     @php( $logout_url = $logout_url ? url($logout_url) : '' )
 @endif
 
+
 <li class="nav-item dropdown user-menu">
 
     {{-- User menu toggler --}}
@@ -20,10 +22,10 @@
         @if(config('adminlte.usermenu_image'))
             <img src="{{ Auth::user()->adminlte_image() }}"
                  class="user-image img-circle elevation-2"
-                 alt="{{ Auth::user()->name }}">
+                 alt="{{ $decryptedName }}">
         @endif
         <span @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
-            {{ Auth::user()->name }}
+            {{ $decryptedName }}
         </span>
     </a>
 
@@ -37,10 +39,10 @@
                 @if(config('adminlte.usermenu_image'))
                     <img src="{{ Auth::user()->adminlte_image() }}"
                          class="img-circle elevation-2"
-                         alt="{{ Auth::user()->name }}">
+                         alt="{{ $decryptedName }}">
                 @endif
                 <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">
-                    {{ Auth::user()->name }}
+                    {{ $decryptedName }}
                     @if(config('adminlte.usermenu_desc'))
                         <small>{{ Auth::user()->adminlte_desc() }}</small>
                     @endif

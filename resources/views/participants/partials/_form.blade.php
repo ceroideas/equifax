@@ -1,14 +1,17 @@
 @if(session()->has('msj'))
-<x-adminlte-alert theme="success" dismissable>
-    {{ session('msj') }}
-</x-adminlte-alert>
+    <x-adminlte-alert theme="success" dismissable>
+        {{ session('msj') }}
+    </x-adminlte-alert>
 @endif
 @if(session()->has('alert'))
-<x-adminlte-alert theme="warning" dismissable>
-{{ session('alert') }}
-</x-adminlte-alert>
+    <x-adminlte-alert theme="warning" dismissable>
+        {{ session('alert') }}
+    </x-adminlte-alert>
 @endif
-
+@php
+    $decryptedEmail = isset($participant->email) ? Crypt::decryptString($participant->email) : ;
+    $decryptedName = isset($participant->nombre) ? Crypt::decryptString($participant->nombre) : ;
+@endphp
 <style>
 	.hide {
 		display: none;
@@ -67,7 +70,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <x-adminlte-input name="email" label="Email *" placeholder="Email" type="text"
-                    igroup-size="sm" enable-old-support="true" value="{{ isset($participant) ? $participant->email : ''}}">
+                    igroup-size="sm" enable-old-support="true" value="{{ $decryptedEmail }}">
                     </x-adminlte-input>
                 </div>
             </div>
@@ -75,7 +78,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <x-adminlte-input name="nombre" label="Nombre" placeholder="Nombre" type="text"
-                    igroup-size="sm" enable-old-support="true" value="{{ isset($participant) ? $participant->nombre : ''}}">
+                    igroup-size="sm" enable-old-support="true" value="{{ $decryptedName }}">
                     </x-adminlte-input>
                 </div>
             </div>

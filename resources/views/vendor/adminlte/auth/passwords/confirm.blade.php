@@ -8,6 +8,7 @@
 
 @php( $password_reset_url = View::getSection('password_reset_url') ?? config('adminlte.password_reset_url', 'password/reset') )
 @php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'home') )
+@php( $decryptedName = Crypt::decryptString(Auth::user()->name))
 
 @if (config('adminlte.use_route_url', false))
     @php( $password_reset_url = $password_reset_url ? route($password_reset_url) : '' )
@@ -30,14 +31,14 @@
 
         {{-- Lockscreen user name --}}
         <div class="lockscreen-name">
-            {{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}
+            {{ isset(Auth::user()->name) ? $decryptedName : Auth::user()->email }}
         </div>
 
         {{-- Lockscreen item --}}
         <div class="lockscreen-item">
             @if(config('adminlte.usermenu_image'))
                 <div class="lockscreen-image">
-                    <img src="{{ Auth::user()->adminlte_image() }}" alt="{{ Auth::user()->name }}">
+                    <img src="{{ Auth::user()->adminlte_image() }}" alt="{{ $decryptedName }}">
                 </div>
             @endif
 

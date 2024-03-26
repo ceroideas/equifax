@@ -121,22 +121,35 @@
 
                 <td>{{ $claim->owner == NULL ? 'No existe': $claim->owner->id }}</td>
                 {{-- Datos del cliente que hizo la reclamacion --}}
-                <td>{{ $claim->owner->name }}</td>
+                @php
+                    $decryptedOwnerName = isset($claim->owner->name) ? Crypt::decryptString(trim($claim->owner->name)) : 'No existe';
+                    $decryptedOwnerPhone = isset($claim->owner->name) ? Crypt::decryptString(trim($claim->owner->name)) : 'No existe';
+                    $decryptedOwnerDni = isset($claim->owner->name) ? Crypt::decryptString(trim($claim->owner->name)) : 'No existe';
+                    $decryptedOwnerAddress = isset($claim->owner->name) ? Crypt::decryptString(trim($claim->owner->name)) : 'No existe';
+                    $decryptedOwnerIban = isset($claim->owner->name) ? Crypt::decryptString(trim($claim->owner->name)) : 'No existe';
+                @endphp
+                <td>{{ $decryptedOwnerName }}</td>
                 <td>{{ $claim->owner->email }}</td>
-                <td>{{ $claim->owner->phone }}</td>
-                <td>{{ $claim->owner->dni }}</td>
-                <td>{{ $claim->owner->address }}</td>
+                <td>{{ $decryptedOwnerPhone }}</td>
+                <td>{{ $decryptedOwnerDni }}</td>
+                <td>{{ $decryptedOwnerAddress }}</td>
                 <td>{{ $claim->owner->cop }}</td>
                 <td>{{ $claim->owner->location }}</td>
                 <td>{{ $claim->owner->province }}</td>
-                <td>{{ $claim->owner->iban }}</td>
+                <td>{{ $decryptedOwnerIban }}</td>
 
+                @php
+                    $decryptedName = isset($claim->user_id) ? Crypt::decryptString(trim($claim->client->name)) : Crypt::decryptString(trim($claim->representant->name));
+                    $decryptedPhone = isset($claim->user_id) ? Crypt::decryptString(trim($claim->client->phone)) : '';
+                    $decryptedDni = isset($claim->user_id) ? Crypt::decryptString(trim($claim->client->dni)) : Crypt::decryptString(trim($claim->representant->dni));
+                    $decryptedAddress = isset($claim->user_id) ? Crypt::decryptString(trim($claim->client->address)) : Crypt::decryptString(trim($claim->representant->address));
+                @endphp
                 {{-- Datos Acreedor Owner = user si es en nombre propio --}}
-                <td>{{ $claim->user_id ? $claim->client->name : $claim->representant->name}}</td>
+                <td>{{ $decryptedName }}</td>
                 <td>{{ $claim->user_id ? $claim->client->email : $claim->representant->email}}</td>
-                <td>{{ $claim->user_id ? $claim->client->phone : $claim->representant->phone}}</td>
-                <td>{{ $claim->user_id ? $claim->client->dni : $claim->representant->dni}}</td>
-                <td>{{ $claim->user_id ? $claim->client->address : $claim->representant->address}}</td>
+                <td>{{ $decryptedPhone }}</td>
+                <td>{{ $decryptedDni }}</td>
+                <td>{{ $decryptedAddress }}</td>
                 <td>{{ $claim->user_id ? $claim->client->cop : $claim->representant->cop}}</td>
                 <td>{{ $claim->user_id ? $claim->client->location : $claim->representant->location}}</td>
                 <td>{{ $claim->user_id ? $claim->client->province : $claim->representant->province}}</td>

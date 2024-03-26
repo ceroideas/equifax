@@ -1,17 +1,24 @@
 @extends('adminlte::page')
 
 @section('title', 'Usuarios')
+@php
+    $decryptedName = isset($user->name) ? Crypt::decryptString($user->name) : NULL;
+    $decryptedDni = isset($user->dni) ? Crypt::decryptString($user->dni) : NULL;
+	$decryptedPhone = isset($user->phone) ? Crypt::decryptString($user->phone) : NULL;
+	$decryptedAddress = isset($user->address) ? Crypt::decryptString($user->address) : NULL;
+	$decryptedIban = isset($user->iban) ? Crypt::decryptString($user->iban) : NULL;
+@endphp
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>@if(Auth::user()->is($user)) <h1>Tus Datos</h1>  @else Revisión de Datos Para {{ $user->name }} @endif</h1>
+                <h1>@if(Auth::user()->is($user)) <h1>Tus Datos</h1>  @else Revisión de Datos Para {{$decryptedName}} @endif</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/panel">&Aacute;rea personal</a></li>
-                    <li class="breadcrumb-item active">{{ $user->name }}</li>
+                    <li class="breadcrumb-item active">{{$decryptedName}}</li>
                 </ol>
             </div>
         </div>
@@ -27,7 +34,7 @@
     @endif
 
 
-<x-adminlte-profile-widget name="{{ $user->name }}" desc="{{ $user->getRole() }}" theme="orange" header-class="text-white">
+<x-adminlte-profile-widget name="{{$decryptedName}}" desc="{{ $user->getRole() }}" theme="orange" header-class="text-white">
 {{--  DNI
     <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="card card-orange">
@@ -65,19 +72,19 @@
                             <div class="col-sm-6">
                                 <strong><i class="fas fa-book mr-1"></i>Nombre Completo / Razón Social:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $user->name }}
+                                   {{ $decryptedName }}
                                 </p>
                             </div>
                             <div class="col-sm-3">
                                 <strong><i class="fas fa-id-card mr-1"></i>DNI / CIF:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $user->dni }}
+                                   {{ $decryptedDni }}
                                 </p>
                             </div>
                             <div class="col-sm-3">
                                 <strong><i class="fas fa-phone mr-1"></i>N° Tlf:</strong>
                                 <p class="text-muted text-uppercase">
-                                   {{ $user->phone }}
+                                   {{ $decryptedPhone }}
                                 </p>
                             </div>
                         </div>
@@ -85,7 +92,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Dirección: </strong>
-                                <p class="text-muted text-uppercase">{{ $user->address }}</p>
+                                <p class="text-muted text-uppercase">{{ $decryptedAddress }}</p>
                             </div>
                             <div class="col-sm-3">
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Población: </strong>
@@ -113,10 +120,9 @@
                             </div>
                             @if($user->iban)
                             <div class="col-sm-3">
-
                                 <strong><i class="fas fa-university mr-1"></i>Nro de Cuenta</strong>
                                 <p class="text-muted text-uppercase">
-                                    {{ $user->iban }}
+                                    {{ $decryptedIban }}
                                 </p>
                             </div>
                             @endif

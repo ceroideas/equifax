@@ -63,10 +63,14 @@
         <x-adminlte-datatable id="table1" class="table-responsive" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($orders as $order)
                 <tr>
+                    @php
+                        $decryptedName = isset($order->name) ? Crypt::decryptString(trim($order->name)) : '';
+                        $decryptedPhone = isset($order->phone) ? Crypt::decryptString(trim($order->phone)) : '';
+                    @endphp
                     <td>{{ $order->user_id }}</td>
-                    <td>{{ $order->name }}</td>
+                    <td>{{ $decryptedName }}</td>
                     <td>{{ $order->email }}</td>
-                    <td>{{ $order->phone }}</td>
+                    <td>{{ $decryptedPhone }}</td>
                     <td>{{ $order->location }}</td>
                     <td>{{ $order->pedidos }}</td>
                     <td>{{ number_format($order->total,2,',','.') }}</td>

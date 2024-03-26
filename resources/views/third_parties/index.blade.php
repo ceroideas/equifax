@@ -23,7 +23,7 @@
 @section('content')
 
     @if(session()->has('claim_third_party') && session()->has('claim_third_party') == 'waiting')
-    @include('progressbar', ['step' => 1])
+        @include('progressbar', ['step' => 1])
     @endif
 
     @php
@@ -71,10 +71,18 @@
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($third_parties as $third_party)
                 <tr>
-                    <td>{{ $third_party->dni }}-{{$third_party->id}}</td>
-                    <td>{{ $third_party->name }}</td>
-                    <td>{{ $third_party->legal_representative }}</td>
-                    <td>{{ $third_party->representative_dni }}</td>
+
+                    @php
+                        $decryptedName = isset($third_party->name) ? Crypt::decryptString($third_party->name) : NULL;
+                        $decryptedDni = isset($third_party->dni) ? Crypt::decryptString($third_party->dni) : NULL;
+                        $decryptedLegalRepresentative = isset($third_party->legal_representative) ? Crypt::decryptString($third_party->legal_representative) : NULL;
+                        $decryptedRepresentativeDni = isset($third_party->representative_dni) ? Crypt::decryptString($third_party->representative_dni) : NULL;
+                    @endphp
+
+                    <td>{{ $decryptedDni }}</td>
+                    <td>{{ $decryptedName }}</td>
+                    <td>{{ $decryptedLegalRepresentative }}</td>
+                    <td>{{ $decryptedRepresentativeDni }}</td>
 
                     {{-- <td>{{ $third_party->getStatus() }}</td> --}}
                     <td>

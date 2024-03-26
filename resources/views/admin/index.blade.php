@@ -307,7 +307,8 @@
                 <div class="card">
 
                     <div class="card-body text-left">
-                        <h3 style="margin-top: 0;">¡Bienvenido, {{Auth::user()->name}}! </h3>
+                        @php $decryptedName = Crypt::decryptString(Auth::user()->name); @endphp
+                        <h3 style="margin-top: 0;">¡Bienvenido, {{$decryptedName}}! </h3>
                         @if(isset($message))
                             {{$message}}
                         @endif
@@ -329,7 +330,7 @@
                         {{-- Campaign sorteo --}}
 
 
-                        @if(Auth::user()->referenced =='FEDETO')
+{{--                         @if(Auth::user()->referenced =='FEDETO')
                             <div style="background-color: #f8fafc; padding: 8px 0; text-align:center;">
                                 <div class="row">
                                     <div class="col-4 text-center" style="border-right: 1px solid silver;">
@@ -351,7 +352,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        @endif --}}
 
                         {{--
                         @if(isset(Auth::user()->campaign))

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Auth;
 use Mail;
+use Illuminate\Support\Facades\Crypt;
 
 use Carbon\Carbon;
 
@@ -60,15 +61,27 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
 
-        return Validator::make($data, [
-            'nombre' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'tos' => ['required'],
-            'lopd' => ['required'],
-            'g-recaptcha-response' => 'required|captcha',
-            /* 'g-recaptcha-response' => 'required|recaptchav3:register,0.5' */
-        ]);
+        if($_SERVER['SERVER_NAME']=='127.0.0.1'){
+
+            return Validator::make($data, [
+                'nombre' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'tos' => ['required'],
+                'lopd' => ['required'],
+                //'g-recaptcha-response' => 'required|captcha',
+            ]);
+        }else{
+            return Validator::make($data, [
+                'nombre' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'tos' => ['required'],
+                'lopd' => ['required'],
+                'g-recaptcha-response' => 'required|captcha',
+            ]);
+        }
+
     }
 
     /**
@@ -82,12 +95,13 @@ class RegisterController extends Controller
 
 
         $user = User::create([
-            'name' => $data['nombre'],
-            'email' => $data['email'],
+            'name' => Crypt::encryptString($data['nombre']),
+            'email' => $data['email'],//Crypt::encryptString($data['email']),
             'password' => Hash::make($data['password']),
         ]);
+        $user->pw_updated_at=Carbon::now();
 
-       $user->newsletter = isset($data['newsletter']) ? 1 : 0;
+        $user->newsletter = isset($data['newsletter']) ? 1 : 0;
        /* Control de roles */
        if(!$data['referenced'] == null){
             $user->referenced = $data['referenced'];
@@ -110,7 +124,7 @@ class RegisterController extends Controller
         }
 
         /*Asignacion participacion sorteos*/
-        $campaign = Campaign::where('type', 0)
+        $campaign = Campaign::where('type', 1)
                        ->whereDate('init_date', '<=', Carbon::now()->format('Y-m-d H:i:s'))
                        ->whereDate('end_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
                        ->first();
@@ -123,16 +137,21 @@ class RegisterController extends Controller
                 $notificacion = 1;
             }else{
 
-                $participants = Participant::where('email',$user->email)->first();
+                /*$participants = Participant::where('email',Crypt::decryptString($user->email))->first();
+                dump("Participantes: ");
+                dump(Crypt::decryptString($user->email));
+                dd($participants);*/
 
-                if($participants){
-                    $user->campaign = $campaign->prefix . rand(1000,99999);
-                    $participants->available = 0;
-                    $participants->save();
-                    $notificacion = 1;
+                $participants = Participant::all();
+                foreach($participants as $participant){
+                    if(Crypt::decryptString($participant->email) == $user->email){
+                        $user->campaign = $campaign->prefix . rand(1000,99999);
+                        $participant->available = 0;
+                        $participant->save();
+                        $notificacion = 1;
+                    }
                 }
             }
-
         }
 
        $user->save();
@@ -143,10 +162,10 @@ class RegisterController extends Controller
        }
 
 
-
        $tmp = Template::find(1);
         Mail::send('email_base_2', ['tmp' => $tmp,'target'=>url('/users/'.$user->id)], function ($message) use($tmp, $user) {
-            $message->to($user->email, $user->name);
+            //$message->to(Crypt::decryptString($user->email), Crypt::decryptString($user->name));
+            $message->to($user->email, Crypt::decryptString($user->name));
             $message->subject($tmp->title);
         });
 

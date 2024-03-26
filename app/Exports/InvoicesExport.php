@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class InvoicesExport implements FromView, WithTitle
 {
@@ -55,8 +56,8 @@ class InvoicesExport implements FromView, WithTitle
                 if(!$invoice->bas1fac==0){
                     $invoicetmp = array('id'=>$invoice->id,
                     'created_at'=>Carbon::parse($invoice->created_at)->format('d/m/Y'),
-                    'cnofac'=>$invoice->cnofac,
-                    'cnifac'=>$invoice->cnifac,
+                    'cnofac'=>Crypt::decryptString($invoice->cnofac),
+                    'cnifac'=>Crypt::decryptString($invoice->cnifac),
                     'base'=>number_format(($invoice->bas1fac) ,2,',','.'),
                     'piva'=>'21,00',
                     'iiva'=>number_format(($invoice->iiva1fac) ,2,',','.'),
@@ -70,8 +71,8 @@ class InvoicesExport implements FromView, WithTitle
                 if(!$invoice->bas4fac==0){
                     $invoicetmp = array('id'=>$invoice->id,
                     'created_at'=>Carbon::parse($invoice->created_at)->format('d/m/Y'),
-                    'cnofac'=>$invoice->cnofac,
-                    'cnifac'=>$invoice->cnifac,
+                    'cnofac'=>Crypt::decryptString($invoice->cnofac),
+                    'cnifac'=>Crypt::decryptString($invoice->cnifac),
                     'base'=>number_format(($invoice->bas4fac) ,2,',','.'),
                     'piva'=>number_format((0.00) ,2,',','.'),
                     'iiva'=>number_format((0.00) ,2,',','.'),

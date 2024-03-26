@@ -88,14 +88,20 @@
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" class="table-responsive" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
             @foreach($invoices as $invoice)
+            @php
+                $decryptName = isset($invoice->cnofac) ? Crypt::decryptString(trim($invoice->cnofac)) : 'No existe name';
+                $decryptClientName = isset($invoice->claim->client) ? Crypt::decryptString(trim($invoice->claim->client->name)) : 'No existe client';
+                $decryptRepresentantName = isset($invoice->claim->representant) ? Crypt::decryptString(trim($invoice->claim->representant->name)) : 'No existe represen';
+            @endphp
                 <tr>
                     <td>{{ $invoice->tipfac}}</td>
                     <td>{{ $invoice->id }}</td>
                     @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
                         @if( $invoice->claim_id <> 0 )
-                            <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
+                            <td>{{-- {{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }} --}}
+                                {{ $invoice->claim->client ? $decryptClientName :($invoice->claim->representant?$decryptRepresentantName:'') }}</td>
                         @else
-                            <td>{{ $invoice->cnofac }}</td>
+                            <td>{{ $decryptName }}</td>
                         @endif
                     @endif
                     @if( $invoice->claim_id <> 0 )
