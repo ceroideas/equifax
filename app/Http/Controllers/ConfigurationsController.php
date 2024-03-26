@@ -601,7 +601,7 @@ class ConfigurationsController extends Controller
                         $users = User::all();
                         foreach($users as $user){
                             $user->name = isset($user->name)?Crypt::encryptString($user->name):Null;
-                            $user->email = isset($user->email)?Crypt::encryptString($user->email):Null;
+                            //$user->email = isset($user->email)?Crypt::encryptString($user->email):Null;
                             $user->dni = isset($user->dni)?Crypt::encryptString($user->dni):Null;
                             $user->phone = isset($user->phone)?Crypt::encryptString($user->phone):Null;
                             $user->address = isset($user->address)?Crypt::encryptString($user->address):Null;
