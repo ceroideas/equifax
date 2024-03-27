@@ -137,10 +137,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <nobr>
-                    @if($third_party->user->is(Auth::user()))
-                    <a href="{{ url('/third-parties/' . $third_party->id . '/edit') }}" class="btn btn-default btn-block"><b>Editar Datos</b></a>
+                    @if($third_party->user() == Auth::user())
+                        <a href="{{ url('/third-parties/' . $third_party->id . '/edit') }}" class="btn btn-default btn-block"><b>Editar Datos</b></a>
                     @endif
-                    <a href="{{ url('/third-parties') }}" class="btn btn-default btn-block  ($third_party->user->is(Auth::user()) ? '' : 'my-4'))"><b>Regresar al Listado</b></a>
+                        <a href="{{ url('/third-parties') }}" class="btn btn-default btn-block  ($third_party->user->is(Auth::user()) ? '' : 'my-4'))"><b>Regresar al Listado</b></a>
                 </nobr>
             </div>
          </div>
@@ -186,5 +186,6 @@
          </div>
         @endif --}}
     </div>
+
 </x-adminlte-profile-widget>
 @stop
