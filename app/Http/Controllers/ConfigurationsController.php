@@ -688,6 +688,7 @@ class ConfigurationsController extends Controller
                             $thirdParty->name = isset($thirdParty->name) ? Crypt::encryptString($thirdParty->name) : Null;
                             $thirdParty->dni = isset($thirdParty->dni) ? Crypt::encryptString($thirdParty->dni) : Null;
                             $thirdParty->address = isset($thirdParty->address) ? Crypt::encryptString($thirdParty->address) : Null;
+                            $thirdParty->iban = isset($thirdParty->iban) ? Crypt::encryptString($thirdParty->iban) : Null;
                             $thirdParty->legal_representative = isset($thirdParty->legal_representative) ? Crypt::encryptString($thirdParty->legal_representative) : Null;
                             $thirdParty->representative_dni = isset($thirdParty->representative_dni) ? Crypt::encryptString($thirdParty->representative_dni) : Null;
                             $thirdParty->save();
