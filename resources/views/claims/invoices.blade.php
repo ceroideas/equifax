@@ -127,7 +127,7 @@
 
 
                     @if(Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()|| Auth::user()->isFinance())
-                        <td>{{ isset($invoice->totfac-$invoice->collects())? number_format(($invoice->totfac-$invoice->collects()) ,2,',','.'):0}} &euro;</td>
+                        <td>{{$invoice->totfac-$invoice->collects()!==NULL ? number_format(($invoice->totfac-$invoice->collects()) ,2,',','.'):'--' }} &euro;</td>
                     @endif
 
                     <td>{{ $invoice->payment_date <> null ? Carbon\Carbon::parse($invoice->payment_date)->format('d/m/Y') : '' }}</td>
