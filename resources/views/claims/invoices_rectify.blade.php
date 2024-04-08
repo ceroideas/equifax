@@ -67,9 +67,14 @@
                     <td>{{ $invoice->id }}</td>
                     @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
                         @php
-                            $decryptedClientName = isset($invoice->claim->client) ? Crypt::decryptString(trim($invoice->claim->client)) : 'No existe';
-                            $decryptedRepresentantName = isset($invoice->claim->representant) ? Crypt::decryptString(trim($invoice->claim->representant)) : 'No existe';
-                            $decryptedName = isset($invoice->cnofac) ? Crypt::decryptString(trim($invoice->cnofac )) : 'No existe';
+                            try {
+                                $decryptedClientName = isset($invoice->claim->client) ? Crypt::decryptString(trim($invoice->claim->client)) : 'No existe';
+                                $decryptedRepresentantName = isset($invoice->claim->representant) ? Crypt::decryptString(trim($invoice->claim->representant)) : 'No existe';
+                                $decryptedName = isset($invoice->cnofac) ? Crypt::decryptString(trim($invoice->cnofac )) : 'No existe';
+                            } catch (\Throwable $th) {
+                                //throw $th;
+                            }
+
                         @endphp
 
                         @if( $invoice->claim_id <> 0 )
