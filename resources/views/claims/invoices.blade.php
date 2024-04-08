@@ -127,7 +127,8 @@
                     @if(Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()|| Auth::user()->isFinance())
                         {{-- <td>{{$invoice->totfac-$invoice->collects()!==NULL ? number_format(($invoice->totfac-$invoice->collects()) ,2,',','.'):'--' }} &euro;</td> --}}
                         @if (is_numeric($invoice->totfac) && $invoice->collects())
-                            <td>{{ number_format(($invoice->totfac-$invoice->collects()) ,2,',','.') }} &euro;</td>
+                            {{-- <td>{{ number_format(($invoice->totfac-$invoice->collects()) ,2,',','.') }} &euro;</td> --}}
+                            <td>{{$invoice->totfac}} - {{$invoice->collects()}}</td>
                         @else
                             <td>-- &euro;</td>
                         @endif
