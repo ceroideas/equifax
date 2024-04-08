@@ -124,8 +124,6 @@
                         <td>{{ $invoice->status == 1 ? 'Pagado' : ($invoice->status == 2 ? 'Pendiente parcial':' Pendiente') }}</td>
                     @endif
 
-
-
                     @if(Auth::user()->isSuperAdmin()|| Auth::user()->isAdmin()|| Auth::user()->isFinance())
                         {{-- <td>{{$invoice->totfac-$invoice->collects()!==NULL ? number_format(($invoice->totfac-$invoice->collects()) ,2,',','.'):'--' }} &euro;</td> --}}
                         @if (is_numeric($invoice->totfac) && $invoice->collects())
