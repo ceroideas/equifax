@@ -66,10 +66,16 @@
                     <td>{{ $invoice->tipfac}}</td>
                     <td>{{ $invoice->id }}</td>
                     @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()|| Auth::user()->isFinance())
+                        @php
+                            $decryptedClientName = isset($invoice->claim->client) ? Crypt::decryptString(trim($invoice->claim->client)) : 'No existe';
+                            $decryptedRepresentantName = isset($invoice->claim->representant) ? Crypt::decryptString(trim($invoice->claim->representant)) : 'No existe';
+                            $decryptedName = isset($invoice->cnofac) ? Crypt::decryptString(trim($invoice->cnofac )) : 'No existe';
+                        @endphp
+
                         @if( $invoice->claim_id <> 0 )
-                            <td>{{ $invoice->claim->client ? $invoice->claim->client->name : ($invoice->claim->representant ? $invoice->claim->representant->name : '') }}</td>
+                            <td>{{ $invoice->claim->client ? $decryptedClientName : ($invoice->claim->representant ? $decryptedRepresentantName : '') }}</td>
                         @else
-                            <td>{{ $invoice->cnofac }}</td>
+                            <td>{{ $decryptedName }}</td>
                         @endif
                     @endif
                     @if( $invoice->claim_id <> 0 )

@@ -89,9 +89,9 @@
                     <td>{{ $collect->obscob }}</td>
                     <td>{{ $collect->tracob == 1 ? 'Exportado' : 'No exportado' }}</td>
                     @php
-                        $decryptedOwnerName = isset($collect->usuario->name) ? Crypt::decryptString(trim($collect->usuario->name)) : 'No existe';
+                        $decryptedName = isset($collect->usuario->name) ? Crypt::decryptString(trim($collect->usuario->name)) : 'No existe';
                     @endphp
-                    <td>{{ $decryptedOwnerName }}</td>
+                    <td>{{ $decryptedName }}</td>
                 </tr>
             @endforeach
 
