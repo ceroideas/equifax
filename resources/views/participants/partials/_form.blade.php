@@ -48,7 +48,7 @@
 
             <div class="col-sm-4">
                 <div class="form-group">
-                    <x-adminlte-input name="available" label="Participación habilitada" placeholder="Participacion habilitada" type="text"
+                    <x-adminlte-input name="available" label="Participación habilitada" placeholder="Participacion utilizada" type="text"
                     igroup-size="sm" enable-old-support="true" value="{{ isset($participant) ? ($participant->available==0?'Si':'No') : ''}}" disabled>
                     </x-adminlte-input>
                 </div>
