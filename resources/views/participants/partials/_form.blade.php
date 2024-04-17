@@ -9,8 +9,8 @@
     </x-adminlte-alert>
 @endif
 @php
-    $decryptedEmail = isset($participant->email) ? Crypt::decryptString($participant->email) : ;
-    $decryptedName = isset($participant->nombre) ? Crypt::decryptString($participant->nombre) : ;
+    $decryptedEmail = isset($participant->email) ? Crypt::decryptString($participant->email) : NULL;
+    $decryptedName = isset($participant->nombre) ? Crypt::decryptString($participant->nombre) : NULL;
 @endphp
 <style>
 	.hide {
