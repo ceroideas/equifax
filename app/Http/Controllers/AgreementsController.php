@@ -48,7 +48,7 @@ class AgreementsController extends Controller
         $agreementTmp->wait = $agreement->wait = $request['espera'];
         $agreementTmp->observation = $agreement->observation = $request['observaciones'] ? $request['observaciones'] : '';
 
-        Auth::user()->iban = $request['iban'];
+        Auth::user()->iban = Crypt::encryptString($request['iban']);
         Auth::user()->save();
 
 
