@@ -7,6 +7,7 @@ use App\Models\Agreement_tmp;
 use App\Models\Claim_tmp;
 use Illuminate\Http\Request;
 use App\Rules\Iban;
+use Illuminate\Support\Facades\Crypt;
 use Auth;
 
 class AgreementsController extends Controller
@@ -48,7 +49,7 @@ class AgreementsController extends Controller
         $agreementTmp->wait = $agreement->wait = $request['espera'];
         $agreementTmp->observation = $agreement->observation = $request['observaciones'] ? $request['observaciones'] : '';
 
-        Auth::user()->iban = $request['iban'];
+        Auth::user()->iban = Crypt::encryptString($request['iban']);
         Auth::user()->save();
 
 
