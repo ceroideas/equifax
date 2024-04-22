@@ -516,10 +516,10 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
 
                         if(file_exists('testing/orders_invoices.txt')){
                             $file = fopen('testing/orders_invoices.log', 'a');
-                            fwrite($file, date("d/m/Y H:i:s").'-'.'Campaña solo para unos usuarios, busca si este participa:'.Crypt::decryptString($user->email).PHP_EOL);
+                            fwrite($file, date("d/m/Y H:i:s").'-'.'Campaña solo para unos usuarios, busca si este participa:'.$user->email.PHP_EOL);
                         }
 
-                        $participants = Participant::where('email',Crypt::decryptString($user->email))
+                        $participants = Participant::where('email',$user->email)
                                                     ->where('available',1)
                                                     ->where('campaign_id',$campaign->id)
                                                     ->first();
@@ -527,7 +527,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
 
                             if(file_exists('testing/orders_invoices.txt')){
                                 $file = fopen('testing/orders_invoices.log', 'a');
-                                fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento de campaña para solo el usuario '.Crypt::decryptString($user->email).PHP_EOL);
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento de campaña para solo el usuario '.$user->email.PHP_EOL);
                             }
                             addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $discount,$id_hito);
                             $participants->available = 0;
@@ -536,7 +536,7 @@ function addDocument($typeDocument, $claim_id, $articulo, $tasa, $gestoria_id=0,
                         }else{
                             if(file_exists('testing/orders_invoices.txt')){
                                 $file = fopen('testing/orders_invoices.log', 'a');
-                                fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento el usuario: '.Crypt::decryptString($user->email).' no participa en la campaña'.PHP_EOL);
+                                fwrite($file, date("d/m/Y H:i:s").'-'.'Añade linea de documento el usuario: '.$user->email.' no participa en la campaña'.PHP_EOL);
                             }
                             addLineDocument($typeDocument, $idDocument, $articulo,0,1,$user->taxcode, $user->discount,$id_hito);
                         }
