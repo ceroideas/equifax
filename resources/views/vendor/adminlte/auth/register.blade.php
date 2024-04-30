@@ -73,7 +73,7 @@
             </div>
 
             @error('nombre')
-                <span class="invalid-feedback" role="alert">
+                <span class="invaFlid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror

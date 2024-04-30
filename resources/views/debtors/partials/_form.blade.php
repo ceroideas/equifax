@@ -72,7 +72,7 @@
         <div class="row mt-2">
             <div class="col-sm-6">
                 <x-adminlte-input name="name" label="Nombre Completo / Razón Social *" placeholder="Nombre Completo / Razón Social" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($debtor) ? $decryptedName :''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($debtor) ? $decryptedName :NULL}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-user"></i>
@@ -82,7 +82,7 @@
             </div>
             <div class="col-sm-6">
                 <x-adminlte-input name="email" label="Correo" placeholder="Ingresa el Correo" type="email"
-                    igroup-size="sm"  enable-old-support="true" value="{{ isset($debtor) ? $decryptedEmail :''}}">
+                    igroup-size="sm"  enable-old-support="true" value="{{ isset($debtor) ? $decryptedEmail : NULL}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-envelope"></i>
@@ -94,7 +94,7 @@
         <div class="row ">
             <div class="col-sm-6">
                 <x-adminlte-input name="dni" label="DNI / CIF *" placeholder="DNI / CIF" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{ isset($debtor) ? $decryptedDni : ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{ isset($debtor) ? $decryptedDni : NULL}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-id-card"></i>
@@ -104,7 +104,7 @@
             </div>
             <div class="col-sm-6">
                 <x-adminlte-input name="tlf" label="N° de Teléfono *" placeholder="N° de Teléfono" type="phone"
-                    igroup-size="sm"  enable-old-support="true" value="{{  isset($debtor) ? $decryptedPhone :''}}">
+                    igroup-size="sm"  enable-old-support="true" value="{{  isset($debtor) ? $decryptedPhone : NULL}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-phone"></i>
@@ -115,7 +115,7 @@
         </div>
         <div class="row ">
             <div class="col-sm-6">
-                <x-adminlte-textarea name="address" label="Dirección / Domicilio Fiscal *" rows=4 enable-old-support="true">{{ isset($debtor) ? $decryptedAddress :''}}
+                <x-adminlte-textarea name="address" label="Dirección / Domicilio Fiscal *" rows=4 enable-old-support="true">{{ isset($debtor) ? $decryptedAddress :NULL}}
                     <x-slot name="appendSlot" >
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-address-card"></i>
@@ -124,7 +124,7 @@
             </div>
             <div class="col-sm-6">
                 <x-adminlte-input name="cop" label="Código Postal *" placeholder="Código Postal" type="number" min="0"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->cop   :  ''}}">
+                igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->cop : NULL}}">
                     <x-slot name="appendSlot">
                         <div class="input-group-text bg-dark">
                             <i class="fas fa-map-marker"></i>
@@ -133,7 +133,7 @@
                 </x-adminlte-input>
 
                 <x-adminlte-input name="location" label="Población *" placeholder="Población" type="text"
-                    igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->location   :  ''}}">
+                    igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->location : NULL}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-map-marker"></i>
@@ -146,7 +146,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <x-adminlte-input name="province" label="Provincia *" placeholder="Provincia" type="text"
-                    igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->province   :  ''}}">
+                    igroup-size="sm" enable-old-support="true" value="{{  isset($debtor) ?  $debtor->province : NULL}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-map-marker"></i>
@@ -158,7 +158,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="col-sm-12">
-                    <x-adminlte-textarea name="additional" label="Datos adicionales del deudor / Observaciones " rows=4 enable-old-support="true" placeholder="Introduce datos adicionales que puedan ser de inter&eacute;s para la localizaci&oacute;n del deudor, esto nos ayudar&aacute; a acelerar el proceso.">{{  isset($debtor) ? $debtor->additional :''}}
+                    <x-adminlte-textarea name="additional" label="Datos adicionales del deudor / Observaciones " rows=4 enable-old-support="true" placeholder="Introduce datos adicionales que puedan ser de inter&eacute;s para la localizaci&oacute;n del deudor, esto nos ayudar&aacute; a acelerar el proceso.">{{  isset($debtor) ? $debtor->additional :NULL}}
                         <x-slot name="appendSlot" >
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-address-card"></i>

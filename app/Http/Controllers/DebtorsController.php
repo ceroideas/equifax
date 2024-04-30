@@ -120,7 +120,7 @@ class DebtorsController extends Controller
         $data = $this->validateRequest($debtor->id);
 
         $debtor->name = Crypt::encryptString($data['name']);
-        $debtor->email = $data['email'] ? Crypt::encryptString($data['email']) : '';
+        $debtor->email = $data['email'] ? Crypt::encryptString($data['email']) : NULL;
         $debtor->dni = Crypt::encryptString($data['dni']);
         $debtor->phone = Crypt::encryptString($data['tlf']);
         $debtor->address = Crypt::encryptString($data['address']);

@@ -55,7 +55,7 @@
             <div class="col-sm-6">
                 <x-adminlte-input name="concepto" label="Concepto contable *" placeholder="Concepto" type="text"
                     igroup-size="sm" enable-old-support="true"
-                    value="COBRO FRA. {{ isset($invoice) ? Carbon\Carbon::parse($invoice->fecfac)->format('y').'/'.$invoice->id : ''}} {{ isset($invoice) ? $invoice->cnofac : ''}} " required>
+                    value="COBRO FRA. {{ isset($invoice) ? Carbon\Carbon::parse($invoice->fecfac)->format('y').'/'.$invoice->id : ''}} {{ isset($invoice) ? Crypt::decryptString($invoice->cnofac) : ''}} " required>
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
                                 <i class="fas fa-map-marker"></i>
