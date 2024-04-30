@@ -585,6 +585,9 @@ class ConfigurationsController extends Controller
     }
 
     public function testingTable(){
+
+
+
         if(file_exists('testing/testingLCG.txt')){
 
 /*             $file = fopen('testing/testingLCG.txt', 'r');

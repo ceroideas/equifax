@@ -68,6 +68,7 @@
 
     <x-adminlte-card header-class="text-center" theme="orange" theme-mode="outline">
         <x-adminlte-datatable id="table1" :heads="$heads" striped hoverable bordered compresed responsive :config="$config">
+
             @foreach($debtors as $debtor)
                 <tr>
                     @php

@@ -64,14 +64,14 @@ class ThirdPartiesController extends Controller
         $thirdParty->location = $data['location'];
         $thirdParty->province = $data['province'];
         $thirdParty->cop = $data['cop'];
-        $thirdParty->iban = array_key_exists('iban', $data) ? Crypt::encryptString($data['iban']) : null;
+        $thirdParty->iban = array_key_exists('iban', $data) ? Crypt::encryptString($data['iban']) : NULL;
         if (session('other_user')) {
             $thirdParty->user_id = session('other_user');
         }else{
             $thirdParty->user_id = Auth::user()->id;
         }
-        $thirdParty->legal_representative = $data['tipo'] == 1 ? Crypt::encryptString($data['legal_representative']): null;
-        $thirdParty->representative_dni = $data['tipo'] == 1 ? Crypt::encryptString($data['representative_dni']): null;
+        $thirdParty->legal_representative = $data['tipo'] == 1 ? Crypt::encryptString($data['legal_representative']): NULL;
+        $thirdParty->representative_dni = $data['tipo'] == 1 ? Crypt::encryptString($data['representative_dni']): NULL;
         $thirdParty->save();
 
         // $path = $request->file('dni_img')->store('uploads/third-parties/' . $thirdParty->id . '/dni', 'public');

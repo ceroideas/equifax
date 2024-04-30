@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Crypt;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -206,7 +207,13 @@ class User extends Authenticatable implements MustVerifyEmail
      }
 
      public function adminlte_profile_url(){
+
+
+        //$decryptedName = Crypt::decryptString($this->name);
+        //dd($decryptedName);
+
          return route('user.show', $this);
+         //return route('user.show', compact($this,$decryptedName));
      }
 
      public function adminlte_desc(){
