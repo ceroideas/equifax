@@ -31,8 +31,8 @@ class Authenticate extends Middleware
         // en login correcto no entra aqui
 
         if (! $request->expectsJson()) {
-            dump("Entra a expectsJson redirige a login");
-            dd($request->expectsJson());
+            /* dump("Entra a expectsJson redirige a login");
+            dd($request->expectsJson()); */
             return route('login');
         }
     }
