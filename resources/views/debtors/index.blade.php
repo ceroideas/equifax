@@ -95,7 +95,7 @@
                             </button>
                         </a>
                         <a href="{{ url('/debtors/' . $debtor->id . '/edit/') }}">
-                            <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" @if($debtor->issetClaim()!=Null) disabled @endif>
+                            <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" @if($debtor->issetClaim()!=Null && !Auth::user()->isSuperadmin()) disabled @endif>
                                 <i class="fa fa-lg fa-fw fa-pen"></i>
                             </button>
                         </a>
