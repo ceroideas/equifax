@@ -1327,12 +1327,12 @@ class ClaimsController extends Controller
 
     public function importActuations(Request $r)
     {
-        dump(file_exists(public_path().'/logImportHitosXls.log'));
-        dump($r->hasfile('file'));
+        /*dump(file_exists(public_path().'/logImportHitosXls.log'));
+        dump($r->hasfile('file'));*/
         if ($r->hasFile('file')) {
             $r->file->move(public_path().'/uploads/excel','actuations.xlsx');
             if(file_exists(public_path().'/logImportHitosXls.log')){
-                dump("Borro");
+                //dump("Borro");
                 unlink(public_path().'/logImportHitosXls.log');
             }
 
