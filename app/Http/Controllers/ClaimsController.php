@@ -45,6 +45,8 @@ use App\Models\Agreement_tmp;
 use App\Models\Debt_tmp;
 use Illuminate\Support\Facades\DB;
 
+
+
 class ClaimsController extends Controller
 {
     /**
@@ -1325,15 +1327,21 @@ class ClaimsController extends Controller
 
     public function importActuations(Request $r)
     {
+        dump(file_exists(public_path().'/logImportHitosXls.log'));
+        dump($r->hasfile('file'));
         if ($r->hasFile('file')) {
             $r->file->move(public_path().'/uploads/excel','actuations.xlsx');
             if(file_exists(public_path().'/logImportHitosXls.log')){
+                dump("Borro");
                 unlink(public_path().'/logImportHitosXls.log');
             }
+
 
             Excel::import(new ActuationsImport, public_path().'/uploads/excel/actuations.xlsx');
         }
 
+        $i=0;
+        $claimsTxt= '';
         if(file_exists(public_path().'/logImportHitosXls.log')){
             list($i, $claimsTxt) = array(0,'');
             $logFile = fopen(public_path().'/logImportHitosXls.log','r');
@@ -1352,6 +1360,7 @@ class ClaimsController extends Controller
 
     public function importCollectsKmaleon(Request $r)
     {
+
         if ($r->hasFile('file')) {
             $r->file->move(public_path().'/uploads/excel','collectskmaleon.xlsx');
             Excel::import(new CollectsKmaleonImport, public_path().'/uploads/excel/collectskmaleon.xlsx');

@@ -63,6 +63,8 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
     $sorteo = '';
 	$claim = Claim::find($claim_id);
 
+    //dump("Comprueba si el hito redirecciona");
+
     if ($h) {
 
 		// comprobar si el hito es de la fase de cobro directamente
@@ -323,11 +325,16 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
                 // comprobar si el hito debe enviar un email
                 /* Envio email*/
+                /* dump("Helper comprueba envio email");
+                dump($claim->owner->msgusr);
+                dump($claim->owner->email);
+                dump($h['template_id']); */
                 if ($h['template_id'] && $claim->owner->msgusr == 1) {
 
                     // code...
                     $se = new SendEmail;
-                    $se->addresse = $claim ? Crypt::decryptString($claim->owner->email) : '';
+                    //$se->addresse = $claim ? Crypt::decryptString($claim->owner->email) : '';
+                    $se->addresse = $claim ? $claim->owner->email : '';
                     $se->template_id = $h['template_id'];
                     $se->actuation_id = $actuation_id;// viene desde claimsController
                     $se->send_count = 20;
@@ -372,6 +379,8 @@ function actuationActions($id_hito, $claim_id, $amount = null, $date = null, $ob
 
 
             } // fin actuacion simple sin redireccion
+            /* dump("Sale de la actuacion");
+            dd(); */
 	}
 }
 

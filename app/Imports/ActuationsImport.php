@@ -14,20 +14,24 @@ class ActuationsImport implements ToModel, WithHeadingRow
     {
 
     	// \Log::info($row);
+        //dump($row);
     	$debt = Debt::where('claim_id',$row['referencia'])->first();
-        //dump($debt);
+        //dd($debt);
         if ($debt) {
     		$hito = getHito( (string) $row['codigo_macro_generadora'])[0];
 	        // \Log::info([$row['id_hito'],gettype( (string) $row['id_hito'])]);
 	        //\Log::info($row);
-        //dump($hito);
+            //dump("Macro generadora");
+            //dump($hito);
 	        if ($hito) {
+                //dump("Graba hito");
 	            $actuation = new Actuation;
 		        $actuation->claim_id = $debt->claim_id;
 		        $actuation->subject = $hito['ref_id'];
 		        $actuation->amount = '2';//array_key_exists('cuantia_reducida', $row) &&  $row['cuantia_reducida'] != '' ? $row['cuantia_reducida'] : null;
 		        $actuation->description = 'Texto controlador'; //array_key_exists('texto_macro_generadora', $row) ? $row['texto_macro_generadora']:null;
                 //dump($actuation);
+                //dump(array_key_exists('fecha', $row));
 		        if (array_key_exists('fecha', $row)) {
 		        	$row['fecha'] = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['fecha'])->format('Y-m-d H:i:s');
 		        	$actuation->actuation_date = $row['fecha'];
@@ -37,7 +41,8 @@ class ActuationsImport implements ToModel, WithHeadingRow
                 //dump($actuation);
 		        //$actuation->type = null;
 		        //$actuation->mailable = null;
-
+                //dump($actuation->actuation_date);
+                //dump("Salva actuacion");
 		        $actuation->save();
                 $logFile = fopen(public_path().'/logImportHitosXls.log','a');
                 fwrite($logFile, $actuation->claim_id .PHP_EOL);
@@ -66,6 +71,13 @@ class ActuationsImport implements ToModel, WithHeadingRow
 		                $ad->save();
 		        	}
 		        }
+                /* dump("Va a actuacion");
+                dump($hito['ref_id']);
+                dump($actuation->claim_id);
+                dump($actuation->amount);
+                dump($actuation->actuation_date);
+                dump($actuation->description); */
+
 
 		        actuationActions($hito['ref_id'],$actuation->claim_id,$actuation->amount, $actuation->actuation_date, $actuation->description);
 	        }
