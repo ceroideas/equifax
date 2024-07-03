@@ -111,7 +111,7 @@
         <form action="{{url('import-actuations')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
             @csrf
             <label style="margin: 0;" for="actuations" class="btn btn-danger btn-sm">Importar Actuaciones</label>
-            <input name="file" type="file" id="actuations" style="display: none;">
+            <input name="file" type="file" accept="application/vnd.ms-excel" id="actuations" style="display: none;">
         </form>
 
         <form action="{{url('import-collects-kmaleon')}}" style="display: inline-block; margin: 0;" method="POST" enctype="multipart/form-data">
