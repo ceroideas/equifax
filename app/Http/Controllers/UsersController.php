@@ -108,21 +108,27 @@ class UsersController extends Controller
     {
 
         $validation = $this->validateRequest();
+        if(isset($request->role)){
+            $role = $request->role;
+
+        }else{
+            $role = 2;
+        }
 
         $user = $model_user->create([
-            'name' => $request->name,
+            'name' => Crypt::encryptString($request->name),
             'email' => $request->email,
-            'dni' => $request->dni,
-            'phone' => $request->tlf,
-            'address' => $request->address,
+            'dni' => Crypt::encryptString($request->dni),
+            'phone' => Crypt::encryptString($request->tlf),
+            'address' => Crypt::encryptString($request->address),
             'location' => $request->location,
             'province' => $request->province,
             'cop' => $request->cop,
-            'iban' => $request->iban,
-            'role' => 2,
+            'iban' => Crypt::encryptString($request->iban),
+            'role' => $role,
             'password' => bcrypt($request->password),
-            'legal_representative' => $request->type == 1 ? $request->legal_representative : null,
-            'representative_dni' => $request->type == 1 ? $request->representative_dni : null,
+            'legal_representative' => $request->type == 1 ? Crypt::encryptString($request->legal_representative) : null,
+            'representative_dni' => $request->type == 1 ? Crypt::encryptString($request->representative_dni) : null,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
             'discount'=> $request->discount,
             'referenced'=>$request->referenced,
