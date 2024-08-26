@@ -190,6 +190,24 @@ class UsersController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function editConfiguration(User $user)
+    {
+
+        if(Auth::user()->is($user) && Auth::user()->isClient()  && !Auth::user()->checkStatus()){
+            session()->flash('alert', Auth::user()->getStatus());
+        }
+
+        return view('users.edit-configuration', [
+            'user' => $user
+        ]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -275,6 +293,61 @@ class UsersController extends Controller
             return redirect('claims/select-type')->with(['msj' => '¡Tus datos han sido actualizamos exitosamente!, inicia la reclamación']);
         }
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function updateConfig(Request $request, User $user)
+    {
+
+        //$validation = $this->validateRequest();
+
+
+        if(isset($request->role)){
+            $role = $request->role;
+
+        }else{
+            $role = Auth::user()->role;
+        }
+
+         if(isset($request->referenced)){
+            $user->update(['referenced'=>$request->referenced]);
+        }
+
+        $user->update([
+            //'type' => $request->type,
+            'name' => Crypt::encryptString($request->name),
+            'email' => $request->email,
+            //'dni' => Crypt::encryptString($request->dni),
+            //'status'=>3,
+            //'phone' => Crypt::encryptString($request->tlf),
+            //'address' => Crypt::encryptString($request->address),
+            //'location' => $request->location,
+            //'province' => $request->province,
+            //'cop' => $request->cop,
+            //'iban' => Crypt::encryptString($request->iban),
+            'role' => $role,
+            //'password' => $password,
+            //'legal_representative' => $request->type == 1 ? Crypt::encryptString($request->legal_representative) : null,
+            //'representative_dni' => $request->type == 1 ? Crypt::encryptString($request->representative_dni) : null,
+            //'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
+            'discount'=> $request->discount,
+            'referenced'=> $request->referenced,
+            //'msgusr'=> isset($request->msgusr)?1:0,
+        ]);
+
+
+
+        if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()){
+            return redirect('/configurations/users')->with(['msj' => '¡Usuario actualizado correctamente!']);
+        }
+    }
+
+
 
     /**
      * Remove the specified resource from storage.

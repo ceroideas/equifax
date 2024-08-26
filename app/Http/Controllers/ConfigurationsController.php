@@ -586,11 +586,9 @@ class ConfigurationsController extends Controller
 
     public function testingTable(){
 
-
-
         if(file_exists('testing/testingLCG.txt')){
 
-/*             $file = fopen('testing/testingLCG.txt', 'r');
+        /* $file = fopen('testing/testingLCG.txt', 'r');
             while(! feof($file)) {
                 $line = fgets($file);
                 echo $line. "<br>";
@@ -773,6 +771,13 @@ class ConfigurationsController extends Controller
         }else{
             dump("Test Erroneo erroneo");
         }
+    }
+
+    public function users()
+    {
+        $users = User::all();
+
+        return view('users.configurations',compact('users'));
     }
 
 }
