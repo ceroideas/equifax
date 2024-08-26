@@ -207,16 +207,16 @@ class UsersController extends Controller
             $password = $user->password;
         }
 
-        if(isset($request->role)){
+        /* if(isset($request->role)){
             $role = $request->role;
 
         }else{
             $role = Auth::user()->role;
-        }
+        } */
 
-        if(isset($request->referenced)){
+        /* if(isset($request->referenced)){
             $user->update(['referenced'=>$request->referenced]);
-        }
+        } */
         $user->update([
             'type' => $request->type,
             'name' => Crypt::encryptString($request->name),
@@ -229,12 +229,12 @@ class UsersController extends Controller
             'province' => $request->province,
             'cop' => $request->cop,
             'iban' => Crypt::encryptString($request->iban),
-            'role' => $role,
+            //'role' => $role,
             'password' => $password,
             'legal_representative' => $request->type == 1 ? Crypt::encryptString($request->legal_representative) : null,
             'representative_dni' => $request->type == 1 ? Crypt::encryptString($request->representative_dni) : null,
             'taxcode'=> substr($request->cop, 0, 2)  == 35 ? 'IVA0' : 'IVA21',
-            'discount'=> $request->discount,
+            //'discount'=> $request->discount,
             'msgusr'=> isset($request->msgusr)?1:0,
         ]);
 

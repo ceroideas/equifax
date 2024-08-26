@@ -292,7 +292,7 @@
             </div>
         @endif
 
-        @if (Auth::user()->isSuperAdmin())
+        {{-- @if (Auth::user()->isSuperAdmin())
             <div class="row">
                 <div class="col-sm-4">
                     <x-adminlte-select name="role" label="Rol" placeholder="Selecciona El Rol">
@@ -331,7 +331,7 @@
                 </div>
 
             </div>
-        @endif
+        @endif --}}
         <div class="card-footer">
             <x-adminlte-button class="btn-sm float-right" type="reset" label="Limpiar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
             <x-adminlte-button class="btn-flat btn-sm float-right" type="submit" label="Guardar" theme="success" icon="fas fa-lg fa-save"/>
