@@ -76,7 +76,9 @@ Route::group(['prefix' => 'users'], function(){
     Route::get('/{user}', [UsersController::class, 'show'])->name('user.show');
     Route::post('', [UsersController::class, 'store']);
     Route::get('/{user}/edit', [UsersController::class, 'edit'])->name('user.edit');
+    Route::get('/{user}/edit-configuration', [UsersController::class, 'editConfiguration']);
     Route::put('/{user}', [UsersController::class, 'update']);
+    Route::put('/update/{user}', [UsersController::class, 'updateConfig']);
     Route::delete('/{user}', [UsersController::class, 'destroy']);
     Route::post('/approval/{user}', [UsersController::class, 'approval']);
     Route::post('/denial/{user}', [UsersController::class, 'denial']);
@@ -246,6 +248,8 @@ Route::group([
 
     Route::post('/campaigns/save', [ConfigurationsController::class, 'saveCampaigns']);
     Route::post('/campaigns/{id}/update', [ConfigurationsController::class, 'updateCampaigns']);
+
+    Route::get('/users', [ConfigurationsController::class, 'users']);
 });
 
 Route::group([

@@ -424,6 +424,12 @@ return [
                     'can' => 'superadmin',
                     'url'  => '/configurations/participants',
                 ],
+                [
+                    'text' => 'Configuración de usuarios',
+                    'icon' => '',
+                    'can' => 'superadmin',
+                    'url'  => '/configurations/users',
+                ],
 
             ],
         ],
