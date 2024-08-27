@@ -13,11 +13,6 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}/panel">&Aacute;rea personal</a></li>
                     <li class="breadcrumb-item"><a href="{{url('/configurations/users')}}">Configuración de usuarios</a></li>
-                    {{-- @if(auth::user()->can('create', 'user'))
-                        <li class="breadcrumb-item"><a href="{{url('/configurations/users')}}/users">Configuración de usuarios</a></li>
-                    @else
-                        <li class="breadcrumb-item"><a href="{{ route('user.edit', $user) }}">Usuarios</a></li>
-                    @endif --}}
 
                     <li class="breadcrumb-item active">{{ $decryptedName }}</li>
                 </ol>
