@@ -29,7 +29,7 @@
     <!--
     <div class="card">
         <div class="card-header card-orange card-outline">
-            <h3 class="card-title"  style="color:#e65927;" >Detalles de la Reclamaci&oacute;n - </h3>
+            <h3 class="card-title"  style="color:#9E1B42;" >Detalles de la Reclamaci&oacute;n - </h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>

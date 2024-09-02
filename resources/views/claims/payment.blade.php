@@ -174,7 +174,7 @@
 
 							<div class="col-sm-4">
 								<div class="form-group">
-									<label data-toggle="tooltip" style="color:#e65927; title=""
+									<label data-toggle="tooltip" style="color:#9E1B42; title=""
 										data-original-title="3 digits code on back side of the card">CVV <i
 											class="fa fa-question-circle"></i></label>
 									<div id="paycomet-cvc2" style="height: 36px; padding:0px;"></div>

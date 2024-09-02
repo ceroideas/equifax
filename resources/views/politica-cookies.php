@@ -24,7 +24,7 @@
 }
 
 .texto .dividae{
-    color: #e65927;
+    color: #9E1B42;
     font-weight: bold;
 }
 
@@ -36,7 +36,7 @@
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #e65927;
+    color: #9E1B42;
     margin-bottom: 20px;
 }
 table.blueTable {
@@ -53,7 +53,7 @@ table.blueTable thead {
 }
 table.blueTable thead th {
   font-weight: normal;
-  /*color: #e65927;*/
+  /*color: #9E1B42;*/
   border-left: 2px solid #D0E4F5;
   text-align: center;
 }

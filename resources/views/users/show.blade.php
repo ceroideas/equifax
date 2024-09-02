@@ -64,7 +64,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card card-orange">
-                    <div class="card-header text-white" style="background-color:#e65927">
+                    <div class="card-header text-white" style="background-color:#9E1B42">
                         <h3 class="card-title">Detalles</h3>
                     </div>
                     <div class="card-body">

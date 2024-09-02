@@ -11,7 +11,7 @@
     }
     .btn-light-descubre {
         border-radius: 37.5px !important !important;
-        background-color: #e65927 !important;
+        background-color: #9E1B42 !important;
         font-family: Roobert !important;
         font-size: 14px !important;
         font-weight: normal !important;
@@ -24,7 +24,7 @@
         /*margin-top: 14px !important;*/
         color: #fff !important !important;
         margin-left: -10px !important;
-        border: 1px solid #e65927 !important;
+        border: 1px solid #9E1B42 !important;
     }
 </style>
 
@@ -49,7 +49,7 @@
 @if (Auth::user()->isClient())
     @section('extra_header')
 
-    <div style="background-color: #e65927; color: #fff" class="text-center">
+    <div style="background-color: #9E1B42; color: #fff" class="text-center">
 
         <small>Área Clientes</small>
 
@@ -69,8 +69,8 @@
 
     .btn-dividae {
         border-radius: 20px;
-        border: 1px solid #e65927;
-        color: #e65927 !important;
+        border: 1px solid #9E1B42;
+        color: #9E1B42 !important;
     }
 </style>
 
@@ -280,7 +280,7 @@
 
                     <div style="position: relative; height: 200px;">
 
-                        <div style="position: absolute; height: 80%; width: 100%; background-color: #e65927; border-radius: 8px; bottom: 0;">
+                        <div style="position: absolute; height: 80%; width: 100%; background-color: #9E1B42; border-radius: 8px; bottom: 0;">
 
                         </div>
                         <img src="{{url('landing/assets/contacto.png')}}" alt="" style="position: absolute; bottom: 0; right: 0; width: 100%" alt="Imagen contacto">

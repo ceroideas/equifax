@@ -29,7 +29,7 @@
 
   /*clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);*/
   background-color: #f1f1f1;
-  color: #e65927;
+  color: #9E1B42;
   padding: 20px 0;
 
   margin-right: -3%;
@@ -57,7 +57,7 @@
 
   /*clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);*/
   background-color: #fff;
-  color: #e65927;
+  color: #9E1B42;
   padding: 20px 0;
 
   margin-right: -3%;
@@ -85,7 +85,7 @@
 
   /*clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);*/
   /*background-color: #f1f1f1;*/
-  color: #e65927;
+  color: #9E1B42;
   padding: 1px 0;
 
   margin-right: -3%;
@@ -124,7 +124,7 @@
 /*The number of the step and the connector before it = green*/
 /*#progressbar li.active:before,  #progressbar li.active:after{*/
 #progressbar li.active {
-  background-color: #e65927;
+  background-color: #9E1B42;
   color: #fff;
   font-weight: bold;
 }

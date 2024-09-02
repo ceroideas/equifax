@@ -235,10 +235,7 @@
                             </div>
                         </div>
                     </div>
-
-
-                    @include('followus')
-
+                    {{-- @include('followus') --}}
                 </div>
 
                 <!--

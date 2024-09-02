@@ -1,6 +1,6 @@
 <style>
     b {
-        color: #e65927;
+        color: #9E1B42;
     }
 </style>
 @if (!isset($nofooter))

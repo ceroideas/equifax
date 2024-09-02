@@ -49,7 +49,7 @@
 <b><u>CUARTO.- PROCEDIMIENTO </u></b>
 
 <p style="margin-bottom: 30px;text-align: justify;">Conforme a lo preceptuado en el artículo 812 de la LEC, se tramitará por el proceso
-    <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+    <span data-toggle="tooltip" style="color:#9E1B42; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
 Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">Monitorio</span> la solicitud del pago de la deuda dineraria
 contraída de cualquier importe, líquida, determinada, vencida y exigible, así como debidamente acreditada con la documental aportada.</p>
 

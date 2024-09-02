@@ -24,7 +24,7 @@
 }
 
 .texto .dividae{
-    color: #e65927;
+    color: #9E1B42;
     font-weight: bold;
 }
 
@@ -36,7 +36,7 @@
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #e65927;
+    color: #9E1B42;
     margin-bottom: 20px;
 }
 

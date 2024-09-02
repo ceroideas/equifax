@@ -24,7 +24,7 @@
 }
 
 .texto .dividae{
-    color: #e65927;
+    color: #9E1B42;
     font-weight: bold;
 }
 
@@ -36,7 +36,7 @@
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #e65927;
+    color: #9E1B42;
     margin-bottom: 20px;
 }
 
@@ -96,7 +96,7 @@
         <p class="subtitulo">4. USO DEL PORTAL Y SUS SERVICIOS</p>
         <p class="texto">Una vez registrado en la página web se le enviará automáticamente un email a la cuenta de correo facilitado en el formulario de registro con el fin de
             que confirme su alta. Los usuarios que infrinjan las reglas recogidas en los términos y condiciones no podrán continuar con la reclamación de la deuda realizada a
-            través de <a class="dividae" href="{{url('/')}}">www.dividae.com</a> y perderán, en su caso, las cantidades que hubieran entregado como honorarios o <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>,
+            través de <a class="dividae" href="{{url('/')}}">www.dividae.com</a> y perderán, en su caso, las cantidades que hubieran entregado como honorarios o <span data-toggle="tooltip" style="color:#9E1B42; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>,
             reservándose DIVIDAE RECOVERY S.L. el derecho a ejercitar las acciones legales oportunas a efectos de exigir responsabilidad por los daños y perjuicios causados.
             La información que aporte el Usuario se dará por buena, siendo responsabilidad única y exclusiva de quien introduce esa información en el sistema lo que en ella
             se vierta, afirme o manifieste, por lo que ninguna responsabilidad cabe exigir a <span class="dividae">Dividae</span> en caso de que se produzca una condena en
@@ -169,7 +169,7 @@
             de la deuda desde que el Usuario solicita el inicio de la reclamación o la continuación de la misma y hasta que culmina dicha fase del procedimiento.
         </p>
 
-        <p class="texto">En la plataforma se indican las diferentes formas de pago por las que el Usuario puede abonar los honorarios, el porcentaje de las cantidades recobradas y las <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>/<span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
+        <p class="texto">En la plataforma se indican las diferentes formas de pago por las que el Usuario puede abonar los honorarios, el porcentaje de las cantidades recobradas y las <span data-toggle="tooltip" style="color:#9E1B42; data-placement="top" title="La tasa la tendrá que abonar toda persona jurídica con una duda de más de 2.000 €.">tasas</span>/<span data-toggle="tooltip" style="color:#9E1B42; data-placement="top" title="Es un requisito de admisibilidad de algunos recursos que tiene la finalidad de evitar la interposición de recursos
             temerarios y meramente dilatorios. Por ello, si no se abona el depósito no se tendrá por presentado el recurso.">depósitos</span>.
             Tanto para abonar el precio fijo pactado como para abonar el pago correspondiente a las cantidades recobradas Dividae emitirá una factura por dicha cantidad fija y otra por la resultante
             de aplicar el porcentaje a la cantidad recuperada. La factura se remitirá por mail al Usuario y se anexará en la plataforma en el apartado de “ÁREA DE USUARIO”.

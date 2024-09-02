@@ -176,7 +176,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> @include('followus')
+                    </div> {{-- @include('followus') --}}
                 </div>
 
                 <div class="container text-center bottom-text pt-4">
@@ -301,11 +301,11 @@
                             <table id="tbltarifas" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Tipo de
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Tipo de
                                             procedimiento</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Tarifa
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Tarifa
                                             de éxito*</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Precio
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Precio
                                             fijo**</th>
                                     </tr>
                                 </thead>
@@ -319,35 +319,35 @@
                                     </tr>
                                     <tr>
                                         <td style="color:#285ba3"><span data-toggle="tooltip"
-                                                style="color:#e65927; data-placement="top"
+                                                style="color:#9E1B42; data-placement="top"
                                                 title="Es la vía de reclamación civil de cantidades más rápida y ágil.
 Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles."
-                                                style="color:#e65927;">Procedimiento Monitorio</span>
+                                                style="color:#9E1B42;">Procedimiento Monitorio</span>
                                             en ámbito nacional.</td>
                                         <td style="text-align: right; color:#285ba3">69,90 &euro;</td>
                                     </tr>
                                     <tr>
                                         <td style="color:#285ba3"><span data-toggle="tooltip"
-                                                style="color:#e65927; data-placement="top"
+                                                style="color:#9E1B42; data-placement="top"
                                                 title="Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o
 bien por la cuantía económica (cuantía menor a 6.000€), requieren una tramitación ágil."
-                                                style="color:#e65927;">Juicio Verbales</span> en ámbito nacional</td>
+                                                style="color:#9E1B42;">Juicio Verbales</span> en ámbito nacional</td>
                                         <td style="text-align: right; color:#285ba3">199,90 &euro;</td>
                                     </tr>
                                     <tr>
                                         <td style="color:#285ba3"><span data-toggle="tooltip"
-                                                style="color:#e65927; data-placement="top"
+                                                style="color:#9E1B42; data-placement="top"
                                                 title="Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o bien por la cuantía económica
 (cuantía mayor a 6.000€ o imposible de calcular). Es un procedimiento más largo que los descritos anteriormente."
-                                                style="color:#e65927;">Juicio Ordinarios</span> en ámbito nacional</td>
+                                                style="color:#9E1B42;">Juicio Ordinarios</span> en ámbito nacional</td>
                                         <td style="text-align: right; color:#285ba3">399,90 &euro;</td>
                                     </tr>
                                     <tr>
                                         <td style="color:#285ba3"><span data-toggle="tooltip"
-                                                style="color:#e65927; data-placement="top"
+                                                style="color:#9E1B42; data-placement="top"
                                                 title="Es aquel por el que se pretende el cumplimiento de una resolución judicial dictada, de manera que es una manifestación
 del respeto al derecho a la tutela judicial efectiva cuando la parte contraria no cumple con lo indicado en la sentencia."
-                                                style="color:#e65927;">Ejecución</span> en ámbito nacional</td>
+                                                style="color:#9E1B42;">Ejecución</span> en ámbito nacional</td>
                                         <td style="text-align: right; color:#285ba3">149,90 &euro;</td>
                                     </tr>
                                 </tbody>

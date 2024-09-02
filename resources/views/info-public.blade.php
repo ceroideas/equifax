@@ -151,7 +151,7 @@
     </style>
     <style>
         .block-Info[data-v-cfd2b624] {
-            background-color: #e65927;
+            background-color: #9E1B42;
         }
 
         .content {
@@ -254,7 +254,7 @@
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="About-text"></div>
                             </div>
                         </div>
-                    </div> @include('followus')
+                    </div> {{-- @include('followus') --}}
                 </div>
 
 
@@ -353,11 +353,11 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Tipo de procedimiento</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Importe</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Descuento</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">IVA</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Total linea</th>
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Tipo de procedimiento</th>
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Importe</th>
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Descuento</th>
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">IVA</th>
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Total linea</th>
                                     </tr>
                                 </thead>
 

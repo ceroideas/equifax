@@ -53,8 +53,8 @@
                         </tr>
 
 			        	<tr>
-			          		<td style="background:#e65927; padding:5px; color:#fff; text-align:left;">
-			          			<div style="padding: 10px; background-color: #e65927; color: #fff !important;">
+			          		<td style="background:#9E1B42; padding:5px; color:#fff; text-align:left;">
+			          			<div style="padding: 10px; background-color: #9E1B42; color: #fff !important;">
 			          				{!! $tmp->body_content !!}
 			          				<br>
 			          				{!! $tmp->footer_content !!}

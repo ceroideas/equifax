@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> @include('followus')
+                    {{-- </div> @include('followus') --}}
                 </div>
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">

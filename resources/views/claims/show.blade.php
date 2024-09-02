@@ -69,7 +69,7 @@
     @endif
     <div class="card">
         <div class="card-header card-orange card-outline">
-            <h3 class="card-title"  style="color:#e65927;" >Detalles de la Reclamaci&oacute;n - {{ $claim->debt->document_number }} - {{ $claim->getStatus() }} </h3>
+            <h3 class="card-title"  style="color:#9E1B42;" >Detalles de la Reclamaci&oacute;n - {{ $claim->debt->document_number }} - {{ $claim->getStatus() }} </h3>
             <div class="card-tools">
                 <input type="button" class="btn-secondary" name="imprimir" value="Imprimir reclamaci&oacute;n" onclick="window.print();">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -187,7 +187,7 @@
                                     @if($claim->debt->hasAgreement())
                                     <div class="row">
                                         <div class="col-lg-3 col-sm-6 col-md-6"><b>M&iacute;nimo:</b> <p>{{ $claim->debt->agreements->take }}&euro;</p></div>
-                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>M&aacute;ximo <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span>:</b> <p>{{ $claim->debt->agreements->wait }} </p></div>
+                                        <div class="col-lg-3 col-sm-6 col-md-6"><b>M&aacute;ximo <span data-toggle="tooltip" style="color:#9E1B42; data-placement="top" title="Plazo en el que estás dispuesto a recuperar la deuda.">espera</span>:</b> <p>{{ $claim->debt->agreements->wait }} </p></div>
                                         <div class="col-lg-6 col-sm-12 col-md-12"><b>Observaciones :</b><p> {{ $claim->debt->additionals }}</p></div>
                                     </div>
                                     <div class="row mt-3">
@@ -209,7 +209,7 @@
 
                                     <b>DIAS TRANSCURRIDOS:
                                         @if($dias>30)
-                                            <span style="color:#e65927;">
+                                            <span style="color:#9E1B42;">
                                         @else
                                             <span>
                                         @endif
