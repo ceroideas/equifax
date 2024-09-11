@@ -81,7 +81,7 @@ $config = [
             {{-- <div class="col-sm-4">
                 <div class="form-group text-center">
                     <label for="tipo_viabilidad3">Proceso
-                        <span data-toggle="tooltip" style="color:#e65927; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
+                        <span data-toggle="tooltip" style="color:#9E1B42; data-placement="top" title="Es la vía de reclamación civil de cantidades más rápida y ágil.
 Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles. ">Monitorio</span></label>
                     <input id="tipo_viabilidad3" type="radio" name="tipo_viabilidad" class="is-invalid " value="3" @isset ($id) disabled @endisset @if(old('tipo_viabilidad') == 3) checked="true" @endif>
                     @error('tipo_viabilidad')

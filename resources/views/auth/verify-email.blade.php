@@ -14,7 +14,7 @@
 
         color: #fff !important !important;
         margin-left: -10px !important;
-        border: 1px solid #e65927 !important;
+        border: 1px solid #9E1B42 !important;
     }
 </style>
 @php $decryptedName = Crypt::decryptString(Auth::user()->name); @endphp
@@ -39,7 +39,7 @@
 @if (Auth::user()->isClient())
     @section('extra_header')
 
-    <div style="background-color: #e65927; color: #fff" class="text-center">
+    <div style="background-color: #9E1B42; color: #fff" class="text-center">
 
         <small>Área Clientes</small>
 
@@ -59,8 +59,8 @@
 
         .btn-dividae {
             border-radius: 20px;
-            border: 1px solid #e65927;
-            color: #e65927 !important;
+            border: 1px solid #9E1B42;
+            color: #9E1B42 !important;
         }
     </style>
 
@@ -81,7 +81,7 @@
             <div style="position: absolute; width: calc(100% - 20px); bottom: 20px;">
                 <h5>¿Podemos ayudarte?</h5>
                 <div style="position: relative; height: 200px;">
-                    <div style="position: absolute; height: 80%; width: 100%; background-color: #e65927; border-radius: 8px; bottom: 0;">
+                    <div style="position: absolute; height: 80%; width: 100%; background-color: #9E1B42; border-radius: 8px; bottom: 0;">
                     </div>
                     <img src="{{url('landing/assets/contacto.png')}}" alt="Imagen agente contacto" style="position: absolute; bottom: 0; right: 0; width: 100%" alt="Icono email">
                 </div>
@@ -103,7 +103,7 @@
                     <div style="background-color: #f8fafc; padding: 8px 0;">
                         <div class="row">
                             <div class="col-4 text-center" style="border-right: 1px solid silver;">
-                                <img src="{{url('landing/assets/grafico-ilustraciones-simulador.png')}}" alt="Ilustracion simulador viabilidad deuda" style="width: 60%;">
+                                <img src="{{url('landing/assets/grafico_reclamacion_viable.png')}}" alt="Ilustracion simulador viabilidad deuda" style="width: 60%;">
                             </div>
                             <div class="col-1"></div>
                             <div class="col-7">
@@ -117,7 +117,7 @@
                                         @csrf
 
                                         <div>
-                                            <button style="border-radius: 20px !important; padding: 8px; margin: auto; background: #e65927; font-family: Roobert; color:#fff;">
+                                            <button style="border-radius: 20px !important; padding: 8px; margin: auto; background: #9E1B42; font-family: Roobert; color:#fff;">
                                                 {{ __('VOLVER A ENVIAR EMAIL DE VERIFICACIÓN') }}
                                             </button>
                                         </div>

@@ -106,7 +106,7 @@
 }
 
 .texto .dividae{
-    color: #e65927;
+    color: #9E1B42;
     font-weight: bold;
 }
 
@@ -118,7 +118,7 @@
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #e65927;
+    color: #9E1B42;
     margin-bottom: 20px;
 }
 
@@ -135,8 +135,8 @@
         <h1 class="titulo">CONDICIONES GENERALES DE LA CONTRATACIÓN</h1>
             <h3 class ="subtitulo">1. INTRODUCCIÓN</h3>
             <p class="texto">Este documento contractual regirá las Condiciones Generales de Contratación de servicios (en adelante “Condiciones”) a través del sitio web
-                <a class="dividae" href="{{url('/')}}">www.dividae.com</a>, propiedad de <b>DIVIDAE RECOVERY, S.L</b> bajo la marca comercial de DIVIDAE, en adelante
-                <span class="dividae">"Dividae"</span>, cuyos datos de contacto figuran también en el Aviso Legal de esta Web.</p>
+                <a class="dividae" href="{{url('/')}}">www.dividae.com</a>, propiedad de <b>Asnef empresas recupera</b> bajo la marca comercial de DIVIDAE, en adelante
+                <span class="dividae">"Asnef"</span>, cuyos datos de contacto figuran también en el Aviso Legal de esta Web.</p>
 
             <p class="texto">Estas Condiciones permanecerán publicadas en el sitio web a disposición del Cliente para reproducirlas y guardarlas como confirmación del Contrato,
                 pudiendo ser modificadas en cualquier momento por <span class="dividae">Dividae</span>. Es responsabilidad del Cliente leerlas periódicamente, ya que resultarán aplicables aquellas que se encuentren

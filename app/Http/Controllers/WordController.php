@@ -69,7 +69,7 @@ class WordController extends Controller
 
 
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        $name = 'DDA MONITORIO DIVIDAE __'.$claim->id.'__'.Carbon::now()->format('d-m-Y_H_i').'.docx';
+        $name = 'DDA MONITORIO ASNEF __'.$claim->id.'__'.Carbon::now()->format('d-m-Y_H_i').'.docx';
         $objWriter->save(public_path().'/documents/'.$name);
         return response()->download(public_path().'/documents/'.$name);
     }

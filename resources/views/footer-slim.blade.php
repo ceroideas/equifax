@@ -1,6 +1,6 @@
 <style>
     b {
-        color: #e65927;
+        color: #9E1B42;
     }
 </style>
 
@@ -11,10 +11,10 @@
             <div data-v-a242bae8="" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6"><a data-v-a242bae8=""
                     href="{{ url('/') }}/" class="align-items-center mb-3 link-dark">
                     <p data-v-a242bae8=""><img data-v-a242bae8=""
-                            src="{{ url('landing') }}/assets/grafico-logo-negativo.png" class="graficologonegativo" alt="Logo Dividae"></p>
+                            src="{{ url('landing') }}/assets/equifax-logo.png" class="graficologonegativo" alt="Logo Asnef"></p>
                 </a>
                 <p data-v-a242bae8="" class=" footer-text">
-                    <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de
+                    <b>Asnef empresas recupera</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de
                     facturas impagadas de forma <b>sencilla, exitosa y económica. </b>
                 </p>
             </div>

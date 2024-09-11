@@ -79,7 +79,7 @@
           title: '<span style="color:#285ba3">Recuerda que la posibilidad de acuerdo facilitará a nuestros letrados la recuperación de tus facturas impagadas</span>',
           // showDenyButton: true,
           showCancelButton: true,
-          confirmButtonColor: '#e65927',
+          confirmButtonColor: '#9E1B42',
           confirmButtonText: 'Continuar',
           cancelButtonText: `Cancelar`,
           icon: 'warning',

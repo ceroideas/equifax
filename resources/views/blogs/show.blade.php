@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> @include('followus')
+                    </div> {{-- @include('followus') --}}
                 </div>
 
 

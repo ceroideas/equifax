@@ -9,8 +9,8 @@
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
 
     <meta name="robots" content="index, follow" />
-    <title>Dividae - Tarifas</title>
-    <meta name="description" content="Dividae cuenta con tarifas fijas para reclamación extrajudicial y judicial."/>
+    <title>Asnef - Tarifas</title>
+    <meta name="description" content="Asnef cuenta con tarifas fijas para reclamación extrajudicial y judicial."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -176,11 +176,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div> @include('followus')
+                    </div> {{-- @include('followus') --}}
                 </div>
 
                 <div class="container text-center bottom-text pt-4">
-                    <p><b>Dividae</b> cuenta con tarifas fijas. Nuestro
+                    <p><b>Asnef</b> cuenta con tarifas fijas. Nuestro
                         mayor objetivo es que no pagues nada que no sepas, ser <b>100% transparentes</b> y que tú estés
                         <b>100% tranquilo</b> durante todo el proceso. </p>
 
@@ -188,13 +188,13 @@
                         y sus tarifas.</p>
                 </div>
 
-                <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
+                {{-- <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
                         <div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div>
 
                         <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
                             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12"></div>
-                            <!-- Card 1 -->
+
                             <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
                                 <div data-v-9cc878a2="" class="card mb-4 rounded-3">
                                     <div data-v-9cc878a2="" class="pt-5">
@@ -220,7 +220,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Card 2 -->
+
                             <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
                                 <div data-v-9cc878a2="" class="card mb-4 rounded-3">
                                     <div data-v-9cc878a2="" class="pt-5">
@@ -248,7 +248,84 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+
+
+                                {{-- Inicio de Bloque cuanto cuesta --}}
+                                <div data-  v-9cc878a2="" data-v-63cd6604="" class="blockTarifa pt-5" data-v-effc9f78="">
+                                    <div data-v-9cc878a2="" class="text-center card-tarifa container">
+                                        {{-- <div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div> --}}
+                                        <div data-v-9cc878a2="" class="text-center fs-2-5x fw-600 fc-primary" >
+                                            ¿Cu&aacute;nto cuesta?
+                                        </div>
+
+
+                                        <div data-v-9cc878a2="" class="row mb-3 text-center blockCard">
+                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12"></div>
+                                            <!-- Card 1 -->
+                                            <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
+                                                <div data-v-9cc878a2="" class="card mb-4 rounded-3">
+                                                    <div data-v-9cc878a2="" class="pt-5">
+                                                        <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
+                                                            <small>Protecci&oacute;n de impagos</small>
+                                                        </span>
+                                                    </div>
+                                                    <div data-v-9cc878a2="" >
+                                                        <ul data-v-9cc878a2="" class="list-unstyled mt-3 mb-4">
+                                                            <li data-v-9cc878a2="">
+                                                                <div class="card-text pt-4 pb-4">
+                                                                    Recupera tus impagados
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
+                                                        <small>Por solo</small> 20&euro;/mes
+                                                    </span>
+
+                                                    <!--<div class="row">
+                                                        <div class="col-sm-2">mt-xl-3 mb-xl-3</div>-->
+                                                        <div class="col-12 pb-3 pt-3">
+                                                            <a data-v-9cc878a2="" href="{{ url('tarifas') }}" aria-current="page"
+                                                                class="btn btn-light-descubre" type="button"> Descubrir más</a>
+                                                        </div>
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+                                            <!-- Card 2 -->
+                                            <div data-v-9cc878a2="" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 OPFrecuente">
+                                                <div data-v-9cc878a2="" class="card mb-4 rounded-3">
+                                                    <div data-v-9cc878a2="" class="pt-5">
+                                                        <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
+                                                            <small>Reclamación judicial</small>
+                                                        </span>
+                                                    </div>
+                                                    <div data-v-9cc878a2="">
+                                                        <ul data-v-9cc878a2="" class="list-unstyled mt-3 mb-4">
+                                                            <li data-v-9cc878a2="">
+                                                                <div class="card-text pt-4">
+                                                                    Comienza con tu reclamación por vía judicial
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
+                                                        <small>Desde</small> 99&euro;
+                                                    </span>
+
+                                                    <!--<div class="row">
+                                                        <div class="col-sm-2"></div>-->
+                                                        <div class="col-12 pb-3 pt-3">
+                                                            <a data-v-9cc878a2="" href="{{ url('tarifas') }}" aria-current="page"
+                                                                class="btn btn-light-descubre" type="button"> Descubrir más</a>
+                                                        </div>
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
 
                 <div data-v-c7d18d50="" data-v-effc9f78="" class="block-nosotros">
                     <div data-v-c7d18d50="" data-v-effc9f78="" class="Nosotros container">
@@ -301,11 +378,11 @@
                             <table id="tbltarifas" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Tipo de
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Tipo de
                                             procedimiento</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Tarifa
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Tarifa
                                             de éxito*</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Precio
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Precio
                                             fijo**</th>
                                     </tr>
                                 </thead>
@@ -319,35 +396,35 @@
                                     </tr>
                                     <tr>
                                         <td style="color:#285ba3"><span data-toggle="tooltip"
-                                                style="color:#e65927; data-placement="top"
+                                                style="color:#9E1B42; data-placement="top"
                                                 title="Es la vía de reclamación civil de cantidades más rápida y ágil.
 Se utiliza para exigir el pago de deudas líquidas, determinadas, vencidas y exigibles."
-                                                style="color:#e65927;">Procedimiento Monitorio</span>
+                                                style="color:#9E1B42;">Procedimiento Monitorio</span>
                                             en ámbito nacional.</td>
                                         <td style="text-align: right; color:#285ba3">69,90 &euro;</td>
                                     </tr>
                                     <tr>
                                         <td style="color:#285ba3"><span data-toggle="tooltip"
-                                                style="color:#e65927; data-placement="top"
+                                                style="color:#9E1B42; data-placement="top"
                                                 title="Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o
 bien por la cuantía económica (cuantía menor a 6.000€), requieren una tramitación ágil."
-                                                style="color:#e65927;">Juicio Verbales</span> en ámbito nacional</td>
+                                                style="color:#9E1B42;">Juicio Verbales</span> en ámbito nacional</td>
                                         <td style="text-align: right; color:#285ba3">199,90 &euro;</td>
                                     </tr>
                                     <tr>
                                         <td style="color:#285ba3"><span data-toggle="tooltip"
-                                                style="color:#e65927; data-placement="top"
+                                                style="color:#9E1B42; data-placement="top"
                                                 title="Es un proceso declarativo dirigido a la resolución de litigios civiles que, bien por la materia o bien por la cuantía económica
 (cuantía mayor a 6.000€ o imposible de calcular). Es un procedimiento más largo que los descritos anteriormente."
-                                                style="color:#e65927;">Juicio Ordinarios</span> en ámbito nacional</td>
+                                                style="color:#9E1B42;">Juicio Ordinarios</span> en ámbito nacional</td>
                                         <td style="text-align: right; color:#285ba3">399,90 &euro;</td>
                                     </tr>
                                     <tr>
                                         <td style="color:#285ba3"><span data-toggle="tooltip"
-                                                style="color:#e65927; data-placement="top"
+                                                style="color:#9E1B42; data-placement="top"
                                                 title="Es aquel por el que se pretende el cumplimiento de una resolución judicial dictada, de manera que es una manifestación
 del respeto al derecho a la tutela judicial efectiva cuando la parte contraria no cumple con lo indicado en la sentencia."
-                                                style="color:#e65927;">Ejecución</span> en ámbito nacional</td>
+                                                style="color:#9E1B42;">Ejecución</span> en ámbito nacional</td>
                                         <td style="text-align: right; color:#285ba3">149,90 &euro;</td>
                                     </tr>
                                 </tbody>

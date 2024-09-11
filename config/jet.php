@@ -1,7 +1,7 @@
 <?php
 
 
-if($_SERVER['SERVER_NAME']=='develop.dividae.com'||$_SERVER['SERVER_NAME']=='127.0.0.1'){
+if($_SERVER['SERVER_NAME']=='glc.dividae.com'||$_SERVER['SERVER_NAME']=='127.0.0.1'){
     /* Entorno test merchantCode, terminal, password y JETID*/
     return [
         "arg1"=> "6r3rjxkv",

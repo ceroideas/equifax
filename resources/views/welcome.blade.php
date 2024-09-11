@@ -9,8 +9,8 @@
     <meta name="csrf-token" content="vQquIOeFCyXeIRVqPhnUsIPBw3b13PWS9mA9pMmF">
 
     <meta name="robots" content="index, follow" />
-    <title>Di adi&oacute;s a tus facturas impagadas, di Dividae</title>
-    <meta name="description" content="Dividae es una plataforma 100% digital que surge para dar una soluci&oacute;n a la recuperación de facturas impagadas de forma sencilla, exitosa y econ&oacute;mica."/>
+    <title>Di adi&oacute;s a tus facturas impagadas, di Asnef</title>
+    <meta name="description" content="Asnef empresas recupera es una plataforma 100% digital que surge para dar una soluci&oacute;n a la recuperación de facturas impagadas de forma sencilla, exitosa y econ&oacute;mica."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -64,9 +64,9 @@
         /*Antes .floating-button*/
         .floating-social-bar button {
             border-radius: 37.5px;
-            background-color: #e65927;
-            border: 1px solid #e65927;
-            box-shadow: 0 16px 22px -17px #e65927;
+            background-color: #007298;
+            border: 1px solid #007298;
+            box-shadow: 0 16px 22px -17px #007298;
             color: #fff;
             cursor: pointer;
             font-size: 16px;
@@ -80,7 +80,7 @@
 
         .floating-social-bar button:hover {
             background-color: #ffffff;
-            color: #e65927;
+            color: #007298;
         }
 
         .floating-social-bar button:focus {
@@ -142,9 +142,9 @@
 
             .floating-comprobar button {
                 border-radius: 37.5px;
-                background-color: #e65927;
-                border: 1px solid #e65927;
-                box-shadow: 0 16px 22px -17px #e65927;
+                background-color: #007298;
+                border: 1px solid #007298;
+                box-shadow: 0 16px 22px -17px #007298;
                 color: #fff;
                 cursor: pointer;
                 font-size: 16px;
@@ -159,7 +159,7 @@
 
             .floating-comprobar button:hover {
                 background-color: #ffffff;
-                color: #e65927;
+                color: #007298;
             }
 
             .floating-comprobar button:focus {
@@ -197,9 +197,10 @@
             <div data-v-effc9f78="" data-v-63cd6604="">
                 <div data-v-66372912="" data-v-63cd6604="" class="portada-3dblue" data-v-effc9f78="">
 
-                   <video id="background-video" autoplay loop muted >
+                   {{-- <video id="background-video" autoplay loop muted >
                         <source src="{{ url('landing/videohome.mp4') }}" type="video/mp4">
-                   </video>
+                   </video> --}}
+                   {{-- <img src="{{ url('landing/background_home.png') }}" alt="Landing home"> --}}
 
                     <div data-v-66372912="" class="block-CMO-FUNCIONA"><a data-v-66372912="" href="#como-funciona"
                             class="CMO-FUNCIONA"><img data-v-66372912=""
@@ -210,13 +211,13 @@
                         <div data-v-5fddf304="" class="container"><a data-v-5fddf304="" href="" aria-current="page"
                                 class="navbar-brand router-link-exact-active router-link-active" style="">
                                 <div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304=""
-                                        src="{{ url('landing') }}/assets/grafico-logo-positivo.png"
-                                        class="graficologonegativo" alt="Logotipo Dividae"></div>
+                                        src="{{ url('landing') }}/assets/equifax-logo.png"
+                                        class="graficologonegativo" alt="Logotipo"></div>
                             </a> <a data-v-5fddf304="" href="" aria-current="page"
                                 class="navbar-brand router-link-exact-active router-link-active" style="display: none;">
                                 <div data-v-5fddf304="" class="bartopbardefault-copy-3"><img data-v-5fddf304=""
-                                        src="{{ url('landing') }}/assets/grafico-logo-positivo.png"
-                                        class="graficologonegativo" alt="Logotipo Dividae"></div>
+                                        src="{{ url('landing') }}/assets/equifax-logo.png"
+                                        class="graficologonegativo" alt="Logotipo"></div>
                             </a> <button data-v-5fddf304="" type="button" data-toggle="collapse"
                                 data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                                 aria-label="Toggle navigation" class="navbar-toggler">
@@ -230,13 +231,13 @@
                             <div data-v-5fddf304="" id="navbarCollapse" class="collapse navbar-collapse">
                                 <ul data-v-5fddf304="" class="navbar-nav">
 
-                                    <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
+                                    {{-- <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                                         href="{{ url('quienes-somos') }}" class="nav-link"><span
                                             data-v-5fddf304="" class="Type-something">
                                             ¿Quiénes somos?
                                         </span></a>
-                                    <div data-v-5fddf304="" class=""></div>
-                                </li>
+                                        <div data-v-5fddf304="" class=""></div>
+                                    </li> --}}
 
 {{--                                     <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                                             href="{{ url('testimonios') }}" class="nav-link"><span
@@ -246,13 +247,13 @@
                                         <div data-v-5fddf304="" class=""></div>
                                     </li> --}}
 
-                                    <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
+                                    {{-- <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                                             href="{{ url('preguntas') }}" class="nav-link"><span
                                                 data-v-5fddf304="" class="Type-something">
                                                 ¿Tienes dudas?
                                             </span></a>
                                         <div data-v-5fddf304="" class=""></div>
-                                    </li>
+                                    </li> --}}
                                     <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                                             href="{{ url('tarifas') }}" class="nav-link"><span data-v-5fddf304=""
                                                 class="Type-something">
@@ -337,7 +338,7 @@
                                 </div>
                             </div>--}}
 
-                            @include('followus')
+                            {{-- @include('followus') --}}
 
                         </div>
                     </div>
@@ -362,34 +363,34 @@
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
-                        <div data-v-9cc878a2="" class="text-tarifa" style="padding:0">¿Cu&aacute;l es nuestra <b>misi&oacute;n</b>?</div>
-                        <div class="container text-center bottom-text" style="font-weight:normal !important">
-                            <p>En <b>Equifax</b>, queremos revolucionar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital de una manera
-                                <b>automatizada</b> y <b>transparente</b>. ¿Nuestro principal objetivo? Que digas <b>adi&oacute;s a tus facturas impagadas</b>. Conoce m&aacute;s acerca de
-                                <b><a href="{{ url('quienes-somos') }}">nosotros</a></b>.</p>
+                        <div data-v-9cc878a2="" class="fs-2-5x fw-600 fc-primary" >¿Cu&aacute;l es nuestra <span class="fc-secondary">misi&oacute;n</span>?</div>
+                        <div class="container text-center fs-1x">
+                            <p>En <span class="fc-secondary">Asnef</span>, queremos revolucionar el mundo de la recuperaci&oacute;n de facturas impagadas a nivel digital de una manera
+                                <span class="fc-secondary">automatizada</span> y <span class="fc-secondary">transparente</span>. ¿Nuestro principal objetivo? Que digas <span class="fc-secondary">adi&oacute;s a tus facturas impagadas</span>. Conoce m&aacute;s acerca de
+                                <span class="fc-secondary"><a href="{{ url('quienes-somos') }}">nosotros</a></span>.</p>
                         </div>
 
                         <div data-v-63cd6604="" data-v-effc9f78="" class="pb-3"><a data-v-63cd6604="" href="{{ url('register') }}" class="btn QSomos-btn" data-v-effc9f78="">Regístrate</a></div>
 
 
-
+                        <div class="mt-5"></div>
 
 
                         <!-- Trigger/Open The Modal -->
-                        <button id="videoBtn">
+                        {{-- <button id="videoBtn">
                             <img src="{{ url('landing') }}/assets/portada_video_dividae.png" style="max-width:100%;" alt="Icono portada video">
-                        </button>
+                        </button> --}}
 
                         <!-- The Modal -->
-                        <div id="videoModal" class="modal">
+                        {{-- <div id="videoModal" class="modal"> --}}
 
                         <!-- Modal content -->
-                        <div id="home-video" class="modal-content-video">
+                        {{-- <div id="home-video" class="modal-content-video">
                             <span id="stop" class="close">&times;</span>
                             <video controls autoplay muted playsinline preload="none" style="width: -moz-available;">
                                 <source src="{{ url('landing/dividaemision.mp4') }}" type="video/mp4">
                             </video>
-                        </div>
+                        </div> --}}
 
                         </div>
 
@@ -405,8 +406,12 @@
 
                 <div data-v-43503c2a="" data-v-63cd6604="" class="blockRecovery" data-v-effc9f78="">
                     <div data-v-43503c2a="" class="container">
-                        <div data-v-43503c2a="" class="text-center RText">
-                            ¿Por qué <b>Dividae</b>?
+                        {{-- <div data-v-43503c2a="" class="text-center RText">
+                            ¿Por qué <span class="fc-secondary">Dividae</span>?
+                        </div> --}}
+
+                        <div data-v-9cc878a2="" class="text-center fs-2-5x fw-600 fc-primary" >
+                            ¿Por qu&eacute; <span class="fc-secondary">Asnef</span>?
                         </div>
 
                         <div data-v-43503c2a="" class="row Recovery">
@@ -416,7 +421,7 @@
                                         class="iconlargejusticia img-thumbnails img-fluid" alt="Icono plataforma digital"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
-                                        <b>Plataforma 100% Digital</b>
+                                        <span class="fc-secondary">Plataforma 100% Digital</span>
                                     </p>
                                 </div>
                             </div>
@@ -427,7 +432,7 @@
                                         class="iconlargejusticia img-thumbnails img-fluid" alt="Icono seguridad juridica"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
-                                        <b>Máxima seguridad Jurídica</b>
+                                        <span class="fc-secondary">Máxima seguridad Jurídica</span>
                                     </p>
                                 </div>
                             </div>
@@ -438,7 +443,7 @@
                                         class="iconlargejusticia img-thumbnails img-fluid" alt="Icono experiencia"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
-                                        <b>Experiencia Contrastada</b>
+                                        <span class="fc-secondary">Experiencia Contrastada</span>
                                     </p>
                                 </div>
                             </div>
@@ -449,7 +454,7 @@
                                         class="iconlargejusticia img-thumbnails img-fluid" alt="Icono transparencia"></div>
                                 <div data-v-43503c2a="">
                                     <p data-v-43503c2a="" class="Recovery-title">
-                                        <b>Transparente</b>
+                                        <span class="fc-secondary">Transparente</span>
                                     </p>
                                 </div>
                             </div>
@@ -457,12 +462,18 @@
                     </div>
                 </div>
 
+                <div class="mt-5"></div>
+
+
                 {{-- Inicio de Bloque cuanto cuesta --}}
-                <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
+                <div data-  v-9cc878a2="" data-v-63cd6604="" class="blockTarifa pt-5" data-v-effc9f78="">
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
-                        <div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div>
+                        {{-- <div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div> --}}
+                        <div data-v-9cc878a2="" class="text-center fs-2-5x fw-600 fc-primary" >
+                            ¿Cu&aacute;nto cuesta?
+                        </div>
                         <div class="container text-center bottom-text">
-                            <p style="font-weight:normal !important"><b>Dividae</b> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que
+                            <p><span class="fc-secondary">Asnef</span> cuenta con tarifas fijas. Nuestro mayor objetivo es que no pagues nada que
                                 no sepas, ser <b>100% transparentes</b> y que tú estés <b>100% tranquilo</b> durante
                                 todo el proceso. </p>
                         </div>
@@ -474,20 +485,20 @@
                                 <div data-v-9cc878a2="" class="card mb-4 rounded-3">
                                     <div data-v-9cc878a2="" class="pt-5">
                                         <span data-v-9cc878a2="" class="my-0 fw-normal text-t1">
-                                            <small>Reclamación extrajudicial</small>
+                                            <small>Protecci&oacute;n de impagos</small>
                                         </span>
                                     </div>
                                     <div data-v-9cc878a2="" >
                                         <ul data-v-9cc878a2="" class="list-unstyled mt-3 mb-4">
                                             <li data-v-9cc878a2="">
-                                                <div class="card-text pt-4">
-                                                    Comienza con tu reclamacion por vía extrajudicial
+                                                <div class="card-text pt-4 pb-4">
+                                                    Recupera tus impagados
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                     <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
-                                        <small>Por solo</small> 19,90&euro;
+                                        <small>Por solo</small> 20&euro;/mes
                                     </span>
 
                                     <!--<div class="row">
@@ -517,7 +528,7 @@
                                         </ul>
                                     </div>
                                     <span data-v-9cc878a2="" class="fw-normal text-t1 pt-3">
-                                        <small>Desde</small> 69,90&euro;
+                                        <small>Desde</small> 99&euro;
                                     </span>
 
                                     <!--<div class="row">
@@ -672,7 +683,7 @@
                                 </div>
                             </div> --}}
 
-                            <div data-v-455dcd3f="" class="container OCliente">
+                            {{-- <div data-v-455dcd3f="" class="container OCliente">
                                 <div data-v-455dcd3f="" class="OCliente-title">Colaboraciones</div>
 
                                 <br>
@@ -694,7 +705,7 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

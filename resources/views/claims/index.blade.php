@@ -156,7 +156,7 @@
 
                     <td>
                         @if ($claim->getIdHito()==30037 || $claim->getIdHito()==30049)
-                            <a href="{{ url('/claims/' . $claim->id ) }}" style="color:#e65927;font-weight: bold;"> {{ $claim->getHito() }} </a>
+                            <a href="{{ url('/claims/' . $claim->id ) }}" style="color:#9E1B42;font-weight: bold;"> {{ $claim->getHito() }} </a>
                         @else
                             {{ $claim->getHito() }}
                         @endif

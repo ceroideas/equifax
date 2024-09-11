@@ -181,7 +181,7 @@
                             </div>
                         </div>
                     </div>
-                    @include('followus')
+                    {{-- @include('followus') --}}
                 </div>
 
                 <div class="container bottom-text">

@@ -20,7 +20,7 @@
 		  color: #fff;
 		}
         .menu-profile{
-            color:#e65927;
+            color:#9E1B42;
             font-size:1.25rem;
         }
         .menu-profile-item{

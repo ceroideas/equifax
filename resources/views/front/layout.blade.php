@@ -51,7 +51,7 @@
 
     <style>
         .navbar-dark {
-            background-color: #e65927;
+            background-color: #9E1B42;
         }
 
         #form-p {
@@ -96,13 +96,14 @@
 
                                 <ul data-v-5fddf304="" class="navbar-nav">
 
-                                    <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
-                                        href="{{ url('quienes-somos') }}" class="nav-link"><span data-v-5fddf304=""
+                                    {{-- <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
+                                        href="{{ url('quienes-somos') }}" class="nav-link">
+                                        <span data-v-5fddf304=""
                                             class="Type-something">
                                             ¿Quiénes somos?
                                         </span></a>
-                                    <div data-v-5fddf304="" class=""></div>
-                                </li>
+                                        <div data-v-5fddf304="" class=""></div>
+                                    </li> --}}
 
 {{--                                     <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                                             href="{{ url('testimonios') }}" class="nav-link"><span data-v-5fddf304=""
@@ -112,13 +113,13 @@
                                         <div data-v-5fddf304="" class=""></div>
                                     </li> --}}
 
-                                    <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
+                                    {{-- <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                                             href="{{ url('preguntas') }}" class="nav-link"><span data-v-5fddf304=""
                                                 class="Type-something">
                                                 ¿Tienes dudas?
                                             </span></a>
                                         <div data-v-5fddf304="" class=""></div>
-                                    </li>
+                                    </li> --}}
                                     <li data-v-5fddf304="" class="nav-item"><a data-v-5fddf304=""
                                             href="{{ url('tarifas') }}" class="nav-link"><span data-v-5fddf304=""
                                                 class="Type-something">

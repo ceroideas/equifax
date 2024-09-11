@@ -151,7 +151,7 @@
     </style>
     <style>
         .block-Info[data-v-cfd2b624] {
-            background-color: #e65927;
+            background-color: #9E1B42;
         }
 
         .content {
@@ -188,14 +188,14 @@
                             <a data-v-5fddf304="" href="{{ url('/') }}" class="navbar-brand router-link-active">
                                 <div data-v-5fddf304="" class="bartopbardefault-copy-3">
                                     <img data-v-5fddf304="" src="{{ url('landing') }}/assets/grafico-logo-negativo.png"
-                                        class="graficologonegativo" alt="Icono Dividae">
+                                        class="graficologonegativo" alt="Icono Asnef">
                                 </div>
                             </a>
                             <a data-v-5fddf304="" href="{{ url('/') }}" class="navbar-brand router-link-active"
                                 style="display: none;">
                                 <div data-v-5fddf304="" class="bartopbardefault-copy-3">
-                                    <img data-v-5fddf304="" src="{{ url('landing') }}/assets/grafico-logo-positivo.png"
-                                        class="graficologonegativo" alt="Logotipo Dividae">
+                                    <img data-v-5fddf304="" src="{{ url('landing') }}/assets/equifax-logo.png"
+                                        class="graficologonegativo" alt="Logotipo Asnef">
                                 </div>
                             </a>
                             <button data-v-5fddf304="" type="button" data-toggle="collapse"
@@ -254,7 +254,7 @@
                                 <div data-v-c7d18d50="" data-v-effc9f78="" class="About-text"></div>
                             </div>
                         </div>
-                    </div> @include('followus')
+                    </div> {{-- @include('followus') --}}
                 </div>
 
 
@@ -353,11 +353,11 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Tipo de procedimiento</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Importe</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Descuento</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">IVA</th>
-                                        <th style="background-color: #e65927; text-align: center; color: #fff">Total linea</th>
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Tipo de procedimiento</th>
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Importe</th>
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Descuento</th>
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">IVA</th>
+                                        <th style="background-color: #9E1B42; text-align: center; color: #fff">Total linea</th>
                                     </tr>
                                 </thead>
 

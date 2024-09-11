@@ -9,8 +9,8 @@
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
 
     <meta name="robots" content="index, follow" />
-    <title>Dividae - Novedades y actualidad para PYMES y AUTÓNOMOS</title>
-    <meta name="description" content="A través del blog de Dividae podrás estar al día de todas las novedades del sector dirigido a PYMES y autónomos con facturas impagadas."/>
+    <title>Asnef - Novedades y actualidad para PYMES y AUTÓNOMOS</title>
+    <meta name="description" content="A través del blog de Asnef podrás estar al día de todas las novedades del sector dirigido a PYMES y autónomos con facturas impagadas."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> @include('followus')
+                    {{-- </div> @include('followus') --}}
                 </div>
 
                 <div data-v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">

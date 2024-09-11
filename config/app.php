@@ -336,7 +336,7 @@ return [
                 ['id' => "30001",
                 'redirect_to' => null,
                 'email' => false,
-                'name' => 'DIVIDAE HA RECIBIDO TU EXPEDIENTE CORRECTAMENTE'],
+                'name' => 'ASNEF HA RECIBIDO TU EXPEDIENTE CORRECTAMENTE'],
                 ['id' => "30002",
                 'redirect_to' => null,
                 'email' => false,
@@ -492,7 +492,7 @@ return [
                 ['id' => "503",
                 'redirect_to' => null,
                 'email' => false,
-                'name' => 'OTRO MOTIVO AJENO A DIVIDAE: campo explicativo libre'],
+                'name' => 'OTRO MOTIVO AJENO A ASNEF: campo explicativo libre'],
             ],
         ],
         [
@@ -609,7 +609,7 @@ return [
                 'redirect_to' => "301",
                 'email' => true,
                 'type' => ['resource'],
-                'name' => 'RECURSO A INSTANCIA DIVIDAE - PROPUESTA INTERPOSICIÓN RECURSO'],
+                'name' => 'RECURSO A INSTANCIA ASNEF - PROPUESTA INTERPOSICIÓN RECURSO'],
             ],
         ],
         [
@@ -780,14 +780,14 @@ return [
         ['articulo'=>'JUD-001',
          'hito'=>"30038",
          'titulo'=>'FIN EXTRAJUDICIAL - PENDIENTE MONITORIO',
-         'msg'=>'¡Vaya! No hemos conseguido alcanzar un acuerdo con tu deudor, Dividae te recomienda que continues por la vía judicial, ya que según tu reclamación consideramos que puede prosperar.
+         'msg'=>'¡Vaya! No hemos conseguido alcanzar un acuerdo con tu deudor, Asnef te recomienda que continues por la vía judicial, ya que según tu reclamación consideramos que puede prosperar.
                 Para continuar la vía judicial, tienes que abonar la tarifa correspondiente al procedimiento monitorio * ',
          'concepto'=>'Procedimiento monitorio',
         ],
         ['articulo'=>'JUD-101',
         'hito'=>"30038",
         'titulo'=>'FIN EXTRAJUDICIAL - PENDIENTE MONITORIO Y TASA JUDICIAL',
-        'msg'=>'¡Vaya! No hemos conseguido alcanzar un acuerdo con tu deudor, Dividae te recomienda que continues por la vía judicial, ya que según tu reclamación consideramos que puede prosperar.
+        'msg'=>'¡Vaya! No hemos conseguido alcanzar un acuerdo con tu deudor, Asnef te recomienda que continues por la vía judicial, ya que según tu reclamación consideramos que puede prosperar.
         Para continuar la vía judicial, tienes que abonar la tarifa correspondiente al procedimiento monitorio* y tasa correspondiente**',
         'concepto'=>'Procedimiento monitorio'
        ],
@@ -795,14 +795,14 @@ return [
          'hito'=>"30039",
          'titulo'=>'ARCHIVO MONITORIO - FIN VÍA JUDICIAL - PENDIENTE NUEVO MONITORIO',
          'msg'=>'¡Vaya! El juzgado no ha localizado al deudor con la información que nos has facilitado, pero aún nos queda camino juntos, ya que durante el procedimiento hemos identificado un nuevo domicilio donde localizarlo/a.
-                Para continuar por la vía judicial, Dividae te recomienda  que abones la tarifa correspondiente al procedimiento monitorio * ',
+                Para continuar por la vía judicial, Asnef te recomienda  que abones la tarifa correspondiente al procedimiento monitorio * ',
          'concepto'=>'Procedimiento monitorio'
        ],
        ['articulo'=>'JUD-101',
        'hito'=>"30039",
        'titulo'=>'ARCHIVO MONITORIO - FIN VÍA JUDICIAL - PENDIENTE NUEVO MONITORIO Y TASA JUDICIAL',
        'msg'=>'¡Vaya! El juzgado no ha localizado al deudor con la información que nos has facilitado, pero aún nos queda camino juntos, ya que durante el procedimiento hemos identificado un nuevo domicilio donde localizarlo/a.
-       Para continuar por la vía judicial, Dividae te recomienda  que abones la tarifa correspondiente al procedimiento monitorio* y tasa correspondiente**',
+       Para continuar por la vía judicial, Asnef te recomienda  que abones la tarifa correspondiente al procedimiento monitorio* y tasa correspondiente**',
        'concepto'=>'Procedimiento monitorio'
         ],
        ['articulo'=>'VER-001',
@@ -859,32 +859,32 @@ return [
        ],
         ['articulo'=>'RES-001',
         'hito'=>"30044",
-        'titulo'=>'RECURSO A INSTANCIA DIVIDAE - PROPUESTA INTERPOSICIÓN RECURSO',
+        'titulo'=>'RECURSO A INSTANCIA ASNEF - PROPUESTA INTERPOSICIÓN RECURSO',
         'msg'=>'Como sabes, el Juzgado ha desestimado tu reclamación. Tras analizar la resolución, te recomendamos recurrirla. Para seguir avanzando tendrás que abonar la tarifa recurso* y el depósito recurrir apelación**.',
          'concepto'=>'Tarifa recurso'
         ],
         ['articulo'=>'DEP-001',
         'hito'=>"30044",
-        'titulo'=>'RECURSO A INSTANCIA DIVIDAE - PROPUESTA INTERPOSICIÓN RECURSO - DEPOSITO',
+        'titulo'=>'RECURSO A INSTANCIA ASNEF - PROPUESTA INTERPOSICIÓN RECURSO - DEPOSITO',
         'msg'=>'Como sabes, el Juzgado ha desestimado tu reclamación. Tras analizar la resolución, te recomendamos recurrirla. Para seguir avanzando tendrás que abonar la tarifa recurso* y el depósito recurrir apelación**.',
         'concepto'=>'Tarifa recurso'
        ],
        ['articulo'=>'EJE-001',
         'hito'=>"30045",
         'titulo'=>'SENTENCIA DICTADA - PROPUESTA EJECUCIÓN',
-        'msg'=>'¡Buenas noticias! La resolución nos ha dado la razón. Para poder recuperar la deuda, Dividae te recomienda presentar una demanda de ejecución para embargar los bienes de tu deudor. Para ello necesitamos que tomes una decisión: Proceder con la ejecución. Para seguir, Dividae te recomienda abonar la tarifa ejecución*.',
+        'msg'=>'¡Buenas noticias! La resolución nos ha dado la razón. Para poder recuperar la deuda, Asnef te recomienda presentar una demanda de ejecución para embargar los bienes de tu deudor. Para ello necesitamos que tomes una decisión: Proceder con la ejecución. Para seguir, Asnef te recomienda abonar la tarifa ejecución*.',
         'concepto'=>'Tarifa ejecución'
        ],
        ['articulo'=>'EJE-001',
         'hito'=>"30046",
         'titulo'=>'ACUERDO INCUMPLIDO - RECOMENDACIÓN VÍA JUDICIAL - DEMANDA EJECUCIÓN',
-        'msg'=>'¡Vaya! El deudor ha incumplido el acuerdo. Dividae te recomienda presentar una demanda de ejecución para poder embargar sus bienes. Para ello, tienes que tomar una decisión, abonando la tarifa ejecución*.',
+        'msg'=>'¡Vaya! El deudor ha incumplido el acuerdo. Asnef te recomienda presentar una demanda de ejecución para poder embargar sus bienes. Para ello, tienes que tomar una decisión, abonando la tarifa ejecución*.',
         'concepto'=>'Tarifa ejecución'
        ],
        ['articulo'=>'EJE-001',
         'hito'=>"30047",
         'titulo'=>'ARCHIVO MONITORIO - ARCHIVO PARA EJECUTAR - RECOMENDACIÓN EJECUCIÓN',
-        'msg'=>'Fin procedimiento. Una vez finalizado el procedimiento monitorio para poder recuperar la deuda, Dividae te recomienda presentar demanda de ejecución para embargar los bienes de tu deudor. Para ello necesitamos que tomes una decisión: proceder con la ejecución. Para seguir, Dividae te recomienda abonar la tarifa de ejecución.',
+        'msg'=>'Fin procedimiento. Una vez finalizado el procedimiento monitorio para poder recuperar la deuda, Asnef te recomienda presentar demanda de ejecución para embargar los bienes de tu deudor. Para ello necesitamos que tomes una decisión: proceder con la ejecución. Para seguir, Asnef te recomienda abonar la tarifa de ejecución.',
         'concepto'=>'Tarifa ejecución'
         ],
         ['articulo'=>'EXT-001',

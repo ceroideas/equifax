@@ -82,7 +82,7 @@
 .modal-vue .modal-dialog .modal-content .modal-footer .btn-modal[data-v-e8aafb5e] {
   height: 40px;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
   margin-right: auto;
   margin-left: auto;
 }
@@ -201,8 +201,8 @@
   width: 280px;
   height: 48px;
   border-radius: 37.5px;
-  background-color: #e65927;
-  border-color: #e65927;
+  background-color: #9E1B42;
+  border-color: #9E1B42;
   margin-top: 12px;
   margin-bottom: 35px;
   font-family: Roobert;
@@ -315,12 +315,12 @@
   height: 17px;
   font-family: Roobert;
   font-size: 14px;
-  font-weight: normal;
+  font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #e65927;
+  color: #333E48;
 }
 @media (max-width: 425px) {
 .blockAcceso[data-v-5fddf304] {
@@ -336,8 +336,9 @@
   /*height: 40px;*/
   margin-right: 10px;
   border-radius: 37.5px;
-  border: solid 1px #e65927;
-  color: #e65927;
+  border: solid 1px #007298;
+  color: #007298;
+  background-color: #007298;
 }
 .blockAcceso .btn-acceso .btn-text-acceso[data-v-5fddf304] {
   /*height: 17px;*/
@@ -349,7 +350,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #ffffff;
   /*top: 2px;
   position: relative;*/
 }
@@ -379,7 +380,7 @@
 .blockRegistro .btn-registerHome[data-v-5fddf304]  {
   margin-right: 10px;
   border-radius: 37.5px;
-  background-color: #2c60aa;
+  background-color: #007298;
 }
 .blockRegistro .btn-registerHome .text-register-btn[data-v-5fddf304] {
   font-family: Roobert;
@@ -495,7 +496,8 @@
   } */
   -o-object-fit: contain;
      object-fit: contain;
-  /*background: url("{{url('landing')}}/assets/portada-3-d-blue.png");*/
+  /* background: url("{{url('landing')}}/assets/portada-3-d-blue.png"); */
+  background: url("{{url('landing')}}/background_home.png");
   background-color: #f8fafc;
   background-size: cover;
   background-repeat: no-repeat;
@@ -518,7 +520,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #e65927;
+  color: #9E1B42;
 }
 .Te-ayudamos-a-recupe[data-v-66372912] {
   font-family: Nordeco;
@@ -528,7 +530,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #e65927;
+  color: #9E1B42;
 }
 @media (max-width: 425px) {
 .Te-ayudamos-a-recupe[data-v-66372912] {
@@ -540,13 +542,13 @@
   height: 48px; */
   margin: 56px 0 70px 0;
   border-radius: 37.5px;
-  background-color: #2c60aa;
+  background-color: #007298;
 }
 
 .btn-registerHome[data-v-66372912]{
     margin: 5px 0 5px 0;
   border-radius: 37.5px;
-  background-color: #2c60aa;
+  background-color: #007298;
 }
 .blockRegistro .btn-registerHome .text-register-btn[data-v-66372912], .btn-registerHome .text-register-btn[data-v-66372912]{
   /* width: 96.8px;
@@ -591,7 +593,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #9E1B42;
 }
 #blockform-scroll[data-v-66372912] {
   position: fixed;
@@ -625,7 +627,7 @@
 }
 #blockform-scroll .Scroll-btn .btn-light[data-v-66372912] {
   border-radius: 37.5px !important;
-  background-color: #e65927;
+  background-color: #9E1B42;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -637,12 +639,12 @@
   color: #fff;
   margin-top: 14px;
   margin-left: -10px;
-  border: 1px solid #e65927;
+  border: 1px solid #9E1B42;
 }
 #blockform-scroll .Scroll-btn .btn[data-v-66372912]:hover {
   background-color: #fff;
-  color: #e65927;
-  border: 1px solid #e65927;
+  color: #9E1B42;
+  border: 1px solid #9E1B42;
 }</style><style>#como-funciona[data-v-494d1a60] {
   padding: 100px 0;
   background-color: #fff;
@@ -724,7 +726,7 @@
 }
 #como-funciona .card-reclamacion .btn.active[data-v-494d1a60] {
   border-radius: 22px;
-  background-color: #e65927;
+  background-color: #9E1B42;
   color: #fff !important;
 }
 #como-funciona .card-reclamacion .btn[data-v-494d1a60] {
@@ -788,7 +790,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #285ba3;
+  color: #333E48;
   padding-top:40px;
 }
 .blockTarifa .blockCard .card[data-v-9cc878a2] {
@@ -799,7 +801,7 @@
 }
 .blockTarifa .blockCard .card-footer .btn.active[data-v-9cc878a2] {
   color: #fff;
-  background-color: #e65927;
+  background-color: #9E1B42;
 }
 .blockTarifa .blockCard .text-t1[data-v-9cc878a2] {
   font-family: Nordeco;
@@ -830,7 +832,7 @@
 }
 .blockTarifa .blockCard .btn-tarifa[data-v-9cc878a2] {
   border-radius: 37.5px;
-  border: solid 1px #e65927;
+  border: solid 1px #007298;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -839,7 +841,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #007298;
   margin-top: 10px;
   margin-bottom: 15px;
 }
@@ -856,7 +858,7 @@
 
 .btn-light-descubre {
     border-radius: 37.5px !important;
-    background-color: #e65927;
+    background-color: #007298;
     font-family: Roobert;
     font-size: 14px;
     font-weight: normal;
@@ -869,7 +871,7 @@
     /*margin-top: 14px;*/
     color: #fff !important;
     margin-left: -10px;
-    border: 1px solid #e65927;
+    border: 1px solid #007298;
     padding: 12px 20px;
 }
 .blockTarifa .blockCard .op-frecuente[data-v-9cc878a2] {
@@ -943,7 +945,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #9E1B42;
 }
 .blockRecovery .Recovery-text[data-v-43503c2a] {
   font-family: CynthoNext;
@@ -965,7 +967,8 @@
 }</style><style>.blockEstadisticas[data-v-e047c7bc] {
   -o-object-fit: contain;
      object-fit: contain;
-  background-image: url("{{url('landing')}}/assets/fondo-estadisticas.png");
+  /* background-image: url("{{url('landing')}}/assets/fondo-estadisticas.png"); */
+  background-color: #EEEEEE;
 }
 .blockEstadisticas .estadisticas[data-v-e047c7bc] {
   padding: 66px 0;
@@ -981,7 +984,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #fff;
+  color: #333E48;
 }
 .blockEstadisticas .estadisticas-text[data-v-e047c7bc] {
   font-family: CynthoNext;
@@ -992,7 +995,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #fff;
+  color: #333E48;
 }</style><style>/**
  * Swiper 5.4.5
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -1196,7 +1199,7 @@
   text-align: center;
   color: #fff;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
 }
 .blockContacto .Contacto-btn[data-v-18ec2fe4]:hover {
   background-color: #fff;
@@ -1208,8 +1211,8 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
-  border: 1px solid #e65927;
+  color: #9E1B42;
+  border: 1px solid #9E1B42;
 }</style><style>/* @media (max-width: 1024px) and (min-width: 768px) {
   .row{
     margin-right: 0;
@@ -1325,7 +1328,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
 }
 .QSomos-btn[data-v-63cd6604] {
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #007298;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -1348,8 +1351,8 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
-  border: 1px solid #e65927;
+  color: #007298;
+  border: 1px solid #007298;
 }
 .blockQSomos .card .img-QSomos[data-v-63cd6604] {
   -o-object-fit: contain;
@@ -1401,7 +1404,7 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
   text-align: center;
   color: #fff;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
   padding: 12px 20px;
 }</style><style>.block-Testimonios[data-v-eb5d4bee] {
   -o-object-fit: contain;
@@ -1786,8 +1789,8 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
 }
 .Block-FormContact .FormContact .btn-primary[data-v-ab748da8] {
   border-radius: 37.5px;
-  background-color: #e65927;
-  border: 1px solid #e65927;
+  background-color: #9E1B42;
+  border: 1px solid #9E1B42;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -1800,10 +1803,10 @@ footer .container .icons-social .s-icon[data-v-a242bae8] {
 .Block-FormContact .FormContact .btn-primary[data-v-ab748da8]:hover {
   border-radius: 37.5px;
   background-color: #fff;
-  color: #e65927;
-  border: 1px solid #e65927;
+  color: #9E1B42;
+  border: 1px solid #9E1B42;
 }</style><style>.block-Contacto[data-v-cfd2b624] {
-  background-color: #e65927;
+  background-color: #9E1B42;
 }
 .block-Contacto .Contacto-subtitle[data-v-cfd2b624] {
   font-family: CynthoNext;
@@ -1972,13 +1975,13 @@ input:valid ~ .show-hide i[data-v-5a228f80] {
   text-align: center;
   color: #fff;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
   margin-top: 50px;
 }
 .block-FormLogin .login-form form .btn[data-v-5a228f80]:hover {
-  color: #e65927;
+  color: #9E1B42;
   background-color: #fff;
-  border: 1px solid #e65927;
+  border: 1px solid #9E1B42;
 }
 .block-FormLogin .login-form .circle[data-v-5a228f80] {
   width: 12px;
@@ -2091,12 +2094,12 @@ input:valid ~ .show-hide i[data-v-5a228f80] {
 .ResetPwd #submitForm .block-btn .btn-ResetPwd[data-v-41baacce] {
   border-radius: 37.5px;
   color: #fff;
-  background-color: #e65927;
+  background-color: #9E1B42;
 }
 .ResetPwd #submitForm .block-btn .btn[data-v-41baacce]:hover {
-  color: #e65927;
+  color: #9E1B42;
   background-color: #fff;
-  border: 1px solid #e65927;
+  border: 1px solid #9E1B42;
 }</style><style>.show-hide i[data-v-d4f9cbe2] {
   cursor: pointer;
   display: none;
@@ -2309,12 +2312,12 @@ input:valid ~ .show-hide i[data-v-d4f9cbe2] {
   text-align: center;
   color: #fff;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
   margin-top: 30px;
 }
 .block-FormLogin .login-form form .btn[data-v-d4f9cbe2]:hover {
-  color: #e65927;
-  border: solid 1px #e65927;
+  color: #007298;
+  border: solid 1px #007298;
   background-color: #fff;
 }
 .block-FormLogin .login-form .circle[data-v-d4f9cbe2] {
@@ -2556,7 +2559,7 @@ input:valid ~ .show-hide i {
   text-align: center;
   color: #285ba3;
 }</style><style>.BlockCliente[data-v-110d8d2b] {
-  background-color: #e65927;
+  background-color: #9E1B42;
   padding-bottom: 10px;
 }
 .BlockCliente .Cliente-title[data-v-110d8d2b] {
@@ -2708,7 +2711,7 @@ input:valid ~ .show-hide i {
 .modal-vue .modal-dialog .modal-content .modal-footer .btn-modal[data-v-994d5cde] {
   height: 40px;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
   margin-right: auto;
   margin-left: auto;
 }
@@ -2827,8 +2830,8 @@ input:valid ~ .show-hide i {
   width: 280px;
   height: 48px;
   border-radius: 37.5px;
-  background-color: #e65927;
-  border-color: #e65927;
+  background-color: #9E1B42;
+  border-color: #9E1B42;
   margin-top: 12px;
   margin-bottom: 35px;
   font-family: Roobert;
@@ -2940,7 +2943,7 @@ input:valid ~ .show-hide i {
   text-align: center;
   color: #fff;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
 }
 .ClienteDer .newReclamacion[data-v-532fcf25] {
   border-radius: 8px;
@@ -2997,7 +3000,7 @@ input:valid ~ .show-hide i {
 .ClienteDer .newReclamacion .blockRight-button .btn-newClaim[data-v-532fcf25] {
   border-radius: 37.5px;
   color: #fff;
-  background-color: #e65927;
+  background-color: #9E1B42;
 }
 .ClienteDer .MyClaims-header[data-v-532fcf25] {
   margin-top: 20px;
@@ -3070,9 +3073,9 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #007298;
   border-radius: 37.5px;
-  border: solid 1px #e65927;
+  border: solid 1px #007298;
 }
 .ClienteDer .MyClaims .block-right[data-v-532fcf25] {
   margin-top: 100px;
@@ -3092,7 +3095,7 @@ input:valid ~ .show-hide i {
 }
 .ClienteDer .MyClaims .block-right .btn-checkDebt[data-v-532fcf25] {
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -3210,7 +3213,7 @@ input:valid ~ .show-hide i {
 .perfilCliente .btn-complete[data-v-50ef3d5e] {
   margin-top: 25px;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
   color: #fff;
 }
 .perfilCliente .hidden[data-v-50ef3d5e] {
@@ -3242,7 +3245,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #9E1B42;
   border: none;
   background-color: #fff;
 }
@@ -3305,7 +3308,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #9E1B42;
 }
 .BlockCard.card .show-less[data-v-02ce8cf3] {
   margin-top: 20px;
@@ -3317,7 +3320,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #9E1B42;
 }
 .BlockCard.card .hidden[data-v-02ce8cf3] {
   display: none;
@@ -3369,7 +3372,7 @@ input:valid ~ .show-hide i {
   text-align: center;
   color: #fff;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
 }</style><style>.BlockResumen .resumen-title[data-v-07c800bf] {
   font-family: Roobert;
   font-size: 18px;
@@ -3553,7 +3556,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #9E1B42;
   border: none;
   background-color: #fff;
 }
@@ -3630,7 +3633,7 @@ input:valid ~ .show-hide i {
   text-align: center;
   color: #fff;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
 }</style><style>.Deudor[data-v-799a0de0] {
   background-color: #f8fafc;
   padding: 20px 20px;
@@ -3697,7 +3700,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #9E1B42;
 }
 .Deudor .BlockCard.card .BlockTitle[data-v-799a0de0] {
   font-family: Nordeco;
@@ -3777,7 +3780,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #9E1B42;
 }
 .Deudor .BlockCard.card .tipoPago-title[data-v-799a0de0] {
   font-family: Roobert;
@@ -3868,7 +3871,7 @@ input:valid ~ .show-hide i {
   text-align: center;
   color: #fff;
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
 }
 .Deudor .BlockResumen .resumen-title[data-v-799a0de0] {
   font-family: Roobert;
@@ -3988,7 +3991,7 @@ input:valid ~ .show-hide i {
   letter-spacing: normal;
   color: #285ba3;
 }</style><style>.HeaderBG[data-v-e558d370] {
-  background-color: #e65927;
+  background-color: #9E1B42;
 }
 .ModalReclamacion[data-v-e558d370] {
   padding: 40px 0;
@@ -4045,7 +4048,7 @@ input:valid ~ .show-hide i {
 }
 .ModalReclamacion .card .btn[data-v-e558d370] {
   border-radius: 37.5px;
-  border: solid 1px #e65927;
+  border: solid 1px #007298;
   width: 50%;
 }
 .ModalReclamacion .card .btn-checkReclamacion[data-v-e558d370] {
@@ -4057,7 +4060,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #007298;
 }
 .ModalReclamacion .card .BlockData[data-v-e558d370] {
   margin-top: 50px;
@@ -4202,7 +4205,7 @@ input:valid ~ .show-hide i {
 }
 .ClienteDer .blockTop .blockButtons .blockClaim .btn-newclaim[data-v-1ddd7adb] {
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -4373,7 +4376,7 @@ input:valid ~ .show-hide i {
 }
 .Representacion .btn-representacion[data-v-9bfde6aa] {
   border-radius: 37.5px;
-  background-color: #e65927;
+  background-color: #9E1B42;
   font-family: Roobert;
   font-size: 14px;
   font-weight: normal;
@@ -4537,7 +4540,7 @@ input:valid ~ .show-hide i {
 }
 .ModalReclamacion .card .btn[data-v-0cb2147a] {
   border-radius: 37.5px;
-  border: solid 1px #e65927;
+  border: solid 1px #007298;
   width: 50%;
 }
 .ModalReclamacion .card .btn-checkReclamacion[data-v-0cb2147a] {
@@ -4549,7 +4552,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #007298;
 }
 .ModalReclamacion .card .BlockData[data-v-0cb2147a] {
   margin-top: 50px;
@@ -4614,7 +4617,7 @@ input:valid ~ .show-hide i {
 }
 .ModalReclamacion .card .block-Cancel .block-btn .btn-cancel[data-v-0cb2147a] {
   border-radius: 37.5px;
-  border: solid 1px #e65927;
+  border: solid 1px #007298;
   margin: 30px 0px;
   text-align: center;
 }
@@ -4627,7 +4630,7 @@ input:valid ~ .show-hide i {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e65927;
+  color: #9E1B42;
 }
 .ModalReclamacion .card .block-Cancel .text-cancel[data-v-0cb2147a] {
   font-family: Roobert;
@@ -4956,4 +4959,5 @@ text-align: left;
     width: 90%;
 }
 }
+
 </style>

@@ -11174,12 +11174,12 @@ sup {
 }
 
 a {
-  color: #e65927;
+  color: #9E1B42;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #e65927;
+  color: #9E1B42;
   text-decoration: underline;
 }
 
@@ -14259,7 +14259,7 @@ input[type=button].btn-block {
   margin-bottom: 0;
   margin-top:3px;
   font-size: 1.25rem;
-  color: #e65927;
+  color: #9E1B42;
   white-space: nowrap;
 }
 
@@ -14276,7 +14276,7 @@ input[type=button].btn-block {
     margin-bottom: 0;
     margin-top:3px;
     font-size: 1.25rem;
-    color: #e65927;
+    color: #9E1B42;
     white-space: nowrap;
   }
 
@@ -20831,6 +20831,8 @@ button.bg-dark:focus {
   text-align: center !important;
 }
 
+
+
 .text-center-small {
     font-size: 10 !important;
     font-style: italic !important;
@@ -21128,3 +21130,51 @@ h3 {
     border-color: #dee2e6;
   }
 }
+
+.fc-primary{
+    color: #333E48;
+}
+
+.fc-secondary{
+    color: #9E1B42;
+}
+
+.fs-0-5x{
+    font-size: 0.5rem;
+  }
+
+.fs-1x{
+    font-size: 1rem;
+  }
+
+.fs-1-5x{
+    font-size: 1.5rem;
+  }
+
+.fs-2x{
+    font-size: 2rem;
+  }
+
+.fs-2-5x{
+    font-size: 2.5rem;
+  }
+
+.fw-400{
+    font-weight: 400 !important;
+  }
+
+.fw-500{
+      font-weight: 500 !important;
+  }
+
+.fw-600{
+      font-weight: 600 !important;
+  }
+
+.fw-700{
+    font-weight: 700 !important;
+  }
+
+.fw-900{
+    font-weight: 900 !important;
+  }

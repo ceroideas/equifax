@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => 'DIVIDAE',
-    'title_prefix' => ' DIVIDAE | ',
+    'title' => 'ASNEF',
+    'title_prefix' => ' ASNEF | ',
     'title_postfix' => '',
 
     /*
@@ -47,11 +47,11 @@ return [
 
     'logo' => '',
     // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img' => 'landing/assets/grafico-logo-positivo.png',
+    'logo_img' => 'landing/assets/equifax-logo.png',
     'logo_img_class' => 'brand-image text-center',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'DIVIDAE',
+    'logo_img_alt' => 'ASNEF',
 
     /*
     |--------------------------------------------------------------------------
@@ -389,7 +389,7 @@ return [
             'can' =>  ['superadmin'],
             'submenu' => [
                 [
-                    'text' => 'Tasas Dividae',
+                    'text' => 'Tasas Asnef',
                     'icon' => '',
                     'can' => 'superadmin',
                     'url'  => '/configurations/fees',

@@ -115,7 +115,7 @@
 
 
                     @if ($invoice->status == 3)
-                        <td><span style="color:#e65927;font-weight: bold;">Rectificativa</span></td>
+                        <td><span style="color:#9E1B42;font-weight: bold;">Rectificativa</span></td>
                     @elseif($invoice->status == 4)
                         <td><span style="color:#e92626;font-weight: bold;">Anulada</span></td>
                     @elseif($invoice->status == 5)
