@@ -38,7 +38,12 @@ class UsersController extends Controller
 
     public function exportUsers()
     {
-        return Excel::download(new UsersExport(), 'usuarios-generales-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+
+            return Excel::download(new UsersExport(), 'usuarios-generales-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
     }
 
     /**

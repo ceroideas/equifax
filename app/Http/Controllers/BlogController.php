@@ -16,11 +16,19 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
 
-        return view('blogs.index', [
-            'blogs' => $blogs
-        ]);
+            $blogs = Blog::all();
+
+            return view('blogs.index', [
+                'blogs' => $blogs
+            ]);
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
+
+
     }
 
 
@@ -31,45 +39,64 @@ class BlogController extends Controller
      */
     public function items()
     {
-        $blogs = Blog::where('status',1)
-                        ->orderBy('id','desc')
-                        ->paginate(4);
-                        //->get();
-    //dd($blogs);
-        //$blogs->sortBy('id');
 
-        return view('blog', [
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+
+            $blogs = Blog::where('status',1)
+            ->orderBy('id','desc')
+            ->paginate(4);
+            //->get();
+
+            return view('blog', [
             'blogs' => $blogs
-        ]);
+            ]);
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
+
     }
-
-
-
 
     public function createPosts($id = null){
 
-        $blog = Blog::find($id);
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $blog = Blog::find($id);
 
-        return view('blogs.create', compact('blog'));
+            return view('blogs.create', compact('blog'));
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
+
+
     }
 
 
     public function savePosts(Request $request)
     {
-        $blog = new Blog;
-        if ($request->image_post) {
-            $image_post = $request->file('image_post')->store('uploads/blogs', 'public');
-            $blog->image_post = $image_post;
-        }
-        $blog->title = $request->title;
-        $blog->slug = strtolower(str_replace(' ', '-', $request->slug));
-        $blog->extract = $request->extract;
-        $blog->body = $request->body;
-        $blog->status = $request->status;
-        $blog->user_id = Auth::user()->id;
-        $blog->save();
 
-        return redirect('blogs')->with('msj','Se ha guardado la información del Post');
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+
+            $blog = new Blog;
+            if ($request->image_post) {
+                $image_post = $request->file('image_post')->store('uploads/blogs', 'public');
+                $blog->image_post = $image_post;
+            }
+            $blog->title = $request->title;
+            $blog->slug = strtolower(str_replace(' ', '-', $request->slug));
+            $blog->extract = $request->extract;
+            $blog->body = $request->body;
+            $blog->status = $request->status;
+            $blog->user_id = Auth::user()->id;
+            $blog->save();
+
+            return redirect('blogs')->with('msj','Se ha guardado la información del Post');
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
+
+
     }
 
 
@@ -78,26 +105,29 @@ class BlogController extends Controller
 
     public function updatePosts(Request $request, $id)
     {
-        $blog = Blog::find($id);
 
-        if ($request->image_post) {
-            $image_post = $request->file('image_post')->store('uploads/blogs', 'public');
-            $blog->image_post = $image_post;
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $blog = Blog::find($id);
+
+            if ($request->image_post) {
+                $image_post = $request->file('image_post')->store('uploads/blogs', 'public');
+                $blog->image_post = $image_post;
+            }
+            $blog->id = $request->id;
+            $blog->title = $request->title;
+            $blog->slug = strtolower(str_replace(' ', '-', $request->slug));
+            $blog->extract = $request->extract;
+            $blog->body = $request->body;
+            $blog->status = $request->status;
+            $blog->user_id = Auth::user()->id;
+            $blog->save();
+
+            return redirect('blogs')->with('msj','Se ha Actualizado el Post');
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
         }
-        $blog->id = $request->id;
-        $blog->title = $request->title;
-        $blog->slug = strtolower(str_replace(' ', '-', $request->slug));
-        $blog->extract = $request->extract;
-        $blog->body = $request->body;
-        $blog->status = $request->status;
-        $blog->user_id = Auth::user()->id;
-        $blog->save();
 
-        return redirect('blogs')->with('msj','Se ha Actualizado el Post');
     }
-
-
-
 
     public function showPost($slug)
     {
@@ -111,14 +141,20 @@ class BlogController extends Controller
 
 
 
-    public function editPost($id = null){
+    public function editPost($id = null)
+    {
 
-        $blog = Blog::find($id);
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
 
-        return view('blogs.create', compact('blog'));
+            $blog = Blog::find($id);
+
+            return view('blogs.create', compact('blog'));
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
+
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -138,11 +174,5 @@ class BlogController extends Controller
         $blog->save();
 
     }  */
-
-
-
-
-
-
 
 }

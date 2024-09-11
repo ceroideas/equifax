@@ -1215,21 +1215,34 @@ class ClaimsController extends Controller
 
     public function exportNewClaims()
     {
-        return Excel::download(new ClaimsExport(2), 'new_claims-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            return Excel::download(new ClaimsExport(2), 'new_claims-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
     }
 
     public function exportFinished()
     {
-        return Excel::download(new ClaimsExport(1), 'claims_finished-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            return Excel::download(new ClaimsExport(1), 'claims_finished-'.Carbon::now()->format('d-m-Y_h_i').'.csv');
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
     }
 
     public function excelInvoice($serie, $id)
     {
+
         return Excel::download(new InvoiceExport($serie,$id), 'invoice-id_'.$serie.'-'.$id.'-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+
     }
 
     public function invoicesExport()
     {
+
         return Excel::download(new InvoicesExport(0), 'invoices-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
     }
 
@@ -1240,33 +1253,63 @@ class ClaimsController extends Controller
 
     public function invoicesRectifyExportAll()
     {
-        return Excel::download(new InvoicesExport(5), 'all-invoices-rectify'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            return Excel::download(new InvoicesExport(5), 'all-invoices-rectify'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
     }
 
 
     public function invoicesExportConta()
     {
-        return Excel::download(new InvoicesExport(3), 'invoices-conta-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isFinance()){
+
+            return Excel::download(new InvoicesExport(3), 'invoices-conta-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
     }
 
     public function invoicesExportAllConta()
     {
-        return Excel::download(new InvoicesExport(4), 'all-invoices-conta-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        if(!Auth::user()->isClient()){
+            return Excel::download(new InvoicesExport(4), 'all-invoices-conta-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
     }
 
     public function ordersExport()
     {
-        return Excel::download(new OrdersExport, 'orders-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        if(!Auth::user()->isClient()){
+            return Excel::download(new OrdersExport, 'orders-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+
+        }else{
+        return redirect('/')->with('msj', 'Acceso restringido');
+        }
     }
 
     public function collectsExport()
     {
-        return Excel::download(new CollectsExport(0), 'collects-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            return Excel::download(new CollectsExport(0), 'collects-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
     }
 
     public function collectsExportAll()
     {
-        return Excel::download(new CollectsExport(1), 'collects-all-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            return Excel::download(new CollectsExport(1), 'collects-all-'.Carbon::now()->format('d-m-Y_h_i').'.xlsx');
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
     }
 
     public function checkDebtor(Request $r)

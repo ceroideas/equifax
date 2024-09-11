@@ -20,9 +20,14 @@ class CollectsController extends Controller
 {
     public function index()
     {
-        $collects = Collect::all();
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $collects = Collect::all();
 
-        return view('claims.collects', compact('collects'));
+            return view('claims.collects', compact('collects'));
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
 
     }
 
@@ -33,13 +38,17 @@ class CollectsController extends Controller
      */
     public function create($serie = null, $invoice = null)
     {
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            $invoice = Invoice::where('id',$invoice)
+                                ->where('tipfac',$serie)
+                                ->first();
 
-        $invoice = Invoice::where('id',$invoice)
-                            ->where('tipfac',$serie)
-                            ->first();
+            return view('collects.create',compact('invoice'));
 
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
 
-        return view('collects.create',compact('invoice'));
     }
 
 
