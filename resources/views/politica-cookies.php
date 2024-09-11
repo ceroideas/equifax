@@ -128,7 +128,7 @@ table.blueTable td a{
 
          <p class="subtitulo">TRATAMIENTO DE DATOS PERSONALES</p>
 
-        <p class="texto"><b>DIVIDAE RECOVERY, S.L.</b> es el <b>Responsable del tratamiento</b> de los datos personales del <b>Interesado</b> y le informa de que estos datos serán
+        <p class="texto"><b>Asnef empresas recupera</b> es el <b>Responsable del tratamiento</b> de los datos personales del <b>Interesado</b> y le informa de que estos datos serán
         tratados de conformidad con lo dispuesto en el Reglamento (UE) 2016/679, de 27 de abril de 2016 (GDPR), por lo que se le facilita la siguiente información del tratamiento:</p>
         <p class="texto"><b>Fines del tratamiento:</b> según se especifica en el apartado de cookies que se utilizan en este sitio web.</p>
         <p class="texto"><b>Legitimación del tratamiento:</b> salvo en los casos en los que resulte necesario para la navegación por la web, por consentimiento del interesado
@@ -144,7 +144,7 @@ table.blueTable td a{
         </ul>
 
         <p class="texto"><b>Datos de contacto para ejercer sus derechos:</b></p>
-        <p class="texto"><b>DIVIDAE RECOVERY, S.L.</b> Calle Basílica 17, 1ª planta (Entrada Oficinas), 28020 (Madrid).E-mail:<a href='mailto:info@dividae.com'>info@dividae.com</a> </p>
+        <p class="texto"><b>Asnef empresas recupera</b> Calle Basílica 17, 1ª planta (Entrada Oficinas), 28020 (Madrid).E-mail:<a href='mailto:info@dividae.com'>info@dividae.com</a> </p>
         <p class="texto"><b>Datos de contacto del delegado de protección de datos: C/ Maudes, 51, 8ª Planta, 28003 Madrid(<a href='mailto:rgpd@ateacompliance.com'>rgpd@ateacompliance.com</a>) </b></p>
 
         <p class="subtitulo">COOKIES UTILIZADAS EN ESTE SITIO WEB</p>

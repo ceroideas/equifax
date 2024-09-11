@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div data-v-837e15c2="" class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 my-5"><img
-                            data-v-837e15c2="" src="{{ url('landing') }}/assets/grafico-ilustraciones-simulador.png"
+                            data-v-837e15c2="" src="{{ url('landing') }}/assets/grafico_reclamacion_viable.png"
                             class="img-fluid" alt="Ilustracion simulador viabilidad Dividae"></div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                             src="{{ url('landing') }}/assets/grafico-logo-negativo.png" class="graficologonegativo" alt="Logotipo Dividae"></p>
                 </a>
                 <p data-v-a242bae8="" class=" footer-text">
-                    <b>Dividae</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de
+                    <b>Asnef empresas recupera</b> es una plataforma 100% digital que surge para dar una solución a la recuperación de
                     facturas impagadas de forma <b>sencilla, exitosa y económica. </b>
                 </p>
             </div>
@@ -203,7 +203,7 @@
         </div>
         <div data-v-a242bae8="" class="row row-cols-2 justify-content-start border-top pt-4">
             <div data-v-a242bae8="" class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 copyright-text">
-                &copy; Dividae <?php echo date('Y'); ?>. All Rights Reserved. DIVIDAE RECOVERY S.L. B06970677
+                &copy; Dividae <?php echo date('Y'); ?>. All Rights Reserved. Asenf empresas recupera S.L. B06970677
             </div>
 
             <div data-v-a242bae8=""

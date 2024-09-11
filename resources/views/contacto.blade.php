@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="UETvHgU9M9ghKF4FaRP6CQx9K6YSEpZ1s0rZMz1a">
 
     <meta name="robots" content="index, follow" />
-    <title>Contacta con el equipo de Dividae</title>
+    <title>Contacta con el equipo de Asnef</title>
     <meta name="description" content="Completa el formulario de contacto y nos pondremos en contacto contigo."/>
 
     <!-- Fonts -->
@@ -5837,7 +5837,7 @@
                                 </div>
                                 <div data-v-cfd2b624="" data-v-effc9f78="" class="Contacto-img mt-5"><img
                                         data-v-cfd2b624="" data-v-effc9f78=""
-                                        src="{{ url('landing') }}/assets/contacto.png" alt="Contacto dividae"></div>
+                                        src="{{ url('landing') }}/assets/contacto.png" alt="Contacto asnef"></div>
                             </div>
                             <div data-v-cfd2b624="" data-v-effc9f78=""
                                 class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 block-form">
@@ -5879,7 +5879,7 @@
                                             <!---->
                                             <!---->
                                         </div>
-                                        <label data-v-ab748da8="" style="text-align: justify">Le informamos que el responsable de los datos personales que facilite a través de este formulario será DIVIDAE RECOVERY, S.L.
+                                        <label data-v-ab748da8="" style="text-align: justify">Le informamos que el responsable de los datos personales que facilite a través de este formulario será Asnef empresas recupera
                                             Sus datos serán tratados para resolver sus consultas, tramitar su registro en nuestro sitio web, facilitarle la información, tramitar los
                                             servicios solicitados, o para remitirle información que pueda resultar de su interés y no serán comunicados a terceros salvo por obligación legal.
                                             Podrá ejercer sus derechos a través de la siguiente dirección: <a href='mailto:info@dividae.com'>info@dividae.com</a>.
@@ -5943,7 +5943,7 @@
                                 class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-3"><img data-v-cfd2b624=""
                                     data-v-effc9f78=""
                                     src="{{ url('landing') }}/assets/icon-large-contacto-phone.png"
-                                    class="img-fluid" alt="Icono telefono Dividae">
+                                    class="img-fluid" alt="Icono telefono Asnef">
                                 <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
                                     <a href="tel:+34913258610">+34 913 258 610</a>
                                 </div>
@@ -5951,7 +5951,7 @@
                             <div data-v-cfd2b624="" data-v-effc9f78=""
                                 class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-3"><img data-v-cfd2b624=""
                                     data-v-effc9f78="" src="{{ url('landing') }}/assets/icon-large-contacto-mail.png"
-                                    class="img-fluid" alt="Icono email Dividae">
+                                    class="img-fluid" alt="Icono email Asnef">
                                 <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
                                     <a href="mailto:info@dividae.com">info@dividae.com</a>
                                 </div>
@@ -5960,7 +5960,7 @@
                                 class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-3"><img data-v-cfd2b624=""
                                     data-v-effc9f78=""
                                     src="{{ url('landing') }}/assets/icon-large-contacto-location.png"
-                                    class="img-fluid" alt="Icono direccion Dividae">
+                                    class="img-fluid" alt="Icono direccion Asnef">
                                 <div data-v-cfd2b624="" data-v-effc9f78="" class="ShowContact-text text-center">
                                     Madrid
                                     <p data-v-cfd2b624="" data-v-effc9f78="" class="location-street">Sede principal

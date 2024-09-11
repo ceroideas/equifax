@@ -87,7 +87,7 @@ class PaymentsController extends Controller
                     actuationActions("-1",$c->id);
                 }
 
-                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Asnef ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
 
             } else {  // error en pago
 
@@ -127,7 +127,7 @@ class PaymentsController extends Controller
                     actuationActions("-1",$c->id);
                 }
 
-                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');*/
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Asnef ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');*/
                 //var_dump($purchaseResult->DS_ERROR_ID);
 
                 return response()->json('Error al procesar el pago Intente nuevamente',422);
@@ -217,7 +217,7 @@ class PaymentsController extends Controller
                     actuationActions("-1",$c->id);
                 }
 
-                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Asnef ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
 
 
             } else {
@@ -261,7 +261,7 @@ class PaymentsController extends Controller
                 }
 
 
-                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');*/
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Asnef ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');*/
 
                 return back()->with('msj', 'Error al procesar el pago, Intente nuevamente');
 
@@ -384,7 +384,7 @@ class PaymentsController extends Controller
                     actuationActions("-1",$c->id);
                 }
 
-                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Dividae ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
+                return redirect('claims')->with('msj', '¡ENHORABUENA, YA HEMOS TERMINADO! el equipo de letrados de Asnef ya está trabajando en tu reclamación. Recuerda que podrás comprobar el estado de tu reclamación en tiempo real en tu área personal.');
 
             }// else cobro correcto pero no coincide el importe de la factura o
 

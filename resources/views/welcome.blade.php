@@ -9,8 +9,8 @@
     <meta name="csrf-token" content="vQquIOeFCyXeIRVqPhnUsIPBw3b13PWS9mA9pMmF">
 
     <meta name="robots" content="index, follow" />
-    <title>Di adi&oacute;s a tus facturas impagadas, di Dividae</title>
-    <meta name="description" content="Dividae es una plataforma 100% digital que surge para dar una soluci&oacute;n a la recuperación de facturas impagadas de forma sencilla, exitosa y econ&oacute;mica."/>
+    <title>Di adi&oacute;s a tus facturas impagadas, di Asnef</title>
+    <meta name="description" content="Asnef empresas recupera es una plataforma 100% digital que surge para dar una soluci&oacute;n a la recuperación de facturas impagadas de forma sencilla, exitosa y econ&oacute;mica."/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -373,7 +373,7 @@
                         <div data-v-63cd6604="" data-v-effc9f78="" class="pb-3"><a data-v-63cd6604="" href="{{ url('register') }}" class="btn QSomos-btn" data-v-effc9f78="">Regístrate</a></div>
 
 
-
+                        <div class="mt-5"></div>
 
 
                         <!-- Trigger/Open The Modal -->
@@ -462,8 +462,11 @@
                     </div>
                 </div>
 
+                <div class="mt-5"></div>
+
+
                 {{-- Inicio de Bloque cuanto cuesta --}}
-                <div data-  v-9cc878a2="" data-v-63cd6604="" class="blockTarifa" data-v-effc9f78="">
+                <div data-  v-9cc878a2="" data-v-63cd6604="" class="blockTarifa pt-5" data-v-effc9f78="">
                     <div data-v-9cc878a2="" class="text-center card-tarifa container">
                         {{-- <div data-v-9cc878a2="" class="text-tarifa">¿Cuánto cuesta?</div> --}}
                         <div data-v-9cc878a2="" class="text-center fs-2-5x fw-600 fc-primary" >

@@ -52,7 +52,7 @@
 
         <p class="texto"><b>Responsable del tratamiento</b>
             <ul class="texto">
-                <li>Identidad. DIVIDAE RECOVERY, S.L </li>
+                <li>Identidad. Asnef empresas recupera </li>
                 <li>CIF: B06970677</li>
                 <li>Dirección. C/ PRÓN, 37 - 1º 28001, MADRID </li>
                 <li>Teléfono. 913258610</li>
@@ -61,23 +61,23 @@
         </p>
 
         <p class="texto"><b>Finalidad del tratamiento</b>
-        <p class="texto"><b>DIVIDAE RECOVERY, S.L. </b>tratará la información facilitada por los Usuarios en cada uno de los apartados del sitio web con las siguientes finalidades:
+        <p class="texto"><b>Asnef empresas recupera </b>tratará la información facilitada por los Usuarios en cada uno de los apartados del sitio web con las siguientes finalidades:
         <ul class="texto">
             <li>CONTACTO: Los datos serán tratados para la resolución de consultas y el envío de la información solicitada.</li>
             <li>REGISTRATE: Tramitar el registro de los usuarios como Usuarios del sitio web para la contratación de los servicios prestados.</li>
             <li>SUSCRIPCIÓN A BOLETÍN DE NOTICIAS: Los datos se tratarán a efectos de la remisión de newsletter y noticias de actualidad que puedan resultar de interés a los Usuarios.</li>
-            <li>ENVIO DE INFORMACIÓN: <b>DIVIDAE RECOVERY, S.L </b>á el consentimiento explícito de los usuarios de forma adicional para la remisión de comunicaciones publicitarias relacionadas con productos o servicios comercializados por la empresa.</li>
+            <li>ENVIO DE INFORMACIÓN: <b>Asnef empresas recupera </b>á el consentimiento explícito de los usuarios de forma adicional para la remisión de comunicaciones publicitarias relacionadas con productos o servicios comercializados por la empresa.</li>
         </ul>
         </p>
 
         <p class="texto"><b>Criterios de conservación de los datos</b></p>
 
-        <p class="texto"><b>DIVIDAE RECOVERY, S.L.</b> conservará los datos mientras persista un interés legítimo y en tanto que el interesado no manifieste su oposición al tratamiento
+        <p class="texto"><b>Asnef empresas recupera</b> conservará los datos mientras persista un interés legítimo y en tanto que el interesado no manifieste su oposición al tratamiento
             de los mismos.</p>
 
         <p class="texto"><b>Legitimación para el tratamiento de los datos</b></p>
 
-        <p class="texto">El tratamiento de los datos del Usuario por parte de <b>DIVIDAE RECOVERY, S.L</b> tendrá su legitimación en el consentimiento explícitamente prestado.</p>
+        <p class="texto">El tratamiento de los datos del Usuario por parte de <b>Asnef empresas recupera</b> tendrá su legitimación en el consentimiento explícitamente prestado.</p>
 
         <p class="texto"><b>Comunicación de los datos</b></p>
 
@@ -85,7 +85,7 @@
 
         <p class="texto"><b>Derechos que asisten al Usuario</b></p>
 
-        <p class="texto">Cualquier Usuario tiene derecho a obtener información sobre si <b>DIVIDAE RECOVERY, S.L</b> está tratando datos personales que le conciernen o no y, en tal caso, a
+        <p class="texto">Cualquier Usuario tiene derecho a obtener información sobre si <b>Asnef empresas recupera</b> está tratando datos personales que le conciernen o no y, en tal caso, a
                 ejercer su derecho de acceso a los datos personales y a la siguiente información:</p>
 
         <ol class="texto" type=a>
@@ -104,11 +104,11 @@
         <p class="texto">Los Usuarios podrán además solicitar la limitación del tratamiento de los datos de los interesados, en cuyo caso únicamente serán conservados por <b>DIVIDAE
             RECOVERY, S.L </b> el ejercicio o la defensa de reclamaciones.</p>
 
-        <p class="texto"><b>DIVIDAE RECOVERY, S.L </b>á de tratar sus datos siempre que usted lleve a cabo la oposición a dicho tratamiento, salvo por motivos legítimos imperiosos, o
+        <p class="texto"><b>Asnef empresas recupera </b>á de tratar sus datos siempre que usted lleve a cabo la oposición a dicho tratamiento, salvo por motivos legítimos imperiosos, o
             por el ejercicio o la defensa de posibles reclamaciones.</p>
 
-        <p class="texto">Finalmente, y en ejercicio de su derecho a la portabilidad de los datos, el Usuario podrá recibir los datos personales que hubiera proporcionado a <b>DIVIDAE
-            RECOVERY, S.L,</b> en un formato estructurado, de uso común y legible por máquina, así como a solicitar que se transmitan a otra entidad responsable del tratamiento.</p>
+        <p class="texto">Finalmente, y en ejercicio de su derecho a la portabilidad de los datos, el Usuario podrá recibir los datos personales que hubiera proporcionado a <b>Asnef empresas recupera</b>
+        en un formato estructurado, de uso común y legible por máquina, así como a solicitar que se transmitan a otra entidad responsable del tratamiento.</p>
 
         <p class="texto"><b>Medios para ejercer sus derechos</b></p>
 

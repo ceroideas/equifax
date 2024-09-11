@@ -460,7 +460,7 @@ class ClaimsController extends Controller
             $debtd->save();
         }
 
-        addNotification('Nueva reclamación', 'Nueva reclamación registrada en Dividae', $claim->id,0);
+        addNotification('Nueva reclamación', 'Nueva reclamación registrada en Asnef', $claim->id,0);
 
         if (Auth::user()->isGestor()) {
 
@@ -1126,7 +1126,7 @@ class ClaimsController extends Controller
         switch(Auth::user()->role){
             case 0:
             case 1:
-                $usuario = "Equipo Dividae #".Auth::user()->id;
+                $usuario = "Equipo Asnef #".Auth::user()->id;
                 break;
             case 2:
                 $usuario = "Cliente #".Auth::user()->id;

@@ -9,7 +9,7 @@
 	  <header>
 	  <div class="row align-items-center">
 	    <div class="col-sm-7 text-center text-sm-left mb-3 mb-sm-0">
-	      <img src="{{ url('landing/assets/grafico-logo-positivo.png') }}" alt="Logotipo Dividae" style="width: 150px">
+	      <img src="{{ url('landing/assets/equifax-logo.png') }}" alt="Logotipo Asnef" style="width: 150px">
 	      {{-- <h2 style="margin: 0; color: #333; font-size: 32px;">Vamox</h2> --}}
 	    </div>
 	    <div class="col-sm-5 text-center text-sm-right">

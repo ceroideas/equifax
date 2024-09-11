@@ -16,7 +16,7 @@
 			        			<div style="width: 100px;height: 100px;background-image:url('{{ $u->avatar ? asset('/uploads/images/users/'.$u->id.'/'.$u->getAvatar($u->avatar)) : '' }}');background-color:#f2f2f2;border-radius: 100%;background-size: cover;background-position: center center;"></div>
 			        		</td> --}}
 			          		<td style="background:#333; padding:5px; color:#fff; text-align:left;width: 160px">
-			          			<img src="{{ asset('/landing/assets/grafico-logo-positivo.png') }}" style="border:none;width: 150px" alt="Logo dividae">
+			          			<img src="{{ asset('/landing/assets/equifax-logo.png') }}" style="border:none;width: 150px" alt="Logo asnef">
 			          		</td>
 			          		<td style="background:#333; padding:5px; color:#fff; text-align:left;">
 			          			<h1>

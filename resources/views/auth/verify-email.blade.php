@@ -103,7 +103,7 @@
                     <div style="background-color: #f8fafc; padding: 8px 0;">
                         <div class="row">
                             <div class="col-4 text-center" style="border-right: 1px solid silver;">
-                                <img src="{{url('landing/assets/grafico-ilustraciones-simulador.png')}}" alt="Ilustracion simulador viabilidad deuda" style="width: 60%;">
+                                <img src="{{url('landing/assets/grafico_reclamacion_viable.png')}}" alt="Ilustracion simulador viabilidad deuda" style="width: 60%;">
                             </div>
                             <div class="col-1"></div>
                             <div class="col-7">

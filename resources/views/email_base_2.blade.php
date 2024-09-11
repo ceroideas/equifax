@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Dividae</title>
+	<title>Asnef</title>
 </head>
 <style>
 	li a {
@@ -32,15 +32,15 @@
                             <td style="background:#fff; padding:5px; color:#fff; text-align:left;width: 160px;  position: relative; text-align: center;">
                                 <div style="text-align: right;">
                                     <a href="https://www.linkedin.com/company/asemar-concursal" target="_blank">
-                                        <img src="https://dividae.com/landing/assets/icono_mail_linkedin.png">
+                                        <img src="https://glc.dividae.com/landing/assets/icono_mail_linkedin.png">
                                     </a>
 
-                                    <a href="https://www.dividae.com" target="_blank">
-                                        <img src="https://dividae.com/landing/assets/icono_mail_link.png">
+                                    <a href="https://glc.dividae.com" target="_blank">
+                                        <img src="https://glc.dividae.com/landing/assets/icono_mail_link.png">
                                     </a>
 
                                     <a href="mailto:info@dividae.com" target="_blank">
-                                        <img src="https://dividae.com/landing/assets/icono_mail_email.png">
+                                        <img src="https://glc.dividae.com/landing/assets/icono_mail_email.png">
                                     </a>
                                 </div>
                             <td>
@@ -67,13 +67,13 @@
                                 @if(isset($test))
                                     @if ($test==1)
                                         <h3>{{$tmp->cta_button}}</h3><br>
-                                        <a href="https://dividae.com" target="_blank">
-                                            <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
+                                        <a href="https://glc.dividae.com" target="_blank">
+                                            <img src="https://glc.dividae.com/templates/btn_acceso_perfil.jpg">
                                         </a>
                                     @endif
                                 @else
                                     <a href="{{$target}}" target="_blank">
-                                        <img src="https://dividae.com/templates/btn_acceso_perfil.jpg">
+                                        <img src="https://glc.dividae.com/templates/btn_acceso_perfil.jpg">
                                     </a>
                                 @endif
 			          		</td>
@@ -84,7 +84,7 @@
 			          		</td>
                             {{--
                             <td>
-                                <div style="text-align: center; "><img style="width: 152px;" src="https://dividae.com/landing/assets/dividae_isotipo_color_90x111.png"></div>
+                                <div style="text-align: center; "><img style="width: 152px;" src="https://glc.dividae.com/landing/assets/dividae_isotipo_color_90x111.png"></div>
                             </td>
                             --}}
 			        	</tr>
