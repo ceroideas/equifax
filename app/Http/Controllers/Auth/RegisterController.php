@@ -104,24 +104,27 @@ class RegisterController extends Controller
         $user->newsletter = isset($data['newsletter']) ? 1 : 0;
        /* Control de roles */
        if(!$data['referenced'] == null){
+        $today = Carbon::today();
+
+        $dc = DiscountCode::where('code',$data['referenced'])
+                        ->where('status',1)
+                        ->where('date_from','<=',$today)
+                        ->where('date_end', '>=', $today)
+                        ->get();
+
+        if($dc->count()){
             $user->referenced = $data['referenced'];
-
-            $dc = DiscountCode::where('code',$data['referenced'])
-                            ->where('status',1)
-                            ->get();
-
-            if($dc){
-                $user->role = 4;
-                $user->msgusr = 0;
-            }else{
-                $user->role = 2;
-                $user->msgusr = 1;
-            }
-
+            $user->role = 4;
+            $user->msgusr = 0;
         }else{
             $user->role = 2;
             $user->msgusr = 1;
         }
+
+    }else{
+        $user->role = 2;
+        $user->msgusr = 1;
+    }
 
         /*Asignacion participacion sorteos*/
         $campaign = Campaign::where('type', 1)
