@@ -207,9 +207,15 @@ class UsersController extends Controller
             session()->flash('alert', Auth::user()->getStatus());
         }
 
-        return view('users.edit-configuration', [
-            'user' => $user
-        ]);
+        if(Auth::user()->isSuperAdmin()){
+
+            return view('users.edit-configuration', [
+                'user' => $user
+            ]);
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
+
     }
 
     /**
