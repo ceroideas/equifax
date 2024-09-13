@@ -949,11 +949,17 @@ class ClaimsController extends Controller
 
     public function actuations($id)
     {
+
         $actuations = Actuation::where('claim_id',$id)
             ->orderBy('id', 'desc')
             ->get();
         $claim = Claim::find($id);
-        return view('claims.actuations', compact('actuations','claim'));
+
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->id==$claim->owner_id){
+            return view('claims.actuations', compact('actuations','claim'));
+        }else{
+            return redirect('/claims')->with('msj', 'Acceso restringido');
+        }
     }
 
     public function myOrders()
@@ -1120,31 +1126,39 @@ class ClaimsController extends Controller
     public function close($id)
     {
         $c = Claim::find($id);
-        $c->status = -1;
-        $c->save();
 
-        switch(Auth::user()->role){
-            case 0:
-            case 1:
-                $usuario = "Equipo Asnef #".Auth::user()->id;
-                break;
-            case 2:
-                $usuario = "Cliente #".Auth::user()->id;
-                break;
-            case 3:
-                $usuario = "Gestoría #".Auth::user()->id;
-                break;
-            case 4:
-                $usuario = "Asociado #".Auth::user()->id;
-                break;
-            case 5:
-                $usuario = "Financiero #".Auth::user()->id;
-                break;
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->id==$c->owner_id){
+
+            $c->status = -1;
+            $c->save();
+
+            switch(Auth::user()->role){
+                case 0:
+                case 1:
+                    $usuario = "Equipo Dividae #".Auth::user()->id;
+                    break;
+                case 2:
+                    $usuario = "Cliente #".Auth::user()->id;
+                    break;
+                case 3:
+                    $usuario = "Gestoría #".Auth::user()->id;
+                    break;
+                case 4:
+                    $usuario = "Asociado #".Auth::user()->id;
+                    break;
+                case 5:
+                    $usuario = "Financiero #".Auth::user()->id;
+                    break;
+            }
+
+            actuationActions(30033,$id, 0, now(), "Finalizada por ".$usuario);
+
+            return redirect('claims')->with('msj', 'La reclamación ha sido finalizada');
+
+        }else{
+            return redirect('/claims')->with('msj', 'Acceso restringido');
         }
 
-        actuationActions(30033,$id, 0, now(), "Finalizada por ".$usuario);
-
-        return redirect('claims')->with('msj', 'La reclamación ha sido finalizada');
     }
 
     public function uploadApudActa(Request $request)

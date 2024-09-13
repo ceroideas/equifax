@@ -88,10 +88,13 @@ class DebtorsController extends Controller
      */
     public function show(Debtor $debtor)
     {
-        return view('debtors.show', [
-
-            'debtor' => $debtor
-        ]);
+        if($debtor->user_id==Auth::user()->id || Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            return view('debtors.show', [
+                'debtor' => $debtor
+            ]);
+        }else{
+            return redirect('/debtors')->with('msg', 'Recurso no disponible');
+        }
     }
 
     /**
@@ -102,10 +105,13 @@ class DebtorsController extends Controller
      */
     public function edit(Debtor $debtor)
     {
-        return view('debtors.edit', [
-
-            'debtor' => $debtor
-        ]);
+        if($debtor->user_id==Auth::user()->id || Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
+            return view('debtors.edit', [
+                'debtor' => $debtor
+            ]);
+        }else{
+            return redirect('/debtors')->with('msg', 'Recurso no disponible');
+        }
     }
 
     /**
