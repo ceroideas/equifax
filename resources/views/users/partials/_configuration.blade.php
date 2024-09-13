@@ -19,29 +19,31 @@
         @else
             @method('POST')
         @endif
+        @if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin())
 
-        <div class="row ">
-            <div class="col-sm-6">
-                <x-adminlte-input name="name" label="Nombre Completo / Razón Social" placeholder="Nombre Completo / Razón Social" type="text"
-                igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $decryptedName   :  ''}}">
-                    <x-slot name="appendSlot">
-                        <div class="input-group-text bg-dark">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </x-slot>
-                </x-adminlte-input>
-            </div>
-            <div class="col-sm-6">
-                <x-adminlte-input name="email" label="Correo" placeholder="Ingresa el Correo" type="email"
-                    igroup-size="sm"  enable-old-support="true" value="{{  isset($user) ?  $user->email   :  ''}}">
+            <div class="row ">
+                <div class="col-sm-6">
+                    <x-adminlte-input name="name" label="Nombre Completo / Razón Social" placeholder="Nombre Completo / Razón Social" type="text"
+                    igroup-size="sm" enable-old-support="true" value="{{  isset($user) ?  $decryptedName   :  ''}}">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-user"></i>
                             </div>
                         </x-slot>
-                </x-adminlte-input>
+                    </x-adminlte-input>
+                </div>
+                <div class="col-sm-6">
+                    <x-adminlte-input name="email" label="Correo" placeholder="Ingresa el Correo" type="email"
+                        igroup-size="sm"  enable-old-support="true" value="{{  isset($user) ?  $user->email   :  ''}}">
+                            <x-slot name="appendSlot">
+                                <div class="input-group-text bg-dark">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </x-slot>
+                    </x-adminlte-input>
+                </div>
             </div>
-        </div>
+        @endif
 
         @if (Auth::user()->isSuperAdmin())
             <div class="row">

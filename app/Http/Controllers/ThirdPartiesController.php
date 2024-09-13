@@ -116,9 +116,14 @@ class ThirdPartiesController extends Controller
      */
     public function show(ThirdParty $thirdParty)
     {
-        return view('third_parties.show', [
-            'third_party' => $thirdParty
-        ]);
+        if($thirdParty->user_id==Auth::user()->id){
+            return view('third_parties.show', [
+                'third_party' => $thirdParty
+            ]);
+
+        }else{
+            return redirect('/third-parties')->with('msg', 'Recurso no disponible');
+        }
     }
 
     /**
@@ -129,9 +134,16 @@ class ThirdPartiesController extends Controller
      */
     public function edit(ThirdParty $thirdParty)
     {
-        return view('third_parties.edit', [
-            'third_party' => $thirdParty
-        ]);
+        if($thirdParty->user_id==Auth::user()->id){
+
+            return view('third_parties.edit', [
+                'third_party' => $thirdParty
+            ]);
+
+        }else{
+            return redirect('/third-parties')->with('msg', 'Recurso no disponible');
+        }
+
     }
 
     /**
