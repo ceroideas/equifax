@@ -54,15 +54,17 @@ class UsersController extends Controller
     public function index()
     {
 
-        /*if(Auth::user()->isAdmin()){
-            $users = User::where('role', 2)->latest()->get();
-        }elseif(Auth::user()->isSuperAdmin()|| Auth::user()->isFinance()){*/
+        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
             $users = User::all();
-        //}
 
-        return view('users.index',[
-            'users' => $users
-        ]);
+            return view('users.index',[
+                'users' => $users
+            ]);
+
+        }else{
+            return redirect('/')->with('msj', 'Acceso restringido');
+        }
+
     }
 
     /**
