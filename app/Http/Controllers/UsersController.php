@@ -230,6 +230,35 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
 
+        /* Comprobacion de extension de archivo
+        if($request->file('apud_acta') || $request->file('representative_dni_img') || $request->file('dni_img')){
+
+            dump("Existe file");
+
+            if($request->file('apud_acta')){
+                $fileName = 'apud_acta';
+            }elseif($request->file('representative_dni_img')){
+                $fileName = 'representative_dni_img';
+            }elseif($request->file('dni_img')){
+                $fileName = 'dni_img';
+            }
+
+            dump($fileName);
+
+            $file = $request->file($fileName);
+            $extension = $file->getClientOriginalExtension();
+
+            dump($extension);
+            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+
+                dump("Extension valida");
+            }else{
+                return redirect('users/'.$user->id.'/edit')->with(['alert' => 'Extensión de fichero no valida valida']);
+                //return redirect('panel')->with(['alert' => 'Extension no valida']);
+            }
+        } */
+
+
         $validation = $this->validateRequest();
 
         if($request->password != Null){
@@ -400,7 +429,10 @@ class UsersController extends Controller
             'location' => 'required',
             'province' => 'required',
             'cop' => 'required|numeric',
-            'type'=>'required'
+            'type'=>'required',
+            'apud_acta'=>'nullable|mimes:jpg,jpeg,png,pdf|max:4096',
+            //'dni_img'=>'nullable|mimes:jpg,jpeg,png,pdf|max:4096',
+            //'representative_dni_img'=>'nullable|mimes:jpg,jpeg,png,pdf|max:4096',
         ];
 
 

@@ -100,181 +100,222 @@ class DebtsController extends Controller
         if ($request->factura) {
             foreach ($request->factura['file'] as $key => $value) {
 
-                $file = $request->file('factura')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('factura')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = [ "factura" => [
-                    "file" => $file,
-                    "ndoc_factura" => $request->factura['ndoc_factura'][$key],
-                    "fecha_factura" => $request->factura['fecha_factura'][$key],
-                    "vencimiento_factura" => $request->factura['vencimiento_factura'][$key],
-                    "importe_factura" => $request->factura['importe_factura'][$key],
-                    "iva_factura" => $request->factura['iva_factura'][$key]
-                ]];
+                    $documentos[] = [ "factura" => [
+                        "file" => $file,
+                        "ndoc_factura" => $request->factura['ndoc_factura'][$key],
+                        "fecha_factura" => $request->factura['fecha_factura'][$key],
+                        "vencimiento_factura" => $request->factura['vencimiento_factura'][$key],
+                        "importe_factura" => $request->factura['importe_factura'][$key],
+                        "iva_factura" => $request->factura['iva_factura'][$key]
+                    ]];
+                }
             }
         }
 
         if ($request->factura_rectificativa) {
             foreach ($request->factura_rectificativa['file'] as $key => $value) {
 
-                $file = $request->file('factura_rectificativa')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('factura_rectificativa')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = [ "factura_rectificativa" => [
-                    "file" => $file,
-                    "ndoc_factura" => $request->factura_rectificativa['ndoc_factura'][$key],
-                    "fecha_factura" => $request->factura_rectificativa['fecha_factura'][$key],
-                    "vencimiento_factura" => $request->factura_rectificativa['vencimiento_factura'][$key],
-                    "importe_factura" => $request->factura_rectificativa['importe_factura'][$key],
-                    "iva_factura" => $request->factura_rectificativa['iva_factura'][$key]
-                ]];
+                    $documentos[] = [ "factura_rectificativa" => [
+                        "file" => $file,
+                        "ndoc_factura" => $request->factura_rectificativa['ndoc_factura'][$key],
+                        "fecha_factura" => $request->factura_rectificativa['fecha_factura'][$key],
+                        "vencimiento_factura" => $request->factura_rectificativa['vencimiento_factura'][$key],
+                        "importe_factura" => $request->factura_rectificativa['importe_factura'][$key],
+                        "iva_factura" => $request->factura_rectificativa['iva_factura'][$key]
+                    ]];
+                }
             }
         }
 
         if ($request->albaran) {
             foreach ($request->albaran['file'] as $key => $value) {
 
-                $file = $request->file('albaran')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('albaran')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["albaran" => [
-                    "file" => $file,
-                    "ndoc_albaran" => $request->albaran['ndoc_albaran'][$key],
-                    "fecha_albaran" => $request->albaran['fecha_albaran'][$key],
-                ]];
+                    $documentos[] = ["albaran" => [
+                        "file" => $file,
+                        "ndoc_albaran" => $request->albaran['ndoc_albaran'][$key],
+                        "fecha_albaran" => $request->albaran['fecha_albaran'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->recibo) {
             foreach ($request->recibo['file'] as $key => $value) {
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('recibo')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $file = $request->file('recibo')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-
-                $documentos[] = ["recibo" => [
-                    "file" => $file,
-                    "fecha_recibo" => $request->recibo['fecha_recibo'][$key],
-                ]];
+                    $documentos[] = ["recibo" => [
+                        "file" => $file,
+                        "fecha_recibo" => $request->recibo['fecha_recibo'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->contrato) {
             foreach ($request->contrato['file'] as $key => $value) {
 
-                $file = $request->file('contrato')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('contrato')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["contrato" => [
-                    "file" => $file,
-                    "fecha_contrato" => $request->contrato['fecha_contrato'][$key],
-                ]];
+                    $documentos[] = ["contrato" => [
+                        "file" => $file,
+                        "fecha_contrato" => $request->contrato['fecha_contrato'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->hoja_encargo) {
             foreach ($request->hoja_encargo['file'] as $key => $value) {
 
-                $file = $request->file('hoja_encargo')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('hoja_encargo')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["hoja_encargo" => [
-                    "file" => $file,
-                    "fecha_hoja_encargo" => $request->hoja_encargo['fecha_hoja_encargo'][$key],
-                ]];
+                    $documentos[] = ["hoja_encargo" => [
+                        "file" => $file,
+                        "fecha_hoja_encargo" => $request->hoja_encargo['fecha_hoja_encargo'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->hoja_pedido) {
             foreach ($request->hoja_pedido['file'] as $key => $value) {
+                $extension = $value->getClientOriginalExtension();
 
-                $file = $request->file('hoja_pedido')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('hoja_pedido')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["hoja_pedido" => [
-                    "file" => $file,
-                    "fecha_hoja_pedido" => $request->hoja_pedido['fecha_hoja_pedido'][$key],
-                ]];
+                    $documentos[] = ["hoja_pedido" => [
+                        "file" => $file,
+                        "fecha_hoja_pedido" => $request->hoja_pedido['fecha_hoja_pedido'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->reconocimiento) {
             foreach ($request->reconocimiento['file'] as $key => $value) {
 
-                $file = $request->file('reconocimiento')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('reconocimiento')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["reconocimiento" => [
-                    "file" => $file,
-                    "fecha_reconocimiento" => $request->reconocimiento['fecha_reconocimiento'][$key],
-                    "importe_reconocimiento" => $request->reconocimiento['importe_reconocimiento'][$key],
-                    "iva_reconocimiento" => $request->reconocimiento['iva_reconocimiento'][$key],
-                ]];
+                    $documentos[] = ["reconocimiento" => [
+                        "file" => $file,
+                        "fecha_reconocimiento" => $request->reconocimiento['fecha_reconocimiento'][$key],
+                        "importe_reconocimiento" => $request->reconocimiento['importe_reconocimiento'][$key],
+                        "iva_reconocimiento" => $request->reconocimiento['iva_reconocimiento'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->extracto) {
             foreach ($request->extracto['file'] as $key => $value) {
 
-                $file = $request->file('extracto')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('extracto')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["extracto" => [
-                    "file" => $file,
-                    "fecha_extracto" => $request->extracto['fecha_extracto'][$key],
-                ]];
+                    $documentos[] = ["extracto" => [
+                        "file" => $file,
+                        "fecha_extracto" => $request->extracto['fecha_extracto'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->escritura) {
             foreach ($request->escritura['file'] as $key => $value) {
 
-                $file = $request->file('escritura')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('escritura')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["escritura" => [
-                    "file" => $file,
-                    "nprot_escritura" => $request->escritura['nprot_escritura'][$key],
-                    "fecha_escritura" => $request->escritura['fecha_escritura'][$key],
-                    "nombre_escritura" => $request->escritura['nombre_escritura'][$key],
-                ]];
+                    $documentos[] = ["escritura" => [
+                        "file" => $file,
+                        "nprot_escritura" => $request->escritura['nprot_escritura'][$key],
+                        "fecha_escritura" => $request->escritura['fecha_escritura'][$key],
+                        "nombre_escritura" => $request->escritura['nombre_escritura'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->burofax) {
             foreach ($request->burofax['file'] as $key => $value) {
 
-                $file = $request->file('burofax')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('burofax')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["burofax" => [
-                    "file" => $file,
-                    "fecha_burofax" => $request->burofax['fecha_burofax'][$key],
-                ]];
+                    $documentos[] = ["burofax" => [
+                        "file" => $file,
+                        "fecha_burofax" => $request->burofax['fecha_burofax'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->carta_certificada) {
             foreach ($request->carta_certificada['file'] as $key => $value) {
 
-                $file = $request->file('carta_certificada')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('carta_certificada')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["carta_certificada" => [
-                    "file" => $file,
-                    "fecha_carta"=> $request->carta_certificada['fecha_carta'][$key],
-                ]];
+                    $documentos[] = ["carta_certificada" => [
+                        "file" => $file,
+                        "fecha_carta"=> $request->carta_certificada['fecha_carta'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->email) {
             foreach ($request->email['file'] as $key => $value) {
 
-                $file = $request->file('email')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('email')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["email" => [
-                    "file" => $file,
-                    "fecha_email" => $request->email['fecha_email'][$key],
-                ]];
+                    $documentos[] = ["email" => [
+                        "file" => $file,
+                        "fecha_email" => $request->email['fecha_email'][$key],
+                    ]];
+                }
             }
         }
 
         if ($request->otros) {
             foreach ($request->otros['file'] as $key => $value) {
 
-                $file = $request->file('otros')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $extension = $value->getClientOriginalExtension();
+	            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $file = $request->file('otros')['file'][$key]->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
 
-                $documentos[] = ["otros" => [
-                    "file" => $file,
-                    "fecha_otros" => $request->otros['fecha_otros'][$key],
-                ]];
+                    $documentos[] = ["otros" => [
+                        "file" => $file,
+                        "fecha_otros" => $request->otros['fecha_otros'][$key],
+                    ]];
+                }
             }
         }
         //dump("Documentos");
@@ -306,8 +347,12 @@ class DebtsController extends Controller
         }
         if($request['reclamacion_previa']){
 
-            $reclamacion_previa = $request->file('reclamacion_previa')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
-            $debtTmp->reclamacion_previa = $debt->reclamacion_previa = $reclamacion_previa;
+            $extension = $request->file('reclamacion_previa')->getClientOriginalExtension();
+            if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                $reclamacion_previa = $request->file('reclamacion_previa')->store('temporal/debts/' . Auth::user()->id . '/documents', 'public');
+                $debtTmp->reclamacion_previa = $debt->reclamacion_previa = $reclamacion_previa;
+
+            }
         }
 
         $amounts = [];

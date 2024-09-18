@@ -139,6 +139,7 @@
                         <div class="form-group">
                             <x-adminlte-input-file id="ifMultiple" name="files[]" label="Archivos de la actuaci&oacute;n"
                                 placeholder="Puede subir varios archivos..." igroup-size="lg" legend="Seleccione" multiple>
+                                {{-- accept=".jpg,.png,.pdf"> --}}
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text text-primary">
                                         <i class="fas fa-file-upload"></i>
