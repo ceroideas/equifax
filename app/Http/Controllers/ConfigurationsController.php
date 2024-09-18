@@ -297,13 +297,22 @@ class ConfigurationsController extends Controller
             $t->title = $r->title;
 
             if ($r->top_logo) {
-                $top_logo = $r->file('top_logo')->store('uploads/templates', 'public');
-                $t->top_logo = $top_logo;
+                $extension = $r->top_logo->getClientOriginalExtension();
+                if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'jpeg')
+                {
+                    $top_logo = $r->file('top_logo')->store('uploads/templates', 'public');
+                    $t->top_logo = $top_logo;
+                }
+
             }
 
             if ($r->header_image) {
-                $header_image = $r->file('header_image')->store('uploads/templates', 'public');
-                $t->header_image = $header_image;
+                $extension = $r->header_image->getClientOriginalExtension();
+                if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'jpeg')
+                {
+                    $header_image = $r->file('header_image')->store('uploads/templates', 'public');
+                    $t->header_image = $header_image;
+                }
             }
 
             $t->top_content = $r->top_content;
@@ -332,13 +341,20 @@ class ConfigurationsController extends Controller
             $t->title = $r->title;
 
             if ($r->top_logo) {
-                $top_logo = $r->file('top_logo')->store('uploads/templates', 'public');
-                $t->top_logo = $top_logo;
+                $extension = $r->top_logo->getClientOriginalExtension();
+                if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $top_logo = $r->file('top_logo')->store('uploads/templates', 'public');
+                    $t->top_logo = $top_logo;
+                }
             }
 
             if ($r->header_image) {
-                $header_image = $r->file('header_image')->store('uploads/templates', 'public');
-                $t->header_image = $header_image;
+                $extension = $r->header_image->getClientOriginalExtension();
+                if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                    $header_image = $r->file('header_image')->store('uploads/templates', 'public');
+                    $t->header_image = $header_image;
+
+                }
             }
 
             $t->top_content = $r->top_content;

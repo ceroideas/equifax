@@ -1076,19 +1076,25 @@ class ClaimsController extends Controller
             if ($r->files) {
                 foreach ($r->files as $key => $value) {
                     $name = $value[0]->getClientOriginalName();
-                    $value[0]->move($path,$name);
 
-                    $debtd = new DebtDocument;
-                    $debtd->debt_id = $claim->debt_id;
-                    $debtd->document = $pathStorage . $name;
-                    $debtd->type = 'otros';
-                    $debtd->hitos = json_encode(array("otros"=> array("file"=>$pathStorage.$name,"fecha_otros"=>date('Y-m-d'))));
-                    $debtd->save();
+                    //Comprobamos la extension del archivo
+                    $extension = $value[0]->getClientOriginalExtension();
+                    if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
 
-                    $d = new ActuationDocument;
-                    $d->actuation_id = $a->id;
-                    $d->document_name = $name;
-                    $d->save();
+                        $value[0]->move($path,$name);
+
+                        $debtd = new DebtDocument;
+                        $debtd->debt_id = $claim->debt_id;
+                        $debtd->document = $pathStorage . $name;
+                        $debtd->type = 'otros';
+                        $debtd->hitos = json_encode(array("otros"=> array("file"=>$pathStorage.$name,"fecha_otros"=>date('Y-m-d'))));
+                        $debtd->save();
+
+                        $d = new ActuationDocument;
+                        $d->actuation_id = $a->id;
+                        $d->document_name = $name;
+                        $d->save();
+                    }
                 }
             }
 
@@ -1109,12 +1115,15 @@ class ClaimsController extends Controller
             if ($r->files) {
                 foreach ($r->files as $key => $file) {
                     $name = $file[0]->getClientOriginalName();
-                    $file[0]->move($path,$name);
+                    $extension = $file[0]->getClientOriginalExtension();
+                    if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'pdf' || $extension == 'jpeg'){
+                        $file[0]->move($path,$name);
 
-                    $d = new ActuationDocument;
-                    $d->actuation_id = $a->id;
-                    $d->document_name = $name;
-                    $d->save();
+                        $d = new ActuationDocument;
+                        $d->actuation_id = $a->id;
+                        $d->document_name = $name;
+                        $d->save();
+                    }
                 }
             }
         }

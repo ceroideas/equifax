@@ -79,9 +79,12 @@ class BlogController extends Controller
 
             $blog = new Blog;
             if ($request->image_post) {
-                $image_post = $request->file('image_post')->store('uploads/blogs', 'public');
-                $blog->image_post = $image_post;
-            }
+                $extension = $request->image_post->getClientOriginalExtension();
+                    if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'jpeg'){
+                        $image_post = $request->file('image_post')->store('uploads/blogs', 'public');
+                        $blog->image_post = $image_post;
+                    }
+                }
             $blog->title = $request->title;
             $blog->slug = strtolower(str_replace(' ', '-', $request->slug));
             $blog->extract = $request->extract;
@@ -110,8 +113,11 @@ class BlogController extends Controller
             $blog = Blog::find($id);
 
             if ($request->image_post) {
-                $image_post = $request->file('image_post')->store('uploads/blogs', 'public');
-                $blog->image_post = $image_post;
+                $extension = $request->image_post->getClientOriginalExtension();
+                if($extension == 'jpg' || $extension == 'png' || $extension == 'PNG' || $extension == 'jpeg'){
+                    $image_post = $request->file('image_post')->store('uploads/blogs', 'public');
+                    $blog->image_post = $image_post;
+                }
             }
             $blog->id = $request->id;
             $blog->title = $request->title;

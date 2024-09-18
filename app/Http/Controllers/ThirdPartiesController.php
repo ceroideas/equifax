@@ -249,7 +249,9 @@ class ThirdPartiesController extends Controller
             'province' => 'required',
             'cop' => 'required',
             'dni' => 'required',
-
+            'apud_acta'=>'nullable|mimes:jpg,jpeg,png,pdf|max:4096',
+            'representative_dni_img'=>'nullable|mimes:jpg,jpeg,png,pdf|max:4096',
+            'poder_legal'=>'nullable|mimes:jpg,jpeg,png,pdf|max:4096',
         ];
 
         if(request('iban')){
