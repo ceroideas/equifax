@@ -1,7 +1,7 @@
 <?php
 
 
-/* if($_SERVER['SERVER_NAME']=='glc.dividae.com'||$_SERVER['SERVER_NAME']=='127.0.0.1'){
+if($_SERVER['SERVER_NAME']=='glc.dividae.com'||$_SERVER['SERVER_NAME']=='127.0.0.1'){
    
     return [
         'arg1'=> '778199111ac61968b18ac08c36aa04b44aa0ecc6',
@@ -25,4 +25,4 @@
         'returnKOURL'=> 'https://dividae.com/callbackko'
         ];
 }
- */
+ 
