@@ -9,6 +9,11 @@
         {{ session('alert') }}
     </x-adminlte-alert>
 @endif
+@if(session()->has('error'))
+        <x-adminlte-alert theme="danger" dismissable>
+            {{ session('error') }}
+        </x-adminlte-alert>
+    @endif
 <style>
     .fa-times {
       color: red;

@@ -96,9 +96,11 @@ class RegisterController extends Controller
 
         $user = User::create([
             'name' => Crypt::encryptString($data['nombre']),
-            'email' => $data['email'],//Crypt::encryptString($data['email']),
+            'email' => Crypt::encryptString($data['email']),
             'password' => Hash::make($data['password']),
         ]);
+
+
         $user->pw_updated_at=Carbon::now();
 
         $user->newsletter = isset($data['newsletter']) ? 1 : 0;
@@ -156,6 +158,8 @@ class RegisterController extends Controller
                 }
             }
         }
+
+     $user->old_passwords = [$user->password];
 
        $user->save();
 

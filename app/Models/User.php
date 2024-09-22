@@ -43,6 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'campaign',
         'msgusr',
         'pw_updated_at',
+        'old_passwords'
 
     ];
 
@@ -54,6 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'old_passwords'
     ];
 
     /**
@@ -63,6 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        "old_passwords" => "array"
         //'pw_updated_at'=>'datetime',
     ];
 
@@ -74,6 +77,12 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
     }
+
+    public function getEmailAttribute($value) {
+        return Crypt::decryptString($value);
+        }
+
+    
 
     public function isAdmin(){ // gestor legal
         if($this->role === 1){

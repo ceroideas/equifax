@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use App\Models\User; 
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Encryption\DecryptException;
 class LoginController extends Controller
 {
     /*
@@ -21,6 +24,32 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    protected function credentials(Request $request)
+    {
+        $users = User::all();
+    
+        foreach ($users as $user) {
+            try {
+             
+               
+                
+            
+                if ($user->email=== $request->email) {
+                   
+                    return ['email' => $user->getAttributes()['email'], 'password' => $request->password];
+                }
+            } catch (DecryptException $e) {
+
+                continue;
+            } catch (Exception $e) {
+               
+                continue;
+            }
+        }
+    
+        
+        return $request->only($this->username(), 'password');
+    }
 
     /**
      * Where to redirect users after login.
