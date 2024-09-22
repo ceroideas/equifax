@@ -49,13 +49,13 @@ return new class extends Migration
             //
         });
 
-        Schema::table('debts', function(Blueprint $table) {
+        /*Schema::table('debts', function(Blueprint $table) {
             //
             $table->integer('reclamacion_previa_indicar')->nullable();
             $table->string('fecha_reclamacion_previa')->nullable(); // documento que acredite dicha reclamacion
 
             $table->text('partials_amount_details')->nullable(); // detalle de pagos y fechas de los pagos
-        });
+        });*/
     }
 
     /**

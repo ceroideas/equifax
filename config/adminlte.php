@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => 'ASNEF',
-    'title_prefix' => ' ASNEF | ',
+    'title' => 'AdminLTE 3',
+    'title_prefix' => '',
     'title_postfix' => '',
 
     /*
@@ -45,13 +45,12 @@ return [
     |
     */
 
-    'logo' => '',
-    // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img' => 'landing/assets/equifax-logo.png',
-    'logo_img_class' => 'brand-image text-center',
+    'logo' => '<b>Admin</b>LTE',
+    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'ASNEF',
+    'logo_img_alt' => 'AdminLTE',
 
     /*
     |--------------------------------------------------------------------------
@@ -66,11 +65,11 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-orange',
+    'usermenu_header' => false,
+    'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => true,
-    'usermenu_profile_url' => true,
+    'usermenu_desc' => false,
+    'usermenu_profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -86,8 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => true,
-    'layout_fixed_navbar' => true,
+    'layout_fixed_sidebar' => null,
+    'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -103,12 +102,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-orange',
+    'classes_auth_card' => 'card-outline card-primary',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat',
+    'classes_auth_btn' => 'btn-flat btn-primary',
 
     /*
     |--------------------------------------------------------------------------
@@ -128,7 +127,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-orange elevation-4',
+    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -169,7 +168,7 @@ return [
     */
 
     'right_sidebar' => false,
-    'right_sidebar_icon' => 'fas fa-bell',
+    'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
@@ -189,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'panel',
+    'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -229,7 +228,7 @@ return [
         // Navbar items:
         [
             'type'         => 'navbar-search',
-            'text'         => 'Buscar',
+            'text'         => 'search',
             'topnav_right' => true,
         ],
         [
@@ -238,268 +237,87 @@ return [
         ],
 
         // Sidebar items:
-        // [
-        //     'type' => 'sidebar-menu-search',
-        //     'text' => 'search',
-        // ],
-        // [
-        //     'text' => 'blog',
-        //     'url'  => 'admin/blog',
-        //     'can'  => 'superadmin','manage-blog',
-        // ],
-        // [
-        //     'text'        => 'pages',
-        //     'url'         => 'admin/pages',
-        //     'icon'        => 'far fa-fw fa-file',
-        //     'label'       => 4,
-        //     'label_color' => 'success',
-        // ],
-        //['header' => 'account_settings'],
-        // [
-        //     'text' => 'profile',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-user',
-        // ],
-        // [
-        //     'text' => 'change_password',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-lock',
-        // ],
         [
-            'text' => 'Área personal',
-            'url'  => 'panel',
-            'icon' => 'fas fa-fw fa-tachometer-alt',
+            'type' => 'sidebar-menu-search',
+            'text' => 'search',
         ],
         [
-        'text' => 'Notificaciones',
-        'url'  => 'notifications',
-        'icon' => 'fas fa-fw fa-bell',
-        'can' =>  ['superadmin','admin', 'finance'],
+            'text' => 'blog',
+            'url'  => 'admin/blog',
+            'can'  => 'manage-blog',
         ],
         [
-            'text'    => 'Acreditación De Terceros',
-            'icon'    => 'fas fa-fw fa-users',
-            'can' =>  ['superadmin','create-claims', 'admin', 'finance'],
+            'text'        => 'pages',
+            'url'         => 'admin/pages',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
+        ['header' => 'account_settings'],
+        [
+            'text' => 'profile',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'change_password',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text'    => 'multilevel',
+            'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'Añadir Nuevo',
-                    'icon' => '',
-                    'can' =>  ['superadmin','create-claims'],
-                    'url'  => '/third-parties/create',
+                    'text' => 'level_one',
+                    'url'  => '#',
                 ],
                 [
-                    'text' => 'Listado de Acreditación De Terceros',
-                    'icon' => '',
-                    'can' =>  ['superadmin','create-claims', 'admin', 'finance'],
-                    'url'  => '/third-parties',
+                    'text'    => 'level_one',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'level_two',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text'    => 'level_two',
+                            'url'     => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'level_one',
+                    'url'  => '#',
                 ],
             ],
         ],
+        ['header' => 'labels'],
         [
-            'text'    => 'Deudores',
-            'icon'    => 'fas fa-fw fa-address-book',
-            'can' =>  ['superadmin','create-claims', 'admin', 'finance'],
-            'submenu' => [
-                [
-                    'text' => 'Añadir Nuevo',
-                    'icon' => '',
-                    'can' => ['superadmin','create-claims'],
-                    'url'  => '/debtors/create',
-                ],
-                [
-                    'text' => 'Listado de Deudores',
-                    'icon' => '',
-                    'can' =>  ['superadmin','create-claims', 'admin', 'finance'],
-                    'url'  => '/debtors',
-                ],
-            ],
+            'text'       => 'important',
+            'icon_color' => 'red',
+            'url'        => '#',
         ],
         [
-            'text'    => 'Usuarios',
-            'icon'    => 'fas fa-fw fa-user',
-            'can' =>  ['superadmin','create-users','admin', 'finance'],
-            'submenu' => [
-                [
-                    'text' => 'Nuevo Usuario',
-                    'icon' => '',
-                    'can' => ['superadmin','create-users'],
-                    'url'  => '/users/create',
-                ],
-                /*[
-                    'text' => 'Usuarios Pendientes',
-                    'icon' => '',
-                    'can' => ['superadmin','create-users'],
-                    'url'  => '/users/pending',
-                ],*/
-                [
-                    'text' => 'Listado de Usuarios',
-                    'icon' => '',
-                    'can' => ['superadmin','create-users','admin', 'finance'],
-                    'url'  => '/users',
-                ],
-            ],
-        ],
-        /*[
-            'text'    => 'Clientes',
-            'icon'    => 'fas fa-fw fa-user',
-            'can' =>  ['superadmin','see-pendings'],
-            'submenu' => [
-                [
-                    'text' => 'Clientes Pendientes',
-                    'icon' => '',
-                    'can' => ['superadmin','see-pendings'],
-                    'url'  => '/users/pending',
-                ],
-                [
-                    'text' => 'Listado de  Clientes',
-                    'icon' => '',
-                    'can' => ['superadmin','see-pendings'],
-                    'url'  => '/users',
-                ],
-            ],
-        ],*/
-        [
-            'text'    => 'Reclamaciones',
-            'icon'    => 'fas fa-fw fa-book',
-            'can' =>  ['superadmin','create-claims', 'admin-claims', 'gestor-claims', 'associate-claims', 'finance'],
-            'submenu' => [
-                [
-                    'text' => 'Listado de Reclamaciones',
-                    'icon' => '',
-                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims','associate-claims','finance'],
-                    'url'  => '/claims',
-                ],
-                [
-                    'text' => 'Nueva Reclamación',
-                    'icon' => '',
-                    'can' => ['create-claims','gestor-claims', 'associate-claims'],
-                    'url'  => '/claims/select-client',
-                ],
-                [
-                    'text' => 'Reclamaciones Finalizadas',
-                    'icon' => '',
-                    'can' => ['superadmin','create-claims', 'admin-claims', 'gestor-claims','associate-claims','finance'],
-                    'url'  => '/claims/pending',
-                ],
-            ],
+            'text'       => 'warning',
+            'icon_color' => 'yellow',
+            'url'        => '#',
         ],
         [
-            'text'    => 'Configuraciones',
-            'icon'    => 'fas fa-fw fa-cog',
-            'can' =>  ['superadmin'],
-            'submenu' => [
-                [
-                    'text' => 'Tasas Asnef',
-                    'icon' => '',
-                    'can' => 'superadmin',
-                    'url'  => '/configurations/fees',
-                ],
-                [
-                    'text' => 'Hitos',
-                    'icon' => '',
-                    'can' => 'superadmin',
-                    'url'  => '/configurations/hitos',
-                ],
-                [
-                    'text' => 'Plantillas de Emails',
-                    'icon' => '',
-                    'can' => 'superadmin',
-                    'url'  => '/configurations/templates',
-                ],
-                [
-                    'text' => 'Códigos de descuentos',
-                    'icon' => '',
-                    'can' => 'superadmin',
-                    'url'  => '/configurations/discount-codes',
-                ],
-                [
-                    'text' => 'Campañas',
-                    'icon' => '',
-                    'can' => 'superadmin',
-                    'url'  => '/configurations/campaigns',
-                ],
-                [
-                    'text' => 'Participantes de campañas',
-                    'icon' => '',
-                    'can' => 'superadmin',
-                    'url'  => '/configurations/participants',
-                ],
-                [
-                    'text' => 'Configuración de usuarios',
-                    'icon' => '',
-                    'can' => 'superadmin',
-                    'url'  => '/configurations/users',
-                ],
-
-            ],
+            'text'       => 'information',
+            'icon_color' => 'cyan',
+            'url'        => '#',
         ],
-        [
-            'text'    => 'Contabilidad',
-            'icon'    => 'fas fa-fw fa-file-invoice',
-            'can' =>  ['superadmin','finance', 'admin-claims','pending', 'admin'],
-            'submenu' => [
-                [
-                    'text' => 'Pedidos gestoría',
-                    'icon' => '',
-                    'can' => ['superadmin','admin','finance'],
-                    'url'  => '/claims/orders',
-                ],
-                [
-                    'text' => 'Saldo gestorías',
-                    'icon' => '',
-                    'can' => ['superadmin', 'admin','finance'],
-                    'url'  => '/claims/gestoria',
-                ],
-                [
-                    'text' => 'Facturas',
-                    'icon' => '',
-                    'can' => ['superadmin','admin','finance'],
-                    'url'  => '/claims/invoices',
-                ],
-                [
-                    'text' => 'Facturas rectificativas',
-                    'icon' => '',
-                    'can' => ['superadmin','admin','finance'],
-                    'url'  => '/claims/invoices-rectify',
-                ],
-                [
-                    'text' => 'Cobros',
-                    'icon' => '',
-                    'can' => ['superadmin','admin','finance'],
-                    'url'  => '/collects',
-                ],
-
-            ],
-        ],
-        [
-            'text'    => 'Blog',
-            'icon'    => 'fas fa-fw fa-rss',
-            'can' =>  ['superadmin', 'admin-claims', 'admin'],
-            'submenu' => [
-                [
-                    'text' => 'Listado de entradas',
-                    'icon' => '',
-                    'can' => ['superadmin','admin'],
-                    'url'  => '/blogs',
-                ],
-            ],
-        ],
-        // ['header' => 'labels'],
-        // [
-        //     'text'       => 'important',
-        //     'icon_color' => 'red',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'warning',
-        //     'icon_color' => 'yellow',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'information',
-        //     'icon_color' => 'cyan',
-        //     'url'        => '#',
-        // ],
     ],
 
     /*
@@ -542,83 +360,33 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => true,
-                    'location' => '/vendor/datatables/js/jquery.dataTables.min.js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => true,
-                    'location' => '/vendor/datatables/js/dataTables.bootstrap4.min.js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => true,
-                    'location' => '/vendor/datatables/css/dataTables.bootstrap4.min.css',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
         ],
         'Select2' => [
-            'active' => true,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => '/vendor/select2/js/select2.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => '/vendor/select2/css/select2.css',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => '/vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
-                ],
-            ],
-        ],
-        'TempusDominusBs4' => [
             'active' => false,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => true,
-                    'location' => 'vendor/moment/moment.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => 'vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => true,
-                    'location' => 'vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
-                ],
-            ],
-        ],
-        'BootstrapSwitch' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => 'vendor/bootstrap-switch/js/bootstrap-switch.min.js',
-                ],
-            ],
-        ],
-        'BootstrapSlider' => [
-            'active' => true,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => 'vendor/bootstrap-slider/bootstrap-slider.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => 'vendor/bootstrap-slider/css/bootstrap-slider.min.css',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
                 ],
             ],
         ],
@@ -657,36 +425,6 @@ return [
                 ],
             ],
         ],
-        'Summernote' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => '/vendor/summernote/summernote-bs4.min.css',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => '/vendor/summernote/summernote-bs4.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => '/vendor/summernote/lang/summernote-es-ES.js',
-                ],
-            ],
-        ],
-        'BsCustomFileInput' => [
-            'active' => true,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => 'vendor/bs-custom-file-input/bs-custom-file-input.min.js',
-                ],
-            ],
-        ],
     ],
 
     /*
@@ -704,8 +442,8 @@ return [
 
     'iframe' => [
         'default_tab' => [
-            'url' => '/admin/index',
-            'title' => 'Área personal',
+            'url' => null,
+            'title' => null,
         ],
         'buttons' => [
             'close' => true,
