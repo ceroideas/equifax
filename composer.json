@@ -18,7 +18,8 @@
         "laraveles/spanish": "^1.5",
         "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.23",
-        "phpoffice/phpword": "^0.18.3"
+        "phpoffice/phpword": "^0.18.3",
+        "pragmarx/google2fa-laravel": "^2.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
