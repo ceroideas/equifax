@@ -40,8 +40,6 @@ class BlogController extends Controller
     public function items()
     {
 
-        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()){
-
             $blogs = Blog::where('status',1)
             ->orderBy('id','desc')
             ->paginate(4);
@@ -51,9 +49,6 @@ class BlogController extends Controller
             'blogs' => $blogs
             ]);
 
-        }else{
-            return redirect('/')->with('msj', 'Acceso restringido');
-        }
 
     }
 
