@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Storage;
 //use Illuminate\Database\Schema\Blueprint;
 //use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Crypt;
-
+use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 use Auth;
@@ -97,11 +97,25 @@ class UsersController extends Controller
     public function changePassword(Request $request)
     {
         $validation = $this->validatePassword();
-
+        $newPassword = $request->password;
+        $oldPasswords = Auth::user()->old_passwords;
+    
+        
+        foreach ($oldPasswords as $oldPassword) {
+            if (Hash::check($newPassword, $oldPassword)) {
+                return redirect('change-password')->with('error', 'La nueva contraseña no puede ser igual a una de las últimas contraseñas utilizadas.');
+            }
+        }
         Auth::user()->password = bcrypt($request->password);
         Auth::user()->pw_updated_at = carbon::now();
+        
+        $oldPasswords = Auth::user()->old_passwords;
+        $oldPasswords[] = Auth::user()->password;
+        if (count($oldPasswords) > 7) {
+            $oldPasswords = array_slice($oldPasswords, -7);
+        }
+        Auth::user()->old_passwords = $oldPasswords;
         Auth::user()->save();
-
         return redirect('panel')->with('msj','Tu contraseña se ha cambiado satisfactoriamente!');
     }
 

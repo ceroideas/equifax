@@ -17,7 +17,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DiscountCodeController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\InvoicesController;
-
+use App\Http\Controllers\Auth\TwoFactorController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 /*
@@ -62,6 +62,9 @@ Route::get('/contacto', function () {
 
 Route::get('/bases-sorteo', function () {
     return view('bases-sorteo');
+});
+Route::get('/login-admin', function () {
+    return view('auth.login-admin');
 });
 
 Auth::routes();
@@ -344,6 +347,13 @@ Route::group([
     Route::get('/unread/{id}', [NotificationsController::class, 'unread']);
 });
 
+// Verificar el código 2FA
+Route::post('2fa', [TwoFactorController::class, 'verify'])->name('2fa.verify');
+// Mostrar la página de configuración 2FA
+Route::get('2fa/setup', [MFAController::class, 'generateSecret'])->name('2fa.setup');
+
+// Mostrar la página de verificación 2FA
+Route::get('2fa', [MFAController::class, 'show'])->name('2fa');
 Route::post('/callback', [PaymentsController::class, 'callback']);
 
 Route::get('/testinglcg',[ConfigurationsController::class, 'testingTable']);
