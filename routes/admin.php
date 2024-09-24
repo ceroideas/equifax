@@ -16,6 +16,6 @@ use App\Http\Controllers\UsersController;
 */
 
 
-Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/', [HomeController::class, 'index'])->name('index')->middleware(['auth', '2fa']);
 
 Route::get('/index', [HomeController::class, 'index'])->name('index');

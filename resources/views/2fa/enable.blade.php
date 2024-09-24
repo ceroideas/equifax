@@ -1,0 +1,1 @@
+@extends('adminlte::auth.2fa')

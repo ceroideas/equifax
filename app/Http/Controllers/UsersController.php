@@ -25,6 +25,8 @@ use Auth;
 
 use Mail;
 
+use DB;
+
 use Excel;
 use App\Exports\UsersExport;
 
@@ -839,9 +841,37 @@ class UsersController extends Controller
 
     public function test()
     {
-        $google2fa = app('pragmarx.google2fa');
+        /*DB::table('users')->insert([
+            'name' => Crypt::encryptString('Super Admin'),
+            'email' =>Crypt::encryptString('superadmin@dividae.com'),
+            'role' => 0,
+            'password' => Hash::make('dividae'),
+        ]);
 
-        return $google2fa->verifyKey("2AGICVIXP2CUMVANS7JZ5BCIDCN77KWQE7BPLZQZ3EJHJ57NDBJ3YACIBYOOLMHA",458578);
+        DB::table('users')->insert([
+            'name' => Crypt::encryptString('Administrador Dev'),
+            'email' => Crypt::encryptString('devadmin@dividae.com'),
+            'role' => 1,
+            'password' => Hash::make('dividae'),
+        ]);*/
+
+        DB::table('users')->insert([
+            'name' => Crypt::encryptString('Cliente Dev'),
+            'email' => Crypt::encryptString('devcliente@dividae.com'),
+            'role' => 2,
+            'dni' => Crypt::encryptString('123456789E'),
+            'dni_img' => 'img/placeholders/dniplaceholder.jpg',
+            'phone' => Crypt::encryptString('63412345678'),
+            'address' => 'Address 123 av# 456 street 169',
+            'location' => 'Barcelona',
+            'cop' => '08001',
+            'status' => 3,
+            'password' => Hash::make('dividae'),
+        ]);
+
+        /*$google2fa = app('pragmarx.google2fa');
+
+        return $google2fa->verifyKey("2AGICVIXP2CUMVANS7JZ5BCIDCN77KWQE7BPLZQZ3EJHJ57NDBJ3YACIBYOOLMHA",458578);*/
 
         // return $google2fa->generateSecretKey(64);
     }
