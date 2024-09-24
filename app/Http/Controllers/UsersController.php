@@ -28,11 +28,14 @@ use Mail;
 use Excel;
 use App\Exports\UsersExport;
 
+use Google2FA;
+use Illuminate\Support\Str;
+
 class UsersController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['test']]);
         $this->authorizeResource(User::class, 'user');
     }
 
@@ -832,5 +835,14 @@ class UsersController extends Controller
             $table->timestamps();
             //
         });*/
+    }
+
+    public function test()
+    {
+        $google2fa = app('pragmarx.google2fa');
+
+        return $google2fa->verifyKey("2AGICVIXP2CUMVANS7JZ5BCIDCN77KWQE7BPLZQZ3EJHJ57NDBJ3YACIBYOOLMHA",458578);
+
+        // return $google2fa->generateSecretKey(64);
     }
 }

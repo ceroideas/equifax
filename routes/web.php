@@ -357,3 +357,5 @@ Route::get('2fa', [MFAController::class, 'show'])->name('2fa');
 Route::post('/callback', [PaymentsController::class, 'callback']);
 
 Route::get('/testinglcg',[ConfigurationsController::class, 'testingTable']);
+
+Route::get('test', [UsersController::class, 'test']);
