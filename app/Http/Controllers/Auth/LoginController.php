@@ -105,6 +105,7 @@ class LoginController extends Controller
                 return view('2fa.enable', [
                     'qrCode' => $qrCode,
                     'secret' => $user->google2fa_secret,
+                    'user' => $user
                 ]);
             }
         }
