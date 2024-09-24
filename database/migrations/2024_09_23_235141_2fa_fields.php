@@ -15,7 +15,7 @@ return new class extends Migration
     {
         //
         Schema::table('users', function (Blueprint $table) {
-            $table->string('google2fa_secret')->nullable();
+            $table->text('google2fa_secret')->nullable();
             $table->boolean('google2fa_enabled')->default(false);
         });
     }

@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Pagination\Paginator;
 
+use Illuminate\Support\Facades\Auth;
+use App\Providers\CustomUserProvider;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,8 +28,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-            Schema::defaultStringLength(191);
+            Auth::provider('custom', function($app, array $config) {
+                return new CustomUserProvider();
+            });
+            Schema::defaultStringLength(255); // 191
             Paginator::useBootstrap();
+
 
     }
 }

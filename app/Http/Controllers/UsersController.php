@@ -841,7 +841,8 @@ class UsersController extends Controller
 
     public function test()
     {
-        /*DB::table('users')->insert([
+        User::truncate();
+        DB::table('users')->insert([
             'name' => Crypt::encryptString('Super Admin'),
             'email' =>Crypt::encryptString('superadmin@dividae.com'),
             'role' => 0,
@@ -850,10 +851,10 @@ class UsersController extends Controller
 
         DB::table('users')->insert([
             'name' => Crypt::encryptString('Administrador Dev'),
-            'email' => Crypt::encryptString('devadmin@dividae.com'),
+            'email' => Crypt::encryptString('jorgesolano92@gmail.com'),
             'role' => 1,
             'password' => Hash::make('dividae'),
-        ]);*/
+        ]);
 
         DB::table('users')->insert([
             'name' => Crypt::encryptString('Cliente Dev'),
