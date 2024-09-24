@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Crypt;
 
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -55,7 +56,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
-        'old_passwords'
+        'old_passwords',
+        'google2fa_secret'
     ];
 
     /**
@@ -113,6 +115,16 @@ class User extends Authenticatable implements MustVerifyEmail
             return true;
         }
     }
+    public function setGoogle2faSecretAttribute($value)
+        {
+            $this->attributes['google2fa_secret'] = Crypt::encryptString($value);
+        }
+
+        public function getGoogle2faSecretAttribute($value)
+        {
+            if (!$value) return;
+            return Crypt::decryptString($value);
+        }
 
     public function getRole(){
         switch ($this->role) {
