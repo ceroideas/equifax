@@ -72,6 +72,23 @@
             @enderror
         </div>
 
+        @if ($isAdmin)
+        <label for="password_duration">Duración de la Contraseña (días)</label>
+        <div class="input-group mb-3 ">
+           
+            <select class="form-control" id="password_duration" name="password_duration">
+                <option value="30">30 días</option>
+                <option value="60">60 días</option>
+                <option value="90">90 días</option>
+            </select>
+            <div class="input-group-append">
+                <div style="padding:6;" class="input-group-text">
+                 
+                </div>
+            </div>
+        </div>
+       @endif
+
         {{-- Confirm password reset button --}}
         <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
             <span class="fas fa-sync-alt"></span>
