@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Encryption\DecryptException;
-
+use Carbon\Carbon;
 use PragmaRX\Google2FAQRCode\Google2FA;
 
 use PragmaRX\Google2FALaravel\Support\Authenticator;
@@ -32,12 +32,12 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         $users = User::all();
-    
+       
         foreach ($users as $user) {
             try {
              
                 if ($user->email=== $request->email) {
-                   
+
                     return ['email' => $user->getAttributes()['email'], 'password' => $request->password];
                 }
             } catch (DecryptException $e) {
@@ -48,6 +48,10 @@ class LoginController extends Controller
                 continue;
             }
         }
+
+        
+              
+
         return $request->only($this->username(), 'password');
     }
 
@@ -143,6 +147,28 @@ class LoginController extends Controller
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
+        }
+        $users = User::all();
+       
+        foreach ($users as $user) {
+            try {
+             
+                if ($user->email=== $request->email) {
+                    if ($user->isAdmin() || $user->isGestor()  ) {
+                        // Verificar si la contraseña ha caducado
+                        if ($user->password_expires_at && Carbon::now()->gte($user->password_expires_at)) {
+                            return back()->withErrors(['password' => 'Tu contraseña ha caducado. Debes restablecerla para continuar.']);
+                        }
+                    }
+                    
+                }
+            } catch (DecryptException $e) {
+
+                continue;
+            } catch (Exception $e) {
+               
+                continue;
+            }
         }
 
         if ($this->attemptLogin($request)) {

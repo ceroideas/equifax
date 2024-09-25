@@ -44,7 +44,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'campaign',
         'msgusr',
         'pw_updated_at',
-        'old_passwords'
+        'old_passwords',
+        'password_expires_at'
 
     ];
 

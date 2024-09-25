@@ -40,6 +40,7 @@ class ResetPasswordController extends Controller
             'token' => 'required',                   // El token de restablecimiento de contraseña
             'email' => 'required|email',             // El correo electrónico ingresado
             'password' => 'required|confirmed|min:8', // La nueva contraseña (y debe coincidir con confirmación)
+            'password_duration' => 'required|integer',
         ]);
 
         // Obtén el correo electrónico ingresado por el usuario
@@ -65,13 +66,25 @@ class ResetPasswordController extends Controller
 
         // Si no se encuentra ningún usuario con el correo ingresado, lanza un error
         if (!$foundUser) {
-            throw ValidationException::withMessages([
+
+            return back()->withErrors([
                 'email' => 'No se encontró ningún usuario con esa dirección de correo.',
             ]);
         }
-        
 
-        // Realizar el restablecimiento de contraseña utilizando el correo desencriptado
+         // Verificar si la nueva contraseña es igual a una de las contraseñas antiguas
+        $newPassword = $request->password;
+        $oldPasswords = $foundUser->old_passwords ?? []; // Asegúrate de tener un campo 'old_passwords' en la base de datos
+
+        foreach ($oldPasswords as $oldPassword) {
+            if (Hash::check($newPassword, $oldPassword)) {
+                return back()->withErrors(['password' => 'La nueva contraseña no puede ser igual a una de las últimas contraseñas utilizadas.']);
+            }
+        }
+
+
+        
+        if($foundUser->isAdmin() || $foundUser->isGestor() ){
         $status = Password::reset(
             ['email' => $user->email, 'password' => $request->password, 'token' => $request->token],
             function ($user, $password) {
@@ -80,6 +93,40 @@ class ResetPasswordController extends Controller
                 $user->save();
             }
         );
+        
+
+        $days = $request->password_duration ? $request->password_duration : 30; 
+        $expirationDate = now()->addDays($days);
+        $user->password_expires_at = $expirationDate;
+   
+        $user->save();
+
+        }else{ 
+
+            $status = Password::reset(
+                ['email' => $user->email, 'password' => $request->password, 'token' => $request->token],
+                function ($user, $password) {
+                    // Actualiza la contraseña del usuario
+                    $user->password = Hash::make($password);
+
+                    $user->password_expires_at = $expirationDate;
+                   
+                    $user->save();
+                }
+            );
+
+        }
+
+        $oldPasswords = $foundUser->old_passwords ?? [];
+
+        $oldPasswords[] = Hash::make($request->password);
+        if (count($oldPasswords) > 7) {
+            $oldPasswords = array_slice($oldPasswords, -7);
+        }
+
+        $foundUser->old_passwords = $oldPasswords;
+        $foundUser->save();
+
 
         // Verificar si el restablecimiento fue exitoso o hubo errores
         return $status === Password::PASSWORD_RESET
@@ -109,7 +156,7 @@ class ResetPasswordController extends Controller
         }
 
         // Verificar si el usuario tiene el rol de administrador (role 1)
-        $isAdmin = $foundUser && $foundUser->role == 1;
+        $isAdmin = $foundUser && $foundUser->isAdmin() || $foundUser->isGestor() ;
         
         return view('auth.passwords.reset')->with([
             'token' => $token,
