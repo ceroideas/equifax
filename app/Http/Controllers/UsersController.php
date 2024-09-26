@@ -876,4 +876,43 @@ class UsersController extends Controller
 
         // return $google2fa->generateSecretKey(64);
     }
+
+    public static function countBlockUsers()
+    {
+       
+        return User::whereNotNull('account_locked_at')->count();
+    }
+
+
+    public static function blockUsers()
+    {
+        // Contar todos los usuarios donde el campo 'account_locked_at' no sea null (cuentas bloqueadas)
+        $block_users = User::whereNotNull('account_locked_at')->get();
+        
+        return view('block_users.index', [
+
+            'block_users'=>  $block_users
+        ]);
+    }
+
+    public static function unlock($id)
+    {
+        // Busca al usuario por ID
+        $user = User::find($id);
+    
+        if ($user) {
+            // Desbloquea la cuenta del usuario
+            $user->account_locked_at = null; 
+            $user->login_attempts = 0;
+            $user->force_password_change = 1;
+            $user->save();
+    
+            // Retorna una respuesta JSON para la solicitud fetch
+            return response()->json(['message' => 'Usuario desbloqueado exitosamente.']);
+        }
+    
+        // Si no se encuentra el usuario, retornamos un error 404
+        return response()->json(['message' => 'Usuario no encontrado.'], 404);
+    }
+
 }

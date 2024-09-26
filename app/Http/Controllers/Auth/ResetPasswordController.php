@@ -40,7 +40,7 @@ class ResetPasswordController extends Controller
             'token' => 'required',                   // El token de restablecimiento de contraseña
             'email' => 'required|email',             // El correo electrónico ingresado
             'password' => 'required|confirmed|min:8', // La nueva contraseña (y debe coincidir con confirmación)
-            'password_duration' => 'required|integer',
+           
         ]);
 
         // Obtén el correo electrónico ingresado por el usuario
@@ -98,7 +98,8 @@ class ResetPasswordController extends Controller
         $days = $request->password_duration ? $request->password_duration : 30; 
         $expirationDate = now()->addDays($days);
         $user->password_expires_at = $expirationDate;
-   
+        $user->login_attempts = 0;
+        $user->force_password_change = 0;
         $user->save();
 
         }else{ 
@@ -109,8 +110,9 @@ class ResetPasswordController extends Controller
                     // Actualiza la contraseña del usuario
                     $user->password = Hash::make($password);
 
-                    $user->password_expires_at = $expirationDate;
-                   
+                  
+                    $user->login_attempts = 0;
+                    $user->force_password_change = 0;
                     $user->save();
                 }
             );

@@ -118,7 +118,22 @@
                   </a>
                 </div>
             </div>
-
+            @if(Auth::user()->isSuperAdmin())
+            <div class="col-sm-2">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{App\Http\Controllers\UsersController::countBlockUsers()}}</h3>
+                        <p>Usuarios bloqueados</p>
+                    </div>
+                <div class="icon">
+                  <i class="fas fa-user-slash"></i>
+                </div>
+                <a href="/block-users" class="small-box-footer">
+                    Usuarios <i class="fas fa-arrow-circle-right"></i>
+                  </a>
+                </div>
+            </div>
+            @endif
 
             <div class="col-sm-3">
                 <div class="small-box bg-info">

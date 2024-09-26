@@ -149,6 +149,7 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
         $users = User::all();
+        $userFound;
        
         foreach ($users as $user) {
             try {
@@ -160,7 +161,17 @@ class LoginController extends Controller
                             return back()->withErrors(['password' => 'Tu contraseña ha caducado. Debes restablecerla para continuar.']);
                         }
                     }
+
+                    if ($user->account_locked_at) {
+                        return back()->withErrors(['email' => 'Tu cuenta ha sido bloqueada. Contacta a un administrador para desbloquearla.']);
+                    }
+            
+                    // Verificar si se ha forzado un cambio de contraseña
+                    if ($user->force_password_change) {
+                        return back()->withErrors(['password' => 'Debes cambiar tu contraseña para continuar.']);
+                    }
                     
+                    $userFound = $user;
                 }
             } catch (DecryptException $e) {
 
@@ -175,7 +186,9 @@ class LoginController extends Controller
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
-
+            $user->update(['login_attempts' => 0]);
+            $userFound->login_attempts = 0;
+            $userFound->save();
             return $this->sendLoginResponse($request);
         }
 
@@ -183,6 +196,17 @@ class LoginController extends Controller
         // to login and redirect the user back to the login form. Of course, when this
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
+                      
+        if(!$userFound->isSuperAdmin()){
+            $userFound->increment('login_attempts');
+            
+      
+            if ($userFound->login_attempts >= 5) {
+            $userFound->account_locked_at = now();
+            $userFound->save();
+            return back()->withErrors(['email' => 'Has superado el límite de intentos. Tu cuenta ha sido bloqueada.']);
+            } 
+        }
 
         return $this->sendFailedLoginResponse($request);
     }

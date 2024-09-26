@@ -352,6 +352,15 @@ Route::group([
     Route::get('/unread/{id}', [NotificationsController::class, 'unread']);
 });
 
+
+Route::group([
+    'prefix' => 'block-users',
+    'middleware' => ['auth', 'superadmin'], // Se aplica el middleware 'auth' y 'superadmin'
+], function(){
+    Route::get('/', [UsersController::class, 'blockUsers']);
+    Route::post('/unlock/{id}', [UsersController::class, 'unlock']);
+});
+
 // Verificar el código 2FA
 Route::post('2fa', [LoginController::class, 'verify2FA'])->name('2fa.verify');
 Route::get('2fa', function(){
